@@ -1,5 +1,8 @@
 # Aula 2.7 — Servidor PHP e portas
 
+Esta aula registra o checkpoint `1b7739d`. Configuração e saída do script
+evoluem nas aulas seguintes; consulte o README para o estado atual.
+
 ## Objetivo
 
 Executar o script por HTTP usando o servidor PHP de desenvolvimento, publicar

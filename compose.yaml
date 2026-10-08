@@ -3,6 +3,8 @@ name: curso-loja-fullstack
 services:
   php:
     build: .
+    environment:
+      APP_NAME: "Loja Fullstack"
     command: ["php", "-S", "0.0.0.0:8000", "-t", "/app"]
     stop_signal: SIGINT
     ports:

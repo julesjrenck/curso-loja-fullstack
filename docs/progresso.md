@@ -4,10 +4,10 @@
 
 - Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 2 — Docker desde o começo.
-- Etapa atual: 2.7 — Servidor PHP e publicação de portas.
-- Situação: servidor em execução com HTTP 200 em `http://127.0.0.1:8001/`;
-  parada e reinício verificados; aguardando entendimento da etapa 2.7.
-- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.6 do módulo 2,
+- Etapa atual: 2.8 — Variáveis de ambiente.
+- Situação: APP_NAME definida no container e lida na resposta HTTP;
+  servidor ativo em `http://127.0.0.1:8001/`; aguardando entendimento.
+- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.7 do módulo 2,
   cada avanço confirmado pelo aluno com "entendi".
 - Módulos 3 a 23: não iniciados.
 
@@ -569,8 +569,47 @@ servidor em segundo plano; o sinal SIGINT permite parar normalmente o PHP;
 `header` define metadados HTTP antes do corpo da resposta.
 
 Checkpoint: `feat: inicia servidor PHP com porta local`.
-Entendimento da etapa 2.7: pendente. Não introduzir variáveis de ambiente
-antes da confirmação.
+Entendimento da etapa 2.7: confirmado em 08/10/2026 com "entendi".
+
+## Etapa 2.8
+
+Objetivo: definir uma variável de ambiente do serviço e ler seu valor no PHP.
+
+Implementação:
+
+- `compose.yaml`: acrescenta `environment`, com `APP_NAME: "Loja Fullstack"`.
+- `src/index.php`: lê `getenv("APP_NAME")` em `$appName` e imprime o nome
+  da aplicação antes das mensagens anteriores.
+- Aula salva em `docs/aulas/02-08-variaveis-de-ambiente.md`; README atualizado
+  e aula 2.7 identifica seu checkpoint histórico.
+
+Comandos apresentados e executados:
+
+```bash
+docker compose config --quiet
+docker compose up -d php
+docker compose exec -T php printenv APP_NAME
+```
+
+Resultados verificados:
+
+- YAML validado sem erros.
+- `up` recriou e iniciou somente o container PHP para aplicar a configuração.
+- `printenv APP_NAME` retornou `Loja Fullstack`, com código 0.
+- HTTP retornou status 200 e `text/plain; charset=UTF-8`, com três linhas:
+  "Aplicação: Loja Fullstack", a mensagem do script e PHP 8.4.26.
+- Servidor permaneceu `Up`, publicado em `127.0.0.1:8001->8000/tcp`.
+- Não houve build nesta etapa; o código local continua disponível pelo bind mount.
+- Nenhum `.env`, `.env.example` ou novo serviço foi criado.
+
+Conceitos a confirmar: APP_NAME é uma variável de ambiente do container;
+`$appName` é uma variável PHP que recebe seu valor. Configuração alterada no
+Compose precisa ser aplicada com `up`; código montado pode ser relido ao
+atualizar a página; alterações na imagem precisam de build. `exec` executa
+um comando no container já em execução.
+
+Checkpoint: `feat: configura nome da aplicacao por ambiente`.
+Entendimento da etapa 2.8: pendente. Não criar arquivos `.env` antes da confirmação.
 
 ## Verificações e limitações do ambiente
 
@@ -599,7 +638,7 @@ antes da confirmação.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: inicia servidor PHP com porta local`.
+  desta sessão: `feat: configura nome da aplicacao por ambiente`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -669,11 +708,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
   registrada até agora.
-- Ação imediata: explicar comando do servidor, portas, resposta HTTP e controles
-  do serviço; publicar o checkpoint e aguardar entendimento da etapa 2.7.
-- Após a confirmação: etapa 2.8 — introduzir uma variável de ambiente no
-  Compose e ler seu valor no PHP, explicando configuração por ambiente e
-  a aplicação de mudanças do serviço com `up`.
+- Ação imediata: explicar `environment`, `getenv`, a execução de `printenv` e
+  a resposta verificada; publicar o checkpoint e aguardar entendimento.
+- Após a confirmação: etapa 2.9 — apresentar `.env.example` e `.env` local,
+  explicar interpolação do Compose e passagem explícita de APP_NAME ao serviço,
+  preservar eventuais configurações locais existentes e verificar a exclusão
+  do arquivo local do Git/contexto de build.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -695,4 +735,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 08/10/2026 | 2.4 — Código na imagem | Script PHP copiado e executado com diretório de trabalho definido | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `0ae3e9c` |
 | 08/10/2026 | 2.5 — Primeiro Compose | YAML validado e serviço PHP construído e executado | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `29ed596` |
 | 08/10/2026 | 2.6 — Bind mount | Código local alterado lido sem rebuild; cópia da imagem preservada | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `79c432c` |
-| 08/10/2026 | 2.7 — Servidor e portas | HTTP 200, parada normal e reinício verificados; servidor ativo | Aguardando confirmação | Checkpoint a conferir após envio |
+| 08/10/2026 | 2.7 — Servidor e portas | HTTP 200, parada normal e reinício verificados; servidor ativo | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `1b7739d` |
+| 08/10/2026 | 2.8 — Variável de ambiente | APP_NAME verificada no container e na resposta HTTP | Aguardando confirmação | Checkpoint a conferir após envio |
