@@ -6,7 +6,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 ## Estado atual
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
-Módulo 2 — Docker: etapa 2.2, primeira execução de PHP em um container.
+Módulo 2 — Docker: etapa 2.3, primeira imagem construída com nosso Dockerfile.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -16,9 +16,9 @@ está configurado como `origin`. A autenticação SSH funcionou, os commits inic
 foram publicados e a branch local `main` acompanha `origin/main`.
 
 A aplicação ainda não foi criada. Não há comandos para executar a loja.
-Docker e Compose estão instalados, e PHP 8.4.26 foi executado com sucesso em um
-container descartável da imagem oficial. A próxima etapa, após confirmação de
-entendimento, será criar nosso primeiro Dockerfile.
+Docker e Compose estão instalados. Construímos a imagem `curso-loja-php:aula-2.3`
+com PHP 8.4.26 e verificamos seu comando padrão em um container descartável.
+A próxima etapa, após confirmação de entendimento, será adicionar um script PHP.
 O estado detalhado e atualizado das aulas fica no registro de progresso.
 
 ## Documentação
@@ -27,6 +27,19 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Progresso e ponto de retomada](docs/progresso.md)
 - [Instruções para acompanhar o curso](AGENTS.md)
 - [Aula 2.2 — Comando do primeiro container PHP](docs/aulas/02-02-primeiro-container.md)
+- [Aula 2.3 — Primeiro Dockerfile](docs/aulas/02-03-dockerfile.md)
+
+## Executar a demonstração atual
+
+Na raiz do projeto:
+
+```bash
+docker build -t curso-loja-php:aula-2.3 .
+docker run --rm --name curso-loja-php-dockerfile curso-loja-php:aula-2.3
+```
+
+A demonstração mostra a versão do PHP. Consulte a aula 2.3 para a explicação
+de cada arquivo e argumento.
 
 ## Tecnologias planejadas
 

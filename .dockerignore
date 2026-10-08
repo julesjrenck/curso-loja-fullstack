@@ -1,0 +1,4 @@
+# Permite apenas os arquivos usados nesta primeira construcao.
+**
+!Dockerfile
+!.dockerignore
