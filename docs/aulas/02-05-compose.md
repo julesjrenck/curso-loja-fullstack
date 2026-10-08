@@ -1,5 +1,8 @@
 # Aula 2.5 — Primeiro Docker Compose
 
+Esta aula registra a configuração do checkpoint `29ed596`. O Compose evolui
+nas aulas seguintes; a configuração atual fica em `compose.yaml`.
+
 ## Objetivo
 
 Descrever o serviço PHP em um arquivo Compose e executar a demonstração da

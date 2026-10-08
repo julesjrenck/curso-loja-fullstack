@@ -3,3 +3,5 @@ name: curso-loja-fullstack
 services:
   php:
     build: .
+    volumes:
+      - ./src:/app:ro

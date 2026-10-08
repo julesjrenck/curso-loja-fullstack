@@ -1,5 +1,8 @@
 # Aula 2.4 — Código PHP dentro da imagem
 
+Esta aula registra o código do checkpoint `0ae3e9c`. O script e sua configuração
+evoluem depois; os comandos atuais ficam no README do projeto.
+
 ## Objetivo
 
 Copiar um script do projeto para a imagem e executá-lo no container. Esta página

@@ -4,10 +4,10 @@
 
 - Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 2 — Docker desde o começo.
-- Etapa atual: 2.5 — Primeiro Docker Compose.
-- Situação: configuração validada e demonstração PHP executada pelo serviço
-  Compose; aguardando confirmação de entendimento da etapa 2.5.
-- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.4 do módulo 2,
+- Etapa atual: 2.6 — Código local com bind mount.
+- Situação: script local atualizado executado sem reconstruir a imagem;
+  comparação com a cópia da imagem verificada; aguardando entendimento.
+- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.5 do módulo 2,
   cada avanço confirmado pelo aluno com "entendi".
 - Módulos 3 a 23: não iniciados.
 
@@ -480,8 +480,47 @@ Resultados verificados:
   realizada no modo restrito.
 
 Checkpoint: `feat: adiciona primeiro servico PHP com Compose`.
-Entendimento da etapa 2.5: pendente. Não adicionar mounts, portas ou serviços
-antes da confirmação do aluno.
+Entendimento da etapa 2.5: confirmado em 08/10/2026 com "entendi".
+
+## Etapa 2.6
+
+Objetivo: disponibilizar o código local no container e observar uma alteração
+do script sem reconstruir a imagem da aula anterior.
+
+Implementação:
+
+- `compose.yaml`: acrescenta `volumes` ao serviço PHP, com `./src:/app:ro`.
+- `src/index.php`: muda a primeira mensagem para "Olá, Docker! Código local
+  atualizado." para demonstrar qual versão do script está sendo executada.
+- Dockerfile e regras do contexto preservados: `COPY` continua guardando a
+  versão existente no momento do build.
+
+Aula salva em `docs/aulas/02-06-bind-mount.md`, com explicação de origem,
+destino, modo de leitura, montagem sobre arquivos existentes e comparação.
+README atualizado; aulas 2.4 e 2.5 identificam seus checkpoints históricos.
+
+Verificações realizadas sem executar build nesta etapa:
+
+- `docker compose config --quiet` concluiu com sucesso.
+- A configuração normalizada mostrou `type: bind`, origem na pasta `src`
+  deste projeto, destino `/app` e `read_only: true`.
+- `docker compose run --rm php` executou o código local atualizado, mostrando
+  "Olá, Docker! Código local atualizado." e PHP 8.4.26, com código 0.
+- `docker run --rm curso-loja-fullstack-php:latest`, sem montar a pasta, mostrou
+  a mensagem antiga "Olá, Docker!" e PHP 8.4.26, com código 0.
+- O identificador da imagem permaneceu igual antes e depois:
+  `sha256:395cb4bf033910c6a294a6190a83554e116a57a04477cc4af57ed11befa3fe6d`.
+- Os containers temporários foram removidos. O daemon foi acessado pela execução
+  ampliada autorizada; nenhuma porta foi publicada nesta etapa.
+
+Conceitos a confirmar: montagem disponibiliza arquivos locais e encobre a cópia
+em `/app` sem alterar a imagem; `ro` limita escrita pelo container, não a edição
+pelo usuário no host. Reexecutar o script lê as alterações; não há execução
+automática ao salvar. Mudanças na imagem ainda precisam de novo build.
+
+Checkpoint: `feat: monta codigo PHP local para desenvolvimento`.
+Entendimento da etapa 2.6: pendente. Não iniciar servidor ou publicar portas
+antes de receber a confirmação.
 
 ## Verificações e limitações do ambiente
 
@@ -510,7 +549,7 @@ antes da confirmação do aluno.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: adiciona primeiro servico PHP com Compose`.
+  desta sessão: `feat: monta codigo PHP local para desenvolvimento`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -580,12 +619,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
   registrada até agora.
-- Ação imediata: explicar `compose.yaml`, YAML e os comandos Compose; publicar
-  o checkpoint, responder às perguntas e aguardar entendimento da etapa 2.5.
-- Após a confirmação: etapa 2.6 — introduzir um bind mount de `src` para `/app`
-  no serviço PHP de desenvolvimento, explicar origem/destino e distinguir
-  arquivos locais montados da cópia incluída na imagem. Verificar a execução
-  do código local sem reconstruir a imagem para uma alteração apenas do script.
+- Ação imediata: explicar o bind mount, a mensagem alterada, a comparação e
+  as verificações; publicar o checkpoint e aguardar entendimento da etapa 2.6.
+- Após a confirmação: etapa 2.7 — iniciar o servidor PHP de desenvolvimento
+  pelo Compose, explicar comando e publicação de porta no host, validar uma
+  resposta HTTP e apresentar os comandos de acompanhamento e parada do serviço.
+  Verificar a disponibilidade da porta antes de configurá-la.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -605,4 +644,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 08/10/2026 | 2.2 — Primeiro container PHP | PHP 8.4.26 executado; container removido e imagem preservada | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `0a6c1d2` |
 | 08/10/2026 | 2.3 — Primeiro Dockerfile | Imagem própria construída e comando padrão verificado | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `ec1765a` |
 | 08/10/2026 | 2.4 — Código na imagem | Script PHP copiado e executado com diretório de trabalho definido | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `0ae3e9c` |
-| 08/10/2026 | 2.5 — Primeiro Compose | YAML validado e serviço PHP construído e executado | Aguardando confirmação | Checkpoint a conferir após envio |
+| 08/10/2026 | 2.5 — Primeiro Compose | YAML validado e serviço PHP construído e executado | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `29ed596` |
+| 08/10/2026 | 2.6 — Bind mount | Código local alterado lido sem rebuild; cópia da imagem preservada | Aguardando confirmação | Checkpoint a conferir após envio |

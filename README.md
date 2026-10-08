@@ -6,7 +6,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 ## Estado atual
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
-Módulo 2 — Docker: etapa 2.5, primeiro serviço PHP definido em Docker Compose.
+Módulo 2 — Docker: etapa 2.6, código local disponível por bind mount.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -18,8 +18,9 @@ foram publicados e a branch local `main` acompanha `origin/main`.
 A aplicação ainda não foi criada. Não há comandos para executar a loja.
 Docker e Compose estão instalados. O serviço `php` constrói a imagem pelo
 Dockerfile e executa `src/index.php` com PHP 8.4.26 em um container descartável.
-A próxima etapa, após confirmação de entendimento, será disponibilizar o código
-local no container durante o desenvolvimento com um bind mount.
+O Compose monta `./src` em `/app` como somente leitura, permitindo executar
+alterações do código local sem reconstruir a imagem. A próxima etapa, após
+confirmação de entendimento, será iniciar o servidor PHP e publicar sua porta.
 O estado detalhado e atualizado das aulas fica no registro de progresso.
 
 ## Documentação
@@ -31,6 +32,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 2.3 — Primeiro Dockerfile](docs/aulas/02-03-dockerfile.md)
 - [Aula 2.4 — Código PHP dentro da imagem](docs/aulas/02-04-codigo-na-imagem.md)
 - [Aula 2.5 — Primeiro Docker Compose](docs/aulas/02-05-compose.md)
+- [Aula 2.6 — Código local com bind mount](docs/aulas/02-06-bind-mount.md)
 
 ## Executar a demonstração atual
 
@@ -42,9 +44,10 @@ docker compose build
 docker compose run --rm php
 ```
 
-A demonstração imprime uma mensagem e a versão do PHP. Consulte a aula 2.5 para
-a configuração Compose e a aula 2.4 para o código. Ao editar o script local,
-reconstrua a imagem antes de executar para incluir a alteração.
+A demonstração imprime uma mensagem e a versão do PHP. Consulte a aula 2.6 para
+entender a montagem do código local. Depois do primeiro build, ao editar apenas
+o script, execute novamente `docker compose run --rm php`. Mudanças na base ou
+nas dependências da imagem ainda exigem reconstrução.
 
 ## Tecnologias planejadas
 
