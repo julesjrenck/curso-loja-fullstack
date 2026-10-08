@@ -5,18 +5,18 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 ## Estado atual
 
-Módulo 1 — Preparação, Git e GitHub, em andamento.
+Módulo 1 — Preparação, Git e GitHub: primeiro push realizado; aguardando
+confirmação de entendimento da etapa 1.7.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
 de exclusão. O histórico local pode ser consultado com `git log --oneline`.
 O [repositório público no GitHub](https://github.com/julesjrenck/curso-loja-fullstack)
-foi criado e configurado como `origin`. O primeiro envio está pendente da
-autenticação SSH deste computador.
+está configurado como `origin`. A autenticação SSH funcionou, os commits iniciais
+foram publicados e a branch local `main` acompanha `origin/main`.
 
 A aplicação ainda não foi criada. Não há comandos para executar a loja.
-Cadastrar a chave pública SSH na conta GitHub e enviar o histórico são os
-próximos passos do módulo.
+Após a confirmação de entendimento, começaremos o módulo 2 — Docker.
 O estado detalhado e atualizado das aulas fica no registro de progresso.
 
 ## Documentação

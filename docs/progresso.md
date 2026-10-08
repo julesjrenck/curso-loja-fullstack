@@ -5,8 +5,8 @@
 - Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 1 — Preparação, Git e GitHub.
 - Etapa atual: 1.7 — Primeiro push e autenticação SSH.
-- Situação: repositório público criado e vazio; envio pendente do cadastro
-  da chave pública SSH na conta GitHub pelo aluno.
+- Situação: autenticação SSH verificada e primeiro push concluído; aguardando
+  confirmação de entendimento da explicação do push antes de iniciar Docker.
 - Entendimento confirmado: etapas 1.1 a 1.6; a última confirmada com
   "criei e entendi". A etapa 1.7 ainda não foi confirmada.
 - Módulos 2 a 23: não iniciados.
@@ -43,7 +43,7 @@ de progresso guarda onde paramos; as instruções orientam a retomada do profess
 As próximas sessões devem ler esses arquivos e conferir o estado do código.
 
 Confirmação do aluno: recebida em 08/10/2026, com a mensagem "entendi".
-Etapa 1.1 concluída quanto ao entendimento; publicação permanece pendente.
+Etapa 1.1 concluída quanto ao entendimento; publicação confirmada na etapa 1.7.
 
 ## Etapa 1.2
 
@@ -69,7 +69,7 @@ de exemplo corretamente ignorados e 11 candidatos a versionamento preservados,
 incluindo modelos `.env.example` na raiz e em subpastas, código e lockfiles.
 Todos os links relativos do README apontam para arquivos existentes.
 Confirmação do aluno: recebida em 08/10/2026, com a mensagem "entendi".
-Etapa 1.2 concluída quanto ao entendimento; publicação permanece pendente.
+Etapa 1.2 concluída quanto ao entendimento; publicação confirmada na etapa 1.7.
 
 ## Etapa 1.3
 
@@ -98,7 +98,7 @@ sem atualizações opcionais de metadados, mostrou `.gitignore`, `AGENTS.md`,
 O README foi atualizado para refletir a inicialização do repositório.
 
 Confirmação do aluno: recebida em 08/10/2026, com a mensagem "entendi".
-Etapa 1.3 concluída quanto ao entendimento; publicação permanece pendente.
+Etapa 1.3 concluída quanto ao entendimento; publicação confirmada na etapa 1.7.
 
 ## Etapa 1.4
 
@@ -130,7 +130,7 @@ README e progresso foram atualizados para refletir a seleção e adicionados
 novamente para incluir esses registros no checkpoint. Nenhum commit ou push
 foi executado nesta etapa.
 Confirmação do aluno: recebida em 08/10/2026, com a mensagem "entendi".
-Etapa 1.4 concluída quanto ao entendimento; publicação permanece pendente.
+Etapa 1.4 concluída quanto ao entendimento; publicação confirmada na etapa 1.7.
 
 ## Etapa 1.5
 
@@ -159,7 +159,7 @@ etapa encontrou um commit no histórico, nenhum remoto e nenhuma alteração
 pendente no staging ou na pasta de trabalho.
 
 Confirmação do aluno: recebida em 08/10/2026, com a mensagem "entendi".
-Etapa 1.5 concluída quanto ao entendimento; publicação permanece pendente.
+Etapa 1.5 concluída quanto ao entendimento; publicação confirmada na etapa 1.7.
 
 ## Etapa 1.6
 
@@ -213,9 +213,10 @@ A etapa 1.7 confirmou pela API que o repositório existe, é público, pertence 
 ## Etapa 1.7
 
 Objetivo: enviar os commits locais para o GitHub e verificar a correspondência
-entre o histórico local e a branch remota. Etapa ainda em andamento.
+entre o histórico local e a branch remota. Execução concluída; entendimento
+da explicação do push ainda não confirmado.
 
-Comando a executar após resolver a autenticação: `git push -u origin main`.
+Comando explicado e executado: `git push -u origin main`.
 
 - `push`: envia os commits e atualiza a branch no destino remoto.
 - `origin`: apelido do repositório GitHub já configurado.
@@ -223,7 +224,7 @@ Comando a executar após resolver a autenticação: `git push -u origin main`.
 - `-u`: configura a branch remota `origin/main` como referência de acompanhamento
   da `main` local; nas próximas publicações, poderemos usar apenas `git push`.
 
-Resultado das verificações de acesso:
+Diagnóstico anterior à publicação:
 
 - A API GitHub confirmou `julesjrenck/curso-loja-fullstack` público e acessível.
   O endpoint de branches retornou `[]`, indicando repositório vazio.
@@ -242,28 +243,51 @@ Resultado das verificações de acesso:
   Nenhuma chave privada foi exibida, copiada para o projeto ou versionada.
 - O conector GitHub não oferece cadastro de chaves SSH e sua autenticação não
   autentica automaticamente o Git no terminal.
-- Nenhum `git push` foi executado: a verificação de acesso ainda não passou.
+- Nessa sessão de diagnóstico, nenhum `git push` foi executado: o acesso ainda
+  não tinha sido liberado. O resultado após o cadastro está registrado abaixo.
 
 Fontes: [Chaves do servidor GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints)
 e [Cadastrar chave SSH na conta](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
 
-Ação necessária do aluno: abrir [SSH and GPG keys](https://github.com/settings/keys)
+Orientação apresentada ao aluno: abrir [SSH and GPG keys](https://github.com/settings/keys)
 na conta `julesjrenck`, escolher `New SSH key`, título `curso-loja-fullstack`,
 tipo `Authentication Key`, colar a chave pública apresentada na conversa e
 confirmar com `Add SSH key`. A chave pública pode ser obtida novamente no arquivo
 `~/.ssh/id_ed25519.pub`; não pedir chave privada ou senha ao aluno.
 
-Quando o aluno informar que cadastrou a chave: retomar esta mesma etapa,
-verificar o acesso e as branches antes de enviar, explicar o comando de push
-e executá-lo sem force-push. Se o acesso continuar falhando, investigar o
-resultado antes de pedir novas ações ao aluno.
+Resultado após o cadastro, informado pelo aluno com "adicionei":
+
+- `git ls-remote origin` concluiu com sucesso e sem referências; a API de
+  branches também retornou `[]`, confirmando que o destino estava vazio.
+- `git push -u origin main` concluiu com sucesso e criou `main` no GitHub.
+- A saída informou `main -> main` e o acompanhamento de `origin/main`.
+- `git rev-parse HEAD` e `git rev-parse origin/main` retornaram o mesmo SHA:
+  `a43617042726cda586c24b630eab8734b53f7a3c`.
+- A API GitHub para `commits/main` confirmou esse mesmo SHA. Os três commits
+  iniciais foram publicados preservando o histórico local.
+- `git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}'` retornou
+  `origin/main`; `git status --short --branch` mostrou `main...origin/main`
+  sem alterações pendentes.
+- O cadastro da chave resolve a autenticação. A mensagem "adicionei" não é
+  uma confirmação de entendimento da explicação do push.
+
+Explicação da saída: `[new branch] main -> main` informa a criação da branch
+remota a partir da local. O vínculo de acompanhamento permite ao Git comparar
+as duas branches e usar o destino em futuros comandos `git push`.
+
+README e progresso atualizados para registrar o sucesso, com novo checkpoint
+local `docs: registra primeiro push e sincronizacao`. Após o commit, enviar
+essa atualização com `git push` e conferir novamente os SHAs local/remoto.
+O SHA acima identifica o primeiro envio verificado, não o commit posterior que
+contém este registro. Para consultar o último publicado, usar `origin/main`
+ou a página do GitHub, evitando inserir o SHA do commit em seu próprio conteúdo.
 
 Registro desta sessão em checkpoint local com os comandos já ensinados:
 `git add AGENTS.md README.md docs/progresso.md` e
 `git commit -m "docs: registra criacao do repositorio e pendencia SSH"`.
 
-Entendimento da etapa 1.7: pendente. Não iniciar Docker antes de resolver o
-primeiro envio e receber a confirmação de entendimento da explicação do push.
+Entendimento da etapa 1.7: pendente. Não iniciar Docker até o aluno confirmar
+o entendimento da explicação do push.
 
 ## Verificações e limitações do ambiente
 
@@ -283,25 +307,28 @@ primeiro envio e receber a confirmação de entendimento da explicação do push
 ## Git e GitHub
 
 - Repositório local: branch `main`; etapa 1.5 registra o primeiro checkpoint
-  com os cinco arquivos iniciais.
+  com os cinco arquivos iniciais. Acompanhamento de `origin/main` configurado.
 - Destino remoto: `origin` configurado para `julesjrenck/curso-loja-fullstack`;
-  criação e visibilidade pública verificadas, repositório vazio nesta sessão.
-- Conta pelo conector: `julesjrenck`; acesso Git SSH recusado com
-  `Permission denied (publickey)`, aguardando cadastro da chave pública.
+  criação, visibilidade pública e histórico publicado verificados.
+- Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
+  da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `docs: registra criacao do repositorio e pendencia SSH`.
-- Último commit publicado: nenhum.
-- Publicação das etapas 1.1 a 1.7: pendente da autenticação SSH no módulo 1;
-  apenas verificações de acesso realizadas, sem executar o push.
+  desta sessão: `docs: registra primeiro push e sincronizacao`.
+- Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
+- Último commit publicado: consultar `git rev-parse origin/main` ou a página
+  do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
+- Publicação das etapas 1.1 a 1.7: primeiro envio concluído; esta atualização
+  do registro deve ser enviada após o commit e verificada novamente.
 
 ## Dúvidas e próximos passos
 
 - Dúvidas do aluno: nenhuma registrada até agora.
-- Ação imediata: orientar cadastro da chave pública SSH e responder às perguntas.
-- Após o aluno informar que cadastrou a chave: retomar a etapa 1.7, verificar
-  acesso e estado remoto, explicar e executar o primeiro push, verificar os
-  SHAs local/remoto e registrar a publicação efetiva.
+- Ação imediata: conferir sincronização, explicar o resultado do push e aguardar
+  a confirmação de entendimento. Se houver checkpoint local ainda não enviado,
+  concluir sua publicação e verificar antes de relatar sincronização.
+- Após o aluno confirmar entendimento: concluir o módulo 1 e iniciar a etapa
+  2.1 — apresentar imagens e containers e diagnosticar o acesso ao Docker.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
 
@@ -309,10 +336,10 @@ primeiro envio e receber a confirmação de entendimento da explicação do push
 
 | Data | Etapa | Implementação | Entendimento | GitHub |
 | --- | --- | --- | --- | --- |
-| 08/10/2026 | 1.1 — Registros do curso | Três arquivos de documentação criados | Confirmado pelo aluno: "entendi" | Pendente: Git/GitHub ainda não preparados |
-| 08/10/2026 | 1.2 — `.gitignore` e README | Regras de exclusão e apresentação criadas | Confirmado pelo aluno: "entendi" | Pendente: Git/GitHub ainda não preparados |
-| 08/10/2026 | 1.3 — Inicialização do Git | Repositório local criado com branch `main` | Confirmado pelo aluno: "entendi" | Pendente: sem commit ou remoto |
-| 08/10/2026 | 1.4 — Preparação dos arquivos | Cinco arquivos selecionados para o primeiro commit | Confirmado pelo aluno: "entendi" | Pendente: sem remoto |
-| 08/10/2026 | 1.5 — Primeiro commit | Commit inicial `afb0d2c` verificado | Confirmado pelo aluno: "entendi" | Pendente: primeiro push |
-| 08/10/2026 | 1.6 — Preparação do GitHub | Repositório público criado e `origin` configurado | Confirmado pelo aluno: "criei e entendi" | Pendente: autenticação Git SSH |
-| 08/10/2026 | 1.7 — Primeiro push | Confiança no servidor SSH configurada; envio ainda não executado | Em andamento | Pendente: cadastro da chave pública |
+| 08/10/2026 | 1.1 — Registros do curso | Três arquivos de documentação criados | Confirmado pelo aluno: "entendi" | Publicado no primeiro envio |
+| 08/10/2026 | 1.2 — `.gitignore` e README | Regras de exclusão e apresentação criadas | Confirmado pelo aluno: "entendi" | Publicado no primeiro envio |
+| 08/10/2026 | 1.3 — Inicialização do Git | Repositório local criado com branch `main` | Confirmado pelo aluno: "entendi" | Publicado no primeiro envio |
+| 08/10/2026 | 1.4 — Preparação dos arquivos | Cinco arquivos selecionados para o primeiro commit | Confirmado pelo aluno: "entendi" | Publicado no primeiro envio |
+| 08/10/2026 | 1.5 — Primeiro commit | Commit inicial `afb0d2c` verificado | Confirmado pelo aluno: "entendi" | Publicado no primeiro envio |
+| 08/10/2026 | 1.6 — Preparação do GitHub | Repositório público criado e `origin` configurado | Confirmado pelo aluno: "criei e entendi" | Publicado no primeiro envio |
+| 08/10/2026 | 1.7 — Primeiro push | Envio e acompanhamento de `origin/main` verificados | Aguardando entendimento do push | Primeiro envio confirmado; atualização deste registro a conferir após envio |
