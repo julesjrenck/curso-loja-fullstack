@@ -1,5 +1,8 @@
 # Aula 2.8 — Variáveis de ambiente
 
+Esta aula registra a configuração literal do checkpoint `42d152b`. A origem
+do valor evolui na aula seguinte; o estado atual fica no README e no Compose.
+
 ## Objetivo
 
 Definir uma configuração no ambiente do container e ler seu valor no PHP.

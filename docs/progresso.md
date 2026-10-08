@@ -4,10 +4,10 @@
 
 - Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 2 — Docker desde o começo.
-- Etapa atual: 2.8 — Variáveis de ambiente.
-- Situação: APP_NAME definida no container e lida na resposta HTTP;
-  servidor ativo em `http://127.0.0.1:8001/`; aguardando entendimento.
-- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.7 do módulo 2,
+- Etapa atual: 2.9 — .env local e .env.example.
+- Situação: interpolação e resposta HTTP verificadas; configuração local
+  excluída do Git e do contexto; aguardando entendimento da etapa 2.9.
+- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.8 do módulo 2,
   cada avanço confirmado pelo aluno com "entendi".
 - Módulos 3 a 23: não iniciados.
 
@@ -609,7 +609,51 @@ atualizar a página; alterações na imagem precisam de build. `exec` executa
 um comando no container já em execução.
 
 Checkpoint: `feat: configura nome da aplicacao por ambiente`.
-Entendimento da etapa 2.8: pendente. Não criar arquivos `.env` antes da confirmação.
+Entendimento da etapa 2.8: confirmado em 08/10/2026 com "entendi".
+
+## Etapa 2.9
+
+Objetivo: criar um modelo versionado e uma configuração local e usar seu valor
+pela interpolação do Compose.
+
+Implementação:
+
+- `.env.example`: `APP_NAME="Loja Fullstack"`, valor fictício de exemplo.
+- `.env`: criado localmente a partir do modelo; o valor didático foi alterado
+  para `Loja Fullstack Local`. O arquivo não deve ser versionado.
+- `compose.yaml`: usa `APP_NAME: "${APP_NAME}"` dentro de `environment`.
+- PHP, Dockerfile e regras de exclusão preservados.
+- Aula salva em `docs/aulas/02-09-env-e-modelo.md`; README atualizado e aula 2.8
+  identifica seu checkpoint histórico.
+
+Verificações:
+
+- Antes da etapa, `.env` e `.env.example` não existiam, e APP_NAME não estava
+  definida no shell.
+- A primeira cópia com `cp -n` funcionou e exibiu aviso de portabilidade;
+  `cp --update=none .env.example .env` foi conferido como alternativa que
+  preserva o destino existente. O valor local foi mantido.
+- Configuração normalizada resolveu APP_NAME como `Loja Fullstack Local`.
+- `docker compose config --quiet` validou a configuração.
+- `git check-ignore` confirmou `.env` ignorado e `.env.example` permitido.
+  O arquivo local não consta em `git ls-files`.
+- Um build temporário com `COPY .env` foi recusado por ausência do arquivo no
+  contexto; confirmou a exclusão pelo `.dockerignore`, sem alterar o Dockerfile
+  do projeto ou concluir uma imagem de teste.
+- `docker compose up -d php` aplicou a configuração e recriou o container.
+- `docker compose exec -T php printenv APP_NAME` retornou `Loja Fullstack Local`.
+- HTTP retornou status 200 e o nome local, com tipo `text/plain; charset=UTF-8`.
+- Servidor permaneceu ativo em `http://127.0.0.1:8001/`. Não houve reconstrução
+  da imagem da aplicação nem criação de novos serviços.
+
+Conceitos a confirmar: o modelo documenta as variáveis, a cópia local define
+seus valores; o Compose lê `.env` para interpolar `${APP_NAME}` e `environment`
+passa o resultado ao container. O PHP mantém `getenv` e não lê o arquivo local
+diretamente. Variáveis do shell podem prevalecer sobre valores do arquivo.
+
+Checkpoint: `feat: separa configuracao local em arquivo env`.
+Entendimento da etapa 2.9: pendente. Não criar volume ou demonstrador de dados
+antes da confirmação.
 
 ## Verificações e limitações do ambiente
 
@@ -638,7 +682,7 @@ Entendimento da etapa 2.8: pendente. Não criar arquivos `.env` antes da confirm
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: configura nome da aplicacao por ambiente`.
+  desta sessão: `feat: separa configuracao local em arquivo env`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -708,12 +752,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
   registrada até agora.
-- Ação imediata: explicar `environment`, `getenv`, a execução de `printenv` e
-  a resposta verificada; publicar o checkpoint e aguardar entendimento.
-- Após a confirmação: etapa 2.9 — apresentar `.env.example` e `.env` local,
-  explicar interpolação do Compose e passagem explícita de APP_NAME ao serviço,
-  preservar eventuais configurações locais existentes e verificar a exclusão
-  do arquivo local do Git/contexto de build.
+- Ação imediata: explicar modelo, arquivo local e interpolação; publicar somente
+  os arquivos versionáveis, responder às perguntas e aguardar entendimento.
+- Após a confirmação: etapa 2.10 — introduzir um volume gerenciado pelo Docker
+  para dados de demonstração, explicar sua diferença em relação ao bind mount
+  do código e verificar persistência entre containers, preservando o servidor.
+  Usar escrita de dados por um script de terminal, sem adicionar mutações ao GET.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -736,4 +780,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 08/10/2026 | 2.5 — Primeiro Compose | YAML validado e serviço PHP construído e executado | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `29ed596` |
 | 08/10/2026 | 2.6 — Bind mount | Código local alterado lido sem rebuild; cópia da imagem preservada | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `79c432c` |
 | 08/10/2026 | 2.7 — Servidor e portas | HTTP 200, parada normal e reinício verificados; servidor ativo | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `1b7739d` |
-| 08/10/2026 | 2.8 — Variável de ambiente | APP_NAME verificada no container e na resposta HTTP | Aguardando confirmação | Checkpoint a conferir após envio |
+| 08/10/2026 | 2.8 — Variável de ambiente | APP_NAME verificada no container e na resposta HTTP | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `42d152b` |
+| 08/10/2026 | 2.9 — .env e modelo | Configuração local interpolada; exclusões e HTTP verificados | Aguardando confirmação | Checkpoint a conferir após envio; .env permanece local |

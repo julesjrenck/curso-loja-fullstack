@@ -6,7 +6,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 ## Estado atual
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
-Módulo 2 — Docker: etapa 2.8, nome da aplicação configurado por variável de ambiente.
+Módulo 2 — Docker: etapa 2.9, configuração local em `.env` e modelo versionado.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -21,8 +21,8 @@ Dockerfile e inicia o servidor PHP 8.4.26 de desenvolvimento.
 O Compose monta `./src` em `/app` como somente leitura, permitindo executar
 alterações do código local sem reconstruir a imagem. A demonstração responde
 em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A próxima etapa, após
-confirmação de entendimento, será mover configurações para `.env` e criar
-seu modelo `.env.example`.
+confirmação de entendimento, será demonstrar persistência com um volume
+gerenciado pelo Docker.
 O estado detalhado e atualizado das aulas fica no registro de progresso.
 
 ## Documentação
@@ -37,10 +37,18 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 2.6 — Código local com bind mount](docs/aulas/02-06-bind-mount.md)
 - [Aula 2.7 — Servidor PHP e portas](docs/aulas/02-07-servidor-e-portas.md)
 - [Aula 2.8 — Variáveis de ambiente](docs/aulas/02-08-variaveis-de-ambiente.md)
+- [Aula 2.9 — .env local e modelo](docs/aulas/02-09-env-e-modelo.md)
 
 ## Executar a demonstração atual
 
-Na raiz do projeto:
+Na raiz do projeto, crie a configuração local a partir do modelo. No Linux com
+GNU cp, o comando abaixo preserva um `.env` já existente:
+
+```bash
+cp --update=none .env.example .env
+```
+
+Edite o nome da aplicação no `.env`, se desejar. Depois:
 
 ```bash
 docker compose config --quiet
@@ -48,11 +56,13 @@ docker compose up -d --build php
 ```
 
 Acesse [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A resposta é texto simples
-com o nome da aplicação, uma mensagem e a versão do PHP. O serviço define
-`APP_NAME: "Loja Fullstack"`, lido pelo script com `getenv`.
+com o nome da aplicação, uma mensagem e a versão do PHP. O serviço recebe
+APP_NAME por interpolação da configuração local e o script lê seu valor com
+`getenv`. O modelo usa `Loja Fullstack`; seu `.env` pode definir outro nome.
 Ao editar apenas o script, atualize a página. Mudanças na configuração Compose
 precisam ser aplicadas com `docker compose up -d php`; mudanças na imagem exigem
-build. Consulte as aulas 2.7 e 2.8 para a explicação das portas e da configuração.
+build. Mudanças no `.env` também precisam de `up`. Consulte as aulas 2.7 a 2.9
+para a explicação das portas e da configuração.
 
 Para acompanhar e parar o serviço:
 
@@ -81,7 +91,7 @@ arquivos e uma verificação. A próxima etapa começa após a confirmação de
 entendimento do aluno. Dúvidas e checkpoints são registrados para retomada
 em outros chats.
 
-Arquivos `.env` contêm configurações locais e ficam fora do Git. Quando forem
-introduzidos, seus modelos `.env.example` usarão apenas valores de exemplo,
-sem credenciais reais. Arquivos de lock serão versionados com as ferramentas
+O `.env` contém configurações locais e fica fora do Git e do contexto de build.
+O `.env.example` é o modelo versionado e usa apenas valores de exemplo, sem
+credenciais reais. Arquivos de lock serão versionados com as ferramentas
 correspondentes para permitir instalações reproduzíveis.
