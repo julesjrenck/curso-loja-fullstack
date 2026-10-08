@@ -4,10 +4,10 @@
 
 - Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 2 — Docker desde o começo.
-- Etapa atual: 2.6 — Código local com bind mount.
-- Situação: script local atualizado executado sem reconstruir a imagem;
-  comparação com a cópia da imagem verificada; aguardando entendimento.
-- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.5 do módulo 2,
+- Etapa atual: 2.7 — Servidor PHP e publicação de portas.
+- Situação: servidor em execução com HTTP 200 em `http://127.0.0.1:8001/`;
+  parada e reinício verificados; aguardando entendimento da etapa 2.7.
+- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.6 do módulo 2,
   cada avanço confirmado pelo aluno com "entendi".
 - Módulos 3 a 23: não iniciados.
 
@@ -519,8 +519,58 @@ pelo usuário no host. Reexecutar o script lê as alterações; não há execuç
 automática ao salvar. Mudanças na imagem ainda precisam de novo build.
 
 Checkpoint: `feat: monta codigo PHP local para desenvolvimento`.
-Entendimento da etapa 2.6: pendente. Não iniciar servidor ou publicar portas
-antes de receber a confirmação.
+Entendimento da etapa 2.6: confirmado em 08/10/2026 com "entendi".
+
+## Etapa 2.7
+
+Objetivo: iniciar o servidor PHP de desenvolvimento, acessá-lo por HTTP e
+apresentar estado, logs, parada e reinício do serviço.
+
+Implementação:
+
+- `compose.yaml`: comando `php -S 0.0.0.0:8000 -t /app`, publicação
+  `127.0.0.1:8001:8000` e `stop_signal: SIGINT`. Mantém o bind mount somente leitura.
+- `src/index.php`: acrescenta `Content-Type: text/plain; charset=UTF-8` antes
+  da saída. Dockerfile e regras de contexto preservados.
+- Aula salva em `docs/aulas/02-07-servidor-e-portas.md`; README atualizado e
+  aula 2.6 identifica seu checkpoint histórico.
+
+Comandos apresentados:
+
+```bash
+docker compose config --quiet
+docker compose up -d --build php
+docker compose ps
+docker compose logs --tail 10 php
+docker compose stop php
+docker compose ps -a
+docker compose up -d php
+```
+
+Resultados verificados:
+
+- Porta 8000 sem listener visível na inspeção, mas publicação recusada pelo
+  Docker Desktop com erro 500 em `/forwards/expose`.
+- Porta local alternativa 8001 publicada com sucesso para a porta 8000 do container;
+  a causa específica da falha da porta 8000 não foi estabelecida.
+- Configuração final validada e serviço em estado `Up`.
+- HTTP retornou `200 OK`, tipo `text/plain; charset=UTF-8`, mensagem do script
+  e PHP 8.4.26. Logs confirmaram inicialização e `GET /` com status 200.
+- Primeira parada com sinal padrão resultou em código 137 após encerramento
+  forçado. Com `stop_signal: SIGINT`, a parada concluiu com código 0.
+- Após reinício, nova requisição confirmou HTTP 200 e a publicação
+  `127.0.0.1:8001->8000/tcp`.
+- Servidor deixado em execução para o aluno acessar. As operações de daemon
+  e rede usaram execução ampliada; outros projetos foram preservados.
+
+Conceitos a confirmar: endereço de escuta no container e endereço publicado
+no host são distintos; `command` altera o comando do serviço; `-d` mantém o
+servidor em segundo plano; o sinal SIGINT permite parar normalmente o PHP;
+`header` define metadados HTTP antes do corpo da resposta.
+
+Checkpoint: `feat: inicia servidor PHP com porta local`.
+Entendimento da etapa 2.7: pendente. Não introduzir variáveis de ambiente
+antes da confirmação.
 
 ## Verificações e limitações do ambiente
 
@@ -549,7 +599,7 @@ antes de receber a confirmação.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: monta codigo PHP local para desenvolvimento`.
+  desta sessão: `feat: inicia servidor PHP com porta local`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -619,12 +669,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
   registrada até agora.
-- Ação imediata: explicar o bind mount, a mensagem alterada, a comparação e
-  as verificações; publicar o checkpoint e aguardar entendimento da etapa 2.6.
-- Após a confirmação: etapa 2.7 — iniciar o servidor PHP de desenvolvimento
-  pelo Compose, explicar comando e publicação de porta no host, validar uma
-  resposta HTTP e apresentar os comandos de acompanhamento e parada do serviço.
-  Verificar a disponibilidade da porta antes de configurá-la.
+- Ação imediata: explicar comando do servidor, portas, resposta HTTP e controles
+  do serviço; publicar o checkpoint e aguardar entendimento da etapa 2.7.
+- Após a confirmação: etapa 2.8 — introduzir uma variável de ambiente no
+  Compose e ler seu valor no PHP, explicando configuração por ambiente e
+  a aplicação de mudanças do serviço com `up`.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -645,4 +694,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 08/10/2026 | 2.3 — Primeiro Dockerfile | Imagem própria construída e comando padrão verificado | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `ec1765a` |
 | 08/10/2026 | 2.4 — Código na imagem | Script PHP copiado e executado com diretório de trabalho definido | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `0ae3e9c` |
 | 08/10/2026 | 2.5 — Primeiro Compose | YAML validado e serviço PHP construído e executado | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `29ed596` |
-| 08/10/2026 | 2.6 — Bind mount | Código local alterado lido sem rebuild; cópia da imagem preservada | Aguardando confirmação | Checkpoint a conferir após envio |
+| 08/10/2026 | 2.6 — Bind mount | Código local alterado lido sem rebuild; cópia da imagem preservada | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `79c432c` |
+| 08/10/2026 | 2.7 — Servidor e portas | HTTP 200, parada normal e reinício verificados; servidor ativo | Aguardando confirmação | Checkpoint a conferir após envio |

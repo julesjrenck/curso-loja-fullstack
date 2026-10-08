@@ -1,5 +1,8 @@
 # Aula 2.6 — Código local com bind mount
 
+Esta aula registra o estado do checkpoint `79c432c`. O comando do serviço
+evolui depois; consulte o README para a demonstração atual.
+
 ## Objetivo
 
 Usar o código local no container durante o desenvolvimento e verificar uma

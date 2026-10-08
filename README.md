@@ -6,7 +6,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 ## Estado atual
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
-Módulo 2 — Docker: etapa 2.6, código local disponível por bind mount.
+Módulo 2 — Docker: etapa 2.7, servidor PHP com porta local publicada.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -17,10 +17,11 @@ foram publicados e a branch local `main` acompanha `origin/main`.
 
 A aplicação ainda não foi criada. Não há comandos para executar a loja.
 Docker e Compose estão instalados. O serviço `php` constrói a imagem pelo
-Dockerfile e executa `src/index.php` com PHP 8.4.26 em um container descartável.
+Dockerfile e inicia o servidor PHP 8.4.26 de desenvolvimento.
 O Compose monta `./src` em `/app` como somente leitura, permitindo executar
-alterações do código local sem reconstruir a imagem. A próxima etapa, após
-confirmação de entendimento, será iniciar o servidor PHP e publicar sua porta.
+alterações do código local sem reconstruir a imagem. A demonstração responde
+em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A próxima etapa, após
+confirmação de entendimento, será introduzir variáveis de ambiente.
 O estado detalhado e atualizado das aulas fica no registro de progresso.
 
 ## Documentação
@@ -33,6 +34,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 2.4 — Código PHP dentro da imagem](docs/aulas/02-04-codigo-na-imagem.md)
 - [Aula 2.5 — Primeiro Docker Compose](docs/aulas/02-05-compose.md)
 - [Aula 2.6 — Código local com bind mount](docs/aulas/02-06-bind-mount.md)
+- [Aula 2.7 — Servidor PHP e portas](docs/aulas/02-07-servidor-e-portas.md)
 
 ## Executar a demonstração atual
 
@@ -40,14 +42,21 @@ Na raiz do projeto:
 
 ```bash
 docker compose config --quiet
-docker compose build
-docker compose run --rm php
+docker compose up -d --build php
 ```
 
-A demonstração imprime uma mensagem e a versão do PHP. Consulte a aula 2.6 para
-entender a montagem do código local. Depois do primeiro build, ao editar apenas
-o script, execute novamente `docker compose run --rm php`. Mudanças na base ou
-nas dependências da imagem ainda exigem reconstrução.
+Acesse [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A resposta é texto simples
+com uma mensagem e a versão do PHP. Ao editar apenas o script, atualize a página.
+Mudanças na imagem exigem build; mudanças na configuração Compose precisam ser
+aplicadas com `up`. Consulte a aula 2.7 para a explicação dos comandos e das portas.
+
+Para acompanhar e parar o serviço:
+
+```bash
+docker compose ps
+docker compose logs --tail 10 php
+docker compose stop php
+```
 
 ## Tecnologias planejadas
 

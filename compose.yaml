@@ -3,5 +3,9 @@ name: curso-loja-fullstack
 services:
   php:
     build: .
+    command: ["php", "-S", "0.0.0.0:8000", "-t", "/app"]
+    stop_signal: SIGINT
+    ports:
+      - "127.0.0.1:8001:8000"
     volumes:
       - ./src:/app:ro
