@@ -315,7 +315,7 @@ o entendimento da explicação do push.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `docs: esclarece escopo das chaves SSH`.
+  desta sessão: `docs: explica geracao de chaves SSH`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -355,10 +355,33 @@ e [Diferença para deploy keys](https://docs.github.com/en/authentication/connec
 Explicação registrada; entendimento ainda não confirmado. O checkpoint anterior
 `e40d8fa` foi publicado e verificado antes deste esclarecimento.
 
+### Como as chaves são geradas
+
+Pergunta complementar do aluno: como gerar o par de chaves localmente?
+
+Exemplo didático, não executado durante esta explicação:
+
+```bash
+ssh-keygen -t ed25519 -C "seu-email@exemplo.com" -f ~/.ssh/id_ed25519_exemplo
+```
+
+- `ssh-keygen` gera o par de chaves no computador.
+- `-t ed25519` escolhe o algoritmo; `-C` define um comentário de identificação,
+  que não é senha nem faz cadastro no GitHub.
+- `-f` escolhe o nome e caminho da chave privada; a pública recebe o sufixo `.pub`.
+- O exemplo usa outro nome para preservar o par que já utilizamos.
+- A ferramenta pede uma passphrase e sua confirmação. Ela protege a chave privada
+  no disco; não é a senha da conta GitHub. Deixar vazio cria a chave sem passphrase.
+- O comando cria `id_ed25519_exemplo` e `id_ed25519_exemplo.pub`; não publica,
+  não cadastra no GitHub e não configura esse novo nome para uso automático.
+
+Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+
 ## Dúvidas e próximos passos
 
 - Dúvida registrada e respondida: alcance da autenticação SSH e diferença entre
-  chaves locais, cadastro na conta GitHub e reconhecimento do servidor.
+  chaves locais, cadastro na conta GitHub e reconhecimento do servidor; exemplo
+  de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Ação imediata: conferir sincronização, explicar o resultado do push e aguardar
   a confirmação de entendimento. Se houver checkpoint local ainda não enviado,
   concluir sua publicação e verificar antes de relatar sincronização.
