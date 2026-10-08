@@ -1,0 +1,5 @@
+name: curso-loja-fullstack
+
+services:
+  php:
+    build: .

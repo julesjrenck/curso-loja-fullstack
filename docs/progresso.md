@@ -4,10 +4,10 @@
 
 - Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 2 — Docker desde o começo.
-- Etapa atual: 2.4 — Código PHP dentro da imagem.
-- Situação: script copiado e executado com sucesso; aguardando confirmação
-  de entendimento de `WORKDIR`, `COPY` e atualização do contexto na etapa 2.4.
-- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.3 do módulo 2,
+- Etapa atual: 2.5 — Primeiro Docker Compose.
+- Situação: configuração validada e demonstração PHP executada pelo serviço
+  Compose; aguardando confirmação de entendimento da etapa 2.5.
+- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.4 do módulo 2,
   cada avanço confirmado pelo aluno com "entendi".
 - Módulos 3 a 23: não iniciados.
 
@@ -440,7 +440,48 @@ do build. Editar o arquivo local depois exige reconstruir a imagem para usar
 a mudança; não há sincronização automática nesta etapa.
 
 Checkpoint: `feat: executa primeiro script PHP na imagem Docker`.
-Entendimento da etapa 2.4: pendente. Não criar Compose antes da confirmação.
+Entendimento da etapa 2.4: confirmado em 08/10/2026 com "entendi".
+
+## Etapa 2.5
+
+Objetivo: criar o primeiro arquivo Compose e executar o script pelo serviço PHP.
+
+Implementação: `compose.yaml`, com nome de projeto `curso-loja-fullstack` e
+serviço `php` usando `build: .`. Sem alterações no script, no Dockerfile ou
+nas regras de contexto. A explicação cobre YAML, indentação, projeto, serviço
+e a relação entre Dockerfile e Compose.
+
+Aula salva em `docs/aulas/02-05-compose.md`; README atualizado com os comandos
+Compose e o estado atual.
+
+Comandos explicados e executados:
+
+```bash
+docker compose config --quiet
+docker compose build
+docker compose run --rm php
+```
+
+Resultados verificados:
+
+- Configuração validada com código 0 e sem erros.
+- Antes de executar, não havia containers, rede ou imagem com o nome do projeto.
+- Build concluído, com reutilização de cache de `WORKDIR` e `COPY`.
+- Imagem local gerada: `curso-loja-fullstack-php:latest`.
+- ID observado:
+  `sha256:395cb4bf033910c6a294a6190a83554e116a57a04477cc4af57ed11befa3fe6d`.
+- Execução retornou "Olá, Docker!" e "Versão do PHP: 8.4.26", com código 0.
+- Inspeção confirmou diretório `/app` e comando `["php", "index.php"]`.
+- `docker compose ps -a` mostrou apenas o cabeçalho após a execução: o
+  container temporário foi removido.
+- A rede padrão `curso-loja-fullstack_default` foi criada e permanece disponível,
+  assim como a imagem. Não houve publicação de portas ou compartilhamento de pastas.
+- As operações do daemon usaram execução ampliada; a validação do YAML foi
+  realizada no modo restrito.
+
+Checkpoint: `feat: adiciona primeiro servico PHP com Compose`.
+Entendimento da etapa 2.5: pendente. Não adicionar mounts, portas ou serviços
+antes da confirmação do aluno.
 
 ## Verificações e limitações do ambiente
 
@@ -469,7 +510,7 @@ Entendimento da etapa 2.4: pendente. Não criar Compose antes da confirmação.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: executa primeiro script PHP na imagem Docker`.
+  desta sessão: `feat: adiciona primeiro servico PHP com Compose`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -539,11 +580,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
   registrada até agora.
-- Ação imediata: explicar o script, `WORKDIR`, `COPY`, as exceções de `src`
-  e o resultado verificado; publicar o checkpoint e aguardar entendimento.
-- Após a confirmação: etapa 2.5 — criar e explicar o primeiro `compose.yaml`
-  com um serviço PHP baseado no Dockerfile, validar a configuração e executar
-  a mesma demonstração com `docker compose build` e `docker compose run --rm`.
+- Ação imediata: explicar `compose.yaml`, YAML e os comandos Compose; publicar
+  o checkpoint, responder às perguntas e aguardar entendimento da etapa 2.5.
+- Após a confirmação: etapa 2.6 — introduzir um bind mount de `src` para `/app`
+  no serviço PHP de desenvolvimento, explicar origem/destino e distinguir
+  arquivos locais montados da cópia incluída na imagem. Verificar a execução
+  do código local sem reconstruir a imagem para uma alteração apenas do script.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -562,4 +604,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 08/10/2026 | 2.1 — Imagens, containers e acesso | Conceitos apresentados e consulta ao daemon verificada | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `7b9008d` |
 | 08/10/2026 | 2.2 — Primeiro container PHP | PHP 8.4.26 executado; container removido e imagem preservada | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `0a6c1d2` |
 | 08/10/2026 | 2.3 — Primeiro Dockerfile | Imagem própria construída e comando padrão verificado | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `ec1765a` |
-| 08/10/2026 | 2.4 — Código na imagem | Script PHP copiado e executado com diretório de trabalho definido | Aguardando confirmação | Checkpoint a conferir após envio |
+| 08/10/2026 | 2.4 — Código na imagem | Script PHP copiado e executado com diretório de trabalho definido | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `0ae3e9c` |
+| 08/10/2026 | 2.5 — Primeiro Compose | YAML validado e serviço PHP construído e executado | Aguardando confirmação | Checkpoint a conferir após envio |
