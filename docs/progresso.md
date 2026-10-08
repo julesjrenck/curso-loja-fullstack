@@ -4,10 +4,10 @@
 
 - Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 1 — Preparação, Git e GitHub.
-- Etapa atual: 1.5 — Primeiro commit local.
-- Situação: etapa do primeiro checkpoint no histórico local; aguardando
-  confirmação de entendimento da explicação desta etapa.
-- Entendimento confirmado: etapas 1.1 a 1.4, cada uma confirmada pelo aluno
+- Etapa atual: 1.6 — Repositório GitHub e configuração de `origin`.
+- Situação: endereço remoto configurado; aguardando criação do repositório
+  pelo aluno e confirmação de entendimento da explicação desta etapa.
+- Entendimento confirmado: etapas 1.1 a 1.5, cada uma confirmada pelo aluno
   com a mensagem "entendi".
 - Módulos 2 a 23: não iniciados.
 
@@ -153,13 +153,61 @@ Comando da etapa: `git commit -m "docs: inicia curso e registra progresso"`.
 - Um commit local só será publicado quando enviarmos o histórico ao remoto.
 
 README e progresso atualizados antes de finalizar a seleção com `git add`.
-Critérios de verificação da execução: o último commit deve ter a mensagem acima,
-conter exatamente os cinco arquivos iniciais e corresponder ao conteúdo atual,
-sem mudanças pendentes no staging ou na pasta de trabalho.
-O SHA e o resultado efetivo da criação devem ser conferidos no histórico Git;
-não colocar o SHA de um commit no próprio conteúdo que ele registra.
+Resultado verificado: commit `afb0d2c` criado na branch `main`, com a mensagem
+acima e exatamente os cinco arquivos iniciais. A verificação ao encerrar a
+etapa encontrou um commit no histórico, nenhum remoto e nenhuma alteração
+pendente no staging ou na pasta de trabalho.
 
-Confirmação do aluno: pendente. Não avançar para a etapa 1.6 até recebê-la.
+Confirmação do aluno: recebida em 08/10/2026, com a mensagem "entendi".
+Etapa 1.5 concluída quanto ao entendimento; publicação permanece pendente.
+
+## Etapa 1.6
+
+Objetivo: preparar o repositório público GitHub e configurar seu endereço no
+Git local, sem executar o push antes da confirmação de entendimento.
+
+Verificações de acesso:
+
+- A conexão GitHub identificou a conta autenticada como `julesjrenck`.
+- A consulta a `julesjrenck/curso-loja-fullstack` retornou 404. A existência ou
+  acessibilidade do repositório não foi confirmada; não afirmar que foi criado.
+- As ferramentas GitHub disponíveis não oferecem criação de repositórios.
+- GitHub CLI (`gh`), credencial de API nas variáveis usuais e helper de
+  credenciais Git não estão disponíveis neste ambiente.
+- O acesso pelo conector GitHub não comprova a autenticação do Git no terminal.
+  O envio será verificado na etapa 1.7, inclusive pelo transporte SSH existente.
+
+Comando explicado e executado:
+`git remote add origin https://github.com/julesjrenck/curso-loja-fullstack.git`.
+
+- Remote: endereço de outro repositório, neste caso hospedado no GitHub.
+- `remote add`: adiciona o endereço à configuração local do Git.
+- `origin`: apelido convencional para esse endereço.
+- Adicionar o remoto não cria o repositório no GitHub nem envia os arquivos.
+- `git remote -v`: mostra os endereços usados para buscar (`fetch`) e enviar
+  (`push`) o histórico. Mostrar essas linhas não significa que houve envio.
+
+Configuração verificada: a URL HTTPS acima foi gravada em `remote.origin.url`.
+Uma regra de URL já existente no ambiente converte HTTPS GitHub para SSH;
+por isso `git remote -v` e `git remote get-url origin` exibem
+`git@github.com:julesjrenck/curso-loja-fullstack.git`. A regra foi preservada.
+Nenhuma tentativa de push foi feita nesta etapa.
+
+Ação necessária do aluno: abrir
+[o formulário de criação](https://github.com/new?owner=julesjrenck&name=curso-loja-fullstack&visibility=public)
+na conta `julesjrenck`, confirmar nome `curso-loja-fullstack` e visibilidade
+pública, e criar o repositório vazio. Não adicionar README, `.gitignore`, licença
+ou conteúdo gerado, pois o histórico inicial já existe localmente. Se o GitHub
+informar que o nome está em uso, enviar o endereço do repositório para inspeção.
+
+Fonte da orientação: [Adicionar código local ao GitHub](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github).
+
+O registro desta aula será incluído em um checkpoint local usando os comandos
+`git add docs/progresso.md` e
+`git commit -m "docs: registra preparacao do remoto GitHub"`, já ensinados.
+
+Confirmação do aluno: pendente. Para avançar para a etapa 1.7, receber a
+confirmação de entendimento e verificar que o repositório está criado e acessível.
 
 ## Verificações e limitações do ambiente
 
@@ -180,26 +228,27 @@ Confirmação do aluno: pendente. Não avançar para a etapa 1.6 até recebê-la
 
 - Repositório local: branch `main`; etapa 1.5 registra o primeiro checkpoint
   com os cinco arquivos iniciais.
-- Destino remoto: ainda não criado ou configurado.
-- Conta e autenticação para publicação: ainda não verificadas.
+- Destino remoto: `origin` configurado para `julesjrenck/curso-loja-fullstack`;
+  criação ou acessibilidade no GitHub ainda pendente.
+- Conta pelo conector: `julesjrenck`; autenticação para o push Git ainda não
+  verificada.
+- Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta etapa: `docs: inicia curso e registra progresso`.
+  desta etapa: `docs: registra preparacao do remoto GitHub`.
 - Último commit publicado: nenhum.
-- Publicação das etapas 1.1 a 1.5: pendente da preparação de Git/GitHub no módulo 1;
+- Publicação das etapas 1.1 a 1.6: pendente da preparação de Git/GitHub no módulo 1;
   nenhuma tentativa de publicação realizada.
 
 ## Dúvidas e próximos passos
 
 - Dúvidas do aluno: nenhuma registrada até agora.
-- Ação imediata: criar e verificar o primeiro commit; explicar o identificador,
-  a mensagem e a diferença entre commit local e publicação; responder às
-  perguntas e aguardar entendimento da etapa 1.5.
-- Após a confirmação: etapa 1.6 — verificar conta e recursos disponíveis para
-  criar o repositório público `curso-loja-fullstack`; explicar remoto e `origin`
-  antes de configurar o destino. Se precisar do endereço remoto ou de alguma
-  ação do aluno, solicitar apenas a informação ou ação que estiver faltando.
-- Depois: explicar e executar o primeiro push, verificar o resultado no GitHub
-  e registrar o SHA publicado no próximo checkpoint de progresso.
+- Ação imediata: apresentar o resultado da configuração de `origin`, orientar
+  a criação do repositório vazio e responder às perguntas da etapa 1.6.
+- Após o aluno criar o repositório e confirmar entendimento: etapa 1.7 — conferir
+  o destino, seu estado e o acesso do Git; explicar e executar o primeiro push,
+  verificar o resultado remoto e registrar a publicação.
+- Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
+  o histórico existente, sem sobrescrever ou fazer force-push.
 
 ## Histórico
 
@@ -209,4 +258,5 @@ Confirmação do aluno: pendente. Não avançar para a etapa 1.6 até recebê-la
 | 08/10/2026 | 1.2 — `.gitignore` e README | Regras de exclusão e apresentação criadas | Confirmado pelo aluno: "entendi" | Pendente: Git/GitHub ainda não preparados |
 | 08/10/2026 | 1.3 — Inicialização do Git | Repositório local criado com branch `main` | Confirmado pelo aluno: "entendi" | Pendente: sem commit ou remoto |
 | 08/10/2026 | 1.4 — Preparação dos arquivos | Cinco arquivos selecionados para o primeiro commit | Confirmado pelo aluno: "entendi" | Pendente: sem remoto |
-| 08/10/2026 | 1.5 — Primeiro commit | Registro do checkpoint inicial; consultar histórico Git | Aguardando confirmação | Pendente: sem remoto |
+| 08/10/2026 | 1.5 — Primeiro commit | Commit inicial `afb0d2c` verificado | Confirmado pelo aluno: "entendi" | Pendente: primeiro push |
+| 08/10/2026 | 1.6 — Preparação do GitHub | `origin` configurado e instruções de criação preparadas | Aguardando confirmação | Pendente: criação/acesso do repositório |
