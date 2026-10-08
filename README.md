@@ -6,7 +6,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 ## Estado atual
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
-Módulo 2 — Docker: etapa 2.3, primeira imagem construída com nosso Dockerfile.
+Módulo 2 — Docker: etapa 2.4, script PHP copiado para a imagem e executado.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -16,9 +16,9 @@ está configurado como `origin`. A autenticação SSH funcionou, os commits inic
 foram publicados e a branch local `main` acompanha `origin/main`.
 
 A aplicação ainda não foi criada. Não há comandos para executar a loja.
-Docker e Compose estão instalados. Construímos a imagem `curso-loja-php:aula-2.3`
-com PHP 8.4.26 e verificamos seu comando padrão em um container descartável.
-A próxima etapa, após confirmação de entendimento, será adicionar um script PHP.
+Docker e Compose estão instalados. Construímos a imagem `curso-loja-php:aula-2.4`
+com PHP 8.4.26 e executamos o script `src/index.php` em um container descartável.
+A próxima etapa, após confirmação de entendimento, será introduzir Docker Compose.
 O estado detalhado e atualizado das aulas fica no registro de progresso.
 
 ## Documentação
@@ -28,18 +28,20 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Instruções para acompanhar o curso](AGENTS.md)
 - [Aula 2.2 — Comando do primeiro container PHP](docs/aulas/02-02-primeiro-container.md)
 - [Aula 2.3 — Primeiro Dockerfile](docs/aulas/02-03-dockerfile.md)
+- [Aula 2.4 — Código PHP dentro da imagem](docs/aulas/02-04-codigo-na-imagem.md)
 
 ## Executar a demonstração atual
 
 Na raiz do projeto:
 
 ```bash
-docker build -t curso-loja-php:aula-2.3 .
-docker run --rm --name curso-loja-php-dockerfile curso-loja-php:aula-2.3
+docker build -t curso-loja-php:aula-2.4 .
+docker run --rm --name curso-loja-php-script curso-loja-php:aula-2.4
 ```
 
-A demonstração mostra a versão do PHP. Consulte a aula 2.3 para a explicação
-de cada arquivo e argumento.
+A demonstração imprime uma mensagem e a versão do PHP. Consulte a aula 2.4 para
+a explicação dos arquivos. Ao editar o script local, reconstrua a imagem antes
+de executar para incluir a alteração.
 
 ## Tecnologias planejadas
 

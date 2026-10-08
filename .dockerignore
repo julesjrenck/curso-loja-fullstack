@@ -1,4 +1,6 @@
-# Permite apenas os arquivos usados nesta primeira construcao.
+# Permite os arquivos de build e o codigo PHP desta etapa.
 **
 !Dockerfile
 !.dockerignore
+!src/
+!src/**

@@ -4,10 +4,10 @@
 
 - Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 2 — Docker desde o começo.
-- Etapa atual: 2.3 — Primeiro Dockerfile e contexto de build.
-- Situação: imagem do curso construída e comando padrão executado com sucesso;
-  aguardando confirmação de entendimento da etapa 2.3.
-- Entendimento confirmado: módulo 1 completo e etapas 2.1 e 2.2 do módulo 2,
+- Etapa atual: 2.4 — Código PHP dentro da imagem.
+- Situação: script copiado e executado com sucesso; aguardando confirmação
+  de entendimento de `WORKDIR`, `COPY` e atualização do contexto na etapa 2.4.
+- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.3 do módulo 2,
   cada avanço confirmado pelo aluno com "entendi".
 - Módulos 3 a 23: não iniciados.
 
@@ -399,8 +399,48 @@ Resultados verificados:
   A aplicação da loja e o Compose ainda não foram criados.
 
 Checkpoint da etapa: `feat: adiciona primeiro Dockerfile do curso`.
-Confirmação de entendimento: pendente. Não adicionar código PHP nem novas
-instruções ao Dockerfile antes de receber a confirmação da etapa 2.3.
+Confirmação de entendimento da etapa 2.3: recebida em 08/10/2026 com "entendi".
+
+## Etapa 2.4
+
+Objetivo: incluir um script PHP na imagem e executá-lo pelo comando padrão.
+
+Implementação criada e explicada:
+
+- `src/index.php`: imprime "Olá, Docker!" e a versão do PHP, usando `echo`,
+  concatenação, `PHP_EOL` e `PHP_VERSION`.
+- `Dockerfile`: mantém a base, acrescenta `WORKDIR /app` e `COPY src/ ./`,
+  e muda o comando padrão para `["php", "index.php"]`.
+- `.dockerignore`: acrescenta `!src/` e `!src/**` para permitir a pasta e seu
+  conteúdo no contexto; os demais arquivos continuam excluídos.
+
+Aula salva em `docs/aulas/02-04-codigo-na-imagem.md`. README atualizado com os
+comandos atuais. A aula 2.3 recebeu uma nota sobre seu checkpoint histórico,
+para diferenciar o Dockerfile daquela etapa da versão atual.
+
+Comandos executados com execução ampliada:
+
+```bash
+docker build -t curso-loja-php:aula-2.4 .
+docker run --rm --name curso-loja-php-script curso-loja-php:aula-2.4
+```
+
+Resultados verificados:
+
+- A imagem da etapa 2.3 foi preservada e os novos nomes estavam disponíveis.
+- Build concluído com sucesso; a cópia do script integrou a nova imagem.
+- Saída do script: "Olá, Docker!" e "Versão do PHP: 8.4.26", com código 0.
+- Inspeção confirmou `/app` como diretório de trabalho e o comando do script.
+- Imagem local: `curso-loja-php:aula-2.4`, ID
+  `sha256:c5eee4b45f731c0163e84ac817ea98aad2bad3b74600417dced77f5a09bc885e`.
+- Container descartável removido ao terminar; sem portas ou volumes publicados.
+
+Conceito a confirmar: `COPY` inclui a versão do arquivo existente no momento
+do build. Editar o arquivo local depois exige reconstruir a imagem para usar
+a mudança; não há sincronização automática nesta etapa.
+
+Checkpoint: `feat: executa primeiro script PHP na imagem Docker`.
+Entendimento da etapa 2.4: pendente. Não criar Compose antes da confirmação.
 
 ## Verificações e limitações do ambiente
 
@@ -429,7 +469,7 @@ instruções ao Dockerfile antes de receber a confirmação da etapa 2.3.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: adiciona primeiro Dockerfile do curso`.
+  desta sessão: `feat: executa primeiro script PHP na imagem Docker`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -499,11 +539,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
   registrada até agora.
-- Ação imediata: explicar `FROM`, `CMD`, as regras do `.dockerignore` e os
-  comandos de build/run; publicar o checkpoint e aguardar entendimento.
-- Após a confirmação: etapa 2.4 — criar um script PHP simples e explicar
-  `WORKDIR` e `COPY`, ajustando o contexto para incluir o código e o comando
-  padrão para executar o script; reconstruir e verificar o resultado.
+- Ação imediata: explicar o script, `WORKDIR`, `COPY`, as exceções de `src`
+  e o resultado verificado; publicar o checkpoint e aguardar entendimento.
+- Após a confirmação: etapa 2.5 — criar e explicar o primeiro `compose.yaml`
+  com um serviço PHP baseado no Dockerfile, validar a configuração e executar
+  a mesma demonstração com `docker compose build` e `docker compose run --rm`.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -521,4 +561,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 08/10/2026 | 1.7 — Primeiro push | Envio e acompanhamento de `origin/main` verificados | Confirmado pelo aluno: "entendi", após esclarecimentos SSH | Publicado |
 | 08/10/2026 | 2.1 — Imagens, containers e acesso | Conceitos apresentados e consulta ao daemon verificada | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `7b9008d` |
 | 08/10/2026 | 2.2 — Primeiro container PHP | PHP 8.4.26 executado; container removido e imagem preservada | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `0a6c1d2` |
-| 08/10/2026 | 2.3 — Primeiro Dockerfile | Imagem própria construída e comando padrão verificado | Aguardando confirmação | Checkpoint a conferir após envio |
+| 08/10/2026 | 2.3 — Primeiro Dockerfile | Imagem própria construída e comando padrão verificado | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `ec1765a` |
+| 08/10/2026 | 2.4 — Código na imagem | Script PHP copiado e executado com diretório de trabalho definido | Aguardando confirmação | Checkpoint a conferir após envio |

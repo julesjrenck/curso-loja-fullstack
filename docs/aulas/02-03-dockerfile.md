@@ -1,5 +1,8 @@
 # Aula 2.3 — Primeiro Dockerfile
 
+Esta aula registra o estado do checkpoint `ec1765a`. O Dockerfile evolui nas
+aulas seguintes; os comandos da demonstração atual ficam no README do projeto.
+
 ## Objetivo
 
 Descrever nossa imagem em um arquivo versionado, construí-la e executar o comando
