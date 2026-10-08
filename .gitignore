@@ -1,0 +1,23 @@
+# Configurações locais: podem conter senhas e tokens
+.env
+.env.*
+!.env.example
+
+# Dependências instaladas por Composer e npm
+vendor/
+node_modules/
+
+# Resultados gerados por builds e testes
+.next/
+dist/
+coverage/
+.phpunit.cache/
+.phpunit.result.cache
+
+# Logs locais
+*.log
+
+# Configurações locais do ambiente de trabalho
+/.aws/
+/.codex/
+/.agents/
