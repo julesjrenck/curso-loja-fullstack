@@ -5,8 +5,9 @@
 - Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 1 — Preparação, Git e GitHub.
 - Etapa atual: 1.7 — Primeiro push e autenticação SSH.
-- Situação: autenticação SSH verificada e primeiro push concluído; aguardando
-  confirmação de entendimento da explicação do push antes de iniciar Docker.
+- Situação: autenticação SSH verificada e primeiro push concluído; dúvida sobre
+  o alcance das chaves SSH respondida; aguardando confirmação de entendimento
+  das explicações de SSH e push antes de iniciar Docker.
 - Entendimento confirmado: etapas 1.1 a 1.6; a última confirmada com
   "criei e entendi". A etapa 1.7 ainda não foi confirmada.
 - Módulos 2 a 23: não iniciados.
@@ -314,16 +315,50 @@ o entendimento da explicação do push.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `docs: registra primeiro push e sincronizacao`.
+  desta sessão: `docs: esclarece escopo das chaves SSH`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
 - Publicação das etapas 1.1 a 1.7: primeiro envio concluído; esta atualização
   do registro deve ser enviada após o commit e verificada novamente.
 
+## Esclarecimento sobre SSH
+
+Pergunta do aluno: a configuração SSH vale para todos os projetos? Antes havia
+SSH somente local?
+
+Explicação apresentada:
+
+- SSH é um protocolo de comunicação segura. O computador já tinha um par de
+  chaves; o curso reutilizou esse par, sem gerar outro.
+- A chave privada fica em `~/.ssh/id_ed25519`; a pública tem uma cópia em
+  `~/.ssh/id_ed25519.pub` e foi cadastrada na conta GitHub do aluno.
+- O título `curso-loja-fullstack` no cadastro é um rótulo, não uma restrição de
+  acesso ao repositório. Trata-se de chave de autenticação da conta, não deploy key.
+- Neste computador, a mesma chave pode autenticar operações SSH em outros
+  repositórios GitHub acessíveis à conta, respeitando suas permissões e políticas.
+- A chave identifica a conta; ela não concede automaticamente acesso de escrita
+  a repositórios de outras pessoas ou organizações.
+- Cada projeto continua precisando do seu próprio endereço remoto. Um endereço
+  SSH como `git@github.com:julesjrenck/outro-projeto.git` pode usar a mesma chave.
+- Outra máquina não herda automaticamente a chave privada deste computador;
+  outros serviços também não herdam o cadastro feito no GitHub.
+- `~/.ssh/known_hosts` guarda chaves públicas dos servidores conhecidos, para
+  reconhecer o servidor GitHub; não substitui o cadastro da chave do usuário.
+- A presença das chaves locais, por si só, não comprova cadastro anterior no
+  GitHub nem configuração de um servidor SSH para receber conexões no computador.
+
+Fontes: [Sobre SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh),
+[Cadastro de chave na conta](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+e [Diferença para deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys).
+
+Explicação registrada; entendimento ainda não confirmado. O checkpoint anterior
+`e40d8fa` foi publicado e verificado antes deste esclarecimento.
+
 ## Dúvidas e próximos passos
 
-- Dúvidas do aluno: nenhuma registrada até agora.
+- Dúvida registrada e respondida: alcance da autenticação SSH e diferença entre
+  chaves locais, cadastro na conta GitHub e reconhecimento do servidor.
 - Ação imediata: conferir sincronização, explicar o resultado do push e aguardar
   a confirmação de entendimento. Se houver checkpoint local ainda não enviado,
   concluir sua publicação e verificar antes de relatar sincronização.
