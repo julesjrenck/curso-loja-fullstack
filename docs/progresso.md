@@ -4,11 +4,11 @@
 
 - Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 2 — Docker desde o começo.
-- Etapa atual: 2.1 — Imagens, containers e acesso ao serviço Docker.
-- Situação: serviço Docker acessível pela execução ampliada; conceitos
-  apresentados, aguardando confirmação de entendimento da etapa 2.1.
-- Entendimento confirmado: módulo 1 completo, incluindo SSH e push, após
-  confirmação "entendi" recebida em 08/10/2026.
+- Etapa atual: 2.2 — Primeiro container PHP.
+- Situação: PHP 8.4.26 executado em container descartável; resultado e remoção
+  verificados, aguardando confirmação de entendimento da etapa 2.2.
+- Entendimento confirmado: módulo 1 completo e etapa 2.1 do módulo 2,
+  cada avanço confirmado pelo aluno com "entendi".
 - Módulos 3 a 23: não iniciados.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -333,8 +333,37 @@ Arquivos atualizados: README (estado do projeto), roteiro (situação dos módul
 e este registro (confirmação do módulo 1 e ponto de retomada do módulo 2).
 Checkpoint da etapa: `docs: inicia modulo Docker e registra conceitos`.
 
-Confirmação de entendimento da etapa 2.1: pendente. Aguardar antes de executar
-o primeiro container PHP na etapa 2.2.
+Confirmação de entendimento da etapa 2.1: recebida em 08/10/2026 com "entendi".
+
+## Etapa 2.2
+
+Objetivo: executar um primeiro comando PHP dentro de um container e observar
+o ciclo de criação, execução, término e remoção.
+
+Aula salva em `docs/aulas/02-02-primeiro-container.md`, com comando, explicação
+dos argumentos, resultados e fontes. O README aponta para essa página.
+
+Comando explicado e executado:
+`docker run --rm --name curso-loja-php-versao php:8.4.26-cli-bookworm php -v`.
+
+- A tag foi conferida na lista oficial da imagem PHP; fixa a versão 8.4.26,
+  variante CLI e base Debian 12 (Bookworm).
+- A consulta inicial não encontrou container com esse nome. Outros containers
+  e imagens do ambiente foram preservados.
+- O Docker baixou a imagem oficial e executou PHP 8.4.26 (CLI) com código 0.
+- Após o término, a consulta de containers não encontrou o container da aula:
+  ele foi removido por `--rm`. A imagem permaneceu disponível.
+- Imagem inspecionada: Linux `amd64`, digest
+  `php@sha256:836ac6c672d1372a47c8fd61b625015bd07760f493fb2eaab2087636498a2b4b`.
+- Não foram compartilhadas pastas ou portas; nenhum servidor web foi iniciado.
+- Ainda não há Dockerfile, Compose ou aplicação da loja.
+
+Arquivos atualizados: página da aula, README, resumo do roteiro e progresso.
+Checkpoint local:
+`docs: registra primeira execucao PHP em Docker`.
+
+Confirmação de entendimento da etapa 2.2: pendente. Não criar o Dockerfile
+antes de receber a confirmação.
 
 ## Verificações e limitações do ambiente
 
@@ -348,7 +377,7 @@ o primeiro container PHP na etapa 2.2.
 - Acesso ao daemon Docker: verificado na etapa 2.1; modo restrito retorna
   permissão negada, execução ampliada acessa o daemon 29.8.1, Linux x86_64.
   Usar o fluxo ampliado autorizado para operações que acessam o serviço;
-  containers do curso ainda não executados.
+  primeiro container PHP do curso executado e removido na etapa 2.2.
 - Documentação verificada: três arquivos presentes e legíveis em UTF-8; módulos
   1 a 23 em ordem e sem duplicação; registros de entendimento e publicação
   corretamente pendentes. Nenhum teste de aplicação é aplicável ainda.
@@ -363,7 +392,7 @@ o primeiro container PHP na etapa 2.2.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `docs: inicia modulo Docker e registra conceitos`.
+  desta sessão: `docs: registra primeira execucao PHP em Docker`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -433,12 +462,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
   registrada até agora.
-- Ação imediata: explicar os conceitos e o diagnóstico da etapa 2.1, publicar
-  o registro, responder às perguntas e aguardar a confirmação de entendimento.
-- Após a confirmação: etapa 2.2 — explicar e executar PHP 8.4 em um primeiro
-  container descartável, mostrando imagem, comando, resultado e término.
-  Verificar a imagem e sua versão na introdução, sem montar antecipadamente
-  Laravel, banco ou frontend.
+- Ação imediata: explicar o comando e o resultado da etapa 2.2, publicar os
+  arquivos, responder às perguntas e aguardar confirmação de entendimento.
+- Após a confirmação: etapa 2.3 — criar e explicar um Dockerfile mínimo com
+  imagem base e comando padrão, acompanhado de `.dockerignore` para selecionar
+  o contexto de build; construir a imagem do curso e verificar sua execução.
+  Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
 
@@ -453,4 +482,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 08/10/2026 | 1.5 — Primeiro commit | Commit inicial `afb0d2c` verificado | Confirmado pelo aluno: "entendi" | Publicado no primeiro envio |
 | 08/10/2026 | 1.6 — Preparação do GitHub | Repositório público criado e `origin` configurado | Confirmado pelo aluno: "criei e entendi" | Publicado no primeiro envio |
 | 08/10/2026 | 1.7 — Primeiro push | Envio e acompanhamento de `origin/main` verificados | Confirmado pelo aluno: "entendi", após esclarecimentos SSH | Publicado |
-| 08/10/2026 | 2.1 — Imagens, containers e acesso | Conceitos apresentados e consulta ao daemon verificada | Aguardando confirmação | Checkpoint a conferir após envio |
+| 08/10/2026 | 2.1 — Imagens, containers e acesso | Conceitos apresentados e consulta ao daemon verificada | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `7b9008d` |
+| 08/10/2026 | 2.2 — Primeiro container PHP | PHP 8.4.26 executado; container removido e imagem preservada | Aguardando confirmação | Checkpoint a conferir após envio |
