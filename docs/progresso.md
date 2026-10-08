@@ -4,11 +4,11 @@
 
 - Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 1 — Preparação, Git e GitHub.
-- Etapa atual: 1.6 — Repositório GitHub e configuração de `origin`.
-- Situação: endereço remoto configurado; aguardando criação do repositório
-  pelo aluno e confirmação de entendimento da explicação desta etapa.
-- Entendimento confirmado: etapas 1.1 a 1.5, cada uma confirmada pelo aluno
-  com a mensagem "entendi".
+- Etapa atual: 1.7 — Primeiro push e autenticação SSH.
+- Situação: repositório público criado e vazio; envio pendente do cadastro
+  da chave pública SSH na conta GitHub pelo aluno.
+- Entendimento confirmado: etapas 1.1 a 1.6; a última confirmada com
+  "criei e entendi". A etapa 1.7 ainda não foi confirmada.
 - Módulos 2 a 23: não iniciados.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -206,8 +206,64 @@ O registro desta aula será incluído em um checkpoint local usando os comandos
 `git add docs/progresso.md` e
 `git commit -m "docs: registra preparacao do remoto GitHub"`, já ensinados.
 
-Confirmação do aluno: pendente. Para avançar para a etapa 1.7, receber a
-confirmação de entendimento e verificar que o repositório está criado e acessível.
+Confirmação do aluno: recebida em 08/10/2026, com "criei e entendi".
+A etapa 1.7 confirmou pela API que o repositório existe, é público, pertence a
+`julesjrenck` e não tem branches. A etapa 1.6 está concluída.
+
+## Etapa 1.7
+
+Objetivo: enviar os commits locais para o GitHub e verificar a correspondência
+entre o histórico local e a branch remota. Etapa ainda em andamento.
+
+Comando a executar após resolver a autenticação: `git push -u origin main`.
+
+- `push`: envia os commits e atualiza a branch no destino remoto.
+- `origin`: apelido do repositório GitHub já configurado.
+- `main`: branch local que queremos publicar.
+- `-u`: configura a branch remota `origin/main` como referência de acompanhamento
+  da `main` local; nas próximas publicações, poderemos usar apenas `git push`.
+
+Resultado das verificações de acesso:
+
+- A API GitHub confirmou `julesjrenck/curso-loja-fullstack` público e acessível.
+  O endpoint de branches retornou `[]`, indicando repositório vazio.
+- O modo restrito não resolveu `github.com`; as verificações de rede exigiram
+  execução ampliada, conforme autorização já existente para GitHub.
+- O primeiro acesso SSH retornou `Host key verification failed`.
+- A chave pública Ed25519 do servidor foi obtida da documentação oficial e
+  verificada com o fingerprint
+  `SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU`.
+- A entrada oficial foi adicionada a `~/.ssh/known_hosts` com execução ampliada,
+  preservando as entradas existentes. Esse arquivo reconhece o servidor;
+  não cadastra a identidade do usuário no GitHub.
+- O acesso posterior pelo Git retornou `Permission denied (publickey)`.
+- O par existente `~/.ssh/id_ed25519` e `~/.ssh/id_ed25519.pub` foi validado:
+  as chaves correspondem e a chave privada é utilizável sem senha interativa.
+  Nenhuma chave privada foi exibida, copiada para o projeto ou versionada.
+- O conector GitHub não oferece cadastro de chaves SSH e sua autenticação não
+  autentica automaticamente o Git no terminal.
+- Nenhum `git push` foi executado: a verificação de acesso ainda não passou.
+
+Fontes: [Chaves do servidor GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints)
+e [Cadastrar chave SSH na conta](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+
+Ação necessária do aluno: abrir [SSH and GPG keys](https://github.com/settings/keys)
+na conta `julesjrenck`, escolher `New SSH key`, título `curso-loja-fullstack`,
+tipo `Authentication Key`, colar a chave pública apresentada na conversa e
+confirmar com `Add SSH key`. A chave pública pode ser obtida novamente no arquivo
+`~/.ssh/id_ed25519.pub`; não pedir chave privada ou senha ao aluno.
+
+Quando o aluno informar que cadastrou a chave: retomar esta mesma etapa,
+verificar o acesso e as branches antes de enviar, explicar o comando de push
+e executá-lo sem force-push. Se o acesso continuar falhando, investigar o
+resultado antes de pedir novas ações ao aluno.
+
+Registro desta sessão em checkpoint local com os comandos já ensinados:
+`git add AGENTS.md README.md docs/progresso.md` e
+`git commit -m "docs: registra criacao do repositorio e pendencia SSH"`.
+
+Entendimento da etapa 1.7: pendente. Não iniciar Docker antes de resolver o
+primeiro envio e receber a confirmação de entendimento da explicação do push.
 
 ## Verificações e limitações do ambiente
 
@@ -229,24 +285,23 @@ confirmação de entendimento e verificar que o repositório está criado e aces
 - Repositório local: branch `main`; etapa 1.5 registra o primeiro checkpoint
   com os cinco arquivos iniciais.
 - Destino remoto: `origin` configurado para `julesjrenck/curso-loja-fullstack`;
-  criação ou acessibilidade no GitHub ainda pendente.
-- Conta pelo conector: `julesjrenck`; autenticação para o push Git ainda não
-  verificada.
+  criação e visibilidade pública verificadas, repositório vazio nesta sessão.
+- Conta pelo conector: `julesjrenck`; acesso Git SSH recusado com
+  `Permission denied (publickey)`, aguardando cadastro da chave pública.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta etapa: `docs: registra preparacao do remoto GitHub`.
+  desta sessão: `docs: registra criacao do repositorio e pendencia SSH`.
 - Último commit publicado: nenhum.
-- Publicação das etapas 1.1 a 1.6: pendente da preparação de Git/GitHub no módulo 1;
-  nenhuma tentativa de publicação realizada.
+- Publicação das etapas 1.1 a 1.7: pendente da autenticação SSH no módulo 1;
+  apenas verificações de acesso realizadas, sem executar o push.
 
 ## Dúvidas e próximos passos
 
 - Dúvidas do aluno: nenhuma registrada até agora.
-- Ação imediata: apresentar o resultado da configuração de `origin`, orientar
-  a criação do repositório vazio e responder às perguntas da etapa 1.6.
-- Após o aluno criar o repositório e confirmar entendimento: etapa 1.7 — conferir
-  o destino, seu estado e o acesso do Git; explicar e executar o primeiro push,
-  verificar o resultado remoto e registrar a publicação.
+- Ação imediata: orientar cadastro da chave pública SSH e responder às perguntas.
+- Após o aluno informar que cadastrou a chave: retomar a etapa 1.7, verificar
+  acesso e estado remoto, explicar e executar o primeiro push, verificar os
+  SHAs local/remoto e registrar a publicação efetiva.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
 
@@ -259,4 +314,5 @@ confirmação de entendimento e verificar que o repositório está criado e aces
 | 08/10/2026 | 1.3 — Inicialização do Git | Repositório local criado com branch `main` | Confirmado pelo aluno: "entendi" | Pendente: sem commit ou remoto |
 | 08/10/2026 | 1.4 — Preparação dos arquivos | Cinco arquivos selecionados para o primeiro commit | Confirmado pelo aluno: "entendi" | Pendente: sem remoto |
 | 08/10/2026 | 1.5 — Primeiro commit | Commit inicial `afb0d2c` verificado | Confirmado pelo aluno: "entendi" | Pendente: primeiro push |
-| 08/10/2026 | 1.6 — Preparação do GitHub | `origin` configurado e instruções de criação preparadas | Aguardando confirmação | Pendente: criação/acesso do repositório |
+| 08/10/2026 | 1.6 — Preparação do GitHub | Repositório público criado e `origin` configurado | Confirmado pelo aluno: "criei e entendi" | Pendente: autenticação Git SSH |
+| 08/10/2026 | 1.7 — Primeiro push | Confiança no servidor SSH configurada; envio ainda não executado | Em andamento | Pendente: cadastro da chave pública |

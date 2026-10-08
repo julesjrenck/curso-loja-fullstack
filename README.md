@@ -10,11 +10,13 @@ O roteiro, os registros de continuidade, as regras de exclusão e a apresentaç�
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
 de exclusão. O histórico local pode ser consultado com `git log --oneline`.
-A publicação no GitHub ainda está pendente.
+O [repositório público no GitHub](https://github.com/julesjrenck/curso-loja-fullstack)
+foi criado e configurado como `origin`. O primeiro envio está pendente da
+autenticação SSH deste computador.
 
 A aplicação ainda não foi criada. Não há comandos para executar a loja.
-Configurar o repositório remoto e publicar no GitHub são os próximos passos do
-módulo.
+Cadastrar a chave pública SSH na conta GitHub e enviar o histórico são os
+próximos passos do módulo.
 O estado detalhado e atualizado das aulas fica no registro de progresso.
 
 ## Documentação

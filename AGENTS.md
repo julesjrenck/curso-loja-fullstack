@@ -50,7 +50,8 @@ O roteiro aprovado está em `docs/curso.md`. O estado da aprendizagem está em
 
 ## Decisões do projeto
 
-- Nome sugerido do repositório: `curso-loja-fullstack`; destino ainda não criado.
+- Repositório público criado: `julesjrenck/curso-loja-fullstack`, remoto `origin`.
+  Consulte o progresso para verificar a situação do push e da autenticação SSH.
 - Laravel 13 e PHP 8.4; Node.js 24 LTS e Next.js 16 com App Router.
 - JavaScript primeiro, TypeScript gradualmente; laboratório React com Vite.
 - Laravel começa como backend único e evolui para módulos e serviços separados.
