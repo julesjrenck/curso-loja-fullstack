@@ -5,8 +5,8 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 ## Estado atual
 
-Módulo 1 — Preparação, Git e GitHub: primeiro push realizado; aguardando
-confirmação de entendimento da etapa 1.7.
+Módulo 1 — Preparação, Git e GitHub: concluído.
+Módulo 2 — Docker: etapa 2.1, conceitos de imagem/container e verificação de acesso.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -16,7 +16,9 @@ está configurado como `origin`. A autenticação SSH funcionou, os commits inic
 foram publicados e a branch local `main` acompanha `origin/main`.
 
 A aplicação ainda não foi criada. Não há comandos para executar a loja.
-Após a confirmação de entendimento, começaremos o módulo 2 — Docker.
+Docker e Compose estão instalados, e a consulta ao serviço Docker funcionou pela
+execução ampliada deste ambiente. A próxima etapa, após confirmação de
+entendimento, será executar PHP em um primeiro container.
 O estado detalhado e atualizado das aulas fica no registro de progresso.
 
 ## Documentação

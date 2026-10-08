@@ -29,8 +29,9 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 ## Módulos
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
-O módulo 1 está em andamento; módulos 2 a 23 ainda não foram iniciados. O estado
-detalhado de cada etapa e as confirmações ficam em `docs/progresso.md`.
+O módulo 1 foi concluído. O módulo 2 está em andamento, na etapa de conceitos e
+verificação do acesso ao Docker; módulos 3 a 23 ainda não foram iniciados.
+O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
 | Módulo | Conteúdo | Entrega verificável |
 | --- | --- | --- |

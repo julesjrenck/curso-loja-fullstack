@@ -3,14 +3,13 @@
 ## Estado atual
 
 - Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
-- Módulo atual: 1 — Preparação, Git e GitHub.
-- Etapa atual: 1.7 — Primeiro push e autenticação SSH.
-- Situação: autenticação SSH verificada e primeiro push concluído; dúvida sobre
-  o alcance das chaves SSH respondida; aguardando confirmação de entendimento
-  das explicações de SSH e push antes de iniciar Docker.
-- Entendimento confirmado: etapas 1.1 a 1.6; a última confirmada com
-  "criei e entendi". A etapa 1.7 ainda não foi confirmada.
-- Módulos 2 a 23: não iniciados.
+- Módulo atual: 2 — Docker desde o começo.
+- Etapa atual: 2.1 — Imagens, containers e acesso ao serviço Docker.
+- Situação: serviço Docker acessível pela execução ampliada; conceitos
+  apresentados, aguardando confirmação de entendimento da etapa 2.1.
+- Entendimento confirmado: módulo 1 completo, incluindo SSH e push, após
+  confirmação "entendi" recebida em 08/10/2026.
+- Módulos 3 a 23: não iniciados.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -287,8 +286,55 @@ Registro desta sessão em checkpoint local com os comandos já ensinados:
 `git add AGENTS.md README.md docs/progresso.md` e
 `git commit -m "docs: registra criacao do repositorio e pendencia SSH"`.
 
-Entendimento da etapa 1.7: pendente. Não iniciar Docker até o aluno confirmar
-o entendimento da explicação do push.
+Entendimento da etapa 1.7: confirmado pelo aluno com "entendi", após os
+esclarecimentos sobre SSH. Módulo 1 concluído em 08/10/2026.
+
+## Etapa 2.1
+
+Objetivo: entender a diferença entre imagem e container e confirmar que
+conseguimos consultar o serviço Docker antes da primeira execução de PHP.
+
+Conceitos apresentados:
+
+- Imagem: pacote de arquivos, executáveis, bibliotecas e configurações que
+  serve de base para criar containers; por exemplo, uma imagem com PHP 8.4.
+- Container: instância criada a partir da imagem, com ambiente próprio para
+  executar um processo. Pode estar em execução ou parada.
+- Uma mesma imagem pode originar vários containers, cada um com seu estado.
+- Analogia com OOP: imagem se aproxima de uma classe/modelo; container, de uma
+  instância. É uma analogia didática, não uma implementação de classes PHP.
+- Cliente Docker: programa `docker`, que recebe nossos comandos.
+- Serviço Docker, ou daemon: processo que atende esses comandos e gerencia
+  imagens, containers, redes e volumes.
+- `docker --version` verifica o cliente; `docker compose version`, o Compose;
+  `docker info` consulta o serviço. A versão do cliente, sozinha, não comprova
+  que o serviço esteja acessível.
+
+Verificações executadas:
+
+- Cliente Docker: 29.8.2; Compose: v5.5.1; contexto ativo: `default`.
+- A consulta `docker info` no modo restrito retornou permissão negada no socket
+  `/var/run/docker.sock`.
+- Com execução ampliada, o comando
+  `docker info --format '{{json .ServerVersion}} {{json .OSType}} {{json .Architecture}}'`
+  retornou `"29.8.1" "linux" "x86_64"`. `--format` foi usado apenas para
+  selecionar os campos relevantes, sem alterar a configuração do Docker.
+- O daemon está disponível pela execução ampliada. O acesso no modo restrito
+  permanece limitado; não confundir a restrição com serviço desligado.
+- Nenhuma instalação, mudança de grupos ou permissões do socket foi feita.
+- Nenhum container, imagem PHP, Dockerfile ou arquivo Compose foi criado nesta
+  etapa. A execução do primeiro container pertence à etapa seguinte.
+
+Fontes: [Imagem](https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-an-image/),
+[Container](https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/)
+e [Cliente e daemon Docker](https://docs.docker.com/get-started/docker-overview/).
+
+Arquivos atualizados: README (estado do projeto), roteiro (situação dos módulos)
+e este registro (confirmação do módulo 1 e ponto de retomada do módulo 2).
+Checkpoint da etapa: `docs: inicia modulo Docker e registra conceitos`.
+
+Confirmação de entendimento da etapa 2.1: pendente. Aguardar antes de executar
+o primeiro container PHP na etapa 2.2.
 
 ## Verificações e limitações do ambiente
 
@@ -299,8 +345,10 @@ o entendimento da explicação do push.
   Se uma futura escrita falhar, usar o fluxo de execução ampliada autorizado;
   não alterar permissões manualmente nem assumir que o Git está inacessível.
 - Docker 29.8.2 e Docker Compose v5.5.1 instalados.
-- Acesso ao daemon Docker: a inspeção no planejamento retornou permissão negada
-  para o socket. Reavaliar na aula de Docker; containers ainda não executados.
+- Acesso ao daemon Docker: verificado na etapa 2.1; modo restrito retorna
+  permissão negada, execução ampliada acessa o daemon 29.8.1, Linux x86_64.
+  Usar o fluxo ampliado autorizado para operações que acessam o serviço;
+  containers do curso ainda não executados.
 - Documentação verificada: três arquivos presentes e legíveis em UTF-8; módulos
   1 a 23 em ordem e sem duplicação; registros de entendimento e publicação
   corretamente pendentes. Nenhum teste de aplicação é aplicável ainda.
@@ -315,7 +363,7 @@ o entendimento da explicação do push.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `docs: explica geracao de chaves SSH`.
+  desta sessão: `docs: inicia modulo Docker e registra conceitos`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -352,8 +400,9 @@ Fontes: [Sobre SSH](https://docs.github.com/en/authentication/connecting-to-gith
 [Cadastro de chave na conta](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 e [Diferença para deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys).
 
-Explicação registrada; entendimento ainda não confirmado. O checkpoint anterior
-`e40d8fa` foi publicado e verificado antes deste esclarecimento.
+Explicação registrada e entendimento confirmado pelo aluno com "entendi" antes
+do início do módulo 2. O checkpoint anterior `e40d8fa` foi publicado e verificado
+antes deste esclarecimento.
 
 ### Como as chaves são geradas
 
@@ -382,11 +431,14 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 - Dúvida registrada e respondida: alcance da autenticação SSH e diferença entre
   chaves locais, cadastro na conta GitHub e reconhecimento do servidor; exemplo
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
-- Ação imediata: conferir sincronização, explicar o resultado do push e aguardar
-  a confirmação de entendimento. Se houver checkpoint local ainda não enviado,
-  concluir sua publicação e verificar antes de relatar sincronização.
-- Após o aluno confirmar entendimento: concluir o módulo 1 e iniciar a etapa
-  2.1 — apresentar imagens e containers e diagnosticar o acesso ao Docker.
+- Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
+  registrada até agora.
+- Ação imediata: explicar os conceitos e o diagnóstico da etapa 2.1, publicar
+  o registro, responder às perguntas e aguardar a confirmação de entendimento.
+- Após a confirmação: etapa 2.2 — explicar e executar PHP 8.4 em um primeiro
+  container descartável, mostrando imagem, comando, resultado e término.
+  Verificar a imagem e sua versão na introdução, sem montar antecipadamente
+  Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
 
@@ -400,4 +452,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 08/10/2026 | 1.4 — Preparação dos arquivos | Cinco arquivos selecionados para o primeiro commit | Confirmado pelo aluno: "entendi" | Publicado no primeiro envio |
 | 08/10/2026 | 1.5 — Primeiro commit | Commit inicial `afb0d2c` verificado | Confirmado pelo aluno: "entendi" | Publicado no primeiro envio |
 | 08/10/2026 | 1.6 — Preparação do GitHub | Repositório público criado e `origin` configurado | Confirmado pelo aluno: "criei e entendi" | Publicado no primeiro envio |
-| 08/10/2026 | 1.7 — Primeiro push | Envio e acompanhamento de `origin/main` verificados | Aguardando entendimento do push | Primeiro envio confirmado; atualização deste registro a conferir após envio |
+| 08/10/2026 | 1.7 — Primeiro push | Envio e acompanhamento de `origin/main` verificados | Confirmado pelo aluno: "entendi", após esclarecimentos SSH | Publicado |
+| 08/10/2026 | 2.1 — Imagens, containers e acesso | Conceitos apresentados e consulta ao daemon verificada | Aguardando confirmação | Checkpoint a conferir após envio |
