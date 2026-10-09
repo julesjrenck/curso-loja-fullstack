@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.3, promoção de propriedades do construtor.
+Módulo 3 — PHP moderno e OOP: etapa 3.4, namespace e importação de classes.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -22,8 +22,8 @@ Dockerfile e inicia o servidor PHP 8.4.26 de desenvolvimento.
 O Compose monta `./src` em `/app` como somente leitura, permitindo executar
 alterações do código local sem reconstruir a imagem. A demonstração responde
 em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A próxima etapa, após
-confirmação de entendimento, será organizar a classe em um namespace e
-importá-la no exemplo com `use`, mantendo o carregamento com `require_once`.
+confirmação de entendimento, será disponibilizar Composer na imagem PHP,
+com versão fixada, preparando o estudo de dependências e autoload.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -47,6 +47,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.1 — Primeira classe de produto](docs/aulas/03-01-produto-tipado.md)
 - [Aula 3.2 — Validações e exceções](docs/aulas/03-02-validacao-e-excecoes.md)
 - [Aula 3.3 — Promoção de propriedades](docs/aulas/03-03-promocao-de-propriedades.md)
+- [Aula 3.4 — Namespace e use](docs/aulas/03-04-namespace-e-use.md)
 
 ## Executar a demonstração atual
 
@@ -115,7 +116,9 @@ docker compose run --rm php php exemplo-produto.php
 O exemplo cria uma camiseta válida de 4990 centavos e demonstra o tratamento de
 uma tentativa de preço negativo. A classe recusa nome vazio ou composto apenas
 pelos espaços de `trim`, e preço negativo; preço zero é permitido. Consulte as
-aulas 3.1 a 3.3 para a estrutura, as regras e a promoção de propriedades.
+aulas 3.1 a 3.4 para a estrutura, as regras e a organização da classe.
+A classe tem o nome completo `Loja\Produto`; `use` permite o nome curto no
+exemplo, e `require_once` continua carregando seu arquivo.
 
 ## Tecnologias planejadas
 

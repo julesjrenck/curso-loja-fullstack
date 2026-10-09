@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+namespace Loja;
+
+use InvalidArgumentException;
+
 class Produto
 {
     public function __construct(

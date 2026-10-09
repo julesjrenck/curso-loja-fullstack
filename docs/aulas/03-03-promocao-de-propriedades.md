@@ -1,5 +1,8 @@
 # Aula 3.3 — Promoção de propriedades do construtor
 
+Esta aula registra o checkpoint `83f190b`. A aula 3.4 acrescenta um namespace
+à classe e importações com `use`; consulte o README para o estado atual.
+
 ## Objetivo
 
 Simplificar a declaração das propriedades de `Produto` usando um recurso

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Loja\Produto;
+
 if (PHP_SAPI !== "cli") {
     http_response_code(403);
     header("Content-Type: text/plain; charset=UTF-8");
