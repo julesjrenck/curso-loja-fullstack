@@ -3,13 +3,13 @@
 ## Estado atual
 
 - Última atualização: 09/10/2026, referência de data America/Sao_Paulo.
-- Módulo atual: 2 — Docker desde o começo.
-- Etapa atual: 2.11 — Rede entre containers.
-- Situação: DNS do serviço e acesso HTTP interno verificados; servidor e dados
-  preservados, aguardando entendimento antes de encerrar o módulo Docker.
-- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.10 do módulo 2,
-  cada avanço confirmado pelo aluno com "entendi".
-- Módulos 3 a 23: não iniciados.
+- Módulo atual: 3 — PHP moderno e OOP.
+- Etapa atual: 3.1 — Primeira classe de produto tipada.
+- Situação: objeto criado e métodos executados em Docker; tipos e visibilidade
+  verificados, aguardando confirmação de entendimento da etapa 3.1.
+- Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
+  pelo aluno com "entendi". A etapa 2.11 foi confirmada em 09/10/2026.
+- Módulos 4 a 23: não iniciados.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -740,8 +740,52 @@ serviço; containers usam a porta interna; o host usa a publicação de porta.
 resolve o endereço em vez de fixar um IP que pode mudar.
 
 Checkpoint: `feat: verifica rede interna entre containers`.
-Entendimento da etapa 2.11: pendente. Não encerrar o módulo 2 nem iniciar PHP
-moderno e OOP antes da confirmação do aluno.
+Entendimento da etapa 2.11: confirmado em 09/10/2026 com "entendi".
+Módulo 2 concluído: ambiente PHP em Docker, Compose, arquivos de configuração,
+montagens, dados persistentes, servidor, portas, logs e rede estudados.
+
+## Etapa 3.1
+
+Objetivo: começar o catálogo com uma classe de produto e um exemplo de uso,
+explicando propriedades, tipos, construtor, objeto e visibilidade.
+
+Implementação:
+
+- `src/Produto.php`: nome privado `string`, preço privado `int` em centavos,
+  construtor tipado e métodos públicos `getNome(): string` e
+  `getPrecoEmCentavos(): int`.
+- `src/exemplo-produto.php`: carrega a classe com `require_once` e `__DIR__`,
+  cria `new Produto("Camiseta", 4990)` e imprime os dados pelos métodos.
+- Ambos os arquivos usam `declare(strict_types=1)`. O exemplo aceita apenas
+  execução pelo terminal.
+- Aula salva em `docs/aulas/03-01-produto-tipado.md`; README e roteiro atualizados
+  para refletir conclusão do módulo Docker e início do módulo 3.
+
+Execução principal:
+
+```bash
+docker compose run --rm php php exemplo-produto.php
+```
+
+Resultados verificados:
+
+- Saída `Produto: Camiseta` e `Preço em centavos: 4990`, com código 0.
+- Em chamada estrita, preço como texto `"4990"` gerou `TypeError`.
+- Acesso direto externo à propriedade privada `nome` gerou `Error`.
+  As exceções esperadas foram capturadas na verificação de comportamento.
+- Servidor HTTP da raiz permaneceu em 200; exemplo OOP recusou HTTP com 403.
+- Containers temporários removidos; infraestrutura, configuração local e dados
+  preservados. Não houve build ou instalação de bibliotecas.
+
+Conceitos a confirmar: classe define estrutura; `new` cria o objeto;
+`__construct` recebe seus dados; `$this` refere-se à instância atual; propriedades
+privadas são consultadas por métodos públicos. Tipos escalares estritos dependem
+do arquivo que faz a chamada. Ainda não há validações de nome vazio ou preço
+negativo; o foco desta etapa é a estrutura da classe.
+
+Checkpoint: `feat: inicia catalogo com classe Produto tipada`.
+Entendimento da etapa 3.1: pendente. Não acrescentar validações ou avançar
+o módulo antes da confirmação.
 
 ## Verificações e limitações do ambiente
 
@@ -770,7 +814,7 @@ moderno e OOP antes da confirmação do aluno.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: verifica rede interna entre containers`.
+  desta sessão: `feat: inicia catalogo com classe Produto tipada`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -840,12 +884,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
   registrada até agora.
-- Ação imediata: explicar rede, DNS, endereços e diagnóstico, publicar o
-  checkpoint e aguardar entendimento da etapa 2.11.
-- Após a confirmação: concluir o módulo 2 e iniciar a etapa 3.1 — revisão
-  aplicada de PHP moderno e OOP, começando por uma classe simples do catálogo
-  e sua execução em Docker. Introduzir ferramentas e testes conforme a aula
-  precisar, sem construir antecipadamente todo o módulo.
+- Ação imediata: explicar os dois arquivos PHP, a tipagem, os métodos e a
+  execução verificada; publicar o checkpoint e aguardar entendimento da etapa 3.1.
+- Após a confirmação: etapa 3.2 — validar nome não vazio e preço não negativo
+  no construtor, explicar exceções de entrada e verificar os casos válidos e
+  inválidos. Introduzir ferramentas conforme necessário, sem antecipar o módulo.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -871,4 +914,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 08/10/2026 | 2.8 — Variável de ambiente | APP_NAME verificada no container e na resposta HTTP | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `42d152b` |
 | 08/10/2026 | 2.9 — .env e modelo | Configuração local interpolada; exclusões e HTTP verificados | Confirmado em 09/10 pelo aluno: "entendi" | Publicado no checkpoint `9dd560f`; .env permanece local |
 | 09/10/2026 | 2.10 — Volume de dados | Contador persistido entre containers removidos; HTTP preservado | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `99be2d5` |
-| 09/10/2026 | 2.11 — Rede interna | Nome php resolvido e HTTP interno/externo verificados | Aguardando confirmação | Checkpoint a conferir após envio |
+| 09/10/2026 | 2.11 — Rede interna | Nome php resolvido e HTTP interno/externo verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `72e337e` |
+| 09/10/2026 | 3.1 — Primeira classe | Produto tipado criado e utilizado em Docker | Aguardando confirmação | Checkpoint a conferir após envio |

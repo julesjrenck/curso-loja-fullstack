@@ -6,7 +6,8 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 ## Estado atual
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
-Módulo 2 — Docker: etapa 2.11, comunicação entre containers pelo nome do serviço.
+Módulo 2 — Docker: concluído.
+Módulo 3 — PHP moderno e OOP: etapa 3.1, primeira classe de produto tipada.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -21,8 +22,8 @@ Dockerfile e inicia o servidor PHP 8.4.26 de desenvolvimento.
 O Compose monta `./src` em `/app` como somente leitura, permitindo executar
 alterações do código local sem reconstruir a imagem. A demonstração responde
 em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A próxima etapa, após
-confirmação de entendimento, será concluir o módulo Docker e começar PHP moderno
-e OOP. Na rede do projeto, outros containers acessam `http://php:8000/`.
+confirmação de entendimento, será acrescentar validações à classe de produto.
+Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
 O estado detalhado e atualizado das aulas fica no registro de progresso.
@@ -42,6 +43,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 2.9 — .env local e modelo](docs/aulas/02-09-env-e-modelo.md)
 - [Aula 2.10 — Volume de dados](docs/aulas/02-10-volume-de-dados.md)
 - [Aula 2.11 — Rede entre containers](docs/aulas/02-11-rede-entre-containers.md)
+- [Aula 3.1 — Primeira classe de produto](docs/aulas/03-01-produto-tipado.md)
 
 ## Executar a demonstração atual
 
@@ -98,6 +100,18 @@ docker compose run --rm php php rede.php
 
 O diagnóstico resolve `php` pelo DNS da rede e consulta `http://php:8000/`.
 O navegador do computador continua usando `http://127.0.0.1:8001/`.
+
+## Demonstração de OOP
+
+Para criar um objeto de produto e consultar seus dados:
+
+```bash
+docker compose run --rm php php exemplo-produto.php
+```
+
+O exemplo carrega `Produto.php`, cria uma camiseta de 4990 centavos e imprime
+seus dados pelos métodos públicos. Consulte a aula 3.1 para a explicação da
+classe, dos tipos e do construtor.
 
 ## Tecnologias planejadas
 
