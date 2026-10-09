@@ -4,11 +4,11 @@
 
 - Última atualização: 09/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.1 — Primeira classe de produto tipada.
-- Situação: objeto criado e métodos executados em Docker; tipos e visibilidade
-  verificados, aguardando confirmação de entendimento da etapa 3.1.
+- Etapa atual: 3.2 — Validação no construtor e exceções.
+- Situação: regras e tratamento de entrada inválida executados; seis cenários
+  verificados, aguardando confirmação de entendimento da etapa 3.2.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
-  pelo aluno com "entendi". A etapa 2.11 foi confirmada em 09/10/2026.
+  pelo aluno com "entendi". A etapa 3.1 foi confirmada em 09/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -784,8 +784,47 @@ do arquivo que faz a chamada. Ainda não há validações de nome vazio ou preç
 negativo; o foco desta etapa é a estrutura da classe.
 
 Checkpoint: `feat: inicia catalogo com classe Produto tipada`.
-Entendimento da etapa 3.1: pendente. Não acrescentar validações ou avançar
-o módulo antes da confirmação.
+Entendimento da etapa 3.1: confirmado em 09/10/2026 com "entendi".
+
+## Etapa 3.2
+
+Objetivo: validar nome e preço no construtor e mostrar tratamento de exceções
+de entrada no código que cria o produto.
+
+Implementação:
+
+- `src/Produto.php`: antes das atribuições, recusa `trim($nome) === ""` e
+  `$precoEmCentavos < 0`, lançando `InvalidArgumentException` com mensagem.
+- `src/exemplo-produto.php`: mantém o produto válido e demonstra uma tentativa
+  de preço negativo em `try/catch`, imprimindo a mensagem por `getMessage()`.
+- Aula salva em `docs/aulas/03-02-validacao-e-excecoes.md`; README atualizado
+  e aula 3.1 identifica seu checkpoint histórico.
+
+Execução principal:
+
+```bash
+docker compose run --rm php php exemplo-produto.php
+```
+
+Resultados verificados:
+
+- Produto válido retornou nome e preço, e a tentativa de -100 centavos mostrou
+  a mensagem de recusa; demonstração terminou com código 0.
+- Uma verificação de seis cenários em PHP dentro do Docker confirmou: preço
+  positivo e preço zero aceitos; nome vazio, só espaços e preço negativo
+  recusados; dados de um nome válido com bordas preservados.
+- As verificações detectariam aceitação indevida, recusa indevida ou alteração
+  dos dados válidos. Nenhuma biblioteca foi instalada nesta etapa.
+- Infraestrutura, `.env` e volume de dados preservados, sem build.
+
+Conceitos a confirmar: tipos verificam formato, regras verificam valores;
+`throw` interrompe o construtor e a exceção pode ser tratada pelo chamador.
+`catch` trata o tipo específico; `getMessage()` mostra a mensagem. `trim`
+é usado para validar, sem normalizar o valor armazenado.
+
+Checkpoint: `feat: valida dados do produto no construtor`.
+Entendimento da etapa 3.2: pendente. Não refatorar para promoção de propriedades
+ou avançar o módulo antes da confirmação.
 
 ## Verificações e limitações do ambiente
 
@@ -814,7 +853,7 @@ o módulo antes da confirmação.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: inicia catalogo com classe Produto tipada`.
+  desta sessão: `feat: valida dados do produto no construtor`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -884,11 +923,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
   registrada até agora.
-- Ação imediata: explicar os dois arquivos PHP, a tipagem, os métodos e a
-  execução verificada; publicar o checkpoint e aguardar entendimento da etapa 3.1.
-- Após a confirmação: etapa 3.2 — validar nome não vazio e preço não negativo
-  no construtor, explicar exceções de entrada e verificar os casos válidos e
-  inválidos. Introduzir ferramentas conforme necessário, sem antecipar o módulo.
+- Ação imediata: explicar verificações no construtor, `throw`, `try/catch` e
+  os resultados; publicar o checkpoint e aguardar entendimento da etapa 3.2.
+- Após a confirmação: etapa 3.3 — apresentar promoção de propriedades do
+  construtor no PHP 8, refatorando a declaração sem alterar tipos, visibilidade,
+  métodos públicos ou regras; verificar que os mesmos cenários continuam válidos.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -915,4 +954,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 08/10/2026 | 2.9 — .env e modelo | Configuração local interpolada; exclusões e HTTP verificados | Confirmado em 09/10 pelo aluno: "entendi" | Publicado no checkpoint `9dd560f`; .env permanece local |
 | 09/10/2026 | 2.10 — Volume de dados | Contador persistido entre containers removidos; HTTP preservado | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `99be2d5` |
 | 09/10/2026 | 2.11 — Rede interna | Nome php resolvido e HTTP interno/externo verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `72e337e` |
-| 09/10/2026 | 3.1 — Primeira classe | Produto tipado criado e utilizado em Docker | Aguardando confirmação | Checkpoint a conferir após envio |
+| 09/10/2026 | 3.1 — Primeira classe | Produto tipado criado e utilizado em Docker | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `213486f` |
+| 09/10/2026 | 3.2 — Regras do produto | Nome e preço validados; exceção tratada; seis cenários passaram | Aguardando confirmação | Checkpoint a conferir após envio |

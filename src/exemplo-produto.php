@@ -14,3 +14,9 @@ $produto = new Produto("Camiseta", 4990);
 
 echo "Produto: " . $produto->getNome() . PHP_EOL;
 echo "Preço em centavos: " . $produto->getPrecoEmCentavos() . PHP_EOL;
+
+try {
+    new Produto("Camiseta", -100);
+} catch (InvalidArgumentException $erro) {
+    echo "Produto recusado: " . $erro->getMessage() . PHP_EOL;
+}

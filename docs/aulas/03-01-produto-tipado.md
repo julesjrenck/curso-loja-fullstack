@@ -1,5 +1,8 @@
 # Aula 3.1 — Primeira classe de produto
 
+Esta aula registra a classe do checkpoint `213486f`. As regras do construtor
+evoluem nas etapas seguintes; o README descreve a demonstração atual.
+
 ## Objetivo
 
 Começar a representar o catálogo da loja com uma classe PHP, usando tipos,
