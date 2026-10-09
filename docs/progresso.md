@@ -4,11 +4,11 @@
 
 - Última atualização: 09/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.2 — Validação no construtor e exceções.
-- Situação: regras e tratamento de entrada inválida executados; seis cenários
-  verificados, aguardando confirmação de entendimento da etapa 3.2.
+- Etapa atual: 3.3 — Promoção de propriedades do construtor.
+- Situação: classe simplificada e demonstração executada; oito comportamentos
+  verificados, aguardando confirmação de entendimento da etapa 3.3.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
-  pelo aluno com "entendi". A etapa 3.1 foi confirmada em 09/10/2026.
+  pelo aluno com "entendi". As etapas 3.1 e 3.2 foram confirmadas em 09/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -823,8 +823,40 @@ Conceitos a confirmar: tipos verificam formato, regras verificam valores;
 é usado para validar, sem normalizar o valor armazenado.
 
 Checkpoint: `feat: valida dados do produto no construtor`.
-Entendimento da etapa 3.2: pendente. Não refatorar para promoção de propriedades
-ou avançar o módulo antes da confirmação.
+Entendimento da etapa 3.2: confirmado pelo aluno com "entendi" em 09/10/2026,
+após o exemplo prático solicitado de `trim`. Explicamos remoção dos espaços nas
+bordas, preservação dos espaços internos e que a variável original só muda se
+receber o resultado. Checkpoint publicado: `ab9ea33`.
+
+## Etapa 3.3
+
+Objetivo: reduzir repetição na classe usando promoção de propriedades no
+construtor, recurso disponível desde o PHP 8.0.
+
+Implementação e explicação:
+
+- `src/Produto.php`: os parâmetros agora são `private string $nome` e
+  `private int $precoEmCentavos`. Removidas declarações e atribuições separadas.
+- Validações e métodos públicos preservados; `src/exemplo-produto.php` inalterado.
+- Explicada a ordem real: promoção atribui os argumentos antes do corpo do
+  construtor. A versão anterior tinha atribuições explícitas após as validações.
+  Uma exceção continua impedindo que `new` entregue a instância ao chamador.
+- Aula salva em `docs/aulas/03-03-promocao-de-propriedades.md`; README atualizado
+  e aula 3.2 identifica seu checkpoint histórico.
+
+Verificação:
+
+- `docker compose run --rm php php exemplo-produto.php`: mesmas três linhas da
+  etapa anterior, com código 0.
+- Oito verificações em PHP pelo Docker passaram: produto válido, preço zero,
+  preservação de bordas no nome; recusa de nome vazio, nome só com espaços e
+  preço negativo; `TypeError` para preço textual em chamada estrita e `Error`
+  para acesso externo à propriedade privada.
+- Código executado pelo bind mount, sem build ou novas dependências.
+  Configuração local, servidor e volume de dados preservados.
+
+Checkpoint: `refactor: promove propriedades do construtor de Produto`.
+Entendimento da etapa 3.3: pendente. Aguardar confirmação antes de namespaces.
 
 ## Verificações e limitações do ambiente
 
@@ -853,7 +885,7 @@ ou avançar o módulo antes da confirmação.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: valida dados do produto no construtor`.
+  desta sessão: `refactor: promove propriedades do construtor de Produto`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -923,11 +955,13 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
   registrada até agora.
-- Ação imediata: explicar verificações no construtor, `throw`, `try/catch` e
-  os resultados; publicar o checkpoint e aguardar entendimento da etapa 3.2.
-- Após a confirmação: etapa 3.3 — apresentar promoção de propriedades do
-  construtor no PHP 8, refatorando a declaração sem alterar tipos, visibilidade,
-  métodos públicos ou regras; verificar que os mesmos cenários continuam válidos.
+- Dúvida sobre `trim`: exemplo prático respondido e entendimento confirmado
+  junto com a etapa 3.2.
+- Ação imediata: concluir explicação da promoção de propriedades, publicar
+  o checkpoint e aguardar entendimento da etapa 3.3.
+- Após a confirmação: etapa 3.4 — organizar `Produto` em namespace e importar
+  a classe com `use` no exemplo, mantendo `require_once` até introduzir autoload.
+  Explicar a diferença entre nome da classe e carregamento do arquivo.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -955,4 +989,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 2.10 — Volume de dados | Contador persistido entre containers removidos; HTTP preservado | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `99be2d5` |
 | 09/10/2026 | 2.11 — Rede interna | Nome php resolvido e HTTP interno/externo verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `72e337e` |
 | 09/10/2026 | 3.1 — Primeira classe | Produto tipado criado e utilizado em Docker | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `213486f` |
-| 09/10/2026 | 3.2 — Regras do produto | Nome e preço validados; exceção tratada; seis cenários passaram | Aguardando confirmação | Checkpoint a conferir após envio |
+| 09/10/2026 | 3.2 — Regras do produto | Nome e preço validados; exceção tratada; seis cenários passaram | Confirmado pelo aluno: "entendi", após exemplo de trim | Publicado no checkpoint `ab9ea33` |
+| 09/10/2026 | 3.3 — Promoção de propriedades | Construtor simplificado; demonstração e oito verificações passaram | Aguardando confirmação | Checkpoint a conferir após envio |

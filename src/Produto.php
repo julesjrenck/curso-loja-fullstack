@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 class Produto
 {
-    private string $nome;
-    private int $precoEmCentavos;
-
-    public function __construct(string $nome, int $precoEmCentavos)
-    {
+    public function __construct(
+        private string $nome,
+        private int $precoEmCentavos,
+    ) {
         if (trim($nome) === "") {
             throw new InvalidArgumentException("O nome do produto não pode ser vazio.");
         }
@@ -16,9 +15,6 @@ class Produto
         if ($precoEmCentavos < 0) {
             throw new InvalidArgumentException("O preço em centavos não pode ser negativo.");
         }
-
-        $this->nome = $nome;
-        $this->precoEmCentavos = $precoEmCentavos;
     }
 
     public function getNome(): string

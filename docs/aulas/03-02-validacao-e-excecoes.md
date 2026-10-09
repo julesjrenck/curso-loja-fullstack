@@ -1,5 +1,9 @@
 # Aula 3.2 — Validação no construtor e exceções
 
+Esta aula registra o checkpoint `ab9ea33`, com atribuições explícitas depois
+das validações. A aula 3.3 introduz promoção de propriedades e explica a mudança
+na ordem das atribuições automáticas; consulte o README para o estado atual.
+
 ## Objetivo
 
 Acrescentar regras à classe de produto e tratar uma entrada inválida no código
