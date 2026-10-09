@@ -4,10 +4,10 @@
 
 - Última atualização: 09/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 2 — Docker desde o começo.
-- Etapa atual: 2.10 — Volume de dados gerenciado pelo Docker.
-- Situação: contador persistido entre containers temporários; volume e servidor
-  preservados, aguardando confirmação de entendimento da etapa 2.10.
-- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.9 do módulo 2,
+- Etapa atual: 2.11 — Rede entre containers.
+- Situação: DNS do serviço e acesso HTTP interno verificados; servidor e dados
+  preservados, aguardando entendimento antes de encerrar o módulo Docker.
+- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.10 do módulo 2,
   cada avanço confirmado pelo aluno com "entendi".
 - Módulos 3 a 23: não iniciados.
 
@@ -699,8 +699,49 @@ e monta-o no serviço. O primeiro `php` de `run` seleciona o serviço, e o segun
 inicia o executável para o script de terminal. O exemplo é sequencial.
 
 Checkpoint: `feat: demonstra persistencia em volume Docker`.
-Entendimento da etapa 2.10: pendente. Não avançar para a rede entre containers
-antes da confirmação do aluno.
+Entendimento da etapa 2.10: confirmado em 09/10/2026 com "entendi".
+
+## Etapa 2.11
+
+Objetivo: resolver o nome do serviço e acessar o servidor pela rede interna
+a partir de outro container, distinguindo porta interna e porta publicada.
+
+Implementação: `src/rede.php`, um diagnóstico de terminal que consulta
+`gethostbyname("php")`, faz uma requisição HTTP a `http://php:8000/` com timeout
+de cinco segundos e imprime a primeira linha de status da resposta.
+O script recusa acesso HTTP e não altera dados. Compose, Dockerfile, `.env`
+e volume foram preservados.
+
+Aula salva em `docs/aulas/02-11-rede-entre-containers.md`; README atualizado
+com o comando de diagnóstico e os endereços interno/externo.
+
+Comando executado:
+
+```bash
+docker compose run --rm php php rede.php
+```
+
+Resultados verificados:
+
+- Rede `curso-loja-fullstack_default` encontrada, driver `bridge`.
+- Diagnóstico concluído com código 0 em outro container temporário.
+- DNS resolveu `php`; o IP correspondeu ao da inspeção do servidor, que
+  possui alias `php` nessa rede. O IP não foi fixado no código.
+- Requisição interna a `http://php:8000/` retornou `HTTP/1.1 200 OK`.
+- Requisição do host a `http://127.0.0.1:8001/` também retornou 200.
+- Acesso HTTP ao diagnóstico retornou 403, preservando sua execução exclusiva
+  pelo terminal e evitando requisições recursivas no servidor de desenvolvimento.
+- Container temporário removido; `docker compose ps -a` mostrou apenas o
+  servidor principal ativo. Não houve build ou escrita no volume de dados.
+
+Conceitos a confirmar: a rede do Compose permite descoberta pelo nome do
+serviço; containers usam a porta interna; o host usa a publicação de porta.
+`localhost` dentro de um container refere-se ao próprio container. O diagnóstico
+resolve o endereço em vez de fixar um IP que pode mudar.
+
+Checkpoint: `feat: verifica rede interna entre containers`.
+Entendimento da etapa 2.11: pendente. Não encerrar o módulo 2 nem iniciar PHP
+moderno e OOP antes da confirmação do aluno.
 
 ## Verificações e limitações do ambiente
 
@@ -729,7 +770,7 @@ antes da confirmação do aluno.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: demonstra persistencia em volume Docker`.
+  desta sessão: `feat: verifica rede interna entre containers`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -799,11 +840,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
   registrada até agora.
-- Ação imediata: explicar volume, montagens, contador e persistência verificada;
-  publicar o código e a documentação e aguardar entendimento da etapa 2.10.
-- Após a confirmação: etapa 2.11 — estudar a rede padrão do Compose, resolução
-  do nome `php` e diferença entre a porta interna 8000 e a porta do host 8001,
-  verificando acesso ao servidor a partir de outro container temporário.
+- Ação imediata: explicar rede, DNS, endereços e diagnóstico, publicar o
+  checkpoint e aguardar entendimento da etapa 2.11.
+- Após a confirmação: concluir o módulo 2 e iniciar a etapa 3.1 — revisão
+  aplicada de PHP moderno e OOP, começando por uma classe simples do catálogo
+  e sua execução em Docker. Introduzir ferramentas e testes conforme a aula
+  precisar, sem construir antecipadamente todo o módulo.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -828,4 +870,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 08/10/2026 | 2.7 — Servidor e portas | HTTP 200, parada normal e reinício verificados; servidor ativo | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `1b7739d` |
 | 08/10/2026 | 2.8 — Variável de ambiente | APP_NAME verificada no container e na resposta HTTP | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `42d152b` |
 | 08/10/2026 | 2.9 — .env e modelo | Configuração local interpolada; exclusões e HTTP verificados | Confirmado em 09/10 pelo aluno: "entendi" | Publicado no checkpoint `9dd560f`; .env permanece local |
-| 09/10/2026 | 2.10 — Volume de dados | Contador persistido entre containers removidos; HTTP preservado | Aguardando confirmação | Checkpoint a conferir após envio |
+| 09/10/2026 | 2.10 — Volume de dados | Contador persistido entre containers removidos; HTTP preservado | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `99be2d5` |
+| 09/10/2026 | 2.11 — Rede interna | Nome php resolvido e HTTP interno/externo verificados | Aguardando confirmação | Checkpoint a conferir após envio |
