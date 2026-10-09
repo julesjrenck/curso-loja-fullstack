@@ -2,12 +2,12 @@
 
 ## Estado atual
 
-- Última atualização: 08/10/2026, referência de data America/Sao_Paulo.
+- Última atualização: 09/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 2 — Docker desde o começo.
-- Etapa atual: 2.9 — .env local e .env.example.
-- Situação: interpolação e resposta HTTP verificadas; configuração local
-  excluída do Git e do contexto; aguardando entendimento da etapa 2.9.
-- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.8 do módulo 2,
+- Etapa atual: 2.10 — Volume de dados gerenciado pelo Docker.
+- Situação: contador persistido entre containers temporários; volume e servidor
+  preservados, aguardando confirmação de entendimento da etapa 2.10.
+- Entendimento confirmado: módulo 1 completo e etapas 2.1 a 2.9 do módulo 2,
   cada avanço confirmado pelo aluno com "entendi".
 - Módulos 3 a 23: não iniciados.
 
@@ -652,8 +652,55 @@ passa o resultado ao container. O PHP mantém `getenv` e não lê o arquivo loca
 diretamente. Variáveis do shell podem prevalecer sobre valores do arquivo.
 
 Checkpoint: `feat: separa configuracao local em arquivo env`.
-Entendimento da etapa 2.9: pendente. Não criar volume ou demonstrador de dados
-antes da confirmação.
+Entendimento da etapa 2.9: confirmado em 09/10/2026 com "entendi".
+
+## Etapa 2.10
+
+Objetivo: demonstrar persistência de dados em um volume nomeado entre execuções
+de containers temporários, mantendo o código local somente leitura.
+
+Implementação:
+
+- `compose.yaml`: monta `dados-demo:/dados` no serviço PHP e declara o volume
+  `dados-demo` na raiz do arquivo. O bind mount de código foi preservado.
+- `src/contador.php`: exemplo de terminal que lê, incrementa e grava
+  `/dados/contador.txt`, com erros explícitos de leitura/escrita.
+- O contador recusa execução HTTP com status 403, evitando alterações por GET.
+- Aula salva em `docs/aulas/02-10-volume-de-dados.md`; README atualizado.
+
+Comandos executados:
+
+```bash
+docker compose config --quiet
+docker compose up -d php
+docker compose run --rm php php contador.php
+docker compose run --rm php php contador.php
+docker compose exec -T php cat /dados/contador.txt
+```
+
+Resultados verificados:
+
+- Antes da etapa, o volume `curso-loja-fullstack_dados-demo` não existia e
+  o servidor do curso estava ativo.
+- Configuração validada, volume criado e serviço reaplicado sem novo build.
+- Execuções em containers temporários diferentes retornaram valores `1` e `2`,
+  ambas com código 0. Os containers foram removidos, mas o dado foi mantido.
+- Inspeção confirmou `/app` como bind mount sem escrita e `/dados` como volume
+  gerenciado pelo Docker com escrita.
+- HTTP da raiz retornou 200; `GET /contador.php` retornou 403. O arquivo de dados
+  continuou em `2` após a requisição recusada.
+- `docker compose ps -a` mostrou apenas o servidor principal, que permaneceu
+  ativo em `127.0.0.1:8001`. Outros projetos Docker foram preservados.
+- `.env` permaneceu local, e o arquivo de dados não foi criado no repositório.
+
+Conceitos a confirmar: volume nomeado é armazenamento gerenciado pelo Docker,
+independente do container que o utiliza; o Compose declara o volume na raiz
+e monta-o no serviço. O primeiro `php` de `run` seleciona o serviço, e o segundo
+inicia o executável para o script de terminal. O exemplo é sequencial.
+
+Checkpoint: `feat: demonstra persistencia em volume Docker`.
+Entendimento da etapa 2.10: pendente. Não avançar para a rede entre containers
+antes da confirmação do aluno.
 
 ## Verificações e limitações do ambiente
 
@@ -682,7 +729,7 @@ antes da confirmação.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: separa configuracao local em arquivo env`.
+  desta sessão: `feat: demonstra persistencia em volume Docker`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -752,12 +799,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
 - Dúvidas sobre SSH: entendimento confirmado; nenhuma nova dúvida sobre Docker
   registrada até agora.
-- Ação imediata: explicar modelo, arquivo local e interpolação; publicar somente
-  os arquivos versionáveis, responder às perguntas e aguardar entendimento.
-- Após a confirmação: etapa 2.10 — introduzir um volume gerenciado pelo Docker
-  para dados de demonstração, explicar sua diferença em relação ao bind mount
-  do código e verificar persistência entre containers, preservando o servidor.
-  Usar escrita de dados por um script de terminal, sem adicionar mutações ao GET.
+- Ação imediata: explicar volume, montagens, contador e persistência verificada;
+  publicar o código e a documentação e aguardar entendimento da etapa 2.10.
+- Após a confirmação: etapa 2.11 — estudar a rede padrão do Compose, resolução
+  do nome `php` e diferença entre a porta interna 8000 e a porta do host 8001,
+  verificando acesso ao servidor a partir de outro container temporário.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -781,4 +827,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 08/10/2026 | 2.6 — Bind mount | Código local alterado lido sem rebuild; cópia da imagem preservada | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `79c432c` |
 | 08/10/2026 | 2.7 — Servidor e portas | HTTP 200, parada normal e reinício verificados; servidor ativo | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `1b7739d` |
 | 08/10/2026 | 2.8 — Variável de ambiente | APP_NAME verificada no container e na resposta HTTP | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `42d152b` |
-| 08/10/2026 | 2.9 — .env e modelo | Configuração local interpolada; exclusões e HTTP verificados | Aguardando confirmação | Checkpoint a conferir após envio; .env permanece local |
+| 08/10/2026 | 2.9 — .env e modelo | Configuração local interpolada; exclusões e HTTP verificados | Confirmado em 09/10 pelo aluno: "entendi" | Publicado no checkpoint `9dd560f`; .env permanece local |
+| 09/10/2026 | 2.10 — Volume de dados | Contador persistido entre containers removidos; HTTP preservado | Aguardando confirmação | Checkpoint a conferir após envio |
