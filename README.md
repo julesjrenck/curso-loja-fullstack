@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.8, autoload do Composer em uso.
+Módulo 3 — PHP moderno e OOP: etapa 3.9, enum de estados de produto.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -22,8 +22,8 @@ Dockerfile, inclui Composer 2.10.3 e inicia o servidor PHP 8.4.26 de desenvolvim
 O Compose monta `./src` em `/app` como somente leitura, permitindo executar
 alterações do código local sem reconstruir a imagem. A demonstração responde
 em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A próxima etapa, após
-confirmação de entendimento, será representar estados de produto com um enum
-PHP e demonstrá-lo em um pequeno exemplo pelo terminal.
+confirmação de entendimento, será usar o enum como propriedade tipada de
+Produto, com estado inicial e método para consultá-lo.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -54,6 +54,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.6 — Configuração do composer.json](docs/aulas/03-06-composer-json.md)
 - [Aula 3.7 — Volume para vendor](docs/aulas/03-07-volume-vendor.md)
 - [Aula 3.8 — Autoload do Composer](docs/aulas/03-08-autoload-do-composer.md)
+- [Aula 3.9 — Enum de estados de produto](docs/aulas/03-09-enum-status-produto.md)
 
 ## Executar a demonstração atual
 
@@ -135,6 +136,20 @@ aula 3.8 para seu carregamento automático.
 A classe tem o nome completo `Loja\Produto`; `use` permite o nome curto no
 exemplo, e `require_once` carrega `vendor/autoload.php`. O Composer localiza
 `Produto.php` quando o PHP precisa da classe.
+
+## Demonstração de enum
+
+Para consultar o caso e o texto associado a um estado de produto:
+
+```bash
+docker compose run --rm php php exemplo-status-produto.php
+```
+
+O exemplo usa `StatusProduto::Ativo` e mostra `Caso: Ativo` e `Valor: ativo`.
+O enum oferece os casos Ativo e Inativo; cada um tem um valor textual associado.
+Ele é carregado pelo mesmo autoload, sem regeneração quando o mapeamento PSR-4
+permanece igual. Nesta etapa o enum ainda não é uma propriedade de Produto.
+Consulte a aula 3.9 para a diferença entre caso e string.
 
 ## Composer no Docker
 

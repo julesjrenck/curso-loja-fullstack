@@ -4,11 +4,11 @@
 
 - Última atualização: 09/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.8 — Autoload do Composer em uso.
-- Situação: arquivos gerados e apresentados, exemplo executado com autoload;
-  comportamento verificado, aguardando entendimento da etapa 3.8.
+- Etapa atual: 3.9 — Enum de estados de produto.
+- Situação: enum e exemplo CLI criados; sintaxe, autoload e tipos verificados,
+  aguardando entendimento da etapa 3.9.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
-  pelo aluno com "entendi". As etapas 3.1 a 3.7 foram confirmadas em 09/10/2026.
+  pelo aluno com "entendi". As etapas 3.1 a 3.8 foram confirmadas em 09/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -1028,7 +1028,40 @@ Verificação:
   e `src/composer.lock` ausente. Sem build ou alteração no Compose.
 
 Checkpoint: `feat: carrega Produto com autoload do Composer`.
-Entendimento da etapa 3.8: pendente. Aguardar confirmação antes de enums.
+Entendimento da etapa 3.8: confirmado pelo aluno com "entendi" em 09/10/2026.
+Checkpoint publicado: `af61127`.
+
+## Etapa 3.9
+
+Objetivo: representar opções de estado com um enum e distinguir um caso de sua
+representação textual.
+
+Implementação e explicação:
+
+- `src/StatusProduto.php`: enum Loja\StatusProduto com valores string,
+  casos Ativo = "ativo" e Inativo = "inativo".
+- `src/exemplo-status-produto.php`: exemplo CLI com autoload, seleção do caso
+  Ativo e impressão de `name` e `value`.
+- Explicados enum, case, acesso com `::`, caso como valor do tipo StatusProduto
+  e valor associado como string. Tipar um parâmetro exige um caso do enum.
+- Arquivos seguem o namespace e o padrão CLI existentes. Produto e seu exemplo
+  não foram alterados; nenhuma regra de transição implementada.
+- Aula salva em `docs/aulas/03-09-enum-status-produto.md`; README atualizado.
+
+Verificação:
+
+- `php -l` pelo Docker confirmou a sintaxe dos dois arquivos.
+- Exemplo mostrou `Caso: Ativo` e `Valor: ativo`, código 0.
+- Seis verificações pelo Docker passaram: enum ausente inicialmente, autoload
+  existente encontra arquivo novo, caso diferente do texto, parâmetro tipado
+  aceita Ativo e Inativo e recusa string "ativo" com TypeError.
+- Função de verificação temporária enviada pela entrada padrão; não adicionada
+  ao código da aplicação. O novo exemplo recusou HTTP com 403.
+- Sem build, regeneração do autoload, instalação de dependências ou alteração
+  no Compose. Configuração local e dados preservados.
+
+Checkpoint: `feat: apresenta enum de estados de produto`.
+Entendimento da etapa 3.9: pendente. Aguardar confirmação antes de usar em Produto.
 
 ## Verificações e limitações do ambiente
 
@@ -1057,7 +1090,7 @@ Entendimento da etapa 3.8: pendente. Aguardar confirmação antes de enums.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: carrega Produto com autoload do Composer`.
+  desta sessão: `feat: apresenta enum de estados de produto`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -1129,15 +1162,15 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   registrada até agora.
 - Dúvida sobre `trim`: exemplo prático respondido e entendimento confirmado
   junto com a etapa 3.2.
-- Ação imediata: concluir explicação de autoload e arquivos gerados, publicar
-  o checkpoint e aguardar entendimento da etapa 3.8.
+- Ação imediata: concluir explicação de enum, casos e valores associados,
+  publicar o checkpoint e aguardar entendimento da etapa 3.9.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação: etapa 3.9 — criar `src/StatusProduto.php` com um enum
-  `Loja\StatusProduto: string`, casos Ativo e Inativo, e um pequeno script CLI
-  usando autoload para exibir o caso e seu valor. Explicar enum, conjunto de
-  valores possíveis e diferença entre o caso e sua representação textual.
-  Não integrar o enum em Produto ou criar regras de transição ainda.
+- Após a confirmação: etapa 3.10 — acrescentar ao construtor de Produto uma
+  propriedade promovida privada do tipo StatusProduto, com Ativo como padrão.
+  Adicionar getter que retorna o enum e demonstrar o estado padrão e uma criação
+  com Inativo no exemplo do produto. Verificar recusa de string nesse parâmetro
+  e preservação das validações existentes. Não criar transições de estado ainda.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1174,4 +1207,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 3.5 — Composer no Docker | Imagem construída; versão, demonstração e HTTP verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `5360ccb` |
 | 09/10/2026 | 3.6 — Configuração Composer | JSON validado com aviso de licença; mapeamento de Produto conferido | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `3e28669` |
 | 09/10/2026 | 3.7 — Volume vendor | Volume gravável e persistente; código somente leitura, contador e HTTP verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `07db654` |
-| 09/10/2026 | 3.8 — Autoload Composer | Arquivos gerados; classe carregada por demanda e comportamentos verificados | Aguardando confirmação | Checkpoint a conferir após envio |
+| 09/10/2026 | 3.8 — Autoload Composer | Arquivos gerados; classe carregada por demanda e comportamentos verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `af61127` |
+| 09/10/2026 | 3.9 — Enum de estados | Enum e exemplo criados; autoload, casos e tipagem verificados | Aguardando confirmação | Checkpoint a conferir após envio |
