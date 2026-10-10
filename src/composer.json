@@ -1,0 +1,13 @@
+{
+    "name": "julesjrenck/curso-loja-fullstack",
+    "description": "Loja construída por etapas em um curso de PHP e fullstack.",
+    "type": "project",
+    "require": {
+        "php": "^8.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Loja\\": "./"
+        }
+    }
+}

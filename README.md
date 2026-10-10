@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.5, Composer na imagem PHP.
+Módulo 3 — PHP moderno e OOP: etapa 3.6, configuração do composer.json.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -22,8 +22,8 @@ Dockerfile, inclui Composer 2.10.3 e inicia o servidor PHP 8.4.26 de desenvolvim
 O Compose monta `./src` em `/app` como somente leitura, permitindo executar
 alterações do código local sem reconstruir a imagem. A demonstração responde
 em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A próxima etapa, após
-confirmação de entendimento, será criar o `composer.json` com os requisitos
-de PHP e o mapeamento do namespace `Loja`, e validar sua configuração.
+confirmação de entendimento, será preparar um volume gravável para os arquivos
+gerados pelo Composer, preservando o bind mount do código como somente leitura.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -49,6 +49,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.3 — Promoção de propriedades](docs/aulas/03-03-promocao-de-propriedades.md)
 - [Aula 3.4 — Namespace e use](docs/aulas/03-04-namespace-e-use.md)
 - [Aula 3.5 — Composer no Docker](docs/aulas/03-05-composer-no-docker.md)
+- [Aula 3.6 — Configuração do composer.json](docs/aulas/03-06-composer-json.md)
 
 ## Executar a demonstração atual
 
@@ -131,9 +132,20 @@ docker compose run --rm php composer --version
 ```
 
 A imagem inclui Composer 2.10.3, executado com PHP 8.4.26. A aula 3.5 explica
-a cópia do executável de uma imagem externa. Ainda não há `composer.json`,
-dependências instaladas ou autoload gerado. Para aplicar a nova imagem ao
+a cópia do executável de uma imagem externa. Para aplicar uma nova imagem ao
 servidor existente, use `docker compose up -d php`.
+
+O arquivo `src/composer.json` aparece como `/app/composer.json` no container.
+Ele declara PHP `^8.4` e o mapeamento PSR-4 de `Loja` para a pasta atual.
+Para validar essa configuração:
+
+```bash
+docker compose run --rm php composer validate
+```
+
+A validação retorna código 0, com aviso de licença não declarada. Ainda não há
+bibliotecas instaladas, `composer.lock` ou autoload gerado. Consulte a aula 3.6
+para a explicação dos campos e dos caminhos.
 
 ## Tecnologias planejadas
 

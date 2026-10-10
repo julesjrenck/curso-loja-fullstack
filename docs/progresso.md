@@ -4,11 +4,11 @@
 
 - Última atualização: 09/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.5 — Composer na imagem PHP.
-- Situação: imagem construída, Composer 2.10.3 executado e servidor atualizado;
-  verificações concluídas, aguardando entendimento da etapa 3.5.
+- Etapa atual: 3.6 — Configuração do composer.json.
+- Situação: configuração criada e validada, com aviso de licença não declarada;
+  mapeamento para Produto conferido, aguardando entendimento da etapa 3.6.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
-  pelo aluno com "entendi". As etapas 3.1 a 3.4 foram confirmadas em 09/10/2026.
+  pelo aluno com "entendi". As etapas 3.1 a 3.5 foram confirmadas em 09/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -923,7 +923,39 @@ Verificação:
   e a geração do autoload ainda não foram realizadas nem verificadas.
 
 Checkpoint: `build: adiciona Composer 2.10.3 a imagem PHP`.
-Entendimento da etapa 3.5: pendente. Aguardar confirmação antes de composer.json.
+Entendimento da etapa 3.5: confirmado pelo aluno com "entendi" em 09/10/2026.
+Checkpoint publicado: `5360ccb`.
+
+## Etapa 3.6
+
+Objetivo: criar a configuração do projeto Composer, declarar requisito de PHP
+e explicar o mapeamento de classes por PSR-4.
+
+Implementação e explicação:
+
+- `src/composer.json`: nome `julesjrenck/curso-loja-fullstack`, descrição,
+  tipo `project`, requisito PHP `^8.4` e prefixo PSR-4 `Loja\` para `./`.
+- Explicados JSON, escape de barra invertida, faixa >=8.4.0 e <9.0.0, e caminho
+  relativo à pasta do composer.json. PHP continua definido pela imagem.
+- Pelo bind mount, o arquivo fica em `/app/composer.json`; a classe existente
+  corresponde a `/app/Produto.php`. Configuração não gera ou ativa autoload.
+- Arquivos PHP e carregamento por `require_once` preservados.
+- Aula salva em `docs/aulas/03-06-composer-json.md`; README atualizado.
+
+Verificação:
+
+- `docker compose run --rm php composer validate`: arquivo válido, código 0.
+  Único aviso: licença não declarada. Campo opcional ainda sem escolha;
+  não foi usado `--strict`, que retornaria falha também por avisos.
+- Leitura do JSON e resolução do prefixo confirmaram que `Loja\Produto`
+  corresponde ao arquivo existente `src/Produto.php`.
+- `src/vendor` e `src/composer.lock` continuam ausentes; não foram gerados
+  arquivos ou instaladas bibliotecas.
+- Sem build, mudança no servidor ou alterações em volumes e configuração local.
+  Execução de autoload ainda não verificada, pois não foi gerado.
+
+Checkpoint: `build: configura projeto Composer e mapeamento PSR-4`.
+Entendimento da etapa 3.6: pendente. Aguardar confirmação antes do volume vendor.
 
 ## Verificações e limitações do ambiente
 
@@ -952,7 +984,7 @@ Entendimento da etapa 3.5: pendente. Aguardar confirmação antes de composer.js
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `build: adiciona Composer 2.10.3 a imagem PHP`.
+  desta sessão: `build: configura projeto Composer e mapeamento PSR-4`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -1024,13 +1056,15 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   registrada até agora.
 - Dúvida sobre `trim`: exemplo prático respondido e entendimento confirmado
   junto com a etapa 3.2.
-- Ação imediata: concluir explicação da instalação do Composer na imagem,
-  publicar o checkpoint e aguardar entendimento da etapa 3.5.
-- Após a confirmação: etapa 3.6 — criar `src/composer.json`, declarar requisito
-  de PHP e mapeamento PSR-4 do namespace `Loja`, explicar os campos e validar
-  pelo Composer no Docker. Não gerar autoload nesta etapa: `/app` está montado
-  como somente leitura. Preparar armazenamento gravável e mudar `require_once`
-  somente em uma etapa posterior, explicando os arquivos gerados.
+- Ação imediata: concluir explicação do composer.json, publicar o checkpoint
+  e aguardar entendimento da etapa 3.6.
+- Aviso do Composer: licença ausente. Configuração válida com código 0;
+  nenhuma licença escolhida nesta aula.
+- Após a confirmação: etapa 3.7 — preparar a pasta de montagem local ignorada
+  `src/vendor`, adicionar volume nomeado para `/app/vendor` no Compose e verificar
+  gravação e persistência nele, mantendo `./src:/app:ro`. Não gerar autoload nem
+  mudar o exemplo ainda. Essas operações serão feitas em uma etapa posterior,
+  explicando os arquivos gerados. Não alterar o contador do volume `dados-demo`.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -1061,4 +1095,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 3.2 — Regras do produto | Nome e preço validados; exceção tratada; seis cenários passaram | Confirmado pelo aluno: "entendi", após exemplo de trim | Publicado no checkpoint `ab9ea33` |
 | 09/10/2026 | 3.3 — Promoção de propriedades | Construtor simplificado; demonstração e oito verificações passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `83f190b` |
 | 09/10/2026 | 3.4 — Namespace e use | Classe Loja\Produto importada; sintaxe e oito verificações passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `253617c` |
-| 09/10/2026 | 3.5 — Composer no Docker | Imagem construída; versão, demonstração e HTTP verificados | Aguardando confirmação | Checkpoint a conferir após envio |
+| 09/10/2026 | 3.5 — Composer no Docker | Imagem construída; versão, demonstração e HTTP verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `5360ccb` |
+| 09/10/2026 | 3.6 — Configuração Composer | JSON validado com aviso de licença; mapeamento de Produto conferido | Aguardando confirmação | Checkpoint a conferir após envio |
