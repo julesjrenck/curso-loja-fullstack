@@ -10,7 +10,7 @@ if (PHP_SAPI !== "cli") {
     exit("Execute este exemplo pelo terminal." . PHP_EOL);
 }
 
-require_once __DIR__ . "/Produto.php";
+require_once __DIR__ . "/vendor/autoload.php";
 
 $produto = new Produto("Camiseta", 4990);
 

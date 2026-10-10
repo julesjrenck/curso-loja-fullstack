@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.7, volume gravável para vendor.
+Módulo 3 — PHP moderno e OOP: etapa 3.8, autoload do Composer em uso.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -22,8 +22,8 @@ Dockerfile, inclui Composer 2.10.3 e inicia o servidor PHP 8.4.26 de desenvolvim
 O Compose monta `./src` em `/app` como somente leitura, permitindo executar
 alterações do código local sem reconstruir a imagem. A demonstração responde
 em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A próxima etapa, após
-confirmação de entendimento, será gerar o autoload pelo Composer e utilizá-lo
-no exemplo de produto, explicando os arquivos gerados.
+confirmação de entendimento, será representar estados de produto com um enum
+PHP e demonstrá-lo em um pequeno exemplo pelo terminal.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -53,6 +53,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.5 — Composer no Docker](docs/aulas/03-05-composer-no-docker.md)
 - [Aula 3.6 — Configuração do composer.json](docs/aulas/03-06-composer-json.md)
 - [Aula 3.7 — Volume para vendor](docs/aulas/03-07-volume-vendor.md)
+- [Aula 3.8 — Autoload do Composer](docs/aulas/03-08-autoload-do-composer.md)
 
 ## Executar a demonstração atual
 
@@ -69,11 +70,14 @@ Edite o nome da aplicação no `.env`, se desejar. Depois:
 mkdir -p src/vendor
 docker compose config --quiet
 docker compose up -d --build php
+docker compose run --rm php composer dump-autoload
 ```
 
 `src/vendor` é a pasta local vazia que prepara o ponto de montagem do volume
 gravável dentro do bind mount somente leitura. Ela é ignorada pelo Git;
 os arquivos desse volume são armazenados pelo Docker.
+`dump-autoload` gera o carregador usado pelo exemplo de produto, conforme
+o mapeamento no `composer.json`. Execute-o também ao alterar esse mapeamento.
 
 Acesse [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A resposta é texto simples
 com o nome da aplicação, uma mensagem e a versão do PHP. O serviço recebe
@@ -126,9 +130,11 @@ docker compose run --rm php php exemplo-produto.php
 O exemplo cria uma camiseta válida de 4990 centavos e demonstra o tratamento de
 uma tentativa de preço negativo. A classe recusa nome vazio ou composto apenas
 pelos espaços de `trim`, e preço negativo; preço zero é permitido. Consulte as
-aulas 3.1 a 3.4 para a estrutura, as regras e a organização da classe.
+aulas 3.1 a 3.4 para a estrutura, as regras e a organização da classe, e a
+aula 3.8 para seu carregamento automático.
 A classe tem o nome completo `Loja\Produto`; `use` permite o nome curto no
-exemplo, e `require_once` continua carregando seu arquivo.
+exemplo, e `require_once` carrega `vendor/autoload.php`. O Composer localiza
+`Produto.php` quando o PHP precisa da classe.
 
 ## Composer no Docker
 
@@ -153,12 +159,18 @@ docker compose run --rm php composer validate
 ```
 
 A validação retorna código 0, com aviso de licença não declarada. Ainda não há
-bibliotecas instaladas, `composer.lock` ou autoload gerado. Consulte a aula 3.6
-para a explicação dos campos e dos caminhos.
+bibliotecas externas instaladas ou `composer.lock`. Consulte a aula 3.6
+para a explicação dos campos e dos caminhos. Para gerar o autoload:
+
+```bash
+docker compose run --rm php composer dump-autoload
+```
 
 O Compose monta o volume nomeado `vendor-php` em `/app/vendor`. Sua gravação
 e persistência entre containers foram verificadas na aula 3.7; `/app` permanece
-somente leitura. A geração de autoload será ensinada na próxima etapa.
+somente leitura. O autoload está nesse volume e é usado pelo exemplo de produto.
+Os arquivos gerados não vão ao GitHub; a configuração e o comando permitem
+recriá-los. A aula 3.8 apresenta sua estrutura.
 
 ## Tecnologias planejadas
 

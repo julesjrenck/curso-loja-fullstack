@@ -4,11 +4,11 @@
 
 - Última atualização: 09/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.7 — Volume gravável para vendor.
-- Situação: volume configurado e verificado; escrita, persistência, código somente
-  leitura e HTTP conferidos, aguardando entendimento da etapa 3.7.
+- Etapa atual: 3.8 — Autoload do Composer em uso.
+- Situação: arquivos gerados e apresentados, exemplo executado com autoload;
+  comportamento verificado, aguardando entendimento da etapa 3.8.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
-  pelo aluno com "entendi". As etapas 3.1 a 3.6 foram confirmadas em 09/10/2026.
+  pelo aluno com "entendi". As etapas 3.1 a 3.7 foram confirmadas em 09/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -991,7 +991,44 @@ Verificação:
   direto de Produto.php; configuração local e dados anteriores preservados.
 
 Checkpoint: `build: prepara volume gravavel para vendor do Composer`.
-Entendimento da etapa 3.7: pendente. Aguardar confirmação antes de gerar autoload.
+Entendimento da etapa 3.7: confirmado pelo aluno com "entendi" em 09/10/2026.
+Checkpoint publicado: `07db654`.
+
+## Etapa 3.8
+
+Objetivo: gerar o autoload a partir da configuração e utilizá-lo para carregar
+Produto automaticamente quando o PHP precisar da classe.
+
+Implementação e explicação:
+
+- `docker compose run --rm php composer dump-autoload`: arquivos gerados no
+  volume de `/app/vendor`, sem instalar bibliotecas ou criar lockfile.
+- Estrutura inspecionada: autoload.php e oito arquivos dentro de composer.
+  Aula apresenta o papel de todos, destacando entrada, inicialização,
+  implementação do carregador, mapeamento PSR-4 e dados estáticos.
+- Inspeção de `autoload_psr4.php` confirmou `Loja\` para o diretório base `/app`.
+  `platform_check.php` gerado verifica mínimo PHP 8.4.0 nesta configuração.
+- `src/exemplo-produto.php`: alterado somente o `require_once`, que agora
+  carrega `__DIR__ . "/vendor/autoload.php"`, em vez de Produto.php.
+- Explicados nome curto por `use`, registro do autoload e carga por demanda
+  em `new`. Classe e restrição CLI preservadas.
+- Aula salva em `docs/aulas/03-08-autoload-do-composer.md`; README inclui comando
+  de geração na preparação do projeto e explicação do uso atual.
+
+Verificação:
+
+- Geração do autoload e exemplo do produto terminaram com código 0; saída
+  da demonstração manteve as mesmas três linhas.
+- Classe ausente antes do registro e imediatamente depois; `new` carregou
+  automaticamente Loja\Produto e incluiu o arquivo esperado.
+- Seis cenários de entrada mantiveram aceitação/recusa e dados válidos.
+  Preço textual gerou TypeError e acesso privado externo gerou Error.
+- HTTP principal 200; exemplo recusou HTTP com 403.
+- Arquivos gerados ficaram no volume; pasta local `src/vendor` continuou vazia
+  e `src/composer.lock` ausente. Sem build ou alteração no Compose.
+
+Checkpoint: `feat: carrega Produto com autoload do Composer`.
+Entendimento da etapa 3.8: pendente. Aguardar confirmação antes de enums.
 
 ## Verificações e limitações do ambiente
 
@@ -1020,7 +1057,7 @@ Entendimento da etapa 3.7: pendente. Aguardar confirmação antes de gerar autol
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `build: prepara volume gravavel para vendor do Composer`.
+  desta sessão: `feat: carrega Produto com autoload do Composer`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -1092,16 +1129,18 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   registrada até agora.
 - Dúvida sobre `trim`: exemplo prático respondido e entendimento confirmado
   junto com a etapa 3.2.
-- Ação imediata: concluir explicação do volume vendor, publicar o checkpoint
-  e aguardar entendimento da etapa 3.7.
+- Ação imediata: concluir explicação de autoload e arquivos gerados, publicar
+  o checkpoint e aguardar entendimento da etapa 3.8.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação: etapa 3.8 — executar `composer dump-autoload` pelo Docker,
-  apresentar a estrutura gerada em `/app/vendor` e os arquivos relevantes para
-  o carregamento. Alterar o exemplo para exigir `vendor/autoload.php` em vez
-  de Produto.php; verificar classe criada e regras usando autoload.
-- Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p`; pasta vazia
-  ignorada não vem do Git. Não alterar o contador do volume `dados-demo`.
+- Após a confirmação: etapa 3.9 — criar `src/StatusProduto.php` com um enum
+  `Loja\StatusProduto: string`, casos Ativo e Inativo, e um pequeno script CLI
+  usando autoload para exibir o caso e seu valor. Explicar enum, conjunto de
+  valores possíveis e diferença entre o caso e sua representação textual.
+  Não integrar o enum em Produto ou criar regras de transição ainda.
+- Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
+  autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
+  não vêm do Git. Não alterar o contador do volume `dados-demo`.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -1134,4 +1173,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 3.4 — Namespace e use | Classe Loja\Produto importada; sintaxe e oito verificações passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `253617c` |
 | 09/10/2026 | 3.5 — Composer no Docker | Imagem construída; versão, demonstração e HTTP verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `5360ccb` |
 | 09/10/2026 | 3.6 — Configuração Composer | JSON validado com aviso de licença; mapeamento de Produto conferido | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `3e28669` |
-| 09/10/2026 | 3.7 — Volume vendor | Volume gravável e persistente; código somente leitura, contador e HTTP verificados | Aguardando confirmação | Checkpoint a conferir após envio |
+| 09/10/2026 | 3.7 — Volume vendor | Volume gravável e persistente; código somente leitura, contador e HTTP verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `07db654` |
+| 09/10/2026 | 3.8 — Autoload Composer | Arquivos gerados; classe carregada por demanda e comportamentos verificados | Aguardando confirmação | Checkpoint a conferir após envio |
