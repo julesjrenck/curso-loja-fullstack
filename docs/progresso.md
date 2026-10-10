@@ -11,6 +11,21 @@
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026.
 - Módulos 4 a 23: não iniciados.
 
+## Retomada em outro chat
+
+Em 09/10/2026, o aluno informou que continuará o curso amanhã em outro chat.
+A sessão terminou após a explicação da etapa 3.11, sem confirmação de
+entendimento dessa etapa. A confirmação mais recente é da etapa 3.10.
+
+Na próxima sessão, ler AGENTS.md, docs/curso.md e este registro, conferir o Git
+e retomar a aula 3.11: ativar/desativar, encapsulamento, `$this`, void e estado
+de cada instância. Responder às dúvidas e aguardar confirmação antes de
+implementar a interface da etapa 3.12. Não reiniciar o curso.
+
+Código e aula 3.11 publicados e sincronizados no checkpoint `8d54d1a`.
+Este registro de encerramento é uma atualização de documentação; não altera
+o código ou o ambiente Docker.
+
 ## Perfil e escolhas confirmadas no planejamento
 
 - Já programa em PHP; pouca experiência com Laravel.
@@ -1131,6 +1146,7 @@ Verificação:
 
 Checkpoint: `feat: adiciona acoes de ativar e desativar Produto`.
 Entendimento da etapa 3.11: pendente. Aguardar confirmação antes de interfaces.
+Publicação verificada: `8d54d1a`, com HEAD e origin/main iguais antes deste registro.
 
 ## Verificações e limitações do ambiente
 
@@ -1159,7 +1175,7 @@ Entendimento da etapa 3.11: pendente. Aguardar confirmação antes de interfaces
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: adiciona acoes de ativar e desativar Produto`.
+  desta sessão: `docs: registra retomada do curso em outro chat`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -1231,8 +1247,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   registrada até agora.
 - Dúvida sobre `trim`: exemplo prático respondido e entendimento confirmado
   junto com a etapa 3.2.
-- Ação imediata: concluir explicação das ações e encapsulamento, publicar
-  o checkpoint e aguardar entendimento da etapa 3.11.
+- Ação imediata na próxima sessão: retomar a explicação das ações e encapsulamento,
+  responder dúvidas e aguardar entendimento da etapa 3.11. Seu checkpoint já
+  foi publicado; aluno avisou que continuará amanhã em outro chat.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
 - Após a confirmação: etapa 3.12 — criar `src/Precificavel.php` com uma interface
@@ -1280,4 +1297,4 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 3.8 — Autoload Composer | Arquivos gerados; classe carregada por demanda e comportamentos verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `af61127` |
 | 09/10/2026 | 3.9 — Enum de estados | Enum e exemplo criados; autoload, casos e tipagem verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `377860a` |
 | 09/10/2026 | 3.10 — Estado de Produto | Estado tipado, padrão e getter; sintaxe e onze cenários passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `a0e1042` |
-| 09/10/2026 | 3.11 — Ações de Produto | Ativar e desativar; repetição, isolamento e proteção verificados | Aguardando confirmação | Checkpoint a conferir após envio |
+| 09/10/2026 | 3.11 — Ações de Produto | Ativar e desativar; repetição, isolamento e proteção verificados | Aguardando confirmação; retomada em outro chat | Publicado no checkpoint `8d54d1a` |
