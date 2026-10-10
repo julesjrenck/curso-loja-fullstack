@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.6, configuração do composer.json.
+Módulo 3 — PHP moderno e OOP: etapa 3.7, volume gravável para vendor.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -22,11 +22,13 @@ Dockerfile, inclui Composer 2.10.3 e inicia o servidor PHP 8.4.26 de desenvolvim
 O Compose monta `./src` em `/app` como somente leitura, permitindo executar
 alterações do código local sem reconstruir a imagem. A demonstração responde
 em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A próxima etapa, após
-confirmação de entendimento, será preparar um volume gravável para os arquivos
-gerados pelo Composer, preservando o bind mount do código como somente leitura.
+confirmação de entendimento, será gerar o autoload pelo Composer e utilizá-lo
+no exemplo de produto, explicando os arquivos gerados.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
+O volume `vendor-php`, montado em `/app/vendor`, permite gravar os arquivos
+gerados pelo Composer enquanto `/app` mantém o código como somente leitura.
 O estado detalhado e atualizado das aulas fica no registro de progresso.
 
 ## Documentação
@@ -50,6 +52,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.4 — Namespace e use](docs/aulas/03-04-namespace-e-use.md)
 - [Aula 3.5 — Composer no Docker](docs/aulas/03-05-composer-no-docker.md)
 - [Aula 3.6 — Configuração do composer.json](docs/aulas/03-06-composer-json.md)
+- [Aula 3.7 — Volume para vendor](docs/aulas/03-07-volume-vendor.md)
 
 ## Executar a demonstração atual
 
@@ -63,9 +66,14 @@ cp --update=none .env.example .env
 Edite o nome da aplicação no `.env`, se desejar. Depois:
 
 ```bash
+mkdir -p src/vendor
 docker compose config --quiet
 docker compose up -d --build php
 ```
+
+`src/vendor` é a pasta local vazia que prepara o ponto de montagem do volume
+gravável dentro do bind mount somente leitura. Ela é ignorada pelo Git;
+os arquivos desse volume são armazenados pelo Docker.
 
 Acesse [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A resposta é texto simples
 com o nome da aplicação, uma mensagem e a versão do PHP. O serviço recebe
@@ -127,6 +135,7 @@ exemplo, e `require_once` continua carregando seu arquivo.
 Para construir a imagem atual e consultar a versão do Composer:
 
 ```bash
+mkdir -p src/vendor
 docker compose build php
 docker compose run --rm php composer --version
 ```
@@ -146,6 +155,10 @@ docker compose run --rm php composer validate
 A validação retorna código 0, com aviso de licença não declarada. Ainda não há
 bibliotecas instaladas, `composer.lock` ou autoload gerado. Consulte a aula 3.6
 para a explicação dos campos e dos caminhos.
+
+O Compose monta o volume nomeado `vendor-php` em `/app/vendor`. Sua gravação
+e persistência entre containers foram verificadas na aula 3.7; `/app` permanece
+somente leitura. A geração de autoload será ensinada na próxima etapa.
 
 ## Tecnologias planejadas
 

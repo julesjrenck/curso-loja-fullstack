@@ -4,11 +4,11 @@
 
 - Última atualização: 09/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.6 — Configuração do composer.json.
-- Situação: configuração criada e validada, com aviso de licença não declarada;
-  mapeamento para Produto conferido, aguardando entendimento da etapa 3.6.
+- Etapa atual: 3.7 — Volume gravável para vendor.
+- Situação: volume configurado e verificado; escrita, persistência, código somente
+  leitura e HTTP conferidos, aguardando entendimento da etapa 3.7.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
-  pelo aluno com "entendi". As etapas 3.1 a 3.5 foram confirmadas em 09/10/2026.
+  pelo aluno com "entendi". As etapas 3.1 a 3.6 foram confirmadas em 09/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -955,7 +955,43 @@ Verificação:
   Execução de autoload ainda não verificada, pois não foi gerado.
 
 Checkpoint: `build: configura projeto Composer e mapeamento PSR-4`.
-Entendimento da etapa 3.6: pendente. Aguardar confirmação antes do volume vendor.
+Entendimento da etapa 3.6: confirmado pelo aluno com "entendi" em 09/10/2026.
+Checkpoint publicado: `3e28669`.
+
+## Etapa 3.7
+
+Objetivo: preparar armazenamento gravável para os arquivos gerados pelo
+Composer, preservando o código montado como somente leitura.
+
+Implementação e explicação:
+
+- Pasta local vazia `src/vendor` criada como ponto de montagem; regra `vendor/`
+  do `.gitignore` confirmada. Pasta não versionada; README inclui `mkdir -p`
+  na preparação de um novo clone.
+- `compose.yaml`: adicionados montagem `vendor-php:/app/vendor` no serviço
+  e volume nomeado `vendor-php` no bloco da raiz.
+- `./src:/app:ro` e `dados-demo:/dados` mantidos.
+- Explicados nomes, caminhos, blocos YAML e montagem gravável no caminho
+  específico `/app/vendor` dentro do bind mount somente leitura.
+- Aula salva em `docs/aulas/03-07-volume-vendor.md`; README atualizado.
+
+Verificação:
+
+- `docker compose config --quiet`: configuração válida.
+- `docker compose up -d php`: volume `curso-loja-fullstack_vendor-php` criado
+  e servidor recriado com sucesso; sem build.
+- Inspeção confirmou `/app` somente leitura e `/app/vendor` gravável.
+- Arquivo temporário com nome único gravado no volume, lido com o mesmo conteúdo
+  em outro container após remoção do primeiro e removido ao final da verificação.
+- Tentativa de gravação diretamente em `/app` recusada.
+- Pasta local `src/vendor` permaneceu sem o arquivo gerado no volume.
+- Hash do contador comparado antes e depois, sem alteração de conteúdo.
+- HTTP 200 após aplicação. Verificações terminaram com código 0.
+- Nenhuma biblioteca instalada ou autoload gerado. Exemplo mantém `require_once`
+  direto de Produto.php; configuração local e dados anteriores preservados.
+
+Checkpoint: `build: prepara volume gravavel para vendor do Composer`.
+Entendimento da etapa 3.7: pendente. Aguardar confirmação antes de gerar autoload.
 
 ## Verificações e limitações do ambiente
 
@@ -984,7 +1020,7 @@ Entendimento da etapa 3.6: pendente. Aguardar confirmação antes do volume vend
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `build: configura projeto Composer e mapeamento PSR-4`.
+  desta sessão: `build: prepara volume gravavel para vendor do Composer`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -1056,15 +1092,16 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   registrada até agora.
 - Dúvida sobre `trim`: exemplo prático respondido e entendimento confirmado
   junto com a etapa 3.2.
-- Ação imediata: concluir explicação do composer.json, publicar o checkpoint
-  e aguardar entendimento da etapa 3.6.
+- Ação imediata: concluir explicação do volume vendor, publicar o checkpoint
+  e aguardar entendimento da etapa 3.7.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação: etapa 3.7 — preparar a pasta de montagem local ignorada
-  `src/vendor`, adicionar volume nomeado para `/app/vendor` no Compose e verificar
-  gravação e persistência nele, mantendo `./src:/app:ro`. Não gerar autoload nem
-  mudar o exemplo ainda. Essas operações serão feitas em uma etapa posterior,
-  explicando os arquivos gerados. Não alterar o contador do volume `dados-demo`.
+- Após a confirmação: etapa 3.8 — executar `composer dump-autoload` pelo Docker,
+  apresentar a estrutura gerada em `/app/vendor` e os arquivos relevantes para
+  o carregamento. Alterar o exemplo para exigir `vendor/autoload.php` em vez
+  de Produto.php; verificar classe criada e regras usando autoload.
+- Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p`; pasta vazia
+  ignorada não vem do Git. Não alterar o contador do volume `dados-demo`.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -1096,4 +1133,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 3.3 — Promoção de propriedades | Construtor simplificado; demonstração e oito verificações passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `83f190b` |
 | 09/10/2026 | 3.4 — Namespace e use | Classe Loja\Produto importada; sintaxe e oito verificações passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `253617c` |
 | 09/10/2026 | 3.5 — Composer no Docker | Imagem construída; versão, demonstração e HTTP verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `5360ccb` |
-| 09/10/2026 | 3.6 — Configuração Composer | JSON validado com aviso de licença; mapeamento de Produto conferido | Aguardando confirmação | Checkpoint a conferir após envio |
+| 09/10/2026 | 3.6 — Configuração Composer | JSON validado com aviso de licença; mapeamento de Produto conferido | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `3e28669` |
+| 09/10/2026 | 3.7 — Volume vendor | Volume gravável e persistente; código somente leitura, contador e HTTP verificados | Aguardando confirmação | Checkpoint a conferir após envio |
