@@ -4,11 +4,11 @@
 
 - Última atualização: 09/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.10 — Estado inicial tipado de Produto.
-- Situação: propriedade enum, padrão e getter implementados; demonstração,
-  sintaxe e onze verificações passaram, aguardando entendimento da etapa 3.10.
+- Etapa atual: 3.11 — Ações e encapsulamento de Produto.
+- Situação: ativar e desativar implementados; demonstração, sintaxe e oito
+  verificações passaram, aguardando entendimento da etapa 3.11.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
-  pelo aluno com "entendi". As etapas 3.1 a 3.9 foram confirmadas em 09/10/2026.
+  pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -1096,7 +1096,41 @@ Verificação:
   Configuração local e volumes preservados.
 
 Checkpoint: `feat: define estado inicial tipado de Produto`.
-Entendimento da etapa 3.10: pendente. Aguardar confirmação antes de mudar estados.
+Entendimento da etapa 3.10: confirmado pelo aluno com "entendi" em 09/10/2026.
+Checkpoint publicado: `a0e1042`.
+
+## Etapa 3.11
+
+Objetivo: mudar o estado por ações públicas da classe, aprofundando
+encapsulamento e estado de cada instância.
+
+Implementação e explicação:
+
+- `src/Produto.php`: métodos `ativar(): void` e `desativar(): void`, atribuindo
+  respectivamente Ativo e Inativo a `$this->status`.
+- `src/exemplo-produto.php`: desativa e ativa a camiseta, consulta os estados
+  após as ações e mostra que a calça continua inativa.
+- Explicados método público, acesso interno à propriedade privada, `$this`,
+  ação sem resultado declarado por void e consulta posterior pelo getter.
+- Repetir a ação mantém o estado escolhido. Cada instância mantém sua
+  propriedade; atribuições não modificam os casos do enum.
+- Construtor, regras de entrada, autoload e restrição CLI preservados.
+- Aula salva em `docs/aulas/03-11-acoes-e-encapsulamento.md`; README atualizado
+  e aula 3.10 identifica seu checkpoint histórico.
+
+Verificação:
+
+- `php -l` pelo Docker confirmou a sintaxe dos dois arquivos.
+- Demonstração mostrou nove linhas documentadas na aula, código 0.
+- Oito verificações passaram: desativar, repetir desativação, ativar, repetir
+  ativação, isolamento ao agir na camiseta, isolamento ao agir na calça,
+  preservação de nomes/preços e recusa de alteração externa direta de status.
+- Verificação enviada pela entrada padrão, sem arquivo de teste persistente.
+- Sem build, regeneração do autoload, novas dependências ou mudança no Compose.
+  Configuração local e volumes preservados.
+
+Checkpoint: `feat: adiciona acoes de ativar e desativar Produto`.
+Entendimento da etapa 3.11: pendente. Aguardar confirmação antes de interfaces.
 
 ## Verificações e limitações do ambiente
 
@@ -1125,7 +1159,7 @@ Entendimento da etapa 3.10: pendente. Aguardar confirmação antes de mudar esta
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `feat: define estado inicial tipado de Produto`.
+  desta sessão: `feat: adiciona acoes de ativar e desativar Produto`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -1197,15 +1231,16 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   registrada até agora.
 - Dúvida sobre `trim`: exemplo prático respondido e entendimento confirmado
   junto com a etapa 3.2.
-- Ação imediata: concluir explicação da propriedade enum, valor padrão e getter,
-  publicar o checkpoint e aguardar entendimento da etapa 3.10.
+- Ação imediata: concluir explicação das ações e encapsulamento, publicar
+  o checkpoint e aguardar entendimento da etapa 3.11.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação: etapa 3.11 — acrescentar `ativar(): void` e
-  `desativar(): void` em Produto, usando casos do enum nas atribuições internas.
-  Demonstrar a sequência no exemplo e explicar métodos públicos, propriedade
-  privada, `$this`, retorno void e estado de cada instância. Verificar alterações
-  e que mudar um produto não altera outro.
+- Após a confirmação: etapa 3.12 — criar `src/Precificavel.php` com uma interface
+  no namespace Loja, declarando `getPrecoEmCentavos(): int`. Fazer Produto
+  implementar o contrato, aproveitando seu método existente. Explicar interface,
+  assinatura e implements; demonstrar um parâmetro tipado com a interface
+  em uma experiência acompanhada, verificando aceitação de Produto e recusa
+  de objeto que não implementa o contrato. Não extrair serviços de negócio ainda.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1244,4 +1279,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 3.7 — Volume vendor | Volume gravável e persistente; código somente leitura, contador e HTTP verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `07db654` |
 | 09/10/2026 | 3.8 — Autoload Composer | Arquivos gerados; classe carregada por demanda e comportamentos verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `af61127` |
 | 09/10/2026 | 3.9 — Enum de estados | Enum e exemplo criados; autoload, casos e tipagem verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `377860a` |
-| 09/10/2026 | 3.10 — Estado de Produto | Estado tipado, padrão e getter; sintaxe e onze cenários passaram | Aguardando confirmação | Checkpoint a conferir após envio |
+| 09/10/2026 | 3.10 — Estado de Produto | Estado tipado, padrão e getter; sintaxe e onze cenários passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `a0e1042` |
+| 09/10/2026 | 3.11 — Ações de Produto | Ativar e desativar; repetição, isolamento e proteção verificados | Aguardando confirmação | Checkpoint a conferir após envio |

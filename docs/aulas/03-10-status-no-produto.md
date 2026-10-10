@@ -1,5 +1,8 @@
 # Aula 3.10 — Estado inicial tipado de Produto
 
+Esta aula registra o checkpoint `a0e1042`, antes de acrescentar as ações de
+ativar e desativar. A aula 3.11 apresenta essas ações; o README descreve o estado atual.
+
 ## Objetivo
 
 Usar o enum da aula anterior como um dado do produto, exigindo um estado válido

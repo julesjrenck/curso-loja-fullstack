@@ -24,6 +24,13 @@ $produtoInativo = new Produto("Calça", 8990, StatusProduto::Inativo);
 echo "Produto: " . $produtoInativo->getNome() . PHP_EOL;
 echo "Status: " . $produtoInativo->getStatus()->value . PHP_EOL;
 
+$produto->desativar();
+echo "Camiseta após desativar: " . $produto->getStatus()->value . PHP_EOL;
+
+$produto->ativar();
+echo "Camiseta após ativar: " . $produto->getStatus()->value . PHP_EOL;
+echo "Calça continua: " . $produtoInativo->getStatus()->value . PHP_EOL;
+
 try {
     new Produto("Camiseta", -100);
 } catch (InvalidArgumentException $erro) {

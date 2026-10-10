@@ -36,4 +36,14 @@ class Produto
     {
         return $this->status;
     }
+
+    public function ativar(): void
+    {
+        $this->status = StatusProduto::Ativo;
+    }
+
+    public function desativar(): void
+    {
+        $this->status = StatusProduto::Inativo;
+    }
 }
