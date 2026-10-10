@@ -1,5 +1,8 @@
 # Aula 3.9 — Enum de estados de produto
 
+Esta aula registra o checkpoint `377860a`, antes de integrar o enum em Produto.
+A aula 3.10 faz essa integração; o README descreve a demonstração atual.
+
 ## Objetivo
 
 Representar um conjunto fechado de estados com um tipo PHP. O enum do exemplo

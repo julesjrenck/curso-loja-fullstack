@@ -11,6 +11,7 @@ class Produto
     public function __construct(
         private string $nome,
         private int $precoEmCentavos,
+        private StatusProduto $status = StatusProduto::Ativo,
     ) {
         if (trim($nome) === "") {
             throw new InvalidArgumentException("O nome do produto não pode ser vazio.");
@@ -29,5 +30,10 @@ class Produto
     public function getPrecoEmCentavos(): int
     {
         return $this->precoEmCentavos;
+    }
+
+    public function getStatus(): StatusProduto
+    {
+        return $this->status;
     }
 }

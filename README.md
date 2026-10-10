@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.9, enum de estados de produto.
+Módulo 3 — PHP moderno e OOP: etapa 3.10, estado inicial tipado de Produto.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -22,8 +22,8 @@ Dockerfile, inclui Composer 2.10.3 e inicia o servidor PHP 8.4.26 de desenvolvim
 O Compose monta `./src` em `/app` como somente leitura, permitindo executar
 alterações do código local sem reconstruir a imagem. A demonstração responde
 em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A próxima etapa, após
-confirmação de entendimento, será usar o enum como propriedade tipada de
-Produto, com estado inicial e método para consultá-lo.
+confirmação de entendimento, será alterar o estado de Produto por métodos
+públicos, aprofundando encapsulamento e ações sobre o objeto.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -55,6 +55,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.7 — Volume para vendor](docs/aulas/03-07-volume-vendor.md)
 - [Aula 3.8 — Autoload do Composer](docs/aulas/03-08-autoload-do-composer.md)
 - [Aula 3.9 — Enum de estados de produto](docs/aulas/03-09-enum-status-produto.md)
+- [Aula 3.10 — Estado inicial de Produto](docs/aulas/03-10-status-no-produto.md)
 
 ## Executar a demonstração atual
 
@@ -128,11 +129,14 @@ Para criar um objeto de produto e consultar seus dados:
 docker compose run --rm php php exemplo-produto.php
 ```
 
-O exemplo cria uma camiseta válida de 4990 centavos e demonstra o tratamento de
-uma tentativa de preço negativo. A classe recusa nome vazio ou composto apenas
+O exemplo cria uma camiseta válida de 4990 centavos, ativa por padrão, e uma
+calça com estado Inativo explícito. Também trata uma tentativa de preço negativo.
+A classe recusa nome vazio ou composto apenas
 pelos espaços de `trim`, e preço negativo; preço zero é permitido. Consulte as
 aulas 3.1 a 3.4 para a estrutura, as regras e a organização da classe, e a
 aula 3.8 para seu carregamento automático.
+A aula 3.10 apresenta a propriedade StatusProduto, o argumento opcional do
+construtor e o getter que retorna um caso do enum.
 A classe tem o nome completo `Loja\Produto`; `use` permite o nome curto no
 exemplo, e `require_once` carrega `vendor/autoload.php`. O Composer localiza
 `Produto.php` quando o PHP precisa da classe.
@@ -148,7 +152,8 @@ docker compose run --rm php php exemplo-status-produto.php
 O exemplo usa `StatusProduto::Ativo` e mostra `Caso: Ativo` e `Valor: ativo`.
 O enum oferece os casos Ativo e Inativo; cada um tem um valor textual associado.
 Ele é carregado pelo mesmo autoload, sem regeneração quando o mapeamento PSR-4
-permanece igual. Nesta etapa o enum ainda não é uma propriedade de Produto.
+permanece igual. Produto agora usa esse enum como propriedade privada,
+com Ativo como padrão do construtor e consulta por `getStatus()`.
 Consulte a aula 3.9 para a diferença entre caso e string.
 
 ## Composer no Docker
