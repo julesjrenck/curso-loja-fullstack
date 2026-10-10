@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.4, namespace e importação de classes.
+Módulo 3 — PHP moderno e OOP: etapa 3.5, Composer na imagem PHP.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -18,12 +18,12 @@ foram publicados e a branch local `main` acompanha `origin/main`.
 
 A aplicação ainda não foi criada. Não há comandos para executar a loja.
 Docker e Compose estão instalados. O serviço `php` constrói a imagem pelo
-Dockerfile e inicia o servidor PHP 8.4.26 de desenvolvimento.
+Dockerfile, inclui Composer 2.10.3 e inicia o servidor PHP 8.4.26 de desenvolvimento.
 O Compose monta `./src` em `/app` como somente leitura, permitindo executar
 alterações do código local sem reconstruir a imagem. A demonstração responde
 em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A próxima etapa, após
-confirmação de entendimento, será disponibilizar Composer na imagem PHP,
-com versão fixada, preparando o estudo de dependências e autoload.
+confirmação de entendimento, será criar o `composer.json` com os requisitos
+de PHP e o mapeamento do namespace `Loja`, e validar sua configuração.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -48,6 +48,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.2 — Validações e exceções](docs/aulas/03-02-validacao-e-excecoes.md)
 - [Aula 3.3 — Promoção de propriedades](docs/aulas/03-03-promocao-de-propriedades.md)
 - [Aula 3.4 — Namespace e use](docs/aulas/03-04-namespace-e-use.md)
+- [Aula 3.5 — Composer no Docker](docs/aulas/03-05-composer-no-docker.md)
 
 ## Executar a demonstração atual
 
@@ -119,6 +120,20 @@ pelos espaços de `trim`, e preço negativo; preço zero é permitido. Consulte 
 aulas 3.1 a 3.4 para a estrutura, as regras e a organização da classe.
 A classe tem o nome completo `Loja\Produto`; `use` permite o nome curto no
 exemplo, e `require_once` continua carregando seu arquivo.
+
+## Composer no Docker
+
+Para construir a imagem atual e consultar a versão do Composer:
+
+```bash
+docker compose build php
+docker compose run --rm php composer --version
+```
+
+A imagem inclui Composer 2.10.3, executado com PHP 8.4.26. A aula 3.5 explica
+a cópia do executável de uma imagem externa. Ainda não há `composer.json`,
+dependências instaladas ou autoload gerado. Para aplicar a nova imagem ao
+servidor existente, use `docker compose up -d php`.
 
 ## Tecnologias planejadas
 

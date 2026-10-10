@@ -4,11 +4,11 @@
 
 - Última atualização: 09/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.4 — Namespace e importação com use.
-- Situação: classe identificada como `Loja\Produto` e demonstração executada;
-  sintaxe e oito comportamentos verificados, aguardando entendimento da etapa 3.4.
+- Etapa atual: 3.5 — Composer na imagem PHP.
+- Situação: imagem construída, Composer 2.10.3 executado e servidor atualizado;
+  verificações concluídas, aguardando entendimento da etapa 3.5.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
-  pelo aluno com "entendi". As etapas 3.1 a 3.3 foram confirmadas em 09/10/2026.
+  pelo aluno com "entendi". As etapas 3.1 a 3.4 foram confirmadas em 09/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -889,7 +889,41 @@ Verificação:
   infraestrutura e nos dados. Experiência enviada pela entrada padrão.
 
 Checkpoint: `refactor: organiza Produto em namespace Loja`.
-Entendimento da etapa 3.4: pendente. Aguardar confirmação antes de Composer.
+Entendimento da etapa 3.4: confirmado pelo aluno com "entendi" em 09/10/2026.
+Checkpoint publicado: `253617c`.
+
+## Etapa 3.5
+
+Objetivo: disponibilizar Composer na imagem PHP e verificar sua execução,
+preparando o estudo de configuração de projeto e autoload.
+
+Implementação e explicação:
+
+- `Dockerfile`: adicionada a instrução
+  `COPY --from=composer/composer:2.10.3-bin /composer /usr/local/bin/composer`.
+- Versão 2.10.3 consultada na página oficial. Imagem de executável recomendada
+  pela documentação; disponibilidade da tag confirmada no build.
+- Explicados origem externa, arquivo de origem, destino no PATH e execução
+  usando o PHP da nossa imagem. Base, WORKDIR, cópia do código e CMD mantidos.
+- Composer instalado na imagem; nenhuma instalação no host ou de bibliotecas
+  do projeto. Arquivos PHP e carregamento com `require_once` preservados.
+- Aula salva em `docs/aulas/03-05-composer-no-docker.md`; README atualizado.
+
+Verificação:
+
+- `docker compose build php`: código 0, base PHP 8.4.26 e cópia concluídas.
+- `docker compose run --rm php composer --version`: Composer 2.10.3 usando
+  PHP 8.4.26, código 0.
+- `docker compose run --rm php php exemplo-produto.php`: mesmas três linhas
+  da demonstração, código 0.
+- `docker compose up -d php`: serviço recriado e iniciado com sucesso.
+- Inspeção confirmou que o container do servidor usa a imagem construída.
+- HTTP 200 na porta 8001 e versão PHP 8.4.26 após recriação.
+- Volumes e configuração local preservados. A instalação de bibliotecas
+  e a geração do autoload ainda não foram realizadas nem verificadas.
+
+Checkpoint: `build: adiciona Composer 2.10.3 a imagem PHP`.
+Entendimento da etapa 3.5: pendente. Aguardar confirmação antes de composer.json.
 
 ## Verificações e limitações do ambiente
 
@@ -918,7 +952,7 @@ Entendimento da etapa 3.4: pendente. Aguardar confirmação antes de Composer.
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
 - Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `refactor: organiza Produto em namespace Loja`.
+  desta sessão: `build: adiciona Composer 2.10.3 a imagem PHP`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -990,11 +1024,13 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   registrada até agora.
 - Dúvida sobre `trim`: exemplo prático respondido e entendimento confirmado
   junto com a etapa 3.2.
-- Ação imediata: concluir explicação de namespace e `use`, publicar
-  o checkpoint e aguardar entendimento da etapa 3.4.
-- Após a confirmação: etapa 3.5 — disponibilizar Composer na imagem PHP,
-  usando uma versão fixada e compatível, explicar a mudança no Dockerfile,
-  construir e verificar `composer --version`. Autoload em etapa posterior.
+- Ação imediata: concluir explicação da instalação do Composer na imagem,
+  publicar o checkpoint e aguardar entendimento da etapa 3.5.
+- Após a confirmação: etapa 3.6 — criar `src/composer.json`, declarar requisito
+  de PHP e mapeamento PSR-4 do namespace `Loja`, explicar os campos e validar
+  pelo Composer no Docker. Não gerar autoload nesta etapa: `/app` está montado
+  como somente leitura. Preparar armazenamento gravável e mudar `require_once`
+  somente em uma etapa posterior, explicando os arquivos gerados.
   Não montar antecipadamente Laravel, banco ou frontend.
 - Se o repositório já tiver conteúdo, inspecionar antes de enviar; preservar
   o histórico existente, sem sobrescrever ou fazer force-push.
@@ -1024,4 +1060,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 3.1 — Primeira classe | Produto tipado criado e utilizado em Docker | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `213486f` |
 | 09/10/2026 | 3.2 — Regras do produto | Nome e preço validados; exceção tratada; seis cenários passaram | Confirmado pelo aluno: "entendi", após exemplo de trim | Publicado no checkpoint `ab9ea33` |
 | 09/10/2026 | 3.3 — Promoção de propriedades | Construtor simplificado; demonstração e oito verificações passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `83f190b` |
-| 09/10/2026 | 3.4 — Namespace e use | Classe Loja\Produto importada; sintaxe e oito verificações passaram | Aguardando confirmação | Checkpoint a conferir após envio |
+| 09/10/2026 | 3.4 — Namespace e use | Classe Loja\Produto importada; sintaxe e oito verificações passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `253617c` |
+| 09/10/2026 | 3.5 — Composer no Docker | Imagem construída; versão, demonstração e HTTP verificados | Aguardando confirmação | Checkpoint a conferir após envio |
