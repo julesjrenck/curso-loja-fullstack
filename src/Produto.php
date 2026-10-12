@@ -6,7 +6,7 @@ namespace Loja;
 
 use InvalidArgumentException;
 
-class Produto
+class Produto implements Precificavel
 {
     public function __construct(
         private string $nome,

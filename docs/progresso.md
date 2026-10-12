@@ -4,12 +4,13 @@
 
 - Última atualização: 12/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.11 — Ações e encapsulamento de Produto.
-- Situação: etapa 3.11 concluída quanto ao entendimento em 12/10/2026.
-  Demonstração executada novamente com sucesso na retomada; próximo passo: 3.12.
+- Etapa atual: 3.12 — Interface Precificavel.
+- Situação: interface implementada e Produto cumpre o contrato; explicação
+  apresentada, sintaxe, demonstração anterior e experiência de tipagem passaram.
+  Entendimento confirmado com "entendi" em 12/10/2026; próximo passo: etapa 3.13.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
-  etapa 3.11 confirmada com "entendi" em 12/10/2026.
+  etapas 3.11 e 3.12 confirmadas com "entendi" em 12/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Retomada em outro chat
@@ -33,8 +34,13 @@ a HEAD e origin/main; esse commit contém o registro de encerramento anterior.
 A explicação da etapa 3.11 foi retomada e a demonstração executada novamente.
 Após a reapresentação, o aluno confirmou entendimento com "entendi" em
 12/10/2026. Etapa 3.11 concluída; próximo passo: interface da etapa 3.12.
-Registro de confirmação preparado para commit e push nesta sessão; verificar
-o resultado antes de informar publicação.
+Registro de confirmação salvo no commit local `0c2106b`. O push ficou pendente:
+a revisão automática rejeitou a publicação por exigir aprovação explícita da
+branch pública `main`. Depois, o aluno autorizou explicitamente os checkpoints
+concluídos nesse destino: "Sim, autorizo os checkpoints concluídos".
+Etapa 3.12 implementada, explicada, verificada e confirmada com "entendi".
+Preparar seu checkpoint e publicar com o registro da 3.11, verificando o remoto.
+Próximo passo: etapa 3.13, composição com ItemCarrinho.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1173,6 +1179,52 @@ Retomada em 12/10/2026:
 - Código e aula já publicados; registro desta retomada e confirmação preparado
   para checkpoint `docs: confirma entendimento da etapa 3.11`.
 
+Checkpoint do registro de confirmação: `0c2106b`, criado e verificado localmente.
+O push foi inicialmente rejeitado pela revisão automática por exigir aprovação
+explícita do destino público. Aprovação recebida em 12/10/2026: "Sim, autorizo os
+checkpoints concluídos" para `main` de `julesjrenck/curso-loja-fullstack`.
+Publicar com o checkpoint da 3.12 e conferir o resultado. Último remoto
+verificado antes do envio: `aa9642e`.
+
+## Etapa 3.12
+
+Objetivo: definir um contrato de consulta de preço e fazer Produto implementá-lo,
+demonstrando uma função com parâmetro tipado pela interface.
+
+Implementação e explicação:
+
+- `src/Precificavel.php`: interface no namespace Loja, com a declaração pública
+  `getPrecoEmCentavos(): int`, sem corpo de método.
+- `src/Produto.php`: declaração alterada para `class Produto implements Precificavel`.
+  O método público existente já cumpre o contrato; nenhuma duplicação de lógica.
+- Explicados interface, assinatura, ponto e vírgula, implements, implementação
+  na classe e parâmetro tipado pela interface. Autoload PSR-4 existente utilizado.
+- Experiência acompanhada: função temporária `consultarPreco(Precificavel $item): int`
+  enviada pela entrada padrão. Produto aceito e seu método fornece 4990 centavos;
+  objeto stdClass recusado com TypeError capturado. Nenhuma função de negócio
+  ou novo arquivo de exemplo acrescentado à aplicação.
+- Aula salva em `docs/aulas/03-12-interface-precificavel.md`; README atualizado.
+
+Verificação:
+
+- `php -l` executado via `docker compose exec -T php` passou para Precificavel.php
+  e Produto.php.
+- `docker compose run --rm php php exemplo-produto.php` mostrou as mesmas nove
+  linhas da aula anterior, com código 0.
+- Experiência via `docker compose run --rm -T php php`: preço retornado conferido
+  como exatamente 4990; TypeError esperado para objeto sem contrato. Código 0.
+- Sem build, regeneração do autoload, instalação de dependências ou mudança no
+  Compose. Não executado o contador; configuração local e volumes preservados.
+- `git diff --check` passou, sem problemas de espaços nas alterações rastreadas.
+
+Entendimento da etapa 3.12: confirmado com "entendi" em 12/10/2026.
+Checkpoint preparado: `feat: define contrato Precificavel para Produto`.
+Publicação autorizada explicitamente, junto com `0c2106b`; verificar o resultado
+do push antes de registrar sucesso. Nenhuma nova confirmação necessária para
+publicar futuros checkpoints concluídos no mesmo destino autorizado.
+Próximo passo: etapa 3.13, criar ItemCarrinho com Produto e
+quantidade positiva, explicando composição, construtor e consulta dos dados.
+
 ## Verificações e limitações do ambiente
 
 - Pasta inicial inspecionada: sem aplicação ou documentação anterior.
@@ -1199,11 +1251,16 @@ Retomada em 12/10/2026:
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local: consultar `git log -1 --oneline`; mensagem do checkpoint
-  desta sessão: `docs: registra retomada do curso em outro chat`.
+- Último commit local nesta retomada: `0c2106b`,
+  `docs: confirma entendimento da etapa 3.11`; ainda não publicado.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
+- Remoto consultado em 12/10/2026 com `git ls-remote`: `aa9642e`.
+  A branch local está um commit à frente; etapa 3.12 ainda fora de commit.
+  A rejeição inicial foi resolvida por aprovação explícita do aluno para
+  publicar os checkpoints concluídos na branch pública `main` deste repositório.
+  Envio das etapas 3.11 e 3.12 preparado; conferir resultado remoto após o push.
 - Publicação das etapas 1.1 a 1.7: primeiro envio concluído; esta atualização
   do registro deve ser enviada após o commit e verificada novamente.
 
@@ -1272,16 +1329,15 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   registrada até agora.
 - Dúvida sobre `trim`: exemplo prático respondido e entendimento confirmado
   junto com a etapa 3.2.
-- Ação imediata: publicar o registro da confirmação da etapa 3.11 e iniciar
-  a etapa 3.12, conforme o próximo passo já definido.
+- Ação imediata: publicar os checkpoints concluídos de 3.11 e 3.12, conforme
+  autorização explícita recebida, verificar o remoto e iniciar a etapa 3.13.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Próxima etapa, 3.12 — criar `src/Precificavel.php` com uma interface
-  no namespace Loja, declarando `getPrecoEmCentavos(): int`. Fazer Produto
-  implementar o contrato, aproveitando seu método existente. Explicar interface,
-  assinatura e implements; demonstrar um parâmetro tipado com a interface
-  em uma experiência acompanhada, verificando aceitação de Produto e recusa
-  de objeto que não implementa o contrato. Não extrair serviços de negócio ainda.
+- Após a confirmação da 3.12: etapa 3.13 — composição. Criar `src/ItemCarrinho.php`
+  no namespace Loja, recebendo Produto e quantidade inteira positiva no construtor;
+  recusar quantidade menor que 1 e oferecer getters. Explicar que ItemCarrinho
+  contém um Produto e como acessar seus dados. Verificar quantidade válida e
+  inválida em Docker. Não implementar cálculos ou serviços de negócio nesta etapa.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1321,4 +1377,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 3.8 — Autoload Composer | Arquivos gerados; classe carregada por demanda e comportamentos verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `af61127` |
 | 09/10/2026 | 3.9 — Enum de estados | Enum e exemplo criados; autoload, casos e tipagem verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `377860a` |
 | 09/10/2026 | 3.10 — Estado de Produto | Estado tipado, padrão e getter; sintaxe e onze cenários passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `a0e1042` |
-| 09/10/2026 | 3.11 — Ações de Produto | Ativar e desativar; retomada e demonstração em 12/10 | Confirmado pelo aluno: "entendi", em 12/10/2026 | Código publicado no checkpoint `8d54d1a`; registro da confirmação preparado para publicação |
+| 09/10/2026 | 3.11 — Ações de Produto | Ativar e desativar; retomada e demonstração em 12/10 | Confirmado pelo aluno: "entendi", em 12/10/2026 | Código publicado em `8d54d1a`; envio de `0c2106b` autorizado |
+| 12/10/2026 | 3.12 — Interface Precificavel | Contrato e implements; sintaxe, demonstração e parâmetro tipado verificados | Confirmado pelo aluno: "entendi" | Checkpoint preparado e envio autorizado |
