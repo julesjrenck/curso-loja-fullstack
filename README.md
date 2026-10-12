@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.15, requisitos de PHPUnit.
+Módulo 3 — PHP moderno e OOP: etapa 3.16, instalação de PHPUnit.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -18,14 +18,15 @@ foram publicados e a branch local `main` acompanha `origin/main`.
 
 A aplicação ainda não foi criada. Não há comandos para executar a loja.
 Docker e Compose estão instalados. O serviço `php` constrói a imagem pelo
-Dockerfile, inclui Composer 2.10.3 e inicia o servidor PHP 8.4.26 de desenvolvimento.
+Dockerfile, inclui Composer 2.10.3 e unzip 6.0-28+deb12u1 e inicia o servidor
+PHP 8.4.26 de desenvolvimento.
 O Compose monta `./src` em `/app` como somente leitura, permitindo executar
 alterações do código local sem reconstruir a imagem. A demonstração responde
 em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). Produto implementa a interface
 Precificavel, que exige `getPrecoEmCentavos(): int`. ItemCarrinho guarda um Produto
-e uma quantidade positiva e calcula o subtotal em centavos. Os requisitos de
-PHP e extensões para PHPUnit foram conferidos no container; a etapa 3.15 foi
-confirmada pelo aluno. O próximo passo é instalar a ferramenta pelo Composer.
+e uma quantidade positiva e calcula o subtotal em centavos. PHPUnit 13.4.1 foi
+instalado como dependência de desenvolvimento e verificado no Docker. A etapa
+3.16 foi confirmada pelo aluno; o próximo passo é criar o primeiro teste.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -63,6 +64,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.13 — Composição com ItemCarrinho](docs/aulas/03-13-composicao-item-carrinho.md)
 - [Aula 3.14 — Subtotal do item do carrinho](docs/aulas/03-14-subtotal-item-carrinho.md)
 - [Aula 3.15 — Requisitos de PHPUnit](docs/aulas/03-15-requisitos-phpunit.md)
+- [Aula 3.16 — Instalação de PHPUnit pelo Composer](docs/aulas/03-16-instalacao-phpunit.md)
 
 ## Executar a demonstração atual
 
@@ -79,14 +81,16 @@ Edite o nome da aplicação no `.env`, se desejar. Depois:
 mkdir -p src/vendor
 docker compose config --quiet
 docker compose up -d --build php
-docker compose run --rm php composer dump-autoload
+docker compose run --rm php composer install --no-interaction
 ```
 
 `src/vendor` é a pasta local vazia que prepara o ponto de montagem do volume
 gravável dentro do bind mount somente leitura. Ela é ignorada pelo Git;
 os arquivos desse volume são armazenados pelo Docker.
-`dump-autoload` gera o carregador usado pelo exemplo de produto, conforme
-o mapeamento no `composer.json`. Execute-o também ao alterar esse mapeamento.
+`install` lê composer.lock, instala as versões registradas, incluindo ferramentas
+de desenvolvimento, e gera o autoload. As dependências e o carregador ficam no
+volume vendor-php; composer.json e composer.lock ficam no código versionado.
+Ao alterar somente o mapeamento do autoload, use `composer dump-autoload`.
 
 Acesse [http://127.0.0.1:8001/](http://127.0.0.1:8001/). A resposta é texto simples
 com o nome da aplicação, uma mensagem e a versão do PHP. O serviço recebe
@@ -214,6 +218,15 @@ e persistência entre containers foram verificadas na aula 3.7; `/app` permanece
 somente leitura. O autoload está nesse volume e é usado pelo exemplo de produto.
 Os arquivos gerados não vão ao GitHub; a configuração e o comando permitem
 recriá-los. A aula 3.8 apresenta sua estrutura.
+
+## Verificar PHPUnit
+
+```bash
+docker compose run --rm php php vendor/bin/phpunit --version
+```
+
+A saída verificada é PHPUnit 13.4.1. A instalação e os arquivos gerados são
+explicados na aula 3.16; o primeiro teste será introduzido após sua confirmação.
 
 ## Tecnologias planejadas
 
