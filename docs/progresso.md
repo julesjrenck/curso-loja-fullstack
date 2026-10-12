@@ -4,13 +4,13 @@
 
 - Última atualização: 12/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.12 — Interface Precificavel.
-- Situação: interface implementada e Produto cumpre o contrato; explicação
-  apresentada, sintaxe, demonstração anterior e experiência de tipagem passaram.
-  Entendimento confirmado com "entendi" em 12/10/2026; próximo passo: etapa 3.13.
+- Etapa atual: 3.13 — Composição com ItemCarrinho.
+- Situação: classe implementada e explicada; sintaxe e experiência com produto,
+  quantidades válidas/inválidas e compartilhamento do objeto passaram.
+  Entendimento confirmado com "entendi" em 12/10/2026; próximo passo: etapa 3.14.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
-  etapas 3.11 e 3.12 confirmadas com "entendi" em 12/10/2026.
+  etapas 3.11 a 3.13 confirmadas com "entendi" em 12/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Retomada em outro chat
@@ -39,8 +39,13 @@ a revisão automática rejeitou a publicação por exigir aprovação explícita
 branch pública `main`. Depois, o aluno autorizou explicitamente os checkpoints
 concluídos nesse destino: "Sim, autorizo os checkpoints concluídos".
 Etapa 3.12 implementada, explicada, verificada e confirmada com "entendi".
-Preparar seu checkpoint e publicar com o registro da 3.11, verificando o remoto.
-Próximo passo: etapa 3.13, composição com ItemCarrinho.
+Checkpoint `846ada2` criado e publicado junto com o registro da 3.11.
+HEAD, origin/main e `git ls-remote origin refs/heads/main` retornaram
+`846ada28c4dfd4ad4db61fd631ac7a3d39dbac6f`; publicação confirmada.
+Etapa 3.13 implementada, explicada e verificada. Após o esclarecimento sobre
+onde ItemCarrinho é instanciado, o aluno confirmou entendimento com "entendi".
+Checkpoint da composição preparado para publicação conforme autorização
+existente. Próximo passo: cálculo do subtotal na etapa 3.14.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1183,8 +1188,8 @@ Checkpoint do registro de confirmação: `0c2106b`, criado e verificado localmen
 O push foi inicialmente rejeitado pela revisão automática por exigir aprovação
 explícita do destino público. Aprovação recebida em 12/10/2026: "Sim, autorizo os
 checkpoints concluídos" para `main` de `julesjrenck/curso-loja-fullstack`.
-Publicar com o checkpoint da 3.12 e conferir o resultado. Último remoto
-verificado antes do envio: `aa9642e`.
+Publicação de `0c2106b` confirmada no envio de `aa9642e..846ada2`; verificação
+remota retornou `846ada2` após o push. A pendência de publicação foi resolvida.
 
 ## Etapa 3.12
 
@@ -1218,12 +1223,56 @@ Verificação:
 - `git diff --check` passou, sem problemas de espaços nas alterações rastreadas.
 
 Entendimento da etapa 3.12: confirmado com "entendi" em 12/10/2026.
-Checkpoint preparado: `feat: define contrato Precificavel para Produto`.
-Publicação autorizada explicitamente, junto com `0c2106b`; verificar o resultado
-do push antes de registrar sucesso. Nenhuma nova confirmação necessária para
-publicar futuros checkpoints concluídos no mesmo destino autorizado.
-Próximo passo: etapa 3.13, criar ItemCarrinho com Produto e
-quantidade positiva, explicando composição, construtor e consulta dos dados.
+Checkpoint: `846ada2`, `feat: define contrato Precificavel para Produto`.
+Publicação autorizada explicitamente e verificada, junto com `0c2106b`.
+HEAD, origin/main e a consulta direta à main remota retornaram o mesmo SHA.
+Nenhuma nova confirmação necessária para publicar futuros checkpoints
+concluídos no mesmo destino autorizado.
+
+## Etapa 3.13
+
+Objetivo: representar um item do carrinho que contém um Produto e uma quantidade
+positiva, estudando composição e o uso de métodos do objeto guardado.
+
+Implementação e explicação:
+
+- `src/ItemCarrinho.php`: classe Loja\ItemCarrinho com Produto e quantidade int
+  privados promovidos no construtor; recusa quantidade menor que 1 com
+  InvalidArgumentException. Getters getProduto(): Produto e getQuantidade(): int.
+- Explicados composição, responsabilidades do produto e do item, relação entre
+  objetos, promoção de propriedades, validação de valores e chamadas encadeadas.
+- O item guarda o mesmo objeto Produto recebido; não clona. Uma alteração de
+  estado feita no Produto pode ser observada pelo getter do item.
+- Aula salva em `docs/aulas/03-13-composicao-item-carrinho.md`; README atualizado.
+- Produto, Precificavel e os exemplos existentes não foram alterados nesta etapa.
+
+Verificação:
+
+- `docker compose exec -T php php -l ItemCarrinho.php`: sem erro de sintaxe.
+- Experiência temporária pela entrada padrão de `docker compose run --rm -T php php`
+  confirmou o mesmo Produto recebido e quantidade 3, quantidade mínima 1 aceita,
+  quantidades 0 e -1 recusadas com a exceção esperada, e estado Inativo observado
+  pelo item após desativar o Produto. Saída de sete linhas, código 0.
+- O preço unitário continuou 4990 centavos e o nome consultado foi Camiseta.
+  Não foi calculado subtotal.
+- Sem build, regeneração de autoload, novas dependências ou alteração do Compose.
+  Não executado o contador; configuração local e volumes preservados.
+
+Entendimento da etapa 3.13: confirmado com "entendi" em 12/10/2026.
+Esclarecimento em 12/10/2026: aluno pediu nova explicação e perguntou onde
+ItemCarrinho é chamado. Conferido o código: nenhum script em src instancia
+ItemCarrinho ainda. A chamada `new ItemCarrinho($produto, 3)` foi executada
+somente na experiência temporária enviada ao PHP em Docker e está documentada
+na aula. Reexplicados definição da classe, chamada de new, construtor automático,
+argumentos guardados nas propriedades e getters que acessam o objeto Produto.
+Não acrescentado novo código de aplicação no esclarecimento; após a explicação,
+o aluno confirmou entendimento.
+Checkpoint preparado: `feat: representa item de carrinho por composicao`.
+Publicação autorizada no destino já confirmado; verificar resultado do push.
+Último checkpoint publicado e verificado: `846ada2`, da etapa 3.12.
+Próximo passo após confirmação: etapa 3.14, acrescentar getSubtotalEmCentavos(): int
+ao ItemCarrinho, multiplicando preço do produto pela quantidade; explicar acesso
+ao objeto composto e verificar quantidades 1 e 3 e produto de preço zero em Docker.
 
 ## Verificações e limitações do ambiente
 
@@ -1251,16 +1300,16 @@ quantidade positiva, explicando composição, construtor e consulta dos dados.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local nesta retomada: `0c2106b`,
-  `docs: confirma entendimento da etapa 3.11`; ainda não publicado.
+- Último commit local publicado nesta retomada: `846ada2`,
+  `feat: define contrato Precificavel para Produto`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 12/10/2026 com `git ls-remote`: `aa9642e`.
-  A branch local está um commit à frente; etapa 3.12 ainda fora de commit.
+- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `846ada2`,
+  igual a HEAD e origin/main. Etapa 3.13 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
-  publicar os checkpoints concluídos na branch pública `main` deste repositório.
-  Envio das etapas 3.11 e 3.12 preparado; conferir resultado remoto após o push.
+  publicar os checkpoints concluídos na branch pública `main` deste repositório;
+  essa autorização permanece válida para os próximos checkpoints concluídos.
 - Publicação das etapas 1.1 a 1.7: primeiro envio concluído; esta atualização
   do registro deve ser enviada após o commit e verificada novamente.
 
@@ -1329,15 +1378,17 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   registrada até agora.
 - Dúvida sobre `trim`: exemplo prático respondido e entendimento confirmado
   junto com a etapa 3.2.
-- Ação imediata: publicar os checkpoints concluídos de 3.11 e 3.12, conforme
-  autorização explícita recebida, verificar o remoto e iniciar a etapa 3.13.
+- Dúvida da 3.13: onde ItemCarrinho é chamado e como funciona a composição.
+  Chamada identificada na experiência temporária documentada, sem script
+  persistente em src. Explicação reapresentada; aguardar entendimento.
+- Ação imediata: publicar a etapa 3.13 concluída e verificar o remoto;
+  iniciar a etapa 3.14, cálculo do subtotal.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 3.12: etapa 3.13 — composição. Criar `src/ItemCarrinho.php`
-  no namespace Loja, recebendo Produto e quantidade inteira positiva no construtor;
-  recusar quantidade menor que 1 e oferecer getters. Explicar que ItemCarrinho
-  contém um Produto e como acessar seus dados. Verificar quantidade válida e
-  inválida em Docker. Não implementar cálculos ou serviços de negócio nesta etapa.
+- Após a confirmação da 3.13: etapa 3.14 — calcular subtotal. Acrescentar
+  `getSubtotalEmCentavos(): int` ao ItemCarrinho, retornando preço do Produto
+  multiplicado pela quantidade. Explicar o acesso ao objeto composto e verificar
+  quantidades 1 e 3 e preço zero em Docker. Não implementar Carrinho completo.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1377,5 +1428,6 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 3.8 — Autoload Composer | Arquivos gerados; classe carregada por demanda e comportamentos verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `af61127` |
 | 09/10/2026 | 3.9 — Enum de estados | Enum e exemplo criados; autoload, casos e tipagem verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `377860a` |
 | 09/10/2026 | 3.10 — Estado de Produto | Estado tipado, padrão e getter; sintaxe e onze cenários passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `a0e1042` |
-| 09/10/2026 | 3.11 — Ações de Produto | Ativar e desativar; retomada e demonstração em 12/10 | Confirmado pelo aluno: "entendi", em 12/10/2026 | Código publicado em `8d54d1a`; envio de `0c2106b` autorizado |
-| 12/10/2026 | 3.12 — Interface Precificavel | Contrato e implements; sintaxe, demonstração e parâmetro tipado verificados | Confirmado pelo aluno: "entendi" | Checkpoint preparado e envio autorizado |
+| 09/10/2026 | 3.11 — Ações de Produto | Ativar e desativar; retomada e demonstração em 12/10 | Confirmado pelo aluno: "entendi", em 12/10/2026 | Código em `8d54d1a`; confirmação `0c2106b` publicada no envio de `846ada2` |
+| 12/10/2026 | 3.12 — Interface Precificavel | Contrato e implements; sintaxe, demonstração e parâmetro tipado verificados | Confirmado pelo aluno: "entendi" | Publicado e verificado em `846ada2` |
+| 12/10/2026 | 3.13 — Composição com ItemCarrinho | Classe, getters e quantidade positiva; sintaxe e experiência verificadas | Confirmado pelo aluno: "entendi", após esclarecimento | Checkpoint preparado, publicação autorizada |

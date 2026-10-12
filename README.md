@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.12, interface Precificavel.
+Módulo 3 — PHP moderno e OOP: etapa 3.13, composição com ItemCarrinho.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -22,8 +22,9 @@ Dockerfile, inclui Composer 2.10.3 e inicia o servidor PHP 8.4.26 de desenvolvim
 O Compose monta `./src` em `/app` como somente leitura, permitindo executar
 alterações do código local sem reconstruir a imagem. A demonstração responde
 em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). Produto implementa a interface
-Precificavel, que exige `getPrecoEmCentavos(): int`. A etapa 3.12 está implementada,
-verificada e confirmada pelo aluno. O próximo passo é composição com ItemCarrinho.
+Precificavel, que exige `getPrecoEmCentavos(): int`. ItemCarrinho guarda um Produto
+e uma quantidade positiva. A etapa 3.13 está implementada, verificada e confirmada
+pelo aluno. O próximo passo é calcular o subtotal do item.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -58,6 +59,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.10 — Estado inicial de Produto](docs/aulas/03-10-status-no-produto.md)
 - [Aula 3.11 — Ações e encapsulamento](docs/aulas/03-11-acoes-e-encapsulamento.md)
 - [Aula 3.12 — Interface Precificavel](docs/aulas/03-12-interface-precificavel.md)
+- [Aula 3.13 — Composição com ItemCarrinho](docs/aulas/03-13-composicao-item-carrinho.md)
 
 ## Executar a demonstração atual
 
