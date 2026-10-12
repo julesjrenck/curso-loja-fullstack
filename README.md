@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.20, teste da menor quantidade válida.
+Módulo 3 — PHP moderno e OOP: etapa 3.21, teste de preço zero.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -26,8 +26,8 @@ em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). Produto implementa a interf
 Precificavel, que exige `getPrecoEmCentavos(): int`. ItemCarrinho guarda um Produto
 e uma quantidade positiva e calcula o subtotal em centavos. PHPUnit 13.4.1 foi
 instalado como dependência de desenvolvimento e verificado no Docker. A etapa
-3.20 verifica o subtotal para a menor quantidade válida, 1, e foi confirmada
-pelo aluno. O próximo passo é testar um produto com preço zero.
+3.21 verifica o subtotal de um produto gratuito e foi confirmada pelo aluno.
+O próximo passo é a revisão acompanhada do módulo 3.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -70,6 +70,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.18 — Testar a recusa de quantidade zero](docs/aulas/03-18-teste-quantidade-zero.md)
 - [Aula 3.19 — Testar a recusa de quantidade negativa](docs/aulas/03-19-teste-quantidade-negativa.md)
 - [Aula 3.20 — Testar a menor quantidade válida](docs/aulas/03-20-teste-quantidade-minima.md)
+- [Aula 3.21 — Testar um produto com preço zero](docs/aulas/03-21-teste-preco-zero.md)
 
 ## Executar a demonstração atual
 
@@ -239,10 +240,12 @@ docker compose run --rm php php vendor/bin/phpunit \
 ```
 
 Os testes conferem os subtotais para uma e três camisetas de 4990 centavos,
-esperados 4990 e 14970, e a recusa das quantidades 0 e -1 com InvalidArgumentException.
-Resultado verificado: `OK (4 tests, 4 assertions)`. A aula 3.17 explica herança,
+esperados 4990 e 14970, o subtotal zero de um produto gratuito e a recusa das
+quantidades 0 e -1 com InvalidArgumentException.
+Resultado verificado: `OK (5 tests, 5 assertions)`. A aula 3.17 explica herança,
 asserção e bootstrap; a 3.18 apresenta expectException e ::class; a 3.19 mostra
-por que testar também um valor negativo; a 3.20 verifica a menor quantidade válida.
+por que testar também um valor negativo; a 3.20 verifica a menor quantidade válida
+e a 3.21 verifica o menor preço permitido.
 
 ## Tecnologias planejadas
 

@@ -4,13 +4,13 @@
 
 - Última atualização: 12/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.20 — Teste da menor quantidade válida.
-- Situação: teste com quantidade 1 implementado e explicado; sintaxe passou
-  e PHPUnit retornou OK (4 tests, 4 assertions).
-  Entendimento confirmado com "entendi" em 12/10/2026; próximo passo: etapa 3.21.
+- Etapa atual: 3.21 — Teste de preço zero.
+- Situação: teste com Produto Brinde de preço 0 implementado e explicado;
+  sintaxe passou e PHPUnit retornou OK (5 tests, 5 assertions).
+  Entendimento confirmado com "entendi" em 12/10/2026; próximo passo: revisão 3.22.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
-  etapas 3.11 a 3.20 confirmadas com "entendi" em 12/10/2026.
+  etapas 3.11 a 3.21 confirmadas com "entendi" em 12/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Retomada em outro chat
@@ -71,8 +71,12 @@ Checkpoint do teste de quantidade negativa `188ff33` publicado; HEAD, origin/mai
 e consulta direta à main remota retornaram
 `188ff3341e1b0abdf63a008f066810cc28852562`.
 Etapa 3.20 implementada, explicada, verificada e confirmada com "entendi".
-Checkpoint da menor quantidade válida preparado para publicação.
-Próximo passo: teste de preço zero na etapa 3.21.
+Checkpoint da menor quantidade válida `95630cd` publicado; HEAD, origin/main
+e consulta direta à main remota retornaram
+`95630cdea45c1885a277b833ae26a0cca32cafac`.
+Etapa 3.21 implementada, explicada, verificada e confirmada com "entendi".
+Checkpoint do teste de preço zero preparado para publicação.
+Próximo passo: revisão acompanhada do módulo 3 na etapa 3.22.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1556,14 +1560,48 @@ Verificação:
   do Composer. Configuração local e volumes preservados; contador não executado.
 
 Entendimento da etapa 3.20: confirmado com "entendi" em 12/10/2026.
-Checkpoint preparado: `test: verifica subtotal da menor quantidade valida`.
+Checkpoint: `95630cd`, `test: verifica subtotal da menor quantidade valida`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `95630cdea45c1885a277b833ae26a0cca32cafac`.
+
+## Etapa 3.21
+
+Objetivo: verificar preço zero como limite válido de Produto e subtotal inteiro
+zero para um item com esse produto e quantidade positiva.
+
+Implementação e explicação:
+
+- `src/tests/ItemCarrinhoTest.php`: acrescentado testCalculaSubtotalParaProdutoGratuito(): void.
+  Cria Produto Brinde de preço 0 e item de quantidade 3, consulta subtotal e
+  confere o inteiro 0 com assertSame.
+- Reutilizada a sequência preparar/executar/conferir. Explicadas as regras
+  próprias de cada campo: preço mínimo 0, quantidade mínima 1.
+- Explicada a validação real de preço < 0, que permite zero. Uma condição
+  <= 0 recusaria esse limite válido; os quatro testes anteriores usam preço 4990
+  e não detectariam essa recusa. Comparação didática, sem alterar a classe.
+- Produto e ItemCarrinho não foram alterados; quatro testes anteriores preservados.
+- Aula salva em `docs/aulas/03-21-teste-preco-zero.md`; README atualizado.
+
+Verificação:
+
+- `docker compose exec -T php php -l tests/ItemCarrinhoTest.php`: sintaxe válida.
+- Comando PHPUnit com --bootstrap vendor/autoload.php e o mesmo arquivo de teste:
+  `OK (5 tests, 5 assertions)`, código 0, PHPUnit 13.4.1 e PHP 8.4.26.
+- Confirmados subtotais inteiros de 4990 para uma unidade e 14970 para três,
+  subtotal inteiro 0 para produto gratuito de quantidade 3 e exceções para
+  quantidades 0 e -1.
+- Sem build, novas dependências ou alteração em Compose, Dockerfile ou arquivos
+  do Composer. Configuração local e volumes preservados; contador não executado.
+
+Entendimento da etapa 3.21: confirmado com "entendi" em 12/10/2026.
+Checkpoint preparado: `test: verifica subtotal de produto gratuito`.
 Publicação autorizada; conferir o resultado do push antes de registrar sucesso.
-Último checkpoint publicado e verificado antes do envio: `188ff33`, da etapa 3.19.
-Próximo passo após confirmação: etapa 3.21, acrescentar
-testCalculaSubtotalParaProdutoGratuito() no mesmo arquivo. Criar Produto Brinde
-com preço 0 e item de quantidade 3, consultar subtotal e conferir inteiro 0.
-Explicar preço zero como limite válido já permitido pelo construtor de Produto;
-executar os cinco testes no Docker. Não implementar antes da confirmação.
+Último checkpoint publicado e verificado antes do envio: `95630cd`, da etapa 3.20.
+Próximo passo após confirmação: etapa 3.22, revisão acompanhada do módulo 3.
+Retomar Produto, StatusProduto, Precificavel, ItemCarrinho, autoload e TestCase;
+explicar o fluxo de criação, validação, consulta, ações e verificação pelos cinco
+testes. Responder dúvidas e aguardar confirmação da revisão antes de registrar
+o módulo como concluído. Não iniciar Laravel ou outras funcionalidades nessa revisão.
 
 ## Verificações e limitações do ambiente
 
@@ -1591,13 +1629,13 @@ executar os cinco testes no Docker. Não implementar antes da confirmação.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `188ff33`,
-  `test: verifica recusa de quantidade negativa`.
+- Último commit local publicado nesta retomada: `95630cd`,
+  `test: verifica subtotal da menor quantidade valida`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `188ff33`,
-  igual a HEAD e origin/main. Etapa 3.20 ainda fora de commit.
+- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `95630cd`,
+  igual a HEAD e origin/main. Etapa 3.21 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -1673,14 +1711,15 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar a etapa 3.20 concluída, conferir o remoto e iniciar
-  o teste de preço zero na etapa 3.21.
+- Ação imediata: publicar a etapa 3.21 concluída, conferir o remoto e apresentar
+  a revisão acompanhada do módulo 3 na etapa 3.22.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 3.20: etapa 3.21 — acrescentar
-  testCalculaSubtotalParaProdutoGratuito() no mesmo arquivo, com Produto Brinde
-  de preço zero e quantidade 3, conferindo subtotal inteiro 0. Explicar esse
-  limite permitido pela regra existente e executar os cinco testes no Docker.
+- Após a confirmação da 3.21: etapa 3.22 — revisão acompanhada do módulo 3.
+  Relacionar Produto, enum de status, interface Precificavel, composição do item,
+  autoload e herança de TestCase. Retomar entradas, validações, ações e cinco
+  cenários testados. Responder dúvidas e solicitar confirmação da revisão antes
+  de registrar o módulo como concluído, sem antecipar instalação de Laravel.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1729,4 +1768,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 12/10/2026 | 3.17 — Primeiro teste PHPUnit | Teste do subtotal de três unidades; sintaxe e uma asserção passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `071aacd` |
 | 12/10/2026 | 3.18 — Teste de quantidade zero | Expectativa de exceção acrescentada; sintaxe e dois testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `9d6ceb0` |
 | 12/10/2026 | 3.19 — Teste de quantidade negativa | Cenário -1 acrescentado; sintaxe e três testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `188ff33` |
-| 12/10/2026 | 3.20 — Teste da menor quantidade válida | Quantidade 1 e subtotal 4990; sintaxe e quatro testes passaram | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 12/10/2026 | 3.20 — Teste da menor quantidade válida | Quantidade 1 e subtotal 4990; sintaxe e quatro testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `95630cd` |
+| 12/10/2026 | 3.21 — Teste de preço zero | Produto gratuito e subtotal 0; sintaxe e cinco testes passaram | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
