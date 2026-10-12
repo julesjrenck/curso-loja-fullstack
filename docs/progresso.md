@@ -4,14 +4,13 @@
 
 - Última atualização: 12/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.16 — Instalação de PHPUnit pelo Composer.
-- Situação: PHPUnit 13.4.1 instalado, lockfile gerado, unzip acrescentado à imagem;
-  arquivos e comandos explicados. Versão, requisitos, validação, auditoria,
-  exemplo do subtotal e HTTP conferidos. Entendimento confirmado com "entendi"
-  em 12/10/2026; próximo passo: primeiro teste PHPUnit na etapa 3.17.
+- Etapa atual: 3.17 — Primeiro teste PHPUnit.
+- Situação: teste de subtotal salvo, explicado e executado com sucesso;
+  sintaxe passou e PHPUnit retornou OK (1 test, 1 assertion).
+  Entendimento confirmado com "entendi" em 12/10/2026; próximo passo: etapa 3.18.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
-  etapas 3.11 a 3.16 confirmadas com "entendi" em 12/10/2026.
+  etapas 3.11 a 3.17 confirmadas com "entendi" em 12/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Retomada em outro chat
@@ -57,8 +56,12 @@ PHPUnit atendidos pelo PHP do container existente. Checkpoint de documentação
 `3dba56d` publicado; HEAD, origin/main e consulta direta à main remota retornaram
 `3dba56d1d161f9de05e98273950fc785dc1089b8`.
 Etapa 3.16 implementada, explicada, verificada e confirmada com "entendi".
-Checkpoint da instalação preparado para publicação conforme autorização
-existente. Próximo passo: primeiro teste PHPUnit da etapa 3.17.
+Checkpoint da instalação `9a9c43a` publicado conforme autorização existente.
+HEAD, origin/main e consulta direta à main remota retornaram
+`9a9c43a5dce5696ab5230ba8626a761763fdb940`; publicação confirmada.
+Etapa 3.17 implementada, explicada, verificada e confirmada com "entendi".
+Checkpoint do primeiro teste preparado para publicação. Próximo passo: teste
+da recusa de quantidade zero na etapa 3.18.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1407,15 +1410,50 @@ Verificação:
   Contador não executado; configuração local e volumes preservados.
 
 Entendimento da etapa 3.16: confirmado com "entendi" em 12/10/2026.
-Checkpoint preparado: `build: instala PHPUnit com dependencias fixadas`.
-Publicação autorizada; verificar o resultado do push antes de registrar sucesso.
-Último checkpoint publicado e verificado antes do envio: `3dba56d`, da 3.15.
-Próximo passo após confirmação: etapa 3.17, criar src/tests/ItemCarrinhoTest.php,
-estendendo PHPUnit\Framework\TestCase; criar Produto de 4990 e ItemCarrinho de
-quantidade 3 e verificar 14970 com assertSame. Explicar herança por extends,
-método de teste, asserção e bootstrap do autoload. Executar em Docker com
-`php vendor/bin/phpunit --bootstrap vendor/autoload.php tests/ItemCarrinhoTest.php`.
-Não montar antecipadamente a suíte completa, configuração XML ou Laravel.
+Checkpoint: `9a9c43a`, `build: instala PHPUnit com dependencias fixadas`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `9a9c43a5dce5696ab5230ba8626a761763fdb940`.
+
+## Etapa 3.17
+
+Objetivo: salvar um primeiro teste PHPUnit da regra de subtotal, conhecendo
+TestCase, herança, método de teste, asserção e carregamento pelo bootstrap.
+
+Implementação e explicação:
+
+- `src/tests/ItemCarrinhoTest.php`: classe global ItemCarrinhoTest extends TestCase,
+  com importações de Loja\Produto, Loja\ItemCarrinho e PHPUnit\Framework\TestCase.
+- Método público testCalculaSubtotalParaTresUnidades(): void cria Produto de
+  4990 centavos e ItemCarrinho com quantidade 3, consulta subtotal e confere
+  o inteiro 14970 com `$this->assertSame(14970, $subtotal)`.
+- Explicados herança por extends, recursos da classe base TestCase, reconhecimento
+  do prefixo test, `$this` como instância de teste, argumentos esperado/obtido,
+  comparação de valor e tipo e preparação/execução/conferência do cenário.
+- PHPUnit carrega o arquivo e executa o método; não há instanciação manual
+  de ItemCarrinhoTest no exemplo da loja. Bootstrap registra o autoload.
+- Aula salva em `docs/aulas/03-17-primeiro-teste-phpunit.md`; README inclui o comando.
+- Produto, ItemCarrinho, Compose, Dockerfile e arquivos do Composer preservados.
+
+Verificação:
+
+- `docker compose exec -T php php -l tests/ItemCarrinhoTest.php`: sintaxe válida.
+- `docker compose run --rm php php vendor/bin/phpunit --bootstrap vendor/autoload.php
+  tests/ItemCarrinhoTest.php`: PHPUnit 13.4.1, PHP 8.4.26,
+  `OK (1 test, 1 assertion)`, código 0.
+- O teste confirma o cenário de três unidades e retorno inteiro 14970; ainda
+  não cobre os demais cenários ou expectativas de exceção.
+- Execução com montagem normal somente leitura, sem build ou novas dependências.
+  Configuração local e volumes preservados; contador não executado.
+
+Entendimento da etapa 3.17: confirmado com "entendi" em 12/10/2026.
+Checkpoint preparado: `test: verifica subtotal de tres unidades com PHPUnit`.
+Publicação autorizada; conferir o resultado do push antes de registrar sucesso.
+Último checkpoint publicado e verificado: `9a9c43a`, da etapa 3.16.
+Próximo passo após confirmação: etapa 3.18, acrescentar testRecusaQuantidadeZero()
+no mesmo arquivo. Criar Produto válido, configurar
+`$this->expectException(InvalidArgumentException::class)` e construir ItemCarrinho
+com quantidade 0. Explicar expectativa antes da ação e ::class, e executar ambos
+os testes pelo mesmo comando Docker. Não criar antecipadamente a suíte completa.
 
 ## Verificações e limitações do ambiente
 
@@ -1443,13 +1481,13 @@ Não montar antecipadamente a suíte completa, configuração XML ou Laravel.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `3dba56d`,
-  `docs: verifica requisitos de PHPUnit no Docker`.
+- Último commit local publicado nesta retomada: `9a9c43a`,
+  `build: instala PHPUnit com dependencias fixadas`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `3dba56d`,
-  igual a HEAD e origin/main. Etapa 3.16 ainda fora de commit.
+- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `9a9c43a`,
+  igual a HEAD e origin/main. Etapa 3.17 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -1525,14 +1563,14 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar a instalação concluída da 3.16, verificar o remoto
-  e iniciar o primeiro teste PHPUnit na etapa 3.17.
+- Ação imediata: publicar a etapa 3.17 concluída, verificar o remoto e iniciar
+  o teste de recusa de quantidade zero na 3.18.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 3.16: etapa 3.17 — primeiro teste em
-  `src/tests/ItemCarrinhoTest.php`. Usar TestCase, extends e assertSame para conferir
-  4990 x 3 = 14970. Executar PHPUnit com --bootstrap vendor/autoload.php e o caminho
-  desse arquivo. Explicar cada trecho antes de acrescentar outros testes.
+- Após a confirmação da 3.17: etapa 3.18 — testar quantidade zero no mesmo arquivo
+  com testRecusaQuantidadeZero(), expectException e InvalidArgumentException::class.
+  Criar o Produto válido antes da expectativa e construir o item inválido depois.
+  Explicar ::class e a ordem das chamadas; executar ambos os testes no Docker.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1577,4 +1615,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 12/10/2026 | 3.13 — Composição com ItemCarrinho | Classe, getters e quantidade positiva; sintaxe e experiência verificadas | Confirmado pelo aluno: "entendi", após esclarecimento | Publicado e verificado em `197470b` |
 | 12/10/2026 | 3.14 — Subtotal do item | Método e exemplo persistente; sintaxe, três cálculos e HTTP verificados | Confirmado pelo aluno: "entendi" | Publicado e verificado em `b45dc75` |
 | 12/10/2026 | 3.15 — Requisitos de PHPUnit | Conceito e diagnóstico documentados; PHP e extensões atendem aos requisitos | Confirmado pelo aluno: "entendi" | Publicado e verificado em `3dba56d` |
-| 12/10/2026 | 3.16 — Instalação de PHPUnit | PHPUnit 13.4.1, lockfile e unzip; instalação e verificações passaram | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 12/10/2026 | 3.16 — Instalação de PHPUnit | PHPUnit 13.4.1, lockfile e unzip; instalação e verificações passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `9a9c43a` |
+| 12/10/2026 | 3.17 — Primeiro teste PHPUnit | Teste do subtotal de três unidades; sintaxe e uma asserção passaram | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |

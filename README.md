@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.16, instalação de PHPUnit.
+Módulo 3 — PHP moderno e OOP: etapa 3.17, primeiro teste PHPUnit.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -26,7 +26,8 @@ em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). Produto implementa a interf
 Precificavel, que exige `getPrecoEmCentavos(): int`. ItemCarrinho guarda um Produto
 e uma quantidade positiva e calcula o subtotal em centavos. PHPUnit 13.4.1 foi
 instalado como dependência de desenvolvimento e verificado no Docker. A etapa
-3.16 foi confirmada pelo aluno; o próximo passo é criar o primeiro teste.
+3.17 verifica o subtotal de três unidades e foi confirmada pelo aluno.
+O próximo passo é testar a recusa de quantidade zero.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -65,6 +66,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.14 — Subtotal do item do carrinho](docs/aulas/03-14-subtotal-item-carrinho.md)
 - [Aula 3.15 — Requisitos de PHPUnit](docs/aulas/03-15-requisitos-phpunit.md)
 - [Aula 3.16 — Instalação de PHPUnit pelo Composer](docs/aulas/03-16-instalacao-phpunit.md)
+- [Aula 3.17 — Primeiro teste PHPUnit](docs/aulas/03-17-primeiro-teste-phpunit.md)
 
 ## Executar a demonstração atual
 
@@ -226,7 +228,16 @@ docker compose run --rm php php vendor/bin/phpunit --version
 ```
 
 A saída verificada é PHPUnit 13.4.1. A instalação e os arquivos gerados são
-explicados na aula 3.16; o primeiro teste será introduzido após sua confirmação.
+explicados na aula 3.16. Para executar o primeiro teste:
+
+```bash
+docker compose run --rm php php vendor/bin/phpunit \
+  --bootstrap vendor/autoload.php tests/ItemCarrinhoTest.php
+```
+
+O teste salva o cenário de três camisetas de 4990 centavos, com subtotal esperado
+14970. Resultado verificado: `OK (1 test, 1 assertion)`. A aula 3.17 explica
+herança de TestCase, método de teste, asserção e carregamento pelo bootstrap.
 
 ## Tecnologias planejadas
 
