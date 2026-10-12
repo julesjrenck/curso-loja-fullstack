@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.14, subtotal do item do carrinho.
+Módulo 3 — PHP moderno e OOP: etapa 3.15, requisitos de PHPUnit.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -23,9 +23,9 @@ O Compose monta `./src` em `/app` como somente leitura, permitindo executar
 alterações do código local sem reconstruir a imagem. A demonstração responde
 em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). Produto implementa a interface
 Precificavel, que exige `getPrecoEmCentavos(): int`. ItemCarrinho guarda um Produto
-e uma quantidade positiva e calcula o subtotal em centavos. A etapa 3.14 está
-implementada, verificada e confirmada pelo aluno. O próximo passo é preparar
-o ambiente para PHPUnit.
+e uma quantidade positiva e calcula o subtotal em centavos. Os requisitos de
+PHP e extensões para PHPUnit foram conferidos no container; a etapa 3.15 foi
+confirmada pelo aluno. O próximo passo é instalar a ferramenta pelo Composer.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -62,6 +62,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.12 — Interface Precificavel](docs/aulas/03-12-interface-precificavel.md)
 - [Aula 3.13 — Composição com ItemCarrinho](docs/aulas/03-13-composicao-item-carrinho.md)
 - [Aula 3.14 — Subtotal do item do carrinho](docs/aulas/03-14-subtotal-item-carrinho.md)
+- [Aula 3.15 — Requisitos de PHPUnit](docs/aulas/03-15-requisitos-phpunit.md)
 
 ## Executar a demonstração atual
 

@@ -4,13 +4,14 @@
 
 - Última atualização: 12/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.14 — Subtotal do item do carrinho.
-- Situação: método de subtotal e exemplo persistente implementados e explicados;
-  sintaxe, demonstração, três cenários de cálculo e restrição HTTP passaram.
-  Entendimento confirmado com "entendi" em 12/10/2026; próximo passo: etapa 3.15.
+- Etapa atual: 3.15 — Requisitos de PHPUnit.
+- Situação: conceito de testes automatizados e requisitos apresentados;
+  PHP 8.4.26 e extensões necessárias conferidos. Ambiente já atende ao diagnóstico;
+  nenhuma alteração do Dockerfile necessária. Entendimento confirmado com
+  "entendi" em 12/10/2026; próximo passo: instalar PHPUnit na etapa 3.16.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
-  etapas 3.11 a 3.14 confirmadas com "entendi" em 12/10/2026.
+  etapas 3.11 a 3.15 confirmadas com "entendi" em 12/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Retomada em outro chat
@@ -48,8 +49,12 @@ Checkpoint da composição `197470b` publicado conforme autorização existente.
 HEAD, origin/main e a consulta direta à branch main remota retornaram
 `197470b1570cbfa02d736166566e5f796deb8cb4`; publicação confirmada.
 Etapa 3.14 implementada, explicada, verificada e confirmada com "entendi".
-Checkpoint do subtotal preparado para publicação conforme autorização existente.
-Próximo passo: conferir requisitos e preparar o ambiente para PHPUnit na 3.15.
+Checkpoint do subtotal `b45dc75` publicado conforme autorização existente.
+HEAD, origin/main e a consulta direta à main remota retornaram
+`b45dc7509c945d5974d6768876c464534f6d4878`; publicação confirmada.
+Etapa 3.15 apresentada, verificada e confirmada com "entendi": requisitos de
+PHPUnit atendidos pelo PHP do container existente. Checkpoint de documentação
+preparado para publicação. Próximo passo: instalação de PHPUnit na etapa 3.16.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1309,14 +1314,52 @@ Verificação:
   Contador não executado; configuração local e volumes preservados.
 
 Entendimento da etapa 3.14: confirmado com "entendi" em 12/10/2026.
-Checkpoint preparado: `feat: calcula subtotal do item do carrinho`.
+Checkpoint: `b45dc75`, `feat: calcula subtotal do item do carrinho`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `b45dc7509c945d5974d6768876c464534f6d4878`.
+
+## Etapa 3.15
+
+Objetivo: apresentar testes automatizados e verificar os requisitos de PHPUnit
+no PHP do container antes de instalar a ferramenta.
+
+Implementação e explicação:
+
+- Nenhuma alteração de código ou Dockerfile necessária: PHP e extensões
+  carregadas já atendem aos requisitos consultados.
+- Explicados teste como entrada/operação/resultado esperado repetíveis,
+  papel de PHPUnit, extensão do PHP e dependência do Composer.
+- Documentação oficial consultada: série PHPUnit 13 compatível com PHP 8.4;
+  composer.json da versão 13.3.2 exige PHP >= 8.4.1 e extensões dom, filter,
+  json, libxml, mbstring e xmlwriter. Versão consultada para o diagnóstico;
+  revisar a versão exata e fixar pelo lockfile quando instalar.
+- Aula salva em `docs/aulas/03-15-requisitos-phpunit.md`; README atualizado.
+- PHPUnit ainda não instalado; nenhum teste PHPUnit criado.
+
+Verificação:
+
+- `docker compose exec -T php php --version`: PHP 8.4.26 CLI.
+- `docker compose exec -T php php -m`: seis extensões requeridas carregadas;
+  xml e tokenizer também disponíveis.
+- Verificação temporária via entrada padrão do Docker: version_compare confirmou
+  requisito >= 8.4.1, extension_loaded confirmou oito módulos e is_file confirmou
+  ausência de /app/vendor/bin/phpunit. Dez linhas de diagnóstico, código 0.
+- Essa verificação demonstra requisitos do PHP consultados; instalação e
+  funcionamento real da ferramenta ainda serão verificados na próxima etapa.
+- Sem build, novas dependências, regeneração de autoload ou mudanças no Compose,
+  código PHP, configuração local ou volumes. Contador não executado.
+
+Entendimento da etapa 3.15: confirmado com "entendi" em 12/10/2026.
+Checkpoint preparado: `docs: verifica requisitos de PHPUnit no Docker`.
 Publicação autorizada; conferir o resultado do push antes de registrar sucesso.
-Último checkpoint publicado e verificado: `197470b`, da etapa 3.13.
-Próximo passo após confirmação: etapa 3.15, consultar requisitos oficiais de
-PHPUnit compatível com PHP 8.4 e conferir extensões do container; explicar testes
-automatizados e preparar somente os requisitos ausentes no Dockerfile, se houver.
-Não instalar PHPUnit ou criar testes antes da explicação e confirmação dessa
-preparação, nem introduzir Laravel antecipadamente.
+Último checkpoint publicado e verificado: `b45dc75`, da etapa 3.14.
+Próximo passo após confirmação: etapa 3.16, instalar PHPUnit como dependência
+de desenvolvimento pelo Composer em Docker, revisando versão compatível e
+gerando src/composer.lock. Explicar require-dev e lockfile. Como /app é somente
+leitura, usar montagem gravável de src apenas no container temporário da
+instalação, preservando o volume vendor existente. Conferir versões instaladas
+e requisitos completos das dependências resolvidas. Primeiro teste depois da
+confirmação dessa instalação; não introduzir Laravel antecipadamente.
 
 ## Verificações e limitações do ambiente
 
@@ -1344,13 +1387,13 @@ preparação, nem introduzir Laravel antecipadamente.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `197470b`,
-  `feat: representa item de carrinho por composicao`.
+- Último commit local publicado nesta retomada: `b45dc75`,
+  `feat: calcula subtotal do item do carrinho`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `197470b`,
-  igual a HEAD e origin/main. Etapa 3.14 ainda fora de commit.
+- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `b45dc75`,
+  igual a HEAD e origin/main. Documentação da 3.15 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -1426,14 +1469,16 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar o checkpoint concluído da 3.14, verificar o remoto
-  e iniciar a 3.15, requisitos de PHPUnit e preparação do ambiente.
+- Ação imediata: publicar a documentação concluída da 3.15, conferir o remoto
+  e iniciar a instalação de PHPUnit na etapa 3.16.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 3.14: etapa 3.15 — requisitos de PHPUnit. Consultar
-  documentação oficial e verificar PHP e extensões pelo Docker. Explicar testes
-  automatizados e preparar apenas os requisitos necessários. Instalação da
-  ferramenta e primeiro teste em etapas posteriores, com confirmação entre elas.
+- Após a confirmação da 3.15: etapa 3.16 — instalar PHPUnit com Composer em Docker
+  como dependência de desenvolvimento; revisar versão compatível, gerar lockfile
+  e explicar require-dev, arquivos gerados e execução de vendor/bin/phpunit.
+  Usar montagem gravável de src somente no container temporário da instalação,
+  preservando vendor no volume. Verificar versão e requisitos das dependências.
+  Primeiro teste em etapa posterior, com confirmação entre elas.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1476,4 +1521,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 3.11 — Ações de Produto | Ativar e desativar; retomada e demonstração em 12/10 | Confirmado pelo aluno: "entendi", em 12/10/2026 | Código em `8d54d1a`; confirmação `0c2106b` publicada no envio de `846ada2` |
 | 12/10/2026 | 3.12 — Interface Precificavel | Contrato e implements; sintaxe, demonstração e parâmetro tipado verificados | Confirmado pelo aluno: "entendi" | Publicado e verificado em `846ada2` |
 | 12/10/2026 | 3.13 — Composição com ItemCarrinho | Classe, getters e quantidade positiva; sintaxe e experiência verificadas | Confirmado pelo aluno: "entendi", após esclarecimento | Publicado e verificado em `197470b` |
-| 12/10/2026 | 3.14 — Subtotal do item | Método e exemplo persistente; sintaxe, três cálculos e HTTP verificados | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 12/10/2026 | 3.14 — Subtotal do item | Método e exemplo persistente; sintaxe, três cálculos e HTTP verificados | Confirmado pelo aluno: "entendi" | Publicado e verificado em `b45dc75` |
+| 12/10/2026 | 3.15 — Requisitos de PHPUnit | Conceito e diagnóstico documentados; PHP e extensões atendem aos requisitos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
