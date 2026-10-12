@@ -7,7 +7,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
-Módulo 3 — PHP moderno e OOP: etapa 3.18, teste de quantidade zero.
+Módulo 3 — PHP moderno e OOP: etapa 3.19, teste de quantidade negativa.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -26,8 +26,8 @@ em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). Produto implementa a interf
 Precificavel, que exige `getPrecoEmCentavos(): int`. ItemCarrinho guarda um Produto
 e uma quantidade positiva e calcula o subtotal em centavos. PHPUnit 13.4.1 foi
 instalado como dependência de desenvolvimento e verificado no Docker. A etapa
-3.18 verifica a recusa de quantidade zero e foi confirmada pelo aluno.
-O próximo passo é testar a recusa de quantidade negativa.
+3.19 verifica a recusa de quantidade negativa e foi confirmada pelo aluno.
+O próximo passo é testar a menor quantidade válida, 1.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -68,6 +68,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.16 — Instalação de PHPUnit pelo Composer](docs/aulas/03-16-instalacao-phpunit.md)
 - [Aula 3.17 — Primeiro teste PHPUnit](docs/aulas/03-17-primeiro-teste-phpunit.md)
 - [Aula 3.18 — Testar a recusa de quantidade zero](docs/aulas/03-18-teste-quantidade-zero.md)
+- [Aula 3.19 — Testar a recusa de quantidade negativa](docs/aulas/03-19-teste-quantidade-negativa.md)
 
 ## Executar a demonstração atual
 
@@ -237,9 +238,10 @@ docker compose run --rm php php vendor/bin/phpunit \
 ```
 
 Os testes conferem o subtotal de três camisetas de 4990 centavos, esperado 14970,
-e a recusa de quantidade zero com InvalidArgumentException.
-Resultado verificado: `OK (2 tests, 2 assertions)`. A aula 3.17 explica herança,
-asserção e bootstrap; a 3.18 apresenta expectException e ::class.
+e a recusa das quantidades 0 e -1 com InvalidArgumentException.
+Resultado verificado: `OK (3 tests, 3 assertions)`. A aula 3.17 explica herança,
+asserção e bootstrap; a 3.18 apresenta expectException e ::class; a 3.19 mostra
+por que testar também um valor negativo.
 
 ## Tecnologias planejadas
 

@@ -26,4 +26,13 @@ class ItemCarrinhoTest extends TestCase
 
         new ItemCarrinho($produto, 0);
     }
+
+    public function testRecusaQuantidadeNegativa(): void
+    {
+        $produto = new Produto("Camiseta", 4990);
+
+        $this->expectException(InvalidArgumentException::class);
+
+        new ItemCarrinho($produto, -1);
+    }
 }

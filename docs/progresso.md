@@ -4,13 +4,13 @@
 
 - Última atualização: 12/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.18 — Teste da recusa de quantidade zero.
-- Situação: expectativa de exceção implementada e explicada; sintaxe passou
-  e PHPUnit retornou OK (2 tests, 2 assertions).
-  Entendimento confirmado com "entendi" em 12/10/2026; próximo passo: etapa 3.19.
+- Etapa atual: 3.19 — Teste da recusa de quantidade negativa.
+- Situação: teste com quantidade -1 implementado e explicado; sintaxe passou
+  e PHPUnit retornou OK (3 tests, 3 assertions).
+  Entendimento confirmado com "entendi" em 12/10/2026; próximo passo: etapa 3.20.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
-  etapas 3.11 a 3.18 confirmadas com "entendi" em 12/10/2026.
+  etapas 3.11 a 3.19 confirmadas com "entendi" em 12/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Retomada em outro chat
@@ -63,8 +63,12 @@ Etapa 3.17 implementada, explicada, verificada e confirmada com "entendi".
 Checkpoint do primeiro teste `071aacd` publicado; HEAD, origin/main e consulta
 direta à main remota retornaram `071aacd00da4180bd8ec1a210708b91577c79ecf`.
 Etapa 3.18 implementada, explicada, verificada e confirmada com "entendi".
-Checkpoint do teste de quantidade zero preparado para publicação.
-Próximo passo: teste de quantidade negativa na etapa 3.19.
+Checkpoint do teste de quantidade zero `9d6ceb0` publicado; HEAD, origin/main
+e consulta direta à main remota retornaram
+`9d6ceb0fbb7f669203ed6bad2d91789201b11c13`.
+Etapa 3.19 implementada, explicada, verificada e confirmada com "entendi".
+Checkpoint do teste de quantidade negativa preparado para publicação.
+Próximo passo: testar a quantidade mínima válida na etapa 3.20.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1483,13 +1487,47 @@ Verificação:
   do Composer. Configuração local e volumes preservados; contador não executado.
 
 Entendimento da etapa 3.18: confirmado com "entendi" em 12/10/2026.
-Checkpoint preparado: `test: verifica recusa de quantidade zero`.
+Checkpoint: `9d6ceb0`, `test: verifica recusa de quantidade zero`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `9d6ceb0fbb7f669203ed6bad2d91789201b11c13`.
+
+## Etapa 3.19
+
+Objetivo: verificar a recusa de uma quantidade negativa e explicar por que
+o teste de zero, sozinho, não verifica essa entrada distinta.
+
+Implementação e explicação:
+
+- `src/tests/ItemCarrinhoTest.php`: acrescentado testRecusaQuantidadeNegativa(): void.
+  Cria Produto válido, configura expectException(InvalidArgumentException::class)
+  e tenta construir ItemCarrinho com quantidade -1.
+- Reutilizada a ordem preparar/esperar/executar da aula anterior. Explicado que
+  -1 é int, mas viola a regra de quantidade positiva do construtor.
+- Comparação didática: uma condição `$quantidade === 0` recusaria zero e
+  aceitaria -1; o novo teste detectaria essa aceitação indevida. A regra real
+  `$quantidade < 1` permaneceu inalterada.
+- Testes anteriores preservados. Produto e ItemCarrinho não foram alterados.
+- Aula salva em `docs/aulas/03-19-teste-quantidade-negativa.md`; README atualizado.
+
+Verificação:
+
+- `docker compose exec -T php php -l tests/ItemCarrinhoTest.php`: sintaxe válida.
+- Comando PHPUnit com --bootstrap vendor/autoload.php e o mesmo arquivo de teste:
+  `OK (3 tests, 3 assertions)`, código 0, PHPUnit 13.4.1 e PHP 8.4.26.
+- Confirmados subtotal inteiro 14970 para três unidades e exceções esperadas nas
+  tentativas de quantidade 0 e -1. Quantidade mínima 1 ainda sem teste PHPUnit próprio.
+- Sem build, novas dependências ou alteração em Compose, Dockerfile ou arquivos
+  do Composer. Configuração local e volumes preservados; contador não executado.
+
+Entendimento da etapa 3.19: confirmado com "entendi" em 12/10/2026.
+Checkpoint preparado: `test: verifica recusa de quantidade negativa`.
 Publicação autorizada; conferir o resultado do push antes de registrar sucesso.
-Último checkpoint publicado e verificado antes do envio: `071aacd`, da etapa 3.17.
-Próximo passo após confirmação: etapa 3.19, acrescentar testRecusaQuantidadeNegativa()
-no mesmo arquivo, com Produto válido, expectativa de InvalidArgumentException e
-quantidade -1. Explicar o cenário distinto da borda zero e executar os três testes.
-Não criar antecipadamente outros testes ou novos recursos da loja.
+Último checkpoint publicado e verificado antes do envio: `9d6ceb0`, da etapa 3.18.
+Próximo passo após confirmação: etapa 3.20, acrescentar
+testCalculaSubtotalParaUmaUnidade() no mesmo arquivo. Criar Produto de 4990
+centavos e ItemCarrinho de quantidade 1, consultar subtotal e conferir inteiro
+4990 com assertSame. Explicar a menor quantidade válida e executar os quatro testes.
+Não implementar esse método ou outros recursos antes da confirmação.
 
 ## Verificações e limitações do ambiente
 
@@ -1517,13 +1555,13 @@ Não criar antecipadamente outros testes ou novos recursos da loja.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `071aacd`,
-  `test: verifica subtotal de tres unidades com PHPUnit`.
+- Último commit local publicado nesta retomada: `9d6ceb0`,
+  `test: verifica recusa de quantidade zero`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `071aacd`,
-  igual a HEAD e origin/main. Etapa 3.18 ainda fora de commit.
+- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `9d6ceb0`,
+  igual a HEAD e origin/main. Etapa 3.19 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -1599,14 +1637,14 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar a etapa 3.18 concluída, conferir o remoto e iniciar
-  o teste de quantidade negativa na etapa 3.19.
+- Ação imediata: publicar a etapa 3.19 concluída, conferir o remoto e iniciar
+  o teste da menor quantidade válida na etapa 3.20.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 3.18: etapa 3.19 — acrescentar testRecusaQuantidadeNegativa()
-  no mesmo arquivo com Produto válido, expectException e quantidade -1. Explicar
-  por que a verificação de zero sozinha não verifica valores negativos. Executar
-  os três testes no Docker antes de acrescentar outros cenários.
+- Após a confirmação da 3.19: etapa 3.20 — acrescentar
+  testCalculaSubtotalParaUmaUnidade() no mesmo arquivo, com produto de 4990,
+  quantidade 1 e subtotal esperado inteiro 4990. Explicar a menor quantidade
+  permitida pelo construtor e executar os quatro testes no Docker.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1653,4 +1691,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 12/10/2026 | 3.15 — Requisitos de PHPUnit | Conceito e diagnóstico documentados; PHP e extensões atendem aos requisitos | Confirmado pelo aluno: "entendi" | Publicado e verificado em `3dba56d` |
 | 12/10/2026 | 3.16 — Instalação de PHPUnit | PHPUnit 13.4.1, lockfile e unzip; instalação e verificações passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `9a9c43a` |
 | 12/10/2026 | 3.17 — Primeiro teste PHPUnit | Teste do subtotal de três unidades; sintaxe e uma asserção passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `071aacd` |
-| 12/10/2026 | 3.18 — Teste de quantidade zero | Expectativa de exceção acrescentada; sintaxe e dois testes passaram | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 12/10/2026 | 3.18 — Teste de quantidade zero | Expectativa de exceção acrescentada; sintaxe e dois testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `9d6ceb0` |
+| 12/10/2026 | 3.19 — Teste de quantidade negativa | Cenário -1 acrescentado; sintaxe e três testes passaram | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
