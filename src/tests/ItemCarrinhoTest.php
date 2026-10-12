@@ -18,6 +18,16 @@ class ItemCarrinhoTest extends TestCase
         $this->assertSame(14970, $subtotal);
     }
 
+    public function testCalculaSubtotalParaUmaUnidade(): void
+    {
+        $produto = new Produto("Camiseta", 4990);
+        $item = new ItemCarrinho($produto, 1);
+
+        $subtotal = $item->getSubtotalEmCentavos();
+
+        $this->assertSame(4990, $subtotal);
+    }
+
     public function testRecusaQuantidadeZero(): void
     {
         $produto = new Produto("Camiseta", 4990);
