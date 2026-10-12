@@ -26,4 +26,9 @@ class ItemCarrinho
     {
         return $this->quantidade;
     }
+
+    public function getSubtotalEmCentavos(): int
+    {
+        return $this->produto->getPrecoEmCentavos() * $this->quantidade;
+    }
 }

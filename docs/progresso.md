@@ -4,13 +4,13 @@
 
 - Última atualização: 12/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.13 — Composição com ItemCarrinho.
-- Situação: classe implementada e explicada; sintaxe e experiência com produto,
-  quantidades válidas/inválidas e compartilhamento do objeto passaram.
-  Entendimento confirmado com "entendi" em 12/10/2026; próximo passo: etapa 3.14.
+- Etapa atual: 3.14 — Subtotal do item do carrinho.
+- Situação: método de subtotal e exemplo persistente implementados e explicados;
+  sintaxe, demonstração, três cenários de cálculo e restrição HTTP passaram.
+  Entendimento confirmado com "entendi" em 12/10/2026; próximo passo: etapa 3.15.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
-  etapas 3.11 a 3.13 confirmadas com "entendi" em 12/10/2026.
+  etapas 3.11 a 3.14 confirmadas com "entendi" em 12/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Retomada em outro chat
@@ -44,8 +44,12 @@ HEAD, origin/main e `git ls-remote origin refs/heads/main` retornaram
 `846ada28c4dfd4ad4db61fd631ac7a3d39dbac6f`; publicação confirmada.
 Etapa 3.13 implementada, explicada e verificada. Após o esclarecimento sobre
 onde ItemCarrinho é instanciado, o aluno confirmou entendimento com "entendi".
-Checkpoint da composição preparado para publicação conforme autorização
-existente. Próximo passo: cálculo do subtotal na etapa 3.14.
+Checkpoint da composição `197470b` publicado conforme autorização existente.
+HEAD, origin/main e a consulta direta à branch main remota retornaram
+`197470b1570cbfa02d736166566e5f796deb8cb4`; publicação confirmada.
+Etapa 3.14 implementada, explicada, verificada e confirmada com "entendi".
+Checkpoint do subtotal preparado para publicação conforme autorização existente.
+Próximo passo: conferir requisitos e preparar o ambiente para PHPUnit na 3.15.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1260,19 +1264,59 @@ Verificação:
 
 Entendimento da etapa 3.13: confirmado com "entendi" em 12/10/2026.
 Esclarecimento em 12/10/2026: aluno pediu nova explicação e perguntou onde
-ItemCarrinho é chamado. Conferido o código: nenhum script em src instancia
-ItemCarrinho ainda. A chamada `new ItemCarrinho($produto, 3)` foi executada
+ItemCarrinho é chamado. Naquele momento, nenhum script em src instanciava
+ItemCarrinho. A chamada `new ItemCarrinho($produto, 3)` foi executada
 somente na experiência temporária enviada ao PHP em Docker e está documentada
 na aula. Reexplicados definição da classe, chamada de new, construtor automático,
 argumentos guardados nas propriedades e getters que acessam o objeto Produto.
 Não acrescentado novo código de aplicação no esclarecimento; após a explicação,
 o aluno confirmou entendimento.
-Checkpoint preparado: `feat: representa item de carrinho por composicao`.
-Publicação autorizada no destino já confirmado; verificar resultado do push.
-Último checkpoint publicado e verificado: `846ada2`, da etapa 3.12.
-Próximo passo após confirmação: etapa 3.14, acrescentar getSubtotalEmCentavos(): int
-ao ItemCarrinho, multiplicando preço do produto pela quantidade; explicar acesso
-ao objeto composto e verificar quantidades 1 e 3 e produto de preço zero em Docker.
+Checkpoint: `197470b`, `feat: representa item de carrinho por composicao`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `197470b1570cbfa02d736166566e5f796deb8cb4`.
+
+## Etapa 3.14
+
+Objetivo: calcular o subtotal de um item, multiplicando o preço unitário do
+Produto composto pela quantidade, e salvar um exemplo executável em src.
+
+Implementação e explicação:
+
+- `src/ItemCarrinho.php`: acrescentado getSubtotalEmCentavos(): int, retornando
+  `$this->produto->getPrecoEmCentavos() * $this->quantidade`.
+- Explicados consulta ao objeto guardado, multiplicação, return, retorno inteiro
+  e cálculo na chamada sem armazenar subtotal em outra propriedade.
+- `src/exemplo-item-carrinho.php`: exemplo CLI persistente com autoload;
+  cria Camiseta de 4990 centavos e ItemCarrinho com quantidade 3, imprime nome,
+  preço unitário, quantidade e subtotal de 14970 centavos.
+- A chamada de ItemCarrinho agora pode ser encontrada diretamente nesse script;
+  as experiências da etapa anterior foram temporárias. Explicados use, restrição
+  CLI, require_once, __DIR__, new, getters, concatenação e PHP_EOL.
+- Aula salva em `docs/aulas/03-14-subtotal-item-carrinho.md`; README atualizado
+  com o comando do novo exemplo.
+
+Verificação:
+
+- `php -l` via `docker compose exec -T php` passou para ItemCarrinho.php e
+  exemplo-item-carrinho.php.
+- `docker compose run --rm php php exemplo-item-carrinho.php`: quatro linhas
+  esperadas, incluindo `Subtotal em centavos: 14970`, código 0.
+- Verificação temporária em PHP via entrada padrão do Docker passou: 4990 x 1
+  resulta 4990, 4990 x 3 resulta 14970 e 0 x 3 resulta 0. Conferida também a
+  preservação do preço do produto e da quantidade do item em cada cenário.
+- HTTP do novo exemplo retornou 403, conforme a restrição CLI existente.
+- Sem build, regeneração do autoload, dependências novas ou mudança no Compose.
+  Contador não executado; configuração local e volumes preservados.
+
+Entendimento da etapa 3.14: confirmado com "entendi" em 12/10/2026.
+Checkpoint preparado: `feat: calcula subtotal do item do carrinho`.
+Publicação autorizada; conferir o resultado do push antes de registrar sucesso.
+Último checkpoint publicado e verificado: `197470b`, da etapa 3.13.
+Próximo passo após confirmação: etapa 3.15, consultar requisitos oficiais de
+PHPUnit compatível com PHP 8.4 e conferir extensões do container; explicar testes
+automatizados e preparar somente os requisitos ausentes no Dockerfile, se houver.
+Não instalar PHPUnit ou criar testes antes da explicação e confirmação dessa
+preparação, nem introduzir Laravel antecipadamente.
 
 ## Verificações e limitações do ambiente
 
@@ -1300,13 +1344,13 @@ ao objeto composto e verificar quantidades 1 e 3 e produto de preço zero em Doc
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `846ada2`,
-  `feat: define contrato Precificavel para Produto`.
+- Último commit local publicado nesta retomada: `197470b`,
+  `feat: representa item de carrinho por composicao`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `846ada2`,
-  igual a HEAD e origin/main. Etapa 3.13 ainda fora de commit.
+- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `197470b`,
+  igual a HEAD e origin/main. Etapa 3.14 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -1380,15 +1424,16 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   junto com a etapa 3.2.
 - Dúvida da 3.13: onde ItemCarrinho é chamado e como funciona a composição.
   Chamada identificada na experiência temporária documentada, sem script
-  persistente em src. Explicação reapresentada; aguardar entendimento.
-- Ação imediata: publicar a etapa 3.13 concluída e verificar o remoto;
-  iniciar a etapa 3.14, cálculo do subtotal.
+  persistente em src naquela etapa. Entendimento confirmado depois da explicação.
+  Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
+- Ação imediata: publicar o checkpoint concluído da 3.14, verificar o remoto
+  e iniciar a 3.15, requisitos de PHPUnit e preparação do ambiente.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 3.13: etapa 3.14 — calcular subtotal. Acrescentar
-  `getSubtotalEmCentavos(): int` ao ItemCarrinho, retornando preço do Produto
-  multiplicado pela quantidade. Explicar o acesso ao objeto composto e verificar
-  quantidades 1 e 3 e preço zero em Docker. Não implementar Carrinho completo.
+- Após a confirmação da 3.14: etapa 3.15 — requisitos de PHPUnit. Consultar
+  documentação oficial e verificar PHP e extensões pelo Docker. Explicar testes
+  automatizados e preparar apenas os requisitos necessários. Instalação da
+  ferramenta e primeiro teste em etapas posteriores, com confirmação entre elas.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1430,4 +1475,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 3.10 — Estado de Produto | Estado tipado, padrão e getter; sintaxe e onze cenários passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `a0e1042` |
 | 09/10/2026 | 3.11 — Ações de Produto | Ativar e desativar; retomada e demonstração em 12/10 | Confirmado pelo aluno: "entendi", em 12/10/2026 | Código em `8d54d1a`; confirmação `0c2106b` publicada no envio de `846ada2` |
 | 12/10/2026 | 3.12 — Interface Precificavel | Contrato e implements; sintaxe, demonstração e parâmetro tipado verificados | Confirmado pelo aluno: "entendi" | Publicado e verificado em `846ada2` |
-| 12/10/2026 | 3.13 — Composição com ItemCarrinho | Classe, getters e quantidade positiva; sintaxe e experiência verificadas | Confirmado pelo aluno: "entendi", após esclarecimento | Checkpoint preparado, publicação autorizada |
+| 12/10/2026 | 3.13 — Composição com ItemCarrinho | Classe, getters e quantidade positiva; sintaxe e experiência verificadas | Confirmado pelo aluno: "entendi", após esclarecimento | Publicado e verificado em `197470b` |
+| 12/10/2026 | 3.14 — Subtotal do item | Método e exemplo persistente; sintaxe, três cálculos e HTTP verificados | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
