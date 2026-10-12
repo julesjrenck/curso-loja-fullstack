@@ -3,14 +3,14 @@
 ## Estado atual
 
 - Última atualização: 12/10/2026, referência de data America/Sao_Paulo.
-- Módulo atual: 3 — PHP moderno e OOP.
-- Etapa atual: 3.21 — Teste de preço zero.
-- Situação: teste com Produto Brinde de preço 0 implementado e explicado;
-  sintaxe passou e PHPUnit retornou OK (5 tests, 5 assertions).
-  Entendimento confirmado com "entendi" em 12/10/2026; próximo passo: revisão 3.22.
-- Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
+- Módulo atual: 3 — PHP moderno e OOP, concluído; próximo módulo: 4 — Laravel e MVC.
+- Etapa atual: 3.22 — Revisão acompanhada do módulo 3.
+- Situação: conceitos e relações entre arquivos reapresentados; demonstração
+  existente conferiu subtotal 14970 e estado inativo pelo item. Cinco testes
+  passaram na 3.21. Revisão confirmada com "entendi"; módulo 3 concluído em 12/10/2026.
+- Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
-  etapas 3.11 a 3.21 confirmadas com "entendi" em 12/10/2026.
+  etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Retomada em outro chat
@@ -75,8 +75,11 @@ Checkpoint da menor quantidade válida `95630cd` publicado; HEAD, origin/main
 e consulta direta à main remota retornaram
 `95630cdea45c1885a277b833ae26a0cca32cafac`.
 Etapa 3.21 implementada, explicada, verificada e confirmada com "entendi".
-Checkpoint do teste de preço zero preparado para publicação.
-Próximo passo: revisão acompanhada do módulo 3 na etapa 3.22.
+Checkpoint do teste de preço zero `a5caa53` publicado; HEAD, origin/main e consulta
+direta à main remota retornaram `a5caa5380ea88a83de3f48655c7e8aed926929ff`.
+Etapa 3.22 apresentada e documentada, sem mudança no código, e confirmada com
+"entendi". Módulo 3 concluído em 12/10/2026. Checkpoint de revisão preparado
+para publicação; próximo passo: 4.1, preparação para Laravel.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1594,14 +1597,52 @@ Verificação:
   do Composer. Configuração local e volumes preservados; contador não executado.
 
 Entendimento da etapa 3.21: confirmado com "entendi" em 12/10/2026.
-Checkpoint preparado: `test: verifica subtotal de produto gratuito`.
-Publicação autorizada; conferir o resultado do push antes de registrar sucesso.
-Último checkpoint publicado e verificado antes do envio: `95630cd`, da etapa 3.20.
-Próximo passo após confirmação: etapa 3.22, revisão acompanhada do módulo 3.
-Retomar Produto, StatusProduto, Precificavel, ItemCarrinho, autoload e TestCase;
-explicar o fluxo de criação, validação, consulta, ações e verificação pelos cinco
-testes. Responder dúvidas e aguardar confirmação da revisão antes de registrar
-o módulo como concluído. Não iniciar Laravel ou outras funcionalidades nessa revisão.
+Checkpoint: `a5caa53`, `test: verifica subtotal de produto gratuito`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `a5caa5380ea88a83de3f48655c7e8aed926929ff`.
+
+## Etapa 3.22
+
+Objetivo: relacionar os conceitos de PHP moderno e OOP já estudados, revisar
+o fluxo das classes e confirmar entendimento antes de concluir o módulo 3.
+
+Implementação e explicação:
+
+- Apenas documentação: `docs/aulas/03-22-revisao-modulo-3.md`, com mapa das relações,
+  arquivos, conceitos, demonstração e cenários dos testes; README atualizado.
+- Retomados tipos e regras de valor, propriedades privadas, construtor e promoção,
+  getters, `$this`, ações void e enum de estado.
+- Relacionados Produto implements Precificavel, composição de ItemCarrinho com
+  Produto e herança de ItemCarrinhoTest por extends TestCase.
+- Retomados namespaces/use, mapeamento PSR-4, autoload, require-dev, lockfile e
+  arquivos gerados no volume vendor.
+- Revisados assertSame, expectException, ::class, bootstrap e os cinco cenários
+  salvos de subtotal e recusa de quantidades inválidas.
+- Código PHP, testes, dependências, Compose e Dockerfile permaneceram iguais.
+
+Verificação:
+
+- Demonstração temporária via entrada padrão de `docker compose run --rm -T php php`:
+  cria camiseta de 4990 centavos e item de quantidade 3; mostra subtotal 14970,
+  desativa Produto e consulta estado inativo pelo item. Duas linhas, código 0.
+- A demonstração confirma o uso do mesmo Produto guardado pelo item e retoma
+  cálculo, encapsulamento, enum e autoload existentes, sem criar novo exemplo em src.
+- Última execução dos testes na 3.21: `OK (5 tests, 5 assertions)`, código 0.
+  Não repetida nesta revisão, que não alterou código ou dependências.
+- Sem build, nova instalação ou execução do contador. Configuração local e
+  volumes preservados.
+
+Entendimento da revisão 3.22: confirmado com "entendi" em 12/10/2026.
+Módulo 3 concluído quanto ao entendimento, com os conceitos revisados e cinco
+testes PHPUnit já verificados.
+Checkpoint preparado: `docs: conclui modulo PHP moderno e OOP`.
+Publicação autorizada; verificar resultado do push antes de registrar sucesso.
+Último checkpoint publicado e verificado: `a5caa53`, da etapa 3.21.
+Próximo passo após confirmação: registrar conclusão do módulo 3, publicar seu
+checkpoint de revisão e iniciar 4.1. Apresentar o papel de Laravel, consultar
+requisitos oficiais de Laravel 13, conferir PHP/Composer/extensões no Docker
+e definir a pasta do backend preservando o laboratório src. A instalação será
+uma etapa seguinte, após explicação e confirmação dessa preparação.
 
 ## Verificações e limitações do ambiente
 
@@ -1629,13 +1670,13 @@ o módulo como concluído. Não iniciar Laravel ou outras funcionalidades nessa 
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `95630cd`,
-  `test: verifica subtotal da menor quantidade valida`.
+- Último commit local publicado nesta retomada: `a5caa53`,
+  `test: verifica subtotal de produto gratuito`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `95630cd`,
-  igual a HEAD e origin/main. Etapa 3.21 ainda fora de commit.
+- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `a5caa53`,
+  igual a HEAD e origin/main. Documentação da revisão 3.22 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -1711,15 +1752,15 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar a etapa 3.21 concluída, conferir o remoto e apresentar
-  a revisão acompanhada do módulo 3 na etapa 3.22.
+- Ação imediata: publicar a revisão e conclusão do módulo 3, conferir o remoto
+  e iniciar 4.1, preparação para Laravel.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 3.21: etapa 3.22 — revisão acompanhada do módulo 3.
-  Relacionar Produto, enum de status, interface Precificavel, composição do item,
-  autoload e herança de TestCase. Retomar entradas, validações, ações e cinco
-  cenários testados. Responder dúvidas e solicitar confirmação da revisão antes
-  de registrar o módulo como concluído, sem antecipar instalação de Laravel.
+- Após a confirmação da revisão 3.22: registrar conclusão do módulo 3 e publicar
+  o checkpoint de documentação. Iniciar 4.1, preparação para Laravel: papel do
+  framework, requisitos oficiais de Laravel 13, verificação do PHP/Composer e
+  extensões no Docker e definição da pasta do backend, preservando src.
+  Instalação em etapa posterior, com confirmação da preparação antes dela.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1769,4 +1810,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 12/10/2026 | 3.18 — Teste de quantidade zero | Expectativa de exceção acrescentada; sintaxe e dois testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `9d6ceb0` |
 | 12/10/2026 | 3.19 — Teste de quantidade negativa | Cenário -1 acrescentado; sintaxe e três testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `188ff33` |
 | 12/10/2026 | 3.20 — Teste da menor quantidade válida | Quantidade 1 e subtotal 4990; sintaxe e quatro testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `95630cd` |
-| 12/10/2026 | 3.21 — Teste de preço zero | Produto gratuito e subtotal 0; sintaxe e cinco testes passaram | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 12/10/2026 | 3.21 — Teste de preço zero | Produto gratuito e subtotal 0; sintaxe e cinco testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `a5caa53` |
+| 12/10/2026 | 3.22 — Revisão do módulo 3 | Revisão e demonstração concluídas; módulo 3 encerrado | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |

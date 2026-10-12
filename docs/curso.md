@@ -29,8 +29,8 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 ## Módulos
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
-Os módulos 1 e 2 foram concluídos. O módulo 3 está em andamento; módulos 4 a 23
-ainda não foram iniciados.
+Os módulos 1 a 3 foram concluídos. O próximo módulo é 4 — Laravel e MVC;
+módulos 4 a 23 ainda não foram iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
 | Módulo | Conteúdo | Entrega verificável |
