@@ -2,29 +2,39 @@
 
 ## Estado atual
 
-- Última atualização: 09/10/2026, referência de data America/Sao_Paulo.
+- Última atualização: 12/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 3 — PHP moderno e OOP.
 - Etapa atual: 3.11 — Ações e encapsulamento de Produto.
-- Situação: ativar e desativar implementados; demonstração, sintaxe e oito
-  verificações passaram, aguardando entendimento da etapa 3.11.
+- Situação: etapa 3.11 concluída quanto ao entendimento em 12/10/2026.
+  Demonstração executada novamente com sucesso na retomada; próximo passo: 3.12.
 - Entendimento confirmado: módulos 1 e 2 completos, cada avanço confirmado
-  pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026.
+  pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
+  etapa 3.11 confirmada com "entendi" em 12/10/2026.
 - Módulos 4 a 23: não iniciados.
 
 ## Retomada em outro chat
 
 Em 09/10/2026, o aluno informou que continuará o curso amanhã em outro chat.
-A sessão terminou após a explicação da etapa 3.11, sem confirmação de
-entendimento dessa etapa. A confirmação mais recente é da etapa 3.10.
+A sessão de 09/10 terminou após a explicação da etapa 3.11, sem confirmação
+de entendimento dessa etapa naquele momento.
 
-Na próxima sessão, ler AGENTS.md, docs/curso.md e este registro, conferir o Git
-e retomar a aula 3.11: ativar/desativar, encapsulamento, `$this`, void e estado
-de cada instância. Responder às dúvidas e aguardar confirmação antes de
-implementar a interface da etapa 3.12. Não reiniciar o curso.
+O ponto de retomada deixado naquela sessão era a aula 3.11: ativar/desativar,
+encapsulamento, `$this`, void e estado de cada instância. Essa retomada foi
+realizada em 12/10, conforme o registro abaixo.
 
 Código e aula 3.11 publicados e sincronizados no checkpoint `8d54d1a`.
 Este registro de encerramento é uma atualização de documentação; não altera
 o código ou o ambiente Docker.
+
+Retomada realizada em 12/10/2026: instruções, roteiro, progresso, código da
+etapa e estado do Git conferidos. Não havia alterações locais. A consulta
+`git ls-remote origin refs/heads/main` confirmou `aa9642e` no GitHub, igual
+a HEAD e origin/main; esse commit contém o registro de encerramento anterior.
+A explicação da etapa 3.11 foi retomada e a demonstração executada novamente.
+Após a reapresentação, o aluno confirmou entendimento com "entendi" em
+12/10/2026. Etapa 3.11 concluída; próximo passo: interface da etapa 3.12.
+Registro de confirmação preparado para commit e push nesta sessão; verificar
+o resultado antes de informar publicação.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1145,8 +1155,23 @@ Verificação:
   Configuração local e volumes preservados.
 
 Checkpoint: `feat: adiciona acoes de ativar e desativar Produto`.
-Entendimento da etapa 3.11: pendente. Aguardar confirmação antes de interfaces.
+Entendimento da etapa 3.11: confirmado pelo aluno com "entendi" em 12/10/2026.
 Publicação verificada: `8d54d1a`, com HEAD e origin/main iguais antes deste registro.
+
+Retomada em 12/10/2026:
+
+- Nenhuma alteração de implementação. Reapresentados métodos públicos,
+  acesso interno ao status privado, `$this`, retorno void e estado por instância.
+- `docker compose ps -a` confirmou o servidor PHP ativo na porta local 8001.
+- `docker compose run --rm php php exemplo-produto.php` executado novamente:
+  as mesmas nove linhas da aula, com código 0. A camiseta foi desativada e
+  ativada; a calça permaneceu inativa. A entrada de preço negativo foi recusada.
+- Não foram repetidas nesta retomada as oito verificações de comportamento
+  ou a verificação de sintaxe da implementação anterior.
+- O pedido inicial para continuar não foi tratado como confirmação.
+  Após a explicação, o aluno confirmou entendimento com "entendi".
+- Código e aula já publicados; registro desta retomada e confirmação preparado
+  para checkpoint `docs: confirma entendimento da etapa 3.11`.
 
 ## Verificações e limitações do ambiente
 
@@ -1247,12 +1272,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   registrada até agora.
 - Dúvida sobre `trim`: exemplo prático respondido e entendimento confirmado
   junto com a etapa 3.2.
-- Ação imediata na próxima sessão: retomar a explicação das ações e encapsulamento,
-  responder dúvidas e aguardar entendimento da etapa 3.11. Seu checkpoint já
-  foi publicado; aluno avisou que continuará amanhã em outro chat.
+- Ação imediata: publicar o registro da confirmação da etapa 3.11 e iniciar
+  a etapa 3.12, conforme o próximo passo já definido.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação: etapa 3.12 — criar `src/Precificavel.php` com uma interface
+- Próxima etapa, 3.12 — criar `src/Precificavel.php` com uma interface
   no namespace Loja, declarando `getPrecoEmCentavos(): int`. Fazer Produto
   implementar o contrato, aproveitando seu método existente. Explicar interface,
   assinatura e implements; demonstrar um parâmetro tipado com a interface
@@ -1297,4 +1321,4 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 09/10/2026 | 3.8 — Autoload Composer | Arquivos gerados; classe carregada por demanda e comportamentos verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `af61127` |
 | 09/10/2026 | 3.9 — Enum de estados | Enum e exemplo criados; autoload, casos e tipagem verificados | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `377860a` |
 | 09/10/2026 | 3.10 — Estado de Produto | Estado tipado, padrão e getter; sintaxe e onze cenários passaram | Confirmado pelo aluno: "entendi" | Publicado no checkpoint `a0e1042` |
-| 09/10/2026 | 3.11 — Ações de Produto | Ativar e desativar; repetição, isolamento e proteção verificados | Aguardando confirmação; retomada em outro chat | Publicado no checkpoint `8d54d1a` |
+| 09/10/2026 | 3.11 — Ações de Produto | Ativar e desativar; retomada e demonstração em 12/10 | Confirmado pelo aluno: "entendi", em 12/10/2026 | Código publicado no checkpoint `8d54d1a`; registro da confirmação preparado para publicação |
