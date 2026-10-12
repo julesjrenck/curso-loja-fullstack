@@ -17,4 +17,13 @@ class ItemCarrinhoTest extends TestCase
 
         $this->assertSame(14970, $subtotal);
     }
+
+    public function testRecusaQuantidadeZero(): void
+    {
+        $produto = new Produto("Camiseta", 4990);
+
+        $this->expectException(InvalidArgumentException::class);
+
+        new ItemCarrinho($produto, 0);
+    }
 }
