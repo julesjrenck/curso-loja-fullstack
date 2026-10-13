@@ -86,8 +86,8 @@ vazio foi uma renderização de teste, enquanto a página HTTP mantém a lista p
 ## Situação e próximo passo
 
 Implementação e verificações concluídas; explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
-Último checkpoint publicado: 37b7485, etapa 4.12.
+confirmado com "entendi" em 13/10/2026. Checkpoint b944f4e publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram.
 
 Após confirmação, publicar 4.13 e iniciar 4.14: apresentar middleware, criar
 MarcarRespostaCurso para acrescentar o cabeçalho X-Curso: Laravel à resposta e

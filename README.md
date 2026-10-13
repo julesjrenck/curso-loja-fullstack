@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.13, condição para lista vazia.
+Módulo 4 — Laravel e MVC: etapa 4.14, primeiro middleware da loja.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -73,6 +73,10 @@ Na 4.13, a view usa @if/@else para escolher entre a lista e uma mensagem de
 ausência de produtos. Renderizações com três itens e sem itens conferidas;
 controller preservado, página HTTP 200. Explicação apresentada, entendimento
 da 4.13 confirmado.
+Na 4.14, MarcarRespostaCurso foi gerado pelo Artisan e aplicado à rota /loja.
+Ele acrescenta X-Curso: Laravel após continuar o atendimento. Cabeçalho, escopo
+e conteúdo HTTP conferidos; explicação apresentada, entendimento da 4.14 confirmado.
+A rota / permanece sem esse cabeçalho.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -130,6 +134,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.11 — Primeira view Blade da loja](docs/aulas/04-11-primeira-view-blade.md)
 - [Aula 4.12 — Lista de produtos com Blade](docs/aulas/04-12-lista-produtos-blade.md)
 - [Aula 4.13 — Condição para lista vazia](docs/aulas/04-13-lista-vazia-blade.md)
+- [Aula 4.14 — Primeiro middleware da loja](docs/aulas/04-14-primeiro-middleware.md)
 
 ## Backend Laravel
 
@@ -239,8 +244,10 @@ O template está em backend/resources/views/loja.blade.php e usa {{ $nomeLoja }}
 Na 4.12, o controller também envia produtos como array de nomes demonstrativos;
 @foreach na view gera um li para cada nome. Na 4.13, @if/@else passou a mostrar
 uma mensagem quando produtos for vazio. O controller mantém os três exemplos;
-o caso vazio foi conferido com dados temporários de renderização. Após confirmação,
-a próxima etapa introduzirá um middleware na rota /loja.
+o caso vazio foi conferido com dados temporários de renderização. Na 4.14, a rota
+/loja recebeu MarcarRespostaCurso, que adiciona X-Curso: Laravel à resposta HTTP.
+O conteúdo da página permanece igual. Após confirmação, a próxima etapa estudará
+injeção de uma classe de catálogo demonstrativo no controller.
 
 ## Executar a demonstração do laboratório PHP
 
