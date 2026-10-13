@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.2, esqueleto do backend.
+Módulo 4 — Laravel e MVC: etapa 4.3, serviço Docker do backend.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -30,8 +30,10 @@ e uma quantidade positiva e calcula o subtotal em centavos. PHPUnit 13.4.1 foi
 instalado como dependência de desenvolvimento e verificado no Docker. A etapa
 4.2 obteve o esqueleto oficial laravel/laravel v13.11.0 em `backend/`, usando
 --no-install e --no-scripts. A estrutura foi apresentada, verificada e confirmada.
-O próximo passo prepara serviço e volume do backend no Docker. O laboratório
-permanece em `src/`, com seu Composer independente.
+Na 4.3, o serviço `backend` foi preparado para comandos PHP/Composer, com código
+somente leitura e volume `vendor-backend` exclusivo. Verificações concluídas;
+entendimento confirmado. O laboratório permanece em `src/`, com
+seu Composer independente.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -78,16 +80,34 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.22 — Revisão acompanhada do módulo 3](docs/aulas/03-22-revisao-modulo-3.md)
 - [Aula 4.1 — Papel do Laravel e preparação](docs/aulas/04-01-preparacao-laravel.md)
 - [Aula 4.2 — Esqueleto Laravel e estrutura](docs/aulas/04-02-esqueleto-laravel.md)
+- [Aula 4.3 — Serviço Docker e volume do backend](docs/aulas/04-03-servico-backend-e-vendor.md)
 
 ## Backend Laravel
 
 Os arquivos iniciais estão em `backend/`. A versão do esqueleto foi fixada em
 v13.11.0; `backend/composer.json` declara `laravel/framework` ^13.17, cuja versão
 exata será resolvida quando instalarmos as dependências. O autoload App aponta
-para app/. Ainda não há vendor, lockfile, .env local ou servidor Laravel.
+para app/. Dependências, lockfile e .env local ainda não foram gerados.
 
-A próxima etapa, após entendimento da estrutura, prepara serviço e volume de
-dependências separados no Docker. A aula 4.2 apresenta os arquivos gerados.
+A aula 4.2 apresenta os arquivos gerados. O serviço `backend` reutiliza o
+Dockerfile da raiz e monta `./backend:/app:ro`, com `vendor-backend:/app/vendor`
+gravável. A pasta local backend/vendor é somente um ponto de montagem vazio,
+ignorado pelo Git. O volume de dependências está vazio nesta etapa.
+
+Para preparar e verificar esse serviço, na raiz do projeto:
+
+```bash
+mkdir -p backend/vendor
+docker compose config --quiet
+docker compose build backend
+docker compose run --rm backend
+docker compose run --rm backend composer --version
+```
+
+O comando padrão mostra PHP 8.4.26 e termina; o último comando substitui esse
+padrão para consultar Composer 2.10.3. Não há servidor Laravel iniciado.
+A aula 4.3 explica as montagens e a verificação da persistência. Após confirmação,
+a 4.4 instalará as dependências de execução e gerará o lockfile pelo Docker.
 
 ## Executar a demonstração do laboratório PHP
 

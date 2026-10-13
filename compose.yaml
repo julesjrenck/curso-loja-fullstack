@@ -14,6 +14,14 @@ services:
       - vendor-php:/app/vendor
       - dados-demo:/dados
 
+  backend:
+    build: .
+    command: ["php", "--version"]
+    volumes:
+      - ./backend:/app:ro
+      - vendor-backend:/app/vendor
+
 volumes:
   vendor-php:
   dados-demo:
+  vendor-backend:

@@ -4,16 +4,17 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.2 — Esqueleto Laravel e estrutura.
-- Situação: esqueleto laravel/laravel v13.11.0 gerado em backend, com 58 arquivos
-  apresentados. JSON e sintaxe de quatro entradas PHP conferidos. Dependências,
-  ambiente local e execução Laravel adiados. Entendimento confirmado com
-  "entendi" em 13/10/2026; próximo passo: preparação Docker na 4.3.
+- Etapa atual: 4.3 — Serviço Docker e volume do backend.
+- Situação: serviço backend e volume vendor-backend preparados no Compose.
+  PHP/Composer, código somente leitura e volume gravável/persistente verificados.
+  Explicação apresentada; entendimento confirmado com "entendi" em 13/10/2026.
+  Dependências e execução Laravel adiadas para etapas próprias. Próximo passo:
+  publicar 4.3 e iniciar instalação na 4.4. Último checkpoint publicado: cfa2e69.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 e 4.2 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.3 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -88,8 +89,12 @@ e confirmada com "entendi" em 13/10/2026. Checkpoint da preparação `9807e53`
 publicado; HEAD, origin/main e consulta direta à main remota retornaram
 `9807e53416d5b45e3f903edf36aa2f3ff8381111`.
 Etapa 4.2 gerou e apresentou o esqueleto em backend, sem dependências ou scripts,
-e foi confirmada com "entendi" em 13/10/2026. Checkpoint do esqueleto preparado
-para publicação; próximo passo: serviço e volume do backend na 4.3.
+e foi confirmada com "entendi" em 13/10/2026. Checkpoint cfa2e69 publicado;
+HEAD, origin/main e consulta direta à main remota retornaram
+`cfa2e69a9f24d6c0417406f340f02a3a079d827b`.
+Etapa 4.3 preparou serviço backend e volume exclusivo, verificou montagens e
+persistência. Implementação e explicação concluídas; entendimento confirmado com
+"entendi" em 13/10/2026. Checkpoint preparado para publicação autorizada.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1734,9 +1739,9 @@ Verificação:
   ou infraestrutura. Sem build, novo serviço ou execução do contador.
 
 Entendimento da etapa 4.2: confirmado com "entendi" em 13/10/2026.
-Checkpoint preparado: `build: adiciona esqueleto oficial do backend Laravel`.
-Publicação autorizada; conferir resultado do push antes de registrar sucesso.
-Último checkpoint publicado e verificado: `9807e53`, da etapa 4.1.
+Checkpoint: `cfa2e69`, `build: adiciona esqueleto oficial do backend Laravel`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `cfa2e69a9f24d6c0417406f340f02a3a079d827b`.
 Pendências antes de usar banco/testes de integração: ajustar os padrões SQLite
 do modelo conforme SQL Server e banco exclusivo de testes, quando introduzidos.
 Próximo passo após confirmação: 4.3, preparar serviço backend no Compose para
@@ -1744,6 +1749,49 @@ comandos PHP/Composer, com ./backend:/app:ro e volume vendor-backend separado
 em /app/vendor. Criar backend/vendor como ponto de montagem e conferir código
 somente leitura e volume gravável. Dependências em etapa seguinte; não executar
 Laravel, instalar Boost, adicionar banco ou frontend antecipadamente.
+
+## Etapa 4.3
+
+Objetivo: preparar o serviço Docker do backend com PHP/Composer e dependências
+separadas das do laboratório, antes de instalar os pacotes Laravel.
+
+Implementação e explicação:
+
+- compose.yaml recebeu serviço backend: build da raiz, command php --version,
+  bind mount ./backend:/app:ro e volume vendor-backend:/app/vendor gravável.
+- Volume vendor-backend declarado na raiz; serviço php e seus volumes preservados.
+- mkdir -p backend/vendor preparou ponto de montagem vazio, ignorado pelo Git.
+- Dockerfile e .dockerignore preservados. Imagem reutiliza PHP 8.4.26, Composer
+  2.10.3 e unzip; montagem sobre /app cobre a cópia src presente na imagem.
+- Explicados caminhos local/container, WORKDIR /app, comando padrão e substituição
+  por run, declaração/montagem de volumes e persistência após remoção do container.
+- Aula em docs/aulas/04-03-servico-backend-e-vendor.md e README atualizados.
+
+Verificação:
+
+- docker compose config --quiet: válido, código 0. Build backend concluído.
+- docker compose run --rm backend: PHP 8.4.26, término normal, container removido.
+- docker compose run --rm backend composer --version: Composer 2.10.3/PHP 8.4.26.
+- Diagnóstico PHP temporário: getcwd /app e manifesto laravel/laravel; /proc/mounts
+  confirmou ro em /app e rw em /app/vendor; is_writable confirmou as permissões.
+- Volume estava vazio. Marcador criado exclusivamente com fopen em modo x;
+  gravação conferida, primeiro container terminou e foi removido.
+- Segundo container leu o texto exato, comprovando persistência; unlink removeu
+  somente o marcador e scandir comprovou que o volume voltou a ficar vazio.
+- docker volume inspect confirmou curso-loja-fullstack_vendor-backend. Compose ps
+  mostrou apenas o servidor php do laboratório ativo; backend é temporário.
+- backend/vendor local vazio e ignorado; backend/.env e composer.lock ausentes.
+  Sem instalação de pacotes, Artisan, migrations, testes Laravel ou contador.
+
+Entendimento da etapa 4.3: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
+Último checkpoint publicado e verificado: cfa2e69, etapa 4.2.
+Próximo passo exato: após confirmação, publicar 4.3 e iniciar 4.4, instalação de
+dependências de execução com Composer em Docker, sem scripts automáticos e sem
+instalar ferramentas de desenvolvimento nesta etapa. Gerar composer.lock usando
+uma montagem temporária gravável do backend e o mesmo volume vendor-backend;
+apresentar pacotes/autoload e verificar requisitos. SQL Server e testes de
+integração permanecem pendentes antes de qualquer uso dos padrões SQLite gerados.
 
 ## Verificações e limitações do ambiente
 
@@ -1771,13 +1819,13 @@ Laravel, instalar Boost, adicionar banco ou frontend antecipadamente.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `9807e53`,
-  `docs: prepara ambiente para Laravel`.
+- Último commit local publicado nesta retomada: `cfa2e69`,
+  `build: adiciona esqueleto oficial do backend Laravel`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `9807e53`,
-  igual a HEAD e origin/main. Etapa 4.2 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `cfa2e69`,
+  igual a HEAD e origin/main. Etapa 4.3 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -1853,14 +1901,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar o esqueleto e a etapa 4.2 concluída, conferir o remoto
-  e iniciar a preparação Docker na 4.3.
+- Ação imediata: publicar 4.3 confirmada, conferir o remoto e iniciar 4.4.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.2: 4.3 — serviço backend para comandos PHP/Composer,
-  montagem ./backend:/app:ro e volume vendor-backend em /app/vendor, preservando
-  serviço PHP e vendor do laboratório. Preparar backend/vendor e verificar as
-  montagens. Instalação das dependências em uma etapa posterior.
+- Após a confirmação da 4.3: publicar seu checkpoint e iniciar 4.4, instalar
+  dependências de execução pelo Docker, gerar e explicar lockfile/autoload e
+  verificar requisitos, sem scripts automáticos ou ferramentas opcionais.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1913,4 +1959,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 12/10/2026 | 3.21 — Teste de preço zero | Produto gratuito e subtotal 0; sintaxe e cinco testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `a5caa53` |
 | 12/10/2026 | 3.22 — Revisão do módulo 3 | Revisão e demonstração concluídas; módulo 3 encerrado | Confirmado pelo aluno: "entendi" | Publicado e verificado em `7a4dc00` |
 | 12/10/2026 | 4.1 — Preparação para Laravel | Papel e organização documentados; PHP, Composer e treze extensões conferidos | Confirmado pelo aluno: "entendi", em 13/10/2026 | Publicado e verificado em `9807e53` |
-| 13/10/2026 | 4.2 — Esqueleto Laravel | Modelo v13.11.0 e 58 arquivos; JSON, quatro sintaxes e artefatos adiados conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 13/10/2026 | 4.2 — Esqueleto Laravel | Modelo v13.11.0 e 58 arquivos; JSON, quatro sintaxes e artefatos adiados conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em cfa2e69 |
+| 13/10/2026 | 4.3 — Serviço Docker do backend | Serviço e volume exclusivos; PHP/Composer, montagens e persistência verificados | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
