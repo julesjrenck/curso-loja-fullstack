@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.1, papel do framework e preparação do ambiente.
+Módulo 4 — Laravel e MVC: etapa 4.2, esqueleto do backend.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -17,7 +17,8 @@ O [repositório público no GitHub](https://github.com/julesjrenck/curso-loja-fu
 está configurado como `origin`. A autenticação SSH funcionou, os commits iniciais
 foram publicados e a branch local `main` acompanha `origin/main`.
 
-A aplicação ainda não foi criada. Não há comandos para executar a loja.
+O esqueleto Laravel foi obtido em backend, ainda sem dependências ou configuração
+local. A loja ainda não está executável.
 Docker e Compose estão instalados. O serviço `php` constrói a imagem pelo
 Dockerfile, inclui Composer 2.10.3 e unzip 6.0-28+deb12u1 e inicia o servidor
 PHP 8.4.26 de desenvolvimento.
@@ -27,9 +28,10 @@ em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). Produto implementa a interf
 Precificavel, que exige `getPrecoEmCentavos(): int`. ItemCarrinho guarda um Produto
 e uma quantidade positiva e calcula o subtotal em centavos. PHPUnit 13.4.1 foi
 instalado como dependência de desenvolvimento e verificado no Docker. A etapa
-4.1 apresentou o papel do Laravel e conferiu os requisitos de PHP/Composer no
-Docker. O backend será criado em `backend/`; o laboratório permanece em `src/`.
-A preparação foi confirmada pelo aluno; o próximo passo é obter o esqueleto.
+4.2 obteve o esqueleto oficial laravel/laravel v13.11.0 em `backend/`, usando
+--no-install e --no-scripts. A estrutura foi apresentada, verificada e confirmada.
+O próximo passo prepara serviço e volume do backend no Docker. O laboratório
+permanece em `src/`, com seu Composer independente.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -75,8 +77,19 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.21 — Testar um produto com preço zero](docs/aulas/03-21-teste-preco-zero.md)
 - [Aula 3.22 — Revisão acompanhada do módulo 3](docs/aulas/03-22-revisao-modulo-3.md)
 - [Aula 4.1 — Papel do Laravel e preparação](docs/aulas/04-01-preparacao-laravel.md)
+- [Aula 4.2 — Esqueleto Laravel e estrutura](docs/aulas/04-02-esqueleto-laravel.md)
 
-## Executar a demonstração atual
+## Backend Laravel
+
+Os arquivos iniciais estão em `backend/`. A versão do esqueleto foi fixada em
+v13.11.0; `backend/composer.json` declara `laravel/framework` ^13.17, cuja versão
+exata será resolvida quando instalarmos as dependências. O autoload App aponta
+para app/. Ainda não há vendor, lockfile, .env local ou servidor Laravel.
+
+A próxima etapa, após entendimento da estrutura, prepara serviço e volume de
+dependências separados no Docker. A aula 4.2 apresenta os arquivos gerados.
+
+## Executar a demonstração do laboratório PHP
 
 Na raiz do projeto, crie a configuração local a partir do modelo. No Linux com
 GNU cp, o comando abaixo preserva um `.env` já existente:

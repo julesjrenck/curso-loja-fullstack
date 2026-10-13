@@ -4,15 +4,16 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.1 — Papel do Laravel e preparação do ambiente.
-- Situação: papel do framework apresentado, requisitos PHP/Composer conferidos
-  no Docker e pasta backend definida. Entendimento confirmado com "entendi"
-  em 13/10/2026; próximo passo: obter o esqueleto na 4.2.
+- Etapa atual: 4.2 — Esqueleto Laravel e estrutura.
+- Situação: esqueleto laravel/laravel v13.11.0 gerado em backend, com 58 arquivos
+  apresentados. JSON e sintaxe de quatro entradas PHP conferidos. Dependências,
+  ambiente local e execução Laravel adiados. Entendimento confirmado com
+  "entendi" em 13/10/2026; próximo passo: preparação Docker na 4.3.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapa 4.1 confirmada em 13/10/2026.
+- Etapas 4.1 e 4.2 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -83,8 +84,12 @@ Etapa 3.22 apresentada e documentada, sem mudança no código, e confirmada com
 publicado; HEAD, origin/main e consulta direta à main remota retornaram
 `7a4dc008fc4418059d7057d913cea9a9336ee612`.
 Etapa 4.1 apresentada e documentada, com diagnóstico do ambiente concluído,
-e confirmada com "entendi" em 13/10/2026. Checkpoint da preparação preparado
-para publicação; próximo passo: obter o esqueleto na etapa 4.2.
+e confirmada com "entendi" em 13/10/2026. Checkpoint da preparação `9807e53`
+publicado; HEAD, origin/main e consulta direta à main remota retornaram
+`9807e53416d5b45e3f903edf36aa2f3ff8381111`.
+Etapa 4.2 gerou e apresentou o esqueleto em backend, sem dependências ou scripts,
+e foi confirmada com "entendi" em 13/10/2026. Checkpoint do esqueleto preparado
+para publicação; próximo passo: serviço e volume do backend na 4.3.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1682,15 +1687,63 @@ Verificação:
   serão resolvidas e verificadas quando forem instaladas no backend.
 
 Entendimento da etapa 4.1: confirmado com "entendi" em 13/10/2026.
-Checkpoint preparado: `docs: prepara ambiente para Laravel`.
-Publicação autorizada; conferir o resultado do push antes de registrar sucesso.
-Último checkpoint publicado e verificado: `7a4dc00`, encerramento do módulo 3.
-Próximo passo após confirmação: 4.2, obter o esqueleto oficial laravel/laravel
-da série 13 em backend pelo Composer no Docker. Consultar e fixar sua versão
-identificável. Usar --no-install e --no-scripts; apresentar a estrutura e os
-arquivos principais gerados. Instalação de dependências, ambiente e servidor
-entram nas etapas seguintes, com confirmação entre elas. Não adicionar banco,
-frontend, filas ou demais módulos antecipadamente.
+Checkpoint: `9807e53`, `docs: prepara ambiente para Laravel`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `9807e53416d5b45e3f903edf36aa2f3ff8381111`.
+
+## Etapa 4.2
+
+Objetivo: obter o esqueleto oficial de Laravel em backend e apresentar a
+estrutura antes de instalar dependências ou executar a aplicação.
+
+Implementação e explicação:
+
+- Esqueleto laravel/laravel v13.11.0, versão consultada no Packagist e tag oficial,
+  obtido com create-project, --no-install e --no-scripts, no Docker existente.
+- backend ausente antes da operação; mkdir preparou o ponto de montagem local.
+  Apenas backend montado em /projeto/backend:rw; --workdir /projeto, destino backend.
+- Comando terminou com código 0 e gerou 58 arquivos. Antes do commit, removidos
+  somente espaços no fim de três linhas vazias do template welcome.blade.php,
+  apontados por git diff --cached --check; comportamento preservado.
+  Proprietários alinhados à pasta backend com chown -R --reference;
+  backend e composer.json verificados como 1000:1000 no host.
+- Apresentados grupos app, bootstrap, config, database, public, resources, routes,
+  storage e tests, arquivos de configuração e modelos gerados na raiz.
+- Explicados os pontos de entrada public/index.php e artisan, autoload seguido de
+  bootstrap/app.php, configuração de rotas e vínculo de / à view welcome.
+- JSON declara framework ^13.17 e App\\ para app/; template v13.11.0 e biblioteca
+  framework são pacotes diferentes. Dependências ainda não resolvidas/instaladas;
+  lockfile será gerado posteriormente. Laboratório src continua independente.
+- backend/AGENTS.md e CLAUDE.md lidos: recomendam instalação de runtime no host
+  e Laravel Boost. As instruções do aluno e curso prevalecem (PHP 8.4 em Docker,
+  dependências somente na etapa necessária); não foram executadas essas recomendações.
+  Arquivos do modelo preservados. Não instalar Boost automaticamente em retomadas.
+- Aula salva em `docs/aulas/04-02-esqueleto-laravel.md`; README atualizado.
+
+Verificação:
+
+- composer validate --no-check-lock no backend: configuração válida, código 0.
+- php -l no Docker passou para artisan, public/index.php, bootstrap/app.php
+  e routes/web.php. Sintaxe conferida sem executar o Laravel.
+- Diagnóstico PHP confirmou pacote laravel/laravel, framework declarado ^13.17,
+  mapeamento App\\ para app/ e inventário de 58 arquivos.
+- .env, vendor, composer.lock, node_modules e database/database.sqlite ausentes,
+  comprovando os artefatos adiados. Nenhuma migration ou teste Laravel executado.
+- Git ignora ambiente local, dependências e SQLite; permite .env.example e código.
+- git diff --exit-code -- src Dockerfile compose.yaml: sem alteração do laboratório
+  ou infraestrutura. Sem build, novo serviço ou execução do contador.
+
+Entendimento da etapa 4.2: confirmado com "entendi" em 13/10/2026.
+Checkpoint preparado: `build: adiciona esqueleto oficial do backend Laravel`.
+Publicação autorizada; conferir resultado do push antes de registrar sucesso.
+Último checkpoint publicado e verificado: `9807e53`, da etapa 4.1.
+Pendências antes de usar banco/testes de integração: ajustar os padrões SQLite
+do modelo conforme SQL Server e banco exclusivo de testes, quando introduzidos.
+Próximo passo após confirmação: 4.3, preparar serviço backend no Compose para
+comandos PHP/Composer, com ./backend:/app:ro e volume vendor-backend separado
+em /app/vendor. Criar backend/vendor como ponto de montagem e conferir código
+somente leitura e volume gravável. Dependências em etapa seguinte; não executar
+Laravel, instalar Boost, adicionar banco ou frontend antecipadamente.
 
 ## Verificações e limitações do ambiente
 
@@ -1718,13 +1771,13 @@ frontend, filas ou demais módulos antecipadamente.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `7a4dc00`,
-  `docs: conclui modulo PHP moderno e OOP`.
+- Último commit local publicado nesta retomada: `9807e53`,
+  `docs: prepara ambiente para Laravel`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `7a4dc00`,
-  igual a HEAD e origin/main. Documentação da 4.1 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `9807e53`,
+  igual a HEAD e origin/main. Etapa 4.2 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -1800,14 +1853,14 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar a preparação concluída da 4.1, conferir o remoto
-  e iniciar a geração do esqueleto na etapa 4.2.
+- Ação imediata: publicar o esqueleto e a etapa 4.2 concluída, conferir o remoto
+  e iniciar a preparação Docker na 4.3.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.1: 4.2 — obter o esqueleto oficial laravel/laravel
-  da série 13 em backend pelo Composer no Docker, consultando e fixando a versão.
-  Usar --no-install e --no-scripts e apresentar os arquivos antes de instalar
-  dependências ou executar comandos automáticos do projeto. Laboratório preservado.
+- Após a confirmação da 4.2: 4.3 — serviço backend para comandos PHP/Composer,
+  montagem ./backend:/app:ro e volume vendor-backend em /app/vendor, preservando
+  serviço PHP e vendor do laboratório. Preparar backend/vendor e verificar as
+  montagens. Instalação das dependências em uma etapa posterior.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1859,4 +1912,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 12/10/2026 | 3.20 — Teste da menor quantidade válida | Quantidade 1 e subtotal 4990; sintaxe e quatro testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `95630cd` |
 | 12/10/2026 | 3.21 — Teste de preço zero | Produto gratuito e subtotal 0; sintaxe e cinco testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `a5caa53` |
 | 12/10/2026 | 3.22 — Revisão do módulo 3 | Revisão e demonstração concluídas; módulo 3 encerrado | Confirmado pelo aluno: "entendi" | Publicado e verificado em `7a4dc00` |
-| 12/10/2026 | 4.1 — Preparação para Laravel | Papel e organização documentados; PHP, Composer e treze extensões conferidos | Confirmado pelo aluno: "entendi", em 13/10/2026 | Checkpoint preparado, publicação autorizada |
+| 12/10/2026 | 4.1 — Preparação para Laravel | Papel e organização documentados; PHP, Composer e treze extensões conferidos | Confirmado pelo aluno: "entendi", em 13/10/2026 | Publicado e verificado em `9807e53` |
+| 13/10/2026 | 4.2 — Esqueleto Laravel | Modelo v13.11.0 e 58 arquivos; JSON, quatro sintaxes e artefatos adiados conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
