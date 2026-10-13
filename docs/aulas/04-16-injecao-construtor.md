@@ -102,8 +102,8 @@ obrigatório e o uso da propriedade inicializada. Os dados continuam em memória
 ## Situação e próximo passo
 
 Implementação e verificações concluídas; explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
-Último checkpoint publicado: dca8ccd, etapa 4.15.
+confirmado com "entendi" em 13/10/2026. Checkpoint 5da3709 publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram.
 
 Após confirmação, publicar 4.16 e iniciar 4.17: definir a interface
 App\Contracts\Catalogo com listarNomes(): array, implementá-la em CatalogoDemonstracao,

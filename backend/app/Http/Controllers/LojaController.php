@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\CatalogoDemonstracao;
+use App\Contracts\Catalogo;
 use Illuminate\View\View;
 
 class LojaController extends Controller
 {
-    public function __construct(private CatalogoDemonstracao $catalogo)
+    public function __construct(private Catalogo $catalogo)
     {
     }
 

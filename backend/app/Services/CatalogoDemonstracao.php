@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
-class CatalogoDemonstracao
+use App\Contracts\Catalogo;
+
+class CatalogoDemonstracao implements Catalogo
 {
     public function listarNomes(): array
     {
