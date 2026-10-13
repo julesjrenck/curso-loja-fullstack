@@ -135,8 +135,8 @@ no controller real. Os testes não imprimiram cookies ou respostas completas.
 ## Situação e próximo passo
 
 Implementação e verificações concluídas; explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
-Último checkpoint publicado: 5da3709, etapa 4.16.
+confirmado com "entendi" em 13/10/2026. Checkpoint 92d6e5f publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram.
 
 Após confirmação, publicar 4.17 e iniciar 4.18: apresentar o M de MVC pelo arquivo
 app/Models/User.php já gerado, explicar seu papel como model Eloquent e demonstrar

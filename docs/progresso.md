@@ -4,18 +4,18 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.17 — Contrato e binding do catálogo.
-- Situação: controller recebe Catalogo; CatalogoDemonstracao implementa a interface
-  e AppServiceProvider registra seu binding. Quatro sintaxes, resolução pelo
-  container e HTTP com lista/middleware preservados conferidos. Explicação
-  apresentada; entendimento confirmado com "entendi" em 13/10/2026. Próximo passo:
-  publicar 4.17 e apresentar Model na 4.18. Backend e laboratório ativos.
-  Último checkpoint publicado: 5da3709, da injeção pelo construtor na 4.16.
+- Etapa atual: 4.18 — Papel do Model em MVC.
+- Situação: User.php existente apresentado como model Eloquent; instância com
+  dados fictícios construída e alterada em memória, atributos/metadados conferidos,
+  sem banco ou gravação. Código preservado. Explicação apresentada; entendimento
+  confirmado com "entendi" em 13/10/2026. Próximo passo: publicar documentação
+  da 4.18 e revisar módulo na 4.19. Backend e laboratório ativos.
+  Último checkpoint publicado: 92d6e5f, do contrato e binding na 4.17.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 a 4.17 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.18 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -162,7 +162,11 @@ em 13/10/2026. Checkpoint 5da3709 publicado; HEAD, origin/main e consulta direta
 à main remota retornaram `5da37098c407a616d3a521b04864a583b7c947e2`.
 Etapa 4.17 definiu contrato, implementação e binding no provider; controller
 recebe a interface. Sintaxes, resolução e HTTP conferidos; entendimento confirmado
-com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
+com "entendi" em 13/10/2026. Checkpoint 92d6e5f publicado; HEAD, origin/main e
+consulta direta à main remota retornaram `92d6e5f925abb704b9ae57e366a0d7ac024e959b`.
+Etapa 4.18 apresentou User como model Eloquent e demonstrou atributos em memória,
+sem aplicação inicializada ou banco. Explicação apresentada; entendimento confirmado
+com "entendi" em 13/10/2026. Checkpoint de documentação preparado para publicação.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2436,12 +2440,50 @@ Verificação:
   testes Laravel, frontend ou contador.
 
 Entendimento da etapa 4.17: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
-Último checkpoint publicado e verificado: 5da3709, etapa 4.16.
+Checkpoint: 92d6e5f, `refactor: registra contrato de catálogo no container`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `92d6e5f925abb704b9ae57e366a0d7ac024e959b`.
 Próximo passo exato: após confirmação, publicar 4.17 e iniciar 4.18, apresentar
 M de MVC pelo app/Models/User.php já gerado e demonstrar instância/atributos em
 memória, sem consultar ou gravar no banco. Explicar papel do model Eloquent;
 persistência SQL Server, factories e autenticação ficam nas etapas previstas.
+
+## Etapa 4.18
+
+Objetivo: apresentar o papel do Model em MVC e o User Eloquent existente,
+demonstrando atributos em memória antes de persistência.
+
+Implementação e explicação:
+
+- Sem alteração de código. User.php já gerado na 4.2 foi lido e apresentado.
+- Explicados Model como representação de dados/comportamento, Eloquent como ORM,
+  relação com controller/view e namespace App\\Models.
+- Apresentados alias Authenticatable, herança que inclui Model, convenção User/users,
+  metadados PHP Fillable/Hidden, traits HasFactory/Notifiable e método casts.
+- Aprofundados apenas atributos usados; factories, notificações, autenticação e
+  conversões de senha/data apresentados por função, com prática adiada às etapas próprias.
+- Demonstração PHP temporária com nome/e-mail fictícios, usando apenas autoload,
+  new User com array de atributos e alteração de name em memória.
+- Aula em docs/aulas/04-18-papel-model.md e README atualizados.
+
+Verificação:
+
+- Objeto instanceof Eloquent Model; name/email preenchidos com dados fictícios.
+- getTable retornou users, sem verificar/criar tabela. getFillable e getHidden
+  confirmaram metadados do modelo.
+- Name atualizado e lido por getAttribute. exists=false e getKey=null mantidos.
+- Model::getConnectionResolver=null antes/depois; sem inicialização Laravel,
+  resolvedor de banco, query, save, migration, factory, notificação ou autenticação.
+- git diff --exit-code -- backend src compose.yaml Dockerfile: sem alterações.
+  Sem dependências, banco, testes Laravel, frontend, credenciais ou contador.
+- Diagnóstico demonstra objetos/atributos em memória, não integração SQL Server.
+
+Entendimento da etapa 4.18: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint de documentação preparado; nenhum código novo.
+Último checkpoint publicado e verificado: 92d6e5f, etapa 4.17.
+Próximo passo exato: após confirmação, publicar documentação da 4.18 e iniciar
+4.19, revisão do módulo 4 com fluxo completo, entrega /loja e pendências para SQL
+Server. Encerrar módulo apenas após entendimento da revisão, antes de iniciar 5.
 
 ## Verificações e limitações do ambiente
 
@@ -2469,13 +2511,13 @@ persistência SQL Server, factories e autenticação ficam nas etapas previstas.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `5da3709`,
-  `refactor: recebe catálogo pelo construtor`.
+- Último commit local publicado nesta retomada: `92d6e5f`,
+  `refactor: registra contrato de catálogo no container`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `5da3709`,
-  igual a HEAD e origin/main. Etapa 4.17 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `92d6e5f`,
+  igual a HEAD e origin/main. Documentação da 4.18 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2551,11 +2593,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 4.17 confirmada, conferir o remoto e iniciar 4.18.
+- Ação imediata: publicar 4.18 confirmada, conferir o remoto e iniciar revisão 4.19.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.17: publicar seu checkpoint e iniciar 4.18, papel do
-  Model em MVC pelo User existente, com atributos demonstrativos em memória.
+- Após a confirmação da 4.18: publicar sua documentação e iniciar 4.19, revisão
+  do módulo 4 e pendências para SQL Server, antes de encerrar o módulo.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2623,4 +2665,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.14 — Primeiro middleware | Classe ligada a /loja; sintaxes, cabeçalho, conteúdo e escopo HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 354626c |
 | 13/10/2026 | 4.15 — Injeção no método | Classe de catálogo recebida pelo controller; sintaxes e HTTP preservado conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em dca8ccd |
 | 13/10/2026 | 4.16 — Injeção no construtor | Propriedade promovida e acesso por $this; sintaxe e HTTP preservado conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5da3709 |
-| 13/10/2026 | 4.17 — Contrato e binding | Interface, implementação, controller e provider; sintaxes, resolução e HTTP conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 13/10/2026 | 4.17 — Contrato e binding | Interface, implementação, controller e provider; sintaxes, resolução e HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 92d6e5f |
+| 13/10/2026 | 4.18 — Papel do Model | User existente explicado e atributos demonstrados em memória; código preservado | Confirmado pelo aluno: "entendi" | Checkpoint de documentação preparado |

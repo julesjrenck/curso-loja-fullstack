@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.17, contrato e binding do catálogo.
+Módulo 4 — Laravel e MVC: etapa 4.18, papel do Model.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -89,6 +89,10 @@ Na 4.17, Catalogo declara listarNomes(), CatalogoDemonstracao implementa o contr
 e LojaController recebe a interface no construtor. AppServiceProvider registra o
 binding; resolução e HTTP conferidos. Explicação apresentada, entendimento da 4.17
 confirmado; dados continuam em memória.
+Na 4.18, User.php já gerado foi apresentado como model Eloquent. Uma instância
+com nome/e-mail fictícios foi criada e alterada em memória, sem banco ou gravação;
+atributos e metadados conferidos. Código da aplicação preservado; explicação
+apresentada, entendimento da 4.18 confirmado.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -150,6 +154,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.15 — Injeção de dependência no controller](docs/aulas/04-15-injecao-dependencia.md)
 - [Aula 4.16 — Injeção pelo construtor](docs/aulas/04-16-injecao-construtor.md)
 - [Aula 4.17 — Contrato e binding do catálogo](docs/aulas/04-17-contrato-e-binding.md)
+- [Aula 4.18 — Papel do Model em MVC](docs/aulas/04-18-papel-model.md)
 
 ## Backend Laravel
 
@@ -267,8 +272,10 @@ tipado, resolvido pelo container Laravel. Na 4.16, essa entrega foi movida para
 o construtor, com private CatalogoDemonstracao $catalogo promovido; index usa
 $this->catalogo. Na 4.17, o tipo recebido passou a ser App\Contracts\Catalogo;
 AppServiceProvider::register liga esse contrato a CatalogoDemonstracao com bind.
-A próxima etapa apresentará o papel do Model em MVC usando o User já gerado,
-sem consultar ou gravar no banco.
+A aula 4.18 apresenta o papel do Model pelo User já gerado, com atributos em
+memória e sem consultas/gravação. Ele não foi ligado à página /loja; os nomes
+continuam no catálogo demonstrativo. Após confirmação, revisaremos o módulo 4
+antes de preparar SQL Server no módulo seguinte.
 
 ## Executar a demonstração do laboratório PHP
 
