@@ -127,8 +127,8 @@ ou testes Laravel; chave, dados demonstrativos e laboratório preservados.
 ## Situação e próximo passo
 
 Implementação e verificações concluídas; explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
-Último checkpoint publicado: b944f4e, etapa 4.13.
+confirmado com "entendi" em 13/10/2026. Checkpoint 354626c publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram.
 
 Após confirmação, publicar 4.14 e iniciar 4.15: extrair os nomes demonstrativos
 para App\Services\CatalogoDemonstracao, método listarNomes(): array, e recebê-lo

@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.14, primeiro middleware da loja.
+Módulo 4 — Laravel e MVC: etapa 4.15, injeção de dependência no controller.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -77,6 +77,10 @@ Na 4.14, MarcarRespostaCurso foi gerado pelo Artisan e aplicado à rota /loja.
 Ele acrescenta X-Curso: Laravel após continuar o atendimento. Cabeçalho, escopo
 e conteúdo HTTP conferidos; explicação apresentada, entendimento da 4.14 confirmado.
 A rota / permanece sem esse cabeçalho.
+Na 4.15, os nomes foram movidos para CatalogoDemonstracao::listarNomes(). O método
+index recebe essa classe pelo container Laravel e entrega a lista à view.
+Sintaxes e resposta HTTP com produtos e middleware conferidas; explicação
+apresentada, entendimento da 4.15 confirmado.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -135,6 +139,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.12 — Lista de produtos com Blade](docs/aulas/04-12-lista-produtos-blade.md)
 - [Aula 4.13 — Condição para lista vazia](docs/aulas/04-13-lista-vazia-blade.md)
 - [Aula 4.14 — Primeiro middleware da loja](docs/aulas/04-14-primeiro-middleware.md)
+- [Aula 4.15 — Injeção de dependência no controller](docs/aulas/04-15-injecao-dependencia.md)
 
 ## Backend Laravel
 
@@ -246,8 +251,10 @@ Na 4.12, o controller também envia produtos como array de nomes demonstrativos;
 uma mensagem quando produtos for vazio. O controller mantém os três exemplos;
 o caso vazio foi conferido com dados temporários de renderização. Na 4.14, a rota
 /loja recebeu MarcarRespostaCurso, que adiciona X-Curso: Laravel à resposta HTTP.
-O conteúdo da página permanece igual. Após confirmação, a próxima etapa estudará
-injeção de uma classe de catálogo demonstrativo no controller.
+O conteúdo da página permanece igual. Na 4.15, CatalogoDemonstracao
+passou a fornecer os nomes por listarNomes(); index recebe o objeto por parâmetro
+tipado, resolvido pelo container Laravel. A próxima etapa estudará a injeção dessa
+mesma dependência pelo construtor do controller.
 
 ## Executar a demonstração do laboratório PHP
 
