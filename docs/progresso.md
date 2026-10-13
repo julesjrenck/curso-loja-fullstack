@@ -4,18 +4,17 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.18 — Papel do Model em MVC.
-- Situação: User.php existente apresentado como model Eloquent; instância com
-  dados fictícios construída e alterada em memória, atributos/metadados conferidos,
-  sem banco ou gravação. Código preservado. Explicação apresentada; entendimento
-  confirmado com "entendi" em 13/10/2026. Próximo passo: publicar documentação
-  da 4.18 e revisar módulo na 4.19. Backend e laboratório ativos.
-  Último checkpoint publicado: 92d6e5f, do contrato e binding na 4.17.
+- Etapa atual: 4.19 — Revisão do módulo 4.
+- Situação: revisão apresentada e entrega HTTP conferida: /loja, welcome e
+  laboratório 200, produtos e middleware corretos. Código preservado; drivers
+  SQL Server ainda pendentes. Entendimento da revisão confirmado com "entendi";
+  módulo 4 concluído. Backend e laboratório ativos.
+  Último checkpoint publicado: aa372c6, do papel do Model na 4.18.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 a 4.18 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.19 confirmadas em 13/10/2026; módulo 4 concluído.
 
 ## Retomada em outro chat
 
@@ -166,7 +165,11 @@ com "entendi" em 13/10/2026. Checkpoint 92d6e5f publicado; HEAD, origin/main e
 consulta direta à main remota retornaram `92d6e5f925abb704b9ae57e366a0d7ac024e959b`.
 Etapa 4.18 apresentou User como model Eloquent e demonstrou atributos em memória,
 sem aplicação inicializada ou banco. Explicação apresentada; entendimento confirmado
-com "entendi" em 13/10/2026. Checkpoint de documentação preparado para publicação.
+com "entendi" em 13/10/2026. Checkpoint aa372c6 publicado; HEAD, origin/main e
+consulta direta à main remota retornaram `aa372c66ef54086f72d9aea2160a67fcdc9aaa86`.
+Etapa 4.19 apresentou revisão do módulo 4 e conferiu entrega HTTP e pendências.
+Entendimento da revisão confirmado com "entendi" em 13/10/2026; módulo 4 concluído.
+Publicação do checkpoint será verificada antes da preparação 5.1.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2479,11 +2482,48 @@ Verificação:
 - Diagnóstico demonstra objetos/atributos em memória, não integração SQL Server.
 
 Entendimento da etapa 4.18: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint de documentação preparado; nenhum código novo.
-Último checkpoint publicado e verificado: 92d6e5f, etapa 4.17.
+Checkpoint: aa372c6, `docs: apresenta papel do model Eloquent`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `aa372c66ef54086f72d9aea2160a67fcdc9aaa86`. Nenhum código novo.
 Próximo passo exato: após confirmação, publicar documentação da 4.18 e iniciar
 4.19, revisão do módulo 4 com fluxo completo, entrega /loja e pendências para SQL
 Server. Encerrar módulo apenas após entendimento da revisão, antes de iniciar 5.
+
+## Etapa 4.19
+
+Objetivo: revisar o módulo 4, conferir sua entrega e pendências antes de SQL Server.
+
+Implementação e explicação:
+
+- Sem alteração de código. Revisados estrutura, Artisan, ambiente, chave, ciclo
+  HTTP, rotas, controller, view/Blade, middleware, container, injeção e provider.
+- Relacionados Catalogo/implementação/binding/construtor e dados enviados à view.
+  Model User estudado separadamente em memória, sem integração na página.
+- Diagrama e mapa de arquivos em docs/aulas/04-19-revisao-modulo-4.md; README e
+  roteiro atualizados para revisão em encerramento, ainda aguardando entendimento.
+- Registradas pendências de drivers, banco, compatibilidade, integração exclusiva
+  e padrões SQLite antes de persistência. Não iniciar módulo 5 nesta revisão.
+
+Verificação:
+
+- Compose ps mostrou backend e php ativos, respectivamente em 127.0.0.1:8002 e 8001.
+- route:list detalhada confirmou /loja -> LojaController@index, web e middleware.
+- PHP temporário em Docker na rede do host: /loja HTTP 200, título/saudação e
+  três nomes na ordem, X-Curso: Laravel. / e laboratório HTTP 200, sem X-Curso.
+- Checagem de leitura do PHP: sqlsrv e pdo_sqlsrv não carregados, pendentes.
+- Código backend, src, Compose e Dockerfile sem alterações; .env continua ignorado.
+  Sem instalação, banco, migrations, testes Laravel, frontend, chave alterada ou contador.
+- Escape/lista vazia e modelo em memória já verificados nas etapas próprias;
+  nesta revisão, conferida a entrega HTTP atual sem repetir verificações desnecessárias.
+
+Entendimento da etapa 4.19: confirmado com "entendi" em 13/10/2026.
+Estado do módulo 4: concluído após confirmação desta revisão.
+Publicação: checkpoint preparado para commit/push autorizado; nenhum código novo.
+Último checkpoint publicado e verificado: aa372c6, etapa 4.18.
+Próximo passo exato: após confirmação, registrar módulo 4 concluído, atualizar
+roteiro/progresso e publicar revisão. Iniciar 5.1 com diagnóstico de preparação
+SQL Server: arquitetura/recursos Docker, plataforma PHP e requisitos oficiais de
+compatibilidade. Adicionar banco/drivers somente na etapa necessária.
 
 ## Verificações e limitações do ambiente
 
@@ -2511,13 +2551,13 @@ Server. Encerrar módulo apenas após entendimento da revisão, antes de iniciar
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `92d6e5f`,
-  `refactor: registra contrato de catálogo no container`.
+- Último commit local publicado nesta retomada: `aa372c6`,
+  `docs: apresenta papel do model Eloquent`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `92d6e5f`,
-  igual a HEAD e origin/main. Documentação da 4.18 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `aa372c6`,
+  igual a HEAD e origin/main. Documentação da 4.19 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2593,11 +2633,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 4.18 confirmada, conferir o remoto e iniciar revisão 4.19.
+- Ação imediata: publicar revisão 4.19 confirmada e iniciar preparação 5.1.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.18: publicar sua documentação e iniciar 4.19, revisão
-  do módulo 4 e pendências para SQL Server, antes de encerrar o módulo.
+- Após a confirmação da 4.19: encerrar módulo 4, publicar revisão e iniciar
+  preparação 5.1 para SQL Server, sem criar banco antes da etapa necessária.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2666,4 +2706,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.15 — Injeção no método | Classe de catálogo recebida pelo controller; sintaxes e HTTP preservado conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em dca8ccd |
 | 13/10/2026 | 4.16 — Injeção no construtor | Propriedade promovida e acesso por $this; sintaxe e HTTP preservado conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5da3709 |
 | 13/10/2026 | 4.17 — Contrato e binding | Interface, implementação, controller e provider; sintaxes, resolução e HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 92d6e5f |
-| 13/10/2026 | 4.18 — Papel do Model | User existente explicado e atributos demonstrados em memória; código preservado | Confirmado pelo aluno: "entendi" | Checkpoint de documentação preparado |
+| 13/10/2026 | 4.18 — Papel do Model | User existente explicado e atributos demonstrados em memória; código preservado | Confirmado pelo aluno: "entendi" | Publicado e verificado em aa372c6 |
+| 13/10/2026 | 4.19 — Revisão do módulo 4 | Fluxo e entrega revisados; módulo 4 concluído | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

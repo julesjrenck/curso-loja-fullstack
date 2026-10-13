@@ -29,7 +29,8 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 ## Módulos
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
-Os módulos 1 a 3 foram concluídos. O módulo 4 — Laravel e MVC está em andamento;
+Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
+O próximo passo é a preparação 5.1 para SQL Server;
 módulos 5 a 23 ainda não foram iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

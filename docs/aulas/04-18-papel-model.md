@@ -125,7 +125,8 @@ Esta verificação demonstra atributos em memória, não integração com SQL Se
 
 Explicação e demonstração concluídas; entendimento confirmado com "entendi" em
 13/10/2026. Etapa de estudo do arquivo existente, sem implementação nova.
-Checkpoint de documentação preparado; último publicado: 92d6e5f, etapa 4.17.
+Checkpoint aa372c6 publicado; HEAD, origin/main e consulta direta à main remota
+coincidiram.
 
 Após confirmação, publicar a documentação e iniciar 4.19: revisão do módulo 4,
 relacionando estrutura, Artisan, ciclo HTTP, rotas, controllers, Blade, middleware,

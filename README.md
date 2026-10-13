@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.18, papel do Model.
+Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -17,8 +17,9 @@ O [repositório público no GitHub](https://github.com/julesjrenck/curso-loja-fu
 está configurado como `origin`. A autenticação SSH funcionou, os commits iniciais
 foram publicados e a branch local `main` acompanha `origin/main`.
 
-O esqueleto Laravel foi obtido em backend, ainda sem dependências ou configuração
-local. A loja ainda não está executável.
+O backend Laravel está executável em `backend/`, com dependências e configuração
+local. A página `/loja` apresenta produtos de demonstração em memória;
+a persistência em SQL Server será introduzida no módulo 5.
 Docker e Compose estão instalados. O serviço `php` constrói a imagem pelo
 Dockerfile, inclui Composer 2.10.3 e unzip 6.0-28+deb12u1 e inicia o servidor
 PHP 8.4.26 de desenvolvimento.
@@ -93,6 +94,9 @@ Na 4.18, User.php já gerado foi apresentado como model Eloquent. Uma instância
 com nome/e-mail fictícios foi criada e alterada em memória, sem banco ou gravação;
 atributos e metadados conferidos. Código da aplicação preservado; explicação
 apresentada, entendimento da 4.18 confirmado.
+Na 4.19, o fluxo do módulo foi revisado, sem alteração de código. Loja, welcome
+e laboratório responderam HTTP 200; dados e middleware conferidos. Revisão
+apresentada, entendimento confirmado com "entendi"; módulo 4 concluído.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -155,6 +159,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.16 — Injeção pelo construtor](docs/aulas/04-16-injecao-construtor.md)
 - [Aula 4.17 — Contrato e binding do catálogo](docs/aulas/04-17-contrato-e-binding.md)
 - [Aula 4.18 — Papel do Model em MVC](docs/aulas/04-18-papel-model.md)
+- [Aula 4.19 — Revisão do módulo 4](docs/aulas/04-19-revisao-modulo-4.md)
 
 ## Backend Laravel
 
@@ -274,8 +279,9 @@ $this->catalogo. Na 4.17, o tipo recebido passou a ser App\Contracts\Catalogo;
 AppServiceProvider::register liga esse contrato a CatalogoDemonstracao com bind.
 A aula 4.18 apresenta o papel do Model pelo User já gerado, com atributos em
 memória e sem consultas/gravação. Ele não foi ligado à página /loja; os nomes
-continuam no catálogo demonstrativo. Após confirmação, revisaremos o módulo 4
-antes de preparar SQL Server no módulo seguinte.
+continuam no catálogo demonstrativo. A revisão 4.19 foi confirmada e o módulo 4
+concluído. O próximo passo é 5.1, diagnóstico para
+SQL Server. Drivers sqlsrv/pdo_sqlsrv, banco e persistência seguem pendentes.
 
 ## Executar a demonstração do laboratório PHP
 
