@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.4, dependências do backend.
+Módulo 4 — Laravel e MVC: etapa 4.5, pastas graváveis do backend.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -38,6 +38,9 @@ Na 4.4, as dependências de execução foram instaladas: Laravel 13.35.0 e Tinke
 3.0.2, com 76 pacotes no volume vendor-backend. O lockfile foi gerado, validado
 e comparado com a instalação; autoload e requisitos conferidos. Entendimento
 da 4.4 confirmado. Ambiente local e execução Laravel ainda adiados.
+Na 4.5, storage e bootstrap/cache receberam bind mounts graváveis, com código
+somente leitura preservado. Escrita, leitura no host e entre containers e limpeza
+verificadas. Explicação apresentada; entendimento confirmado.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -86,6 +89,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.2 — Esqueleto Laravel e estrutura](docs/aulas/04-02-esqueleto-laravel.md)
 - [Aula 4.3 — Serviço Docker e volume do backend](docs/aulas/04-03-servico-backend-e-vendor.md)
 - [Aula 4.4 — Dependências Laravel, lockfile e autoload](docs/aulas/04-04-dependencias-laravel.md)
+- [Aula 4.5 — Pastas graváveis do Laravel](docs/aulas/04-05-pastas-gravaveis-laravel.md)
 
 ## Backend Laravel
 
@@ -98,6 +102,9 @@ A aula 4.2 apresenta os arquivos gerados. O serviço `backend` reutiliza o
 Dockerfile da raiz e monta `./backend:/app:ro`, com `vendor-backend:/app/vendor`
 gravável. A pasta local backend/vendor é somente um ponto de montagem vazio,
 ignorado pelo Git. O volume guarda os 76 pacotes de execução e o autoload.
+As pastas locais backend/storage e backend/bootstrap/cache estão montadas
+separadamente nos mesmos caminhos sob /app, com escrita. Os arquivos gerados
+ficam no host; os .gitignore do modelo preservam somente a estrutura versionada.
 
 Para preparar o serviço e instalar as versões registradas no lockfile, na raiz:
 
@@ -119,8 +126,10 @@ a primeira resolução com montagem temporária gravável para criar o lockfile.
 Agora install usa as versões registradas; --no-dev adia ferramentas de
 desenvolvimento e --no-scripts adia comandos automáticos do Laravel.
 O lock registra também 33 pacotes de desenvolvimento, ainda não instalados.
-Antes de usar Artisan, a próxima etapa preparará storage e bootstrap/cache
-graváveis, mantendo o código somente leitura.
+Storage e bootstrap/cache já estão graváveis, mantendo o código somente leitura,
+conforme a aula 4.5. Após confirmação, a 4.6 apresentará o modelo de ambiente e
+preparará backend/.env local para as primeiras rotas sem banco. Artisan ainda
+será apresentado em etapa própria.
 
 ## Executar a demonstração do laboratório PHP
 

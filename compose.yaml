@@ -20,6 +20,8 @@ services:
     volumes:
       - ./backend:/app:ro
       - vendor-backend:/app/vendor
+      - ./backend/storage:/app/storage:rw
+      - ./backend/bootstrap/cache:/app/bootstrap/cache:rw
 
 volumes:
   vendor-php:

@@ -4,18 +4,18 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.4 — Dependências Laravel, lockfile e autoload.
-- Situação: 76 pacotes de execução instalados no volume vendor-backend, incluindo
-  Laravel 13.35.0 e Tinker 3.0.2. Lockfile gerado com 76 pacotes de execução e 33
-  de desenvolvimento, estes não instalados. Validação, plataforma e autoload
-  verificados. Explicação apresentada; entendimento confirmado com "entendi"
-  em 13/10/2026. Próximo passo: publicar 4.4 e preparar montagens na 4.5.
-  Ambiente local e execução Laravel adiados. Último checkpoint publicado: dc9f4b8.
+- Etapa atual: 4.5 — Pastas graváveis do Laravel.
+- Situação: bind mounts graváveis de storage e bootstrap/cache preparados no
+  serviço backend, mantendo código somente leitura. Montagens, escrita, leitura
+  no host e entre containers e limpeza verificadas. Explicação apresentada;
+  entendimento confirmado com "entendi" em 13/10/2026. Ambiente local e execução
+  Laravel adiados; próximo passo: publicar 4.5 e preparar ambiente na 4.6.
+  Último checkpoint publicado: 4c6df27, da instalação de dependências na 4.4.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 a 4.4 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.5 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -101,7 +101,12 @@ consulta direta à main remota retornaram
 Etapa 4.4 instalou dependências de execução e gerou lockfile/autoload; validação,
 plataforma e carregamento de classes conferidos. Explicação apresentada;
 entendimento confirmado com "entendi" em 13/10/2026. Sem execução de Artisan ou
-HTTP Laravel. Checkpoint preparado para publicação autorizada.
+HTTP Laravel. Checkpoint 4c6df27 publicado; HEAD, origin/main e consulta direta
+à main remota retornaram `4c6df27b1e6ec4f04c64c55bc6fa10df2f5c8e84`.
+Etapa 4.5 preparou storage e bootstrap/cache graváveis, mantendo código somente
+leitura. Marcadores conferidos no host e entre containers, depois removidos.
+Explicação apresentada; entendimento confirmado com "entendi" em 13/10/2026.
+Checkpoint preparado para publicação autorizada.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1843,8 +1848,9 @@ Verificação:
   Verificação comprova instalação/autoload, não ciclo de requisição ou persistência.
 
 Entendimento da etapa 4.4: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
-Último checkpoint publicado e verificado: dc9f4b8, etapa 4.3.
+Checkpoint: 4c6df27, `build: instala dependências de execução do Laravel`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `4c6df27b1e6ec4f04c64c55bc6fa10df2f5c8e84`.
 Próximo passo exato: após confirmação, publicar 4.4 e iniciar 4.5, preparar
 montagens graváveis para storage e bootstrap/cache no serviço backend, mantendo
 o restante do código somente leitura. Necessidade de gravação consultada na
@@ -1852,6 +1858,53 @@ documentação oficial do Laravel. Não inicializar aplicação antes de prepara
 esse armazenamento; ambiente Laravel, chave e Artisan serão etapas posteriores.
 Padrões SQLite do modelo continuam pendentes de ajuste antes de banco ou testes
 de integração; usar SQL Server exclusivo para testes conforme o roteiro.
+
+## Etapa 4.5
+
+Objetivo: preparar os diretórios graváveis exigidos pelo Laravel, preservando
+o código somente leitura antes de executar a aplicação.
+
+Implementação e explicação:
+
+- compose.yaml recebeu duas montagens no serviço backend:
+  ./backend/storage:/app/storage:rw e
+  ./backend/bootstrap/cache:/app/bootstrap/cache:rw.
+- Bind mounts usam pastas já presentes no esqueleto; arquivos gerados aparecem
+  no host. Sem novos volumes nomeados, pacotes, pastas ou rebuild da imagem.
+- Montagem ./backend:/app:ro e volume vendor-backend preservados, assim como
+  o serviço php do laboratório, seu vendor e os dados da demonstração.
+- Explicados ro/rw, origem e destino, montagens mais específicas dentro de /app,
+  funções de storage e bootstrap/cache e exclusões existentes do Git.
+- Documentação oficial do Laravel confirma a necessidade de escrita nessas
+  duas pastas. Aula em docs/aulas/04-05-pastas-gravaveis-laravel.md; README atualizado.
+
+Verificação:
+
+- docker compose config --quiet: válido, código 0.
+- PHP temporário via run --rm -T: /proc/mounts confirmou ro em /app e rw nas
+  duas pastas novas. is_writable confirmou código app/config/bootstrap sem
+  escrita e storage, subpastas da estrutura e bootstrap/cache graváveis.
+- Marcadores exclusivos criados com fopen em modo x em storage/framework/views
+  e bootstrap/cache, com quantidade de bytes conferida. Autoload anterior disponível.
+- Primeiro container terminou e foi removido; cat no host confirmou o texto
+  exato dos dois arquivos, demonstrando a ligação às pastas locais.
+- Segundo container leu o conteúdo e removeu somente os dois marcadores com
+  unlink. Host confirmou a remoção; git check-ignore confirmou exclusão dos arquivos.
+- git diff --exit-code -- backend src Dockerfile .dockerignore: sem alterações.
+  Lockfile e bibliotecas anteriores preservados. Apenas Compose alterado na aplicação.
+- backend/.env, SQLite e bootstrap/cache/packages.php e services.php ausentes.
+- Compose ps mostrou apenas php ativo. Sem Artisan, migrations, testes Laravel,
+  novo servidor, banco, frontend ou execução do contador.
+
+Entendimento da etapa 4.5: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
+Último checkpoint publicado e verificado: 4c6df27, etapa 4.4.
+Próximo passo exato: após confirmação, publicar 4.5 e iniciar 4.6, apresentar
+backend/.env.example e preparar backend/.env local para rotas iniciais sem banco,
+com sessão/cache em arquivo e fila síncrona. Indicação de banco conforme SQL Server,
+sem provisionar banco ou executar migrations. Artisan e geração da chave em
+etapas posteriores. Não versionar ambiente local ou credenciais; testes de
+integração usarão SQL Server exclusivo quando introduzidos.
 
 ## Verificações e limitações do ambiente
 
@@ -1879,13 +1932,13 @@ de integração; usar SQL Server exclusivo para testes conforme o roteiro.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `dc9f4b8`,
-  `build: prepara serviço Docker e vendor do backend`.
+- Último commit local publicado nesta retomada: `4c6df27`,
+  `build: instala dependências de execução do Laravel`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `dc9f4b8`,
-  igual a HEAD e origin/main. Etapa 4.4 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `4c6df27`,
+  igual a HEAD e origin/main. Etapa 4.5 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -1961,11 +2014,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 4.4 confirmada, conferir o remoto e iniciar 4.5.
+- Ação imediata: publicar 4.5 confirmada, conferir o remoto e iniciar 4.6.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.4: publicar seu checkpoint e iniciar 4.5, preparar
-  storage e bootstrap/cache graváveis, preservando o código somente leitura.
+- Após a confirmação da 4.5: publicar seu checkpoint e iniciar 4.6, apresentar
+  e preparar ambiente local Laravel para as primeiras rotas sem banco.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2020,4 +2073,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 12/10/2026 | 4.1 — Preparação para Laravel | Papel e organização documentados; PHP, Composer e treze extensões conferidos | Confirmado pelo aluno: "entendi", em 13/10/2026 | Publicado e verificado em `9807e53` |
 | 13/10/2026 | 4.2 — Esqueleto Laravel | Modelo v13.11.0 e 58 arquivos; JSON, quatro sintaxes e artefatos adiados conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em cfa2e69 |
 | 13/10/2026 | 4.3 — Serviço Docker do backend | Serviço e volume exclusivos; PHP/Composer, montagens e persistência verificados | Confirmado pelo aluno: "entendi" | Publicado e verificado em dc9f4b8 |
-| 13/10/2026 | 4.4 — Dependências Laravel | 76 pacotes instalados, lockfile e autoload gerados; validação, plataforma e classes conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 13/10/2026 | 4.4 — Dependências Laravel | 76 pacotes instalados, lockfile e autoload gerados; validação, plataforma e classes conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 4c6df27 |
+| 13/10/2026 | 4.5 — Pastas graváveis | Montagens de storage e bootstrap/cache; escrita, leitura e limpeza verificadas | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |

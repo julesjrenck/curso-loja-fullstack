@@ -159,7 +159,8 @@ O lockfile deve ir ao Git junto com a configuração. Os pacotes do volume podem
 ser recriados com install usando as versões registradas.
 
 Implementação e verificações concluídas, explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
+confirmado com "entendi" em 13/10/2026. Checkpoint 4c6df27 publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram.
 Último checkpoint publicado: dc9f4b8, etapa 4.3.
 
 Depois da confirmação, publicar 4.4 e iniciar 4.5: preparar montagens graváveis
