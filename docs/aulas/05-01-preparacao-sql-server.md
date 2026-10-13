@@ -101,8 +101,9 @@ Os testes Laravel ainda terão um banco SQL Server exclusivo; os padrões SQLite
 do esqueleto serão ajustados antes de usar persistência ou testes de integração.
 
 Explicação e diagnóstico apresentados; entendimento da 5.1 confirmado com "entendi"
-em 13/10/2026. Checkpoint preparado para publicação conforme autorização existente.
-Último checkpoint publicado: 2346772.
+em 13/10/2026. Checkpoint 41d0660 publicado conforme autorização existente.
+HEAD, origin/main e consulta direta à main remota retornaram
+`41d0660945bd3b91dc3a036017986e1adc6c2ff5`.
 Depois da confirmação: publicar 5.1 e iniciar 5.2, preparar uma imagem própria
 do backend com Microsoft ODBC Driver 18, mantendo a imagem do laboratório PHP.
 Extensões PHP e serviço SQL Server terão suas etapas seguintes.

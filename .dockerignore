@@ -1,6 +1,7 @@
 # Permite os arquivos de build e o codigo PHP desta etapa.
 **
 !Dockerfile
+!Dockerfile.backend
 !.dockerignore
 !src/
 !src/**

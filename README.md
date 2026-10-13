@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.1, diagnóstico de preparação.
+Módulo 5 — SQL Server e persistência: etapa 5.2, ODBC na imagem do backend.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -103,6 +103,11 @@ Base definida para o laboratório: SQL Server 2022 Developer, ODBC 18 e drivers
 PHP 5.13 (release estável consultada 5.13.3). Diagnóstico favorável; PDO carregada,
 sqlsrv/pdo_sqlsrv e ODBC ainda ausentes. Nenhuma dependência ou banco instalado.
 Explicação apresentada; entendimento da 5.1 confirmado com "entendi".
+Na 5.2, Dockerfile.backend foi criado e ligado ao serviço backend no Compose.
+ODBC Driver 18.7.1.1-1 instalado; imagem construída e backend recriado.
+Driver registrado, bibliotecas, requisitos Composer e HTTP conferidos.
+Laboratório PHP preservado. Extensões PHP e SQL Server seguem pendentes;
+explicação apresentada, entendimento da 5.2 confirmado com "entendi".
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -167,6 +172,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.18 — Papel do Model em MVC](docs/aulas/04-18-papel-model.md)
 - [Aula 4.19 — Revisão do módulo 4](docs/aulas/04-19-revisao-modulo-4.md)
 - [Aula 5.1 — Preparação para SQL Server](docs/aulas/05-01-preparacao-sql-server.md)
+- [Aula 5.2 — ODBC na imagem do backend](docs/aulas/05-02-odbc-backend.md)
 
 ## Backend Laravel
 
@@ -176,8 +182,8 @@ gerou backend/composer.lock com Laravel 13.35.0 e Tinker 3.0.2. O autoload App
 aponta para app/. O ambiente backend/.env foi preparado localmente, ignorado
 pelo Git. APP_KEY local gerada e validada; servidor Laravel ativo na porta 8002.
 
-A aula 4.2 apresenta os arquivos gerados. O serviço `backend` reutiliza o
-Dockerfile da raiz e monta `./backend:/app:ro`, com `vendor-backend:/app/vendor`
+A aula 4.2 apresenta os arquivos gerados. O serviço `backend` agora usa
+Dockerfile.backend e monta `./backend:/app:ro`, com `vendor-backend:/app/vendor`
 gravável. A pasta local backend/vendor é somente um ponto de montagem vazio,
 ignorado pelo Git. O volume guarda os 76 pacotes de execução e o autoload.
 As pastas locais backend/storage e backend/bootstrap/cache estão montadas
@@ -212,6 +218,8 @@ conforme a aula 4.5. Na 4.6, o ambiente foi preparado para sessões/cache em arq
 e tarefas síncronas; DB_CONNECTION=sqlsrv indica o banco futuro, ainda sem conexão.
 APP_URL=http://127.0.0.1:8002 corresponde à publicação local preparada na 4.8.
 Artisan já foi verificado com Laravel Framework 13.35.0 na aula 4.7.
+A aula 5.2 acrescenta ODBC Driver 18.7.1.1-1 à imagem própria do backend;
+as extensões sqlsrv/pdo_sqlsrv serão instaladas na etapa 5.3.
 
 Na raiz, .env serve ao Compose; em backend, .env é lido pelo Laravel. O comando
 cp acima usa GNU cp e preserva um backend/.env já existente. chmod 600 restringe
@@ -288,7 +296,8 @@ A aula 4.18 apresenta o papel do Model pelo User já gerado, com atributos em
 memória e sem consultas/gravação. Ele não foi ligado à página /loja; os nomes
 continuam no catálogo demonstrativo. A revisão 4.19 foi confirmada e o módulo 4
 concluído. O diagnóstico 5.1 para SQL Server foi confirmado; o próximo passo
-é preparar na 5.2 uma imagem própria do backend com ODBC Driver 18.
+foi realizado na 5.2: imagem própria do backend com ODBC Driver 18 construída
+e aplicada. Entendimento da 5.2 confirmado; próximo passo: extensões PHP na 5.3.
 Drivers sqlsrv/pdo_sqlsrv, banco e persistência seguem pendentes.
 
 ## Executar a demonstração do laboratório PHP

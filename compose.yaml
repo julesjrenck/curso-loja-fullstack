@@ -15,7 +15,9 @@ services:
       - dados-demo:/dados
 
   backend:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
     init: true
     command: ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000", "--tries=1", "--no-reload"]
     stop_signal: SIGINT

@@ -4,20 +4,21 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.1 — Preparação para SQL Server.
-- Situação: diagnóstico de arquitetura, recursos Docker, plataforma PHP e
-  compatibilidade Microsoft apresentado. Ambiente favorável para laboratório;
-  base SQL Server 2022 Developer, ODBC 18 e drivers PHP 5.13, release consultada
-  5.13.3. PDO presente; ODBC, sqlsrv/pdo_sqlsrv e banco ainda pendentes.
-  Entendimento da 5.1 confirmado com "entendi" em 13/10/2026;
-  checkpoint de documentação preparado para publicação.
-  Backend e laboratório ativos. Último checkpoint publicado: 2346772, revisão 4.19.
+- Etapa atual: 5.2 — ODBC na imagem do backend.
+- Situação: Dockerfile.backend criado, Compose e .dockerignore ajustados;
+  ODBC Driver 18.7.1.1-1 instalado, imagem construída e backend recriado.
+  Registro do driver, bibliotecas, plataforma Composer e HTTP conferidos.
+  Explicação apresentada; entendimento da 5.2 confirmado com "entendi" em 13/10/2026.
+  sqlsrv/pdo_sqlsrv e banco ainda pendentes. Checkpoint preparado para publicação.
+  Backend e laboratório ativos. Último checkpoint publicado: 41d0660, preparação 5.1.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026 e concluído em 13/10/2026.
 - Módulo 5 iniciado em 13/10/2026; módulos 6 a 23 não iniciados.
 - Etapas 4.1 a 4.19 confirmadas em 13/10/2026; módulo 4 concluído.
+- Etapa 5.1 confirmada com "entendi" em 13/10/2026.
+- Etapa 5.2 confirmada com "entendi" em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -175,6 +176,10 @@ Entendimento da revisão confirmado com "entendi" em 13/10/2026; módulo 4 concl
 Checkpoint 2346772 publicado; HEAD, origin/main e consulta direta à main remota
 retornaram `23467729d7d3d5ebf6587084cab007ad1afa4df7`. Módulo 5 iniciado na 5.1,
 com diagnóstico de preparação apresentado; entendimento confirmado com "entendi".
+Checkpoint 5.1 publicado: 41d0660; HEAD, origin/main e consulta direta à main
+remota retornaram `41d0660945bd3b91dc3a036017986e1adc6c2ff5`.
+Etapa 5.2 implementou imagem própria do backend com ODBC 18, validada e aplicada;
+explicação apresentada, entendimento da 5.2 confirmado com "entendi" em 13/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2567,12 +2572,67 @@ Verificação:
   ainda não foram verificadas e terão suas aulas próprias.
 
 Entendimento da etapa 5.1: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado para commit/push autorizado. Último publicado: 2346772.
+Publicação: checkpoint 41d0660, `docs: verifica preparação para SQL Server`.
+Push autorizado e verificado; HEAD, origin/main e consulta direta à main remota
+retornaram `41d0660945bd3b91dc3a036017986e1adc6c2ff5`.
 Próximo passo exato: após confirmação, publicar diagnóstico 5.1 e iniciar 5.2,
 preparar uma imagem própria do backend com Microsoft ODBC Driver 18, preservando
 a imagem do laboratório PHP. Drivers PHP e serviço SQL Server entrarão em etapas
 seguintes. Banco SQL Server exclusivo para integração continua obrigatório;
 ajustar padrões SQLite do esqueleto antes de persistência/testes.
+
+## Etapa 5.2
+
+Objetivo: preparar a imagem própria do backend com Microsoft ODBC Driver 18,
+dependência dos drivers PHP que serão introduzidos na etapa seguinte.
+
+Implementação e explicação:
+
+- Criado Dockerfile.backend com PHP 8.4.26 bookworm e Composer 2.10.3.
+- Baixado instalador oficial packages-microsoft-prod para Debian 12; checksum
+  conferido antes de dpkg -i. Versão 1.1-debian12; SHA-256
+  8434dcb8c346dc95fbd63dbece056c343704590b58b6a5c323d39acf52bf0b48.
+- Repositório Microsoft configurado; msodbcsql18=18.7.1.1-1 instalado com
+  ACCEPT_EULA=Y, aceite da licença restrito ao comando de instalação.
+- unzip=6.0-28+deb12u1 mantido; libgssapi-krb5-2=1.20.1-2+deb12u5 explicitado
+  como biblioteca exigida pelo ODBC, já presente na base.
+- Explicados curl, checksum, dpkg, índices APT, versões dos pacotes, &&,
+  continuação de linhas, limpeza, WORKDIR e CMD. Código Laravel vem do bind mount.
+- Compose backend passou a build.context=. e build.dockerfile=Dockerfile.backend;
+  .dockerignore permite a receita. Demais opções/montagens preservadas.
+- Build e recriação somente do backend; explicada diferença entre imagem
+  construída e container existente. Laboratório continua no Dockerfile original.
+- Aula docs/aulas/05-02-odbc-backend.md criada; README, roteiro e progresso
+  atualizados. Explicação apresentada, sem adiantar extensões PHP ou banco.
+
+Verificação:
+
+- Consulta em Docker ao índice oficial confirmou msodbcsql18 18.7.1.1-1 para
+  amd64; instalador do repositório consultado e temporário removido.
+- docker compose config --quiet válido; build backend concluído, checksum OK.
+  PHP e Composer resolveram os digests registrados na aula, versões mantidas.
+- up -d --no-deps backend recriou/aplicou imagem. php manteve ID de container
+  009e8bd17b90915bb0f143a0fd0c3bd2cc8a8685ea076aba5f14e75f3e1ffc06 e imagem
+  sha256:08de3109b7bf12763cb263a024a9ae838c6793a25f6373440f1920c6fa85654e.
+- dpkg-query: ODBC 18.7.1.1-1, unixODBC 2.3.11-2+deb12u1, repositório
+  1.1-debian12, libgssapi e unzip nas versões fixadas.
+- odbcinst encontrou ODBC Driver 18 for SQL Server e biblioteca
+  /opt/microsoft/msodbcsql18/lib64/libmsodbcsql-18.7.so.1.1.
+  ldd encontrou dependências resolvidas; PHP confirmou arquivo registrado/legível.
+- PHP 8.4.26/Composer 2.10.3 mantidos; check-platform-reqs --no-dev passou.
+  Autoload preservado no volume, Laravel 13.35.0; extensões sqlsrv/pdo_sqlsrv ausentes.
+- HTTP em PHP/Docker na rede do host: /loja 200 com título, nomes na ordem e
+  X-Curso: Laravel; welcome e laboratório 200 sem X-Curso. Serviços ativos em 8002/8001.
+- git diff --exit-code -- backend src Dockerfile passou; backend/.env ignorado.
+  Sem alteração na aplicação, banco, migration, teste Laravel ou contador.
+- Instalação ODBC verificada; nenhuma conexão SQL Server demonstrada nesta etapa.
+
+Entendimento da etapa 5.2: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado para commit/push autorizado. Último publicado: 41d0660.
+Próximo passo exato: após confirmação, publicar 5.2 e iniciar 5.3, instalar e
+habilitar sqlsrv/pdo_sqlsrv 5.13.3 na imagem backend, conferindo método oficial
+e dependências de compilação. Serviço SQL Server será introduzido em outra etapa;
+banco de integração exclusivo e ajuste de padrões SQLite seguem pendentes.
 
 ## Verificações e limitações do ambiente
 
@@ -2600,13 +2660,13 @@ ajustar padrões SQLite do esqueleto antes de persistência/testes.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `2346772`,
-  `docs: conclui módulo 4 de Laravel e MVC`.
+- Último commit local publicado nesta retomada: `41d0660`,
+  `docs: verifica preparação para SQL Server`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `2346772`,
-  igual a HEAD e origin/main. Documentação da 5.1 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `41d0660`,
+  igual a HEAD e origin/main. Implementação/documentação da 5.2 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2682,11 +2742,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar a preparação 5.1 confirmada e iniciar 5.2, ODBC no backend.
+- Ação imediata: publicar 5.2 confirmada e iniciar 5.3, extensões PHP no backend.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 5.1: publicar diagnóstico e preparar na 5.2 a imagem
-  própria do backend com ODBC Driver 18, sem criar banco antes da etapa necessária.
+- Após a confirmação da 5.2: publicar ODBC e instalar na 5.3 sqlsrv/pdo_sqlsrv
+  no backend, sem criar banco antes da etapa necessária.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2757,4 +2817,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.17 — Contrato e binding | Interface, implementação, controller e provider; sintaxes, resolução e HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 92d6e5f |
 | 13/10/2026 | 4.18 — Papel do Model | User existente explicado e atributos demonstrados em memória; código preservado | Confirmado pelo aluno: "entendi" | Publicado e verificado em aa372c6 |
 | 13/10/2026 | 4.19 — Revisão do módulo 4 | Fluxo e entrega revisados; módulo 4 concluído | Confirmado pelo aluno: "entendi" | Publicado e verificado em 2346772 |
-| 13/10/2026 | 5.1 — Preparação SQL Server | Recursos Docker, PHP e compatibilidade conferidos; sem instalação | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 13/10/2026 | 5.1 — Preparação SQL Server | Recursos Docker, PHP e compatibilidade conferidos; sem instalação | Confirmado pelo aluno: "entendi" | Publicado e verificado em 41d0660 |
+| 13/10/2026 | 5.2 — ODBC no backend | Imagem própria, ODBC 18.7.1.1-1 e recriação; bibliotecas/plataforma/HTTP conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

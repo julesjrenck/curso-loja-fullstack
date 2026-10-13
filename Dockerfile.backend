@@ -1,0 +1,20 @@
+FROM php:8.4.26-cli-bookworm
+
+COPY --from=composer/composer:2.10.3-bin /composer /usr/local/bin/composer
+
+RUN curl -fsSL https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb \
+        -o /tmp/packages-microsoft-prod.deb \
+    && echo '8434dcb8c346dc95fbd63dbece056c343704590b58b6a5c323d39acf52bf0b48  /tmp/packages-microsoft-prod.deb' | sha256sum -c - \
+    && dpkg -i /tmp/packages-microsoft-prod.deb \
+    && rm /tmp/packages-microsoft-prod.deb
+
+RUN apt-get update \
+    && ACCEPT_EULA=Y apt-get install -y --no-install-recommends \
+        unzip=6.0-28+deb12u1 \
+        libgssapi-krb5-2=1.20.1-2+deb12u5 \
+        msodbcsql18=18.7.1.1-1 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+CMD ["php", "artisan", "--version"]
