@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.15, injeção de dependência no controller.
+Módulo 4 — Laravel e MVC: etapa 4.16, injeção pelo construtor.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -81,6 +81,10 @@ Na 4.15, os nomes foram movidos para CatalogoDemonstracao::listarNomes(). O mét
 index recebe essa classe pelo container Laravel e entrega a lista à view.
 Sintaxes e resposta HTTP com produtos e middleware conferidas; explicação
 apresentada, entendimento da 4.15 confirmado.
+Na 4.16, CatalogoDemonstracao passou a ser recebido no construtor e guardado em
+uma propriedade privada promovida de LojaController. index consulta $this->catalogo.
+Sintaxe e comportamento HTTP preservado conferidos; explicação apresentada,
+entendimento da 4.16 confirmado.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -140,6 +144,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.13 — Condição para lista vazia](docs/aulas/04-13-lista-vazia-blade.md)
 - [Aula 4.14 — Primeiro middleware da loja](docs/aulas/04-14-primeiro-middleware.md)
 - [Aula 4.15 — Injeção de dependência no controller](docs/aulas/04-15-injecao-dependencia.md)
+- [Aula 4.16 — Injeção pelo construtor](docs/aulas/04-16-injecao-construtor.md)
 
 ## Backend Laravel
 
@@ -253,8 +258,10 @@ o caso vazio foi conferido com dados temporários de renderização. Na 4.14, a 
 /loja recebeu MarcarRespostaCurso, que adiciona X-Curso: Laravel à resposta HTTP.
 O conteúdo da página permanece igual. Na 4.15, CatalogoDemonstracao
 passou a fornecer os nomes por listarNomes(); index recebe o objeto por parâmetro
-tipado, resolvido pelo container Laravel. A próxima etapa estudará a injeção dessa
-mesma dependência pelo construtor do controller.
+tipado, resolvido pelo container Laravel. Na 4.16, essa entrega foi movida para
+o construtor, com private CatalogoDemonstracao $catalogo promovido; index usa
+$this->catalogo. A próxima etapa introduzirá uma interface de catálogo e seu
+binding no AppServiceProvider, preservando os dados demonstrativos.
 
 ## Executar a demonstração do laboratório PHP
 

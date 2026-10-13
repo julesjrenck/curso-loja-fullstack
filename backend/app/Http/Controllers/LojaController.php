@@ -7,11 +7,15 @@ use Illuminate\View\View;
 
 class LojaController extends Controller
 {
-    public function index(CatalogoDemonstracao $catalogo): View
+    public function __construct(private CatalogoDemonstracao $catalogo)
+    {
+    }
+
+    public function index(): View
     {
         return view('loja', [
             'nomeLoja' => config('app.name'),
-            'produtos' => $catalogo->listarNomes(),
+            'produtos' => $this->catalogo->listarNomes(),
         ]);
     }
 }

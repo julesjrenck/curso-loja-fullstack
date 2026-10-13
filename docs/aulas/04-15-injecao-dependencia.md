@@ -112,8 +112,8 @@ imprimiu cookies ou respostas completas.
 ## Situação e próximo passo
 
 Implementação e verificações concluídas; explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
-Último checkpoint publicado: 354626c, etapa 4.14.
+confirmado com "entendi" em 13/10/2026. Checkpoint dca8ccd publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram.
 
 Após confirmação, publicar 4.15 e iniciar 4.16: receber CatalogoDemonstracao pelo
 construtor de LojaController, usando propriedade promovida, e consultar

@@ -4,18 +4,17 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.15 — Injeção de dependência no controller.
-- Situação: CatalogoDemonstracao fornece os nomes por listarNomes e é recebido
-  como parâmetro de index pelo container Laravel. Sintaxes e resposta HTTP com
-  lista e middleware preservados conferidas. Explicação apresentada; entendimento
-  confirmado com "entendi" em 13/10/2026. Próximo passo: publicar 4.15 e estudar
-  injeção no construtor na 4.16. Backend e laboratório ativos.
-  Último checkpoint publicado: 354626c, do middleware na 4.14.
+- Etapa atual: 4.16 — Injeção pelo construtor.
+- Situação: LojaController recebe CatalogoDemonstracao no construtor com propriedade
+  promovida privada; index usa $this->catalogo. Sintaxe e HTTP com lista/cabeçalho
+  preservados conferidos. Explicação apresentada; entendimento confirmado com
+  "entendi" em 13/10/2026. Próximo passo: publicar 4.16 e ligar um contrato na 4.17.
+  Backend e laboratório ativos. Último checkpoint publicado: dca8ccd, da 4.15.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 a 4.15 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.16 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -153,7 +152,12 @@ com "entendi" em 13/10/2026. Checkpoint 354626c publicado; HEAD, origin/main e
 consulta direta à main remota retornaram `354626c0dbd7d89b6c51455d88b124e0d5cb06e2`.
 Etapa 4.15 extraiu nomes para CatalogoDemonstracao e recebeu a classe no método
 index por injeção. Sintaxes e HTTP conferidos; explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
+confirmado com "entendi" em 13/10/2026. Checkpoint dca8ccd publicado; HEAD,
+origin/main e consulta direta à main remota retornaram
+`dca8ccd583c338c7ce8581a7f639144495fbdc7a`.
+Etapa 4.16 moveu a injeção para o construtor com propriedade promovida; sintaxe
+e HTTP conferidos. Explicação apresentada; entendimento confirmado com "entendi"
+em 13/10/2026. Checkpoint preparado para publicação.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2350,11 +2354,49 @@ Verificação:
   Dados seguem demonstrativos em memória, sem model ou persistência.
 
 Entendimento da etapa 4.15: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
-Último checkpoint publicado e verificado: 354626c, etapa 4.14.
+Checkpoint: dca8ccd, `refactor: injeta catálogo demonstrativo no controller`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `dca8ccd583c338c7ce8581a7f639144495fbdc7a`.
 Próximo passo exato: após confirmação, publicar 4.15 e iniciar 4.16, receber
 CatalogoDemonstracao pelo construtor de LojaController com propriedade promovida;
 index consulta $this->catalogo. Comparar pontos de injeção e preservar comportamento.
+
+## Etapa 4.16
+
+Objetivo: comparar injeção no método e no construtor, guardando a dependência
+em propriedade promovida e preservando o comportamento.
+
+Implementação e explicação:
+
+- Somente LojaController alterado: __construct(private CatalogoDemonstracao $catalogo)
+  com corpo vazio; index(): View usa $this->catalogo->listarNomes().
+- Explicados entrega na criação do objeto, construtor público, propriedade
+  promovida privada tipada, atribuição automática e acesso por $this.
+- Apresentada equivalência com propriedade e atribuição explícitas, apenas didática.
+- Comparados pontos de injeção: parâmetro local do método e propriedade da instância.
+  Sem registro de singleton ou binding; resolução automática da classe permanece.
+- Catálogo, rota, view e middleware preservados. Aula em
+  docs/aulas/04-16-injecao-construtor.md e README atualizados.
+
+Verificação:
+
+- php -l no Docker: controller sem erros de sintaxe.
+- PHP temporário no container backend consultou porta interna 8000: GET /loja
+  HTTP 200, título, saudação, três nomes na ordem e X-Curso: Laravel preservados.
+- GET / HTTP 200, welcome sem X-Curso. Sem cookies ou respostas completas impressos.
+- Atendimento confirmou construção com parâmetro obrigatório e propriedade inicializada.
+- Catálogo, rota, view, middleware, provider, src, Compose, Dockerfile, JSON e lockfile
+  preservados. Sem rebuild/reinício, dependências, banco, migrations, testes Laravel,
+  frontend, chave alterada ou contador.
+
+Entendimento da etapa 4.16: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
+Último checkpoint publicado e verificado: dca8ccd, etapa 4.15.
+Próximo passo exato: após confirmação, publicar 4.16 e iniciar 4.17, interface
+App\\Contracts\\Catalogo com listarNomes(): array, implementação em CatalogoDemonstracao,
+contrato recebido no construtor e binding em AppServiceProvider::register.
+Conjunto inseparável para introduzir contrato, ligação e papel do provider,
+preservando dados em memória, HTML e middleware.
 
 ## Verificações e limitações do ambiente
 
@@ -2382,13 +2424,13 @@ index consulta $this->catalogo. Comparar pontos de injeção e preservar comport
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `354626c`,
-  `feat: marca resposta da loja com middleware`.
+- Último commit local publicado nesta retomada: `dca8ccd`,
+  `refactor: injeta catálogo demonstrativo no controller`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `354626c`,
-  igual a HEAD e origin/main. Etapa 4.15 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `dca8ccd`,
+  igual a HEAD e origin/main. Etapa 4.16 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2464,11 +2506,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 4.15 confirmada, conferir o remoto e iniciar 4.16.
+- Ação imediata: publicar 4.16 confirmada, conferir o remoto e iniciar 4.17.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.15: publicar seu checkpoint e iniciar 4.16, injeção
-  da mesma dependência pelo construtor com propriedade promovida.
+- Após a confirmação da 4.16: publicar seu checkpoint e iniciar 4.17, contrato
+  Catalogo, implementação e binding no AppServiceProvider.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2534,4 +2576,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.12 — Lista com Blade | Nomes demonstrativos e @foreach; sintaxe e três itens renderizados conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 37b7485 |
 | 13/10/2026 | 4.13 — Lista vazia | Condição Blade e mensagem; listas preenchida/vazia renderizadas e HTTP conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em b944f4e |
 | 13/10/2026 | 4.14 — Primeiro middleware | Classe ligada a /loja; sintaxes, cabeçalho, conteúdo e escopo HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 354626c |
-| 13/10/2026 | 4.15 — Injeção no método | Classe de catálogo recebida pelo controller; sintaxes e HTTP preservado conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 13/10/2026 | 4.15 — Injeção no método | Classe de catálogo recebida pelo controller; sintaxes e HTTP preservado conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em dca8ccd |
+| 13/10/2026 | 4.16 — Injeção no construtor | Propriedade promovida e acesso por $this; sintaxe e HTTP preservado conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
