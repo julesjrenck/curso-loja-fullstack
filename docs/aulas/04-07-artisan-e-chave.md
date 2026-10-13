@@ -122,8 +122,8 @@ Ainda não verificamos uma requisição HTTP Laravel ou acesso a banco.
 ## Situação e próximo passo
 
 Implementação e verificações concluídas; explicação apresentada, entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação;
-chave e manifests ficam locais. Último checkpoint publicado: ae521c9, etapa 4.6.
+confirmado com "entendi" em 13/10/2026. Checkpoint 590f98a publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram. Chave e manifests locais.
 
 Após confirmação, publicar a documentação da 4.7 e iniciar 4.8: configurar o
 servidor de desenvolvimento do Laravel no serviço backend, publicar somente

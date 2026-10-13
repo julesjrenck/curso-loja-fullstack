@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.7, Artisan e chave da aplicação.
+Módulo 4 — Laravel e MVC: etapa 4.8, servidor Laravel e primeira página.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -49,6 +49,10 @@ Na 4.7, Artisan executou no Docker e a APP_KEY local foi gerada, validada e lida
 em outro container. Manifests de pacotes e serviços foram gerados em bootstrap/cache.
 Chave e manifests ficam fora do Git. Explicação apresentada; entendimento da 4.7
 confirmado. Servidor Laravel ainda não iniciado.
+Na 4.8, o backend passou a executar Artisan serve, com publicação local em
+http://127.0.0.1:8002/. A página welcome respondeu HTTP 200 com título Loja Fullstack;
+parada e reinício verificados com init:true. Laboratório continua na porta 8001.
+Explicação apresentada; entendimento da 4.8 confirmado.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -100,6 +104,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.5 — Pastas graváveis do Laravel](docs/aulas/04-05-pastas-gravaveis-laravel.md)
 - [Aula 4.6 — Ambiente local do Laravel](docs/aulas/04-06-ambiente-local-laravel.md)
 - [Aula 4.7 — Artisan e chave da aplicação](docs/aulas/04-07-artisan-e-chave.md)
+- [Aula 4.8 — Servidor Laravel e primeira página](docs/aulas/04-08-servidor-laravel.md)
 
 ## Backend Laravel
 
@@ -107,7 +112,7 @@ Os arquivos iniciais estão em `backend/`. A versão do esqueleto foi fixada em
 v13.11.0; `backend/composer.json` declara `laravel/framework` ^13.17. A resolução
 gerou backend/composer.lock com Laravel 13.35.0 e Tinker 3.0.2. O autoload App
 aponta para app/. O ambiente backend/.env foi preparado localmente, ignorado
-pelo Git. APP_KEY local gerada e validada; não há servidor Laravel iniciado.
+pelo Git. APP_KEY local gerada e validada; servidor Laravel ativo na porta 8002.
 
 A aula 4.2 apresenta os arquivos gerados. O serviço `backend` reutiliza o
 Dockerfile da raiz e monta `./backend:/app:ro`, com `vendor-backend:/app/vendor`
@@ -125,15 +130,16 @@ cp --update=none -- backend/.env.example backend/.env
 chmod 600 backend/.env
 docker compose config --quiet
 docker compose build backend
-docker compose run --rm backend
+docker compose run --rm backend php --version
 docker compose run --rm backend composer --version
 docker compose run --rm backend composer install --no-dev --no-scripts --no-interaction
 docker compose run --rm backend composer validate --strict
 docker compose run --rm backend composer check-platform-reqs --no-dev
 ```
 
-O comando padrão mostra PHP 8.4.26 e termina; composer --version substitui esse
-padrão para consultar Composer 2.10.3. Não há servidor Laravel iniciado.
+O comando padrão agora inicia o servidor Laravel. Nos diagnósticos acima,
+php --version e composer --version substituem esse padrão para consultar
+PHP 8.4.26 e Composer 2.10.3 e terminar o container temporário.
 A aula 4.3 explica as montagens e a verificação da persistência. A 4.4 explica
 a primeira resolução com montagem temporária gravável para criar o lockfile.
 Agora install usa as versões registradas; --no-dev adia ferramentas de
@@ -142,9 +148,8 @@ O lock registra também 33 pacotes de desenvolvimento, ainda não instalados.
 Storage e bootstrap/cache já estão graváveis, mantendo o código somente leitura,
 conforme a aula 4.5. Na 4.6, o ambiente foi preparado para sessões/cache em arquivo
 e tarefas síncronas; DB_CONNECTION=sqlsrv indica o banco futuro, ainda sem conexão.
-APP_URL=http://127.0.0.1:8002 é a URL planejada; a porta ainda será publicada.
-Artisan já foi verificado com Laravel Framework 13.35.0 na aula 4.7. Após a
-confirmação, a 4.8 iniciará o servidor local e verificará a página inicial.
+APP_URL=http://127.0.0.1:8002 corresponde à publicação local preparada na 4.8.
+Artisan já foi verificado com Laravel Framework 13.35.0 na aula 4.7.
 
 Na raiz, .env serve ao Compose; em backend, .env é lido pelo Laravel. O comando
 cp acima usa GNU cp e preserva um backend/.env já existente. chmod 600 restringe
@@ -176,6 +181,32 @@ PHP
 A montagem temporária permite gravar somente o arquivo de ambiente. A aula 4.7
 explica a guarda, o comando e as verificações de criptografia sem exibir a chave.
 O modelo continua com APP_KEY vazia; cada ambiente prepara sua própria chave.
+
+Depois de preparar a chave, para iniciar o backend e acompanhar o servidor:
+
+```bash
+docker compose up -d backend
+docker compose ps
+docker compose logs --tail 10 backend
+```
+
+Acesse [http://127.0.0.1:8002/](http://127.0.0.1:8002/): página inicial welcome
+do modelo Laravel, com título Loja Fullstack. O serviço usa php artisan serve
+em 0.0.0.0:8000 dentro do container e publica 127.0.0.1:8002 no host.
+init:true encaminha sinais aos processos; stop_signal:SIGINT permite interromper
+o servidor. --tries=1 mantém a porta definida e --no-reload desativa reinício
+automático por mudanças no .env. Ao mudar o ambiente, reinicie o backend.
+
+Para parar e iniciar novamente:
+
+```bash
+docker compose stop backend
+docker compose up -d backend
+```
+
+Views compiladas e sessões são geradas no storage local, ignoradas pelo Git.
+A aula 4.8 explica o caminho da requisição. Após confirmação, a 4.9 introduzirá
+a primeira rota própria da loja em routes/web.php.
 
 ## Executar a demonstração do laboratório PHP
 

@@ -4,18 +4,18 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.7 — Artisan e chave da aplicação.
-- Situação: Artisan executado com Laravel Framework 13.35.0; APP_KEY local gerada
-  e validada, sem exibir o valor. Outro container confirmou seu carregamento pelo
-  Laravel. Manifests packages.php e services.php gerados e ignorados pelo Git.
-  Explicação apresentada; entendimento confirmado com "entendi" em 13/10/2026.
-  Próximo passo: publicar a documentação e iniciar servidor na 4.8.
-  Último checkpoint publicado: ae521c9, do ambiente local na 4.6.
+- Etapa atual: 4.8 — Servidor Laravel e primeira página.
+- Situação: backend ativo com Artisan serve em 127.0.0.1:8002. Página welcome
+  respondeu HTTP 200, título Loja Fullstack e conteúdo conferidos. Parada/reinício
+  verificados com init:true; view compilada e sessão geradas, ignoradas pelo Git.
+  Laboratório segue ativo em 8001. Explicação apresentada; entendimento confirmado
+  com "entendi" em 13/10/2026. Próximo passo: publicar 4.8 e criar rota na 4.9.
+  Último checkpoint publicado: 590f98a, da documentação de Artisan.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 a 4.7 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.8 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -116,7 +116,12 @@ retornaram `ae521c9ea4344cc408201875b454eae9b5a03f19`.
 Etapa 4.7 apresentou Artisan, gerou APP_KEY local e verificou criptografia e
 carregamento em outro container. Manifests gerados apresentados e ignorados.
 Explicação apresentada; entendimento confirmado com "entendi" em 13/10/2026.
-Checkpoint de documentação preparado para publicação autorizada.
+Checkpoint 590f98a publicado; HEAD, origin/main e consulta direta à main remota
+retornaram `590f98a7141f8223659711c659b2d857c05afc67`.
+Etapa 4.8 iniciou o servidor Laravel e verificou welcome em HTTP 200, montagens,
+artefatos gerados e parada/reinício com init. Laboratório preservado.
+Explicação apresentada; entendimento confirmado com "entendi" em 13/10/2026.
+Checkpoint preparado para publicação autorizada.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2000,12 +2005,56 @@ Verificação:
   Compose ps mostrou apenas servidor php do laboratório ativo; backend temporário.
 
 Entendimento da etapa 4.7: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado; chave e manifests não serão versionados.
-Último checkpoint publicado e verificado: ae521c9, etapa 4.6.
+Checkpoint: 590f98a, `docs: apresenta Artisan e valida chave local`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `590f98a7141f8223659711c659b2d857c05afc67`. Chave e manifests locais.
 Próximo passo exato: após confirmação, publicar documentação da 4.7 e iniciar 4.8,
 configurar servidor de desenvolvimento Laravel no serviço backend, publicar
 127.0.0.1:8002 e verificar página inicial de /, preservando laboratório php.
 Banco e testes de integração permanecem nas etapas previstas com SQL Server.
+
+## Etapa 4.8
+
+Objetivo: iniciar o servidor Laravel no Docker e verificar a página inicial do
+modelo, mantendo o laboratório e as montagens preparados.
+
+Implementação e explicação:
+
+- compose.yaml: backend executa php artisan serve --host=0.0.0.0 --port=8000
+  --tries=1 --no-reload, com ports 127.0.0.1:8002:8000 e stop_signal SIGINT.
+- init:true acrescentado após parada forçada no diagnóstico inicial; encaminha
+  sinais e cuida de processos filhos. Correção verificada antes de encerrar a aula.
+- Explicados comando padrão persistente, portas interna/host, opções do servidor,
+  init, sinal de parada e comandos up -d, ps, port, logs e stop.
+- Montagens, serviço php e imagem preservados. Sem rebuild ou novos pacotes.
+- Apresentado caminho básico GET / -> public/index.php -> bootstrap/app.php ->
+  routes/web.php -> view welcome -> HTML. Arquivos PHP do backend preservados.
+- Aula em docs/aulas/04-08-servidor-laravel.md e README atualizados.
+
+Verificação:
+
+- help serve confirmou opções. Porta 8002 disponível; Compose válido.
+- up -d backend criou/iniciou servidor. ps mostrou php e backend ativos;
+  port backend 8000 confirmou 127.0.0.1:8002; log de inicialização conferido.
+- Diagnóstico PHP em Docker, --network host, consultou portas publicadas: Laravel
+  8002 HTTP 200, título Loja Fullstack e texto welcome; laboratório 8001 HTTP 200.
+- Primeira requisição gerou uma view compilada e um arquivo de sessão em storage.
+  Contagens e legibilidade conferidas sem exibir conteúdo/identificadores de sessão.
+- Código somente leitura; pastas de views/sessões graváveis; arquivos ignorados.
+- Parada inicial sem init: exit 137, forçada. Com init:true: parada rápida,
+  exit 130 por SIGINT; servidor reiniciado, ambas as páginas novamente HTTP 200.
+- Backend, src, Dockerfile, .dockerignore e lockfile versionados sem alterações.
+  Mudança de implementação somente em compose.yaml. Configuração local preservada.
+- Sem banco, migrations, frontend, testes Laravel, pacotes ou contador executados.
+
+Entendimento da etapa 4.8: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado; artefatos gerados ignorados.
+Último checkpoint publicado e verificado: 590f98a, etapa 4.7.
+Estado de execução: Laravel em 127.0.0.1:8002 e laboratório em 127.0.0.1:8001 ativos.
+Próximo passo exato: após confirmação, publicar 4.8 e iniciar 4.9, acrescentar
+GET /loja em backend/routes/web.php com resposta textual usando config('app.name').
+Explicar método, caminho, função de atendimento e resposta; controllers/view
+própria em etapas posteriores. Persistência e testes de integração seguem SQL Server.
 
 ## Verificações e limitações do ambiente
 
@@ -2033,13 +2082,13 @@ Banco e testes de integração permanecem nas etapas previstas com SQL Server.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `ae521c9`,
-  `build: prepara ambiente local do Laravel`.
+- Último commit local publicado nesta retomada: `590f98a`,
+  `docs: apresenta Artisan e valida chave local`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `ae521c9`,
-  igual a HEAD e origin/main. Documentação da 4.7 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `590f98a`,
+  igual a HEAD e origin/main. Etapa 4.8 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2115,11 +2164,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 4.7 confirmada, conferir o remoto e iniciar 4.8.
+- Ação imediata: publicar 4.8 confirmada, conferir o remoto e iniciar 4.9.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.7: publicar sua documentação e iniciar 4.8, servidor
-  Laravel local e primeira página HTTP, preservando laboratório e configuração local.
+- Após a confirmação da 4.8: publicar seu checkpoint e iniciar 4.9, primeira
+  rota própria GET /loja com resposta textual baseada no nome da aplicação.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2177,4 +2226,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.4 — Dependências Laravel | 76 pacotes instalados, lockfile e autoload gerados; validação, plataforma e classes conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 4c6df27 |
 | 13/10/2026 | 4.5 — Pastas graváveis | Montagens de storage e bootstrap/cache; escrita, leitura e limpeza verificadas | Confirmado pelo aluno: "entendi" | Publicado e verificado em 7c0fcea |
 | 13/10/2026 | 4.6 — Ambiente Laravel | Modelo adaptado, cópia local criada; leitura de variáveis, tipos e exclusões conferidas | Confirmado pelo aluno: "entendi" | Publicado e verificado em ae521c9; .env ignorado |
-| 13/10/2026 | 4.7 — Artisan e chave | Console inicializado, chave local e manifests gerados; criptografia e carregamento conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado; chave e manifests ignorados |
+| 13/10/2026 | 4.7 — Artisan e chave | Console inicializado, chave local e manifests gerados; criptografia e carregamento conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 590f98a; chave e manifests ignorados |
+| 13/10/2026 | 4.8 — Servidor Laravel | Backend na porta 8002; welcome HTTP 200, artefatos e parada/reinício verificados | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
