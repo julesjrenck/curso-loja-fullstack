@@ -30,8 +30,9 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 está na preparação do backend para SQL Server, com a etapa 5.2
-confirmada e instalação das extensões PHP como próximo passo; módulos 6 a 23 não iniciados.
+O módulo 5 está preparando SQL Server, com extensões PHP da 5.3 confirmadas
+e serviço SQL Server da 5.4 como próximo passo;
+módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
 | Módulo | Conteúdo | Entrega verificável |

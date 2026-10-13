@@ -17,4 +17,18 @@ RUN apt-get update \
 
 WORKDIR /app
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        git=1:2.39.5-0+deb12u3 \
+        libtool=2.4.7-7~deb12u1 \
+        unixodbc-dev=2.3.11-2+deb12u1 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL https://github.com/php/pie/releases/download/1.5.2/pie.phar \
+        -o /usr/local/bin/pie \
+    && echo 'fe70c59738cf56ec00a818cf9cb9593da171aac86f5f1f859995b8839dfd2cc7  /usr/local/bin/pie' | sha256sum -c - \
+    && chmod +x /usr/local/bin/pie \
+    && pie install --no-interaction --no-cache --make-parallel-jobs=2 microsoft/sqlsrv:5.13.3 \
+    && pie install --no-interaction --no-cache --make-parallel-jobs=2 microsoft/pdo_sqlsrv:5.13.3
+
 CMD ["php", "artisan", "--version"]

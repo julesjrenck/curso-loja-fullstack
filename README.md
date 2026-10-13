@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.2, ODBC na imagem do backend.
+Módulo 5 — SQL Server e persistência: etapa 5.3, extensões PHP para SQL Server.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -108,6 +108,11 @@ ODBC Driver 18.7.1.1-1 instalado; imagem construída e backend recriado.
 Driver registrado, bibliotecas, requisitos Composer e HTTP conferidos.
 Laboratório PHP preservado. Extensões PHP e SQL Server seguem pendentes;
 explicação apresentada, entendimento da 5.2 confirmado com "entendi".
+Na 5.3, Dockerfile.backend acrescenta PIE 1.5.2 e os drivers sqlsrv/pdo_sqlsrv
+5.13.3, com dependências de compilação em versões fixas. Imagem construída e
+backend recriado; extensões carregadas, PDO com sqlsrv, .ini gerados, plataforma
+e HTTP conferidos. SQL Server ainda não introduzido; explicação apresentada,
+entendimento da 5.3 confirmado com "entendi", após esclarecimento sobre PIE.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -173,6 +178,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.19 — Revisão do módulo 4](docs/aulas/04-19-revisao-modulo-4.md)
 - [Aula 5.1 — Preparação para SQL Server](docs/aulas/05-01-preparacao-sql-server.md)
 - [Aula 5.2 — ODBC na imagem do backend](docs/aulas/05-02-odbc-backend.md)
+- [Aula 5.3 — Extensões PHP para SQL Server](docs/aulas/05-03-extensoes-sql-server.md)
 
 ## Backend Laravel
 
@@ -219,7 +225,7 @@ e tarefas síncronas; DB_CONNECTION=sqlsrv indica o banco futuro, ainda sem cone
 APP_URL=http://127.0.0.1:8002 corresponde à publicação local preparada na 4.8.
 Artisan já foi verificado com Laravel Framework 13.35.0 na aula 4.7.
 A aula 5.2 acrescenta ODBC Driver 18.7.1.1-1 à imagem própria do backend;
-as extensões sqlsrv/pdo_sqlsrv serão instaladas na etapa 5.3.
+a aula 5.3 instala e habilita sqlsrv/pdo_sqlsrv 5.13.3 com PIE 1.5.2.
 
 Na raiz, .env serve ao Compose; em backend, .env é lido pelo Laravel. O comando
 cp acima usa GNU cp e preserva um backend/.env já existente. chmod 600 restringe
@@ -297,8 +303,9 @@ memória e sem consultas/gravação. Ele não foi ligado à página /loja; os no
 continuam no catálogo demonstrativo. A revisão 4.19 foi confirmada e o módulo 4
 concluído. O diagnóstico 5.1 para SQL Server foi confirmado; o próximo passo
 foi realizado na 5.2: imagem própria do backend com ODBC Driver 18 construída
-e aplicada. Entendimento da 5.2 confirmado; próximo passo: extensões PHP na 5.3.
-Drivers sqlsrv/pdo_sqlsrv, banco e persistência seguem pendentes.
+e aplicada. Na 5.3, sqlsrv/pdo_sqlsrv foram instaladas e carregadas no backend.
+Próximo passo: introduzir o serviço SQL Server 2022 Developer na 5.4.
+Servidor, bancos, conexão Laravel e persistência seguem pendentes.
 
 ## Executar a demonstração do laboratório PHP
 

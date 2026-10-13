@@ -114,8 +114,9 @@ O build passou; o checksum retornou OK. Bases resolvidas:
 
 README, roteiro e progresso atualizados para esta etapa. Explicação apresentada;
 entendimento da 5.2 confirmado com "entendi" em 13/10/2026.
-Checkpoint preparado para publicação conforme autorização existente.
-Último checkpoint publicado: 41d0660.
+Checkpoint 5709dfe publicado conforme autorização existente. HEAD, origin/main
+e consulta direta à main remota retornaram
+`5709dfefd739105efeff07691e6c127faa54dac6`.
 
 Próximo passo exato, após confirmação: publicar 5.2 e iniciar 5.3, instalar e
 habilitar sqlsrv/pdo_sqlsrv 5.13.3 na imagem do backend, conferindo o método

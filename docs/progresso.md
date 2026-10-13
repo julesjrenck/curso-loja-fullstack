@@ -4,13 +4,14 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.2 — ODBC na imagem do backend.
-- Situação: Dockerfile.backend criado, Compose e .dockerignore ajustados;
-  ODBC Driver 18.7.1.1-1 instalado, imagem construída e backend recriado.
-  Registro do driver, bibliotecas, plataforma Composer e HTTP conferidos.
-  Explicação apresentada; entendimento da 5.2 confirmado com "entendi" em 13/10/2026.
-  sqlsrv/pdo_sqlsrv e banco ainda pendentes. Checkpoint preparado para publicação.
-  Backend e laboratório ativos. Último checkpoint publicado: 41d0660, preparação 5.1.
+- Etapa atual: 5.3 — Extensões PHP para SQL Server.
+- Situação: Dockerfile.backend acrescenta PIE 1.5.2 e sqlsrv/pdo_sqlsrv 5.13.3.
+  Imagem construída e backend recriado; extensões carregadas, PDO com sqlsrv,
+  .ini gerados, requisitos Composer e HTTP conferidos. ODBC 18.7.1.1-1 pronto.
+  Explicação apresentada; entendimento da 5.3 e esclarecimento PIE confirmados
+  com "entendi" em 13/10/2026. SQL Server e bancos ainda pendentes;
+  checkpoint preparado para publicação.
+  Backend e laboratório ativos. Último checkpoint publicado: 5709dfe, ODBC na 5.2.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
@@ -19,6 +20,7 @@
 - Etapas 4.1 a 4.19 confirmadas em 13/10/2026; módulo 4 concluído.
 - Etapa 5.1 confirmada com "entendi" em 13/10/2026.
 - Etapa 5.2 confirmada com "entendi" em 13/10/2026.
+- Etapa 5.3 confirmada com "entendi", após esclarecimento PIE, em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -180,6 +182,11 @@ Checkpoint 5.1 publicado: 41d0660; HEAD, origin/main e consulta direta à main
 remota retornaram `41d0660945bd3b91dc3a036017986e1adc6c2ff5`.
 Etapa 5.2 implementou imagem própria do backend com ODBC 18, validada e aplicada;
 explicação apresentada, entendimento da 5.2 confirmado com "entendi" em 13/10/2026.
+Checkpoint 5709dfe publicado; HEAD, origin/main e consulta direta à main remota
+retornaram `5709dfefd739105efeff07691e6c127faa54dac6`.
+Etapa 5.3 instalou/habilitou drivers PHP 5.13.3 com PIE 1.5.2 na imagem backend;
+explicação apresentada e verificações passaram; entendimento confirmado com "entendi"
+em 13/10/2026, após esclarecimento sobre PIE.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2628,11 +2635,73 @@ Verificação:
 - Instalação ODBC verificada; nenhuma conexão SQL Server demonstrada nesta etapa.
 
 Entendimento da etapa 5.2: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado para commit/push autorizado. Último publicado: 41d0660.
+Publicação: checkpoint 5709dfe, `build: prepara ODBC na imagem do backend`.
+Push autorizado e verificado: HEAD, origin/main e consulta direta à main remota
+retornaram `5709dfefd739105efeff07691e6c127faa54dac6`.
 Próximo passo exato: após confirmação, publicar 5.2 e iniciar 5.3, instalar e
 habilitar sqlsrv/pdo_sqlsrv 5.13.3 na imagem backend, conferindo método oficial
 e dependências de compilação. Serviço SQL Server será introduzido em outra etapa;
 banco de integração exclusivo e ajuste de padrões SQLite seguem pendentes.
+
+## Etapa 5.3
+
+Objetivo: instalar e habilitar sqlsrv/pdo_sqlsrv 5.13.3 no PHP do backend,
+usando ODBC já preparado e método oficial conferido.
+
+Implementação e explicação:
+
+- Alterado apenas Dockerfile.backend na implementação. Acrescentados git
+  1:2.39.5-0+deb12u3, libtool 2.4.7-7~deb12u1 e unixodbc-dev 2.3.11-2+deb12u1,
+  com versões consultadas em container temporário. Base já fornece compiladores,
+  make, autoconf, pkg-config, phpize e php-config compatíveis com PHP 8.4.26.
+- PIE 1.5.2 baixado da release oficial identificável, SHA-256 conferido e
+  chmod +x aplicado. Hash: fe70c59738cf56ec00a818cf9cb9593da171aac86f5f1f859995b8839dfd2cc7.
+- Método PIE recomendado pela documentação atual Microsoft, suportado pelos
+  drivers 5.13.2+. Instalados microsoft/sqlsrv:5.13.3 e microsoft/pdo_sqlsrv:5.13.3
+  em comandos separados, sem interação/cache e com dois trabalhos de compilação.
+- Explicada diferença entre classes Composer/vendor e extensões PHP/.so;
+  funções sqlsrv e driver PDO, compilação para PHP alvo e habilitação por .ini.
+- PIE compilou, instalou e habilitou as duas extensões. Arquivos gerados na imagem:
+  /usr/local/etc/php/conf.d/docker-php-ext-sqlsrv.ini com extension=sqlsrv e
+  /usr/local/etc/php/conf.d/docker-php-ext-pdo_sqlsrv.ini com extension=pdo_sqlsrv.
+  Bibliotecas em /usr/local/lib/php/extensions/no-debug-non-zts-20240924/.
+- Build e aplicação apenas do backend. Compose, laboratório e código preservados.
+  Aula docs/aulas/05-03-extensoes-sql-server.md criada; README/roteiro/progresso atualizados.
+
+Verificação:
+
+- PIE --version e install --help em container descartável confirmaram 1.5.2,
+  sintaxe vendor/package:versão e opções utilizadas. Checksum conferido com os
+  metadados públicos da release; consultas e ferramentas executadas em Docker.
+- config --quiet válido; build backend passou. PIE confirmou alvo PHP 8.4.26
+  NTS x86_64, phpize/configure/build/install concluídos para os dois drivers.
+- up -d --no-deps backend recriou o serviço. Script no backend verificou
+  extension_loaded e phpversion: sqlsrv/pdo_sqlsrv carregadas, exatamente 5.13.3.
+- function_exists('sqlsrv_connect') verdadeiro; PDO::getAvailableDrivers passou
+  a listar sqlite/sqlsrv. Nenhuma função de conexão, query ou gravação executada.
+- .ini efetivamente lidos e conteúdos conferidos; versões git/libtool/unixodbc-dev
+  confirmadas, ODBC 18.7.1.1-1 registrado. PIE 1.5.2 mantido na imagem.
+- Composer check-platform-reqs --no-dev passou; autoload do volume preservado,
+  Laravel 13.35.0. Serviços ativos em 8002/8001; laboratório com mesmo ID/imagem.
+- PHP temporário em Docker com rede do host: /loja 200, título e três nomes
+  corretos na ordem, X-Curso: Laravel; welcome e laboratório 200 sem X-Curso.
+- git diff --exit-code -- backend src compose.yaml Dockerfile .dockerignore
+  passou; backend/.env ignorado. Sem SQL Server, banco, migration ou contador.
+- Drivers disponíveis não comprovam conexão real: faltam servidor e acesso.
+
+Entendimento da etapa 5.3: confirmado com "entendi" em 13/10/2026, após esclarecimento PIE.
+Pergunta do aluno: "o que é eese pie?". Esclarecimento apresentado: PIE significa
+PHP Installer for Extensions, ferramenta de instalação de extensões no PHP.
+Comparado com Composer, que instala bibliotecas/classes da aplicação em vendor.
+Exemplo desta aula: pie install microsoft/pdo_sqlsrv:5.13.3 baixa o pacote,
+compila/instala a extensão e configura seu carregamento no PHP da imagem.
+Ferramenta utilizada durante o build; aplicação usa a extensão instalada em execução.
+Entendimento desse esclarecimento e da 5.3 confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado para commit/push autorizado. Último publicado: 5709dfe.
+Próximo passo exato: após confirmação, publicar 5.3 e iniciar 5.4, introduzir
+SQL Server 2022 Developer no Compose, conferindo imagem/tag/digest, volume
+persistente e credenciais locais ignoradas. Conexão Laravel e bancos da loja/testes
+terão suas etapas próprias; integração deve usar banco SQL Server exclusivo.
 
 ## Verificações e limitações do ambiente
 
@@ -2660,13 +2729,13 @@ banco de integração exclusivo e ajuste de padrões SQLite seguem pendentes.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `41d0660`,
-  `docs: verifica preparação para SQL Server`.
+- Último commit local publicado nesta retomada: `5709dfe`,
+  `build: prepara ODBC na imagem do backend`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `41d0660`,
-  igual a HEAD e origin/main. Implementação/documentação da 5.2 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `5709dfe`,
+  igual a HEAD e origin/main. Implementação/documentação da 5.3 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2731,6 +2800,8 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 
 ## Dúvidas e próximos passos
 
+- Dúvida da 5.3: o que é PIE? Esclarecido nome, função, relação com Composer,
+  comando de instalação e uso no build; entendimento confirmado com "entendi".
 - Dúvida registrada e respondida: alcance da autenticação SSH e diferença entre
   chaves locais, cadastro na conta GitHub e reconhecimento do servidor; exemplo
   de geração local com `ssh-keygen`, sem executar ou substituir as chaves atuais.
@@ -2742,11 +2813,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 5.2 confirmada e iniciar 5.3, extensões PHP no backend.
+- Ação imediata: publicar 5.3 confirmada e iniciar 5.4, serviço SQL Server.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 5.2: publicar ODBC e instalar na 5.3 sqlsrv/pdo_sqlsrv
-  no backend, sem criar banco antes da etapa necessária.
+- Após a confirmação da 5.3: publicar drivers e introduzir na 5.4 o serviço
+  SQL Server 2022 Developer, com volume e configuração local ignorada.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2818,4 +2889,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.18 — Papel do Model | User existente explicado e atributos demonstrados em memória; código preservado | Confirmado pelo aluno: "entendi" | Publicado e verificado em aa372c6 |
 | 13/10/2026 | 4.19 — Revisão do módulo 4 | Fluxo e entrega revisados; módulo 4 concluído | Confirmado pelo aluno: "entendi" | Publicado e verificado em 2346772 |
 | 13/10/2026 | 5.1 — Preparação SQL Server | Recursos Docker, PHP e compatibilidade conferidos; sem instalação | Confirmado pelo aluno: "entendi" | Publicado e verificado em 41d0660 |
-| 13/10/2026 | 5.2 — ODBC no backend | Imagem própria, ODBC 18.7.1.1-1 e recriação; bibliotecas/plataforma/HTTP conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 13/10/2026 | 5.2 — ODBC no backend | Imagem própria, ODBC 18.7.1.1-1 e recriação; bibliotecas/plataforma/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5709dfe |
+| 13/10/2026 | 5.3 — Extensões SQL Server | sqlsrv/pdo_sqlsrv 5.13.3 via PIE 1.5.2; carregamento, PDO, .ini, plataforma e HTTP conferidos | Confirmado pelo aluno: "entendi", após esclarecimento PIE | Checkpoint preparado para publicação |
