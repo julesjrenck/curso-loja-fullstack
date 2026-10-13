@@ -7,5 +7,12 @@
     </head>
     <body>
         <h1>Bem-vindo à {{ $nomeLoja }}!</h1>
+
+        <h2>Produtos de demonstração</h2>
+        <ul>
+            @foreach ($produtos as $produto)
+                <li>{{ $produto }}</li>
+            @endforeach
+        </ul>
     </body>
 </html>

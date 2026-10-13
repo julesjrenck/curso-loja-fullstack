@@ -118,8 +118,8 @@ uma implementação de catálogo persistido ou compra da loja.
 ## Situação e próximo passo
 
 Implementação e verificações concluídas; explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
-Último checkpoint publicado: f31b38e, etapa 4.10.
+confirmado com "entendi" em 13/10/2026. Checkpoint 1d93ab8 publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram.
 
 Após confirmação, publicar 4.11 e iniciar 4.12: enviar uma pequena lista de nomes
 demonstrativos de produtos do controller para a view e exibi-la com @foreach.

@@ -4,18 +4,18 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.11 — Primeira view Blade da loja.
-- Situação: LojaController@index retorna view loja com nomeLoja como dado.
-  HTML mínimo em loja.blade.php apresenta título e saudação; resposta HTTP 200,
-  dados renderizados e escape de caracteres especiais verificados. Explicação
-  apresentada; entendimento confirmado com "entendi" em 13/10/2026.
-  Próximo passo: publicar 4.11 e praticar @foreach na 4.12. Backend e laboratório ativos.
-  Último checkpoint publicado: f31b38e, do primeiro controller na 4.10.
+- Etapa atual: 4.12 — Lista de produtos com Blade.
+- Situação: controller envia lista demonstrativa de três nomes e a view gera
+  itens com @foreach. Sintaxe e HTTP 200 conferidos, com itens na ordem esperada;
+  título, saudação e welcome preservados. Explicação apresentada; entendimento
+  confirmado com "entendi" em 13/10/2026. Próximo passo: publicar 4.12 e tratar
+  lista vazia na 4.13. Backend e laboratório ativos.
+  Último checkpoint publicado: 1d93ab8, da primeira view Blade na 4.11.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 a 4.11 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.12 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -135,6 +135,11 @@ origin/main e consulta direta à main remota retornaram
 `f31b38eb8d3732cf6e158d8fd9eff82687d4a7fc`.
 Etapa 4.11 criou view loja e retorno View no controller, com dado nomeLoja.
 HTTP, renderização e escape verificados; explicação apresentada e entendimento
+confirmado com "entendi" em 13/10/2026. Checkpoint 1d93ab8 publicado; HEAD,
+origin/main e consulta direta à main remota retornaram
+`1d93ab8913540a1d27bcdd0c789622dd37e54567`.
+Etapa 4.12 enviou nomes demonstrativos para a view e exibiu com @foreach.
+Sintaxe e lista renderizada conferidas; explicação apresentada e entendimento
 confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -2182,11 +2187,47 @@ Verificação:
   Diagnóstico verifica apresentação e dados, não catálogo persistido.
 
 Entendimento da etapa 4.11: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado; compilados ignorados.
-Último checkpoint publicado e verificado: f31b38e, etapa 4.10.
+Checkpoint: 1d93ab8, `feat: apresenta loja em view Blade`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `1d93ab8913540a1d27bcdd0c789622dd37e54567`. Compilados ignorados.
 Próximo passo exato: após confirmação, publicar 4.11 e iniciar 4.12, passar pequena
 lista de nomes demonstrativos de produtos do controller para a view e exibir com
 @foreach. Dados em memória para estudar Blade, sem antecipar model/banco.
+
+## Etapa 4.12
+
+Objetivo: passar lista demonstrativa do controller à view e apresentar @foreach,
+elemento atual do laço e lista HTML.
+
+Implementação e explicação:
+
+- LojaController@index recebeu o dado produtos com ['Camiseta', 'Calça', 'Tênis'],
+  preservando nomeLoja e retorno View. Dados fixos em memória para demonstração.
+- loja.blade.php recebeu h2 Produtos de demonstração e ul com
+  @foreach ($produtos as $produto), li com {{ $produto }} e @endforeach.
+- Explicados array associativo de dados, lista de strings, variável $produtos
+  e elemento atual $produto, relação com foreach PHP e processamento no servidor.
+- Explicados h2, ul e li; exibição com escape Blade preservada.
+- Aula em docs/aulas/04-12-lista-produtos-blade.md e README atualizados.
+
+Verificação:
+
+- php -l no Docker: controller sem erros de sintaxe.
+- Diagnóstico PHP temporário em Docker consultou /loja: HTTP 200; título,
+  saudação e novo título de seção presentes. Três li com nomes e ordem exatos.
+- Diretivas @foreach/@endforeach e {{ }} ausentes no HTML recebido.
+- GET / permaneceu HTTP 200, welcome preservada. Sem cookies ou HTML completo impressos.
+- Rota, src, Compose, Dockerfile, JSON e lockfile preservados; sem rebuild/reinício.
+- Sem entidades de catálogo, preços, banco, migrations, testes Laravel, frontend,
+  dependências, mudança de ambiente/chave ou contador. Exercício de apresentação.
+
+Entendimento da etapa 4.12: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
+Último checkpoint publicado e verificado: 1d93ab8, etapa 4.11.
+Próximo passo exato: após confirmação, publicar 4.12 e iniciar 4.13, tratar lista
+vazia na view com @if/@else e mensagem. Conferir listas preenchida/vazia por
+renderização com dados temporários, mantendo os nomes do controller. Model e banco
+continuam nas etapas previstas do roteiro.
 
 ## Verificações e limitações do ambiente
 
@@ -2214,13 +2255,13 @@ lista de nomes demonstrativos de produtos do controller para a view e exibir com
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `f31b38e`,
-  `refactor: move saudação para controller da loja`.
+- Último commit local publicado nesta retomada: `1d93ab8`,
+  `feat: apresenta loja em view Blade`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `f31b38e`,
-  igual a HEAD e origin/main. Etapa 4.11 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `1d93ab8`,
+  igual a HEAD e origin/main. Etapa 4.12 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2296,11 +2337,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 4.11 confirmada, conferir o remoto e iniciar 4.12.
+- Ação imediata: publicar 4.12 confirmada, conferir o remoto e iniciar 4.13.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.11: publicar seu checkpoint e iniciar 4.12, lista
-  demonstrativa de nomes de produtos e @foreach na view Blade.
+- Após a confirmação da 4.12: publicar seu checkpoint e iniciar 4.13, condição
+  Blade para lista vazia e mensagem de ausência de produtos demonstrativos.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2362,4 +2403,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.8 — Servidor Laravel | Backend na porta 8002; welcome HTTP 200, artefatos e parada/reinício verificados | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6ccf825 |
 | 13/10/2026 | 4.9 — Primeira rota da loja | GET /loja com saudação configurada; sintaxe, registro e respostas conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 1671a0b |
 | 13/10/2026 | 4.10 — Primeiro controller | LojaController@index ligado à rota; sintaxes, registro e resposta preservada conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em f31b38e |
-| 13/10/2026 | 4.11 — Primeira view Blade | Template loja e dados pelo controller; sintaxe, HTTP, renderização e escape conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 13/10/2026 | 4.11 — Primeira view Blade | Template loja e dados pelo controller; sintaxe, HTTP, renderização e escape conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 1d93ab8 |
+| 13/10/2026 | 4.12 — Lista com Blade | Nomes demonstrativos e @foreach; sintaxe e três itens renderizados conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |

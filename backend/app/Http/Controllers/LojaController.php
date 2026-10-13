@@ -10,6 +10,7 @@ class LojaController extends Controller
     {
         return view('loja', [
             'nomeLoja' => config('app.name'),
+            'produtos' => ['Camiseta', 'Calça', 'Tênis'],
         ]);
     }
 }
