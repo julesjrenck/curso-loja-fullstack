@@ -89,8 +89,8 @@ de catálogo ou persistência.
 ## Situação e próximo passo
 
 Implementação e verificações concluídas; explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
-Último checkpoint publicado: 6ccf825, etapa 4.8.
+confirmado com "entendi" em 13/10/2026. Checkpoint 1671a0b publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram.
 
 Após confirmação, publicar 4.9 e iniciar 4.10: criar LojaController com método
 index e fazer GET /loja apontar para esse método, preservando a saudação. Explicar

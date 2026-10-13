@@ -4,18 +4,18 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.9 — Primeira rota da loja.
-- Situação: GET /loja retorna saudação usando config('app.name'). Sintaxe,
-  registro no Artisan, corpo/status HTTP 200 e POST 405 verificados; welcome
-  preservada. Explicação apresentada; entendimento confirmado com "entendi"
-  em 13/10/2026. Próximo passo: publicar 4.9 e criar controller na 4.10.
-  Backend e laboratório seguem ativos. Último checkpoint publicado: 6ccf825,
-  do servidor Laravel na 4.8.
+- Etapa atual: 4.10 — Primeiro controller da loja.
+- Situação: GET /loja aponta para LojaController@index, método público que retorna
+  a mesma saudação. Controller gerado pelo Artisan; sintaxes, registro e respostas
+  HTTP conferidos. Explicação apresentada; entendimento confirmado com "entendi"
+  em 13/10/2026. Próximo passo: publicar 4.10 e criar view na 4.11.
+  Backend e laboratório seguem ativos. Último checkpoint publicado: 1671a0b,
+  da primeira rota na 4.9.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 a 4.9 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.10 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -125,6 +125,11 @@ Checkpoint 6ccf825 publicado; HEAD, origin/main e consulta direta à main remota
 retornaram `6ccf825fbb834fdba7db7fb5785bbdb2721089f1`.
 Etapa 4.9 acrescentou GET /loja com saudação pelo nome configurado. Sintaxe,
 registro e respostas HTTP verificados; explicação apresentada e entendimento
+confirmado com "entendi" em 13/10/2026. Checkpoint 1671a0b publicado; HEAD,
+origin/main e consulta direta à main remota retornaram
+`1671a0b15f6bba6f8d8daafa41548d31f76f5614`.
+Etapa 4.10 criou LojaController e ligou /loja a index. Sintaxes, registro e
+comportamento HTTP preservado conferidos; explicação apresentada e entendimento
 confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -2091,12 +2096,53 @@ Verificação:
   comportamento HTTP desta rota, não persistência ou regras de catálogo.
 
 Entendimento da etapa 4.9: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
-Último checkpoint publicado e verificado: 6ccf825, etapa 4.8.
+Checkpoint: 1671a0b, `feat: adiciona primeira rota da loja`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `1671a0b15f6bba6f8d8daafa41548d31f76f5614`.
 Próximo passo exato: após confirmação, publicar 4.9 e iniciar 4.10, criar
 LojaController::index e fazer GET /loja apontar para esse método, preservando
 a saudação. Explicar rota -> classe -> método público -> resposta. View própria
 da loja em etapa posterior; banco e testes de integração seguem SQL Server.
+
+## Etapa 4.10
+
+Objetivo: mover atendimento de /loja para controller, preservando o comportamento
+e apresentando a relação entre rota, classe, método público e resposta.
+
+Implementação e explicação:
+
+- LojaController.php ausente antes da geração. help make:controller conferido;
+  classe gerada pelo Artisan no Docker, com --no-interaction e sem --force.
+- Montagem temporária apenas da pasta app/Http/Controllers com escrita. Após
+  geração, chown --reference da classe base aplicado somente ao arquivo novo;
+  stat confirmou 1000:1000. Demais montagens e configurações preservadas.
+- Arquivo gerado tinha import Request e classe vazia. Import sem uso retirado;
+  método public index(): string recebeu a mesma saudação com config('app.name').
+- Explicados namespace App\\Http\\Controllers, extends Controller, base abstrata
+  vazia existente, método de instância público, tipo de retorno e concatenação.
+- web.php recebeu import LojaController; GET /loja usa [LojaController::class, 'index'].
+  Explicados nome completo da classe, array de destino e chamada pelo Laravel.
+- Autoload App existente preservado. Aula em docs/aulas/04-10-primeiro-controller.md
+  e README atualizados.
+
+Verificação:
+
+- Geração e ajuste de proprietário: código 0.
+- php -l no Docker passou para LojaController.php e routes/web.php.
+- route:list --path=loja --except-vendor: GET|HEAD loja -> LojaController@index.
+- PHP temporário em Docker: GET /loja HTTP 200 e saudação exata preservada;
+  POST /loja HTTP 405; GET / HTTP 200 e título welcome preservado.
+- Classe nova carregada pelo autoload existente; sem dump-autoload, dependências,
+  rebuild ou reinício. src, Compose, Dockerfile, JSON e lockfile preservados.
+- Sem banco, frontend, migrations, testes Laravel, mudança de chave ou contador.
+
+Entendimento da etapa 4.10: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
+Último checkpoint publicado e verificado: 1671a0b, etapa 4.9.
+Próximo passo exato: após confirmação, publicar 4.10 e iniciar 4.11, criar
+resources/views/loja.blade.php e adaptar index para retornar view('loja') com o
+nome da loja como dado. Explicar tipo View, passagem de dados e Blade {{ }}.
+Model, persistência e testes de integração permanecem nas etapas previstas.
 
 ## Verificações e limitações do ambiente
 
@@ -2124,13 +2170,13 @@ da loja em etapa posterior; banco e testes de integração seguem SQL Server.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `6ccf825`,
-  `build: inicia servidor de desenvolvimento Laravel`.
+- Último commit local publicado nesta retomada: `1671a0b`,
+  `feat: adiciona primeira rota da loja`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `6ccf825`,
-  igual a HEAD e origin/main. Etapa 4.9 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `1671a0b`,
+  igual a HEAD e origin/main. Etapa 4.10 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2206,11 +2252,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 4.9 confirmada, conferir o remoto e iniciar 4.10.
+- Ação imediata: publicar 4.10 confirmada, conferir o remoto e iniciar 4.11.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.9: publicar seu checkpoint e iniciar 4.10, mover
-  atendimento de /loja para LojaController::index, mantendo o comportamento.
+- Após a confirmação da 4.10: publicar seu checkpoint e iniciar 4.11, view Blade
+  própria da loja e passagem do nome pelo controller.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2270,4 +2316,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.6 — Ambiente Laravel | Modelo adaptado, cópia local criada; leitura de variáveis, tipos e exclusões conferidas | Confirmado pelo aluno: "entendi" | Publicado e verificado em ae521c9; .env ignorado |
 | 13/10/2026 | 4.7 — Artisan e chave | Console inicializado, chave local e manifests gerados; criptografia e carregamento conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 590f98a; chave e manifests ignorados |
 | 13/10/2026 | 4.8 — Servidor Laravel | Backend na porta 8002; welcome HTTP 200, artefatos e parada/reinício verificados | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6ccf825 |
-| 13/10/2026 | 4.9 — Primeira rota da loja | GET /loja com saudação configurada; sintaxe, registro e respostas conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 13/10/2026 | 4.9 — Primeira rota da loja | GET /loja com saudação configurada; sintaxe, registro e respostas conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 1671a0b |
+| 13/10/2026 | 4.10 — Primeiro controller | LojaController@index ligado à rota; sintaxes, registro e resposta preservada conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |

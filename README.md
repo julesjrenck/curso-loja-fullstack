@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.9, primeira rota própria da loja.
+Módulo 4 — Laravel e MVC: etapa 4.10, primeiro controller da loja.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -57,6 +57,10 @@ Na 4.9, GET /loja foi acrescentada em backend/routes/web.php e retorna
 "Bem-vindo à Loja Fullstack!", usando config('app.name'). Sintaxe, registro,
 resposta HTTP 200 e recusa de POST com 405 conferidos. Página welcome preservada;
 explicação apresentada, entendimento da 4.9 confirmado.
+Na 4.10, /loja passou a chamar LojaController@index. O controller foi gerado
+pelo Artisan e recebeu o método público index(): string com a mesma saudação.
+Sintaxe, registro e respostas HTTP conferidos; explicação apresentada,
+entendimento da 4.10 confirmado.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -110,6 +114,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.7 — Artisan e chave da aplicação](docs/aulas/04-07-artisan-e-chave.md)
 - [Aula 4.8 — Servidor Laravel e primeira página](docs/aulas/04-08-servidor-laravel.md)
 - [Aula 4.9 — Primeira rota da loja](docs/aulas/04-09-primeira-rota-loja.md)
+- [Aula 4.10 — Primeiro controller da loja](docs/aulas/04-10-primeiro-controller.md)
 
 ## Backend Laravel
 
@@ -213,8 +218,10 @@ Views compiladas e sessões são geradas no storage local, ignoradas pelo Git.
 A aula 4.8 explica o caminho da requisição. A primeira rota própria está em
 [http://127.0.0.1:8002/loja](http://127.0.0.1:8002/loja): corpo textual com a
 saudação e o nome da aplicação. A aula 4.9 explica GET, caminho, função anônima,
-retorno string e config('app.name'). Após confirmação, moveremos esse atendimento
-para um controller, mantendo a mesma resposta.
+retorno string e config('app.name'). Na 4.10, esse atendimento foi movido para
+backend/app/Http/Controllers/LojaController.php, método index. A rota usa
+[LojaController::class, 'index']; a saudação foi preservada. Após confirmação,
+a próxima etapa criará uma view Blade própria para essa página.
 
 ## Executar a demonstração do laboratório PHP
 
