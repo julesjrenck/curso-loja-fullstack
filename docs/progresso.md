@@ -2,16 +2,17 @@
 
 ## Estado atual
 
-- Última atualização: 12/10/2026, referência de data America/Sao_Paulo.
-- Módulo atual: 3 — PHP moderno e OOP, concluído; próximo módulo: 4 — Laravel e MVC.
-- Etapa atual: 3.22 — Revisão acompanhada do módulo 3.
-- Situação: conceitos e relações entre arquivos reapresentados; demonstração
-  existente conferiu subtotal 14970 e estado inativo pelo item. Cinco testes
-  passaram na 3.21. Revisão confirmada com "entendi"; módulo 3 concluído em 12/10/2026.
+- Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
+- Módulo atual: 4 — Laravel e MVC.
+- Etapa atual: 4.1 — Papel do Laravel e preparação do ambiente.
+- Situação: papel do framework apresentado, requisitos PHP/Composer conferidos
+  no Docker e pasta backend definida. Entendimento confirmado com "entendi"
+  em 13/10/2026; próximo passo: obter o esqueleto na 4.2.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
-- Módulos 4 a 23: não iniciados.
+- Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
+- Etapa 4.1 confirmada em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -78,8 +79,12 @@ Etapa 3.21 implementada, explicada, verificada e confirmada com "entendi".
 Checkpoint do teste de preço zero `a5caa53` publicado; HEAD, origin/main e consulta
 direta à main remota retornaram `a5caa5380ea88a83de3f48655c7e8aed926929ff`.
 Etapa 3.22 apresentada e documentada, sem mudança no código, e confirmada com
-"entendi". Módulo 3 concluído em 12/10/2026. Checkpoint de revisão preparado
-para publicação; próximo passo: 4.1, preparação para Laravel.
+"entendi". Módulo 3 concluído em 12/10/2026. Checkpoint de revisão `7a4dc00`
+publicado; HEAD, origin/main e consulta direta à main remota retornaram
+`7a4dc008fc4418059d7057d913cea9a9336ee612`.
+Etapa 4.1 apresentada e documentada, com diagnóstico do ambiente concluído,
+e confirmada com "entendi" em 13/10/2026. Checkpoint da preparação preparado
+para publicação; próximo passo: obter o esqueleto na etapa 4.2.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1635,14 +1640,57 @@ Verificação:
 Entendimento da revisão 3.22: confirmado com "entendi" em 12/10/2026.
 Módulo 3 concluído quanto ao entendimento, com os conceitos revisados e cinco
 testes PHPUnit já verificados.
-Checkpoint preparado: `docs: conclui modulo PHP moderno e OOP`.
-Publicação autorizada; verificar resultado do push antes de registrar sucesso.
-Último checkpoint publicado e verificado: `a5caa53`, da etapa 3.21.
-Próximo passo após confirmação: registrar conclusão do módulo 3, publicar seu
-checkpoint de revisão e iniciar 4.1. Apresentar o papel de Laravel, consultar
-requisitos oficiais de Laravel 13, conferir PHP/Composer/extensões no Docker
-e definir a pasta do backend preservando o laboratório src. A instalação será
-uma etapa seguinte, após explicação e confirmação dessa preparação.
+Checkpoint: `7a4dc00`, `docs: conclui modulo PHP moderno e OOP`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `7a4dc008fc4418059d7057d913cea9a9336ee612`.
+
+## Etapa 4.1
+
+Objetivo: apresentar o papel do Laravel, conferir requisitos no Docker e definir
+a organização do backend antes de gerar o projeto.
+
+Implementação e explicação:
+
+- Apenas documentação: `docs/aulas/04-01-preparacao-laravel.md`; README e roteiro
+  atualizados para módulo 3 concluído e módulo 4 iniciado.
+- Apresentados os papéis de PHP, Composer, Laravel e Docker. Laravel oferece
+  classes e convenções para a aplicação web; rotas/controllers e outros recursos
+  serão aprofundados quando seus arquivos forem introduzidos.
+- Pasta definida: backend para Laravel; src preservado como laboratório PHP.
+  O backend terá Composer e dependências próprios, com armazenamento separado
+  do volume vendor-php do laboratório quando suas dependências forem instaladas.
+- Requisitos oficiais consultados: Laravel 13 exige PHP >= 8.3, com PHP 8.4
+  suportado, e treze extensões. Escolha PHP 8.4 do curso mantida.
+- Framework declara composer-runtime-api ^2.2; a plataforma do Composer foi
+  consultada para confirmar compatibilidade. Laravel ainda não instalado.
+
+Verificação:
+
+- `docker compose exec -T php php --version`: PHP 8.4.26 CLI.
+- `docker compose exec -T php composer --version`: Composer 2.10.3.
+- Diagnóstico PHP pela entrada padrão confirmou versão >= 8.3 e carregamento
+  de ctype, curl, dom, fileinfo, filter, hash, mbstring, openssl, pcre, PDO,
+  session, tokenizer e xml. Treze módulos e diagnóstico atendido, código 0.
+- `composer show --platform composer-runtime-api`: 2.2.2, compatível com ^2.2.
+- `test ! -e backend`: código 0; caminho disponível, sem criar pasta nesta etapa.
+- `composer create-project --help` confirmou --no-install e --no-scripts.
+  O modelo oficial possui scripts de geração de .env, chave e SQLite; suas ações
+  serão adiadas e explicadas, preservando a decisão SQL Server do curso.
+- Sem mudança em código, Dockerfile ou Compose, build, instalação de pacotes
+  ou execução do contador. Configuração local e volumes preservados.
+- O diagnóstico cobre os requisitos PHP consultados; dependências completas
+  serão resolvidas e verificadas quando forem instaladas no backend.
+
+Entendimento da etapa 4.1: confirmado com "entendi" em 13/10/2026.
+Checkpoint preparado: `docs: prepara ambiente para Laravel`.
+Publicação autorizada; conferir o resultado do push antes de registrar sucesso.
+Último checkpoint publicado e verificado: `7a4dc00`, encerramento do módulo 3.
+Próximo passo após confirmação: 4.2, obter o esqueleto oficial laravel/laravel
+da série 13 em backend pelo Composer no Docker. Consultar e fixar sua versão
+identificável. Usar --no-install e --no-scripts; apresentar a estrutura e os
+arquivos principais gerados. Instalação de dependências, ambiente e servidor
+entram nas etapas seguintes, com confirmação entre elas. Não adicionar banco,
+frontend, filas ou demais módulos antecipadamente.
 
 ## Verificações e limitações do ambiente
 
@@ -1670,13 +1718,13 @@ uma etapa seguinte, após explicação e confirmação dessa preparação.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `a5caa53`,
-  `test: verifica subtotal de produto gratuito`.
+- Último commit local publicado nesta retomada: `7a4dc00`,
+  `docs: conclui modulo PHP moderno e OOP`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `a5caa53`,
-  igual a HEAD e origin/main. Documentação da revisão 3.22 ainda fora de commit.
+- Remoto consultado em 12/10/2026 após o push com `git ls-remote`: `7a4dc00`,
+  igual a HEAD e origin/main. Documentação da 4.1 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -1752,15 +1800,14 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar a revisão e conclusão do módulo 3, conferir o remoto
-  e iniciar 4.1, preparação para Laravel.
+- Ação imediata: publicar a preparação concluída da 4.1, conferir o remoto
+  e iniciar a geração do esqueleto na etapa 4.2.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da revisão 3.22: registrar conclusão do módulo 3 e publicar
-  o checkpoint de documentação. Iniciar 4.1, preparação para Laravel: papel do
-  framework, requisitos oficiais de Laravel 13, verificação do PHP/Composer e
-  extensões no Docker e definição da pasta do backend, preservando src.
-  Instalação em etapa posterior, com confirmação da preparação antes dela.
+- Após a confirmação da 4.1: 4.2 — obter o esqueleto oficial laravel/laravel
+  da série 13 em backend pelo Composer no Docker, consultando e fixando a versão.
+  Usar --no-install e --no-scripts e apresentar os arquivos antes de instalar
+  dependências ou executar comandos automáticos do projeto. Laboratório preservado.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1811,4 +1858,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 12/10/2026 | 3.19 — Teste de quantidade negativa | Cenário -1 acrescentado; sintaxe e três testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `188ff33` |
 | 12/10/2026 | 3.20 — Teste da menor quantidade válida | Quantidade 1 e subtotal 4990; sintaxe e quatro testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `95630cd` |
 | 12/10/2026 | 3.21 — Teste de preço zero | Produto gratuito e subtotal 0; sintaxe e cinco testes passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em `a5caa53` |
-| 12/10/2026 | 3.22 — Revisão do módulo 3 | Revisão e demonstração concluídas; módulo 3 encerrado | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 12/10/2026 | 3.22 — Revisão do módulo 3 | Revisão e demonstração concluídas; módulo 3 encerrado | Confirmado pelo aluno: "entendi" | Publicado e verificado em `7a4dc00` |
+| 12/10/2026 | 4.1 — Preparação para Laravel | Papel e organização documentados; PHP, Composer e treze extensões conferidos | Confirmado pelo aluno: "entendi", em 13/10/2026 | Checkpoint preparado, publicação autorizada |

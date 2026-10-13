@@ -8,6 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
+Módulo 4 — Laravel e MVC: etapa 4.1, papel do framework e preparação do ambiente.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -26,8 +27,9 @@ em [http://127.0.0.1:8001/](http://127.0.0.1:8001/). Produto implementa a interf
 Precificavel, que exige `getPrecoEmCentavos(): int`. ItemCarrinho guarda um Produto
 e uma quantidade positiva e calcula o subtotal em centavos. PHPUnit 13.4.1 foi
 instalado como dependência de desenvolvimento e verificado no Docker. A etapa
-3.22 relaciona classes, enum, interface, composição, autoload e testes.
-A revisão foi confirmada pelo aluno; o próximo passo é preparar o módulo Laravel.
+4.1 apresentou o papel do Laravel e conferiu os requisitos de PHP/Composer no
+Docker. O backend será criado em `backend/`; o laboratório permanece em `src/`.
+A preparação foi confirmada pelo aluno; o próximo passo é obter o esqueleto.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -72,6 +74,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 3.20 — Testar a menor quantidade válida](docs/aulas/03-20-teste-quantidade-minima.md)
 - [Aula 3.21 — Testar um produto com preço zero](docs/aulas/03-21-teste-preco-zero.md)
 - [Aula 3.22 — Revisão acompanhada do módulo 3](docs/aulas/03-22-revisao-modulo-3.md)
+- [Aula 4.1 — Papel do Laravel e preparação](docs/aulas/04-01-preparacao-laravel.md)
 
 ## Executar a demonstração atual
 
