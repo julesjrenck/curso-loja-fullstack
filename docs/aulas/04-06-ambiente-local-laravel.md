@@ -139,8 +139,8 @@ SQL Server ainda não foi provisionado e seus drivers serão preparados no módu
 ## Situação e próximo passo
 
 Implementação e verificações concluídas; explicação apresentada, entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
-Último checkpoint publicado: 7c0fcea, etapa 4.5.
+confirmado com "entendi" em 13/10/2026. Checkpoint ae521c9 publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram.
 
 Após confirmação, publicar 4.6 e iniciar 4.7: apresentar Artisan, verificar sua
 versão e gerar APP_KEY local sem exibir a chave. Para permitir a gravação, montar

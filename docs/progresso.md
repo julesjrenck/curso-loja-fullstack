@@ -4,18 +4,18 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.6 — Ambiente local do Laravel.
-- Situação: backend/.env.example adaptado para a loja, sessão/cache em arquivo,
-  fila síncrona e indicação SQL Server. Cópia local backend/.env preparada e
-  leitura conferida no Docker, sem inicializar Laravel. APP_KEY vazia, geração
-  adiada. Explicação apresentada; entendimento confirmado com "entendi"
-  em 13/10/2026. Próximo passo: publicar 4.6 e apresentar Artisan na 4.7.
-  Último checkpoint publicado: 7c0fcea, das montagens graváveis na 4.5.
+- Etapa atual: 4.7 — Artisan e chave da aplicação.
+- Situação: Artisan executado com Laravel Framework 13.35.0; APP_KEY local gerada
+  e validada, sem exibir o valor. Outro container confirmou seu carregamento pelo
+  Laravel. Manifests packages.php e services.php gerados e ignorados pelo Git.
+  Explicação apresentada; entendimento confirmado com "entendi" em 13/10/2026.
+  Próximo passo: publicar a documentação e iniciar servidor na 4.8.
+  Último checkpoint publicado: ae521c9, do ambiente local na 4.6.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 a 4.6 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.7 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -111,7 +111,12 @@ retornaram `7c0fcea3b613cb55a29923237281a4b0fd57b91c`.
 Etapa 4.6 adaptou o modelo e criou ambiente local Laravel; leitura das variáveis
 conferida no Docker e exclusão do .env verificada. APP_KEY ainda vazia.
 Explicação apresentada; entendimento confirmado com "entendi" em 13/10/2026.
-Checkpoint preparado para publicação autorizada.
+Checkpoint ae521c9 publicado; HEAD, origin/main e consulta direta à main remota
+retornaram `ae521c9ea4344cc408201875b454eae9b5a03f19`.
+Etapa 4.7 apresentou Artisan, gerou APP_KEY local e verificou criptografia e
+carregamento em outro container. Manifests gerados apresentados e ignorados.
+Explicação apresentada; entendimento confirmado com "entendi" em 13/10/2026.
+Checkpoint de documentação preparado para publicação autorizada.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1947,8 +1952,9 @@ Verificação:
   APP_URL define endereço planejado; a porta 8002 ainda não foi publicada.
 
 Entendimento da etapa 4.6: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado; .env local não será versionado.
-Último checkpoint publicado e verificado: 7c0fcea, etapa 4.5.
+Checkpoint: ae521c9, `build: prepara ambiente local do Laravel`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `ae521c9ea4344cc408201875b454eae9b5a03f19`. .env fora do commit.
 Próximo passo exato: após confirmação, publicar 4.6 e iniciar 4.7, apresentar
 Artisan, verificar versão e gerar APP_KEY local, sem exibir a chave. Montar
 temporariamente apenas backend/.env com escrita em /app/.env e conferir se há
@@ -1956,6 +1962,50 @@ chave existente antes de gerar. Explicar manifests/cache que surgirem na execuç
 Modelo de ambiente já indica SQL Server. Fallback SQLite em config/database.php
 e configuração SQLite no phpunit.xml ainda originais: ajustar antes de uso de
 persistência ou testes de integração, mantendo banco SQL Server exclusivo de testes.
+
+## Etapa 4.7
+
+Objetivo: apresentar Artisan e gerar a chave local da aplicação, preservando
+ambientes existentes e sem exibir o valor secreto.
+
+Implementação e explicação:
+
+- php artisan --version e help key:generate executados pelo serviço backend.
+  Explicado arquivo artisan: autoload, bootstrap/app.php, ArgvInput, handleCommand
+  e código de saída. Primeira execução Laravel pelo console no curso.
+- PHP temporário conferiu APP_KEY vazia antes de chamar key:generate --no-interaction.
+  Montagem adicional apenas de backend/.env:/app/.env:rw; código somente leitura.
+  Guarda preserva uma chave existente. Nesta execução, chave vazia foi gerada.
+- APP_KEY gravada somente no .env local; modelo continua vazio. Demais opções
+  preservadas; modo 600 e proprietário/grupo 1000:1000 mantidos.
+- Manifests bootstrap/cache/packages.php e services.php gerados pela inicialização,
+  apresentados como arrays de pacotes/provedores/serviços. Fora do Git.
+- Descobertos laravel/tinker, nesbot/carbon e nunomaduro/termwind, já instalados.
+  Serviços com grupos providers, eager, deferred e when; aprofundamento posterior.
+- Aula em docs/aulas/04-07-artisan-e-chave.md e README atualizados.
+
+Verificação:
+
+- Artisan retornou Laravel Framework 13.35.0; ajuda conferiu as opções, código 0.
+- key:generate retornou Application key set successfully, código 0.
+- Formato base64 e 32 bytes compatíveis com AES-256-CBC conferidos, sem exibir chave.
+- Comparação antes/depois confirmou alteração somente na linha APP_KEY.
+- Encrypter criptografou e recuperou texto fixo de teste, com resultado igual.
+- Outro container inicializou kernel de console e confirmou config/app.key igual
+  à chave local e serviço encrypter utilizando seus bytes. Valor não impresso.
+- packages.php e services.php lidos como arrays; três pacotes descobertos.
+- Git confirmou .env e manifests ignorados, ausentes da lista versionada.
+- Código do backend, src, Compose, Dockerfile, JSON e lockfile sem alterações.
+- Sem cache config.php, SQLite, migrations, testes Laravel, banco, frontend ou contador.
+  Compose ps mostrou apenas servidor php do laboratório ativo; backend temporário.
+
+Entendimento da etapa 4.7: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado; chave e manifests não serão versionados.
+Último checkpoint publicado e verificado: ae521c9, etapa 4.6.
+Próximo passo exato: após confirmação, publicar documentação da 4.7 e iniciar 4.8,
+configurar servidor de desenvolvimento Laravel no serviço backend, publicar
+127.0.0.1:8002 e verificar página inicial de /, preservando laboratório php.
+Banco e testes de integração permanecem nas etapas previstas com SQL Server.
 
 ## Verificações e limitações do ambiente
 
@@ -1983,13 +2033,13 @@ persistência ou testes de integração, mantendo banco SQL Server exclusivo de 
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `7c0fcea`,
-  `build: prepara pastas graváveis do Laravel`.
+- Último commit local publicado nesta retomada: `ae521c9`,
+  `build: prepara ambiente local do Laravel`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `7c0fcea`,
-  igual a HEAD e origin/main. Etapa 4.6 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `ae521c9`,
+  igual a HEAD e origin/main. Documentação da 4.7 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2065,11 +2115,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 4.6 confirmada, conferir o remoto e iniciar 4.7.
+- Ação imediata: publicar 4.7 confirmada, conferir o remoto e iniciar 4.8.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.6: publicar seu checkpoint e iniciar 4.7, apresentar
-  Artisan e gerar a chave local, preservando valores existentes e sem exibir segredos.
+- Após a confirmação da 4.7: publicar sua documentação e iniciar 4.8, servidor
+  Laravel local e primeira página HTTP, preservando laboratório e configuração local.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2126,4 +2176,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.3 — Serviço Docker do backend | Serviço e volume exclusivos; PHP/Composer, montagens e persistência verificados | Confirmado pelo aluno: "entendi" | Publicado e verificado em dc9f4b8 |
 | 13/10/2026 | 4.4 — Dependências Laravel | 76 pacotes instalados, lockfile e autoload gerados; validação, plataforma e classes conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 4c6df27 |
 | 13/10/2026 | 4.5 — Pastas graváveis | Montagens de storage e bootstrap/cache; escrita, leitura e limpeza verificadas | Confirmado pelo aluno: "entendi" | Publicado e verificado em 7c0fcea |
-| 13/10/2026 | 4.6 — Ambiente Laravel | Modelo adaptado, cópia local criada; leitura de variáveis, tipos e exclusões conferidas | Confirmado pelo aluno: "entendi" | Checkpoint preparado; .env ignorado |
+| 13/10/2026 | 4.6 — Ambiente Laravel | Modelo adaptado, cópia local criada; leitura de variáveis, tipos e exclusões conferidas | Confirmado pelo aluno: "entendi" | Publicado e verificado em ae521c9; .env ignorado |
+| 13/10/2026 | 4.7 — Artisan e chave | Console inicializado, chave local e manifests gerados; criptografia e carregamento conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado; chave e manifests ignorados |
