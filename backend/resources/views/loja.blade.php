@@ -9,10 +9,14 @@
         <h1>Bem-vindo à {{ $nomeLoja }}!</h1>
 
         <h2>Produtos de demonstração</h2>
-        <ul>
-            @foreach ($produtos as $produto)
-                <li>{{ $produto }}</li>
-            @endforeach
-        </ul>
+        @if (count($produtos) > 0)
+            <ul>
+                @foreach ($produtos as $produto)
+                    <li>{{ $produto }}</li>
+                @endforeach
+            </ul>
+        @else
+            <p>Nenhum produto de demonstração disponível.</p>
+        @endif
     </body>
 </html>

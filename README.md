@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.12, lista de produtos com Blade.
+Módulo 4 — Laravel e MVC: etapa 4.13, condição para lista vazia.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -69,6 +69,10 @@ Na 4.12, o controller passou uma lista demonstrativa com Camiseta, Calça e Tên
 a view exibe um item HTML por nome usando @foreach. Sintaxe e lista renderizada
 conferidas; explicação apresentada, entendimento da 4.12 confirmado.
 Os nomes são dados de demonstração em memória.
+Na 4.13, a view usa @if/@else para escolher entre a lista e uma mensagem de
+ausência de produtos. Renderizações com três itens e sem itens conferidas;
+controller preservado, página HTTP 200. Explicação apresentada, entendimento
+da 4.13 confirmado.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -125,6 +129,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.10 — Primeiro controller da loja](docs/aulas/04-10-primeiro-controller.md)
 - [Aula 4.11 — Primeira view Blade da loja](docs/aulas/04-11-primeira-view-blade.md)
 - [Aula 4.12 — Lista de produtos com Blade](docs/aulas/04-12-lista-produtos-blade.md)
+- [Aula 4.13 — Condição para lista vazia](docs/aulas/04-13-lista-vazia-blade.md)
 
 ## Backend Laravel
 
@@ -232,8 +237,10 @@ a 4.10 moveu o atendimento para LojaController@index. A rota continua apontando
 para esse método; na 4.11 ele passou a retornar view('loja', ['nomeLoja' => ...]).
 O template está em backend/resources/views/loja.blade.php e usa {{ $nomeLoja }}.
 Na 4.12, o controller também envia produtos como array de nomes demonstrativos;
-@foreach na view gera um li para cada nome. A próxima etapa tratará a lista
-vazia com @if e @else.
+@foreach na view gera um li para cada nome. Na 4.13, @if/@else passou a mostrar
+uma mensagem quando produtos for vazio. O controller mantém os três exemplos;
+o caso vazio foi conferido com dados temporários de renderização. Após confirmação,
+a próxima etapa introduzirá um middleware na rota /loja.
 
 ## Executar a demonstração do laboratório PHP
 

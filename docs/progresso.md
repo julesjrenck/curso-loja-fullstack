@@ -4,18 +4,18 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.12 — Lista de produtos com Blade.
-- Situação: controller envia lista demonstrativa de três nomes e a view gera
-  itens com @foreach. Sintaxe e HTTP 200 conferidos, com itens na ordem esperada;
-  título, saudação e welcome preservados. Explicação apresentada; entendimento
-  confirmado com "entendi" em 13/10/2026. Próximo passo: publicar 4.12 e tratar
-  lista vazia na 4.13. Backend e laboratório ativos.
-  Último checkpoint publicado: 1d93ab8, da primeira view Blade na 4.11.
+- Etapa atual: 4.13 — Condição para lista vazia.
+- Situação: view escolhe lista ou mensagem de ausência usando @if/@else.
+  Renderizações com três produtos e com array vazio conferidas; controller
+  preservado e página real continua HTTP 200 com três nomes. Explicação apresentada;
+  entendimento confirmado com "entendi" em 13/10/2026. Próximo passo:
+  publicar 4.13 e introduzir middleware na 4.14. Backend e laboratório ativos.
+  Último checkpoint publicado: 37b7485, da lista Blade na 4.12.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 a 4.12 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.13 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -140,7 +140,12 @@ origin/main e consulta direta à main remota retornaram
 `1d93ab8913540a1d27bcdd0c789622dd37e54567`.
 Etapa 4.12 enviou nomes demonstrativos para a view e exibiu com @foreach.
 Sintaxe e lista renderizada conferidas; explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
+confirmado com "entendi" em 13/10/2026. Checkpoint 37b7485 publicado; HEAD,
+origin/main e consulta direta à main remota retornaram
+`37b74854c1b1d5b0a3b72c9b3c65514676bf2a62`.
+Etapa 4.13 acrescentou condição de lista vazia na view e verificou os dois
+ramos por renderização. Explicação apresentada; entendimento confirmado com
+"entendi" em 13/10/2026. Checkpoint preparado para publicação.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2222,12 +2227,48 @@ Verificação:
   dependências, mudança de ambiente/chave ou contador. Exercício de apresentação.
 
 Entendimento da etapa 4.12: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
-Último checkpoint publicado e verificado: 1d93ab8, etapa 4.11.
+Checkpoint: 37b7485, `feat: exibe lista demonstrativa com Blade`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `37b74854c1b1d5b0a3b72c9b3c65514676bf2a62`.
 Próximo passo exato: após confirmação, publicar 4.12 e iniciar 4.13, tratar lista
 vazia na view com @if/@else e mensagem. Conferir listas preenchida/vazia por
 renderização com dados temporários, mantendo os nomes do controller. Model e banco
 continuam nas etapas previstas do roteiro.
+
+## Etapa 4.13
+
+Objetivo: mostrar uma mensagem quando a lista demonstrativa estiver vazia,
+apresentando @if/@else, count e condição com comparação.
+
+Implementação e explicação:
+
+- Somente loja.blade.php alterada: @if (count($produtos) > 0) envolve a lista
+  existente; @else apresenta p Nenhum produto de demonstração disponível.; @endif encerra.
+- Explicados quantidade de elementos, comparação > 0, ramos verdadeiro/falso,
+  diferença entre encerramentos de condição e laço e blocos aninhados.
+- Controller mantém os três exemplos; nome, título, saudação e rota preservados.
+- Aula em docs/aulas/04-13-lista-vazia-blade.md e README atualizados.
+
+Verificação:
+
+- PHP temporário no Docker inicializou o kernel de console e renderizou a view
+  com três nomes e depois com []; dados fornecidos apenas às chamadas de renderização.
+- Lista preenchida produziu os três itens na ordem, sem mensagem de vazio.
+- Lista vazia produziu a mensagem, sem ul/li. Título e saudação preservados em ambos.
+- GET /loja real HTTP 200, três exemplos preservados e mensagem de vazio ausente.
+- Controller, rota, src, Compose, Dockerfile, JSON e lockfile sem alterações.
+  Sem rebuild/reinício, ambiente/chave alterados, banco, migrations, dependências,
+  frontend, testes Laravel ou contador.
+- Diagnóstico cobre as duas apresentações da view; a página padrão continua
+  preenchida, sem alterar o controller para simular o caso vazio.
+
+Entendimento da etapa 4.13: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
+Último checkpoint publicado e verificado: 37b7485, etapa 4.12.
+Próximo passo exato: após confirmação, publicar 4.13 e iniciar 4.14, middleware
+MarcarRespostaCurso para adicionar X-Curso: Laravel à resposta, aplicado somente
+a GET /loja. Explicar request -> próximo atendimento -> response e verificar
+cabeçalho e conteúdo preservado. Model e persistência permanecem conforme o roteiro.
 
 ## Verificações e limitações do ambiente
 
@@ -2255,13 +2296,13 @@ continuam nas etapas previstas do roteiro.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `1d93ab8`,
-  `feat: apresenta loja em view Blade`.
+- Último commit local publicado nesta retomada: `37b7485`,
+  `feat: exibe lista demonstrativa com Blade`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `1d93ab8`,
-  igual a HEAD e origin/main. Etapa 4.12 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `37b7485`,
+  igual a HEAD e origin/main. Etapa 4.13 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2337,11 +2378,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 4.12 confirmada, conferir o remoto e iniciar 4.13.
+- Ação imediata: publicar 4.13 confirmada, conferir o remoto e iniciar 4.14.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.12: publicar seu checkpoint e iniciar 4.13, condição
-  Blade para lista vazia e mensagem de ausência de produtos demonstrativos.
+- Após a confirmação da 4.13: publicar seu checkpoint e iniciar 4.14, primeiro
+  middleware com cabeçalho de resposta aplicado à rota /loja.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2404,4 +2445,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.9 — Primeira rota da loja | GET /loja com saudação configurada; sintaxe, registro e respostas conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 1671a0b |
 | 13/10/2026 | 4.10 — Primeiro controller | LojaController@index ligado à rota; sintaxes, registro e resposta preservada conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em f31b38e |
 | 13/10/2026 | 4.11 — Primeira view Blade | Template loja e dados pelo controller; sintaxe, HTTP, renderização e escape conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 1d93ab8 |
-| 13/10/2026 | 4.12 — Lista com Blade | Nomes demonstrativos e @foreach; sintaxe e três itens renderizados conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 13/10/2026 | 4.12 — Lista com Blade | Nomes demonstrativos e @foreach; sintaxe e três itens renderizados conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 37b7485 |
+| 13/10/2026 | 4.13 — Lista vazia | Condição Blade e mensagem; listas preenchida/vazia renderizadas e HTTP conferido | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |

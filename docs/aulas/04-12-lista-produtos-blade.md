@@ -82,8 +82,8 @@ renderização; as verificações temporárias foram executadas no Docker.
 ## Situação e próximo passo
 
 Implementação e verificações concluídas; explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
-Último checkpoint publicado: 1d93ab8, etapa 4.11.
+confirmado com "entendi" em 13/10/2026. Checkpoint 37b7485 publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram.
 
 Após confirmação, publicar 4.12 e iniciar 4.13: tratar uma lista vazia na view
 com @if/@else, mostrando uma mensagem quando não houver produtos demonstrativos.
