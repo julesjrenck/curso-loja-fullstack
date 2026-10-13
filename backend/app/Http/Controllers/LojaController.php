@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+
 class LojaController extends Controller
 {
-    public function index(): string
+    public function index(): View
     {
-        return 'Bem-vindo à '.config('app.name').'!';
+        return view('loja', [
+            'nomeLoja' => config('app.name'),
+        ]);
     }
 }

@@ -122,8 +122,8 @@ chave e laboratório foram preservados; nenhum comando do contador executado.
 ## Situação e próximo passo
 
 Implementação e verificações concluídas; explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
-Último checkpoint publicado: 1671a0b, etapa 4.9.
+confirmado com "entendi" em 13/10/2026. Checkpoint f31b38e publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram.
 
 Após confirmação, publicar 4.10 e iniciar 4.11: criar resources/views/loja.blade.php
 e adaptar index para retornar view('loja') com o nome da loja como dado. Explicar

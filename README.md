@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.10, primeiro controller da loja.
+Módulo 4 — Laravel e MVC: etapa 4.11, primeira view Blade da loja.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -61,6 +61,10 @@ Na 4.10, /loja passou a chamar LojaController@index. O controller foi gerado
 pelo Artisan e recebeu o método público index(): string com a mesma saudação.
 Sintaxe, registro e respostas HTTP conferidos; explicação apresentada,
 entendimento da 4.10 confirmado.
+Na 4.11, LojaController@index passou a retornar a view loja com nomeLoja como
+dado. O template Blade apresenta HTML mínimo com título e saudação. HTTP 200,
+dados renderizados e escape de caracteres especiais conferidos; explicação
+apresentada, entendimento da 4.11 confirmado.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -115,6 +119,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.8 — Servidor Laravel e primeira página](docs/aulas/04-08-servidor-laravel.md)
 - [Aula 4.9 — Primeira rota da loja](docs/aulas/04-09-primeira-rota-loja.md)
 - [Aula 4.10 — Primeiro controller da loja](docs/aulas/04-10-primeiro-controller.md)
+- [Aula 4.11 — Primeira view Blade da loja](docs/aulas/04-11-primeira-view-blade.md)
 
 ## Backend Laravel
 
@@ -216,12 +221,13 @@ docker compose up -d backend
 
 Views compiladas e sessões são geradas no storage local, ignoradas pelo Git.
 A aula 4.8 explica o caminho da requisição. A primeira rota própria está em
-[http://127.0.0.1:8002/loja](http://127.0.0.1:8002/loja): corpo textual com a
-saudação e o nome da aplicação. A aula 4.9 explica GET, caminho, função anônima,
-retorno string e config('app.name'). Na 4.10, esse atendimento foi movido para
-backend/app/Http/Controllers/LojaController.php, método index. A rota usa
-[LojaController::class, 'index']; a saudação foi preservada. Após confirmação,
-a próxima etapa criará uma view Blade própria para essa página.
+[http://127.0.0.1:8002/loja](http://127.0.0.1:8002/loja): página HTML com título
+Loja Fullstack e saudação. A aula 4.9 apresentou sua resposta inicial em string;
+a 4.10 moveu o atendimento para LojaController@index. A rota continua apontando
+para esse método; na 4.11 ele passou a retornar view('loja', ['nomeLoja' => ...]).
+O template está em backend/resources/views/loja.blade.php e usa {{ $nomeLoja }}.
+Após confirmação, a próxima etapa praticará @foreach com nomes demonstrativos
+de produtos em memória.
 
 ## Executar a demonstração do laboratório PHP
 
