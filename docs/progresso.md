@@ -4,18 +4,18 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.5 — Pastas graváveis do Laravel.
-- Situação: bind mounts graváveis de storage e bootstrap/cache preparados no
-  serviço backend, mantendo código somente leitura. Montagens, escrita, leitura
-  no host e entre containers e limpeza verificadas. Explicação apresentada;
-  entendimento confirmado com "entendi" em 13/10/2026. Ambiente local e execução
-  Laravel adiados; próximo passo: publicar 4.5 e preparar ambiente na 4.6.
-  Último checkpoint publicado: 4c6df27, da instalação de dependências na 4.4.
+- Etapa atual: 4.6 — Ambiente local do Laravel.
+- Situação: backend/.env.example adaptado para a loja, sessão/cache em arquivo,
+  fila síncrona e indicação SQL Server. Cópia local backend/.env preparada e
+  leitura conferida no Docker, sem inicializar Laravel. APP_KEY vazia, geração
+  adiada. Explicação apresentada; entendimento confirmado com "entendi"
+  em 13/10/2026. Próximo passo: publicar 4.6 e apresentar Artisan na 4.7.
+  Último checkpoint publicado: 7c0fcea, das montagens graváveis na 4.5.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 a 4.5 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.6 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -105,6 +105,11 @@ HTTP Laravel. Checkpoint 4c6df27 publicado; HEAD, origin/main e consulta direta
 à main remota retornaram `4c6df27b1e6ec4f04c64c55bc6fa10df2f5c8e84`.
 Etapa 4.5 preparou storage e bootstrap/cache graváveis, mantendo código somente
 leitura. Marcadores conferidos no host e entre containers, depois removidos.
+Explicação apresentada; entendimento confirmado com "entendi" em 13/10/2026.
+Checkpoint 7c0fcea publicado; HEAD, origin/main e consulta direta à main remota
+retornaram `7c0fcea3b613cb55a29923237281a4b0fd57b91c`.
+Etapa 4.6 adaptou o modelo e criou ambiente local Laravel; leitura das variáveis
+conferida no Docker e exclusão do .env verificada. APP_KEY ainda vazia.
 Explicação apresentada; entendimento confirmado com "entendi" em 13/10/2026.
 Checkpoint preparado para publicação autorizada.
 
@@ -1897,14 +1902,60 @@ Verificação:
   novo servidor, banco, frontend ou execução do contador.
 
 Entendimento da etapa 4.5: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
-Último checkpoint publicado e verificado: 4c6df27, etapa 4.4.
+Checkpoint: 7c0fcea, `build: prepara pastas graváveis do Laravel`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `7c0fcea3b613cb55a29923237281a4b0fd57b91c`.
 Próximo passo exato: após confirmação, publicar 4.5 e iniciar 4.6, apresentar
 backend/.env.example e preparar backend/.env local para rotas iniciais sem banco,
 com sessão/cache em arquivo e fila síncrona. Indicação de banco conforme SQL Server,
 sem provisionar banco ou executar migrations. Artisan e geração da chave em
 etapas posteriores. Não versionar ambiente local ou credenciais; testes de
 integração usarão SQL Server exclusivo quando introduzidos.
+
+## Etapa 4.6
+
+Objetivo: preparar ambiente local Laravel para as primeiras rotas sem depender
+de banco, antes de apresentar Artisan e gerar a chave.
+
+Implementação e explicação:
+
+- backend/.env.example: APP_NAME="Loja Fullstack", APP_URL planejada em
+  http://127.0.0.1:8002, DB_CONNECTION=sqlsrv, SESSION_DRIVER=file,
+  CACHE_STORE=file e QUEUE_CONNECTION=sync. APP_ENV=local e APP_DEBUG=true mantidos.
+- APP_KEY mantida vazia. Campos de banco comentados, sem credenciais reais;
+  indicação de porta 1433 comentada. Sem provisionar SQL Server ou instalar drivers.
+- backend/.env ausente antes da cópia; cp --update=none criou o ambiente local
+  preservando destinos existentes. chmod 600; stat confirmou 600 e 1000:1000.
+- Explicados modelo versus cópia local, .env do Compose versus .env do backend,
+  comentários, aspas, valores tratados por env() e relação com config/*.php.
+- Sessão/cache em arquivos usam storage da 4.5; tarefas configuradas como sync.
+  Demais grupos do modelo preservados e aprofundados somente quando utilizados.
+- Aula em docs/aulas/04-06-ambiente-local-laravel.md e README atualizados.
+
+Verificação:
+
+- PHP temporário no serviço backend carregou autoload e Dotenv da pasta /app,
+  sem inicializar Laravel. env() confirmou oito valores esperados e debug true
+  booleano; APP_KEY vazia. Sem imprimir dados privados do ambiente.
+- Hashes do modelo e cópia local iguais; campos DB_* comentados não carregados.
+- Pastas de sessões, cache/data e cache/locks existentes e graváveis.
+- git check-ignore confirmou backend/.env ignorado; git ls-files sem esse arquivo.
+- Compose válido; src, Compose, Dockerfile, JSON e lockfile do backend sem mudança.
+- Sem SQLite ou manifests de inicialização/cache, execução de Artisan, migrations,
+  testes Laravel, novo servidor ou contador. Sem banco ou frontend adicionados.
+- A verificação cobre leitura do ambiente, não requisições Laravel ou conexão SQL.
+  APP_URL define endereço planejado; a porta 8002 ainda não foi publicada.
+
+Entendimento da etapa 4.6: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado; .env local não será versionado.
+Último checkpoint publicado e verificado: 7c0fcea, etapa 4.5.
+Próximo passo exato: após confirmação, publicar 4.6 e iniciar 4.7, apresentar
+Artisan, verificar versão e gerar APP_KEY local, sem exibir a chave. Montar
+temporariamente apenas backend/.env com escrita em /app/.env e conferir se há
+chave existente antes de gerar. Explicar manifests/cache que surgirem na execução.
+Modelo de ambiente já indica SQL Server. Fallback SQLite em config/database.php
+e configuração SQLite no phpunit.xml ainda originais: ajustar antes de uso de
+persistência ou testes de integração, mantendo banco SQL Server exclusivo de testes.
 
 ## Verificações e limitações do ambiente
 
@@ -1932,13 +1983,13 @@ integração usarão SQL Server exclusivo quando introduzidos.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `4c6df27`,
-  `build: instala dependências de execução do Laravel`.
+- Último commit local publicado nesta retomada: `7c0fcea`,
+  `build: prepara pastas graváveis do Laravel`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `4c6df27`,
-  igual a HEAD e origin/main. Etapa 4.5 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `7c0fcea`,
+  igual a HEAD e origin/main. Etapa 4.6 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2014,11 +2065,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 4.5 confirmada, conferir o remoto e iniciar 4.6.
+- Ação imediata: publicar 4.6 confirmada, conferir o remoto e iniciar 4.7.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.5: publicar seu checkpoint e iniciar 4.6, apresentar
-  e preparar ambiente local Laravel para as primeiras rotas sem banco.
+- Após a confirmação da 4.6: publicar seu checkpoint e iniciar 4.7, apresentar
+  Artisan e gerar a chave local, preservando valores existentes e sem exibir segredos.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2074,4 +2125,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.2 — Esqueleto Laravel | Modelo v13.11.0 e 58 arquivos; JSON, quatro sintaxes e artefatos adiados conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em cfa2e69 |
 | 13/10/2026 | 4.3 — Serviço Docker do backend | Serviço e volume exclusivos; PHP/Composer, montagens e persistência verificados | Confirmado pelo aluno: "entendi" | Publicado e verificado em dc9f4b8 |
 | 13/10/2026 | 4.4 — Dependências Laravel | 76 pacotes instalados, lockfile e autoload gerados; validação, plataforma e classes conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 4c6df27 |
-| 13/10/2026 | 4.5 — Pastas graváveis | Montagens de storage e bootstrap/cache; escrita, leitura e limpeza verificadas | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 13/10/2026 | 4.5 — Pastas graváveis | Montagens de storage e bootstrap/cache; escrita, leitura e limpeza verificadas | Confirmado pelo aluno: "entendi" | Publicado e verificado em 7c0fcea |
+| 13/10/2026 | 4.6 — Ambiente Laravel | Modelo adaptado, cópia local criada; leitura de variáveis, tipos e exclusões conferidas | Confirmado pelo aluno: "entendi" | Checkpoint preparado; .env ignorado |

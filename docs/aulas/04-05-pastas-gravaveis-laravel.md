@@ -129,8 +129,8 @@ comprova as montagens e a escrita, não uma requisição Laravel ou uso de banco
 ## Situação e próximo passo
 
 Implementação e verificações concluídas; explicação apresentada e entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
-Último checkpoint publicado: 4c6df27, etapa 4.4.
+confirmado com "entendi" em 13/10/2026. Checkpoint 7c0fcea publicado;
+HEAD, origin/main e consulta direta à main remota coincidiram.
 
 Após confirmação, publicar 4.5 e iniciar 4.6: apresentar backend/.env.example
 e preparar backend/.env local para as primeiras rotas sem banco, usando sessão

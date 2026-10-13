@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.5, pastas graváveis do backend.
+Módulo 4 — Laravel e MVC: etapa 4.6, ambiente local do backend.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -41,6 +41,10 @@ da 4.4 confirmado. Ambiente local e execução Laravel ainda adiados.
 Na 4.5, storage e bootstrap/cache receberam bind mounts graváveis, com código
 somente leitura preservado. Escrita, leitura no host e entre containers e limpeza
 verificadas. Explicação apresentada; entendimento confirmado.
+Na 4.6, backend/.env.example foi adaptado para a loja, sessões/cache em arquivo,
+fila síncrona e indicação SQL Server. A cópia backend/.env foi criada localmente
+e sua leitura conferida no Docker. Chave e execução Laravel ainda adiadas;
+entendimento da 4.6 confirmado.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -90,13 +94,15 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.3 — Serviço Docker e volume do backend](docs/aulas/04-03-servico-backend-e-vendor.md)
 - [Aula 4.4 — Dependências Laravel, lockfile e autoload](docs/aulas/04-04-dependencias-laravel.md)
 - [Aula 4.5 — Pastas graváveis do Laravel](docs/aulas/04-05-pastas-gravaveis-laravel.md)
+- [Aula 4.6 — Ambiente local do Laravel](docs/aulas/04-06-ambiente-local-laravel.md)
 
 ## Backend Laravel
 
 Os arquivos iniciais estão em `backend/`. A versão do esqueleto foi fixada em
 v13.11.0; `backend/composer.json` declara `laravel/framework` ^13.17. A resolução
 gerou backend/composer.lock com Laravel 13.35.0 e Tinker 3.0.2. O autoload App
-aponta para app/. Ainda não há backend/.env ou servidor Laravel.
+aponta para app/. O ambiente backend/.env foi preparado localmente, ignorado
+pelo Git. APP_KEY ainda vazia; não há servidor Laravel iniciado.
 
 A aula 4.2 apresenta os arquivos gerados. O serviço `backend` reutiliza o
 Dockerfile da raiz e monta `./backend:/app:ro`, com `vendor-backend:/app/vendor`
@@ -110,6 +116,8 @@ Para preparar o serviço e instalar as versões registradas no lockfile, na raiz
 
 ```bash
 mkdir -p backend/vendor
+cp --update=none -- backend/.env.example backend/.env
+chmod 600 backend/.env
 docker compose config --quiet
 docker compose build backend
 docker compose run --rm backend
@@ -127,9 +135,15 @@ Agora install usa as versões registradas; --no-dev adia ferramentas de
 desenvolvimento e --no-scripts adia comandos automáticos do Laravel.
 O lock registra também 33 pacotes de desenvolvimento, ainda não instalados.
 Storage e bootstrap/cache já estão graváveis, mantendo o código somente leitura,
-conforme a aula 4.5. Após confirmação, a 4.6 apresentará o modelo de ambiente e
-preparará backend/.env local para as primeiras rotas sem banco. Artisan ainda
-será apresentado em etapa própria.
+conforme a aula 4.5. Na 4.6, o ambiente foi preparado para sessões/cache em arquivo
+e tarefas síncronas; DB_CONNECTION=sqlsrv indica o banco futuro, ainda sem conexão.
+APP_URL=http://127.0.0.1:8002 é a URL planejada; a porta ainda será publicada.
+Após confirmação, a 4.7 apresentará Artisan e gerará a chave local APP_KEY.
+
+Na raiz, .env serve ao Compose; em backend, .env é lido pelo Laravel. O comando
+cp acima usa GNU cp e preserva um backend/.env já existente. chmod 600 restringe
+a leitura e escrita ao proprietário no host. A cópia local não vai ao Git;
+o modelo .env.example pode ser versionado sem credenciais.
 
 ## Executar a demonstração do laboratório PHP
 
