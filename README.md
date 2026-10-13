@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.3, serviço Docker do backend.
+Módulo 4 — Laravel e MVC: etapa 4.4, dependências do backend.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -34,6 +34,10 @@ Na 4.3, o serviço `backend` foi preparado para comandos PHP/Composer, com códi
 somente leitura e volume `vendor-backend` exclusivo. Verificações concluídas;
 entendimento confirmado. O laboratório permanece em `src/`, com
 seu Composer independente.
+Na 4.4, as dependências de execução foram instaladas: Laravel 13.35.0 e Tinker
+3.0.2, com 76 pacotes no volume vendor-backend. O lockfile foi gerado, validado
+e comparado com a instalação; autoload e requisitos conferidos. Entendimento
+da 4.4 confirmado. Ambiente local e execução Laravel ainda adiados.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -81,20 +85,21 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.1 — Papel do Laravel e preparação](docs/aulas/04-01-preparacao-laravel.md)
 - [Aula 4.2 — Esqueleto Laravel e estrutura](docs/aulas/04-02-esqueleto-laravel.md)
 - [Aula 4.3 — Serviço Docker e volume do backend](docs/aulas/04-03-servico-backend-e-vendor.md)
+- [Aula 4.4 — Dependências Laravel, lockfile e autoload](docs/aulas/04-04-dependencias-laravel.md)
 
 ## Backend Laravel
 
 Os arquivos iniciais estão em `backend/`. A versão do esqueleto foi fixada em
-v13.11.0; `backend/composer.json` declara `laravel/framework` ^13.17, cuja versão
-exata será resolvida quando instalarmos as dependências. O autoload App aponta
-para app/. Dependências, lockfile e .env local ainda não foram gerados.
+v13.11.0; `backend/composer.json` declara `laravel/framework` ^13.17. A resolução
+gerou backend/composer.lock com Laravel 13.35.0 e Tinker 3.0.2. O autoload App
+aponta para app/. Ainda não há backend/.env ou servidor Laravel.
 
 A aula 4.2 apresenta os arquivos gerados. O serviço `backend` reutiliza o
 Dockerfile da raiz e monta `./backend:/app:ro`, com `vendor-backend:/app/vendor`
 gravável. A pasta local backend/vendor é somente um ponto de montagem vazio,
-ignorado pelo Git. O volume de dependências está vazio nesta etapa.
+ignorado pelo Git. O volume guarda os 76 pacotes de execução e o autoload.
 
-Para preparar e verificar esse serviço, na raiz do projeto:
+Para preparar o serviço e instalar as versões registradas no lockfile, na raiz:
 
 ```bash
 mkdir -p backend/vendor
@@ -102,12 +107,20 @@ docker compose config --quiet
 docker compose build backend
 docker compose run --rm backend
 docker compose run --rm backend composer --version
+docker compose run --rm backend composer install --no-dev --no-scripts --no-interaction
+docker compose run --rm backend composer validate --strict
+docker compose run --rm backend composer check-platform-reqs --no-dev
 ```
 
-O comando padrão mostra PHP 8.4.26 e termina; o último comando substitui esse
+O comando padrão mostra PHP 8.4.26 e termina; composer --version substitui esse
 padrão para consultar Composer 2.10.3. Não há servidor Laravel iniciado.
-A aula 4.3 explica as montagens e a verificação da persistência. Após confirmação,
-a 4.4 instalará as dependências de execução e gerará o lockfile pelo Docker.
+A aula 4.3 explica as montagens e a verificação da persistência. A 4.4 explica
+a primeira resolução com montagem temporária gravável para criar o lockfile.
+Agora install usa as versões registradas; --no-dev adia ferramentas de
+desenvolvimento e --no-scripts adia comandos automáticos do Laravel.
+O lock registra também 33 pacotes de desenvolvimento, ainda não instalados.
+Antes de usar Artisan, a próxima etapa preparará storage e bootstrap/cache
+graváveis, mantendo o código somente leitura.
 
 ## Executar a demonstração do laboratório PHP
 
@@ -248,8 +261,8 @@ Para validar essa configuração:
 docker compose run --rm php composer validate
 ```
 
-A validação retorna código 0, com aviso de licença não declarada. Ainda não há
-bibliotecas externas instaladas ou `composer.lock`. Consulte a aula 3.6
+A validação retorna código 0, com aviso de licença não declarada. Na etapa 3.6,
+ainda não havia bibliotecas externas instaladas ou `composer.lock`. Consulte a aula 3.6
 para a explicação dos campos e dos caminhos. Para gerar o autoload:
 
 ```bash

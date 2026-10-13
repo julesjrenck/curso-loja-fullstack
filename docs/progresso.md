@@ -4,17 +4,18 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.3 — Serviço Docker e volume do backend.
-- Situação: serviço backend e volume vendor-backend preparados no Compose.
-  PHP/Composer, código somente leitura e volume gravável/persistente verificados.
-  Explicação apresentada; entendimento confirmado com "entendi" em 13/10/2026.
-  Dependências e execução Laravel adiadas para etapas próprias. Próximo passo:
-  publicar 4.3 e iniciar instalação na 4.4. Último checkpoint publicado: cfa2e69.
+- Etapa atual: 4.4 — Dependências Laravel, lockfile e autoload.
+- Situação: 76 pacotes de execução instalados no volume vendor-backend, incluindo
+  Laravel 13.35.0 e Tinker 3.0.2. Lockfile gerado com 76 pacotes de execução e 33
+  de desenvolvimento, estes não instalados. Validação, plataforma e autoload
+  verificados. Explicação apresentada; entendimento confirmado com "entendi"
+  em 13/10/2026. Próximo passo: publicar 4.4 e preparar montagens na 4.5.
+  Ambiente local e execução Laravel adiados. Último checkpoint publicado: dc9f4b8.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 a 4.3 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.4 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -94,7 +95,13 @@ HEAD, origin/main e consulta direta à main remota retornaram
 `cfa2e69a9f24d6c0417406f340f02a3a079d827b`.
 Etapa 4.3 preparou serviço backend e volume exclusivo, verificou montagens e
 persistência. Implementação e explicação concluídas; entendimento confirmado com
-"entendi" em 13/10/2026. Checkpoint preparado para publicação autorizada.
+"entendi" em 13/10/2026. Checkpoint dc9f4b8 publicado; HEAD, origin/main e
+consulta direta à main remota retornaram
+`dc9f4b88786196896d229fd5785c698d2e8253f8`.
+Etapa 4.4 instalou dependências de execução e gerou lockfile/autoload; validação,
+plataforma e carregamento de classes conferidos. Explicação apresentada;
+entendimento confirmado com "entendi" em 13/10/2026. Sem execução de Artisan ou
+HTTP Laravel. Checkpoint preparado para publicação autorizada.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -1784,14 +1791,67 @@ Verificação:
   Sem instalação de pacotes, Artisan, migrations, testes Laravel ou contador.
 
 Entendimento da etapa 4.3: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
-Último checkpoint publicado e verificado: cfa2e69, etapa 4.2.
+Checkpoint: dc9f4b8, `build: prepara serviço Docker e vendor do backend`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `dc9f4b88786196896d229fd5785c698d2e8253f8`.
 Próximo passo exato: após confirmação, publicar 4.3 e iniciar 4.4, instalação de
 dependências de execução com Composer em Docker, sem scripts automáticos e sem
 instalar ferramentas de desenvolvimento nesta etapa. Gerar composer.lock usando
 uma montagem temporária gravável do backend e o mesmo volume vendor-backend;
 apresentar pacotes/autoload e verificar requisitos. SQL Server e testes de
 integração permanecem pendentes antes de qualquer uso dos padrões SQLite gerados.
+
+## Etapa 4.4
+
+Objetivo: instalar dependências de execução do backend e verificar lockfile e
+autoload pelo Docker antes de inicializar o Laravel.
+
+Implementação e explicação:
+
+- Composer install pelo serviço backend, --no-dev, --no-scripts, --no-interaction
+  e --no-progress. Sem lock anterior, resolveu versões e gerou backend/composer.lock.
+- Montagem temporária ./backend:/instalacao:rw e workdir /instalacao permitiram
+  escrever o lockfile; o volume existente curso-loja-fullstack_vendor-backend
+  também montado em /instalacao/vendor recebeu pacotes e carregador.
+- 109 pacotes resolvidos: 76 em packages, 33 em packages-dev. Somente os 76 de
+  execução instalados. Laravel v13.35.0 e Tinker v3.0.2, compatíveis com as faixas
+  ^13.17 e ^3.0. JSON, Compose e Dockerfile preservados.
+- Autoload otimizado gerado conforme config do JSON. Scripts automáticos
+  desativados; ambiente, descoberta Artisan e execução Laravel permanecem adiados.
+- Lockfile inicialmente 0:0, alinhado ao JSON por chown --reference apenas
+  nesse arquivo, via Docker e alias gravável; stat confirmou 1000:1000.
+- Explicados requisitos versus versões exatas, install/update, packages e
+  packages-dev, dependências transitivas, content-hash e arquivos do autoload.
+- Aula em docs/aulas/04-04-dependencias-laravel.md e README atualizados.
+
+Verificação:
+
+- Instalação terminou com código 0 e geração do autoload.
+- composer validate --strict: JSON e lock coerentes, código 0.
+- composer check-platform-reqs --no-dev: PHP 8.4.26, runtime API e requisitos
+  listados com success, inclusive os satisfeitos por polyfills declarados.
+- PHP temporário no caminho normal /app comparou todos os pares nome/versão:
+  packages do lock iguais aos 76 pacotes de vendor/composer/installed.json;
+  instalação marcada como dev=false.
+- require vendor/autoload.php e class_exists carregaram Illuminate\\Foundation\\Application
+  e App\\Http\\Controllers\\Controller; Application::VERSION 13.35.0.
+- Mapeamento App\\ presente e Tests\\ ausente; PHPUnit, Pint e Boost ausentes
+  no backend, conforme os pacotes adiados. Laboratório src preservado.
+- backend/vendor local vazio e ignorado; backend/.env, database.sqlite, node_modules,
+  bootstrap/cache/packages.php e services.php ausentes, conforme ações adiadas.
+- Sem Artisan, migrations, testes Laravel, servidor Laravel, banco ou contador.
+  Verificação comprova instalação/autoload, não ciclo de requisição ou persistência.
+
+Entendimento da etapa 4.4: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
+Último checkpoint publicado e verificado: dc9f4b8, etapa 4.3.
+Próximo passo exato: após confirmação, publicar 4.4 e iniciar 4.5, preparar
+montagens graváveis para storage e bootstrap/cache no serviço backend, mantendo
+o restante do código somente leitura. Necessidade de gravação consultada na
+documentação oficial do Laravel. Não inicializar aplicação antes de preparar
+esse armazenamento; ambiente Laravel, chave e Artisan serão etapas posteriores.
+Padrões SQLite do modelo continuam pendentes de ajuste antes de banco ou testes
+de integração; usar SQL Server exclusivo para testes conforme o roteiro.
 
 ## Verificações e limitações do ambiente
 
@@ -1819,13 +1879,13 @@ integração permanecem pendentes antes de qualquer uso dos padrões SQLite gera
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `cfa2e69`,
-  `build: adiciona esqueleto oficial do backend Laravel`.
+- Último commit local publicado nesta retomada: `dc9f4b8`,
+  `build: prepara serviço Docker e vendor do backend`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `cfa2e69`,
-  igual a HEAD e origin/main. Etapa 4.3 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `dc9f4b8`,
+  igual a HEAD e origin/main. Etapa 4.4 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -1901,12 +1961,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 4.3 confirmada, conferir o remoto e iniciar 4.4.
+- Ação imediata: publicar 4.4 confirmada, conferir o remoto e iniciar 4.5.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.3: publicar seu checkpoint e iniciar 4.4, instalar
-  dependências de execução pelo Docker, gerar e explicar lockfile/autoload e
-  verificar requisitos, sem scripts automáticos ou ferramentas opcionais.
+- Após a confirmação da 4.4: publicar seu checkpoint e iniciar 4.5, preparar
+  storage e bootstrap/cache graváveis, preservando o código somente leitura.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -1960,4 +2019,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 12/10/2026 | 3.22 — Revisão do módulo 3 | Revisão e demonstração concluídas; módulo 3 encerrado | Confirmado pelo aluno: "entendi" | Publicado e verificado em `7a4dc00` |
 | 12/10/2026 | 4.1 — Preparação para Laravel | Papel e organização documentados; PHP, Composer e treze extensões conferidos | Confirmado pelo aluno: "entendi", em 13/10/2026 | Publicado e verificado em `9807e53` |
 | 13/10/2026 | 4.2 — Esqueleto Laravel | Modelo v13.11.0 e 58 arquivos; JSON, quatro sintaxes e artefatos adiados conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em cfa2e69 |
-| 13/10/2026 | 4.3 — Serviço Docker do backend | Serviço e volume exclusivos; PHP/Composer, montagens e persistência verificados | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 13/10/2026 | 4.3 — Serviço Docker do backend | Serviço e volume exclusivos; PHP/Composer, montagens e persistência verificados | Confirmado pelo aluno: "entendi" | Publicado e verificado em dc9f4b8 |
+| 13/10/2026 | 4.4 — Dependências Laravel | 76 pacotes instalados, lockfile e autoload gerados; validação, plataforma e classes conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |

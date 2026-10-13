@@ -119,7 +119,8 @@ verificaram o ambiente Docker, sem chamar Artisan ou executar migrations.
 ## Situação da aprendizagem
 
 Implementação e verificações concluídas. Explicação apresentada; entendimento
-confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
+confirmado com "entendi" em 13/10/2026. Checkpoint dc9f4b8 publicado;
+HEAD, origin/main e consulta direta à branch main remota coincidiram.
 
 A etapa 4.2 foi confirmada e publicada em cfa2e69. Após entendimento da 4.3,
 publicar seu checkpoint e iniciar 4.4: instalar dependências de execução pelo
