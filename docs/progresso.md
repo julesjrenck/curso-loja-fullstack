@@ -3,17 +3,20 @@
 ## Estado atual
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
-- Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.19 — Revisão do módulo 4.
-- Situação: revisão apresentada e entrega HTTP conferida: /loja, welcome e
-  laboratório 200, produtos e middleware corretos. Código preservado; drivers
-  SQL Server ainda pendentes. Entendimento da revisão confirmado com "entendi";
-  módulo 4 concluído. Backend e laboratório ativos.
-  Último checkpoint publicado: aa372c6, do papel do Model na 4.18.
+- Módulo atual: 5 — SQL Server e persistência.
+- Etapa atual: 5.1 — Preparação para SQL Server.
+- Situação: diagnóstico de arquitetura, recursos Docker, plataforma PHP e
+  compatibilidade Microsoft apresentado. Ambiente favorável para laboratório;
+  base SQL Server 2022 Developer, ODBC 18 e drivers PHP 5.13, release consultada
+  5.13.3. PDO presente; ODBC, sqlsrv/pdo_sqlsrv e banco ainda pendentes.
+  Entendimento da 5.1 confirmado com "entendi" em 13/10/2026;
+  checkpoint de documentação preparado para publicação.
+  Backend e laboratório ativos. Último checkpoint publicado: 2346772, revisão 4.19.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
-- Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
+- Módulo 4 iniciado em 12/10/2026 e concluído em 13/10/2026.
+- Módulo 5 iniciado em 13/10/2026; módulos 6 a 23 não iniciados.
 - Etapas 4.1 a 4.19 confirmadas em 13/10/2026; módulo 4 concluído.
 
 ## Retomada em outro chat
@@ -169,7 +172,9 @@ com "entendi" em 13/10/2026. Checkpoint aa372c6 publicado; HEAD, origin/main e
 consulta direta à main remota retornaram `aa372c66ef54086f72d9aea2160a67fcdc9aaa86`.
 Etapa 4.19 apresentou revisão do módulo 4 e conferiu entrega HTTP e pendências.
 Entendimento da revisão confirmado com "entendi" em 13/10/2026; módulo 4 concluído.
-Publicação do checkpoint será verificada antes da preparação 5.1.
+Checkpoint 2346772 publicado; HEAD, origin/main e consulta direta à main remota
+retornaram `23467729d7d3d5ebf6587084cab007ad1afa4df7`. Módulo 5 iniciado na 5.1,
+com diagnóstico de preparação apresentado; entendimento confirmado com "entendi".
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2518,12 +2523,56 @@ Verificação:
 
 Entendimento da etapa 4.19: confirmado com "entendi" em 13/10/2026.
 Estado do módulo 4: concluído após confirmação desta revisão.
-Publicação: checkpoint preparado para commit/push autorizado; nenhum código novo.
-Último checkpoint publicado e verificado: aa372c6, etapa 4.18.
-Próximo passo exato: após confirmação, registrar módulo 4 concluído, atualizar
-roteiro/progresso e publicar revisão. Iniciar 5.1 com diagnóstico de preparação
-SQL Server: arquitetura/recursos Docker, plataforma PHP e requisitos oficiais de
-compatibilidade. Adicionar banco/drivers somente na etapa necessária.
+Publicação: checkpoint 2346772, `docs: conclui módulo 4 de Laravel e MVC`.
+Push autorizado e verificado; HEAD, origin/main e consulta direta à main remota
+retornaram `23467729d7d3d5ebf6587084cab007ad1afa4df7`. Nenhum código novo.
+Próximo passo realizado: preparação 5.1, diagnóstico de recursos e compatibilidade.
+
+## Etapa 5.1
+
+Objetivo: conferir arquitetura/recursos Docker, plataforma PHP e requisitos
+oficiais antes de introduzir componentes de persistência.
+
+Implementação e explicação:
+
+- Diagnóstico somente de leitura, sem alterar Dockerfile, Compose ou aplicação.
+- Explicado caminho Laravel -> PDO/pdo_sqlsrv -> ODBC -> SQL Server -> volume.
+  PDO é a interface PHP; drivers ficam no backend; servidor terá outro container.
+- Diferenciados objetos em memória de gravação persistente e localhost do backend
+  de nome do futuro serviço na rede Docker. Nenhuma conexão já implementada.
+- Referências Microsoft e Laravel conferidas. Base do laboratório definida:
+  SQL Server 2022 Developer para desenvolvimento/testes; ODBC 18; drivers PHP
+  da linha 5.13, release estável consultada 5.13.3. Versões dos pacotes e imagem
+  SQL Server serão conferidas/fixadas na instalação, sem uso antecipado de latest.
+- Aula docs/aulas/05-01-preparacao-sql-server.md criada; README e roteiro
+  atualizados; revisão 4.19 e registro recebem SHA da publicação verificada.
+
+Verificação:
+
+- Docker info: Linux x86_64, 8 CPUs, MemTotal 8.193.597.440 bytes (~7,63 GiB),
+  armazenamento overlayfs, diretório /var/lib/docker.
+- MemAvailable observado: 5.332.836 KiB (~5,09 GiB), valor variável; clock
+  observado até 2419,2 MHz. Diagnóstico de recursos, sem benchmark.
+- df -h -T: /var/lib/docker e bind mount /app sobre ext4; ~942 GiB livres.
+  Raiz do container overlay. Recursos observados atendem à preparação inicial
+  frente aos requisitos Linux de x64, 2 GB de RAM, 6 GB de disco, 2 núcleos/2 GHz.
+- Backend Debian 12 bookworm x86_64; PHP 8.4.26 64 bits, sem thread safety.
+  PDO carregada, sqlsrv/pdo_sqlsrv ausentes, PDO::getAvailableDrivers apenas sqlite.
+- dpkg-query não encontrou msodbcsql18, unixodbc ou libodbc2.
+- Matriz Microsoft: drivers 5.13 compatíveis com PHP 8.4, Debian 12, SQL Server
+  2022 e ODBC 18. Laravel orienta sqlsrv/pdo_sqlsrv e dependências ODBC.
+- Compose ps: backend e php ativos em 8002/8001. Código/ambiente preservados;
+  nenhum banco, pacote, credencial, migration, teste Laravel ou contador executado.
+- Disponibilidade de recursos varia; inicialização SQL Server e conexão real
+  ainda não foram verificadas e terão suas aulas próprias.
+
+Entendimento da etapa 5.1: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado para commit/push autorizado. Último publicado: 2346772.
+Próximo passo exato: após confirmação, publicar diagnóstico 5.1 e iniciar 5.2,
+preparar uma imagem própria do backend com Microsoft ODBC Driver 18, preservando
+a imagem do laboratório PHP. Drivers PHP e serviço SQL Server entrarão em etapas
+seguintes. Banco SQL Server exclusivo para integração continua obrigatório;
+ajustar padrões SQLite do esqueleto antes de persistência/testes.
 
 ## Verificações e limitações do ambiente
 
@@ -2551,13 +2600,13 @@ compatibilidade. Adicionar banco/drivers somente na etapa necessária.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `aa372c6`,
-  `docs: apresenta papel do model Eloquent`.
+- Último commit local publicado nesta retomada: `2346772`,
+  `docs: conclui módulo 4 de Laravel e MVC`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `aa372c6`,
-  igual a HEAD e origin/main. Documentação da 4.19 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `2346772`,
+  igual a HEAD e origin/main. Documentação da 5.1 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2633,11 +2682,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar revisão 4.19 confirmada e iniciar preparação 5.1.
+- Ação imediata: publicar a preparação 5.1 confirmada e iniciar 5.2, ODBC no backend.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.19: encerrar módulo 4, publicar revisão e iniciar
-  preparação 5.1 para SQL Server, sem criar banco antes da etapa necessária.
+- Após a confirmação da 5.1: publicar diagnóstico e preparar na 5.2 a imagem
+  própria do backend com ODBC Driver 18, sem criar banco antes da etapa necessária.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2707,4 +2756,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.16 — Injeção no construtor | Propriedade promovida e acesso por $this; sintaxe e HTTP preservado conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5da3709 |
 | 13/10/2026 | 4.17 — Contrato e binding | Interface, implementação, controller e provider; sintaxes, resolução e HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 92d6e5f |
 | 13/10/2026 | 4.18 — Papel do Model | User existente explicado e atributos demonstrados em memória; código preservado | Confirmado pelo aluno: "entendi" | Publicado e verificado em aa372c6 |
-| 13/10/2026 | 4.19 — Revisão do módulo 4 | Fluxo e entrega revisados; módulo 4 concluído | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 13/10/2026 | 4.19 — Revisão do módulo 4 | Fluxo e entrega revisados; módulo 4 concluído | Confirmado pelo aluno: "entendi" | Publicado e verificado em 2346772 |
+| 13/10/2026 | 5.1 — Preparação SQL Server | Recursos Docker, PHP e compatibilidade conferidos; sem instalação | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

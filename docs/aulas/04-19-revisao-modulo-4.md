@@ -127,9 +127,9 @@ A revisão fecha a aprendizagem do módulo; persistência terá sua preparação
 ## Situação e próximo passo
 
 Revisão apresentada e entrega HTTP conferida; entendimento confirmado com "entendi"
-em 13/10/2026. Módulo 4 concluído. Sem implementação nova; checkpoint da
-documentação preparado para publicação conforme autorização existente.
-Último checkpoint publicado: aa372c6, etapa 4.18.
+em 13/10/2026. Módulo 4 concluído. Sem implementação nova; checkpoint 2346772
+publicado conforme autorização existente. HEAD, origin/main e consulta direta
+à main remota retornaram `23467729d7d3d5ebf6587084cab007ad1afa4df7`.
 
 Depois da publicação, iniciar 5.1: diagnóstico de preparação
 SQL Server, conferindo arquitetura/recursos Docker, plataforma PHP e requisitos

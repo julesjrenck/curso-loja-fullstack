@@ -9,6 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
+Módulo 5 — SQL Server e persistência: etapa 5.1, diagnóstico de preparação.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -97,6 +98,11 @@ apresentada, entendimento da 4.18 confirmado.
 Na 4.19, o fluxo do módulo foi revisado, sem alteração de código. Loja, welcome
 e laboratório responderam HTTP 200; dados e middleware conferidos. Revisão
 apresentada, entendimento confirmado com "entendi"; módulo 4 concluído.
+Na 5.1, arquitetura/recursos Docker, PHP e requisitos Microsoft foram conferidos.
+Base definida para o laboratório: SQL Server 2022 Developer, ODBC 18 e drivers
+PHP 5.13 (release estável consultada 5.13.3). Diagnóstico favorável; PDO carregada,
+sqlsrv/pdo_sqlsrv e ODBC ainda ausentes. Nenhuma dependência ou banco instalado.
+Explicação apresentada; entendimento da 5.1 confirmado com "entendi".
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -160,6 +166,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.17 — Contrato e binding do catálogo](docs/aulas/04-17-contrato-e-binding.md)
 - [Aula 4.18 — Papel do Model em MVC](docs/aulas/04-18-papel-model.md)
 - [Aula 4.19 — Revisão do módulo 4](docs/aulas/04-19-revisao-modulo-4.md)
+- [Aula 5.1 — Preparação para SQL Server](docs/aulas/05-01-preparacao-sql-server.md)
 
 ## Backend Laravel
 
@@ -280,8 +287,9 @@ AppServiceProvider::register liga esse contrato a CatalogoDemonstracao com bind.
 A aula 4.18 apresenta o papel do Model pelo User já gerado, com atributos em
 memória e sem consultas/gravação. Ele não foi ligado à página /loja; os nomes
 continuam no catálogo demonstrativo. A revisão 4.19 foi confirmada e o módulo 4
-concluído. O próximo passo é 5.1, diagnóstico para
-SQL Server. Drivers sqlsrv/pdo_sqlsrv, banco e persistência seguem pendentes.
+concluído. O diagnóstico 5.1 para SQL Server foi confirmado; o próximo passo
+é preparar na 5.2 uma imagem própria do backend com ODBC Driver 18.
+Drivers sqlsrv/pdo_sqlsrv, banco e persistência seguem pendentes.
 
 ## Executar a demonstração do laboratório PHP
 
