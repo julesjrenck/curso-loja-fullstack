@@ -8,7 +8,7 @@ estoque e notificações, construída por etapas explicadas e confirmadas pelo a
 Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
-Módulo 4 — Laravel e MVC: etapa 4.8, servidor Laravel e primeira página.
+Módulo 4 — Laravel e MVC: etapa 4.9, primeira rota própria da loja.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -53,6 +53,10 @@ Na 4.8, o backend passou a executar Artisan serve, com publicação local em
 http://127.0.0.1:8002/. A página welcome respondeu HTTP 200 com título Loja Fullstack;
 parada e reinício verificados com init:true. Laboratório continua na porta 8001.
 Explicação apresentada; entendimento da 4.8 confirmado.
+Na 4.9, GET /loja foi acrescentada em backend/routes/web.php e retorna
+"Bem-vindo à Loja Fullstack!", usando config('app.name'). Sintaxe, registro,
+resposta HTTP 200 e recusa de POST com 405 conferidos. Página welcome preservada;
+explicação apresentada, entendimento da 4.9 confirmado.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -105,6 +109,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 4.6 — Ambiente local do Laravel](docs/aulas/04-06-ambiente-local-laravel.md)
 - [Aula 4.7 — Artisan e chave da aplicação](docs/aulas/04-07-artisan-e-chave.md)
 - [Aula 4.8 — Servidor Laravel e primeira página](docs/aulas/04-08-servidor-laravel.md)
+- [Aula 4.9 — Primeira rota da loja](docs/aulas/04-09-primeira-rota-loja.md)
 
 ## Backend Laravel
 
@@ -205,8 +210,11 @@ docker compose up -d backend
 ```
 
 Views compiladas e sessões são geradas no storage local, ignoradas pelo Git.
-A aula 4.8 explica o caminho da requisição. Após confirmação, a 4.9 introduzirá
-a primeira rota própria da loja em routes/web.php.
+A aula 4.8 explica o caminho da requisição. A primeira rota própria está em
+[http://127.0.0.1:8002/loja](http://127.0.0.1:8002/loja): corpo textual com a
+saudação e o nome da aplicação. A aula 4.9 explica GET, caminho, função anônima,
+retorno string e config('app.name'). Após confirmação, moveremos esse atendimento
+para um controller, mantendo a mesma resposta.
 
 ## Executar a demonstração do laboratório PHP
 

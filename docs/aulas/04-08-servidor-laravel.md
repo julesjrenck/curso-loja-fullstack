@@ -134,7 +134,8 @@ sessão em arquivo. Ainda não demonstra regras da loja ou acesso a banco.
 
 Implementação e verificações concluídas; explicação apresentada e entendimento
 confirmado com "entendi" em 13/10/2026. Backend e laboratório permanecem ativos.
-Checkpoint preparado para publicação. Último publicado: 590f98a, etapa 4.7.
+Checkpoint 6ccf825 publicado; HEAD, origin/main e consulta direta à main remota
+coincidiram.
 
 Após confirmação, publicar 4.8 e iniciar 4.9: acrescentar GET /loja em
 backend/routes/web.php, com uma resposta textual usando o nome da aplicação.

@@ -4,18 +4,18 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 4 — Laravel e MVC.
-- Etapa atual: 4.8 — Servidor Laravel e primeira página.
-- Situação: backend ativo com Artisan serve em 127.0.0.1:8002. Página welcome
-  respondeu HTTP 200, título Loja Fullstack e conteúdo conferidos. Parada/reinício
-  verificados com init:true; view compilada e sessão geradas, ignoradas pelo Git.
-  Laboratório segue ativo em 8001. Explicação apresentada; entendimento confirmado
-  com "entendi" em 13/10/2026. Próximo passo: publicar 4.8 e criar rota na 4.9.
-  Último checkpoint publicado: 590f98a, da documentação de Artisan.
+- Etapa atual: 4.9 — Primeira rota da loja.
+- Situação: GET /loja retorna saudação usando config('app.name'). Sintaxe,
+  registro no Artisan, corpo/status HTTP 200 e POST 405 verificados; welcome
+  preservada. Explicação apresentada; entendimento confirmado com "entendi"
+  em 13/10/2026. Próximo passo: publicar 4.9 e criar controller na 4.10.
+  Backend e laboratório seguem ativos. Último checkpoint publicado: 6ccf825,
+  do servidor Laravel na 4.8.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026; módulos 5 a 23 não iniciados.
-- Etapas 4.1 a 4.8 confirmadas em 13/10/2026.
+- Etapas 4.1 a 4.9 confirmadas em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -121,7 +121,11 @@ retornaram `590f98a7141f8223659711c659b2d857c05afc67`.
 Etapa 4.8 iniciou o servidor Laravel e verificou welcome em HTTP 200, montagens,
 artefatos gerados e parada/reinício com init. Laboratório preservado.
 Explicação apresentada; entendimento confirmado com "entendi" em 13/10/2026.
-Checkpoint preparado para publicação autorizada.
+Checkpoint 6ccf825 publicado; HEAD, origin/main e consulta direta à main remota
+retornaram `6ccf825fbb834fdba7db7fb5785bbdb2721089f1`.
+Etapa 4.9 acrescentou GET /loja com saudação pelo nome configurado. Sintaxe,
+registro e respostas HTTP verificados; explicação apresentada e entendimento
+confirmado com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2048,13 +2052,51 @@ Verificação:
 - Sem banco, migrations, frontend, testes Laravel, pacotes ou contador executados.
 
 Entendimento da etapa 4.8: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado; artefatos gerados ignorados.
-Último checkpoint publicado e verificado: 590f98a, etapa 4.7.
+Checkpoint: 6ccf825, `build: inicia servidor de desenvolvimento Laravel`.
+Publicação autorizada e verificada: HEAD, origin/main e consulta direta à main
+remota retornaram `6ccf825fbb834fdba7db7fb5785bbdb2721089f1`. Artefatos ignorados.
 Estado de execução: Laravel em 127.0.0.1:8002 e laboratório em 127.0.0.1:8001 ativos.
 Próximo passo exato: após confirmação, publicar 4.8 e iniciar 4.9, acrescentar
 GET /loja em backend/routes/web.php com resposta textual usando config('app.name').
 Explicar método, caminho, função de atendimento e resposta; controllers/view
 própria em etapas posteriores. Persistência e testes de integração seguem SQL Server.
+
+## Etapa 4.9
+
+Objetivo: criar primeira rota própria da loja e explicar método, caminho,
+função anônima, retorno tipado e consulta de configuração.
+
+Implementação e explicação:
+
+- backend/routes/web.php recebeu Route::get('/loja', function (): string), com
+  return 'Bem-vindo à '.config('app.name').'!';. Rota / e import Route preservados.
+- Explicados GET, caminho /loja, URL completa, closure passada como argumento,
+  execução pelo Laravel ao corresponder a rota e retorno string como resposta HTTP.
+- Explicados concatenação e config('app.name'), ligado à chave name de
+  config/app.php e APP_NAME local. Sem mudança no ambiente.
+- Aula em docs/aulas/04-09-primeira-rota-loja.md e README atualizados.
+
+Verificação:
+
+- php -l no container backend: sintaxe correta, código 0.
+- Artisan route:list --path=loja --except-vendor: uma rota GET|HEAD loja,
+  registrada em routes/web.php:9. HEAD apresentado brevemente; HTTP aprofundado depois.
+- PHP temporário em Docker com --network host: GET /loja HTTP 200 e corpo exato
+  Bem-vindo à Loja Fullstack!; Content-Type text/html; charset=utf-8.
+- POST /loja HTTP 405, comprovando restrição do método; corpo de erro/cookies não exibidos.
+- GET / permaneceu HTTP 200, com título Loja Fullstack e welcome preservada.
+- Código atualizado visível pelo bind mount sem rebuild/reinício. Compose,
+  Dockerfile, dependências, chave e laboratório preservados.
+- Sem banco, migrations, frontend, testes Laravel ou contador. Diagnóstico cobre
+  comportamento HTTP desta rota, não persistência ou regras de catálogo.
+
+Entendimento da etapa 4.9: confirmado com "entendi" em 13/10/2026.
+Publicação: checkpoint preparado; conferir push antes de registrar sucesso.
+Último checkpoint publicado e verificado: 6ccf825, etapa 4.8.
+Próximo passo exato: após confirmação, publicar 4.9 e iniciar 4.10, criar
+LojaController::index e fazer GET /loja apontar para esse método, preservando
+a saudação. Explicar rota -> classe -> método público -> resposta. View própria
+da loja em etapa posterior; banco e testes de integração seguem SQL Server.
 
 ## Verificações e limitações do ambiente
 
@@ -2082,13 +2124,13 @@ própria em etapas posteriores. Persistência e testes de integração seguem SQ
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `590f98a`,
-  `docs: apresenta Artisan e valida chave local`.
+- Último commit local publicado nesta retomada: `6ccf825`,
+  `build: inicia servidor de desenvolvimento Laravel`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `590f98a`,
-  igual a HEAD e origin/main. Etapa 4.8 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `6ccf825`,
+  igual a HEAD e origin/main. Etapa 4.9 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2164,11 +2206,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 4.8 confirmada, conferir o remoto e iniciar 4.9.
+- Ação imediata: publicar 4.9 confirmada, conferir o remoto e iniciar 4.10.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 4.8: publicar seu checkpoint e iniciar 4.9, primeira
-  rota própria GET /loja com resposta textual baseada no nome da aplicação.
+- Após a confirmação da 4.9: publicar seu checkpoint e iniciar 4.10, mover
+  atendimento de /loja para LojaController::index, mantendo o comportamento.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2227,4 +2269,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.5 — Pastas graváveis | Montagens de storage e bootstrap/cache; escrita, leitura e limpeza verificadas | Confirmado pelo aluno: "entendi" | Publicado e verificado em 7c0fcea |
 | 13/10/2026 | 4.6 — Ambiente Laravel | Modelo adaptado, cópia local criada; leitura de variáveis, tipos e exclusões conferidas | Confirmado pelo aluno: "entendi" | Publicado e verificado em ae521c9; .env ignorado |
 | 13/10/2026 | 4.7 — Artisan e chave | Console inicializado, chave local e manifests gerados; criptografia e carregamento conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 590f98a; chave e manifests ignorados |
-| 13/10/2026 | 4.8 — Servidor Laravel | Backend na porta 8002; welcome HTTP 200, artefatos e parada/reinício verificados | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
+| 13/10/2026 | 4.8 — Servidor Laravel | Backend na porta 8002; welcome HTTP 200, artefatos e parada/reinício verificados | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6ccf825 |
+| 13/10/2026 | 4.9 — Primeira rota da loja | GET /loja com saudação configurada; sintaxe, registro e respostas conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado, publicação autorizada |
