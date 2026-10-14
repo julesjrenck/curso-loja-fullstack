@@ -95,8 +95,9 @@ Sem comando SQL, execução PHP, teste de aplicação ou alteração de banco ne
 etapa, pois ainda não há implementação de esquema a verificar.
 
 Modelagem e explicação apresentadas; entendimento da 5.10 confirmado com
-"entendi" em 14/10/2026. Checkpoint preparado para publicação autorizada;
-último publicado 173ed00. Publicar 5.10 e iniciar 5.11: explicar migrations e gerar
+"entendi" em 14/10/2026. Checkpoint publicado e conferido em b160a68:
+HEAD, origin/main e main remota retornaram b160a6827c99cd30f6edbea3e1f19556fc06b147.
+Registro no checkpoint seguinte. Próximo passo realizado na 5.11: explicar migrations e gerar
 somente o esqueleto da migration de produtos, sem executá-la no banco.
 A credencial da aplicação não possui permissão de criar tabelas; o acesso
 para executar migrations será preparado em sua própria etapa.

@@ -4,17 +4,17 @@
 
 - Última atualização: 14/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.10 — Modelagem inicial de produtos.
-- Situação: desenho documentado de produtos com id, nome, preco_em_centavos,
-  status, created_at e updated_at. Tipos, chave primária, identidade e valores
-  obrigatórios explicados; conceitos revisados contra laboratório PHP e fontes.
-  Explicação da 5.10 apresentada; entendimento confirmado com "entendi"
+- Etapa atual: 5.11 — Primeiro arquivo de migration.
+- Situação: make:migration gerou 2026_10_14_123220_create_produtos_table.php,
+  com id/timestamps iniciais e métodos up/down. Geração, sintaxe, carregamento
+  como Migration e ausência de dbo.produtos/dbo.migrations no banco loja conferidos.
+  Explicação da 5.11 apresentada; entendimento confirmado com "entendi"
   em 14/10/2026. Checkpoint preparado para publicação autorizada.
-  Primeira consulta 5.9 confirmada com "entendi" em 14/10/2026 e publicada.
-  Sem tabela/migration criada nesta etapa; entrega de modelagem em documentação.
+  Modelagem 5.10 confirmada com "entendi" em 14/10/2026 e publicada.
+  Arquivo inicial ainda sem nome/preço/status; nenhuma migration aplicada.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 173ed00, primeira consulta Laravel 5.9.
-  Serviços não alterados; sem nova verificação de runtime nesta etapa documental.
+  Último checkpoint publicado: b160a68, modelagem de produtos 5.10.
+  Serviços ativos conferidos; nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
@@ -31,6 +31,7 @@
 - Etapa 5.8 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.9 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.10 confirmada com "entendi" em 14/10/2026.
+- Etapa 5.11 confirmada com "entendi" em 14/10/2026.
 
 ## Retomada em outro chat
 
@@ -231,6 +232,10 @@ Checkpoint 5.9 publicado: 173ed00; HEAD, origin/main e consulta direta à main
 remota retornaram `173ed0089496181ec510cd521d7995a62045ca54`.
 Etapa 5.10 documentou desenho de produtos; explicação apresentada e entendimento
 confirmado com "entendi" em 14/10/2026. Nenhuma tabela ou migration criada.
+Checkpoint 5.10 publicado: b160a68; HEAD, origin/main e consulta direta à main
+remota retornaram `b160a6827c99cd30f6edbea3e1f19556fc06b147`.
+Etapa 5.11 gerou primeiro arquivo de migration, verificado sem aplicar ao banco;
+explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -3092,10 +3097,50 @@ nova dependência, credencial ou alteração de volume/contador. Sem testes de
 aplicação adicionais, pois nenhum código ou esquema foi modificado nesta etapa.
 
 Entendimento da 5.10: confirmado com "entendi" em 14/10/2026.
-Publicação: checkpoint preparado para commit/push autorizado; último publicado 173ed00.
-Próximo passo exato: publicar 5.10 confirmada e iniciar 5.11, explicar
+Publicação: checkpoint b160a68 publicado com autorização persistente; HEAD,
+origin/main e main remota conferidos em b160a6827c99cd30f6edbea3e1f19556fc06b147.
+Próximo passo realizado na 5.11: explicar
 migrations e gerar somente o esqueleto de produtos, sem executá-lo no banco.
 A credencial de execução de migrations será preparada em etapa própria.
+
+## Etapa 5.11
+
+Objetivo: apresentar migrations e gerar só o arquivo inicial de produtos.
+Aula em docs/aulas/05-11-primeira-migration.md. Uma adição PHP:
+backend/database/migrations/2026_10_14_123220_create_produtos_table.php.
+
+Implementação: make:migration create_produtos_table --create=produtos
+--no-interaction em container backend temporário, com --rm, -T e --no-deps.
+Montagem adicional somente de database/migrations como rw e usuário/grupo do
+host para arquivo editável. Conteúdo padrão gerado: imports Migration,
+Blueprint e Schema; classe anônima retornada, up com Schema::create e
+id()/timestamps(); down com dropIfExists. Nenhum ajuste antecipado das colunas.
+
+Explicação apresentada: migration como mudança de estrutura versionada;
+gerar arquivo versus aplicar ao banco, pasta/nome/prefixo UTC e ordem;
+comando Docker/Artisan, opções e montagem; classe anônima/herança/imports,
+up/down, Schema, Blueprint, id/timestamps e remoção de tabela em reversão.
+Arquivo inicial difere do desenho completo; nome/preço/status e precisão
+das datas serão preenchidos na 5.12.
+
+Verificações:
+
+- Docker Compose: serviços ativos; ajuda make:migration conferida.
+- Gerador concluído com código 0; arquivo único, dono 1000:1000, permissão 644.
+- php -l no arquivo gerado: sem erro de sintaxe.
+- Diagnóstico temporário PHP em Docker fez require do arquivo e confirmou
+  instanceof Migration, sem chamar up/down. SELECT de metadados sys.tables
+  retornou banco loja e total 0 para dbo.produtos/dbo.migrations.
+- git diff --check passou; arquivos PHP anteriores, Compose/imagens, .env e
+  contador preservados. Sem execução de migrate/rollback, instalação de Boost
+  ou outras dependências. Regras raiz PHP 8.4/Docker prevalecem sobre bootstrap
+  gerado de backend/AGENTS.md, como nas etapas anteriores.
+
+Entendimento da 5.11: confirmado com "entendi" em 14/10/2026.
+Publicação: checkpoint preparado para commit/push autorizado; último publicado b160a68.
+Próximo passo exato: publicar 5.11 confirmada e iniciar 5.12, preencher
+a migration com nome, preco_em_centavos, status e precisão planejada de datas,
+sem executá-la no banco. Credencial de migrations ainda terá preparação própria.
 
 ## Verificações e limitações do ambiente
 
@@ -3123,13 +3168,13 @@ A credencial de execução de migrations será preparada em etapa própria.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `173ed00`,
-  `feat: verifica conexão SQL Server pelo Laravel`.
+- Último commit local publicado nesta retomada: `b160a68`,
+  `docs: define modelagem inicial de produtos`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `173ed00`,
-  igual a HEAD e origin/main. Documentação da 5.10 ainda fora de commit.
+- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `b160a68`,
+  igual a HEAD e origin/main. Migration/documentação da 5.11 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3219,11 +3264,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar modelagem de produtos 5.10 confirmada e iniciar 5.11.
+- Ação imediata: publicar primeiro arquivo de migration 5.11 confirmado e iniciar 5.12.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Confirmação da 5.10 recebida: publicar desenho e explicar/gerar esqueleto da
-  migration de produtos na 5.11. Migrations e integração terão credenciais próprias.
+- Confirmação da 5.11 recebida: publicar arquivo inicial e preencher a definição
+  de produtos na 5.12. Migrations e integração terão credenciais próprias.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -3303,4 +3348,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 5.7 — Login e usuário da aplicação | loja_app em loja, senha local e papéis; autenticação/escopo/reexecução conferidos | Confirmado pelo aluno: "entendi", após dúvidas | Publicado e verificado em 063e4eb; .env ignorado |
 | 14/10/2026 | 5.8 — Configuração Laravel | Modelo, configuração e senha local; sintaxe/carregamento/preservação/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em e0e06ef; .env ignorado |
 | 14/10/2026 | 5.9 — Primeira consulta Laravel | Comando diagnóstico; sintaxe/ajuda/SQL real/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 173ed00; .env ignorado |
-| 14/10/2026 | 5.10 — Modelagem de produtos | Desenho, tipos, chave primária e exemplos revisados; sem tabela criada | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 14/10/2026 | 5.10 — Modelagem de produtos | Desenho, tipos, chave primária e exemplos revisados; sem tabela criada | Confirmado pelo aluno: "entendi" | Publicado e verificado em b160a68 |
+| 14/10/2026 | 5.11 — Primeiro arquivo de migration | Gerador, sintaxe, carregamento e ausência de tabelas conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

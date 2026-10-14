@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.10, modelagem de produtos.
+Módulo 5 — SQL Server e persistência: etapa 5.11, primeiro arquivo de migration.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -147,6 +147,11 @@ define id, nome, preco_em_centavos, status, created_at e updated_at; chave prim�
 tipos, valores obrigatórios e exemplos explicados. Desenho revisado contra o
 laboratório PHP e documentação SQL Server; entendimento confirmado com "entendi".
 Tabela e migration ainda não criadas.
+Checkpoint 5.10 publicado e conferido em b160a68. Na 5.11, make:migration gerou
+2026_10_14_123220_create_produtos_table.php com conteúdo inicial id/timestamps.
+Geração, sintaxe, carregamento como Migration e ausência de tabelas conferidos.
+Explicação apresentada; entendimento confirmado com "entendi". Próximo passo:
+completar as colunas na 5.12, antes de aplicar a migration ao banco.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -220,6 +225,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.8 — Configuração Laravel](docs/aulas/05-08-configuracao-laravel.md)
 - [Aula 5.9 — Primeira consulta Laravel](docs/aulas/05-09-primeira-consulta-laravel.md)
 - [Aula 5.10 — Modelagem de produtos](docs/aulas/05-10-modelagem-produtos.md)
+- [Aula 5.11 — Primeiro arquivo de migration](docs/aulas/05-11-primeira-migration.md)
 
 ## Backend Laravel
 
