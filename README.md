@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.14, conexão Laravel de migrations.
+Módulo 5 — SQL Server e persistência: etapa 5.15, tabela produtos criada por migration.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -167,6 +167,11 @@ Checkpoint 5.13 publicado e conferido em 94e3322. Na 5.14, sqlsrv_migracoes
 configurada com credenciais locais próprias; sqlsrv continua padrão com loja_app.
 Sintaxe, conexão real, permissões, senhas sem exibição e HTTP conferidos.
 Banco ainda sem tabelas; explicação apresentada e entendimento confirmado com "entendi".
+Checkpoint 5.14 publicado e conferido em 26e7b5b. Na 5.15, aplicada somente
+a migration de produtos via sqlsrv_migracoes e caminho do arquivo. Banco loja
+tem dbo.produtos vazia e dbo.migrations com um registro no lote 1. Esquema,
+status e reexecução conferidos; /loja continua demonstrativo em memória.
+Explicação apresentada; entendimento da 5.15 confirmado com "entendi" em 14/10/2026.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -244,6 +249,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.12 — Colunas de produtos](docs/aulas/05-12-colunas-produtos.md)
 - [Aula 5.13 — Conta de migrations](docs/aulas/05-13-conta-migracoes.md)
 - [Aula 5.14 — Conexão Laravel de migrations](docs/aulas/05-14-conexao-migracoes-laravel.md)
+- [Aula 5.15 — Aplicar a migration de produtos](docs/aulas/05-15-aplicar-migration-produtos.md)
 
 ## Backend Laravel
 
@@ -423,6 +429,17 @@ Senha no MSSQL_MIGRATIONS_PASSWORD do .env local da raiz; a
 sqlsrv_migracoes com DB_MIGRATIONS_USERNAME e DB_MIGRATIONS_PASSWORD somente
 no ambiente local. A conexão padrão permanece sqlsrv/loja_app. Integração terá
 preparação própria em loja_test.
+
+Após preparar contas e configuração local, aplique somente a migration de produtos:
+
+```bash
+docker compose exec -T backend php artisan migrate --database=sqlsrv_migracoes --path=database/migrations/2026_10_14_123220_create_produtos_table.php --no-interaction
+docker compose exec -T backend php artisan migrate:status --database=sqlsrv_migracoes --path=database/migrations/2026_10_14_123220_create_produtos_table.php
+```
+
+A [aula 5.15](docs/aulas/05-15-aplicar-migration-produtos.md) explica a aplicação,
+a tabela migrations e a verificação. As migrations padrão users/cache/jobs
+continuam sem aplicação. produtos começa vazia; a página ainda usa nomes em memória.
 
 Após preparar a configuração e a conta, confira a conexão pelo Laravel:
 

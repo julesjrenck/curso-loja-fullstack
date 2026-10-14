@@ -4,17 +4,18 @@
 
 - Última atualização: 14/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.14 — Conexão Laravel de migrations.
-- Situação: sqlsrv_migracoes configurada no Laravel com usuário/senha próprios,
-  copiados ao backend/.env privado; default sqlsrv/loja_app preservado.
-  Sintaxe, credenciais em memória, conexão real, permissões e HTTP conferidos.
-  Banco loja ainda com zero tabelas da aplicação; nenhuma migration aplicada.
-  Explicação da 5.14 apresentada; entendimento confirmado com "entendi"
+- Etapa atual: 5.15 — Aplicação da migration de produtos.
+- Situação: banco loja tem dbo.produtos com as seis colunas modeladas e zero
+  registros, e dbo.migrations com create_produtos_table no lote 1. Aplicada
+  somente a migration específica pela conexão sqlsrv_migracoes. Metadados,
+  leitura por loja_app, status/reexecução e HTTP conferidos.
+  Explicação da 5.15 apresentada; entendimento confirmado com "entendi"
   em 14/10/2026. Checkpoint preparado para publicação autorizada.
+  Conexão 5.14 confirmada com "entendi" em 14/10/2026 e publicada.
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 94e3322, conta exclusiva de migrations 5.13.
+  Último checkpoint publicado: 26e7b5b, conexão Laravel de migrations 5.14.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -36,6 +37,7 @@
 - Etapa 5.12 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.13 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.14 confirmada com "entendi" em 14/10/2026.
+- Etapa 5.15 confirmada com "entendi" em 14/10/2026.
 
 ## Retomada em outro chat
 
@@ -252,6 +254,10 @@ explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
 Checkpoint 5.13 publicado: 94e3322; HEAD, origin/main e consulta direta à main
 remota retornaram `94e3322369b13dcf3bf6201c90899e2f99b5893a`.
 Etapa 5.14 configurou e verificou as duas conexões Laravel, sem aplicar migrations;
+explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
+Checkpoint 5.14 publicado: 26e7b5b; HEAD, origin/main e consulta direta à main
+remota retornaram `26e7b5b8a674e775b2e882ea4c78f62aeed9d945`.
+Etapa 5.15 aplicou somente a migration de produtos e conferiu esquema e registro;
 explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -3302,11 +3308,58 @@ Verificações executadas em Docker:
   Compose/imagens, dependências e contador sem mudanças.
 
 Entendimento da 5.14: confirmado com "entendi" em 14/10/2026.
-Publicação: checkpoint preparado para commit/push autorizado; último publicado 94e3322.
-Próximo passo exato: publicar 5.14 confirmada e iniciar 5.15, aplicar
+Publicação: checkpoint 26e7b5b publicado com autorização persistente; HEAD,
+origin/main e main remota conferidos em 26e7b5b8a674e775b2e882ea4c78f62aeed9d945.
+Próximo passo realizado na 5.15: aplicar
 somente a migration de produtos com --database=sqlsrv_migracoes e --path apontando
 ao arquivo 2026_10_14_123220_create_produtos_table.php; explicar registro migrations
 e conferir o esquema persistido. Não aplicar users/cache/jobs antecipadamente.
+
+## Etapa 5.15 — Aplicar a migration de produtos
+
+Objetivo: aplicar o arquivo específico pela conexão de migrations e conferir
+o esquema persistido. Aula em docs/aulas/05-15-aplicar-migration-produtos.md.
+
+Implementação no banco, sem alterar código PHP: docker compose exec -T backend
+php artisan migrate --database=sqlsrv_migracoes
+--path=database/migrations/2026_10_14_123220_create_produtos_table.php --no-interaction.
+Criou dbo.migrations e dbo.produtos em loja; registrou apenas esse arquivo no
+lote 1. Migrations padrão users/cache/jobs não aplicadas; zero produtos inseridos.
+
+Explicação apresentada: aplicação versus geração, seleção da conexão pelo nome,
+limite pelo caminho do arquivo, execução de up/Schema::create, tabela real
+migrations com id/migration/batch e distinção entre registro de aplicação no
+banco e arquivo versionado no Git. Novas mudanças de esquema devem ser descritas
+em novas migrations. DBeaver pode atualizar lista e consultar as duas tabelas;
+resultado de exercício do aluno ainda não recebido.
+
+Verificações em Docker:
+
+- Antes: banco loja, login loja_migracoes e zero tabelas conferidos; ajuda migrate.
+- migrate terminou código 0; criação do registro e aplicação específica DONE.
+- Metadados pela conexão de migrations: somente dbo.migrations/dbo.produtos;
+  id BIGINT IDENTITY PK, nome NVARCHAR(150), preço INT, status NVARCHAR(20),
+  default ('ativo'), datas DATETIME2(3) NULL; demais campos NOT NULL.
+- Primeira comparação do default com loja_app falhou porque a definição ficou
+  NULL por visibilidade de metadados. Conferência feita com loja_migracoes,
+  diagnóstico corrigido e repetido com sucesso. Nenhuma mudança de schema/permissões
+  foi necessária. Não tratar o diagnóstico inicial como aprovação.
+- Registro migrations com arquivo 2026_10_14_123220_create_produtos_table, lote 1;
+  leitura de produtos como loja_app retornou zero registros.
+- Reexecução com mesmo arquivo/conexão via Artisan::call retornou Nothing to
+  migrate e código 0; OBJECT_ID das tabelas, único registro e default sqlsrv
+  preservados. migrate:status filtrado pelo caminho retornou [1] Ran.
+- HTTP /loja 200 com título, três nomes demonstrativos e X-Curso preservados.
+- git diff --check passou; arquivos PHP, configuração, credenciais, imagens,
+  dependências, serviços e contador didático sem alterações. Sem rollback,
+  escrita de produtos ou testes de integração no banco da aplicação.
+
+Entendimento da 5.15: confirmado com "entendi" em 14/10/2026.
+Publicação: checkpoint preparado para commit/push autorizado; último publicado 26e7b5b.
+Próximo passo exato: publicar 5.15 confirmada e iniciar 5.16, gerar
+somente o model Eloquent Produto e explicar sua ligação à tabela, sem inserir
+dados ou trocar o catálogo demonstrativo nesta etapa inicial do model.
+Regras de conteúdo e testes SQL Server de integração seguem com etapas próprias.
 
 ## Verificações e limitações do ambiente
 
@@ -3334,13 +3387,13 @@ e conferir o esquema persistido. Não aplicar users/cache/jobs antecipadamente.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `94e3322`,
-  `feat: prepara conta exclusiva de migrations`.
+- Último commit local publicado nesta retomada: `26e7b5b`,
+  `feat: configura conexão Laravel para migrations`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `94e3322`,
-  igual a HEAD e origin/main. Configuração/documentação da 5.14 ainda fora de commit.
+- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `26e7b5b`,
+  igual a HEAD e origin/main. Registros/documentação da 5.15 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3430,11 +3483,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar conexão Laravel de migrations 5.14 confirmada e iniciar 5.15.
+- Ação imediata: publicar aplicação de migration 5.15 confirmada e iniciar 5.16.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Entendimento da 5.14 recebido: publicar configuração e aplicar somente produtos
-  com conexão/caminho específicos na 5.15, conferindo metadados e registro migrations.
+- Entendimento da 5.15 recebido: publicar registro e gerar/apresentar o primeiro
+  model Eloquent Produto na 5.16, sem inserção ou troca de catálogo antecipada.
   Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -3519,4 +3572,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 14/10/2026 | 5.11 — Primeiro arquivo de migration | Gerador, sintaxe, carregamento e ausência de tabelas conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 3e5cb93 |
 | 14/10/2026 | 5.12 — Colunas de produtos | Blueprint preenchido, sintaxe e SQL simulado conferidos; tabela ausente | Confirmado pelo aluno: "entendi" | Publicado e verificado em bbec195 |
 | 14/10/2026 | 5.13 — Conta de migrations | Conta criada após autorização explícita; autenticação/permissões/escopo/reexecução conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 94e3322; .env ignorado |
-| 14/10/2026 | 5.14 — Conexão Laravel de migrations | Modelo/configuração e senha local; sintaxe/conexões/permissões/HTTP conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; .env ignorado |
+| 14/10/2026 | 5.14 — Conexão Laravel de migrations | Modelo/configuração e senha local; sintaxe/conexões/permissões/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 26e7b5b; .env ignorado |
+| 14/10/2026 | 5.15 — Aplicar migration de produtos | Tabela vazia, esquema e registro lote 1; reexecução/status/HTTP conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

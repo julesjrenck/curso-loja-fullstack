@@ -106,8 +106,10 @@ passou; APP_KEY e variáveis anteriores preservadas; .env ignorados. Sem
 alteração de migrations, dependências, permissões SQL, imagens ou serviços.
 
 Configuração, explicação e verificações concluídas. Entendimento da 5.14
-confirmado com "entendi" em 14/10/2026. Checkpoint preparado para publicação
-autorizada; último publicado 94e3322. Publicar 5.14 e iniciar 5.15: aplicar
+confirmado com "entendi" em 14/10/2026. Checkpoint publicado e conferido em
+26e7b5b; HEAD, origin/main e main remota
+retornaram 26e7b5b8a674e775b2e882ea4c78f62aeed9d945. Registro no checkpoint seguinte.
+Próximo passo realizado na 5.15: aplicar
 somente a migration de produtos usando a conexão de migrations e o caminho
 específico do arquivo, explicar o registro migrations e conferir o esquema.
 As migrations padrão de users/cache/jobs não serão aplicadas antecipadamente.
