@@ -130,8 +130,9 @@ Os drivers estão prontos para serem usados. A existência do driver ainda não
 demonstra uma conexão real, que exige servidor e configuração de acesso.
 
 Explicação apresentada; entendimento da 5.3 confirmado com "entendi" em 13/10/2026,
-após esclarecimento sobre PIE. Checkpoint preparado para publicação autorizada.
-Último checkpoint publicado: 5709dfe.
+após esclarecimento sobre PIE. Checkpoint 5ba53e2 publicado conforme autorização.
+HEAD, origin/main e consulta direta à main remota retornaram
+`5ba53e2f6d6fda3b962909b2d3e2eb9c919eb6b8`.
 Após confirmação, publicar 5.3 e iniciar 5.4: introduzir o serviço SQL Server
 2022 Developer no Compose, conferindo imagem/tag/digest, volume persistente e
 credenciais locais ignoradas. Conexão Laravel e bancos da loja/testes terão

@@ -4,14 +4,15 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.3 — Extensões PHP para SQL Server.
-- Situação: Dockerfile.backend acrescenta PIE 1.5.2 e sqlsrv/pdo_sqlsrv 5.13.3.
-  Imagem construída e backend recriado; extensões carregadas, PDO com sqlsrv,
-  .ini gerados, requisitos Composer e HTTP conferidos. ODBC 18.7.1.1-1 pronto.
-  Explicação apresentada; entendimento da 5.3 e esclarecimento PIE confirmados
-  com "entendi" em 13/10/2026. SQL Server e bancos ainda pendentes;
-  checkpoint preparado para publicação.
-  Backend e laboratório ativos. Último checkpoint publicado: 5709dfe, ODBC na 5.2.
+- Etapa atual: 5.4 — Serviço SQL Server no Docker.
+- Situação: serviço sqlserver introduzido com imagem 2022 CU27-GDR1 fixada
+  por digest, edição Developer, senha local ignorada e volume dados-sqlserver.
+  Servidor iniciado; versão 16.0.4305.5, edição, SELECT 1, volume e rede conferidos.
+  Explicação apresentada; entendimento da 5.4 e esclarecimentos sobre acesso
+  confirmados com "entendi" em 13/10/2026. Aluno pediu aviso quando DBeaver puder conectar.
+  Bancos loja/testes e conexão Laravel ainda pendentes; catálogo em memória.
+  Checkpoint preparado para publicação. Backend, laboratório e SQL Server ativos.
+  Último checkpoint publicado: 5ba53e2, extensões PHP na 5.3.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
@@ -21,6 +22,7 @@
 - Etapa 5.1 confirmada com "entendi" em 13/10/2026.
 - Etapa 5.2 confirmada com "entendi" em 13/10/2026.
 - Etapa 5.3 confirmada com "entendi", após esclarecimento PIE, em 13/10/2026.
+- Etapa 5.4 confirmada com "entendi", após esclarecimentos de acesso, em 13/10/2026.
 
 ## Retomada em outro chat
 
@@ -187,6 +189,12 @@ retornaram `5709dfefd739105efeff07691e6c127faa54dac6`.
 Etapa 5.3 instalou/habilitou drivers PHP 5.13.3 com PIE 1.5.2 na imagem backend;
 explicação apresentada e verificações passaram; entendimento confirmado com "entendi"
 em 13/10/2026, após esclarecimento sobre PIE.
+Checkpoint 5ba53e2 publicado; HEAD, origin/main e consulta direta à main remota
+retornaram `5ba53e2f6d6fda3b962909b2d3e2eb9c919eb6b8`.
+Etapa 5.4 introduziu SQL Server 2022 Developer com imagem fixada, volume e
+configuração local; servidor/rede conferidos, entendimento confirmado com "entendi"
+em 13/10/2026, após esclarecimentos sobre acesso. Aluno pediu aviso quando puder
+conectar pelo DBeaver e autorizou seguir o curso; acesso host ainda não configurado.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2697,11 +2705,78 @@ Exemplo desta aula: pie install microsoft/pdo_sqlsrv:5.13.3 baixa o pacote,
 compila/instala a extensão e configura seu carregamento no PHP da imagem.
 Ferramenta utilizada durante o build; aplicação usa a extensão instalada em execução.
 Entendimento desse esclarecimento e da 5.3 confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado para commit/push autorizado. Último publicado: 5709dfe.
+Publicação: checkpoint 5ba53e2, `build: instala extensões PHP para SQL Server`.
+Push autorizado e verificado: HEAD, origin/main e consulta direta à main remota
+retornaram `5ba53e2f6d6fda3b962909b2d3e2eb9c919eb6b8`.
 Próximo passo exato: após confirmação, publicar 5.3 e iniciar 5.4, introduzir
 SQL Server 2022 Developer no Compose, conferindo imagem/tag/digest, volume
 persistente e credenciais locais ignoradas. Conexão Laravel e bancos da loja/testes
 terão suas etapas próprias; integração deve usar banco SQL Server exclusivo.
+
+## Etapa 5.4
+
+Objetivo: introduzir SQL Server 2022 Developer no Compose com imagem identificável,
+volume persistente e configuração local ignorada, e verificar o servidor.
+
+Implementação e explicação:
+
+- Acrescentado serviço sqlserver a compose.yaml; imagem oficial
+  mcr.microsoft.com/mssql/server:2022-CU27-GDR1-ubuntu-22.04, digest
+  sha256:cf8f0ab2ebe61feec2eed2629061a07d247f791c2a8ddda74a4ac9f06a291718.
+  Tags e manifesto consultados no registro Microsoft antes do download.
+- Explicados image pronta, tag/CU/GDR, digest e serviço separado do PHP.
+  ACCEPT_EULA=Y aceita licença; MSSQL_PID=Developer define uso desenvolvimento/testes.
+- MSSQL_SA_PASSWORD usa interpolação obrigatória ${MSSQL_SA_PASSWORD:?...}.
+  Modelo root .env.example recebe campo vazio; senha aleatória gerada somente
+  no root .env ignorado, sem exibir valor, usando PHP em Docker. Conteúdo existente
+  preservado, política de senha conferida e modo 600 aplicado.
+- MSSQL_MEMORY_LIMIT_MB=2048 e mem_limit=3g limitam SQL Server e container
+  separadamente. Diagnóstico inicial: ~7,63 GiB totais, ~5,07 GiB disponíveis,
+  8 CPUs x86_64 e ~942 GiB de disco livres; disponibilidade varia.
+- Volume dados-sqlserver declarado/montado em /var/opt/mssql. Nome SQL Server
+  na rede interna é sqlserver, porta 1433; dentro do backend localhost é o backend.
+- Modelo e configuração local são parte inseparável da introdução do serviço.
+  Documentado comando PHP/Docker independente do Compose para preparar a senha
+  em outro clone, antes dos comandos Compose que agora exigem o campo.
+- Aula docs/aulas/05-04-servico-sql-server.md criada; README/roteiro atualizados.
+  Apresentados sqlcmd, variável SQLCMDPASSWORD, opções, SELECT 1/metadados e GO.
+
+Verificação:
+
+- config --quiet passou com ambiente real. Validação isolada com .env.example
+  e variável SQL ausente recusou configuração com a mensagem prevista, sem segredo.
+- pull sqlserver e up -d --no-deps sqlserver concluídos. Serviço running,
+  imagem Linux/amd64 e RepoDigest iguais ao conteúdo escolhido.
+- Inspect confirmou mem_limit de 3.221.225.472 bytes e volume
+  curso-loja-fullstack_dados-sqlserver gravável em /var/opt/mssql.
+- sqlcmd dentro do container, senha via variável de ambiente, certificado local
+  aceito com -C: SELECT 1 retornou 1; SERVERPROPERTY informou 16.0.4305.5 e
+  Developer Edition (64-bit). COUNT em sys.databases com database_id > 4 retornou 0.
+- São consultas de diagnóstico somente leitura; motor preparou bancos de sistema,
+  sem criação de bancos loja/testes, migrations, tabelas ou dados da aplicação.
+- PHP no backend resolveu sqlserver e abriu conexão TCP à porta 1433.
+  /loja e laboratório responderam HTTP 200; backend/php continuaram ativos.
+- Comando documentado para outro clone executado sobre configuração existente:
+  senha preservada. Não imprime senha, usa random_bytes para campo vazio/ausente.
+- Root .env e backend/.env ignorados; código backend/src, Dockerfiles e
+  .dockerignore preservados. Não alterado contador; nenhum teste Laravel executado.
+- Montagem de volume conferida; sem novo teste de remoção/recriação de dados.
+  Conexão Laravel ainda não configurada; servidor disponível não é catálogo persistido.
+
+Entendimento da etapa 5.4: confirmado com "entendi" em 13/10/2026.
+Pergunta do aluno: "quais os dados para acesso ao banco?". Esclarecimento:
+servidor sqlserver e porta 1433 na rede Docker, login sa, senha no campo
+MSSQL_SA_PASSWORD do .env local da raiz; valor não copiado para documentação.
+Banco master disponível para conexão inicial; loja/loja_test ainda não criados.
+Não há publicação de porta no host nesta configuração, portanto acesso por
+cliente no computador precisará de configuração própria. Esclarecimentos confirmados
+com "entendi". Aluno pediu aviso quando puder conectar pelo DBeaver e autorizou
+seguir o curso. Registrar aviso para a etapa de acesso host, sem antecipá-la.
+Publicação: checkpoint preparado para commit/push autorizado. Último publicado: 5ba53e2.
+Próximo passo exato: após confirmação, publicar 5.4 e iniciar 5.5, criar bancos
+loja e loja_test com SQL em Docker, explicar servidor/banco e CREATE DATABASE.
+Conexão Laravel terá sua etapa; integração usará exclusivamente loja_test.
+Padrões SQLite de configuração/phpunit.xml serão ajustados antes de uso.
 
 ## Verificações e limitações do ambiente
 
@@ -2729,13 +2804,13 @@ terão suas etapas próprias; integração deve usar banco SQL Server exclusivo.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `5709dfe`,
-  `build: prepara ODBC na imagem do backend`.
+- Último commit local publicado nesta retomada: `5ba53e2`,
+  `build: instala extensões PHP para SQL Server`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `5709dfe`,
-  igual a HEAD e origin/main. Implementação/documentação da 5.3 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `5ba53e2`,
+  igual a HEAD e origin/main. Implementação/documentação da 5.4 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2800,6 +2875,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 
 ## Dúvidas e próximos passos
 
+- Dúvida da 5.4: dados de acesso SQL Server. Indicados endereço interno/porta,
+  login sa, localização da senha local e master; explicado acesso Docker/host.
+  Entendimento confirmado com "entendi"; publicar porta apenas na etapa de acesso.
+- Pedido do aluno: avisar quando o acesso pelo DBeaver estiver disponível.
+  Acesso host ainda pendente; aluno autorizou seguir o curso na ordem registrada.
 - Dúvida da 5.3: o que é PIE? Esclarecido nome, função, relação com Composer,
   comando de instalação e uso no build; entendimento confirmado com "entendi".
 - Dúvida registrada e respondida: alcance da autenticação SSH e diferença entre
@@ -2813,11 +2893,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 5.3 confirmada e iniciar 5.4, serviço SQL Server.
+- Ação imediata: publicar 5.4 confirmada e iniciar 5.5, criação dos bancos.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 5.3: publicar drivers e introduzir na 5.4 o serviço
-  SQL Server 2022 Developer, com volume e configuração local ignorada.
+- Após a confirmação da 5.4: publicar serviço SQL Server e criar bancos
+  loja/loja_test na 5.5 via SQL em Docker, sem adiantar conexão Laravel.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -2890,4 +2970,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 4.19 — Revisão do módulo 4 | Fluxo e entrega revisados; módulo 4 concluído | Confirmado pelo aluno: "entendi" | Publicado e verificado em 2346772 |
 | 13/10/2026 | 5.1 — Preparação SQL Server | Recursos Docker, PHP e compatibilidade conferidos; sem instalação | Confirmado pelo aluno: "entendi" | Publicado e verificado em 41d0660 |
 | 13/10/2026 | 5.2 — ODBC no backend | Imagem própria, ODBC 18.7.1.1-1 e recriação; bibliotecas/plataforma/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5709dfe |
-| 13/10/2026 | 5.3 — Extensões SQL Server | sqlsrv/pdo_sqlsrv 5.13.3 via PIE 1.5.2; carregamento, PDO, .ini, plataforma e HTTP conferidos | Confirmado pelo aluno: "entendi", após esclarecimento PIE | Checkpoint preparado para publicação |
+| 13/10/2026 | 5.3 — Extensões SQL Server | sqlsrv/pdo_sqlsrv 5.13.3 via PIE 1.5.2; carregamento, PDO, .ini, plataforma e HTTP conferidos | Confirmado pelo aluno: "entendi", após esclarecimento PIE | Publicado e verificado em 5ba53e2 |
+| 13/10/2026 | 5.4 — Serviço SQL Server | Imagem fixa, volume e senha local; inicialização, versão, edição, SELECT 1 e rede conferidos | Confirmado pelo aluno: "entendi", após dúvidas de acesso | Checkpoint preparado para publicação; .env ignorado |

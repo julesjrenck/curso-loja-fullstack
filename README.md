@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.3, extensões PHP para SQL Server.
+Módulo 5 — SQL Server e persistência: etapa 5.4, serviço SQL Server no Docker.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -113,6 +113,12 @@ Na 5.3, Dockerfile.backend acrescenta PIE 1.5.2 e os drivers sqlsrv/pdo_sqlsrv
 backend recriado; extensões carregadas, PDO com sqlsrv, .ini gerados, plataforma
 e HTTP conferidos. SQL Server ainda não introduzido; explicação apresentada,
 entendimento da 5.3 confirmado com "entendi", após esclarecimento sobre PIE.
+Na 5.4, SQL Server 2022 CU27-GDR1 foi introduzido como serviço sqlserver,
+edição Developer, imagem fixada por digest e volume dados-sqlserver.
+Senha somente no .env local; modelo público vazio. Inicialização, edição/versão,
+consulta SELECT 1, volume e rede conferidos. Servidor 16.0.4305.5 disponível;
+bancos da loja/testes e conexão Laravel ainda pendentes. Explicação apresentada,
+entendimento da 5.4 confirmado com "entendi", após esclarecimentos sobre acesso.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -179,6 +185,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.1 — Preparação para SQL Server](docs/aulas/05-01-preparacao-sql-server.md)
 - [Aula 5.2 — ODBC na imagem do backend](docs/aulas/05-02-odbc-backend.md)
 - [Aula 5.3 — Extensões PHP para SQL Server](docs/aulas/05-03-extensoes-sql-server.md)
+- [Aula 5.4 — Serviço SQL Server no Docker](docs/aulas/05-04-servico-sql-server.md)
 
 ## Backend Laravel
 
@@ -197,6 +204,10 @@ separadamente nos mesmos caminhos sob /app, com escrita. Os arquivos gerados
 ficam no host; os .gitignore do modelo preservam somente a estrutura versionada.
 
 Para preparar o serviço e instalar as versões registradas no lockfile, na raiz:
+
+Prepare primeiro o .env da raiz e sua senha SQL Server conforme a
+[aula 5.4](docs/aulas/05-04-servico-sql-server.md#modelo-público-e-configuração-local).
+O Compose exige esse campo mesmo quando o comando executa somente o backend.
 
 ```bash
 mkdir -p backend/vendor
@@ -304,8 +315,24 @@ continuam no catálogo demonstrativo. A revisão 4.19 foi confirmada e o módulo
 concluído. O diagnóstico 5.1 para SQL Server foi confirmado; o próximo passo
 foi realizado na 5.2: imagem própria do backend com ODBC Driver 18 construída
 e aplicada. Na 5.3, sqlsrv/pdo_sqlsrv foram instaladas e carregadas no backend.
-Próximo passo: introduzir o serviço SQL Server 2022 Developer na 5.4.
-Servidor, bancos, conexão Laravel e persistência seguem pendentes.
+Na 5.4, o serviço SQL Server 2022 Developer foi iniciado e conferido.
+Próximo passo: criar os bancos loja/loja_test na 5.5.
+Bancos, conexão Laravel e catálogo persistido seguem pendentes.
+
+## Executar o SQL Server local
+
+O serviço SQL Server pode ser iniciado pela imagem fixada, depois de preparar
+a configuração local descrita na aula 5.4:
+
+```bash
+docker compose pull sqlserver
+docker compose up -d --no-deps sqlserver
+docker compose ps
+```
+
+Os containers do projeto acessam sqlserver:1433 na rede interna. O volume
+dados-sqlserver guarda os arquivos de /var/opt/mssql. Bancos loja/loja_test
+ainda serão criados na aula 5.5; a conexão Laravel será preparada depois.
 
 ## Executar a demonstração do laboratório PHP
 
@@ -315,6 +342,11 @@ GNU cp, o comando abaixo preserva um `.env` já existente:
 ```bash
 cp --update=none .env.example .env
 ```
+
+Antes de executar Compose em outro clone, prepare MSSQL_SA_PASSWORD no .env
+local usando o [comando PHP em Docker da aula 5.4](docs/aulas/05-04-servico-sql-server.md#modelo-público-e-configuração-local).
+Ele gera senha aleatória se o campo estiver vazio e preserva um valor existente.
+Nesta sessão a senha já foi preparada e o arquivo está ignorado pelo Git.
 
 Edite o nome da aplicação no `.env`, se desejar. Depois:
 
