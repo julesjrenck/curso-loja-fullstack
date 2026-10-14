@@ -117,9 +117,10 @@ git diff --check passou e ambos os .env continuam ignorados.
 ## Continuidade
 
 Implementação e explicação apresentadas. Entendimento da 5.8 confirmado com
-"entendi" em 14/10/2026. Checkpoint preparado para publicação autorizada;
-publicar o checkpoint
-e iniciar 5.9: primeira consulta diagnóstica pelo Laravel e introdução à DB facade.
+"entendi" em 14/10/2026. Checkpoint publicado e conferido em e0e06ef:
+HEAD, origin/main e main remota retornaram e0e06ef063ec245739e18f684336d218751687e9.
+Registro no checkpoint seguinte. Próximo passo realizado na 5.9: primeira
+consulta diagnóstica pelo Laravel e introdução à DB facade.
 Tabelas, migrations e catálogo persistido serão introduzidos depois.
 
 Fontes consultadas em 13/10/2026:

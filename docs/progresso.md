@@ -4,16 +4,15 @@
 
 - Última atualização: 14/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.8 — Configuração Laravel.
-- Situação: modelo e configuração Laravel preparados para sqlserver:1433,
-  banco loja e login loja_app. Senha copiada ao backend/.env ignorado,
-  preservando APP_KEY e demais variáveis. Sintaxe, carregamento da configuração,
-  correspondência da senha e HTTP conferidos; sem consulta SQL pelo Laravel.
-  Explicação da 5.8 apresentada; entendimento confirmado com "entendi"
+- Etapa atual: 5.9 — Primeira consulta Laravel.
+- Situação: comando Artisan loja:verificar-banco em routes/console.php consulta
+  SQL Server via DB::selectOne e retorna banco loja, login/usuário loja_app.
+  Sintaxe, registro Artisan, consulta real e página /loja conferidos.
+  Explicação da 5.9 apresentada; entendimento confirmado com "entendi"
   em 14/10/2026. Checkpoint preparado para publicação autorizada.
-  Etapa 5.7 e dúvidas de catálogo confirmadas com "entendi" e publicadas.
+  Configuração 5.8 confirmada com "entendi" em 14/10/2026 e publicada.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Serviços ativos. Último checkpoint publicado: 063e4eb, conta da aplicação 5.7.
+  Serviços ativos. Último checkpoint publicado: e0e06ef, configuração Laravel 5.8.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
@@ -28,6 +27,7 @@
 - Etapa 5.6 confirmada com "entendi" em 13/10/2026, após resultado "apareceu loja" no DBeaver.
 - Etapa 5.7 confirmada com "entendi" em 13/10/2026, após dúvidas de usuário/view.
 - Etapa 5.8 confirmada com "entendi" em 14/10/2026.
+- Etapa 5.9 confirmada com "entendi" em 14/10/2026.
 
 ## Retomada em outro chat
 
@@ -220,6 +220,10 @@ Checkpoint 5.7 publicado: 063e4eb; HEAD, origin/main e consulta direta à main
 remota retornaram `063e4ebc0c1ec733b183005c922ffd967f4ac35b`.
 Etapa 5.8 preparou ambiente Laravel e conferiu configuração sem consulta SQL;
 explicação apresentada, entendimento confirmado com "entendi" em 14/10/2026.
+Checkpoint 5.8 publicado: e0e06ef; HEAD, origin/main e consulta direta à main
+remota retornaram `e0e06ef063ec245739e18f684336d218751687e9`.
+Etapa 5.9 realizou primeira consulta pelo Laravel com comando diagnóstico;
+explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -3010,10 +3014,45 @@ DB_HOST interno versus endereço DBeaver, significado das oito variáveis,
 env(nome, fallback) no array PHP, criptografia/certificado local, montagem
 temporária para a cópia privada e alcance dos diagnósticos.
 Entendimento da 5.8: confirmado com "entendi" em 14/10/2026.
-Publicação: checkpoint preparado para commit/push autorizado; último publicado 063e4eb.
-Próximo passo exato: publicar 5.8 confirmada e iniciar 5.9 com a primeira
+Publicação: checkpoint e0e06ef publicado com autorização persistente; HEAD,
+origin/main e main remota conferidos em e0e06ef063ec245739e18f684336d218751687e9.
+Próximo passo realizado na 5.9: primeira
 consulta diagnóstica pelo Laravel, apresentando DB facade e resultado, sem
 antecipar tabelas, migrations ou catálogo persistido.
+
+## Etapa 5.9
+
+Objetivo: executar a primeira consulta pelo Laravel e conferir a conexão
+configurada na 5.8. Aula em docs/aulas/05-09-primeira-consulta-laravel.md.
+
+Implementação: apenas backend/routes/console.php, além dos registros da aula.
+Importada a fachada DB e registrado loja:verificar-banco com Artisan::command.
+Closure chama DB::selectOne com SELECT DB_NAME() AS banco, SUSER_SNAME() AS
+login, USER_NAME() AS usuario. Três saídas via $this->line e purpose para ajuda.
+Comando sem argumentos; usa conexão padrão e credenciais locais da 5.8.
+Não cria tabelas nem modifica dados. Bootstrap existente já carrega console.php.
+
+Explicação apresentada: entrada de terminal versus rota HTTP, importação use,
+fachadas Artisan/DB e serviços do container Laravel, closure ligada ao comando,
+SELECT sem FROM, funções de contexto SQL Server, aliases AS, selectOne e objeto
+com propriedades acessadas por ->, concatenação PHP e saída line/purpose.
+
+Verificações executadas em Docker:
+
+- php -l /app/routes/console.php: sem erro de sintaxe.
+- php artisan help loja:verificar-banco: nome e descrição registrados.
+- php artisan loja:verificar-banco --no-ansi: saída Banco: loja, Login: loja_app,
+  Usuário: loja_app; código 0. Demonstra conexão e execução de SQL pelo Laravel
+  com os drivers instalados, a rede e a conta configurada. Não demonstra ainda
+  persistência de produtos ou permissões de escrita sobre tabelas da aplicação.
+- HTTP /loja: 200, título, Camiseta/Calça/Tênis e X-Curso preservados.
+- git diff --check passou; .env e backend/.env ignorados. Sem migrations,
+  nova dependência, novo serviço, mudança de credenciais ou contador didático.
+
+Entendimento da 5.9: confirmado com "entendi" em 14/10/2026.
+Publicação: checkpoint preparado para commit/push autorizado; último publicado e0e06ef.
+Próximo passo exato: publicar 5.9 confirmada e iniciar 5.10, modelagem
+inicial da tabela produtos (colunas, tipos e chave primária), antes de migration.
 
 ## Verificações e limitações do ambiente
 
@@ -3041,13 +3080,13 @@ antecipar tabelas, migrations ou catálogo persistido.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `063e4eb`,
-  `feat: prepara conta de dados da aplicação`.
+- Último commit local publicado nesta retomada: `e0e06ef`,
+  `feat: configura Laravel para SQL Server`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `063e4eb`,
-  igual a HEAD e origin/main. Implementação/documentação da 5.8 ainda fora de commit.
+- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `e0e06ef`,
+  igual a HEAD e origin/main. Implementação/documentação da 5.9 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3137,11 +3176,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar configuração Laravel 5.8 confirmada e iniciar 5.9.
+- Ação imediata: publicar primeira consulta Laravel 5.9 confirmada e iniciar 5.10.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Confirmação da 5.8 recebida: publicar configuração e iniciar primeira consulta
-  SQL pelo Laravel na 5.9. Migrations e integração terão credenciais próprias.
+- Confirmação da 5.9 recebida: publicar comando diagnóstico e iniciar modelagem
+  de produtos na 5.10. Migrations e integração terão credenciais próprias.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -3219,4 +3258,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 5.5 — Bancos loja e loja_test | SQL de preparação; estado, arquivos, conexões e reexecução conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em fc2cdbc |
 | 13/10/2026 | 5.6 — Acesso DBeaver | Porta local conferida; aluno relatou "apareceu loja" na consulta pelo DBeaver | Confirmado pelo aluno: "entendi", após resultado de acesso | Publicado e verificado em c7f58ee |
 | 13/10/2026 | 5.7 — Login e usuário da aplicação | loja_app em loja, senha local e papéis; autenticação/escopo/reexecução conferidos | Confirmado pelo aluno: "entendi", após dúvidas | Publicado e verificado em 063e4eb; .env ignorado |
-| 14/10/2026 | 5.8 — Configuração Laravel | Modelo, configuração e senha local; sintaxe/carregamento/preservação/HTTP conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; .env ignorado |
+| 14/10/2026 | 5.8 — Configuração Laravel | Modelo, configuração e senha local; sintaxe/carregamento/preservação/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em e0e06ef; .env ignorado |
+| 14/10/2026 | 5.9 — Primeira consulta Laravel | Comando diagnóstico; sintaxe/ajuda/SQL real/HTTP conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; .env ignorado |
