@@ -118,7 +118,8 @@ Git diff confirmou código PHP/Laravel, Compose e imagens de construção preser
 root .env e backend/.env continuam ignorados. Nenhum teste Laravel foi executado.
 
 Explicação apresentada; entendimento da 5.5 confirmado com "entendi" em 13/10/2026.
-Checkpoint preparado para publicação autorizada. Último publicado: d9fba40.
+Checkpoint fc2cdbc publicado conforme autorização. HEAD, origin/main e consulta
+direta à main remota retornaram `fc2cdbcc4199efa9f0636b8a34e2e90beb2978b5`.
 Após confirmação: publicar 5.5 e iniciar 5.6, configurar acesso local pelo DBeaver
 com publicação de porta em 127.0.0.1, conferir acesso e avisar o aluno.
 Conexão Laravel, tabelas e configuração dos testes terão suas próprias etapas.

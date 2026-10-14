@@ -4,14 +4,14 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.5 — Bancos da loja e dos testes.
-- Situação: docker/sqlserver/criar-bancos.sql criado e executado; bancos loja
-  e loja_test ONLINE, arquivos no volume, conexões individuais e reexecução
-  preservando IDs conferidas. Nenhuma tabela da aplicação criada.
-  Explicação apresentada; entendimento da 5.5 confirmado com "entendi" em 13/10/2026.
-  Conexão Laravel ainda pendente; catálogo em memória. Checkpoint preparado para publicação.
-  DBeaver: publicar acesso local e avisar aluno na 5.6, após confirmação da 5.5.
-  Backend, laboratório e SQL Server ativos. Último checkpoint publicado: d9fba40, serviço 5.4.
+- Etapa atual: 5.6 — Acesso local pelo DBeaver.
+- Situação: porta SQL Server publicada somente em 127.0.0.1:1433; serviço
+  recriado e bancos preservados. Conexão autenticada pela porta publicada conferida.
+  Aviso solicitado cumprido: endpoint disponível e dados/instruções DBeaver apresentados.
+  Aluno confirmou resultado no DBeaver: "apareceu loja", após SELECT DB_NAME().
+  Acesso pelo cliente e entendimento da 5.6 confirmados, com "entendi" em 13/10/2026.
+  Checkpoint preparado para publicação. Conexão Laravel ainda pendente; catálogo em memória.
+  Backend, laboratório e SQL Server ativos. Último checkpoint publicado: fc2cdbc, bancos 5.5.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
@@ -23,6 +23,7 @@
 - Etapa 5.3 confirmada com "entendi", após esclarecimento PIE, em 13/10/2026.
 - Etapa 5.4 confirmada com "entendi", após esclarecimentos de acesso, em 13/10/2026.
 - Etapa 5.5 confirmada com "entendi" em 13/10/2026.
+- Etapa 5.6 confirmada com "entendi" em 13/10/2026, após resultado "apareceu loja" no DBeaver.
 
 ## Retomada em outro chat
 
@@ -200,6 +201,12 @@ retornaram `d9fba40e398512cb63385e970e8578ffe90441d2`.
 Etapa 5.5 criou loja/loja_test e conferiu estado, arquivos, conexões e reexecução;
 entendimento confirmado com "entendi" em 13/10/2026. Acesso local pelo DBeaver
 será preparado na 5.6.
+Checkpoint fc2cdbc publicado; HEAD, origin/main e consulta direta à main remota
+retornaram `fc2cdbcc4199efa9f0636b8a34e2e90beb2978b5`.
+Etapa 5.6 publicou porta SQL local, conferiu conexão autenticada e apresentou
+dados DBeaver; aviso ao aluno cumprido. Aluno relatou "apareceu loja" no DBeaver,
+confirmando execução da consulta no banco loja; entendimento da 5.6 confirmado
+com "entendi" em 13/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2827,11 +2834,64 @@ Verificação:
   integração Laravel, catálogo persistido ou acesso DBeaver pelo host.
 
 Entendimento da etapa 5.5: confirmado com "entendi" em 13/10/2026.
-Publicação: checkpoint preparado para commit/push autorizado. Último publicado: d9fba40.
+Publicação: checkpoint fc2cdbc, `feat: prepara bancos da loja e integração`.
+Push autorizado e verificado: HEAD, origin/main e consulta direta à main remota
+retornaram `fc2cdbcc4199efa9f0636b8a34e2e90beb2978b5`.
 Próximo passo exato: após confirmação, publicar 5.5 e iniciar 5.6, configurar
 publicação de porta SQL Server somente em 127.0.0.1 para acesso local pelo
 DBeaver, conferir acesso e informar os dados ao aluno conforme pedido.
 Conexão Laravel, tabelas e configuração dos testes terão etapas próprias.
+
+## Etapa 5.6
+
+Objetivo: disponibilizar acesso SQL Server no computador para DBeaver, conferir
+endpoint e informar dados ao aluno conforme pedido de aviso.
+
+Implementação e explicação:
+
+- Acrescentado apenas ports: ["127.0.0.1:1433:1433"] ao serviço sqlserver.
+  Explicados endereço do host, porta publicada, porta interna e encaminhamento.
+- Diferenciados endereço sqlserver:1433 dentro da rede Compose e 127.0.0.1:1433
+  no computador. DBeaver é cliente; os arquivos permanecem no volume SQL Server.
+- Confirmado Linux WSL2; consultada documentação Microsoft de localhost Windows/WSL.
+  Endpoint testado no host Docker; interface DBeaver depende do teste do aluno.
+- Apresentados Microsoft SQL Server no DBeaver, host 127.0.0.1, porta 1433,
+  banco loja, autenticação SQL Server, login sa e senha no campo MSSQL_SA_PASSWORD
+  do root .env ignorado. Valor não impresso/copiado para documentação pública.
+- Para certificado local, Trust Server Certificate ou propriedade
+  trustServerCertificate=true, mantendo encrypt=true. Explicada aceitação
+  do certificado local sem validação da cadeia, conforme documentação JDBC Microsoft.
+- Aula docs/aulas/05-06-acesso-dbeaver.md criada; README/roteiro atualizados.
+  Instruído Test Connection, eventual driver JDBC e experiência SELECT DB_NAME().
+- Aviso ao aluno emitido após conexão endpoint passar: acesso local disponível.
+
+Verificação:
+
+- ss -ltn anterior: porta 1433 livre. config --quiet passou; up -d --no-deps
+  sqlserver recriou apenas esse serviço. port retornou 127.0.0.1:1433.
+- Compose ps mostrou publicação 127.0.0.1:1433->1433/tcp; backend/php ativos.
+- Cliente sqlcmd em container temporário com --network host e --env-file .env,
+  entrypoint sh para executar somente cliente. Senha via SQLCMDPASSWORD sem
+  exibição/argumento secreto; -S 127.0.0.1,1433 e -d loja conectaram com sucesso.
+- DB_NAME retornou loja, consulta constante retornou 1. sys.databases mostrou
+  loja ID 5 ONLINE e loja_test ID 6 ONLINE, preservados após a recriação.
+- Inspect confirmou HostIp 127.0.0.1, HostPort 1433 e volume
+  curso-loja-fullstack_dados-sqlserver em /var/opt/mssql. ss confirmou LISTEN local.
+- Código backend/src, SQL de bancos e Dockerfiles/.dockerignore preservados;
+  root .env e backend/.env ignorados. Sem tabelas, migrations, contas novas,
+  configuração DBeaver gravada por ferramenta, teste Laravel ou contador.
+- Verificado endpoint SQL publicado e autenticação; não inventar conexão
+  no DBeaver. Resultado do Test Connection deve ser informado pelo aluno.
+
+Resultado no DBeaver: confirmado pelo aluno com "apareceu loja", após a consulta
+SELECT DB_NAME(). Acesso ao banco loja confirmado por relato do aluno.
+Entendimento da etapa 5.6: confirmado com "entendi" em 13/10/2026, após resultado
+de conexão DBeaver confirmado separadamente com "apareceu loja".
+Publicação: checkpoint preparado para commit/push autorizado. Último publicado: fc2cdbc.
+Próximo passo exato: responder a dúvidas/erros DBeaver antes de avançar; após
+entendimento, publicar 5.6 e iniciar 5.7, preparar login/usuário próprios da
+aplicação no banco loja e credencial local ignorada, antes da conexão Laravel.
+Banco de testes e configuração de integração terão preparação própria.
 
 ## Verificações e limitações do ambiente
 
@@ -2859,13 +2919,13 @@ Conexão Laravel, tabelas e configuração dos testes terão etapas próprias.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `d9fba40`,
-  `build: adiciona serviço SQL Server Developer`.
+- Último commit local publicado nesta retomada: `fc2cdbc`,
+  `feat: prepara bancos da loja e integração`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `d9fba40`,
-  igual a HEAD e origin/main. Implementação/documentação da 5.5 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `fc2cdbc`,
+  igual a HEAD e origin/main. Implementação/documentação da 5.6 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2934,7 +2994,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   login sa, localização da senha local e master; explicado acesso Docker/host.
   Entendimento confirmado com "entendi"; publicar porta apenas na etapa de acesso.
 - Pedido do aluno: avisar quando o acesso pelo DBeaver estiver disponível.
-  Acesso host ainda pendente, será preparado na 5.6; aluno autorizou seguir o curso.
+  Aviso cumprido na 5.6 após conexão SQL autenticada pela porta local passar.
+  Dados apresentados; aluno relatou "apareceu loja" na consulta pelo DBeaver.
+  Acesso confirmado; entendimento da 5.6 confirmado depois com "entendi".
 - Dúvida da 5.3: o que é PIE? Esclarecido nome, função, relação com Composer,
   comando de instalação e uso no build; entendimento confirmado com "entendi".
 - Dúvida registrada e respondida: alcance da autenticação SSH e diferença entre
@@ -2948,11 +3010,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 5.5 confirmada e preparar acesso DBeaver na 5.6.
+- Ação imediata: publicar 5.6 confirmada e iniciar 5.7, login/usuário da aplicação.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 5.5: publicar criação dos bancos e preparar acesso
-  local pelo DBeaver na 5.6; avisar aluno quando a porta/acesso forem conferidos.
+- Após a confirmação da 5.6: publicar porta SQL local e preparar login/usuário
+  da aplicação na 5.7, com senha local ignorada.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -3027,4 +3089,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 5.2 — ODBC no backend | Imagem própria, ODBC 18.7.1.1-1 e recriação; bibliotecas/plataforma/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5709dfe |
 | 13/10/2026 | 5.3 — Extensões SQL Server | sqlsrv/pdo_sqlsrv 5.13.3 via PIE 1.5.2; carregamento, PDO, .ini, plataforma e HTTP conferidos | Confirmado pelo aluno: "entendi", após esclarecimento PIE | Publicado e verificado em 5ba53e2 |
 | 13/10/2026 | 5.4 — Serviço SQL Server | Imagem fixa, volume e senha local; inicialização, versão, edição, SELECT 1 e rede conferidos | Confirmado pelo aluno: "entendi", após dúvidas de acesso | Publicado e verificado em d9fba40; .env ignorado |
-| 13/10/2026 | 5.5 — Bancos loja e loja_test | SQL de preparação; estado, arquivos, conexões e reexecução conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 13/10/2026 | 5.5 — Bancos loja e loja_test | SQL de preparação; estado, arquivos, conexões e reexecução conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em fc2cdbc |
+| 13/10/2026 | 5.6 — Acesso DBeaver | Porta local conferida; aluno relatou "apareceu loja" na consulta pelo DBeaver | Confirmado pelo aluno: "entendi", após resultado de acesso | Checkpoint preparado para publicação |

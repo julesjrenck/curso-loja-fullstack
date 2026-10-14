@@ -37,6 +37,8 @@ services:
       MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:?Preencha MSSQL_SA_PASSWORD no .env local}"
       MSSQL_MEMORY_LIMIT_MB: "2048"
     mem_limit: 3g
+    ports:
+      - "127.0.0.1:1433:1433"
     volumes:
       - dados-sqlserver:/var/opt/mssql
 
