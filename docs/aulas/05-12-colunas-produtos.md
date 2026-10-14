@@ -109,7 +109,9 @@ de integração terão banco SQL Server exclusivo e preparação própria.
 
 Colunas implementadas, explicação apresentada e verificações concluídas.
 Entendimento da 5.12 confirmado com "entendi" em 14/10/2026. Checkpoint
-preparado para publicação autorizada; último publicado 3e5cb93. Publicar 5.12 e iniciar
+publicado e conferido em bbec195: HEAD, origin/main e main remota retornaram
+bbec195570dc903909bc0a629ce78c57e9ed5d6a. Registro no checkpoint seguinte.
+Próximo passo iniciado na
 5.13: preparar login/usuário exclusivo de migrations no banco loja, explicando
 permissões de estrutura versus dados e mantendo a conta da aplicação com seu
 escopo atual. Execução da migration ficará para a etapa própria.

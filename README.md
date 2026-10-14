@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.12, colunas da migration de produtos.
+Módulo 5 — SQL Server e persistência: etapa 5.13, preparação da conta de migrations.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -157,6 +157,12 @@ com nome, preco_em_centavos, status com default ativo e timestamps(3).
 Sintaxe e SQL compilado em pretend conferidos; metadados confirmam tabela
 ainda ausente. Explicação apresentada e entendimento confirmado com "entendi".
 Próximo passo: preparar conta exclusiva de migrations na 5.13.
+Checkpoint 5.12 publicado e conferido em bbec195. Na 5.13, SQL de criação da
+conta loja_migracoes e modelo de senha preparados; senha somente no .env local.
+Após autorização explícita do aluno, SQL executado: conta criada e autenticada,
+permissões de dados/estrutura e reexecução conferidas; acesso a loja_test recusado.
+Laravel continua como loja_app sem DDL; tabela de produtos ainda não criada.
+Explicação da 5.13 apresentada; entendimento confirmado com "entendi" em 14/10/2026.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -232,6 +238,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.10 — Modelagem de produtos](docs/aulas/05-10-modelagem-produtos.md)
 - [Aula 5.11 — Primeiro arquivo de migration](docs/aulas/05-11-primeira-migration.md)
 - [Aula 5.12 — Colunas de produtos](docs/aulas/05-12-colunas-produtos.md)
+- [Aula 5.13 — Conta de migrations](docs/aulas/05-13-conta-migracoes.md)
 
 ## Backend Laravel
 
@@ -403,7 +410,11 @@ siga a [preparação da conta na aula 5.7](docs/aulas/05-07-usuario-aplicacao.md
 Para configurar backend/.env com essa conta, siga a
 [aula 5.8](docs/aulas/05-08-configuracao-laravel.md): o modelo tem senha vazia e
 o ambiente local recebe MSSQL_LOJA_PASSWORD como DB_PASSWORD.
-As credenciais de migrations/integração terão preparação própria.
+A preparação da conta de migrations está na
+[aula 5.13](docs/aulas/05-13-conta-migracoes.md): loja_migracoes criado em loja
+após autorização explícita, com leitura/escrita, CREATE TABLE e ALTER em dbo.
+Senha no MSSQL_MIGRATIONS_PASSWORD do .env local da raiz; configuração de uso
+pelo Laravel será apresentada na 5.14. Integração terá preparação própria em loja_test.
 
 Após preparar a configuração e a conta, confira a conexão pelo Laravel:
 

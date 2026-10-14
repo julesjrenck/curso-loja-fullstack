@@ -4,16 +4,18 @@
 
 - Última atualização: 14/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.12 — Colunas da migration de produtos.
-- Situação: migration preenchida com nome, preco_em_centavos, status default
-  ativo e timestamps(3), além do id. Sintaxe e SQL gerado em pretend conferidos;
-  consulta de metadados confirma ausência de dbo.produtos/dbo.migrations em loja.
-  Explicação da 5.12 apresentada; entendimento confirmado com "entendi"
-  em 14/10/2026. Checkpoint preparado para publicação autorizada.
-  Arquivo inicial 5.11 confirmado com "entendi" em 14/10/2026 e publicado.
-  Nenhuma migration aplicada ao banco; regras de conteúdo ainda terão sua etapa.
+- Etapa atual: 5.13 — Preparação da conta de migrations.
+- Situação: loja_migracoes criado como login e usuário em loja após autorização
+  explícita "Sim, autorizo criar essa conta com essas permissões" em 14/10/2026.
+  Senha própria somente no .env local. Autenticação, papéis de dados,
+  CREATE TABLE/ALTER dbo e reexecução conferidos; acesso a loja_test recusado.
+  Laravel permanece loja_app sem DDL. Banco ainda sem tabelas da aplicação.
+  Rejeição automática inicial resolvida pela autorização; execução concluída.
+  Explicação dos arquivos/permissões/resultados apresentada; entendimento da 5.13
+  confirmado com "entendi" em 14/10/2026. Checkpoint preparado para publicação.
+  Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 3e5cb93, arquivo inicial de migration 5.11.
+  Último checkpoint publicado: bbec195, colunas de produtos 5.12.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -33,6 +35,7 @@
 - Etapa 5.10 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.11 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.12 confirmada com "entendi" em 14/10/2026.
+- Etapa 5.13 confirmada com "entendi" em 14/10/2026.
 
 ## Retomada em outro chat
 
@@ -240,6 +243,11 @@ explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
 Checkpoint 5.11 publicado: 3e5cb93; HEAD, origin/main e consulta direta à main
 remota retornaram `3e5cb9370b37ddc666d4ccd84441589644a0256f`.
 Etapa 5.12 preencheu colunas e conferiu SQL em simulação, sem aplicar ao banco;
+explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
+Checkpoint 5.12 publicado: bbec195; HEAD, origin/main e consulta direta à main
+remota retornaram `bbec195570dc903909bc0a629ce78c57e9ed5d6a`.
+Etapa 5.13 preparou SQL e senha local; rejeição inicial resolvida pela autorização
+explícita do aluno. Conta criada, autenticada e permissões/reexecução conferidas;
 explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -3182,11 +3190,76 @@ Verificações em Docker:
   PHP 8.4/Docker seguem prevalecendo sobre bootstrap gerado do backend.
 
 Entendimento da 5.12: confirmado com "entendi" em 14/10/2026.
-Publicação: checkpoint preparado para commit/push autorizado; último publicado 3e5cb93.
-Próximo passo exato: publicar 5.12 confirmada e iniciar 5.13, preparar
+Publicação: checkpoint bbec195 publicado com autorização persistente; HEAD,
+origin/main e main remota conferidos em bbec195570dc903909bc0a629ce78c57e9ed5d6a.
+Próximo passo iniciado na 5.13: preparar
 login/usuário exclusivo de migrations no banco loja e explicar permissões
 de estrutura versus dados, mantendo a conta da aplicação em seu escopo atual.
 Não aplicar migration antes da etapa própria de execução.
+
+## Etapa 5.13 — Conta exclusiva de migrations
+
+Objetivo: preparar login/usuário exclusivo de migrations em loja, com acesso
+a dados e estrutura dbo. Aula em docs/aulas/05-13-conta-migracoes.md.
+
+Preparação local:
+
+- .env.example da raiz ganhou MSSQL_MIGRATIONS_PASSWORD vazio.
+- docker/sqlserver/criar-usuario-migracoes.sql cria login/usuário loja_migracoes
+  quando ausentes, CHECK_POLICY ON, banco padrão loja, esquema padrão dbo;
+  associa db_datareader/db_datawriter e concede CREATE TABLE no banco loja
+  e ALTER ON SCHEMA::dbo. Nenhum sysadmin/db_owner ou usuário de loja_test proposto.
+- PHP 8.4 em Docker gerou a senha local, sem imprimir o valor, com campo
+  ausente/vazio, comparação preservando demais linhas e modo 600, dono 1000:1000.
+  Conta loja_app e backend/.env preservados; sem configuração Laravel da nova conta.
+
+Explicação apresentada: dados versus estrutura, identidade exclusiva, alcance
+de GRANT e esquema dbo, papéis de dados, modelo público e senha privada, script
+reaplicável, comando de preparação administrativa usando sqlcmd e variáveis locais.
+ALTER em dbo permite modificar/remover objetos desse esquema, além das operações
+de dados; alcance apresentado para a autorização necessária.
+
+Verificações realizadas: serviços ativos; ausência de login/usuário consultada
+antes da preparação; senha gerada com demais campos preservados; revisão do
+SQL contra documentação Microsoft; git diff --check e .env ignorados. Backend,
+migrations, laboratório, Compose e imagens sem alteração.
+
+Execução rejeitada antes de iniciar o processo pelo auto-review. Motivo:
+"A ação cria uma conta persistente no SQL Server e concede permissões de
+leitura, escrita, CREATE TABLE e ALTER no esquema dbo; embora coerente com a
+etapa do curso, não há autorização explícita do usuário para esse alvo e esse
+escopo de privilégios." Não houve tentativa de contornar a rejeição.
+Consulta somente de leitura posterior confirmou zero logins/usuários
+loja_migracoes e zero tabelas da aplicação naquele momento.
+
+Autorização explícita recebida em 14/10/2026: "Sim, autorizo criar essa conta
+com essas permissões", em resposta à pergunta com login/usuário loja_migracoes,
+banco loja, db_datareader/db_datawriter, CREATE TABLE e ALTER em dbo, incluindo
+modificar/remover objetos desse esquema. Essa aprovação resolve a rejeição
+anterior para o alvo e escopo apresentados. Arquivo executado com código 0,
+sem ampliar o escopo. Verificações após autorização:
+
+- Login loja_migracoes com política ativa e banco padrão loja; usuário SQL
+  associado no banco loja, com esquema padrão dbo.
+- Autenticação com própria senha local: banco loja, login/usuário loja_migracoes.
+  db_datareader/db_datawriter = 1/1, CREATE TABLE/ALTER dbo = 1/1,
+  db_owner/sysadmin = 0/0, HAS_DBACCESS loja_test = 0. Diagnóstico com código 0.
+- Conexão solicitando loja_test recusada pelo SQL Server com erro de banco
+  inacessível: resultado esperado. Sem usuário dessa conta em loja_test.
+- Arquivo reaplicado com código 0 e diagnóstico repetido após reaplicação:
+  autenticação com mesma senha e todas as permissões esperadas preservadas.
+- Laravel autenticou como loja_app com leitura/escrita 1/1 e CREATE TABLE/ALTER
+  dbo 0/0; banco loja com zero tabelas. Sem migrate/rollback ou teste de DDL.
+- git diff --check passou; .env ignorados; backend/migrations/Compose e demais
+  código/imagens preservados. Senha não exibida ou versionada.
+
+Implementação SQL, explicação e verificações concluídas; entendimento da 5.13
+confirmado com "entendi" em 14/10/2026, após a autorização e execução.
+Publicação: checkpoint preparado para commit/push autorizado; último publicado bbec195.
+Próximo passo exato: publicar 5.13 confirmada
+checkpoint e configurar conexão Laravel exclusiva de migrations na 5.14,
+preservando conexão padrão loja_app e copiando senha somente ao .env local.
+Autorização persistente de publicação de checkpoints na main continua válida.
 
 ## Verificações e limitações do ambiente
 
@@ -3214,13 +3287,13 @@ Não aplicar migration antes da etapa própria de execução.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `3e5cb93`,
-  `feat: gera migration inicial de produtos`.
+- Último commit local publicado nesta retomada: `bbec195`,
+  `feat: define colunas da migration de produtos`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `3e5cb93`,
-  igual a HEAD e origin/main. Migration/documentação da 5.12 ainda fora de commit.
+- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `bbec195`,
+  igual a HEAD e origin/main. Preparação/documentação da 5.13 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3310,11 +3383,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar colunas da migration 5.12 confirmadas e iniciar 5.13.
+- Ação imediata: publicar conta exclusiva de migrations 5.13 confirmada e iniciar 5.14.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Confirmação da 5.12 recebida: publicar colunas e preparar conta exclusiva de
-  migrations na 5.13. Integração continuará com banco e credenciais próprios.
+- Entendimento da 5.13 recebido: publicar conta e configurar conexão Laravel
+  exclusiva de migrations na 5.14, preservando conta padrão da aplicação.
+  Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -3396,4 +3470,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 14/10/2026 | 5.9 — Primeira consulta Laravel | Comando diagnóstico; sintaxe/ajuda/SQL real/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 173ed00; .env ignorado |
 | 14/10/2026 | 5.10 — Modelagem de produtos | Desenho, tipos, chave primária e exemplos revisados; sem tabela criada | Confirmado pelo aluno: "entendi" | Publicado e verificado em b160a68 |
 | 14/10/2026 | 5.11 — Primeiro arquivo de migration | Gerador, sintaxe, carregamento e ausência de tabelas conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 3e5cb93 |
-| 14/10/2026 | 5.12 — Colunas de produtos | Blueprint preenchido, sintaxe e SQL simulado conferidos; tabela ausente | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 14/10/2026 | 5.12 — Colunas de produtos | Blueprint preenchido, sintaxe e SQL simulado conferidos; tabela ausente | Confirmado pelo aluno: "entendi" | Publicado e verificado em bbec195 |
+| 14/10/2026 | 5.13 — Conta de migrations | Conta criada após autorização explícita; autenticação/permissões/escopo/reexecução conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; .env ignorado |
