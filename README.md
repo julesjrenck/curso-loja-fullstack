@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.4, serviço SQL Server no Docker.
+Módulo 5 — SQL Server e persistência: etapa 5.5, bancos da loja e dos testes.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -119,6 +119,11 @@ Senha somente no .env local; modelo público vazio. Inicialização, edição/ve
 consulta SELECT 1, volume e rede conferidos. Servidor 16.0.4305.5 disponível;
 bancos da loja/testes e conexão Laravel ainda pendentes. Explicação apresentada,
 entendimento da 5.4 confirmado com "entendi", após esclarecimentos sobre acesso.
+Na 5.5, docker/sqlserver/criar-bancos.sql preparou loja e loja_test somente
+quando ausentes. Ambos ONLINE, com arquivos no volume SQL Server e sem tabelas
+da aplicação. Conexão individual e reexecução preservando IDs conferidas;
+explicação apresentada, entendimento da 5.5 confirmado com "entendi".
+Aviso solicitado: informar quando o acesso DBeaver estiver disponível, na etapa 5.6.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -186,6 +191,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.2 — ODBC na imagem do backend](docs/aulas/05-02-odbc-backend.md)
 - [Aula 5.3 — Extensões PHP para SQL Server](docs/aulas/05-03-extensoes-sql-server.md)
 - [Aula 5.4 — Serviço SQL Server no Docker](docs/aulas/05-04-servico-sql-server.md)
+- [Aula 5.5 — Bancos da loja e dos testes](docs/aulas/05-05-criacao-bancos.md)
 
 ## Backend Laravel
 
@@ -316,8 +322,9 @@ concluído. O diagnóstico 5.1 para SQL Server foi confirmado; o próximo passo
 foi realizado na 5.2: imagem própria do backend com ODBC Driver 18 construída
 e aplicada. Na 5.3, sqlsrv/pdo_sqlsrv foram instaladas e carregadas no backend.
 Na 5.4, o serviço SQL Server 2022 Developer foi iniciado e conferido.
-Próximo passo: criar os bancos loja/loja_test na 5.5.
-Bancos, conexão Laravel e catálogo persistido seguem pendentes.
+Na 5.5, loja/loja_test foram criados e conferidos, ainda sem tabelas da aplicação.
+Próximo passo: preparar acesso local pelo DBeaver na 5.6 e avisar o aluno.
+Conexão Laravel e catálogo persistido seguem pendentes.
 
 ## Executar o SQL Server local
 
@@ -331,8 +338,15 @@ docker compose ps
 ```
 
 Os containers do projeto acessam sqlserver:1433 na rede interna. O volume
-dados-sqlserver guarda os arquivos de /var/opt/mssql. Bancos loja/loja_test
-ainda serão criados na aula 5.5; a conexão Laravel será preparada depois.
+dados-sqlserver guarda os arquivos de /var/opt/mssql. Para criar os bancos
+loja/loja_test em outro ambiente, após o servidor aceitar conexões:
+
+```bash
+docker compose exec -T sqlserver sh -c 'export SQLCMDPASSWORD="$MSSQL_SA_PASSWORD"; exec /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -C -l 5 -b' < docker/sqlserver/criar-bancos.sql
+```
+
+A aula 5.5 explica os comandos e a preservação de bancos existentes. A conexão
+Laravel será preparada depois. Acesso DBeaver no computador ainda pendente para 5.6.
 
 ## Executar a demonstração do laboratório PHP
 

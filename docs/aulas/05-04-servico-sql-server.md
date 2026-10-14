@@ -184,8 +184,9 @@ prevista. A configuração real passou. Código Laravel/laboratório e imagens
 PHP preservados; os serviços continuaram ativos.
 
 Explicação apresentada; entendimento da 5.4 e esclarecimentos de acesso confirmados
-com "entendi" em 13/10/2026. Checkpoint preparado para publicação autorizada.
-Último checkpoint publicado: 5ba53e2.
+com "entendi" em 13/10/2026. Checkpoint d9fba40 publicado conforme autorização.
+HEAD, origin/main e consulta direta à main remota retornaram
+`d9fba40e398512cb63385e970e8578ffe90441d2`.
 Após confirmação: publicar 5.4 e iniciar 5.5, criar explicitamente os bancos
 loja e loja_test via SQL em Docker, estudar servidor/banco e CREATE DATABASE.
 Conexão Laravel terá sua etapa própria; integração usará exclusivamente loja_test.
