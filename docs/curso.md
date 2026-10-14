@@ -30,8 +30,8 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 está preparando a conexão da aplicação, com acesso DBeaver da 5.6
-confirmado e login/usuário da aplicação como próximo passo;
+O módulo 5 está preparando a conexão Laravel, com login/usuário da 5.7
+confirmados e configuração do ambiente Laravel na 5.8 como próximo passo;
 módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

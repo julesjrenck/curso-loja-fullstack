@@ -116,8 +116,8 @@ Aviso solicitado cumprido: endpoint local disponível e dados de conexão aprese
 Explicação apresentada; resultado DBeaver confirmado pelo aluno com "apareceu loja".
 Entendimento da 5.6 confirmado depois com "entendi" em 13/10/2026.
 Resultado de acesso e entendimento registrados separadamente.
-Checkpoint preparado para publicação autorizada.
-Último checkpoint publicado: fc2cdbc.
+Checkpoint c7f58ee publicado conforme autorização. HEAD, origin/main e consulta
+direta à main remota retornaram `c7f58ee64ab62b1b053cd27b96b644772ecac98f`.
 
 Após confirmação: publicar 5.6 e iniciar 5.7, preparar login/usuário próprios
 da aplicação no banco loja e credencial local ignorada, antes da conexão Laravel.

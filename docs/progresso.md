@@ -4,14 +4,15 @@
 
 - Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.6 — Acesso local pelo DBeaver.
-- Situação: porta SQL Server publicada somente em 127.0.0.1:1433; serviço
-  recriado e bancos preservados. Conexão autenticada pela porta publicada conferida.
-  Aviso solicitado cumprido: endpoint disponível e dados/instruções DBeaver apresentados.
-  Aluno confirmou resultado no DBeaver: "apareceu loja", após SELECT DB_NAME().
-  Acesso pelo cliente e entendimento da 5.6 confirmados, com "entendi" em 13/10/2026.
-  Checkpoint preparado para publicação. Conexão Laravel ainda pendente; catálogo em memória.
-  Backend, laboratório e SQL Server ativos. Último checkpoint publicado: fc2cdbc, bancos 5.5.
+- Etapa atual: 5.7 — Login e usuário da aplicação.
+- Situação: loja_app criado como login SQL e usuário no banco loja, com senha
+  própria no .env local e papéis db_datareader/db_datawriter. Autenticação,
+  permissões, recusa em loja_test e reexecução conferidas.
+  Explicação apresentada; entendimento da 5.7 e dúvidas de catálogo confirmados
+  com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
+  Ambiente Laravel ainda não configurado para banco.
+  DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
+  Serviços ativos. Último checkpoint publicado: c7f58ee, acesso DBeaver 5.6.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
@@ -24,6 +25,7 @@
 - Etapa 5.4 confirmada com "entendi", após esclarecimentos de acesso, em 13/10/2026.
 - Etapa 5.5 confirmada com "entendi" em 13/10/2026.
 - Etapa 5.6 confirmada com "entendi" em 13/10/2026, após resultado "apareceu loja" no DBeaver.
+- Etapa 5.7 confirmada com "entendi" em 13/10/2026, após dúvidas de usuário/view.
 
 ## Retomada em outro chat
 
@@ -207,6 +209,11 @@ Etapa 5.6 publicou porta SQL local, conferiu conexão autenticada e apresentou
 dados DBeaver; aviso ao aluno cumprido. Aluno relatou "apareceu loja" no DBeaver,
 confirmando execução da consulta no banco loja; entendimento da 5.6 confirmado
 com "entendi" em 13/10/2026.
+Checkpoint 5.6 publicado: c7f58ee; HEAD, origin/main e consulta direta à main remota
+retornaram `c7f58ee64ab62b1b053cd27b96b644772ecac98f`.
+Etapa 5.7 preparou login/usuário da aplicação no banco loja, com credencial local
+e papéis de dados; verificações passaram, entendimento confirmado com "entendi"
+em 13/10/2026, após esclarecer usuário criado e view sys.database_principals.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2887,11 +2894,74 @@ Resultado no DBeaver: confirmado pelo aluno com "apareceu loja", após a consult
 SELECT DB_NAME(). Acesso ao banco loja confirmado por relato do aluno.
 Entendimento da etapa 5.6: confirmado com "entendi" em 13/10/2026, após resultado
 de conexão DBeaver confirmado separadamente com "apareceu loja".
-Publicação: checkpoint preparado para commit/push autorizado. Último publicado: fc2cdbc.
+Publicação: checkpoint c7f58ee, `build: publica acesso SQL local para DBeaver`.
+Push autorizado e verificado: HEAD, origin/main e consulta direta à main remota
+retornaram `c7f58ee64ab62b1b053cd27b96b644772ecac98f`.
 Próximo passo exato: responder a dúvidas/erros DBeaver antes de avançar; após
 entendimento, publicar 5.6 e iniciar 5.7, preparar login/usuário próprios da
 aplicação no banco loja e credencial local ignorada, antes da conexão Laravel.
 Banco de testes e configuração de integração terão preparação própria.
+
+## Etapa 5.7
+
+Objetivo: preparar login e usuário próprios da aplicação no banco loja, com
+senha local ignorada e papéis de leitura/escrita, antes de configurar Laravel.
+
+Implementação e explicação:
+
+- Criado docker/sqlserver/criar-usuario-loja.sql e acrescentado campo vazio
+  MSSQL_LOJA_PASSWORD ao root .env.example. Senha aleatória gerada somente no
+  root .env ignorado via PHP/Docker, preservando configuração e modo 600.
+- Diferenciados login (autenticação no servidor), usuário (mapeamento no banco)
+  e papéis (permissões no banco). Nomes login/usuário loja_app.
+- SUSER_ID condiciona CREATE LOGIN com CHECK_POLICY=ON e DEFAULT_DATABASE=loja.
+  USE loja seleciona o banco; USER_ID condiciona CREATE USER FOR LOGIN.
+- IS_ROLEMEMBER condiciona ALTER ROLE ADD MEMBER para db_datareader e
+  db_datawriter. Preparação preserva login/senha/usuário/papéis existentes.
+- Explicada variável de script sqlcmd $(MSSQL_LOJA_PASSWORD), preenchida pelo
+  ambiente do cliente. Antes da substituição, case restringe valor ao formato
+  gerado de letras/dígitos/!, evitando delimitadores no literal SQL.
+- Cliente temporário Docker recebe .env por --env-file. SQLCMDPASSWORD usa
+  credencial sa para preparar; a variável LOJA fornece senha do login novo.
+  Valor não impresso, não passado em argumento secreto nem salvo no SQL público.
+- Conta da aplicação tem papéis de dados somente em loja. Criação de tabelas/
+  migrations e integração terão suas credenciais na etapa necessária.
+- Aula docs/aulas/05-07-usuario-aplicacao.md criada; README/roteiro atualizados.
+
+Verificação:
+
+- Consulta administrativa anterior: login e usuário loja_app inexistentes;
+  preparação criada sem sobrescrever trabalho conhecido.
+- Execução SQL passou. sys.sql_logins confirmou policy=1 e banco padrão loja.
+  sys.database_role_members confirmou db_datareader/db_datawriter no usuário.
+- Conexão SQL como loja_app com senha própria: login=loja_app, usuário=loja_app,
+  banco=loja. Papéis leitura/escrita=1; db_owner/sysadmin=0;
+  HAS_DBACCESS(loja_test)=0 e permissão CREATE TABLE=0.
+- Tentativa de conexão como loja_app ao banco loja_test recusada pelo servidor,
+  com erro de banco solicitado inacessível e saída 1: resultado esperado.
+- Arquivo reexecutado com sucesso; consulta positiva posterior autenticou em
+  loja com mesma senha e papéis 1/1, confirmando preparação reaplicável.
+- Diagnóstico temporário teve erro de aspas SQL (saída 1); corrigido para
+  heredoc e repetido com sucesso. Nenhum erro no arquivo de preparação.
+- git diff --exit-code -- backend src compose.yaml Dockerfile Dockerfile.backend
+  .dockerignore passou; root .env/backend .env ignorados. Sem tabela, migration,
+  novo dado da aplicação, teste Laravel ou contador. Conexão Laravel ainda pendente.
+
+Entendimento da etapa 5.7: confirmado com "entendi" em 13/10/2026, após dúvidas.
+Pergunta do aluno: "essa sys.database_principals é uma tabela?". Esclarecimento:
+view de catálogo do sistema, consultável com SELECT em linhas/colunas, que
+apresenta metadados de usuários/papéis do banco. sys é o esquema e
+database_principals o nome da view. CREATE USER atualiza o catálogo e a view
+passa a mostrar o usuário. Diferenciada de tabela de dados da loja; entendimento confirmado.
+Pergunta do aluno: "já é pra ter criado no banco loja?". Esclarecimento:
+usuário loja_app já criado dentro de loja, com login correspondente no servidor.
+Conferido novamente em sys.database_principals no banco loja; apresentada
+consulta para o aluno verificar no DBeaver. Entendimento confirmado com "entendi".
+Publicação: checkpoint preparado para commit/push autorizado. Último publicado: c7f58ee.
+Próximo passo exato: após confirmação, publicar 5.7 e iniciar 5.8, preparar
+backend/.env.example e configuração local Laravel para sqlserver:1433, loja,
+loja_app e senha local copiada sem exibir/versionar o valor, preservando
+APP_KEY/configurações existentes. Integração e migrations terão preparação própria.
 
 ## Verificações e limitações do ambiente
 
@@ -2919,13 +2989,13 @@ Banco de testes e configuração de integração terão preparação própria.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `fc2cdbc`,
-  `feat: prepara bancos da loja e integração`.
+- Último commit local publicado nesta retomada: `c7f58ee`,
+  `build: publica acesso SQL local para DBeaver`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `fc2cdbc`,
-  igual a HEAD e origin/main. Implementação/documentação da 5.6 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `c7f58ee`,
+  igual a HEAD e origin/main. Implementação/documentação da 5.7 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -2990,6 +3060,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 
 ## Dúvidas e próximos passos
 
+- Dúvida da 5.7: sys.database_principals é tabela? Explicada como view de
+  catálogo, com metadados de usuários/papéis e esquema sys; entendimento confirmado.
+- Dúvida da 5.7: usuário já criado no banco loja? Sim, loja_app está em loja;
+  login correspondente pertence ao servidor. Consulta de metadados apresentada.
+  Entendimento da 5.7 confirmado com "entendi" em 13/10/2026.
 - Dúvida da 5.4: dados de acesso SQL Server. Indicados endereço interno/porta,
   login sa, localização da senha local e master; explicado acesso Docker/host.
   Entendimento confirmado com "entendi"; publicar porta apenas na etapa de acesso.
@@ -3010,11 +3085,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 5.6 confirmada e iniciar 5.7, login/usuário da aplicação.
+- Ação imediata: publicar 5.7 confirmada e preparar ambiente Laravel na 5.8.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 5.6: publicar porta SQL local e preparar login/usuário
-  da aplicação na 5.7, com senha local ignorada.
+- Após a confirmação da 5.7: publicar conta da aplicação e preparar configuração
+  Laravel SQL Server na 5.8, com senha local ignorada e chave/configurações preservadas.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -3090,4 +3165,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 5.3 — Extensões SQL Server | sqlsrv/pdo_sqlsrv 5.13.3 via PIE 1.5.2; carregamento, PDO, .ini, plataforma e HTTP conferidos | Confirmado pelo aluno: "entendi", após esclarecimento PIE | Publicado e verificado em 5ba53e2 |
 | 13/10/2026 | 5.4 — Serviço SQL Server | Imagem fixa, volume e senha local; inicialização, versão, edição, SELECT 1 e rede conferidos | Confirmado pelo aluno: "entendi", após dúvidas de acesso | Publicado e verificado em d9fba40; .env ignorado |
 | 13/10/2026 | 5.5 — Bancos loja e loja_test | SQL de preparação; estado, arquivos, conexões e reexecução conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em fc2cdbc |
-| 13/10/2026 | 5.6 — Acesso DBeaver | Porta local conferida; aluno relatou "apareceu loja" na consulta pelo DBeaver | Confirmado pelo aluno: "entendi", após resultado de acesso | Checkpoint preparado para publicação |
+| 13/10/2026 | 5.6 — Acesso DBeaver | Porta local conferida; aluno relatou "apareceu loja" na consulta pelo DBeaver | Confirmado pelo aluno: "entendi", após resultado de acesso | Publicado e verificado em c7f58ee |
+| 13/10/2026 | 5.7 — Login e usuário da aplicação | loja_app em loja, senha local e papéis; autenticação/escopo/reexecução conferidos | Confirmado pelo aluno: "entendi", após dúvidas | Checkpoint preparado para publicação; .env ignorado |

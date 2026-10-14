@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.6, acesso local pelo DBeaver.
+Módulo 5 — SQL Server e persistência: etapa 5.7, login e usuário da aplicação.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -128,6 +128,11 @@ preservados e conexão autenticada pelo endpoint conferida. Dados e instruções
 DBeaver apresentados; aluno avisado conforme pedido e relatou "apareceu loja"
 na consulta DB_NAME pelo DBeaver. Acesso confirmado; entendimento da 5.6
 confirmado depois com "entendi".
+Na 5.7, criar-usuario-loja.sql preparou login/usuário loja_app em loja, com
+db_datareader/db_datawriter e senha própria no .env local ignorado.
+Autenticação, papéis, ausência de privilégios administrativos, recusa de acesso
+a loja_test e reexecução conferidas. Explicação apresentada, entendimento da 5.7
+confirmado com "entendi", após dúvidas sobre usuário e view de catálogo.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -197,6 +202,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.4 — Serviço SQL Server no Docker](docs/aulas/05-04-servico-sql-server.md)
 - [Aula 5.5 — Bancos da loja e dos testes](docs/aulas/05-05-criacao-bancos.md)
 - [Aula 5.6 — Acesso local pelo DBeaver](docs/aulas/05-06-acesso-dbeaver.md)
+- [Aula 5.7 — Login e usuário da aplicação](docs/aulas/05-07-usuario-aplicacao.md)
 
 ## Backend Laravel
 
@@ -330,7 +336,8 @@ Na 5.4, o serviço SQL Server 2022 Developer foi iniciado e conferido.
 Na 5.5, loja/loja_test foram criados e conferidos, ainda sem tabelas da aplicação.
 Na 5.6, endpoint local 127.0.0.1:1433 publicado e conferido; conexão pelo
 DBeaver pode ser configurada conforme a aula. Após confirmação, preparar
-login/usuário próprios da aplicação na 5.7.
+login/usuário próprios da aplicação. Na 5.7, loja_app foi preparado e conferido;
+após entendimento, configurar ambiente Laravel na 5.8.
 Conexão Laravel e catálogo persistido seguem pendentes.
 
 ## Executar o SQL Server local
@@ -357,6 +364,12 @@ Laravel será preparada depois. Para DBeaver no computador, use 127.0.0.1:1433,
 banco loja, usuário sa e valor de MSSQL_SA_PASSWORD do .env local. Marque Trust
 Server Certificate para o certificado local; a aula 5.6 explica as opções
 encrypt=true/trustServerCertificate=true e o teste de conexão.
+
+A conta da aplicação foi preparada na 5.7: login/usuário loja_app, banco loja,
+senha no campo MSSQL_LOJA_PASSWORD do root .env local. Os papéis de leitura e
+escrita não incluem criação de tabelas ou acesso a loja_test. Para outro ambiente,
+siga a [preparação da conta na aula 5.7](docs/aulas/05-07-usuario-aplicacao.md).
+As credenciais Laravel e as credenciais de migrations/integração terão suas etapas.
 
 ## Executar a demonstração do laboratório PHP
 
