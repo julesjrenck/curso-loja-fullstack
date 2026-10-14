@@ -113,7 +113,8 @@ consulta confirmou ausência da conta. Após a autorização explícita:
 SQL aplicado, configuração local preparada, verificações concluídas e explicação
 do objetivo, arquivos, permissões e resultados apresentada. Autorização explícita
 de execução recebida; entendimento da 5.13 confirmado com "entendi" em 14/10/2026.
-Checkpoint preparado para publicação autorizada; último publicado bbec195.
+Checkpoint publicado e conferido em 94e3322: HEAD, origin/main e main remota
+retornaram 94e3322369b13dcf3bf6201c90899e2f99b5893a. Registro no checkpoint seguinte.
 
 Rejeição automática: "A ação cria uma conta persistente no SQL Server e concede
 permissões de leitura, escrita, CREATE TABLE e ALTER no esquema dbo; embora
@@ -122,8 +123,7 @@ esse alvo e esse escopo de privilégios."
 
 Essa rejeição foi resolvida pela autorização explícita registrada no início
 da aula; a preparação autorizada foi executada sem ampliar o escopo.
-Próximo passo exato: publicar 5.13 confirmada
-o checkpoint e configurar uma conexão Laravel exclusiva de migrations na 5.14,
+Próximo passo realizado na 5.14: configurar uma conexão Laravel exclusiva de migrations,
 preservando a conexão padrão da aplicação e copiando a senha somente ao .env local.
 A autorização persistente para publicar checkpoints na main permanece válida.
 
