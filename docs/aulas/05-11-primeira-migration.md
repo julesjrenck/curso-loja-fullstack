@@ -111,8 +111,10 @@ para executar migrations será preparado na etapa própria.
 ## Continuidade
 
 Arquivo gerado, explicação apresentada e verificações concluídas. Entendimento
-da 5.11 confirmado com "entendi" em 14/10/2026. Checkpoint preparado para
-publicação autorizada; último publicado b160a68. Publicar 5.11 e iniciar 5.12:
+da 5.11 confirmado com "entendi" em 14/10/2026. Checkpoint publicado e conferido
+em 3e5cb93: HEAD, origin/main e main remota retornaram
+3e5cb9370b37ddc666d4ccd84441589644a0256f. Registro no checkpoint seguinte.
+Próximo passo realizado na 5.12:
 preencher a migration com as colunas da modelagem, sem executá-la no banco.
 
 Fonte consultada em 14/10/2026:

@@ -30,10 +30,10 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou a modelagem de produtos da 5.10.
-Primeiro arquivo de migration gerado e explicado na 5.11, com verificações
-concluídas e entendimento confirmado em 14/10/2026; tabela ainda não criada.
-Próximo passo: preencher a migration na 5.12, sem aplicá-la ao banco;
+O módulo 5 confirmou e publicou o arquivo inicial de migration da 5.11.
+Colunas preenchidas e SQL simulado na 5.12, com explicação apresentada e
+entendimento confirmado em 14/10/2026; tabela ainda não criada. Próximo passo:
+preparar conta exclusiva de migrations na 5.13;
 módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

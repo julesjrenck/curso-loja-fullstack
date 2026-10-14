@@ -4,17 +4,17 @@
 
 - Última atualização: 14/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.11 — Primeiro arquivo de migration.
-- Situação: make:migration gerou 2026_10_14_123220_create_produtos_table.php,
-  com id/timestamps iniciais e métodos up/down. Geração, sintaxe, carregamento
-  como Migration e ausência de dbo.produtos/dbo.migrations no banco loja conferidos.
-  Explicação da 5.11 apresentada; entendimento confirmado com "entendi"
+- Etapa atual: 5.12 — Colunas da migration de produtos.
+- Situação: migration preenchida com nome, preco_em_centavos, status default
+  ativo e timestamps(3), além do id. Sintaxe e SQL gerado em pretend conferidos;
+  consulta de metadados confirma ausência de dbo.produtos/dbo.migrations em loja.
+  Explicação da 5.12 apresentada; entendimento confirmado com "entendi"
   em 14/10/2026. Checkpoint preparado para publicação autorizada.
-  Modelagem 5.10 confirmada com "entendi" em 14/10/2026 e publicada.
-  Arquivo inicial ainda sem nome/preço/status; nenhuma migration aplicada.
+  Arquivo inicial 5.11 confirmado com "entendi" em 14/10/2026 e publicado.
+  Nenhuma migration aplicada ao banco; regras de conteúdo ainda terão sua etapa.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: b160a68, modelagem de produtos 5.10.
-  Serviços ativos conferidos; nenhuma dependência ou serviço novo.
+  Último checkpoint publicado: 3e5cb93, arquivo inicial de migration 5.11.
+  Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
@@ -32,6 +32,7 @@
 - Etapa 5.9 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.10 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.11 confirmada com "entendi" em 14/10/2026.
+- Etapa 5.12 confirmada com "entendi" em 14/10/2026.
 
 ## Retomada em outro chat
 
@@ -235,6 +236,10 @@ confirmado com "entendi" em 14/10/2026. Nenhuma tabela ou migration criada.
 Checkpoint 5.10 publicado: b160a68; HEAD, origin/main e consulta direta à main
 remota retornaram `b160a6827c99cd30f6edbea3e1f19556fc06b147`.
 Etapa 5.11 gerou primeiro arquivo de migration, verificado sem aplicar ao banco;
+explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
+Checkpoint 5.11 publicado: 3e5cb93; HEAD, origin/main e consulta direta à main
+remota retornaram `3e5cb9370b37ddc666d4ccd84441589644a0256f`.
+Etapa 5.12 preencheu colunas e conferiu SQL em simulação, sem aplicar ao banco;
 explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -3137,10 +3142,51 @@ Verificações:
   gerado de backend/AGENTS.md, como nas etapas anteriores.
 
 Entendimento da 5.11: confirmado com "entendi" em 14/10/2026.
-Publicação: checkpoint preparado para commit/push autorizado; último publicado b160a68.
-Próximo passo exato: publicar 5.11 confirmada e iniciar 5.12, preencher
+Publicação: checkpoint 3e5cb93 publicado com autorização persistente; HEAD,
+origin/main e main remota conferidos em 3e5cb9370b37ddc666d4ccd84441589644a0256f.
+Próximo passo realizado na 5.12: preencher
 a migration com nome, preco_em_centavos, status e precisão planejada de datas,
 sem executá-la no banco. Credencial de migrations ainda terá preparação própria.
+
+## Etapa 5.12
+
+Objetivo: preencher a definição de produtos segundo a modelagem 5.10, sem
+aplicá-la ao banco. Aula em docs/aulas/05-12-colunas-produtos.md.
+
+Implementação: apenas backend/database/migrations/2026_10_14_123220_create_produtos_table.php,
+além dos registros. Adicionados string('nome', 150), integer('preco_em_centavos'),
+string('status', 20)->default('ativo'); timestamps() passou a timestamps(3).
+Imports, classe, id, up/down e migrations geradas anteriores preservados.
+
+Explicação apresentada: nomes e tipos do Blueprint, encadeamento default na
+definição de coluna, valor quando INSERT omite status, campos NOT NULL e
+diferença entre default/validação de conteúdo; datas anuláveis com precisão 3.
+Relação migration/modelagem e tradução específica de SQL Server para NVARCHAR,
+INT e DATETIME2(3), conferida no compilador instalado e no SQL simulado.
+Regras de nome com conteúdo, preço não negativo e conjunto de status seguem
+documentadas, mas ainda sem validação/restrições de conteúdo implementadas.
+
+Verificações em Docker:
+
+- php -l na migration: sem erro de sintaxe.
+- Programa temporário inicializou Laravel e chamou up dentro de
+  DB::connection()->pretend(...), capturando uma única instrução CREATE TABLE
+  sem executá-la no servidor. Conferidos id BIGINT NOT NULL IDENTITY PRIMARY KEY,
+  nome NVARCHAR(150) NOT NULL, preço INT NOT NULL, status NVARCHAR(20) NOT NULL
+  DEFAULT 'ativo' e datas DATETIME2(3) NULL.
+- SELECT real de metadados após simulação confirmou banco loja e total 0
+  para dbo.produtos/dbo.migrations. Isso demonstra geração do SQL, ainda não
+  aceitação do DDL pelo servidor ou persistência de catálogo.
+- git diff --check passou; .env ignorados; sem migrate/rollback, alteração de
+  credencial, dependência, serviço, controller/view ou contador. Regras raiz
+  PHP 8.4/Docker seguem prevalecendo sobre bootstrap gerado do backend.
+
+Entendimento da 5.12: confirmado com "entendi" em 14/10/2026.
+Publicação: checkpoint preparado para commit/push autorizado; último publicado 3e5cb93.
+Próximo passo exato: publicar 5.12 confirmada e iniciar 5.13, preparar
+login/usuário exclusivo de migrations no banco loja e explicar permissões
+de estrutura versus dados, mantendo a conta da aplicação em seu escopo atual.
+Não aplicar migration antes da etapa própria de execução.
 
 ## Verificações e limitações do ambiente
 
@@ -3168,13 +3214,13 @@ sem executá-la no banco. Credencial de migrations ainda terá preparação pró
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `b160a68`,
-  `docs: define modelagem inicial de produtos`.
+- Último commit local publicado nesta retomada: `3e5cb93`,
+  `feat: gera migration inicial de produtos`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `b160a68`,
-  igual a HEAD e origin/main. Migration/documentação da 5.11 ainda fora de commit.
+- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `3e5cb93`,
+  igual a HEAD e origin/main. Migration/documentação da 5.12 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3264,11 +3310,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar primeiro arquivo de migration 5.11 confirmado e iniciar 5.12.
+- Ação imediata: publicar colunas da migration 5.12 confirmadas e iniciar 5.13.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Confirmação da 5.11 recebida: publicar arquivo inicial e preencher a definição
-  de produtos na 5.12. Migrations e integração terão credenciais próprias.
+- Confirmação da 5.12 recebida: publicar colunas e preparar conta exclusiva de
+  migrations na 5.13. Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -3349,4 +3395,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 14/10/2026 | 5.8 — Configuração Laravel | Modelo, configuração e senha local; sintaxe/carregamento/preservação/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em e0e06ef; .env ignorado |
 | 14/10/2026 | 5.9 — Primeira consulta Laravel | Comando diagnóstico; sintaxe/ajuda/SQL real/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 173ed00; .env ignorado |
 | 14/10/2026 | 5.10 — Modelagem de produtos | Desenho, tipos, chave primária e exemplos revisados; sem tabela criada | Confirmado pelo aluno: "entendi" | Publicado e verificado em b160a68 |
-| 14/10/2026 | 5.11 — Primeiro arquivo de migration | Gerador, sintaxe, carregamento e ausência de tabelas conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 14/10/2026 | 5.11 — Primeiro arquivo de migration | Gerador, sintaxe, carregamento e ausência de tabelas conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 3e5cb93 |
+| 14/10/2026 | 5.12 — Colunas de produtos | Blueprint preenchido, sintaxe e SQL simulado conferidos; tabela ausente | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

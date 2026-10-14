@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.11, primeiro arquivo de migration.
+Módulo 5 — SQL Server e persistência: etapa 5.12, colunas da migration de produtos.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -152,6 +152,11 @@ Checkpoint 5.10 publicado e conferido em b160a68. Na 5.11, make:migration gerou
 Geração, sintaxe, carregamento como Migration e ausência de tabelas conferidos.
 Explicação apresentada; entendimento confirmado com "entendi". Próximo passo:
 completar as colunas na 5.12, antes de aplicar a migration ao banco.
+Checkpoint 5.11 publicado e conferido em 3e5cb93. Na 5.12, migration preenchida
+com nome, preco_em_centavos, status com default ativo e timestamps(3).
+Sintaxe e SQL compilado em pretend conferidos; metadados confirmam tabela
+ainda ausente. Explicação apresentada e entendimento confirmado com "entendi".
+Próximo passo: preparar conta exclusiva de migrations na 5.13.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -226,6 +231,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.9 — Primeira consulta Laravel](docs/aulas/05-09-primeira-consulta-laravel.md)
 - [Aula 5.10 — Modelagem de produtos](docs/aulas/05-10-modelagem-produtos.md)
 - [Aula 5.11 — Primeiro arquivo de migration](docs/aulas/05-11-primeira-migration.md)
+- [Aula 5.12 — Colunas de produtos](docs/aulas/05-12-colunas-produtos.md)
 
 ## Backend Laravel
 
