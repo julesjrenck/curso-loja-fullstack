@@ -106,8 +106,10 @@ Não foram executadas migrations ou escritas de dados, nem instaladas dependênc
 ## Continuidade
 
 Implementação, explicação e verificações concluídas; entendimento da 5.9
-confirmado com "entendi" em 14/10/2026. Checkpoint preparado para publicação
-autorizada; último publicado e0e06ef. Publicar 5.9 e iniciar 5.10: modelagem inicial de produtos,
+confirmado com "entendi" em 14/10/2026. Checkpoint publicado e conferido em
+173ed00: HEAD, origin/main e main remota retornaram
+173ed0089496181ec510cd521d7995a62045ca54. Registro no checkpoint seguinte.
+Próximo passo realizado na 5.10: modelagem inicial de produtos,
 explicando colunas, tipos e chave primária antes de criar uma migration.
 
 Fontes consultadas em 14/10/2026:

@@ -4,15 +4,17 @@
 
 - Última atualização: 14/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.9 — Primeira consulta Laravel.
-- Situação: comando Artisan loja:verificar-banco em routes/console.php consulta
-  SQL Server via DB::selectOne e retorna banco loja, login/usuário loja_app.
-  Sintaxe, registro Artisan, consulta real e página /loja conferidos.
-  Explicação da 5.9 apresentada; entendimento confirmado com "entendi"
+- Etapa atual: 5.10 — Modelagem inicial de produtos.
+- Situação: desenho documentado de produtos com id, nome, preco_em_centavos,
+  status, created_at e updated_at. Tipos, chave primária, identidade e valores
+  obrigatórios explicados; conceitos revisados contra laboratório PHP e fontes.
+  Explicação da 5.10 apresentada; entendimento confirmado com "entendi"
   em 14/10/2026. Checkpoint preparado para publicação autorizada.
-  Configuração 5.8 confirmada com "entendi" em 14/10/2026 e publicada.
+  Primeira consulta 5.9 confirmada com "entendi" em 14/10/2026 e publicada.
+  Sem tabela/migration criada nesta etapa; entrega de modelagem em documentação.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Serviços ativos. Último checkpoint publicado: e0e06ef, configuração Laravel 5.8.
+  Último checkpoint publicado: 173ed00, primeira consulta Laravel 5.9.
+  Serviços não alterados; sem nova verificação de runtime nesta etapa documental.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
@@ -28,6 +30,7 @@
 - Etapa 5.7 confirmada com "entendi" em 13/10/2026, após dúvidas de usuário/view.
 - Etapa 5.8 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.9 confirmada com "entendi" em 14/10/2026.
+- Etapa 5.10 confirmada com "entendi" em 14/10/2026.
 
 ## Retomada em outro chat
 
@@ -224,6 +227,10 @@ Checkpoint 5.8 publicado: e0e06ef; HEAD, origin/main e consulta direta à main
 remota retornaram `e0e06ef063ec245739e18f684336d218751687e9`.
 Etapa 5.9 realizou primeira consulta pelo Laravel com comando diagnóstico;
 explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
+Checkpoint 5.9 publicado: 173ed00; HEAD, origin/main e consulta direta à main
+remota retornaram `173ed0089496181ec510cd521d7995a62045ca54`.
+Etapa 5.10 documentou desenho de produtos; explicação apresentada e entendimento
+confirmado com "entendi" em 14/10/2026. Nenhuma tabela ou migration criada.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -3050,9 +3057,45 @@ Verificações executadas em Docker:
   nova dependência, novo serviço, mudança de credenciais ou contador didático.
 
 Entendimento da 5.9: confirmado com "entendi" em 14/10/2026.
-Publicação: checkpoint preparado para commit/push autorizado; último publicado e0e06ef.
-Próximo passo exato: publicar 5.9 confirmada e iniciar 5.10, modelagem
+Publicação: checkpoint 173ed00 publicado com autorização persistente; HEAD,
+origin/main e main remota conferidos em 173ed0089496181ec510cd521d7995a62045ca54.
+Próximo passo realizado na 5.10: modelagem
 inicial da tabela produtos (colunas, tipos e chave primária), antes de migration.
+
+## Etapa 5.10
+
+Objetivo: definir estrutura inicial da tabela produtos antes de escrever a
+migration. Entrega em docs/aulas/05-10-modelagem-produtos.md, sem código novo.
+
+Desenho documentado:
+
+- id BIGINT, gerado com IDENTITY(1,1), chave primária única e não nula.
+- nome NVARCHAR(150), obrigatório; nomes podem se repetir.
+- preco_em_centavos INT, obrigatório; mantém a unidade monetária do módulo 3.
+- status NVARCHAR(20), obrigatório, valores de negócio ativo/inativo e
+  valor inicial planejado ativo; coerente com StatusProduto.
+- created_at/updated_at DATETIME2(3) anuláveis, para criação/atualização,
+  com convenção UTC na aplicação. Tipo não armazena fuso.
+- Regras de nome com conteúdo, preço não negativo e status válido documentadas;
+  tipos não garantem essas regras sozinhos. Restrições/validação serão implementadas
+  nas etapas próprias, sem alegar que já estão aplicadas no banco.
+
+Explicação apresentada: tabela/linha/coluna; relação com atributos de Produto,
+tipos e NULL; chave primária versus nome e geração IDENTITY; preço em centavos;
+estado ativo/inativo e datas do registro. Exemplo de duas Camisetas com ids e
+preços distintos apenas ilustrativo, sem inserção SQL.
+
+Verificação: comparação com src/Produto.php e src/StatusProduto.php, fontes
+oficiais Microsoft sobre tipos/chave/identidade e git diff --check. Documentação
+como única alteração da 5.10; sem comando de aplicação, consulta SQL, migration,
+nova dependência, credencial ou alteração de volume/contador. Sem testes de
+aplicação adicionais, pois nenhum código ou esquema foi modificado nesta etapa.
+
+Entendimento da 5.10: confirmado com "entendi" em 14/10/2026.
+Publicação: checkpoint preparado para commit/push autorizado; último publicado 173ed00.
+Próximo passo exato: publicar 5.10 confirmada e iniciar 5.11, explicar
+migrations e gerar somente o esqueleto de produtos, sem executá-lo no banco.
+A credencial de execução de migrations será preparada em etapa própria.
 
 ## Verificações e limitações do ambiente
 
@@ -3080,13 +3123,13 @@ inicial da tabela produtos (colunas, tipos e chave primária), antes de migratio
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `e0e06ef`,
-  `feat: configura Laravel para SQL Server`.
+- Último commit local publicado nesta retomada: `173ed00`,
+  `feat: verifica conexão SQL Server pelo Laravel`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `e0e06ef`,
-  igual a HEAD e origin/main. Implementação/documentação da 5.9 ainda fora de commit.
+- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `173ed00`,
+  igual a HEAD e origin/main. Documentação da 5.10 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3176,11 +3219,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar primeira consulta Laravel 5.9 confirmada e iniciar 5.10.
+- Ação imediata: publicar modelagem de produtos 5.10 confirmada e iniciar 5.11.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Confirmação da 5.9 recebida: publicar comando diagnóstico e iniciar modelagem
-  de produtos na 5.10. Migrations e integração terão credenciais próprias.
+- Confirmação da 5.10 recebida: publicar desenho e explicar/gerar esqueleto da
+  migration de produtos na 5.11. Migrations e integração terão credenciais próprias.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -3259,4 +3302,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 5.6 — Acesso DBeaver | Porta local conferida; aluno relatou "apareceu loja" na consulta pelo DBeaver | Confirmado pelo aluno: "entendi", após resultado de acesso | Publicado e verificado em c7f58ee |
 | 13/10/2026 | 5.7 — Login e usuário da aplicação | loja_app em loja, senha local e papéis; autenticação/escopo/reexecução conferidos | Confirmado pelo aluno: "entendi", após dúvidas | Publicado e verificado em 063e4eb; .env ignorado |
 | 14/10/2026 | 5.8 — Configuração Laravel | Modelo, configuração e senha local; sintaxe/carregamento/preservação/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em e0e06ef; .env ignorado |
-| 14/10/2026 | 5.9 — Primeira consulta Laravel | Comando diagnóstico; sintaxe/ajuda/SQL real/HTTP conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; .env ignorado |
+| 14/10/2026 | 5.9 — Primeira consulta Laravel | Comando diagnóstico; sintaxe/ajuda/SQL real/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 173ed00; .env ignorado |
+| 14/10/2026 | 5.10 — Modelagem de produtos | Desenho, tipos, chave primária e exemplos revisados; sem tabela criada | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

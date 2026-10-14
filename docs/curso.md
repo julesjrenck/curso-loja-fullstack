@@ -30,10 +30,10 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou a conta da 5.7 e a configuração Laravel da 5.8.
-Primeira consulta pelo Laravel na 5.9 implementada e verificada, com explicação
-apresentada e entendimento confirmado em 14/10/2026. Próximo passo: modelagem
-inicial de produtos na 5.10, antes de criar tabelas;
+O módulo 5 confirmou e publicou a primeira consulta Laravel da 5.9.
+Modelagem inicial de produtos documentada na 5.10, com explicação apresentada
+e entendimento confirmado em 14/10/2026; tabela ainda não criada. Próximo passo:
+introduzir migrations e gerar apenas o esqueleto na 5.11;
 módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
