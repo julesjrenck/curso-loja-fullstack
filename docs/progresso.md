@@ -2,17 +2,18 @@
 
 ## Estado atual
 
-- Última atualização: 13/10/2026, referência de data America/Sao_Paulo.
+- Última atualização: 14/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.7 — Login e usuário da aplicação.
-- Situação: loja_app criado como login SQL e usuário no banco loja, com senha
-  própria no .env local e papéis db_datareader/db_datawriter. Autenticação,
-  permissões, recusa em loja_test e reexecução conferidas.
-  Explicação apresentada; entendimento da 5.7 e dúvidas de catálogo confirmados
-  com "entendi" em 13/10/2026. Checkpoint preparado para publicação.
-  Ambiente Laravel ainda não configurado para banco.
+- Etapa atual: 5.8 — Configuração Laravel.
+- Situação: modelo e configuração Laravel preparados para sqlserver:1433,
+  banco loja e login loja_app. Senha copiada ao backend/.env ignorado,
+  preservando APP_KEY e demais variáveis. Sintaxe, carregamento da configuração,
+  correspondência da senha e HTTP conferidos; sem consulta SQL pelo Laravel.
+  Explicação da 5.8 apresentada; entendimento confirmado com "entendi"
+  em 14/10/2026. Checkpoint preparado para publicação autorizada.
+  Etapa 5.7 e dúvidas de catálogo confirmadas com "entendi" e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Serviços ativos. Último checkpoint publicado: c7f58ee, acesso DBeaver 5.6.
+  Serviços ativos. Último checkpoint publicado: 063e4eb, conta da aplicação 5.7.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
@@ -26,6 +27,7 @@
 - Etapa 5.5 confirmada com "entendi" em 13/10/2026.
 - Etapa 5.6 confirmada com "entendi" em 13/10/2026, após resultado "apareceu loja" no DBeaver.
 - Etapa 5.7 confirmada com "entendi" em 13/10/2026, após dúvidas de usuário/view.
+- Etapa 5.8 confirmada com "entendi" em 14/10/2026.
 
 ## Retomada em outro chat
 
@@ -214,6 +216,10 @@ retornaram `c7f58ee64ab62b1b053cd27b96b644772ecac98f`.
 Etapa 5.7 preparou login/usuário da aplicação no banco loja, com credencial local
 e papéis de dados; verificações passaram, entendimento confirmado com "entendi"
 em 13/10/2026, após esclarecer usuário criado e view sys.database_principals.
+Checkpoint 5.7 publicado: 063e4eb; HEAD, origin/main e consulta direta à main
+remota retornaram `063e4ebc0c1ec733b183005c922ffd967f4ac35b`.
+Etapa 5.8 preparou ambiente Laravel e conferiu configuração sem consulta SQL;
+explicação apresentada, entendimento confirmado com "entendi" em 14/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -2957,11 +2963,57 @@ Pergunta do aluno: "já é pra ter criado no banco loja?". Esclarecimento:
 usuário loja_app já criado dentro de loja, com login correspondente no servidor.
 Conferido novamente em sys.database_principals no banco loja; apresentada
 consulta para o aluno verificar no DBeaver. Entendimento confirmado com "entendi".
-Publicação: checkpoint preparado para commit/push autorizado. Último publicado: c7f58ee.
-Próximo passo exato: após confirmação, publicar 5.7 e iniciar 5.8, preparar
+Publicação: checkpoint 063e4eb publicado com autorização persistente; HEAD,
+origin/main e main remota conferidos em 063e4ebc0c1ec733b183005c922ffd967f4ac35b.
+Próximo passo realizado na 5.8: preparar
 backend/.env.example e configuração local Laravel para sqlserver:1433, loja,
 loja_app e senha local copiada sem exibir/versionar o valor, preservando
 APP_KEY/configurações existentes. Integração e migrations terão preparação própria.
+
+## Etapa 5.8
+
+Objetivo: preparar os valores de conexão que o Laravel lerá, antes da primeira
+consulta. Uma etapa com os dois arquivos inseparáveis: modelo de ambiente e
+configuração do banco. Aula em docs/aulas/05-08-configuracao-laravel.md.
+
+Implementação:
+
+- backend/.env.example define sqlsrv, sqlserver, 1433, loja, loja_app,
+  DB_PASSWORD vazio, DB_ENCRYPT=yes e DB_TRUST_SERVER_CERTIFICATE=true.
+- backend/config/database.php usa sqlsrv como fallback de conexão padrão e
+  ativa as chaves encrypt/trust_server_certificate, lidas com env(...).
+- backend/.env local recebe esses valores e DB_PASSWORD correspondente a
+  MSSQL_LOJA_PASSWORD do root .env, por PHP executado em Docker. Senha não
+  exibida ou versionada. APP_KEY e todas as variáveis fora do grupo DB alterado
+  foram comparadas em memória e preservadas; permissão 600, dono 1000:1000.
+- Configurações dos outros drivers e phpunit.xml preservadas. Banco exclusivo
+  e credenciais de integração/migrations serão preparados na etapa própria.
+- Instruções raiz continuam prevalecendo sobre recomendações geradas do
+  backend: PHP 8.4 em Docker e nenhuma instalação antecipada de Boost.
+
+Verificações:
+
+- php -l /app/config/database.php no serviço backend: sem erro de sintaxe.
+- Bootstrap Laravel em processo PHP Docker: conexão padrão sqlsrv; host
+  sqlserver, porta 1433, banco loja, usuário loja_app, encrypt yes e confiança
+  no certificado true (booleano). Valores de senha comparados em memória,
+  sem impressão. APP_KEY preservada.
+- Configuração sem cache; getConnections() retornou lista vazia. Nenhuma
+  conexão ou consulta SQL solicitada pelo diagnóstico; nenhuma migration.
+  Isso demonstra carregamento dos valores, ainda não conexão SQL pelo Laravel.
+- HTTP GET /loja retornou 200, título, três produtos e cabeçalho X-Curso
+  preservados. Sem reconstrução de imagem ou alteração dos dados do contador.
+- .env e backend/.env ignorados; git diff --check passou.
+
+Explicação apresentada: papel do .env.example público e .env privado,
+DB_HOST interno versus endereço DBeaver, significado das oito variáveis,
+env(nome, fallback) no array PHP, criptografia/certificado local, montagem
+temporária para a cópia privada e alcance dos diagnósticos.
+Entendimento da 5.8: confirmado com "entendi" em 14/10/2026.
+Publicação: checkpoint preparado para commit/push autorizado; último publicado 063e4eb.
+Próximo passo exato: publicar 5.8 confirmada e iniciar 5.9 com a primeira
+consulta diagnóstica pelo Laravel, apresentando DB facade e resultado, sem
+antecipar tabelas, migrations ou catálogo persistido.
 
 ## Verificações e limitações do ambiente
 
@@ -2989,13 +3041,13 @@ APP_KEY/configurações existentes. Integração e migrations terão preparaçã
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `c7f58ee`,
-  `build: publica acesso SQL local para DBeaver`.
+- Último commit local publicado nesta retomada: `063e4eb`,
+  `feat: prepara conta de dados da aplicação`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `c7f58ee`,
-  igual a HEAD e origin/main. Implementação/documentação da 5.7 ainda fora de commit.
+- Remoto consultado em 13/10/2026 após o push com `git ls-remote`: `063e4eb`,
+  igual a HEAD e origin/main. Implementação/documentação da 5.8 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3085,11 +3137,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar 5.7 confirmada e preparar ambiente Laravel na 5.8.
+- Ação imediata: publicar configuração Laravel 5.8 confirmada e iniciar 5.9.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após a confirmação da 5.7: publicar conta da aplicação e preparar configuração
-  Laravel SQL Server na 5.8, com senha local ignorada e chave/configurações preservadas.
+- Confirmação da 5.8 recebida: publicar configuração e iniciar primeira consulta
+  SQL pelo Laravel na 5.9. Migrations e integração terão credenciais próprias.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -3166,4 +3218,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 13/10/2026 | 5.4 — Serviço SQL Server | Imagem fixa, volume e senha local; inicialização, versão, edição, SELECT 1 e rede conferidos | Confirmado pelo aluno: "entendi", após dúvidas de acesso | Publicado e verificado em d9fba40; .env ignorado |
 | 13/10/2026 | 5.5 — Bancos loja e loja_test | SQL de preparação; estado, arquivos, conexões e reexecução conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em fc2cdbc |
 | 13/10/2026 | 5.6 — Acesso DBeaver | Porta local conferida; aluno relatou "apareceu loja" na consulta pelo DBeaver | Confirmado pelo aluno: "entendi", após resultado de acesso | Publicado e verificado em c7f58ee |
-| 13/10/2026 | 5.7 — Login e usuário da aplicação | loja_app em loja, senha local e papéis; autenticação/escopo/reexecução conferidos | Confirmado pelo aluno: "entendi", após dúvidas | Checkpoint preparado para publicação; .env ignorado |
+| 13/10/2026 | 5.7 — Login e usuário da aplicação | loja_app em loja, senha local e papéis; autenticação/escopo/reexecução conferidos | Confirmado pelo aluno: "entendi", após dúvidas | Publicado e verificado em 063e4eb; .env ignorado |
+| 14/10/2026 | 5.8 — Configuração Laravel | Modelo, configuração e senha local; sintaxe/carregamento/preservação/HTTP conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; .env ignorado |

@@ -151,8 +151,10 @@ catálogo do sistema, que apresenta metadados de identidades de segurança
 (usuários e papéis) como linhas/colunas consultáveis com SELECT. sys é o
 esquema; database_principals é o nome da view. CREATE USER altera o catálogo
 e a view passa a apresentar esse usuário. Entendimento confirmado com "entendi".
-Checkpoint preparado para publicação autorizada. Último publicado: c7f58ee.
-Após confirmação: publicar 5.7 e iniciar 5.8, preparar o modelo e a configuração
+Checkpoint publicado com autorização persistente e conferido em 063e4eb:
+HEAD, origin/main e consulta direta à main remota retornaram
+063e4ebc0c1ec733b183005c922ffd967f4ac35b. Registro no checkpoint seguinte.
+Próximo passo realizado na 5.8: preparar o modelo e a configuração
 local Laravel para sqlserver:1433, banco loja e login loja_app, copiando a senha
 local sem exibir/versionar o valor e preservando APP_KEY/configurações existentes.
 
