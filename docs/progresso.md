@@ -4,12 +4,13 @@
 
 - Última atualização: 15/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.22 — Primeiro produto persistido.
-- Situação: somente ProdutoSeeder executado uma vez via sqlsrv/loja_app,
-  no banco loja. Camiseta id 1, preço inteiro 4990, status ativo e datas
-  preenchidas, relida em outro processo. Comando Eloquent informa um produto.
-  Sem alteração de código. Explicação da 5.22 apresentada; entendimento confirmado
-  com "entendi" em 15/10/2026. Checkpoint preparado para publicação autorizada.
+- Etapa atual: 5.23 — Leitura dos atributos do Produto.
+- Situação: comando loja:consultar-produtos percorre a coleção com foreach
+  e imprime id, nome, preço em centavos e status. Sintaxe e execução real
+  conferidas: 1 | Camiseta | 4990 centavos | ativo. Sem nova gravação SQL.
+  Explicação da 5.23 apresentada; entendimento confirmado com "entendi"
+  em 15/10/2026. Checkpoint preparado para publicação autorizada.
+  Persistência 5.22 confirmada com "entendi" em 15/10/2026 e publicada.
   Consulta DBeaver proposta, resultado do aluno ainda não informado.
   Cadastro escrito 5.21 confirmado com "entendi" em 15/10/2026 e publicado.
   Estrutura 5.20 confirmada com "entendi" em 15/10/2026 e publicada.
@@ -22,7 +23,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 9da189c, cadastro escrito no seeder 5.21.
+  Último checkpoint publicado: 9d03edc, primeiro produto persistido 5.22.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -52,6 +53,7 @@
 - Etapa 5.20 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.21 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.22 confirmada com "entendi" em 15/10/2026.
+- Etapa 5.23 confirmada com "entendi" em 15/10/2026.
 
 ## Retomada em outro chat
 
@@ -304,6 +306,11 @@ remota retornaram `9da189c24c523373501eb30a181087350d3713d5`.
 Etapa 5.22 executou somente ProdutoSeeder uma vez; Camiseta persistida,
 relida em outro processo e quantidade 1 no comando Eloquent conferidas.
 Explicação apresentada e entendimento confirmado com "entendi" em 15/10/2026.
+Checkpoint 5.22 publicado: 9d03edc; HEAD, origin/main e consulta direta à main
+remota retornaram `9d03edc59b912352e2b6fe707637716694689503`.
+Etapa 5.23 acrescentou foreach da coleção e impressão dos atributos do model
+no comando de consulta. Sintaxe e saída real conferidas; explicação
+apresentada e entendimento confirmado com "entendi" em 15/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -3665,10 +3672,45 @@ created_at, updated_at FROM dbo.produtos no DBeaver, com banco loja selecionado.
 Resultado observado pelo aluno ainda não informado; não inventar confirmação.
 
 Entendimento da 5.22: confirmado com "entendi" em 15/10/2026.
-Publicação da 5.22: checkpoint preparado para commit/push; último publicado 9da189c.
-Próximo passo exato: publicar 5.22 e iniciar 5.23: exibir os campos de cada
+Publicação da 5.22: checkpoint 9d03edc publicado com autorização persistente;
+HEAD, origin/main e main remota conferidos em 9d03edc59b912352e2b6fe707637716694689503.
+Próximo passo realizado na 5.23: exibir os campos de cada
 Produto no comando loja:consultar-produtos, usando foreach da coleção e
 acesso a atributos. Não executar novamente o seeder ou trocar o catálogo HTTP.
+
+## Etapa 5.23 — Leitura dos atributos do Produto
+
+Objetivo: apresentar os atributos dos models carregados na consulta existente.
+Aula em docs/aulas/05-23-atributos-produto.md.
+
+Implementação somente em backend/routes/console.php: foreach ($produtos as
+$produto) depois do if de coleção vazia; line concatena id, nome,
+preco_em_centavos com sufixo centavos e status, separados por |.
+Consulta, quantidade, mensagem de ausência e outros comandos preservados.
+
+Explicação apresentada: coleção versus cada model, foreach sobre coleção
+iterável, nomes plural/singular escolhidos pelo programador; -> para ler
+atributos do model Eloquent, cast inteiro, concatenação e unidade monetária.
+line do comando imprime uma linha por Produto. Dados vêm da consulta, sem
+valores fixos da Camiseta no comando. Coleção vazia não entra no laço;
+caminho revisto sem apagar dados. Leitura de atributos carregados não faz
+nova consulta por atributo, sem relacionamentos envolvidos.
+
+Verificações em Docker:
+
+- php -l routes/console.php passou com código 0.
+- loja:consultar-produtos --no-ansi passou com código 0 e saída:
+  Produtos encontrados: 1; 1 | Camiseta | 4990 centavos | ativo.
+- Somente consulta de leitura; sem repetir seeder ou INSERT/UPDATE/DELETE.
+- git diff --check passou; alteração de código restrita ao comando.
+  Model, seeders, migrations, configuração/credenciais, dependências,
+  serviços, catálogo HTTP e contador preservados.
+
+Entendimento da 5.23: confirmado com "entendi" em 15/10/2026.
+Publicação da 5.23: checkpoint preparado para commit/push; último publicado 9d03edc.
+Próximo passo exato: publicar 5.23 e iniciar 5.24: preparar ProdutoSeeder com
+firstOrCreate, explicando critério de busca didático e limites sem restrição
+única, sem executar o seeder ainda.
 
 ## Verificações e limitações do ambiente
 
@@ -3696,13 +3738,13 @@ acesso a atributos. Não executar novamente o seeder ou trocar o catálogo HTTP.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `9da189c`,
-  `feat: escreve cadastro de produto no seeder`.
+- Último commit local publicado nesta retomada: `9d03edc`,
+  `docs: registra primeiro produto persistido`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 15/10/2026 após o push com `git ls-remote`: `9da189c`,
-  igual a HEAD e origin/main. Documentação da 5.22 ainda fora de commit.
+- Remoto consultado em 15/10/2026 após o push com `git ls-remote`: `9d03edc`,
+  igual a HEAD e origin/main. Comando/documentação da 5.23 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3792,11 +3834,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar execução e persistência 5.22 confirmada e iniciar 5.23.
+- Ação imediata: publicar leitura de atributos 5.23 confirmada e iniciar 5.24.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Entendimento da 5.22 recebido: publicar checkpoint e apresentar os campos de
-  cada Produto no comando de consulta na 5.23, sem repetir o cadastro.
+- Entendimento da 5.23 recebido: publicar checkpoint e preparar reexecução do
+  ProdutoSeeder com firstOrCreate na 5.24, sem executar o seeder ainda.
   Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -3889,4 +3931,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 15/10/2026 | 5.19 — Consulta Eloquent | Comando, coleção vazia, SELECT real e HTTP conferidos; sem escrita | Confirmado pelo aluno: "entendi" | Publicado e verificado em 133591a |
 | 15/10/2026 | 5.20 — Estrutura do primeiro seeder | ProdutoSeeder gerado; sintaxe/autoload/herança/assinatura conferidos sem SQL | Confirmado pelo aluno: "entendi" | Publicado e verificado em e811031 |
 | 15/10/2026 | 5.21 — Cadastro escrito no seeder | Produto::create escrito com Camiseta; sintaxe e atributos revisados, sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 9da189c |
-| 15/10/2026 | 5.22 — Primeiro produto persistido | Seeder executado uma vez; Camiseta relida em outro processo e quantidade 1 conferidas | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 15/10/2026 | 5.22 — Primeiro produto persistido | Seeder executado uma vez; Camiseta relida em outro processo e quantidade 1 conferidas | Confirmado pelo aluno: "entendi" | Publicado e verificado em 9d03edc |
+| 15/10/2026 | 5.23 — Leitura dos atributos do Produto | foreach e leitura de atributos no comando; sintaxe e saída real conferidas, sem gravação | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

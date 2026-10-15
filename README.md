@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.22, primeiro produto persistido.
+Módulo 5 — SQL Server e persistência: etapa 5.23, leitura dos atributos do Produto.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -201,6 +201,10 @@ ProdutoSeeder uma vez via sqlsrv/loja_app. Banco loja agora contém uma Camiseta
 id 1, preço inteiro 4990 e status ativo, com datas preenchidas. Leitura em outro
 processo e comando Eloquent confirmaram a persistência; sem mudar código.
 Explicação apresentada e consulta DBeaver proposta; entendimento confirmado com "entendi".
+Checkpoint 5.22 publicado e conferido em 9d03edc. Na 5.23, comando de consulta
+percorre a coleção com foreach e imprime id, nome, preço em centavos e status.
+Sintaxe e execução real conferidas: 1 | Camiseta | 4990 centavos | ativo.
+Sem nova gravação; explicação apresentada, entendimento confirmado com "entendi".
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -286,6 +290,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.20 — Estrutura do primeiro seeder](docs/aulas/05-20-primeiro-seeder.md)
 - [Aula 5.21 — Cadastro escrito no seeder](docs/aulas/05-21-cadastro-produto-seeder.md)
 - [Aula 5.22 — Primeiro produto persistido](docs/aulas/05-22-executar-produto-seeder.md)
+- [Aula 5.23 — Leitura dos atributos do Produto](docs/aulas/05-23-atributos-produto.md)
 
 ## Backend Laravel
 

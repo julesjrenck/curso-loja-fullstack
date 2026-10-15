@@ -30,11 +30,11 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou o cadastro escrito no seeder da 5.21.
-Na 5.22, somente ProdutoSeeder foi executado uma vez via sqlsrv/loja_app.
-Uma Camiseta persistida e relida em outro processo, com id, preço inteiro,
-status e datas conferidos. Explicação apresentada; entendimento confirmado
-com "entendi" em 15/10/2026. A 5.23 mostrará os campos dos produtos no comando de consulta.
+O módulo 5 confirmou e publicou a persistência do produto da 5.22.
+Na 5.23, o comando de consulta percorre a coleção e imprime atributos de cada
+Produto. Sintaxe e saída com a Camiseta conferidas, somente por leitura.
+Explicação apresentada; entendimento confirmado com "entendi" em 15/10/2026. A 5.24
+preparará a reexecução do seeder com firstOrCreate, sem executar ainda.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

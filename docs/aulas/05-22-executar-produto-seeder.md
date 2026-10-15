@@ -108,10 +108,10 @@ demonstrativo em memória; ainda não foi ligada ao banco.
 
 Execução e explicação da 5.22 concluídas, verificação de persistência passou.
 Entendimento da 5.22 confirmado com "entendi" em 15/10/2026. Checkpoint
-preparado para publicação autorizada; último publicado 9da189c.
+9d03edc publicado; HEAD, origin/main e main remota conferidos no SHA
+9d03edc59b912352e2b6fe707637716694689503.
 
-Próximo passo exato: publicar 5.22 e iniciar 5.23,
-acrescentando ao comando loja:consultar-produtos a apresentação dos campos de
+Próximo passo realizado na 5.23: acrescentar ao comando loja:consultar-produtos a apresentação dos campos de
 cada Produto, com foreach da coleção e leitura de atributos. Não repetir
 o seeder nem trocar o catálogo HTTP nessa etapa.
 

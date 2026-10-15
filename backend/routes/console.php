@@ -27,4 +27,10 @@ Artisan::command('loja:consultar-produtos', function () {
     if ($produtos->isEmpty()) {
         $this->line('Nenhum produto cadastrado.');
     }
+
+    foreach ($produtos as $produto) {
+        $this->line(
+            $produto->id.' | '.$produto->nome.' | '.$produto->preco_em_centavos.' centavos | '.$produto->status
+        );
+    }
 })->purpose('Consulta produtos pelo Eloquent');
