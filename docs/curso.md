@@ -30,11 +30,11 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou a leitura de atributos da 5.23.
-Na 5.24, ProdutoSeeder usa firstOrCreate com busca por nome e dados adicionais
-para criação. Sintaxe conferida sem executar o seeder. Explicação dos arrays,
-registro existente e limites apresentada; entendimento confirmado com "entendi"
-em 15/10/2026. A 5.25 observará a reexecução sequencial sem novo cadastro.
+O módulo 5 confirmou e publicou firstOrCreate da 5.24.
+Na 5.25, duas reexecuções sequenciais do seeder fizeram somente SELECT;
+quantidade, id, campos e datas preservados. Consulta posterior conferida.
+Explicação apresentada; entendimento confirmado com "entendi" em 15/10/2026. A 5.26
+criará CatalogoEloquent para ler nomes do banco, sem trocar o binding ainda.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

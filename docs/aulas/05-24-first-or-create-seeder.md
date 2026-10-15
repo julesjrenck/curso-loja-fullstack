@@ -80,9 +80,10 @@ demais código, configuração/credenciais, dependências e serviços preservado
 
 Alteração implementada e explicada; sintaxe conferida. Entendimento da 5.24
 confirmado com "entendi" em 15/10/2026. Checkpoint preparado para publicação
-autorizada; último publicado 11f46d2.
+autorizada e publicado em 162b7aa; HEAD, origin/main e main remota conferidos
+no SHA 162b7aa2837f10450b4825ece1513ae3a5395c9d.
 
-Próximo passo exato: publicar 5.24 e iniciar 5.25, executar
+Próximo passo realizado na 5.25: executar
 somente ProdutoSeeder em duas execuções sequenciais e comparar quantidade,
 id, atributos e datas antes/depois, sem limpar dados ou alterar o produto.
 Usar a conexão da aplicação na demonstração; testes de integração SQL terão

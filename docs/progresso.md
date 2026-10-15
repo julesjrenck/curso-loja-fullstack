@@ -4,12 +4,13 @@
 
 - Última atualização: 15/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.24 — Busca antes do cadastro no seeder.
-- Situação: ProdutoSeeder usa firstOrCreate com busca pelo nome Camiseta
-  e preço/status como dados adicionais para criação. Sintaxe conferida no
-  Docker, sem executar run, db:seed ou consultas/gravações SQL nesta etapa.
-  Explicação da 5.24 apresentada; entendimento confirmado com "entendi"
-  em 15/10/2026. Checkpoint preparado para publicação autorizada.
+- Etapa atual: 5.25 — Reexecução sequencial do seeder.
+- Situação: ProdutoSeeder executado duas vezes em sequência pela conexão
+  sqlsrv/loja_app. Cada chamada fez somente SELECT pelo nome Camiseta;
+  quantidade 1, id 1, atributos e datas preservados. Leitura em outro processo
+  conferida. Explicação da 5.25 apresentada; entendimento confirmado com
+  "entendi" em 15/10/2026. Checkpoint preparado para publicação autorizada.
+  firstOrCreate 5.24 confirmado com "entendi" em 15/10/2026 e publicado.
   Leitura de atributos 5.23 confirmada com "entendi" em 15/10/2026 e publicada.
   Persistência 5.22 confirmada com "entendi" em 15/10/2026 e publicada.
   Consulta DBeaver proposta, resultado do aluno ainda não informado.
@@ -24,7 +25,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 11f46d2, leitura de atributos 5.23.
+  Último checkpoint publicado: 162b7aa, firstOrCreate no seeder 5.24.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -56,6 +57,7 @@
 - Etapa 5.22 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.23 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.24 confirmada com "entendi" em 15/10/2026.
+- Etapa 5.25 confirmada com "entendi" em 15/10/2026.
 
 ## Retomada em outro chat
 
@@ -317,6 +319,11 @@ Checkpoint 5.23 publicado: 11f46d2; HEAD, origin/main e consulta direta à main
 remota retornaram `11f46d22361d28551ddf6165a8fff042b34a42e5`.
 Etapa 5.24 preparou firstOrCreate em ProdutoSeeder com busca pelo nome e
 dados adicionais para criação; sintaxe conferida sem executar o seeder.
+Explicação apresentada e entendimento confirmado com "entendi" em 15/10/2026.
+Checkpoint 5.24 publicado: 162b7aa; HEAD, origin/main e consulta direta à main
+remota retornaram `162b7aa2837f10450b4825ece1513ae3a5395c9d`.
+Etapa 5.25 executou duas reexecuções sequenciais, sem novo cadastro ou mudança
+dos campos/datas; SELECT capturado e leitura posterior conferidos.
 Explicação apresentada e entendimento confirmado com "entendi" em 15/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -3751,12 +3758,52 @@ Verificações:
   dependências, serviços, catálogo HTTP e contador preservados.
 
 Entendimento da 5.24: confirmado com "entendi" em 15/10/2026.
-Publicação da 5.24: checkpoint preparado para commit/push; último publicado 11f46d2.
-Próximo passo exato: publicar 5.24 e iniciar 5.25: executar somente ProdutoSeeder
+Publicação da 5.24: checkpoint 162b7aa publicado com autorização persistente;
+HEAD, origin/main e main remota conferidos em 162b7aa2837f10450b4825ece1513ae3a5395c9d.
+Próximo passo realizado na 5.25: executar somente ProdutoSeeder
 em duas execuções sequenciais e comparar quantidade, id, atributos e datas
 antes/depois, sem limpar dados ou alterar o produto. Demonstração pela conexão
 da aplicação, sem gerar dados descartáveis de teste em loja; testes SQL de
 integração terão banco exclusivo.
+
+## Etapa 5.25 — Reexecução sequencial do seeder
+
+Objetivo: observar firstOrCreate encontrando o registro existente.
+Aula em docs/aulas/05-25-reexecucao-seeder.md. Sem alteração de código.
+
+Diagnóstico temporário em PHP Docker: bootstrap Laravel, identidade loja/loja_app
+na conexão sqlsrv e estado inicial de uma Camiseta id 1, preço 4990 e ativo
+conferidos. Snapshot dos seis campos guardado somente em memória.
+Kernel de console chamou db:seed com --class=ProdutoSeeder, --database=sqlsrv,
+--no-interaction e --no-ansi duas vezes em sequência; ambas código 0 e DONE,
+49 ms e 2 ms. Comparação dos seis campos após cada chamada idêntica ao início.
+
+Explicação apresentada: comando de terminal equivalente, kernel call e opções
+usados no diagnóstico; reencontro da Camiseta, ausência de novo cadastro ou
+atualização, conservação de id e datas. SQL SELECT/TOP 1/WHERE, marcador ? e
+valor enviado separadamente. Repetição preservando estado nesse cenário
+como exemplo de idempotência, com limites de critério e concorrência da 5.24.
+
+Verificações:
+
+- Antes e depois de cada chamada: quantidade 1, id 1, Camiseta, 4990, ativo.
+  created_at e updated_at brutos 2026-10-15 22:43:40.239, preservados.
+- QueryExecuted capturou exatamente um SELECT por chamada do seeder:
+  select top 1 * from [produtos] where ([nome] = ?), bindings ['Camiseta'],
+  conexão sqlsrv. Nenhum INSERT/UPDATE/DELETE durante as chamadas observadas.
+- Outro processo executou loja:consultar-produtos --no-ansi, código 0:
+  Produtos encontrados: 1; 1 | Camiseta | 4990 centavos | ativo.
+- Caminho de criação ausente, alteração de preço e concorrência não exercitados.
+  Sem limpeza, reset, rollback, DDL ou dados descartáveis em loja.
+  Testes SQL de integração continuam previstos para banco exclusivo.
+- git diff --check passou. Código, configuração/credenciais, dependências,
+  serviços, catálogo HTTP e contador preservados.
+
+Entendimento da 5.25: confirmado com "entendi" em 15/10/2026.
+Publicação da 5.25: checkpoint preparado para commit/push; último publicado 162b7aa.
+Próximo passo exato: publicar 5.25 e iniciar 5.26: criar App\Services\CatalogoEloquent implementando
+App\Contracts\Catalogo, com listarNomes lendo nomes do banco. Verificar leitura
+e explicar relação com interface/model, sem trocar binding em AppServiceProvider.
 
 ## Verificações e limitações do ambiente
 
@@ -3784,13 +3831,13 @@ integração terão banco exclusivo.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `11f46d2`,
-  `feat: exibe atributos dos produtos na consulta`.
+- Último commit local publicado nesta retomada: `162b7aa`,
+  `feat: busca produto antes de cadastrar no seeder`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 15/10/2026 após o push com `git ls-remote`: `11f46d2`,
-  igual a HEAD e origin/main. Seeder/documentação da 5.24 ainda fora de commit.
+- Remoto consultado em 15/10/2026 após o push com `git ls-remote`: `162b7aa`,
+  igual a HEAD e origin/main. Documentação da 5.25 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3880,11 +3927,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar firstOrCreate 5.24 confirmado e iniciar 5.25.
+- Ação imediata: publicar reexecuções 5.25 confirmadas e iniciar 5.26.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Entendimento da 5.24 recebido: publicar checkpoint e demonstrar duas reexecuções
-  sequenciais do ProdutoSeeder na 5.25, comparando dados antes/depois.
+- Entendimento da 5.25 recebido: publicar checkpoint e criar CatalogoEloquent na
+  5.26 para ler nomes do banco, sem trocar o binding ainda.
   Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -3979,4 +4026,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 15/10/2026 | 5.21 — Cadastro escrito no seeder | Produto::create escrito com Camiseta; sintaxe e atributos revisados, sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 9da189c |
 | 15/10/2026 | 5.22 — Primeiro produto persistido | Seeder executado uma vez; Camiseta relida em outro processo e quantidade 1 conferidas | Confirmado pelo aluno: "entendi" | Publicado e verificado em 9d03edc |
 | 15/10/2026 | 5.23 — Leitura dos atributos do Produto | foreach e leitura de atributos no comando; sintaxe e saída real conferidas, sem gravação | Confirmado pelo aluno: "entendi" | Publicado e verificado em 11f46d2 |
-| 15/10/2026 | 5.24 — Busca antes do cadastro no seeder | firstOrCreate preparado com busca/dados separados; sintaxe conferida, sem execução | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 15/10/2026 | 5.24 — Busca antes do cadastro no seeder | firstOrCreate preparado com busca/dados separados; sintaxe conferida, sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 162b7aa |
+| 15/10/2026 | 5.25 — Reexecução sequencial do seeder | Duas chamadas só SELECT; quantidade/id/atributos/datas preservados e leitura posterior conferida | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
