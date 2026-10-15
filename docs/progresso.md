@@ -4,11 +4,13 @@
 
 - Última atualização: 15/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.20 — Estrutura do primeiro seeder.
-- Situação: ProdutoSeeder gerado com run vazio. Sintaxe, autoload, herança e
-  assinatura conferidos em memória; sem executar run ou acessar o banco.
-  Explicação da 5.20 apresentada; entendimento confirmado com "entendi"
-  em 15/10/2026. Checkpoint preparado para publicação autorizada.
+- Etapa atual: 5.21 — Cadastro escrito no seeder.
+- Situação: run de ProdutoSeeder contém Produto::create com Camiseta,
+  preco_em_centavos 4990 e status ativo. Import do model incluído; import
+  WithoutModelEvents sem uso removido. Sintaxe conferida no Docker; sem executar
+  run ou cadastrar dados. Explicação da 5.21 apresentada; entendimento confirmado
+  com "entendi" em 15/10/2026. Checkpoint preparado para publicação autorizada.
+  Estrutura 5.20 confirmada com "entendi" em 15/10/2026 e publicada.
   Consulta 5.19 confirmada com "entendi" em 15/10/2026 e publicada.
   Cast 5.18 confirmado com "entendi" em 15/10/2026 e publicado.
   Fillable 5.17 confirmado com "entendi" em 15/10/2026 e publicado.
@@ -18,7 +20,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 133591a, consulta Eloquent 5.19.
+  Último checkpoint publicado: e811031, estrutura do seeder 5.20.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -46,6 +48,7 @@
 - Etapa 5.18 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.19 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.20 confirmada com "entendi" em 15/10/2026.
+- Etapa 5.21 confirmada com "entendi" em 15/10/2026.
 
 ## Retomada em outro chat
 
@@ -288,6 +291,11 @@ remota retornaram `133591af4ae4b7f63d982a3241bae67df3a07deb`.
 Etapa 5.20 gerou ProdutoSeeder com run vazio, sem executar cadastros.
 Sintaxe, autoload, herança e assinatura conferidos em memória; explicação
 apresentada e entendimento confirmado com "entendi" em 15/10/2026.
+Checkpoint 5.20 publicado: e811031; HEAD, origin/main e consulta direta à main
+remota retornaram `e81103197aece04c52b979b3999eebd0ba9fe1db`.
+Etapa 5.21 escreveu Produto::create em run com um produto de demonstração;
+sintaxe conferida sem executar o cadastro. Explicação apresentada;
+entendimento confirmado com "entendi" em 15/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -3568,9 +3576,46 @@ Verificações em Docker:
   dependências, serviços e contador preservados.
 
 Entendimento da 5.20: confirmado com "entendi" em 15/10/2026.
-Publicação da 5.20: checkpoint preparado para commit/push; último publicado 133591a.
-Próximo passo exato: publicar 5.20 e iniciar 5.21: preencher run com o cadastro de um produto
+Publicação da 5.20: checkpoint e811031 publicado com autorização persistente;
+HEAD, origin/main e main remota conferidos em e81103197aece04c52b979b3999eebd0ba9fe1db.
+Próximo passo realizado na 5.21: preencher run com o cadastro de um produto
 usando Eloquent, explicando campos e persistência, sem executar o seeder ainda.
+
+## Etapa 5.21 — Cadastro escrito no seeder
+
+Objetivo: escrever o cadastro de um produto pelo Eloquent, antes da execução.
+Aula em docs/aulas/05-21-cadastro-produto-seeder.md.
+
+Implementação somente em backend/database/seeders/ProdutoSeeder.php:
+import App\Models\Produto no lugar do import WithoutModelEvents sem uso.
+run contém Produto::create com nome Camiseta, preco_em_centavos inteiro 4990
+e status ativo. Nenhum registro em DatabaseSeeder ou execução de cadastro.
+
+Explicação apresentada: import do model correto, array de atributos/valores,
+create como preenchimento e persistência, instância devolvida sem variável
+necessária, :: e encaminhamento pelo Eloquent. Tabela produtos e conexão
+sqlsrv/loja_app, preço em centavos, status explícito, id pelo SQL Server e
+datas pelo Eloquent. Diferença de new em memória para create executado;
+escrever instrução no método não o chama automaticamente. Fillable normal,
+proteção suspensa durante db:seed, cast sem validação e dados controlados.
+Cada execução de create tenta nova linha, podendo duplicar a Camiseta;
+próxima demonstração será uma vez, sem limpar dados ou alterar tabela.
+
+Verificações:
+
+- php -l no PHP Docker passou com código 0, sem executar código do arquivo.
+- Revisão do import e atributos contra model e migration concluída.
+- git diff --check passou; única alteração de código no seeder.
+- Nenhuma chamada a run, db:seed ou create executada; sem consultas/gravações
+  SQL nesta etapa. A inserção ainda não foi validada por execução.
+- DatabaseSeeder, model, migrations, rotas, configuração/credenciais,
+  dependências, serviços e contador preservados.
+
+Entendimento da 5.21: confirmado com "entendi" em 15/10/2026.
+Publicação da 5.21: checkpoint preparado para commit/push; último publicado e811031.
+Próximo passo exato: publicar 5.21 e iniciar 5.22: executar somente ProdutoSeeder uma vez pela
+conexão da aplicação e conferir o registro persistido e a consulta Eloquent.
+Apresentar consulta DBeaver sem inventar resultado observado pelo aluno.
 
 ## Verificações e limitações do ambiente
 
@@ -3598,13 +3643,13 @@ usando Eloquent, explicando campos e persistência, sem executar o seeder ainda.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `133591a`,
-  `feat: consulta produtos pelo Eloquent`.
+- Último commit local publicado nesta retomada: `e811031`,
+  `feat: gera estrutura do seeder de produtos`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 15/10/2026 após o push com `git ls-remote`: `133591a`,
-  igual a HEAD e origin/main. Seeder/documentação da 5.20 ainda fora de commit.
+- Remoto consultado em 15/10/2026 após o push com `git ls-remote`: `e811031`,
+  igual a HEAD e origin/main. Cadastro/documentação da 5.21 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3694,11 +3739,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar estrutura do seeder 5.20 confirmada e iniciar 5.21.
+- Ação imediata: publicar cadastro escrito 5.21 confirmado e iniciar 5.22.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Entendimento da 5.20 recebido: publicar checkpoint e preencher run com um
-  cadastro de produto pelo Eloquent na 5.21, ainda sem executar o seeder.
+- Entendimento da 5.21 recebido: publicar checkpoint e executar somente
+  ProdutoSeeder uma vez na 5.22, conferindo o registro e a consulta Eloquent.
   Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -3789,4 +3834,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 15/10/2026 | 5.17 — Fillable no Produto | Arrays, descarte de extras e alcance sem validação conferidos em memória | Confirmado pelo aluno: "entendi" | Publicado e verificado em 340d6ea |
 | 15/10/2026 | 5.18 — Cast inteiro do preço | Leitura/toArray/fill e limites de conversão conferidos em memória | Confirmado pelo aluno: "entendi" | Publicado e verificado em adb466c |
 | 15/10/2026 | 5.19 — Consulta Eloquent | Comando, coleção vazia, SELECT real e HTTP conferidos; sem escrita | Confirmado pelo aluno: "entendi" | Publicado e verificado em 133591a |
-| 15/10/2026 | 5.20 — Estrutura do primeiro seeder | ProdutoSeeder gerado; sintaxe/autoload/herança/assinatura conferidos sem SQL | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 15/10/2026 | 5.20 — Estrutura do primeiro seeder | ProdutoSeeder gerado; sintaxe/autoload/herança/assinatura conferidos sem SQL | Confirmado pelo aluno: "entendi" | Publicado e verificado em e811031 |
+| 15/10/2026 | 5.21 — Cadastro escrito no seeder | Produto::create escrito com Camiseta; sintaxe e atributos revisados, sem execução | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

@@ -92,9 +92,10 @@ de código, dependências, serviços, credenciais e banco preservados.
 
 Estrutura implementada e explicação apresentada; verificações concluídas.
 Entendimento da 5.20 confirmado com "entendi" em 15/10/2026. Checkpoint
-preparado para publicação autorizada; último publicado 133591a.
+e811031 publicado; HEAD, origin/main e main remota conferidos no SHA
+e81103197aece04c52b979b3999eebd0ba9fe1db.
 
-Próximo passo: publicar 5.20 e iniciar 5.21, preencher run com o cadastro de um
+Próximo passo realizado na 5.21: preencher run com o cadastro de um
 produto usando Eloquent e explicar os campos e a persistência, sem executar
 o seeder ainda.
 
