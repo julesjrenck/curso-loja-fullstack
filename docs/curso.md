@@ -30,11 +30,11 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou a persistência do produto da 5.22.
-Na 5.23, o comando de consulta percorre a coleção e imprime atributos de cada
-Produto. Sintaxe e saída com a Camiseta conferidas, somente por leitura.
-Explicação apresentada; entendimento confirmado com "entendi" em 15/10/2026. A 5.24
-preparará a reexecução do seeder com firstOrCreate, sem executar ainda.
+O módulo 5 confirmou e publicou a leitura de atributos da 5.23.
+Na 5.24, ProdutoSeeder usa firstOrCreate com busca por nome e dados adicionais
+para criação. Sintaxe conferida sem executar o seeder. Explicação dos arrays,
+registro existente e limites apresentada; entendimento confirmado com "entendi"
+em 15/10/2026. A 5.25 observará a reexecução sequencial sem novo cadastro.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.23, leitura dos atributos do Produto.
+Módulo 5 — SQL Server e persistência: etapa 5.24, busca antes do cadastro no seeder.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -205,6 +205,10 @@ Checkpoint 5.22 publicado e conferido em 9d03edc. Na 5.23, comando de consulta
 percorre a coleção com foreach e imprime id, nome, preço em centavos e status.
 Sintaxe e execução real conferidas: 1 | Camiseta | 4990 centavos | ativo.
 Sem nova gravação; explicação apresentada, entendimento confirmado com "entendi".
+Checkpoint 5.23 publicado e conferido em 11f46d2. Na 5.24, ProdutoSeeder usa
+firstOrCreate com busca pelo nome Camiseta e preço/status para criação.
+Sintaxe conferida no Docker; seeder ainda não executado nessa versão.
+Explicação dos dois arrays e limites apresentada; entendimento confirmado com "entendi".
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -291,6 +295,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.21 — Cadastro escrito no seeder](docs/aulas/05-21-cadastro-produto-seeder.md)
 - [Aula 5.22 — Primeiro produto persistido](docs/aulas/05-22-executar-produto-seeder.md)
 - [Aula 5.23 — Leitura dos atributos do Produto](docs/aulas/05-23-atributos-produto.md)
+- [Aula 5.24 — Busca antes do cadastro no seeder](docs/aulas/05-24-first-or-create-seeder.md)
 
 ## Backend Laravel
 

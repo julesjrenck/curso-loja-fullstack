@@ -12,10 +12,12 @@ class ProdutoSeeder extends Seeder
      */
     public function run(): void
     {
-        Produto::create([
-            'nome' => 'Camiseta',
-            'preco_em_centavos' => 4990,
-            'status' => 'ativo',
-        ]);
+        Produto::firstOrCreate(
+            ['nome' => 'Camiseta'],
+            [
+                'preco_em_centavos' => 4990,
+                'status' => 'ativo',
+            ]
+        );
     }
 }

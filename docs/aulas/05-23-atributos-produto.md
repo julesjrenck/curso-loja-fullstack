@@ -79,9 +79,10 @@ preservados. Sem INSERT/UPDATE/DELETE ou mudança do catálogo HTTP nesta etapa.
 
 Implementação, explicação e verificação concluídas. Entendimento da 5.23
 confirmado com "entendi" em 15/10/2026. Checkpoint preparado para publicação
-autorizada; último publicado 9d03edc.
+autorizada e publicado em 11f46d2; HEAD, origin/main e main remota conferidos
+no SHA 11f46d22361d28551ddf6165a8fff042b34a42e5.
 
-Próximo passo exato: publicar 5.23 e iniciar 5.24, preparar
+Próximo passo realizado na 5.24: preparar
 ProdutoSeeder para reexecução com firstOrCreate, explicando o critério de
 busca didático e os limites sem restrição única, sem executar o seeder ainda.
 
