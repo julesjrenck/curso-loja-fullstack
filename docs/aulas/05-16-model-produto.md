@@ -104,8 +104,10 @@ preservados. O modelo ainda não é utilizado pela página /loja.
 ## Continuidade
 
 Arquivo gerado, explicação apresentada e verificações concluídas. Entendimento
-da 5.16 confirmado com "entendi" em 15/10/2026. Checkpoint preparado para
-publicação autorizada; último publicado 36db8e8. Publicar 5.16 e iniciar 5.17:
+da 5.16 confirmado com "entendi" em 15/10/2026. Checkpoint publicado e conferido
+em a953fa4: HEAD, origin/main e main remota retornaram
+a953fa4377335a06b5b8fb1089d1d8d6172db6ea. Registro no checkpoint seguinte.
+Próximo passo realizado na 5.17:
 definir campos permitidos para atribuição em massa no model com Fillable,
 explicando o recebimento de arrays e demonstrando em memória, antes de gravar dados.
 

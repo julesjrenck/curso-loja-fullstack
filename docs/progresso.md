@@ -4,19 +4,20 @@
 
 - Última atualização: 15/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.16 — Primeiro model Eloquent Produto.
-- Situação: App\Models\Produto gerado em backend/app/Models/Produto.php,
-  estendendo Model. Sintaxe/autoload/herança e convenções conferidas em memória:
-  produtos, id inteiro/incremental, created_at/updated_at e padrão sqlsrv/loja_app.
-  Nenhuma consulta ou gravação SQL nesta etapa; página ainda demonstrativa.
-  Explicação da 5.16 apresentada; entendimento confirmado com "entendi"
+- Etapa atual: 5.17 — Fillable no model Produto.
+- Situação: nome, preco_em_centavos e status permitidos por atribuição em massa.
+  Sintaxe, construtor com array, fill parcial, descarte de id/created_at e
+  alcance sem validação de valores conferidos em memória. Nenhuma conexão,
+  consulta ou gravação SQL; página ainda demonstrativa.
+  Explicação da 5.17 apresentada; entendimento confirmado com "entendi"
   em 15/10/2026. Checkpoint preparado para publicação autorizada.
+  Model 5.16 confirmado com "entendi" em 15/10/2026 e publicado.
   Aplicação 5.15 confirmada com "entendi" em 14/10/2026 e publicada.
   Conexão 5.14 confirmada com "entendi" em 14/10/2026 e publicada.
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 36db8e8, aplicação da migration 5.15.
+  Último checkpoint publicado: a953fa4, model Eloquent Produto 5.16.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -40,6 +41,7 @@
 - Etapa 5.14 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.15 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.16 confirmada com "entendi" em 15/10/2026.
+- Etapa 5.17 confirmada com "entendi" em 15/10/2026.
 
 ## Retomada em outro chat
 
@@ -264,6 +266,10 @@ explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
 Checkpoint 5.15 publicado: 36db8e8; HEAD, origin/main e consulta direta à main
 remota retornaram `36db8e85393e59404ba55f3556d2fc9d356746c9`.
 Etapa 5.16 gerou model Produto e conferiu convenções em memória;
+explicação apresentada e entendimento confirmado com "entendi" em 15/10/2026.
+Checkpoint 5.16 publicado: a953fa4; HEAD, origin/main e consulta direta à main
+remota retornaram `a953fa4377335a06b5b8fb1089d1d8d6172db6ea`.
+Etapa 5.17 configurou Fillable e demonstrou arrays em memória;
 explicação apresentada e entendimento confirmado com "entendi" em 15/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
@@ -3401,10 +3407,47 @@ Verificações em Docker:
   Nenhum teste de integração, leitura/gravação de produto ou mudança de banco.
 
 Entendimento da 5.16: confirmado com "entendi" em 15/10/2026.
-Publicação: checkpoint preparado para commit/push autorizado; último publicado 36db8e8.
-Próximo passo exato: publicar 5.16 confirmada e iniciar 5.17, definir
+Publicação: checkpoint a953fa4 publicado com autorização persistente; HEAD,
+origin/main e main remota conferidos em a953fa4377335a06b5b8fb1089d1d8d6172db6ea.
+Próximo passo realizado na 5.17: definir
 campos permitidos para atribuição em massa usando Fillable no model e explicar
 arrays de atributos com demonstração em memória, antes de gravar dados.
+
+## Etapa 5.17 — Fillable no Produto
+
+Objetivo: definir campos aceitos por arrays no model e explicar atribuição em
+massa em memória. Aula em docs/aulas/05-17-fillable-produto.md.
+
+Implementação somente em backend/app/Models/Produto.php: import da classe
+Illuminate\Database\Eloquent\Attributes\Fillable e
+#[Fillable(['nome', 'preco_em_centavos', 'status'])] antes da classe.
+Sem casts, persistência, nova validação ou mudança de schema nesta etapa.
+
+Explicação apresentada: atributo PHP de configuração e atributos de dados;
+construtor herdado com array campo/valor; fill parcial em objeto existente;
+campos fora da lista descartados na configuração atual; limite da atribuição
+em massa versus validação de valor e imutabilidade. Relembrada a configuração
+Fillable do User da 4.18, sem alterar aquele model.
+
+Verificações em Docker:
+
+- php -l Produto.php passou.
+- getFillable retornou exatamente nome/preco_em_centavos/status; construtor
+  preencheu Camiseta, 4990 e ativo.
+- Segundo objeto recebeu os campos e id=999/created_at; extras descartados,
+  atributos somente permitidos e chave null.
+- fill alterou nome para Calça e preservou demais atributos.
+- Objeto temporário com nome vazio, preço -1 e status outro aceito em memória,
+  demonstrando que Fillable não valida conteúdo. Nenhum desses dados foi salvo.
+- Todos os objetos exists=false, gerenciador de banco sem conexões criadas,
+  nenhuma consulta SQL. git diff --check passou; demais código, configurações,
+  migrations, credenciais, serviços e contador preservados.
+
+Entendimento da 5.17: confirmado com "entendi" em 15/10/2026.
+Publicação: checkpoint preparado para commit/push autorizado; último publicado a953fa4.
+Próximo passo exato: publicar 5.17 confirmada e iniciar 5.18, configurar
+cast de preco_em_centavos para integer e demonstrar conversão em memória,
+sem gravar dados. Regras de conteúdo e integração SQL terão etapas próprias.
 
 ## Verificações e limitações do ambiente
 
@@ -3432,13 +3475,13 @@ arrays de atributos com demonstração em memória, antes de gravar dados.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `36db8e8`,
-  `docs: registra aplicação da migration de produtos`.
+- Último commit local publicado nesta retomada: `a953fa4`,
+  `feat: adiciona model Eloquent Produto`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `36db8e8`,
-  igual a HEAD e origin/main. Model/documentação da 5.16 ainda fora de commit.
+- Remoto consultado em 15/10/2026 após o push com `git ls-remote`: `a953fa4`,
+  igual a HEAD e origin/main. Model/documentação da 5.17 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3528,11 +3571,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar primeiro model Produto 5.16 confirmado e iniciar 5.17.
+- Ação imediata: publicar Fillable no Produto 5.17 confirmado e iniciar 5.18.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Entendimento da 5.16 recebido: publicar model e introduzir campos permitidos
-  para arrays de atributos na 5.17, com demonstração em memória.
+- Entendimento da 5.17 recebido: publicar Fillable e configurar cast inteiro do
+  preço na 5.18, com demonstração em memória.
   Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -3619,4 +3662,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 14/10/2026 | 5.13 — Conta de migrations | Conta criada após autorização explícita; autenticação/permissões/escopo/reexecução conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 94e3322; .env ignorado |
 | 14/10/2026 | 5.14 — Conexão Laravel de migrations | Modelo/configuração e senha local; sintaxe/conexões/permissões/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 26e7b5b; .env ignorado |
 | 14/10/2026 | 5.15 — Aplicar migration de produtos | Tabela vazia, esquema e registro lote 1; reexecução/status/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 36db8e8 |
-| 15/10/2026 | 5.16 — Primeiro model Produto | Gerador, sintaxe/autoload/herança e convenções em memória conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 15/10/2026 | 5.16 — Primeiro model Produto | Gerador, sintaxe/autoload/herança e convenções em memória conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em a953fa4 |
+| 15/10/2026 | 5.17 — Fillable no Produto | Arrays, descarte de extras e alcance sem validação conferidos em memória | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
