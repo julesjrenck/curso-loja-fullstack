@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Produto;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
@@ -17,3 +18,13 @@ Artisan::command('loja:verificar-banco', function () {
     $this->line('Login: '.$resultado->login);
     $this->line('Usuário: '.$resultado->usuario);
 })->purpose('Verifica a conexão Laravel com o banco da loja');
+
+Artisan::command('loja:consultar-produtos', function () {
+    $produtos = Produto::query()->get();
+
+    $this->line('Produtos encontrados: '.$produtos->count());
+
+    if ($produtos->isEmpty()) {
+        $this->line('Nenhum produto cadastrado.');
+    }
+})->purpose('Consulta produtos pelo Eloquent');

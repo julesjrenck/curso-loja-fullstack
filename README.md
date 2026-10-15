@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.18, cast inteiro do preço.
+Módulo 5 — SQL Server e persistência: etapa 5.19, primeira consulta Eloquent.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -184,6 +184,10 @@ Checkpoint 5.17 publicado e conferido em 340d6ea. Na 5.18, casts() configura
 preco_em_centavos como integer. Sintaxe, leitura/representação em array,
 fill e limites da conversão conferidos em memória, sem SQL.
 Explicação apresentada; entendimento da 5.18 confirmado com "entendi" em 15/10/2026.
+Checkpoint 5.18 publicado e conferido em adb466c. Na 5.19, comando Artisan
+loja:consultar-produtos executa Produto::query()->get() e informa quantidade
+e ausência de cadastros. Sintaxe, registro, coleção vazia, SELECT real e HTTP
+conferidos; sem escrita SQL. Explicação apresentada; entendimento confirmado com "entendi".
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -265,6 +269,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.16 — Primeiro model Produto](docs/aulas/05-16-model-produto.md)
 - [Aula 5.17 — Fillable no Produto](docs/aulas/05-17-fillable-produto.md)
 - [Aula 5.18 — Cast inteiro do preço](docs/aulas/05-18-cast-preco-produto.md)
+- [Aula 5.19 — Primeira consulta Eloquent](docs/aulas/05-19-consulta-eloquent-produtos.md)
 
 ## Backend Laravel
 
@@ -455,6 +460,16 @@ docker compose exec -T backend php artisan migrate:status --database=sqlsrv_migr
 A [aula 5.15](docs/aulas/05-15-aplicar-migration-produtos.md) explica a aplicação,
 a tabela migrations e a verificação. As migrations padrão users/cache/jobs
 continuam sem aplicação. produtos começa vazia; a página ainda usa nomes em memória.
+
+Para consultar os produtos pelo model Eloquent no terminal:
+
+```bash
+docker compose exec -T backend php artisan loja:consultar-produtos
+```
+
+O comando informa a quantidade carregada e, quando não há itens, a mensagem
+Nenhum produto cadastrado. A [aula 5.19](docs/aulas/05-19-consulta-eloquent-produtos.md)
+explica a consulta e a coleção retornada, sem inserir dados.
 
 Após preparar a configuração e a conta, confira a conexão pelo Laravel:
 

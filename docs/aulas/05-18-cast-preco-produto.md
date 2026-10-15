@@ -91,8 +91,10 @@ configurações, credenciais, dependências e serviços preservados.
 ## Continuidade
 
 Cast implementado, explicação apresentada e verificações concluídas. Entendimento
-da 5.18 confirmado com "entendi" em 15/10/2026. Checkpoint preparado para
-publicação autorizada; último publicado 340d6ea. Publicar 5.18 e iniciar 5.19:
+da 5.18 confirmado com "entendi" em 15/10/2026. Checkpoint publicado e conferido
+em adb466c: HEAD, origin/main e main remota retornaram
+adb466c3fab6e5fcfe0e16f3edef970e49609fd2. Registro no checkpoint seguinte.
+Próximo passo realizado na 5.19:
 primeira consulta Eloquent com Produto::query()->get(), explicando a coleção
 vazia e a consulta SQL de leitura, sem inserir dados ou trocar o catálogo ainda.
 
