@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.17, Fillable no Produto.
+Módulo 5 — SQL Server e persistência: etapa 5.18, cast inteiro do preço.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -180,6 +180,10 @@ Checkpoint 5.16 publicado e conferido em a953fa4. Na 5.17, Fillable permite
 nome, preco_em_centavos e status por arrays. Sintaxe, preenchimento, descarte
 de campos fora da lista e alcance sem validação conferidos em memória,
 sem SQL. Explicação apresentada; entendimento confirmado com "entendi" em 15/10/2026.
+Checkpoint 5.17 publicado e conferido em 340d6ea. Na 5.18, casts() configura
+preco_em_centavos como integer. Sintaxe, leitura/representação em array,
+fill e limites da conversão conferidos em memória, sem SQL.
+Explicação apresentada; entendimento da 5.18 confirmado com "entendi" em 15/10/2026.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -260,6 +264,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.15 — Aplicar a migration de produtos](docs/aulas/05-15-aplicar-migration-produtos.md)
 - [Aula 5.16 — Primeiro model Produto](docs/aulas/05-16-model-produto.md)
 - [Aula 5.17 — Fillable no Produto](docs/aulas/05-17-fillable-produto.md)
+- [Aula 5.18 — Cast inteiro do preço](docs/aulas/05-18-cast-preco-produto.md)
 
 ## Backend Laravel
 

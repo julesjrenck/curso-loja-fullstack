@@ -30,10 +30,10 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou o model Produto da 5.16.
-Fillable configurado na 5.17, com demonstração de arrays em memória;
+O módulo 5 confirmou e publicou Fillable do Produto na 5.17.
+Cast inteiro do preço configurado e demonstrado em memória na 5.18;
 explicação apresentada e entendimento confirmado em 15/10/2026. Próximo passo:
-configurar cast inteiro do preço na 5.18, antes de gravar dados;
+primeira consulta Eloquent de leitura na 5.19, sem inserir dados;
 módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

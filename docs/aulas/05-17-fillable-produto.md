@@ -105,8 +105,9 @@ Gerenciador de banco sem conexões criadas; sem consulta ou gravação SQL.
 git diff --check passou; demais arquivos PHP e configurações preservados.
 
 Implementação e explicação apresentadas; entendimento da 5.17 confirmado com
-"entendi" em 15/10/2026. Checkpoint preparado para publicação autorizada;
-último publicado a953fa4. Publicar 5.17 e iniciar 5.18: configurar o cast de
+"entendi" em 15/10/2026. Checkpoint publicado e conferido em 340d6ea:
+HEAD, origin/main e main remota retornaram 340d6ea79fa644031e358b912836fcfd25bc5061.
+Registro no checkpoint seguinte. Próximo passo realizado na 5.18: configurar o cast de
 preco_em_centavos para integer e demonstrar a conversão em memória, sem gravar dados.
 
 Fonte consultada em 15/10/2026:
