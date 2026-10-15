@@ -4,12 +4,14 @@
 
 - Última atualização: 15/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.21 — Cadastro escrito no seeder.
-- Situação: run de ProdutoSeeder contém Produto::create com Camiseta,
-  preco_em_centavos 4990 e status ativo. Import do model incluído; import
-  WithoutModelEvents sem uso removido. Sintaxe conferida no Docker; sem executar
-  run ou cadastrar dados. Explicação da 5.21 apresentada; entendimento confirmado
+- Etapa atual: 5.22 — Primeiro produto persistido.
+- Situação: somente ProdutoSeeder executado uma vez via sqlsrv/loja_app,
+  no banco loja. Camiseta id 1, preço inteiro 4990, status ativo e datas
+  preenchidas, relida em outro processo. Comando Eloquent informa um produto.
+  Sem alteração de código. Explicação da 5.22 apresentada; entendimento confirmado
   com "entendi" em 15/10/2026. Checkpoint preparado para publicação autorizada.
+  Consulta DBeaver proposta, resultado do aluno ainda não informado.
+  Cadastro escrito 5.21 confirmado com "entendi" em 15/10/2026 e publicado.
   Estrutura 5.20 confirmada com "entendi" em 15/10/2026 e publicada.
   Consulta 5.19 confirmada com "entendi" em 15/10/2026 e publicada.
   Cast 5.18 confirmado com "entendi" em 15/10/2026 e publicado.
@@ -20,7 +22,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: e811031, estrutura do seeder 5.20.
+  Último checkpoint publicado: 9da189c, cadastro escrito no seeder 5.21.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -49,6 +51,7 @@
 - Etapa 5.19 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.20 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.21 confirmada com "entendi" em 15/10/2026.
+- Etapa 5.22 confirmada com "entendi" em 15/10/2026.
 
 ## Retomada em outro chat
 
@@ -296,6 +299,11 @@ remota retornaram `e81103197aece04c52b979b3999eebd0ba9fe1db`.
 Etapa 5.21 escreveu Produto::create em run com um produto de demonstração;
 sintaxe conferida sem executar o cadastro. Explicação apresentada;
 entendimento confirmado com "entendi" em 15/10/2026.
+Checkpoint 5.21 publicado: 9da189c; HEAD, origin/main e consulta direta à main
+remota retornaram `9da189c24c523373501eb30a181087350d3713d5`.
+Etapa 5.22 executou somente ProdutoSeeder uma vez; Camiseta persistida,
+relida em outro processo e quantidade 1 no comando Eloquent conferidas.
+Explicação apresentada e entendimento confirmado com "entendi" em 15/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -3612,10 +3620,55 @@ Verificações:
   dependências, serviços e contador preservados.
 
 Entendimento da 5.21: confirmado com "entendi" em 15/10/2026.
-Publicação da 5.21: checkpoint preparado para commit/push; último publicado e811031.
-Próximo passo exato: publicar 5.21 e iniciar 5.22: executar somente ProdutoSeeder uma vez pela
+Publicação da 5.21: checkpoint 9da189c publicado com autorização persistente;
+HEAD, origin/main e main remota conferidos em 9da189c24c523373501eb30a181087350d3713d5.
+Próximo passo realizado na 5.22: executar somente ProdutoSeeder uma vez pela
 conexão da aplicação e conferir o registro persistido e a consulta Eloquent.
 Apresentar consulta DBeaver sem inventar resultado observado pelo aluno.
+
+## Etapa 5.22 — Primeiro produto persistido
+
+Objetivo: executar o cadastro estudado e observar a persistência no SQL Server.
+Aula em docs/aulas/05-22-executar-produto-seeder.md. Sem alteração de código.
+
+Prévia: ajuda de db:seed e leitura de identidade/quantidade conferidas.
+Conexão sqlsrv, banco loja, login loja_app, zero produtos antes da execução.
+
+Execução didática única em Docker: php artisan db:seed --class=ProdutoSeeder
+--database=sqlsrv --no-interaction --no-ansi. Saída Seeding database,
+ProdutoSeeder RUNNING e 91 ms DONE, código 0. DatabaseSeeder padrão não
+executado, sem cadastro de User ou aplicação de outras migrations.
+
+Explicação apresentada: exec/-T/PHP/Artisan, db:seed versus make:seeder,
+--class selecionando a classe, --database selecionando a conexão sqlsrv
+que aponta para loja/loja_app; --no-interaction e --no-ansi. Chamada de run
+e create, id pela identity SQL e datas pelo Eloquent. Permanência do registro
+após o processo encerrar. Comando de leitura pode repetir; seeder atual com
+create tentaria outro cadastro. Página HTTP segue demonstrativa em memória.
+
+Verificações de leitura após o cadastro:
+
+- loja:consultar-produtos terminou código 0: Produtos encontrados: 1;
+  a mensagem de coleção vazia deixou de aparecer.
+- Diagnóstico em outro processo PHP Docker conferiu banco loja, login
+  loja_app, coleção Eloquent com um App\Models\Produto e exists=true.
+- id inteiro 1, nome Camiseta, preco_em_centavos int 4990, status ativo.
+  created_at e updated_at brutos iguais a 2026-10-15 22:43:40.239.
+- Sem nova gravação na conferência. Uma única execução do seeder; sem reset,
+  limpeza, rollback ou DDL. Não se trata de suíte de testes de integração
+  escrevendo no banco da aplicação; testes SQL terão banco loja_test próprio.
+- git diff --check passou. Código, configuração/credenciais, dependências,
+  serviços e contador preservados.
+
+Exercício acompanhado proposto: SELECT id, nome, preco_em_centavos, status,
+created_at, updated_at FROM dbo.produtos no DBeaver, com banco loja selecionado.
+Resultado observado pelo aluno ainda não informado; não inventar confirmação.
+
+Entendimento da 5.22: confirmado com "entendi" em 15/10/2026.
+Publicação da 5.22: checkpoint preparado para commit/push; último publicado 9da189c.
+Próximo passo exato: publicar 5.22 e iniciar 5.23: exibir os campos de cada
+Produto no comando loja:consultar-produtos, usando foreach da coleção e
+acesso a atributos. Não executar novamente o seeder ou trocar o catálogo HTTP.
 
 ## Verificações e limitações do ambiente
 
@@ -3643,13 +3696,13 @@ Apresentar consulta DBeaver sem inventar resultado observado pelo aluno.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `e811031`,
-  `feat: gera estrutura do seeder de produtos`.
+- Último commit local publicado nesta retomada: `9da189c`,
+  `feat: escreve cadastro de produto no seeder`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 15/10/2026 após o push com `git ls-remote`: `e811031`,
-  igual a HEAD e origin/main. Cadastro/documentação da 5.21 ainda fora de commit.
+- Remoto consultado em 15/10/2026 após o push com `git ls-remote`: `9da189c`,
+  igual a HEAD e origin/main. Documentação da 5.22 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3739,11 +3792,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar cadastro escrito 5.21 confirmado e iniciar 5.22.
+- Ação imediata: publicar execução e persistência 5.22 confirmada e iniciar 5.23.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Entendimento da 5.21 recebido: publicar checkpoint e executar somente
-  ProdutoSeeder uma vez na 5.22, conferindo o registro e a consulta Eloquent.
+- Entendimento da 5.22 recebido: publicar checkpoint e apresentar os campos de
+  cada Produto no comando de consulta na 5.23, sem repetir o cadastro.
   Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -3835,4 +3888,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 15/10/2026 | 5.18 — Cast inteiro do preço | Leitura/toArray/fill e limites de conversão conferidos em memória | Confirmado pelo aluno: "entendi" | Publicado e verificado em adb466c |
 | 15/10/2026 | 5.19 — Consulta Eloquent | Comando, coleção vazia, SELECT real e HTTP conferidos; sem escrita | Confirmado pelo aluno: "entendi" | Publicado e verificado em 133591a |
 | 15/10/2026 | 5.20 — Estrutura do primeiro seeder | ProdutoSeeder gerado; sintaxe/autoload/herança/assinatura conferidos sem SQL | Confirmado pelo aluno: "entendi" | Publicado e verificado em e811031 |
-| 15/10/2026 | 5.21 — Cadastro escrito no seeder | Produto::create escrito com Camiseta; sintaxe e atributos revisados, sem execução | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 15/10/2026 | 5.21 — Cadastro escrito no seeder | Produto::create escrito com Camiseta; sintaxe e atributos revisados, sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 9da189c |
+| 15/10/2026 | 5.22 — Primeiro produto persistido | Seeder executado uma vez; Camiseta relida em outro processo e quantidade 1 conferidas | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

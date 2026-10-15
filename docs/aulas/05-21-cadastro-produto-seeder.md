@@ -100,10 +100,10 @@ DatabaseSeeder, model, migrations, rotas, dependências e serviços preservados.
 
 Cadastro escrito e explicação apresentada; sintaxe verificada.
 Entendimento da 5.21 confirmado com "entendi" em 15/10/2026. Checkpoint
-preparado para publicação autorizada; último publicado e811031.
+9da189c publicado; HEAD, origin/main e main remota conferidos no SHA
+9da189c24c523373501eb30a181087350d3713d5.
 
-Próximo passo exato: publicar 5.21 e iniciar 5.22,
-executando somente ProdutoSeeder uma vez pela conexão da aplicação,
+Próximo passo realizado na 5.22: executar somente ProdutoSeeder uma vez pela conexão da aplicação,
 conferindo o registro persistido e a consulta Eloquent. Apresentar também
 uma consulta no DBeaver, sem presumir resultado observado pelo aluno.
 
