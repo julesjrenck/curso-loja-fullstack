@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.15, tabela produtos criada por migration.
+Módulo 5 — SQL Server e persistência: etapa 5.16, primeiro model Produto.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -172,6 +172,10 @@ a migration de produtos via sqlsrv_migracoes e caminho do arquivo. Banco loja
 tem dbo.produtos vazia e dbo.migrations com um registro no lote 1. Esquema,
 status e reexecução conferidos; /loja continua demonstrativo em memória.
 Explicação apresentada; entendimento da 5.15 confirmado com "entendi" em 14/10/2026.
+Checkpoint 5.15 publicado e conferido em 36db8e8. Na 5.16, gerado
+App\Models\Produto estendendo Model do Eloquent. Sintaxe, autoload, herança e
+convenções de tabela/chave/datas/conexão conferidas em memória, sem consulta
+ou gravação. Explicação apresentada; entendimento confirmado com "entendi" em 15/10/2026.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -250,6 +254,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.13 — Conta de migrations](docs/aulas/05-13-conta-migracoes.md)
 - [Aula 5.14 — Conexão Laravel de migrations](docs/aulas/05-14-conexao-migracoes-laravel.md)
 - [Aula 5.15 — Aplicar a migration de produtos](docs/aulas/05-15-aplicar-migration-produtos.md)
+- [Aula 5.16 — Primeiro model Produto](docs/aulas/05-16-model-produto.md)
 
 ## Backend Laravel
 

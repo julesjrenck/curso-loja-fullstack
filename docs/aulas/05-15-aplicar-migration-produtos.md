@@ -134,8 +134,10 @@ experiência executada pelo aluno até ele relatar o resultado.
 ## Continuidade
 
 Migration aplicada, explicação apresentada e verificações concluídas. Entendimento
-da 5.15 confirmado com "entendi" em 14/10/2026. Checkpoint preparado para publicação
-autorizada; último publicado 26e7b5b. Publicar 5.15 e iniciar 5.16: gerar apenas
+da 5.15 confirmado com "entendi" em 14/10/2026. Checkpoint publicado e conferido
+em 36db8e8: HEAD, origin/main e main remota retornaram
+36db8e85393e59404ba55f3556d2fc9d356746c9. Registro no checkpoint seguinte.
+Próximo passo realizado na 5.16: gerar apenas
 o model Eloquent Produto e explicar sua ligação à tabela produtos, sem inserir
 registros ou trocar o catálogo demonstrativo nesta primeira etapa do model.
 

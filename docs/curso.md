@@ -30,10 +30,10 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou a conexão Laravel de migrations da 5.14.
-Migration de produtos aplicada e verificada na 5.15: tabela vazia e registro
-migrations em loja. Explicação apresentada e entendimento confirmado em 14/10/2026.
-Próximo passo: gerar e apresentar o model Eloquent Produto na 5.16;
+O módulo 5 confirmou e publicou a aplicação da migration de produtos da 5.15.
+Model Eloquent Produto gerado e explicado na 5.16, com convenções verificadas
+em memória; entendimento confirmado em 15/10/2026. Próximo passo: definir
+campos permitidos para atribuição em massa na 5.17, antes de gravar dados;
 módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

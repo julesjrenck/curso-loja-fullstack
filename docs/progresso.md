@@ -2,20 +2,21 @@
 
 ## Estado atual
 
-- Última atualização: 14/10/2026, referência de data America/Sao_Paulo.
+- Última atualização: 15/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.15 — Aplicação da migration de produtos.
-- Situação: banco loja tem dbo.produtos com as seis colunas modeladas e zero
-  registros, e dbo.migrations com create_produtos_table no lote 1. Aplicada
-  somente a migration específica pela conexão sqlsrv_migracoes. Metadados,
-  leitura por loja_app, status/reexecução e HTTP conferidos.
-  Explicação da 5.15 apresentada; entendimento confirmado com "entendi"
-  em 14/10/2026. Checkpoint preparado para publicação autorizada.
+- Etapa atual: 5.16 — Primeiro model Eloquent Produto.
+- Situação: App\Models\Produto gerado em backend/app/Models/Produto.php,
+  estendendo Model. Sintaxe/autoload/herança e convenções conferidas em memória:
+  produtos, id inteiro/incremental, created_at/updated_at e padrão sqlsrv/loja_app.
+  Nenhuma consulta ou gravação SQL nesta etapa; página ainda demonstrativa.
+  Explicação da 5.16 apresentada; entendimento confirmado com "entendi"
+  em 15/10/2026. Checkpoint preparado para publicação autorizada.
+  Aplicação 5.15 confirmada com "entendi" em 14/10/2026 e publicada.
   Conexão 5.14 confirmada com "entendi" em 14/10/2026 e publicada.
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 26e7b5b, conexão Laravel de migrations 5.14.
+  Último checkpoint publicado: 36db8e8, aplicação da migration 5.15.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -38,6 +39,7 @@
 - Etapa 5.13 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.14 confirmada com "entendi" em 14/10/2026.
 - Etapa 5.15 confirmada com "entendi" em 14/10/2026.
+- Etapa 5.16 confirmada com "entendi" em 15/10/2026.
 
 ## Retomada em outro chat
 
@@ -259,6 +261,10 @@ Checkpoint 5.14 publicado: 26e7b5b; HEAD, origin/main e consulta direta à main
 remota retornaram `26e7b5b8a674e775b2e882ea4c78f62aeed9d945`.
 Etapa 5.15 aplicou somente a migration de produtos e conferiu esquema e registro;
 explicação apresentada e entendimento confirmado com "entendi" em 14/10/2026.
+Checkpoint 5.15 publicado: 36db8e8; HEAD, origin/main e consulta direta à main
+remota retornaram `36db8e85393e59404ba55f3556d2fc9d356746c9`.
+Etapa 5.16 gerou model Produto e conferiu convenções em memória;
+explicação apresentada e entendimento confirmado com "entendi" em 15/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -3355,11 +3361,50 @@ Verificações em Docker:
   escrita de produtos ou testes de integração no banco da aplicação.
 
 Entendimento da 5.15: confirmado com "entendi" em 14/10/2026.
-Publicação: checkpoint preparado para commit/push autorizado; último publicado 26e7b5b.
-Próximo passo exato: publicar 5.15 confirmada e iniciar 5.16, gerar
+Publicação: checkpoint 36db8e8 publicado com autorização persistente; HEAD,
+origin/main e main remota conferidos em 36db8e85393e59404ba55f3556d2fc9d356746c9.
+Próximo passo realizado na 5.16: gerar
 somente o model Eloquent Produto e explicar sua ligação à tabela, sem inserir
 dados ou trocar o catálogo demonstrativo nesta etapa inicial do model.
 Regras de conteúdo e testes SQL Server de integração seguem com etapas próprias.
+
+## Etapa 5.16 — Primeiro model Produto
+
+Objetivo: gerar model Eloquent e apresentar sua ligação à tabela de produtos.
+Aula em docs/aulas/05-16-model-produto.md. Única adição ao código:
+backend/app/Models/Produto.php, com namespace App\Models, import Model e
+classe Produto extends Model, corpo inicial do gerador.
+
+Gerador em Docker: compose run --rm -T --no-deps, usuário/grupo do host,
+montagem adicional app/Models rw; php artisan make:model Produto --no-interaction.
+Somente o model gerado; sem opções de migration/factory/controller, sem novas
+configurações ou consultas de catálogo. User existente e classe Loja\Produto
+do laboratório preservados.
+
+Explicação apresentada: geração e parâmetros do comando, namespace/import,
+herança e ORM; classe/tabela/registro, model versus estrutura criada pela migration;
+convenções de plural/snake_case, id inteiro/incremental, datas e conexão padrão;
+classe App\Models\Produto do backend e Loja\Produto do laboratório têm escopos distintos.
+
+Verificações em Docker:
+
+- Gerador terminou código 0, arquivo único, dono 1000:1000, permissão 644.
+- php -l Produto.php: sem erro de sintaxe.
+- Autoload e new App\Models\Produto: instanceof Eloquent Model confirmado;
+  getTable produtos, getKeyName id, getKeyType int, getIncrementing true,
+  usesTimestamps true, colunas created_at/updated_at.
+- getConnectionName null indica ausência de configuração específica no model;
+  default sqlsrv e login configurado loja_app conferidos. Objeto exists=false,
+  atributos vazios e gerenciador de banco sem conexões criadas, sem consulta SQL.
+- git diff --check passou; PHP anterior, controller/catálogo/view, migrations,
+  configurações/credenciais, Compose/imagens, dependências e contador preservados.
+  Nenhum teste de integração, leitura/gravação de produto ou mudança de banco.
+
+Entendimento da 5.16: confirmado com "entendi" em 15/10/2026.
+Publicação: checkpoint preparado para commit/push autorizado; último publicado 36db8e8.
+Próximo passo exato: publicar 5.16 confirmada e iniciar 5.17, definir
+campos permitidos para atribuição em massa usando Fillable no model e explicar
+arrays de atributos com demonstração em memória, antes de gravar dados.
 
 ## Verificações e limitações do ambiente
 
@@ -3387,13 +3432,13 @@ Regras de conteúdo e testes SQL Server de integração seguem com etapas própr
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `26e7b5b`,
-  `feat: configura conexão Laravel para migrations`.
+- Último commit local publicado nesta retomada: `36db8e8`,
+  `docs: registra aplicação da migration de produtos`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `26e7b5b`,
-  igual a HEAD e origin/main. Registros/documentação da 5.15 ainda fora de commit.
+- Remoto consultado em 14/10/2026 após o push com `git ls-remote`: `36db8e8`,
+  igual a HEAD e origin/main. Model/documentação da 5.16 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3483,11 +3528,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar aplicação de migration 5.15 confirmada e iniciar 5.16.
+- Ação imediata: publicar primeiro model Produto 5.16 confirmado e iniciar 5.17.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Entendimento da 5.15 recebido: publicar registro e gerar/apresentar o primeiro
-  model Eloquent Produto na 5.16, sem inserção ou troca de catálogo antecipada.
+- Entendimento da 5.16 recebido: publicar model e introduzir campos permitidos
+  para arrays de atributos na 5.17, com demonstração em memória.
   Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -3573,4 +3618,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 14/10/2026 | 5.12 — Colunas de produtos | Blueprint preenchido, sintaxe e SQL simulado conferidos; tabela ausente | Confirmado pelo aluno: "entendi" | Publicado e verificado em bbec195 |
 | 14/10/2026 | 5.13 — Conta de migrations | Conta criada após autorização explícita; autenticação/permissões/escopo/reexecução conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 94e3322; .env ignorado |
 | 14/10/2026 | 5.14 — Conexão Laravel de migrations | Modelo/configuração e senha local; sintaxe/conexões/permissões/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 26e7b5b; .env ignorado |
-| 14/10/2026 | 5.15 — Aplicar migration de produtos | Tabela vazia, esquema e registro lote 1; reexecução/status/HTTP conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 14/10/2026 | 5.15 — Aplicar migration de produtos | Tabela vazia, esquema e registro lote 1; reexecução/status/HTTP conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 36db8e8 |
+| 15/10/2026 | 5.16 — Primeiro model Produto | Gerador, sintaxe/autoload/herança e convenções em memória conferidos | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
