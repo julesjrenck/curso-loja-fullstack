@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.19, primeira consulta Eloquent.
+Módulo 5 — SQL Server e persistência: etapa 5.20, estrutura do primeiro seeder.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -188,6 +188,10 @@ Checkpoint 5.18 publicado e conferido em adb466c. Na 5.19, comando Artisan
 loja:consultar-produtos executa Produto::query()->get() e informa quantidade
 e ausência de cadastros. Sintaxe, registro, coleção vazia, SELECT real e HTTP
 conferidos; sem escrita SQL. Explicação apresentada; entendimento confirmado com "entendi".
+Checkpoint 5.19 publicado e conferido em 133591a. Na 5.20, ProdutoSeeder
+gerado com método run vazio. Sintaxe, autoload, herança e assinatura conferidos
+em memória, sem executar o seeder ou acessar o banco. Explicação apresentada;
+entendimento confirmado com "entendi" em 15/10/2026.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -270,6 +274,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.17 — Fillable no Produto](docs/aulas/05-17-fillable-produto.md)
 - [Aula 5.18 — Cast inteiro do preço](docs/aulas/05-18-cast-preco-produto.md)
 - [Aula 5.19 — Primeira consulta Eloquent](docs/aulas/05-19-consulta-eloquent-produtos.md)
+- [Aula 5.20 — Estrutura do primeiro seeder](docs/aulas/05-20-primeiro-seeder.md)
 
 ## Backend Laravel
 

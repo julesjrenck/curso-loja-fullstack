@@ -109,10 +109,12 @@ credenciais, dependências e serviços preservados.
 ## Continuidade
 
 Consulta implementada, explicação apresentada e verificações concluídas.
-Entendimento da 5.19 confirmado com "entendi" em 15/10/2026. Checkpoint preparado
-para publicação autorizada; último publicado adb466c. Publicar 5.19 e
-iniciar 5.20: apresentar seeders e gerar somente ProdutoSeeder, explicando
-sua estrutura inicial, sem preencher ou executar cadastros nessa etapa.
+Entendimento da 5.19 confirmado com "entendi" em 15/10/2026. Checkpoint
+133591a publicado; HEAD, origin/main e main remota conferidos no SHA
+133591af4ae4b7f63d982a3241bae67df3a07deb.
+Próximo passo realizado na 5.20: apresentar seeders e gerar somente
+ProdutoSeeder, explicando sua estrutura inicial, sem preencher ou executar
+cadastros nessa etapa.
 
 Fonte consultada em 15/10/2026:
 

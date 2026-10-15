@@ -30,11 +30,12 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou o cast de preço da 5.18.
-Primeira consulta Eloquent implementada e verificada na 5.19, com coleção
-vazia e conexão da aplicação. Explicação apresentada e entendimento confirmado
-em 15/10/2026. Próximo passo: apresentar e gerar o seeder inicial na 5.20;
-módulos 6 a 23 não iniciados.
+O módulo 5 confirmou e publicou a primeira consulta Eloquent da 5.19.
+ProdutoSeeder gerado com run vazio na 5.20; sintaxe, autoload e herança
+conferidos em memória. Explicação apresentada; entendimento confirmado com
+"entendi" em 15/10/2026, sem execução ou cadastro. A 5.21
+preencherá run com um produto pelo Eloquent, ainda sem executar o seeder.
+Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
 | Módulo | Conteúdo | Entrega verificável |
