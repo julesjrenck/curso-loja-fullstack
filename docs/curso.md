@@ -30,11 +30,11 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou firstOrCreate da 5.24.
-Na 5.25, duas reexecuções sequenciais do seeder fizeram somente SELECT;
-quantidade, id, campos e datas preservados. Consulta posterior conferida.
-Explicação apresentada; entendimento confirmado com "entendi" em 15/10/2026. A 5.26
-criará CatalogoEloquent para ler nomes do banco, sem trocar o binding ainda.
+O módulo 5 confirmou e publicou a reexecução do seeder da 5.25.
+Na 5.26, CatalogoEloquent implementa Catalogo e lê nomes com pluck/all.
+Sintaxe, contrato, array retornado e SQL real conferidos; binding ainda
+demonstrativo. Explicação apresentada; entendimento confirmado com "entendi"
+em 16/10/2026. A 5.27 trocará o binding e conferirá a página lendo o banco.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.25, reexecução sequencial do seeder.
+Módulo 5 — SQL Server e persistência: etapa 5.26, catálogo com leitura Eloquent.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -213,6 +213,10 @@ Checkpoint 5.24 publicado e conferido em 162b7aa. Na 5.25, ProdutoSeeder
 executado duas vezes em sequência. Ambas fizeram somente SELECT pelo nome;
 quantidade 1, id, campos e datas preservados. Consulta em outro processo
 conferiu a Camiseta. Explicação apresentada; entendimento confirmado com "entendi".
+Checkpoint 5.25 publicado e conferido em 8ec24b4. Na 5.26, CatalogoEloquent
+implementa Catalogo e devolve nomes do banco com pluck('nome')->all(). Sintaxe,
+autoload, contrato, array ['Camiseta'] e SELECT somente de nome conferidos.
+Binding permanece demonstrativo; explicação apresentada, entendimento confirmado com "entendi" em 16/10/2026.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -301,6 +305,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.23 — Leitura dos atributos do Produto](docs/aulas/05-23-atributos-produto.md)
 - [Aula 5.24 — Busca antes do cadastro no seeder](docs/aulas/05-24-first-or-create-seeder.md)
 - [Aula 5.25 — Reexecução sequencial do seeder](docs/aulas/05-25-reexecucao-seeder.md)
+- [Aula 5.26 — Catálogo com leitura Eloquent](docs/aulas/05-26-catalogo-eloquent.md)
 
 ## Backend Laravel
 

@@ -2,14 +2,16 @@
 
 ## Estado atual
 
-- Última atualização: 15/10/2026, referência de data America/Sao_Paulo.
+- Última atualização: 16/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.25 — Reexecução sequencial do seeder.
-- Situação: ProdutoSeeder executado duas vezes em sequência pela conexão
-  sqlsrv/loja_app. Cada chamada fez somente SELECT pelo nome Camiseta;
-  quantidade 1, id 1, atributos e datas preservados. Leitura em outro processo
-  conferida. Explicação da 5.25 apresentada; entendimento confirmado com
-  "entendi" em 15/10/2026. Checkpoint preparado para publicação autorizada.
+- Etapa atual: 5.26 — Catálogo com leitura Eloquent.
+- Situação: CatalogoEloquent implementa Catalogo e listarNomes retorna
+  Produto::query()->pluck('nome')->all(). Sintaxe, autoload, contrato, array
+  ['Camiseta'] e SELECT de uma coluna conferidos como loja_app no banco loja.
+  Binding continua CatalogoDemonstracao. Explicação da 5.26 apresentada;
+  entendimento confirmado com "entendi" em 16/10/2026.
+  Checkpoint preparado para publicação autorizada.
+  Reexecuções 5.25 confirmadas com "entendi" em 15/10/2026 e publicadas.
   firstOrCreate 5.24 confirmado com "entendi" em 15/10/2026 e publicado.
   Leitura de atributos 5.23 confirmada com "entendi" em 15/10/2026 e publicada.
   Persistência 5.22 confirmada com "entendi" em 15/10/2026 e publicada.
@@ -25,7 +27,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 162b7aa, firstOrCreate no seeder 5.24.
+  Último checkpoint publicado: 8ec24b4, reexecução sequencial 5.25.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -58,6 +60,7 @@
 - Etapa 5.23 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.24 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.25 confirmada com "entendi" em 15/10/2026.
+- Etapa 5.26 confirmada com "entendi" em 16/10/2026.
 
 ## Retomada em outro chat
 
@@ -325,6 +328,11 @@ remota retornaram `162b7aa2837f10450b4825ece1513ae3a5395c9d`.
 Etapa 5.25 executou duas reexecuções sequenciais, sem novo cadastro ou mudança
 dos campos/datas; SELECT capturado e leitura posterior conferidos.
 Explicação apresentada e entendimento confirmado com "entendi" em 15/10/2026.
+Checkpoint 5.25 publicado: 8ec24b4; HEAD, origin/main e consulta direta à main
+remota retornaram `8ec24b482bd3febe764679f76f5519e740e631af`.
+Etapa 5.26 criou CatalogoEloquent com leitura de nomes do banco, cumprindo
+Catalogo; sintaxe, retorno e SQL real conferidos. Binding preservado;
+explicação apresentada e entendimento confirmado com "entendi" em 16/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -3800,10 +3808,46 @@ Verificações:
   serviços, catálogo HTTP e contador preservados.
 
 Entendimento da 5.25: confirmado com "entendi" em 15/10/2026.
-Publicação da 5.25: checkpoint preparado para commit/push; último publicado 162b7aa.
-Próximo passo exato: publicar 5.25 e iniciar 5.26: criar App\Services\CatalogoEloquent implementando
+Publicação da 5.25: checkpoint 8ec24b4 publicado com autorização persistente;
+HEAD, origin/main e main remota conferidos em 8ec24b482bd3febe764679f76f5519e740e631af.
+Próximo passo realizado na 5.26: criar App\Services\CatalogoEloquent implementando
 App\Contracts\Catalogo, com listarNomes lendo nomes do banco. Verificar leitura
 e explicar relação com interface/model, sem trocar binding em AppServiceProvider.
+
+## Etapa 5.26 — Catálogo com leitura Eloquent
+
+Objetivo: criar uma implementação do contrato Catalogo que lê nomes do banco.
+Aula em docs/aulas/05-26-catalogo-eloquent.md.
+
+Implementação somente no novo backend/app/Services/CatalogoEloquent.php:
+namespace App\Services, imports Catalogo e Produto, implements Catalogo,
+public listarNomes(): array com retorno Produto::query()->pluck('nome')->all().
+
+Explicação apresentada: namespace/autoload e imports, classe cumprindo interface
+existente, formato array comum às implementações. query prepara a consulta,
+pluck executa SELECT de nome e retorna coleção de valores; all da coleção
+entrega array sem segunda consulta, distinto de Produto::all(). return e
+contrato array, strings versus models, lista vazia quando não há registros.
+Chamada direta ao novo serviço versus resolução atual pelo container.
+
+Verificações em Docker:
+
+- php -l CatalogoEloquent.php passou com código 0.
+- Autoload e instanceof Catalogo conferidos; listarNomes retornou ['Camiseta'].
+- Diagnóstico confirmou sqlsrv, banco loja e login loja_app. QueryExecuted
+  capturou somente select [nome] from [produtos], bindings vazios.
+- Container ainda resolveu CatalogoDemonstracao, com três nomes esperados,
+  sem consulta adicional; binding permanece para a página /loja.
+- Arquivo modo 644, dono 1000:1000; git diff --check passou.
+- Sem gravação SQL ou execução de seeder. Interface/model/provider/controller/
+  view/rotas/seeders/migrations, configuração/credenciais, dependências,
+  serviços e contador preservados.
+
+Entendimento da 5.26: confirmado com "entendi" em 16/10/2026.
+Publicação da 5.26: checkpoint preparado para commit/push; último publicado 8ec24b4.
+Próximo passo exato: publicar 5.26 e iniciar 5.27: trocar binding de Catalogo em AppServiceProvider
+para CatalogoEloquent e conferir HTTP /loja com a Camiseta persistida, explicando
+resolução no controller. Não alterar controller ou cadastrar novos produtos.
 
 ## Verificações e limitações do ambiente
 
@@ -3831,13 +3875,13 @@ e explicar relação com interface/model, sem trocar binding em AppServiceProvid
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `162b7aa`,
-  `feat: busca produto antes de cadastrar no seeder`.
+- Último commit local publicado nesta retomada: `8ec24b4`,
+  `docs: confere reexecução sequencial do seeder`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 15/10/2026 após o push com `git ls-remote`: `162b7aa`,
-  igual a HEAD e origin/main. Documentação da 5.25 ainda fora de commit.
+- Remoto consultado em 15/10/2026 após o push com `git ls-remote`: `8ec24b4`,
+  igual a HEAD e origin/main. Serviço/documentação da 5.26 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3927,11 +3971,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar reexecuções 5.25 confirmadas e iniciar 5.26.
+- Ação imediata: publicar CatalogoEloquent 5.26 confirmado e iniciar 5.27.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Entendimento da 5.25 recebido: publicar checkpoint e criar CatalogoEloquent na
-  5.26 para ler nomes do banco, sem trocar o binding ainda.
+- Entendimento da 5.26 recebido: publicar checkpoint e trocar o binding para
+  CatalogoEloquent na 5.27, conferindo resolução e resposta HTTP.
   Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -4027,4 +4071,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 15/10/2026 | 5.22 — Primeiro produto persistido | Seeder executado uma vez; Camiseta relida em outro processo e quantidade 1 conferidas | Confirmado pelo aluno: "entendi" | Publicado e verificado em 9d03edc |
 | 15/10/2026 | 5.23 — Leitura dos atributos do Produto | foreach e leitura de atributos no comando; sintaxe e saída real conferidas, sem gravação | Confirmado pelo aluno: "entendi" | Publicado e verificado em 11f46d2 |
 | 15/10/2026 | 5.24 — Busca antes do cadastro no seeder | firstOrCreate preparado com busca/dados separados; sintaxe conferida, sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 162b7aa |
-| 15/10/2026 | 5.25 — Reexecução sequencial do seeder | Duas chamadas só SELECT; quantidade/id/atributos/datas preservados e leitura posterior conferida | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 15/10/2026 | 5.25 — Reexecução sequencial do seeder | Duas chamadas só SELECT; quantidade/id/atributos/datas preservados e leitura posterior conferida | Confirmado pelo aluno: "entendi" | Publicado e verificado em 8ec24b4 |
+| 15/10/2026 | 5.26 — Catálogo com leitura Eloquent | Serviço cumpre interface; sintaxe/autoload/retorno/SELECT conferidos, binding preservado | Confirmado pelo aluno: "entendi", em 16/10/2026 | Checkpoint preparado para publicação |

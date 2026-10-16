@@ -105,9 +105,10 @@ O catálogo HTTP ainda usa CatalogoDemonstracao em memória.
 
 Execução, explicação e verificação da 5.25 concluídas. Entendimento confirmado
 com "entendi" em 15/10/2026. Checkpoint preparado para publicação autorizada;
-último publicado 162b7aa.
+publicado em 8ec24b4. HEAD, origin/main e main remota conferidos no SHA
+8ec24b482bd3febe764679f76f5519e740e631af.
 
-Próximo passo exato: publicar 5.25 e iniciar 5.26, criar
+Próximo passo realizado na 5.26: criar
 App\Services\CatalogoEloquent implementando App\Contracts\Catalogo, com
 listarNomes lendo os nomes da tabela produtos. Apresentar implementação e
 verificar leitura sem mudar ainda o binding em AppServiceProvider.
