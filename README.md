@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.29, filtro de produtos ativos.
+Módulo 5 — SQL Server e persistência: etapa 5.30, ordenação dos nomes do catálogo.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -229,6 +229,10 @@ Checkpoint 5.28 publicado e conferido em 1cd8038. Na 5.29, CatalogoEloquent
 filtra where('status', 'ativo') antes de consultar nomes. Sintaxe, array
 ['Camiseta'], SELECT com parâmetro ativo e HTTP 200 conferidos, somente por
 leitura. Explicação apresentada; entendimento confirmado com "entendi".
+Checkpoint 5.29 publicado e conferido em 7199685. Na 5.30, consulta do
+catálogo acrescenta orderBy('nome'), crescente por padrão. Sintaxe, SQL com
+ORDER BY nome ASC e HTTP com a Camiseta conferidos; somente leitura.
+Explicação apresentada; entendimento confirmado com "entendi" em 16/10/2026.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -321,6 +325,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.27 — Página com catálogo do banco](docs/aulas/05-27-binding-catalogo-eloquent.md)
 - [Aula 5.28 — Textos da página do catálogo](docs/aulas/05-28-textos-catalogo.md)
 - [Aula 5.29 — Filtro de produtos ativos](docs/aulas/05-29-filtro-produtos-ativos.md)
+- [Aula 5.30 — Ordenação dos nomes do catálogo](docs/aulas/05-30-ordenacao-catalogo.md)
 
 ## Backend Laravel
 

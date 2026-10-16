@@ -11,6 +11,7 @@ class CatalogoEloquent implements Catalogo
     {
         return Produto::query()
             ->where('status', 'ativo')
+            ->orderBy('nome')
             ->pluck('nome')
             ->all();
     }

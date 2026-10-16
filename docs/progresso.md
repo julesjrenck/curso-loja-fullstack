@@ -4,13 +4,14 @@
 
 - Última atualização: 16/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.29 — Filtro de produtos ativos.
-- Situação: CatalogoEloquent acrescenta where('status', 'ativo') antes de
-  pluck/all. Sintaxe, array ['Camiseta'], SQL com WHERE/param ativo e HTTP
-  200 conferidos. Somente leitura do produto ativo existente; cenários de
-  exclusão de inativo e ausência de ativos ainda não exercitados.
-  Explicação da 5.29 apresentada; entendimento confirmado com "entendi"
+- Etapa atual: 5.30 — Ordenação dos nomes do catálogo.
+- Situação: CatalogoEloquent acrescenta orderBy('nome') antes de pluck.
+  Sintaxe, SQL com WHERE/ORDER BY nome ASC e parâmetro ativo, retorno
+  ['Camiseta'] e HTTP 200 conferidos. Somente leitura; banco com um produto.
+  Cenários com múltiplos nomes, inativos e ausência ainda não exercitados.
+  Explicação da 5.30 apresentada; entendimento confirmado com "entendi"
   em 16/10/2026. Checkpoint preparado para publicação autorizada.
+  Filtro 5.29 confirmado com "entendi" em 16/10/2026 e publicado.
   Textos 5.28 confirmados com "entendi" em 16/10/2026 e publicados.
   Binding 5.27 confirmado com "entrendi" em 16/10/2026 e publicado.
   CatalogoEloquent 5.26 confirmado com "entendi" em 16/10/2026 e publicado.
@@ -30,7 +31,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 1cd8038, textos do catálogo 5.28.
+  Último checkpoint publicado: 7199685, filtro de ativos 5.29.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -67,6 +68,7 @@
 - Etapa 5.27 confirmada com "entrendi" em 16/10/2026.
 - Etapa 5.28 confirmada com "entendi" em 16/10/2026.
 - Etapa 5.29 confirmada com "entendi" em 16/10/2026.
+- Etapa 5.30 confirmada com "entendi" em 16/10/2026.
 
 ## Retomada em outro chat
 
@@ -353,6 +355,10 @@ remota retornaram `1cd8038f21b6f40bfea94d1c5cb1f6f41c4a537d`.
 Etapa 5.29 acrescentou filtro de status ativo em CatalogoEloquent; sintaxe,
 SQL parametrizado, array e HTTP conferidos. Explicação apresentada,
 entendimento confirmado com "entendi" em 16/10/2026.
+Checkpoint 5.29 publicado: 7199685; HEAD, origin/main e consulta direta à main
+remota retornaram `7199685ec8b6c7b9836535c2f91010c1dcbf7e96`.
+Etapa 5.30 acrescentou orderBy('nome'); sintaxe, SQL crescente, retorno e
+HTTP conferidos. Explicação apresentada e entendimento confirmado com "entendi" em 16/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -3967,9 +3973,45 @@ Verificações em Docker:
   configuração/credenciais, dependências, serviços e contador preservados.
 
 Entendimento da 5.29: confirmado com "entendi" em 16/10/2026.
-Publicação da 5.29: checkpoint preparado para commit/push; último publicado 1cd8038.
-Próximo passo exato: publicar 5.29 e iniciar 5.30: ordenar por nome com orderBy('nome'), explicar
+Publicação da 5.29: checkpoint 7199685 publicado com autorização persistente;
+HEAD, origin/main e main remota conferidos em 7199685ec8b6c7b9836535c2f91010c1dcbf7e96.
+Próximo passo realizado na 5.30: ordenar por nome com orderBy('nome'), explicar
 ordem crescente e SQL ORDER BY e verificar consulta/HTTP com dados existentes.
+
+## Etapa 5.30 — Ordenação dos nomes do catálogo
+
+Objetivo: obter nomes de produtos ativos em ordem crescente pelo banco.
+Aula em docs/aulas/05-30-ordenacao-catalogo.md.
+
+Implementação somente em backend/app/Services/CatalogoEloquent.php:
+linha orderBy('nome') entre where e pluck. Demais código preservado.
+
+Explicação apresentada: coluna de ordenação, direção asc padrão e forma
+equivalente explícita; desc como direção decrescente. where seleciona linhas,
+orderBy define ordem, pluck executa e all entrega array à view na ordem recebida.
+SQL ORDER BY nome ASC, ordenação no banco e exemplo hipotético de três nomes,
+sem cadastrá-los na loja.
+
+Verificações em Docker:
+
+- php -l CatalogoEloquent.php passou, código 0.
+- Diagnóstico confirmou banco loja/login loja_app, retorno ['Camiseta'],
+  uma consulta capturada: select [nome] from [produtos] where [status] = ?
+  order by [nome] asc, bindings ['ativo'].
+- HTTP real /loja retornou 200, um li Camiseta, title Loja Fullstack,
+  h2 Catálogo de produtos e X-Curso Laravel. Diagnóstico código 0.
+- Um único produto: mudança visual de ordem entre vários nomes não exercitada.
+  Exclusão de inativos/lista vazia/múltiplos nomes terão dados e banco exclusivos.
+- git diff --check passou; nenhuma gravação SQL. Interface, model, provider,
+  controller, view, comandos, seeders, migrations, configuração/credenciais,
+  dependências, serviços e contador preservados.
+
+Entendimento da 5.30: confirmado com "entendi" em 16/10/2026.
+Publicação da 5.30: checkpoint preparado para commit/push; último publicado 7199685.
+Próximo passo exato: publicar 5.30 e iniciar 5.31: diagnosticar ferramentas de teste do backend,
+composer.lock/vendor, phpunit.xml e banco loja_test/isolamento; explicar
+pendências para testes de ativos/inativos/ordenação/lista vazia em banco exclusivo.
+Somente preparação, sem instalar dependências, configurar testes ou criar contas.
 
 ## Verificações e limitações do ambiente
 
@@ -3997,13 +4039,13 @@ ordem crescente e SQL ORDER BY e verificar consulta/HTTP com dados existentes.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `1cd8038`,
-  `docs: ajusta textos da página do catálogo`.
+- Último commit local publicado nesta retomada: `7199685`,
+  `feat: filtra produtos ativos no catálogo`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 16/10/2026 após o push com `git ls-remote`: `1cd8038`,
-  igual a HEAD e origin/main. Serviço/documentação da 5.29 ainda fora de commit.
+- Remoto consultado em 16/10/2026 após o push com `git ls-remote`: `7199685`,
+  igual a HEAD e origin/main. Serviço/documentação da 5.30 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4093,11 +4135,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar filtro de ativos 5.29 confirmado e iniciar 5.30.
+- Ação imediata: publicar ordenação 5.30 confirmada e iniciar 5.31.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Entendimento da 5.29 recebido: publicar checkpoint e ordenar nomes do catálogo
-  com orderBy na 5.30.
+- Entendimento da 5.30 recebido: publicar checkpoint e diagnosticar ferramentas e
+  isolamento para os testes SQL do backend na 5.31, sem instalação nessa preparação.
   Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -4197,4 +4239,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 15/10/2026 | 5.26 — Catálogo com leitura Eloquent | Serviço cumpre interface; sintaxe/autoload/retorno/SELECT conferidos, binding preservado | Confirmado pelo aluno: "entendi", em 16/10/2026 | Publicado e verificado em f14564c |
 | 16/10/2026 | 5.27 — Página com catálogo do banco | Binding, sintaxe/resolução e HTTP 200 com um produto do banco conferidos | Confirmado pelo aluno: "entrendi" | Publicado e verificado em 0eb7973 |
 | 16/10/2026 | 5.28 — Textos da página do catálogo | Dois textos da view ajustados; HTTP 200 com novo título e Camiseta conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 1cd8038 |
-| 16/10/2026 | 5.29 — Filtro de produtos ativos | where implementado; sintaxe/SQL com parâmetro/retorno ativo/HTTP conferidos, sem gravação | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 16/10/2026 | 5.29 — Filtro de produtos ativos | where implementado; sintaxe/SQL com parâmetro/retorno ativo/HTTP conferidos, sem gravação | Confirmado pelo aluno: "entendi" | Publicado e verificado em 7199685 |
+| 16/10/2026 | 5.30 — Ordenação dos nomes do catálogo | orderBy implementado; sintaxe/SQL com ASC/retorno/HTTP conferidos, somente leitura | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

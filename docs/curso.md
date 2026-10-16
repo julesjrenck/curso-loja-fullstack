@@ -30,11 +30,11 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou os textos da view da 5.28.
-Na 5.29, CatalogoEloquent filtra status ativo antes de pluck. Sintaxe,
-retorno da Camiseta, SQL parametrizado e HTTP conferidos, somente por leitura.
-Explicação apresentada; entendimento confirmado com "entendi" em 16/10/2026. A 5.30
-ordenará os nomes do catálogo com orderBy('nome').
+O módulo 5 confirmou e publicou o filtro de ativos da 5.29.
+Na 5.30, CatalogoEloquent ordena os nomes com orderBy('nome'). Sintaxe,
+ORDER BY crescente, retorno e HTTP conferidos. Explicação apresentada;
+entendimento confirmado com "entendi" em 16/10/2026. A 5.31 diagnosticará ferramentas
+e isolamento necessários aos testes SQL Server do backend, sem instalar ainda.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

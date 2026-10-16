@@ -89,10 +89,10 @@ configuração/credenciais, dependências e serviços preservados. Sem gravaçõ
 
 Filtro implementado e explicado; sintaxe, consulta e HTTP conferidos.
 Entendimento da 5.29 confirmado com "entendi" em 16/10/2026. Checkpoint
-preparado para publicação autorizada; último publicado 1cd8038.
+7199685 publicado; HEAD, origin/main e main remota conferidos no SHA
+7199685ec8b6c7b9836535c2f91010c1dcbf7e96.
 
-Próximo passo exato: publicar 5.29 e iniciar 5.30,
-acrescentar orderBy('nome') à consulta de CatalogoEloquent, explicar ordem
+Próximo passo realizado na 5.30: acrescentar orderBy('nome') à consulta de CatalogoEloquent, explicar ordem
 crescente e SQL ORDER BY, verificando consulta e HTTP com os dados existentes.
 
 Fonte consultada em 16/10/2026:
