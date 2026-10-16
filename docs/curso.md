@@ -30,12 +30,13 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou a instalação das ferramentas de testes da 5.32.
-Na 5.33, descoberta executada: seis pacotes nos manifests, ajuda de artisan test,
-sintaxe e HTTP do catálogo conferidos. Nenhuma suíte executada. Explicação
-apresentada e confirmada com "entendi" em 16/10/2026. A 5.34 preparará o
-script de uma conta exclusiva em loja_test, sem executá-lo nessa etapa.
-Criação da conta, configuração SQL de testes e estrutura ainda pendentes.
+O módulo 5 confirmou e publicou a descoberta de pacotes da 5.33.
+Na 5.34, script de loja_testes em loja_test preparado e analisado com PARSEONLY,
+sem executar as instruções de criação/concessão. Ausência da conta e de tabelas
+conferida depois. Sessão encerrada a pedido do aluno em 16/10/2026 para continuar
+outro dia. Retomar a explicação/dúvidas da 5.34, ainda sem entendimento confirmado.
+Após confirmação, a 5.35 preparará senha local e aplicará/verificará o script. Configuração Laravel
+e estrutura de testes serão etapas posteriores; nenhuma suíte executada.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

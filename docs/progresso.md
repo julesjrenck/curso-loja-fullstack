@@ -4,11 +4,15 @@
 
 - Última atualização: 16/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.33 — Descoberta dos pacotes de desenvolvimento.
-- Situação: package:discover executado; seis pacotes nos manifests e ajuda de
-  artisan test conferida. Sintaxe dos manifests e HTTP do catálogo passaram.
-  Entendimento da 5.33 confirmado com "entendi" em 16/10/2026; publicação a seguir.
-  Nenhuma suíte executada; phpunit.xml/ambiente/banco de testes ainda pendentes.
+- Etapa atual: 5.34 — Script da conta exclusiva de testes.
+- Situação: criar-usuario-testes.sql preparado para loja_testes em loja_test,
+  com leitura/escrita, CREATE TABLE e ALTER dbo. Sintaxe analisada com PARSEONLY;
+  login/usuário continuam ausentes, zero tabelas no banco de testes.
+  Sessão encerrada a pedido do aluno em 16/10/2026 para continuar outro dia.
+  Explicação da 5.34 apresentada; entendimento ainda não confirmado.
+  Retomar pela revisão do script e dúvidas da 5.34 antes de qualquer avanço.
+  Descoberta 5.33 confirmada com "entendi" em 16/10/2026 e publicada.
+  Nenhuma conta criada ou suíte executada; ambiente e estrutura de testes pendentes.
   Instalação 5.32 confirmada com "entendi" em 16/10/2026 e publicada.
   Preparação 5.31 confirmada com "entendi" em 16/10/2026 e publicada.
   Ordenação 5.30 confirmada com "entendi" em 16/10/2026 e publicada.
@@ -32,7 +36,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 6d86416, instalação de ferramentas 5.32.
+  Último checkpoint publicado: f14a335, descoberta dos pacotes 5.33.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -75,6 +79,29 @@
 - Etapa 5.33 confirmada com "entendi" em 16/10/2026.
 
 ## Retomada em outro chat
+
+Encerramento mais recente: em 16/10/2026, o aluno pediu "salve o progresso,
+continuaremos outro dis". Pedido de pausa e salvamento; não é confirmação de
+entendimento da 5.34. Até a 5.33, entendimento confirmado e checkpoint publicado
+em f14a335a35b2400324020fedc08aeb4c454a8386.
+
+Ponto exato de retomada: etapa 5.34, script
+`docker/sqlserver/criar-usuario-testes.sql`, explicado na aula
+`docs/aulas/05-34-script-conta-testes.md`. Login/usuário loja_testes ainda ausentes;
+script apenas escrito e analisado com PARSEONLY, sem aplicar CREATE/ALTER/GRANT.
+Não há senha local de testes, configuração Laravel de testes ou tabelas em
+loja_test. Nenhuma suíte foi executada. Não executar o script ao retomar.
+
+Ler AGENTS.md, roteiro e progresso; conferir Git e arquivos; reapresentar o
+script ou responder às dúvidas e aguardar confirmação explícita de entendimento
+da 5.34. Só então seguir para a 5.35. A autorização anterior para loja_migracoes
+em loja não se estende especificamente à nova conta loja_testes.
+
+Script e registros serão salvos em commit de encerramento e publicados conforme
+o pedido de salvamento, sem declarar a etapa pedagogicamente concluída. Para o
+SHA deste registro, consultar `git log -1` e comparar HEAD, origin/main e a main
+remota; o commit não contém seu próprio SHA. O último checkpoint pedagógico
+confirmado continua sendo a 5.33.
 
 Em 09/10/2026, o aluno informou que continuará o curso amanhã em outro chat.
 A sessão de 09/10 terminou após a explicação da etapa 3.11, sem confirmação
@@ -376,6 +403,11 @@ em 16/10/2026. Checkpoint 5.32 publicado: 6d86416; HEAD, origin/main e consulta
 remota retornaram `6d864163d3131b367a429a836dc50a953e989f91`.
 Etapa 5.33 executou descoberta dos pacotes e conferiu ajuda de artisan test,
 manifests e HTTP, sem suíte. Entendimento confirmado com "entendi" em 16/10/2026.
+Checkpoint 5.33 publicado: f14a335; HEAD, origin/main e consulta à main remota
+retornaram `f14a335a35b2400324020fedc08aeb4c454a8386`.
+Etapa 5.34 preparou script SQL para conta exclusiva de testes, com análise
+sintática sem execução do DDL e ausência da conta conferida depois.
+Explicação apresentada; aguardando entendimento.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -4142,10 +4174,56 @@ Verificações:
   git diff --check passou; código, credenciais, serviços e contador preservados.
 
 Entendimento da 5.33: confirmado com "entendi" em 16/10/2026.
-Publicação da 5.33: documentação local, sem commit/push; último publicado 6d86416.
-Próximo passo exato: publicar 5.33 e iniciar 5.34, preparar e
+Publicação da 5.33: checkpoint f14a335 publicado conforme autorização persistente;
+HEAD, origin/main e main remota conferidos em f14a335a35b2400324020fedc08aeb4c454a8386.
+Próximo passo realizado na 5.34: preparar e
 explicar script SQL de conta exclusiva de testes limitada a loja_test, sem executá-lo.
 Criação da conta, senha local, configuração e estrutura do banco ficarão para depois.
+
+## Etapa 5.34 — Script da conta exclusiva de testes
+
+Objetivo: preparar script SQL de acesso próprio a loja_test, sem criar a conta.
+Aula em docs/aulas/05-34-script-conta-testes.md.
+
+Implementação: docker/sqlserver/criar-usuario-testes.sql escrito com login e
+usuário loja_testes, DEFAULT_DATABASE loja_test, DEFAULT_SCHEMA dbo, senha via
+marcador MSSQL_TESTS_PASSWORD e CHECK_POLICY ON. Papéis db_datareader/db_datawriter,
+CREATE TABLE no banco e ALTER no esquema dbo. Condições de existência para
+login/usuário/papéis; :ON ERROR EXIT interrompe sqlcmd em erro, GO separa lotes.
+Não há criação de usuário/concessão em loja, papéis administrativos ou reset de senha.
+
+Explicação apresentada: identidade de autenticação versus usuário no banco,
+banco padrão não restringe acesso, USE define contexto, papéis de dados versus
+permissões de estrutura, alcance de ALTER incluindo remover objetos de dbo em
+loja_test, variáveis sqlcmd, lotes e verificações condicionais. Permissão para
+criar tabela não cria tabela. Acesso real e reexecução ainda não demonstrados.
+
+Verificações:
+
+- SELECT anterior: loja_test existe, login loja_testes NULL, zero usuários dessa
+  conta em loja_test e loja; zero tabelas de usuário em loja_test.
+- Entrada temporária com SET PARSEONLY ON em lote anterior ao script completo,
+  marcador substituído por texto fictício público, sem criar senha local.
+  sqlcmd no SQL Server Docker terminou com código 0, sem erro de sintaxe.
+- PARSEONLY não compila/executa as instruções; não valida permissões efetivas
+  ou criação da conta. Após desativá-lo em outro lote, SELECT confirmou login
+  NULL, zero usuários da conta e zero tabelas de usuário em loja_test.
+- Nenhum CREATE/ALTER/GRANT aplicado; nenhuma suíte, migration ou seeder executado.
+  Senha administrativa usada internamente via SQLCMDPASSWORD, sem exibição.
+- git diff --check passou; revisão de contexto, marcador de senha e concessões.
+  Ambiente/modelo, configuração Laravel, dependências, serviços e contador preservados.
+
+Entendimento da 5.34: aguardando confirmação explícita.
+Salvamento da 5.34: registro de encerramento preparado para commit/push a pedido
+expresso do aluno em 16/10/2026; não é confirmação de entendimento. Último
+checkpoint confirmado/publicado: f14a335, etapa 5.33. Consultar Git para o SHA
+do registro de encerramento, que não será escrito dentro do próprio commit.
+Próximo passo imediato: retomar a explicação/dúvidas da 5.34 e aguardar entendimento.
+Após confirmação, registrar essa confirmação e iniciar 5.35, preparar campo
+público vazio e senha somente no ambiente local ignorado, aplicar o script e conferir
+identidade, permissões em loja_test, ausência de acesso a loja e reexecução.
+Configuração Laravel e estrutura de testes serão etapas posteriores. Autorização
+anterior de loja_migracoes em loja não é autorização específica da nova conta.
 
 ## Verificações e limitações do ambiente
 
@@ -4173,13 +4251,14 @@ Criação da conta, senha local, configuração e estrutura do banco ficarão pa
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `6d86416`,
-  `docs: registra instalação das ferramentas de testes`.
+- Último commit local publicado nesta retomada: `f14a335`,
+  `docs: registra descoberta dos pacotes de testes`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 16/10/2026 após o push com `git ls-remote`: `6d86416`,
-  igual a HEAD e origin/main. Documentação da 5.33 ainda fora de commit.
+- Remoto consultado em 16/10/2026 após o push com `git ls-remote`: `f14a335`,
+  igual a HEAD e origin/main naquele envio. Registro de encerramento da 5.34
+  será salvo/publicado a pedido do aluno; consultar Git para a revisão mais recente.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4269,12 +4348,13 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar a 5.33, confirmada com "entendi" em 16/10/2026.
+- Sessão encerrada a pedido do aluno em 16/10/2026; continuar outro dia.
+- Na retomada: revisar o script da 5.34 e aguardar confirmação de entendimento.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após publicação da 5.33: iniciar 5.34, preparar/explicar
-  script SQL da conta exclusiva de testes em loja_test, sem executar o script.
-  Criação da conta, credenciais locais, configuração e estrutura seguem pendentes.
+- Após entendimento da 5.34: registrar a confirmação e iniciar 5.35, preparar senha
+  local e aplicar/verificar script da conta loja_testes com o escopo já explicado.
+  Conta ainda ausente; configuração Laravel e estrutura seguem para depois.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -4377,4 +4457,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 16/10/2026 | 5.30 — Ordenação dos nomes do catálogo | orderBy implementado; sintaxe/SQL com ASC/retorno/HTTP conferidos, somente leitura | Confirmado pelo aluno: "entendi" | Publicado e verificado em 8a61f8d |
 | 16/10/2026 | 5.31 — Preparação dos testes do backend | Ferramentas/lock/XML/banco diagnosticados; plataforma e simulação passaram, sem instalação | Confirmado pelo aluno: "entendi" | Publicado e verificado em 4233936 |
 | 16/10/2026 | 5.32 — Ferramentas de testes instaladas | 33 pacotes instalados; PHPUnit/plataforma/109 versões/autoload conferidos, sem suíte | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6d86416 |
-| 16/10/2026 | 5.33 — Descoberta dos pacotes de desenvolvimento | Seis pacotes/manifests, ajuda de test, sintaxe e HTTP conferidos, sem suíte | Confirmado pelo aluno: "entendi" | Local, publicação a seguir |
+| 16/10/2026 | 5.33 — Descoberta dos pacotes de desenvolvimento | Seis pacotes/manifests, ajuda de test, sintaxe e HTTP conferidos, sem suíte | Confirmado pelo aluno: "entendi" | Publicado e verificado em f14a335 |
+| 16/10/2026 | 5.34 — Script da conta exclusiva de testes | SQL preparado; PARSEONLY passou e conta/tabelas continuam ausentes, sem DDL aplicado | Aguardando confirmação; pausa solicitada | Registro de encerramento preparado para publicação; consultar Git |

@@ -90,12 +90,10 @@ composer.json e composer.lock permaneceram iguais: nenhum pacote novo instalado.
 ## Continuidade
 
 Implementação e explicação apresentadas; entendimento da 5.33 confirmado
-com "entendi" em 16/10/2026. Documentação local, publicação a seguir.
-Último checkpoint publicado: 6d86416, instalação 5.32 confirmada com "entendi"
-em 16/10/2026. HEAD, origin/main e main remota conferidos em
-6d864163d3131b367a429a836dc50a953e989f91.
+com "entendi" em 16/10/2026. Checkpoint f14a335 publicado; HEAD, origin/main
+e main remota conferidos em f14a335a35b2400324020fedc08aeb4c454a8386.
 
-Próximo passo exato: publicar 5.33 e iniciar 5.34, preparar e
+Próximo passo realizado na 5.34: preparar e
 explicar o script SQL de uma conta exclusiva de testes, limitada a loja_test.
 Somente escrever/revisar o script nessa próxima etapa; criação da conta,
 senha local, configuração e estrutura do banco de testes ficam para depois.

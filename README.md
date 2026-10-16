@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.33, descoberta dos pacotes de desenvolvimento.
+Módulo 5 — SQL Server e persistência: etapa 5.34, script da conta exclusiva de testes.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -246,8 +246,14 @@ JSON, lock e manifests preservados. Suíte ainda não executada; entendimento
 confirmado com "entendi" em 16/10/2026. Checkpoint 5.32 publicado em 6d86416.
 Na 5.33, descoberta dos pacotes executada e seis entradas conferidas nos manifests.
 Ajuda de artisan test, sintaxe e HTTP do catálogo conferidos; nenhuma suíte
-executada. Entendimento confirmado com "entendi" em 16/10/2026. Acesso exclusivo,
-configuração e estrutura de loja_test seguem pendentes.
+executada. Entendimento confirmado com "entendi" em 16/10/2026; checkpoint
+5.33 publicado e conferido em f14a335. Na 5.34, criar-usuario-testes.sql preparado
+para loja_testes em loja_test; PARSEONLY passou sem aplicar o DDL e a conta
+continua ausente. Explicação apresentada, aguardando entendimento. Criação da
+conta, credenciais locais, configuração e estrutura de testes seguem pendentes.
+Sessão encerrada a pedido do aluno em 16/10/2026; retomar a explicação/dúvidas
+da 5.34 e aguardar entendimento antes de avançar. Registro de salvamento no Git
+não significa confirmação de aprendizado.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -344,6 +350,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.31 — Preparação dos testes do backend](docs/aulas/05-31-preparacao-testes-backend.md)
 - [Aula 5.32 — Ferramentas de testes instaladas](docs/aulas/05-32-instalacao-ferramentas-testes.md)
 - [Aula 5.33 — Descoberta dos pacotes de desenvolvimento](docs/aulas/05-33-descoberta-pacotes-testes.md)
+- [Aula 5.34 — Script da conta exclusiva de testes](docs/aulas/05-34-script-conta-testes.md)
 
 ## Backend Laravel
 
@@ -408,6 +415,11 @@ docker compose exec -T backend php artisan help test --no-ansi
 packages.php contém seis pacotes; services.php inclui os novos providers.
 Ambos são gerados em bootstrap/cache e ignorados pelo Git. Abrir a ajuda não
 executa testes. Configuração SQL Server de testes permanece pendente.
+Na 5.34, docker/sqlserver/criar-usuario-testes.sql foi preparado para login/usuário
+loja_testes em loja_test, com leitura/escrita, CREATE TABLE e ALTER dbo.
+Somente análise sintática com PARSEONLY; conta e permissões ainda não criadas.
+O marcador MSSQL_TESTS_PASSWORD será preenchido por variável local em etapa
+posterior; nenhum valor de senha foi adicionado ao projeto nesta aula.
 Storage e bootstrap/cache já estão graváveis, mantendo o código somente leitura,
 conforme a aula 4.5. Na 4.6, o ambiente foi preparado para sessões/cache em arquivo
 e tarefas síncronas; DB_CONNECTION=sqlsrv indica o banco futuro, ainda sem conexão.
