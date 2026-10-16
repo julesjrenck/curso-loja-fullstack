@@ -4,12 +4,12 @@
 
 - Última atualização: 16/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.32 — Ferramentas de testes instaladas.
-- Situação: 33 dependências de desenvolvimento instaladas do lock, com
-  scripts/plugins dispensados. PHPUnit 12.5.39, plataforma e autoload Tests
-  conferidos; 109 pacotes correspondem ao lock. JSON/lock/manifests preservados.
+- Etapa atual: 5.33 — Descoberta dos pacotes de desenvolvimento.
+- Situação: package:discover executado; seis pacotes nos manifests e ajuda de
+  artisan test conferida. Sintaxe dos manifests e HTTP do catálogo passaram.
+  Entendimento da 5.33 confirmado com "entendi" em 16/10/2026; publicação a seguir.
   Nenhuma suíte executada; phpunit.xml/ambiente/banco de testes ainda pendentes.
-  Entendimento da 5.32 confirmado com "entendi" em 16/10/2026; publicação pendente.
+  Instalação 5.32 confirmada com "entendi" em 16/10/2026 e publicada.
   Preparação 5.31 confirmada com "entendi" em 16/10/2026 e publicada.
   Ordenação 5.30 confirmada com "entendi" em 16/10/2026 e publicada.
   Filtro 5.29 confirmado com "entendi" em 16/10/2026 e publicado.
@@ -32,7 +32,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 4233936, preparação de testes 5.31.
+  Último checkpoint publicado: 6d86416, instalação de ferramentas 5.32.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -72,6 +72,7 @@
 - Etapa 5.30 confirmada com "entendi" em 16/10/2026.
 - Etapa 5.31 confirmada com "entendi" em 16/10/2026.
 - Etapa 5.32 confirmada com "entendi" em 16/10/2026.
+- Etapa 5.33 confirmada com "entendi" em 16/10/2026.
 
 ## Retomada em outro chat
 
@@ -371,7 +372,10 @@ Checkpoint 5.31 publicado: 4233936; HEAD, origin/main e consulta direta à main
 remota retornaram `423393609a1e7323c6a2a8240542e80e85f4f266`.
 Etapa 5.32 instalou 33 pacotes de desenvolvimento do lock e conferiu PHPUnit,
 plataforma e autoload; sem suíte ou SQL. Entendimento confirmado com "entendi"
-em 16/10/2026; checkpoint será publicado a seguir.
+em 16/10/2026. Checkpoint 5.32 publicado: 6d86416; HEAD, origin/main e consulta
+remota retornaram `6d864163d3131b367a429a836dc50a953e989f91`.
+Etapa 5.33 executou descoberta dos pacotes e conferiu ajuda de artisan test,
+manifests e HTTP, sem suíte. Entendimento confirmado com "entendi" em 16/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -4099,10 +4103,49 @@ Verificações:
   Ferramentas e autoload persistem no volume; JSON/lock sem mudanças a publicar.
 
 Entendimento da 5.32: confirmado com "entendi" em 16/10/2026.
-Publicação da 5.32: documentação local, sem commit/push; último publicado 4233936.
-Próximo passo exato: publicar 5.32 e iniciar 5.33: executar package:discover, apresentar
+Publicação da 5.32: checkpoint 6d86416 publicado conforme autorização persistente;
+HEAD, origin/main e main remota conferidos em 6d864163d3131b367a429a836dc50a953e989f91.
+Próximo passo realizado na 5.33: executar package:discover, apresentar
 os manifests gerados e conferir ajuda de artisan test. Sem suíte, criação de
 contas ou configuração de banco nessa etapa de registro dos pacotes.
+
+## Etapa 5.33 — Descoberta dos pacotes de desenvolvimento
+
+Objetivo: registrar os pacotes instalados no Laravel e conferir a ajuda de test.
+Aula em docs/aulas/05-33-descoberta-pacotes-testes.md.
+
+Implementação: package:discover --no-interaction --no-ansi executado no backend
+Docker, código 0. packages.php reconstruído com seis pacotes; services.php
+atualizado na inicialização seguinte. Arquivos gerados continuam ignorados.
+composer.json, composer.lock e bootstrap/providers.php preservados.
+
+Explicação apresentada: autoload encontra classes; descoberta identifica providers
+que registram serviços/comandos. Metadados extra.laravel.providers dos pacotes,
+packages.php versus services.php, caches locais e papel de Collision no test.
+help test mostra documentação sem executar suíte. Scripts foram dispensados na
+instalação anterior; agora executamos explicitamente apenas a descoberta.
+
+Verificações:
+
+- Descoberta código 0; saída mostrou os três pacotes anteriormente carregados.
+  Arquivo posterior tem seis: Pail, Pao, Tinker, Carbon, Collision e Termwind.
+  Código instalado de PackageManifest confirma que build escreve o arquivo,
+  mas mantém o array manifest anteriormente carregado no objeto usado na saída.
+- Novo processo php artisan help test --no-ansi: código 0, descrição, uso e opções
+  como compact, coverage, parallel e profile. Somente ajuda; opções não executadas.
+- Pail, Pao e Collision presentes em services.php; chaves providers/eager/deferred/when.
+  php -l passou nos dois manifests. SHA256 de JSON e lock iguais aos anteriores.
+- GET real de /loja: HTTP 200, X-Curso Laravel, título do catálogo e um item Camiseta.
+  Conferência HTTP manual, sem suíte. git check-ignore confirmou manifests/vendor/.env.
+- Sem .env.testing; phpunit.xml ainda SQLite em memória. Nenhuma suíte, migration,
+  seeder, criação de conta, alteração de permissão ou configuração SQL nesta etapa.
+  git diff --check passou; código, credenciais, serviços e contador preservados.
+
+Entendimento da 5.33: confirmado com "entendi" em 16/10/2026.
+Publicação da 5.33: documentação local, sem commit/push; último publicado 6d86416.
+Próximo passo exato: publicar 5.33 e iniciar 5.34, preparar e
+explicar script SQL de conta exclusiva de testes limitada a loja_test, sem executá-lo.
+Criação da conta, senha local, configuração e estrutura do banco ficarão para depois.
 
 ## Verificações e limitações do ambiente
 
@@ -4130,13 +4173,13 @@ contas ou configuração de banco nessa etapa de registro dos pacotes.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `4233936`,
-  `docs: prepara testes de integração do backend`.
+- Último commit local publicado nesta retomada: `6d86416`,
+  `docs: registra instalação das ferramentas de testes`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 16/10/2026 após o push com `git ls-remote`: `4233936`,
-  igual a HEAD e origin/main. Documentação da 5.32 ainda fora de commit.
+- Remoto consultado em 16/10/2026 após o push com `git ls-remote`: `6d86416`,
+  igual a HEAD e origin/main. Documentação da 5.33 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4226,12 +4269,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar a instalação 5.32, confirmada com "entendi" em 16/10/2026.
+- Ação imediata: publicar a 5.33, confirmada com "entendi" em 16/10/2026.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Após publicação da 5.32: registrar descoberta dos
-  pacotes Laravel na 5.33, conferindo ajuda de test sem executar suíte.
-  Integração continuará com banco e credenciais próprios.
+- Após publicação da 5.33: iniciar 5.34, preparar/explicar
+  script SQL da conta exclusiva de testes em loja_test, sem executar o script.
+  Criação da conta, credenciais locais, configuração e estrutura seguem pendentes.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -4333,4 +4376,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 16/10/2026 | 5.29 — Filtro de produtos ativos | where implementado; sintaxe/SQL com parâmetro/retorno ativo/HTTP conferidos, sem gravação | Confirmado pelo aluno: "entendi" | Publicado e verificado em 7199685 |
 | 16/10/2026 | 5.30 — Ordenação dos nomes do catálogo | orderBy implementado; sintaxe/SQL com ASC/retorno/HTTP conferidos, somente leitura | Confirmado pelo aluno: "entendi" | Publicado e verificado em 8a61f8d |
 | 16/10/2026 | 5.31 — Preparação dos testes do backend | Ferramentas/lock/XML/banco diagnosticados; plataforma e simulação passaram, sem instalação | Confirmado pelo aluno: "entendi" | Publicado e verificado em 4233936 |
-| 16/10/2026 | 5.32 — Ferramentas de testes instaladas | 33 pacotes instalados; PHPUnit/plataforma/109 versões/autoload conferidos, sem suíte | Confirmado pelo aluno: "entendi" | Local, publicação a seguir |
+| 16/10/2026 | 5.32 — Ferramentas de testes instaladas | 33 pacotes instalados; PHPUnit/plataforma/109 versões/autoload conferidos, sem suíte | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6d86416 |
+| 16/10/2026 | 5.33 — Descoberta dos pacotes de desenvolvimento | Seis pacotes/manifests, ajuda de test, sintaxe e HTTP conferidos, sem suíte | Confirmado pelo aluno: "entendi" | Local, publicação a seguir |

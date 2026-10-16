@@ -30,11 +30,12 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou a preparação de testes da 5.31.
-Na 5.32, 33 dependências de desenvolvimento instaladas do lock; PHPUnit 12.5.39,
-plataforma e autoload de testes conferidos. Sem execução de suíte ou scripts
-Laravel. Entendimento confirmado com "entendi" em 16/10/2026. Na continuidade,
-a 5.33 atualizará a descoberta dos pacotes e conferirá a ajuda de artisan test.
+O módulo 5 confirmou e publicou a instalação das ferramentas de testes da 5.32.
+Na 5.33, descoberta executada: seis pacotes nos manifests, ajuda de artisan test,
+sintaxe e HTTP do catálogo conferidos. Nenhuma suíte executada. Explicação
+apresentada e confirmada com "entendi" em 16/10/2026. A 5.34 preparará o
+script de uma conta exclusiva em loja_test, sem executá-lo nessa etapa.
+Criação da conta, configuração SQL de testes e estrutura ainda pendentes.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

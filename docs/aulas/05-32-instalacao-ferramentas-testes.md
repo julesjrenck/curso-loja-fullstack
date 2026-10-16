@@ -88,10 +88,11 @@ a ferramenta não conclui a configuração dos testes SQL Server.
 Instalação e explicação apresentadas; versão, plataforma, pacotes e autoload
 conferidos. Sem mudanças em código, JSON/lock, configuração SQL, credenciais
 ou serviços. git diff --check passou; dependências e autoload ficam no volume.
-Entendimento da 5.32 confirmado com "entendi" em 16/10/2026. Documentação local,
-sem commit/push desta etapa; último publicado 4233936.
+Entendimento da 5.32 confirmado com "entendi" em 16/10/2026. Checkpoint 6d86416
+publicado; HEAD, origin/main e main remota conferidos em
+6d864163d3131b367a429a836dc50a953e989f91.
 
-Próximo passo exato após confirmação: publicar 5.32 e iniciar 5.33,
+Próximo passo realizado na 5.33:
 executar package:discover explicitamente, apresentar os manifests gerados e
 conferir a ajuda de artisan test. Não executar suíte, criar contas ou configurar
 o banco de testes nessa etapa de registro dos pacotes.

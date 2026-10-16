@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.32, ferramentas de testes instaladas.
+Módulo 5 — SQL Server e persistência: etapa 5.33, descoberta dos pacotes de desenvolvimento.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -243,7 +243,11 @@ Checkpoint 5.31 publicado e conferido em 4233936. Na 5.32, 33 dependências
 de desenvolvimento instaladas do lock, sem scripts/plugins. PHPUnit 12.5.39,
 plataforma e autoload Tests conferidos; 109 pacotes correspondem ao lock.
 JSON, lock e manifests preservados. Suíte ainda não executada; entendimento
-confirmado com "entendi" em 16/10/2026.
+confirmado com "entendi" em 16/10/2026. Checkpoint 5.32 publicado em 6d86416.
+Na 5.33, descoberta dos pacotes executada e seis entradas conferidas nos manifests.
+Ajuda de artisan test, sintaxe e HTTP do catálogo conferidos; nenhuma suíte
+executada. Entendimento confirmado com "entendi" em 16/10/2026. Acesso exclusivo,
+configuração e estrutura de loja_test seguem pendentes.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -339,6 +343,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.30 — Ordenação dos nomes do catálogo](docs/aulas/05-30-ordenacao-catalogo.md)
 - [Aula 5.31 — Preparação dos testes do backend](docs/aulas/05-31-preparacao-testes-backend.md)
 - [Aula 5.32 — Ferramentas de testes instaladas](docs/aulas/05-32-instalacao-ferramentas-testes.md)
+- [Aula 5.33 — Descoberta dos pacotes de desenvolvimento](docs/aulas/05-33-descoberta-pacotes-testes.md)
 
 ## Backend Laravel
 
@@ -392,8 +397,17 @@ docker compose exec -T backend php vendor/bin/phpunit --version
 ```
 
 PHPUnit 12.5.39 e autoload Tests conferidos. Esse comando de versão não executa
-testes. Configuração SQL Server de testes e descoberta dos novos pacotes Laravel
-continuam com etapas próprias; os manifests foram preservados nesta instalação.
+testes. Os manifests foram preservados nessa instalação. Na 5.33, a descoberta
+foi executada explicitamente e a ajuda de test conferida, com backend ativo:
+
+```bash
+docker compose exec -T backend php artisan package:discover --no-interaction --no-ansi
+docker compose exec -T backend php artisan help test --no-ansi
+```
+
+packages.php contém seis pacotes; services.php inclui os novos providers.
+Ambos são gerados em bootstrap/cache e ignorados pelo Git. Abrir a ajuda não
+executa testes. Configuração SQL Server de testes permanece pendente.
 Storage e bootstrap/cache já estão graváveis, mantendo o código somente leitura,
 conforme a aula 4.5. Na 4.6, o ambiente foi preparado para sessões/cache em arquivo
 e tarefas síncronas; DB_CONNECTION=sqlsrv indica o banco futuro, ainda sem conexão.
