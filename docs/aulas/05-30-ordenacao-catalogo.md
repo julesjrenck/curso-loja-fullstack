@@ -75,10 +75,10 @@ configuração/credenciais, dependências e serviços preservados. Somente leitu
 
 Ordenação implementada e explicada; sintaxe, SQL e HTTP conferidos.
 Entendimento da 5.30 confirmado com "entendi" em 16/10/2026. Checkpoint
-preparado para publicação autorizada; último publicado 7199685.
+8a61f8d publicado; HEAD, origin/main e main remota conferidos no SHA
+8a61f8da568429203aeb75cdecd3576ca682cbc6.
 
-Próximo passo exato: publicar 5.30 e iniciar 5.31,
-diagnosticar ferramentas de teste do backend, composer.lock/vendor,
+Próximo passo realizado na 5.31: diagnosticar ferramentas de teste do backend, composer.lock/vendor,
 phpunit.xml e situação do banco loja_test/isolamento. Explicar o que falta
 para testar ativos, inativos, ordenação e lista vazia em banco exclusivo.
 Não instalar dependências, configurar testes ou criar contas nessa preparação.

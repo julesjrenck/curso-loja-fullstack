@@ -4,13 +4,15 @@
 
 - Última atualização: 16/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.30 — Ordenação dos nomes do catálogo.
-- Situação: CatalogoEloquent acrescenta orderBy('nome') antes de pluck.
-  Sintaxe, SQL com WHERE/ORDER BY nome ASC e parâmetro ativo, retorno
-  ['Camiseta'] e HTTP 200 conferidos. Somente leitura; banco com um produto.
-  Cenários com múltiplos nomes, inativos e ausência ainda não exercitados.
-  Explicação da 5.30 apresentada; entendimento confirmado com "entendi"
+- Etapa atual: 5.31 — Preparação dos testes do backend.
+- Situação: diagnóstico somente de leitura. PHPUnit 12.5.39 fixado no lock,
+  ausente em vendor; plataforma passou e dry-run prevê 33 instalações,
+  zero updates/remoções. phpunit.xml ainda SQLite :memory:, .env.testing
+  ausente. loja_test ONLINE, zero tabelas/usuários SQL adicionais; contas
+  loja_app/loja_migracoes sem acesso. Sem instalação ou configuração.
+  Explicação da 5.31 apresentada; entendimento confirmado com "entendi"
   em 16/10/2026. Checkpoint preparado para publicação autorizada.
+  Ordenação 5.30 confirmada com "entendi" em 16/10/2026 e publicada.
   Filtro 5.29 confirmado com "entendi" em 16/10/2026 e publicado.
   Textos 5.28 confirmados com "entendi" em 16/10/2026 e publicados.
   Binding 5.27 confirmado com "entrendi" em 16/10/2026 e publicado.
@@ -31,7 +33,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 7199685, filtro de ativos 5.29.
+  Último checkpoint publicado: 8a61f8d, ordenação 5.30.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -69,6 +71,7 @@
 - Etapa 5.28 confirmada com "entendi" em 16/10/2026.
 - Etapa 5.29 confirmada com "entendi" em 16/10/2026.
 - Etapa 5.30 confirmada com "entendi" em 16/10/2026.
+- Etapa 5.31 confirmada com "entendi" em 16/10/2026.
 
 ## Retomada em outro chat
 
@@ -359,6 +362,11 @@ Checkpoint 5.29 publicado: 7199685; HEAD, origin/main e consulta direta à main
 remota retornaram `7199685ec8b6c7b9836535c2f91010c1dcbf7e96`.
 Etapa 5.30 acrescentou orderBy('nome'); sintaxe, SQL crescente, retorno e
 HTTP conferidos. Explicação apresentada e entendimento confirmado com "entendi" em 16/10/2026.
+Checkpoint 5.30 publicado: 8a61f8d; HEAD, origin/main e consulta direta à main
+remota retornaram `8a61f8da568429203aeb75cdecd3576ca682cbc6`.
+Etapa 5.31 diagnosticou ferramentas, XML e isolamento SQL de testes, sem
+instalação/configuração. Explicação apresentada e entendimento confirmado
+com "entendi" em 16/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -4007,11 +4015,52 @@ Verificações em Docker:
   dependências, serviços e contador preservados.
 
 Entendimento da 5.30: confirmado com "entendi" em 16/10/2026.
-Publicação da 5.30: checkpoint preparado para commit/push; último publicado 7199685.
-Próximo passo exato: publicar 5.30 e iniciar 5.31: diagnosticar ferramentas de teste do backend,
+Publicação da 5.30: checkpoint 8a61f8d publicado com autorização persistente;
+HEAD, origin/main e main remota conferidos em 8a61f8da568429203aeb75cdecd3576ca682cbc6.
+Próximo passo realizado na 5.31: diagnosticar ferramentas de teste do backend,
 composer.lock/vendor, phpunit.xml e banco loja_test/isolamento; explicar
 pendências para testes de ativos/inativos/ordenação/lista vazia em banco exclusivo.
 Somente preparação, sem instalar dependências, configurar testes ou criar contas.
+
+## Etapa 5.31 — Preparação dos testes do backend
+
+Objetivo: conferir ferramentas e isolamento necessários aos testes do catálogo.
+Aula em docs/aulas/05-31-preparacao-testes-backend.md. Sem alteração de código.
+
+Explicação apresentada: teste de integração reúne serviço/model/SQL Server,
+com dados conhecidos para ativos/inativos/ordenação/lista vazia em loja_test.
+Pacotes declarados no lock versus realmente instalados; PHPUnit do backend
+independente do laboratório. phpunit.xml/Unit/Feature/TestCase gerados, ambiente
+testing e configuração de banco explícita. Existência do banco versus acesso
+e estrutura preparados. Pendências separadas para instalação, acesso e ambiente.
+
+Verificações somente de leitura em Docker:
+
+- PHP 8.4.26, lock com 33 pacotes de desenvolvimento; PHPUnit 12.5.39,
+  Faker v1.24.1 e Collision v8.9.5 no lock, não instalados.
+  Executável e classe PHPUnit ausentes; autoload-dev Tests configurado no JSON.
+- composer check-platform-reqs --lock --format=json passou, incluindo PHP
+  e extensões exigidas por dependências de desenvolvimento; drivers SQL disponíveis.
+- composer install --dry-run --no-scripts --no-plugins --no-interaction:
+  33 instalações previstas, zero updates/remoções, código 0. Conferência após
+  dry-run confirmou PHPUnit/executável ainda ausentes. Nada instalado.
+- phpunit.xml válido, APP_ENV testing, DB_CONNECTION sqlite, DB_DATABASE
+  :memory:, sessões/cache array. .env.testing e cache de configuração ausentes.
+  Exemplos Unit/Feature existentes apresentados, sem execução.
+- sqlsrv e sqlsrv_migracoes continuam em loja, login correspondente; ambas
+  retornaram HAS_DBACCESS(loja_test)=0. Leituras administrativas em loja_test
+  confirmaram ONLINE, zero tabelas e zero usuários SQL adicionais, sem usuários
+  loja_app/loja_migracoes. Senha passada internamente ao sqlcmd sem exibição.
+- Sem criação de contas/permissões/tabelas/dados, aplicação de migrations,
+  configuração de testes ou execução de suíte. git diff --check passou;
+  código, credenciais, dependências instaladas, serviços e contador preservados.
+
+Entendimento da 5.31: confirmado com "entendi" em 16/10/2026.
+Publicação da 5.31: checkpoint preparado para commit/push; último publicado 8a61f8d.
+Próximo passo exato: publicar 5.31 e iniciar 5.32: instalar dependências de desenvolvimento do lock
+no backend com install --no-scripts --no-plugins --no-interaction, sem update.
+Conferir PHPUnit/plataforma/autoload; não executar suíte ou preparar contas/banco
+nessa instalação. Acesso próprio, configuração SQL de testes e estrutura seguem pendentes.
 
 ## Verificações e limitações do ambiente
 
@@ -4039,13 +4088,13 @@ Somente preparação, sem instalar dependências, configurar testes ou criar con
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `7199685`,
-  `feat: filtra produtos ativos no catálogo`.
+- Último commit local publicado nesta retomada: `8a61f8d`,
+  `feat: ordena nomes do catálogo`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 16/10/2026 após o push com `git ls-remote`: `7199685`,
-  igual a HEAD e origin/main. Serviço/documentação da 5.30 ainda fora de commit.
+- Remoto consultado em 16/10/2026 após o push com `git ls-remote`: `8a61f8d`,
+  igual a HEAD e origin/main. Documentação da 5.31 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4135,11 +4184,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar ordenação 5.30 confirmada e iniciar 5.31.
+- Ação imediata: publicar preparação 5.31 confirmada e iniciar 5.32.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Entendimento da 5.30 recebido: publicar checkpoint e diagnosticar ferramentas e
-  isolamento para os testes SQL do backend na 5.31, sem instalação nessa preparação.
+- Entendimento da 5.31 recebido: publicar checkpoint e instalar dependências de
+  desenvolvimento fixadas no lock na 5.32; verificar ferramentas sem executar suíte.
   Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -4240,4 +4289,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 16/10/2026 | 5.27 — Página com catálogo do banco | Binding, sintaxe/resolução e HTTP 200 com um produto do banco conferidos | Confirmado pelo aluno: "entrendi" | Publicado e verificado em 0eb7973 |
 | 16/10/2026 | 5.28 — Textos da página do catálogo | Dois textos da view ajustados; HTTP 200 com novo título e Camiseta conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 1cd8038 |
 | 16/10/2026 | 5.29 — Filtro de produtos ativos | where implementado; sintaxe/SQL com parâmetro/retorno ativo/HTTP conferidos, sem gravação | Confirmado pelo aluno: "entendi" | Publicado e verificado em 7199685 |
-| 16/10/2026 | 5.30 — Ordenação dos nomes do catálogo | orderBy implementado; sintaxe/SQL com ASC/retorno/HTTP conferidos, somente leitura | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |
+| 16/10/2026 | 5.30 — Ordenação dos nomes do catálogo | orderBy implementado; sintaxe/SQL com ASC/retorno/HTTP conferidos, somente leitura | Confirmado pelo aluno: "entendi" | Publicado e verificado em 8a61f8d |
+| 16/10/2026 | 5.31 — Preparação dos testes do backend | Ferramentas/lock/XML/banco diagnosticados; plataforma e simulação passaram, sem instalação | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

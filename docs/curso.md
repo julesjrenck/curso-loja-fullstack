@@ -30,11 +30,12 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou o filtro de ativos da 5.29.
-Na 5.30, CatalogoEloquent ordena os nomes com orderBy('nome'). Sintaxe,
-ORDER BY crescente, retorno e HTTP conferidos. Explicação apresentada;
-entendimento confirmado com "entendi" em 16/10/2026. A 5.31 diagnosticará ferramentas
-e isolamento necessários aos testes SQL Server do backend, sem instalar ainda.
+O módulo 5 confirmou e publicou a ordenação da 5.30.
+Na 5.31, ferramentas/configuração/banco de testes diagnosticados: PHPUnit no
+lock, ausente em vendor; instalação simulada compatível; XML ainda SQLite,
+loja_test vazio e sem acesso das contas da aplicação. Explicação apresentada;
+entendimento confirmado com "entendi" em 16/10/2026. A 5.32 instalará dependências de
+desenvolvimento do lock e verificará PHPUnit/autoload, sem rodar testes ainda.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
