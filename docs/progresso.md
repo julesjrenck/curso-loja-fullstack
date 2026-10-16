@@ -4,13 +4,14 @@
 
 - Última atualização: 16/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.27 — Página com catálogo do banco.
-- Situação: AppServiceProvider liga Catalogo a CatalogoEloquent. Sintaxe e
-  resolução conferidas; GET /loja pelo kernel e servidor HTTP ativo retornou
-  200 com título, X-Curso e um li Camiseta. Capturado SELECT de nome na
-  requisição, banco loja/login loja_app. Sem escrita SQL.
-  Explicação da 5.27 apresentada; entendimento confirmado com "entrendi"
+- Etapa atual: 5.28 — Textos da página do catálogo.
+- Situação: view loja mostra Catálogo de produtos e, no @else, Nenhum produto
+  disponível. HTTP real 200 com o novo título da lista e um li Camiseta;
+  title e X-Curso preservados. Mensagem de ausência revisada no arquivo,
+  sem exercitar o ramo vazio ou apagar dados.
+  Explicação da 5.28 apresentada; entendimento confirmado com "entendi"
   em 16/10/2026. Checkpoint preparado para publicação autorizada.
+  Binding 5.27 confirmado com "entrendi" em 16/10/2026 e publicado.
   CatalogoEloquent 5.26 confirmado com "entendi" em 16/10/2026 e publicado.
   Reexecuções 5.25 confirmadas com "entendi" em 15/10/2026 e publicadas.
   firstOrCreate 5.24 confirmado com "entendi" em 15/10/2026 e publicado.
@@ -28,7 +29,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: f14564c, CatalogoEloquent 5.26.
+  Último checkpoint publicado: 0eb7973, página com catálogo do banco 5.27.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -63,6 +64,7 @@
 - Etapa 5.25 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.26 confirmada com "entendi" em 16/10/2026.
 - Etapa 5.27 confirmada com "entrendi" em 16/10/2026.
+- Etapa 5.28 confirmada com "entendi" em 16/10/2026.
 
 ## Retomada em outro chat
 
@@ -340,6 +342,10 @@ remota retornaram `f14564c29d64fdd07a709c48da7db1a978db445c`.
 Etapa 5.27 trocou o binding para CatalogoEloquent; resolução e página HTTP
 com Camiseta do banco conferidas. Explicação apresentada e entendimento
 confirmado com "entrendi" em 16/10/2026.
+Checkpoint 5.27 publicado: 0eb7973; HEAD, origin/main e consulta direta à main
+remota retornaram `0eb79735c54353519f2d3be5d7237cdde415d64e`.
+Etapa 5.28 ajustou dois textos da view e conferiu HTTP real com a Camiseta.
+Explicação apresentada e entendimento confirmado com "entendi" em 16/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -3891,10 +3897,36 @@ Verificações em Docker:
   dependências, serviços e contador preservados.
 
 Entendimento da 5.27: confirmado com "entrendi" em 16/10/2026.
-Publicação da 5.27: checkpoint preparado para commit/push; último publicado f14564c.
-Próximo passo exato: publicar 5.27 e iniciar 5.28: ajustar somente título da lista e mensagem de
+Publicação da 5.27: checkpoint 0eb7973 publicado com autorização persistente;
+HEAD, origin/main e main remota conferidos em 0eb79735c54353519f2d3be5d7237cdde415d64e.
+Próximo passo realizado na 5.28: ajustar somente título da lista e mensagem de
 ausência em backend/resources/views/loja.blade.php para catálogo persistido,
 preservando @if/@foreach/escape e verificando HTTP.
+
+## Etapa 5.28 — Textos da página do catálogo
+
+Objetivo: adequar a apresentação do catálogo que recebe dados persistidos.
+Aula em docs/aulas/05-28-textos-catalogo.md.
+
+Implementação somente em backend/resources/views/loja.blade.php: h2 passou
+a Catálogo de produtos; mensagem no @else passou a Nenhum produto disponível.
+
+Explicação apresentada: textos fixos de apresentação pertencem à view;
+nomes dinâmicos chegam por CatalogoEloquent/controller/array e @foreach.
+@if/count escolhe lista ou mensagem, escape do Blade preservado.
+
+Verificação: requisição HTTP real ao backend ativo via PHP Docker conferiu
+status 200, novo h2, um li Camiseta, title Loja Fullstack e X-Curso Laravel.
+Código 0; mensagem do @else revisada no arquivo/diff, sem executar ramo vazio.
+Sem apagar dados para demonstrar ausência ou criar testes para mudança de texto.
+git diff --check passou. Demais código, configuração/credenciais,
+dependências, serviços e contador preservados. Sem gravação SQL ou seeder.
+
+Entendimento da 5.28: confirmado com "entendi" em 16/10/2026.
+Publicação da 5.28: checkpoint preparado para commit/push; último publicado 0eb7973.
+Próximo passo exato: publicar 5.28 e iniciar 5.29: filtrar status ativo em
+CatalogoEloquent antes de pluck, explicando where, parâmetros e SQL gerado.
+Conferir leitura/HTTP com a Camiseta existente sem cadastrar dados descartáveis.
 
 ## Verificações e limitações do ambiente
 
@@ -3922,13 +3954,13 @@ preservando @if/@foreach/escape e verificando HTTP.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `f14564c`,
-  `feat: cria catálogo com leitura Eloquent`.
+- Último commit local publicado nesta retomada: `0eb7973`,
+  `feat: liga página da loja ao catálogo do banco`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 16/10/2026 após o push com `git ls-remote`: `f14564c`,
-  igual a HEAD e origin/main. Provider/documentação da 5.27 ainda fora de commit.
+- Remoto consultado em 16/10/2026 após o push com `git ls-remote`: `0eb7973`,
+  igual a HEAD e origin/main. View/documentação da 5.28 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4018,11 +4050,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar binding 5.27 confirmado e iniciar 5.28.
+- Ação imediata: publicar textos 5.28 confirmados e iniciar 5.29.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Entendimento da 5.27 recebido: publicar checkpoint e ajustar os textos da lista
-  na view na 5.28, mantendo estrutura e escape do Blade.
+- Entendimento da 5.28 recebido: publicar checkpoint e filtrar status ativo na
+  consulta de CatalogoEloquent na 5.29.
   Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -4120,4 +4152,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 15/10/2026 | 5.24 — Busca antes do cadastro no seeder | firstOrCreate preparado com busca/dados separados; sintaxe conferida, sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 162b7aa |
 | 15/10/2026 | 5.25 — Reexecução sequencial do seeder | Duas chamadas só SELECT; quantidade/id/atributos/datas preservados e leitura posterior conferida | Confirmado pelo aluno: "entendi" | Publicado e verificado em 8ec24b4 |
 | 15/10/2026 | 5.26 — Catálogo com leitura Eloquent | Serviço cumpre interface; sintaxe/autoload/retorno/SELECT conferidos, binding preservado | Confirmado pelo aluno: "entendi", em 16/10/2026 | Publicado e verificado em f14564c |
-| 16/10/2026 | 5.27 — Página com catálogo do banco | Binding, sintaxe/resolução e HTTP 200 com um produto do banco conferidos | Confirmado pelo aluno: "entrendi" | Checkpoint preparado para publicação |
+| 16/10/2026 | 5.27 — Página com catálogo do banco | Binding, sintaxe/resolução e HTTP 200 com um produto do banco conferidos | Confirmado pelo aluno: "entrendi" | Publicado e verificado em 0eb7973 |
+| 16/10/2026 | 5.28 — Textos da página do catálogo | Dois textos da view ajustados; HTTP 200 com novo título e Camiseta conferido | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação |

@@ -97,10 +97,10 @@ dependências e serviços Docker preservados.
 
 Integração implementada e explicada; sintaxe, resolução e HTTP conferidos.
 Entendimento da 5.27 confirmado com "entrendi" em 16/10/2026. Checkpoint
-preparado para publicação autorizada; último publicado f14564c.
+0eb7973 publicado; HEAD, origin/main e main remota conferidos no SHA
+0eb79735c54353519f2d3be5d7237cdde415d64e.
 
-Próximo passo exato: publicar 5.27 e iniciar 5.28,
-ajustar somente os textos de título da lista e mensagem de ausência em
+Próximo passo realizado na 5.28: ajustar somente os textos de título da lista e mensagem de ausência em
 backend/resources/views/loja.blade.php para o catálogo persistido, preservando
 @if/@foreach/escape e conferindo a resposta HTTP.
 

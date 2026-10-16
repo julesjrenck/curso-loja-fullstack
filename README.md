@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.27, página com catálogo do banco.
+Módulo 5 — SQL Server e persistência: etapa 5.28, textos da página do catálogo.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -221,6 +221,10 @@ Checkpoint 5.26 publicado e conferido em f14564c. Na 5.27, AppServiceProvider
 liga Catalogo a CatalogoEloquent. Resolução, sintaxe e HTTP /loja 200 com
 um item Camiseta, título e X-Curso conferidos; SELECT de nome capturado.
 Controller e view recebem o mesmo formato; explicação apresentada, entendimento confirmado com "entrendi".
+Checkpoint 5.27 publicado e conferido em 0eb7973. Na 5.28, a view apresenta
+Catálogo de produtos e mensagem Nenhum produto disponível para lista vazia.
+HTTP 200 com o novo título da lista e a Camiseta conferido; explicação
+apresentada, entendimento confirmado com "entendi" em 16/10/2026.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -311,6 +315,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.25 — Reexecução sequencial do seeder](docs/aulas/05-25-reexecucao-seeder.md)
 - [Aula 5.26 — Catálogo com leitura Eloquent](docs/aulas/05-26-catalogo-eloquent.md)
 - [Aula 5.27 — Página com catálogo do banco](docs/aulas/05-27-binding-catalogo-eloquent.md)
+- [Aula 5.28 — Textos da página do catálogo](docs/aulas/05-28-textos-catalogo.md)
 
 ## Backend Laravel
 
@@ -502,8 +507,8 @@ A [aula 5.15](docs/aulas/05-15-aplicar-migration-produtos.md) explica a aplicaç
 a tabela migrations e a verificação. As migrations padrão users/cache/jobs
 continuam sem aplicação. produtos começa vazia; na 5.22 cadastramos a Camiseta.
 Na 5.27, o binding passou a fornecer CatalogoEloquent à página /loja, que lê
-os nomes desse banco pelo model Produto. A view ainda usa os textos de
-demonstração apresentados no módulo 4; sua revisão será a etapa 5.28.
+os nomes desse banco pelo model Produto. Na 5.28, a view passou a mostrar
+Catálogo de produtos e Nenhum produto disponível quando a lista estiver vazia.
 
 Para consultar os produtos pelo model Eloquent no terminal:
 

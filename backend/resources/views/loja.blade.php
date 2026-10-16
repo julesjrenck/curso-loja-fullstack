@@ -8,7 +8,7 @@
     <body>
         <h1>Bem-vindo à {{ $nomeLoja }}!</h1>
 
-        <h2>Produtos de demonstração</h2>
+        <h2>Catálogo de produtos</h2>
         @if (count($produtos) > 0)
             <ul>
                 @foreach ($produtos as $produto)
@@ -16,7 +16,7 @@
                 @endforeach
             </ul>
         @else
-            <p>Nenhum produto de demonstração disponível.</p>
+            <p>Nenhum produto disponível.</p>
         @endif
     </body>
 </html>
