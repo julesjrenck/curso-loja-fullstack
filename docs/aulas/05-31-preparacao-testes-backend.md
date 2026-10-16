@@ -128,10 +128,10 @@ Diagnóstico e explicação apresentados. Plataforma, simulação, XML e metadad
 conferidos; nenhum teste executado ou dependência instalada. Sem mudanças de
 código/configuração, migrations, credenciais ou serviços. git diff --check passou.
 Entendimento da 5.31 confirmado com "entendi" em 16/10/2026. Checkpoint
-preparado para publicação autorizada; último publicado 8a61f8d.
+4233936 publicado; HEAD, origin/main e main remota conferidos no SHA
+423393609a1e7323c6a2a8240542e80e85f4f266.
 
-Próximo passo exato: publicar 5.31 e iniciar 5.32,
-instalar as dependências de desenvolvimento já fixadas no lock do backend
+Próximo passo realizado na 5.32: instalar as dependências de desenvolvimento já fixadas no lock do backend
 com composer install --no-scripts --no-plugins --no-interaction, sem update.
 Verificar versão do PHPUnit, plataforma e autoload de testes; não executar
 suíte, criar contas ou configurar/aplicar banco de testes nessa instalação.
