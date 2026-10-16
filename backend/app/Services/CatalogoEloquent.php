@@ -9,6 +9,9 @@ class CatalogoEloquent implements Catalogo
 {
     public function listarNomes(): array
     {
-        return Produto::query()->pluck('nome')->all();
+        return Produto::query()
+            ->where('status', 'ativo')
+            ->pluck('nome')
+            ->all();
     }
 }

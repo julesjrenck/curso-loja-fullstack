@@ -30,11 +30,11 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou o binding do catálogo da 5.27.
-Na 5.28, textos da view ajustados para Catálogo de produtos e ausência de
-itens disponíveis. HTTP real conferido com a Camiseta do banco. Explicação
-apresentada; entendimento confirmado com "entendi" em 16/10/2026. A 5.29 acrescentará
-o filtro de status ativo na consulta de CatalogoEloquent.
+O módulo 5 confirmou e publicou os textos da view da 5.28.
+Na 5.29, CatalogoEloquent filtra status ativo antes de pluck. Sintaxe,
+retorno da Camiseta, SQL parametrizado e HTTP conferidos, somente por leitura.
+Explicação apresentada; entendimento confirmado com "entendi" em 16/10/2026. A 5.30
+ordenará os nomes do catálogo com orderBy('nome').
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

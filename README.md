@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.28, textos da página do catálogo.
+Módulo 5 — SQL Server e persistência: etapa 5.29, filtro de produtos ativos.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -19,7 +19,7 @@ está configurado como `origin`. A autenticação SSH funcionou, os commits inic
 foram publicados e a branch local `main` acompanha `origin/main`.
 
 O backend Laravel está executável em `backend/`, com dependências e configuração
-local. A página `/loja` apresenta nomes de produtos persistidos no SQL Server,
+local. A página `/loja` apresenta nomes de produtos ativos persistidos no SQL Server,
 fornecidos por CatalogoEloquent através da interface Catalogo.
 Docker e Compose estão instalados. O serviço `php` constrói a imagem pelo
 Dockerfile, inclui Composer 2.10.3 e unzip 6.0-28+deb12u1 e inicia o servidor
@@ -225,6 +225,10 @@ Checkpoint 5.27 publicado e conferido em 0eb7973. Na 5.28, a view apresenta
 Catálogo de produtos e mensagem Nenhum produto disponível para lista vazia.
 HTTP 200 com o novo título da lista e a Camiseta conferido; explicação
 apresentada, entendimento confirmado com "entendi" em 16/10/2026.
+Checkpoint 5.28 publicado e conferido em 1cd8038. Na 5.29, CatalogoEloquent
+filtra where('status', 'ativo') antes de consultar nomes. Sintaxe, array
+['Camiseta'], SELECT com parâmetro ativo e HTTP 200 conferidos, somente por
+leitura. Explicação apresentada; entendimento confirmado com "entendi".
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -316,6 +320,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.26 — Catálogo com leitura Eloquent](docs/aulas/05-26-catalogo-eloquent.md)
 - [Aula 5.27 — Página com catálogo do banco](docs/aulas/05-27-binding-catalogo-eloquent.md)
 - [Aula 5.28 — Textos da página do catálogo](docs/aulas/05-28-textos-catalogo.md)
+- [Aula 5.29 — Filtro de produtos ativos](docs/aulas/05-29-filtro-produtos-ativos.md)
 
 ## Backend Laravel
 

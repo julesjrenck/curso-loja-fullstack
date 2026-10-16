@@ -52,9 +52,9 @@ dependências e serviços preservados. Sem gravação SQL ou execução de seede
 
 Alteração e explicação apresentadas; HTTP conferido. Entendimento da 5.28
 confirmado com "entendi" em 16/10/2026. Checkpoint preparado para publicação
-autorizada; último publicado 0eb7973.
+autorizada e publicado em 1cd8038; HEAD, origin/main e main remota conferidos
+no SHA 1cd8038f21b6f40bfea94d1c5cb1f6f41c4a537d.
 
-Próximo passo exato: publicar 5.28 e iniciar 5.29,
-acrescentar o filtro status = ativo em CatalogoEloquent antes de pluck,
+Próximo passo realizado na 5.29: acrescentar o filtro status = ativo em CatalogoEloquent antes de pluck,
 explicando where, parâmetros e SQL gerado; verificar a leitura e HTTP com
 a Camiseta existente, sem cadastrar dados descartáveis na loja.
