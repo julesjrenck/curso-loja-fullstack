@@ -101,10 +101,10 @@ rotas, seeders, migrations, configuração/credenciais e dependências preservad
 
 Implementação, explicação e verificação concluídas. Entendimento da 5.26
 confirmado com "entendi" em 16/10/2026. Checkpoint preparado para publicação
-autorizada; último publicado 8ec24b4.
+autorizada e publicado em f14564c; HEAD, origin/main e main remota conferidos
+no SHA f14564c29d64fdd07a709c48da7db1a978db445c.
 
-Próximo passo exato: publicar 5.26 e iniciar 5.27,
-trocar o binding de Catalogo em AppServiceProvider para CatalogoEloquent,
+Próximo passo realizado na 5.27: trocar o binding de Catalogo em AppServiceProvider para CatalogoEloquent,
 explicar a resolução no controller e conferir HTTP /loja com a Camiseta
 persistida. Não modificar o controller ou cadastrar novos produtos nessa etapa.
 

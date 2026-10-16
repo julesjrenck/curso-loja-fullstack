@@ -4,13 +4,14 @@
 
 - Última atualização: 16/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.26 — Catálogo com leitura Eloquent.
-- Situação: CatalogoEloquent implementa Catalogo e listarNomes retorna
-  Produto::query()->pluck('nome')->all(). Sintaxe, autoload, contrato, array
-  ['Camiseta'] e SELECT de uma coluna conferidos como loja_app no banco loja.
-  Binding continua CatalogoDemonstracao. Explicação da 5.26 apresentada;
-  entendimento confirmado com "entendi" em 16/10/2026.
-  Checkpoint preparado para publicação autorizada.
+- Etapa atual: 5.27 — Página com catálogo do banco.
+- Situação: AppServiceProvider liga Catalogo a CatalogoEloquent. Sintaxe e
+  resolução conferidas; GET /loja pelo kernel e servidor HTTP ativo retornou
+  200 com título, X-Curso e um li Camiseta. Capturado SELECT de nome na
+  requisição, banco loja/login loja_app. Sem escrita SQL.
+  Explicação da 5.27 apresentada; entendimento confirmado com "entrendi"
+  em 16/10/2026. Checkpoint preparado para publicação autorizada.
+  CatalogoEloquent 5.26 confirmado com "entendi" em 16/10/2026 e publicado.
   Reexecuções 5.25 confirmadas com "entendi" em 15/10/2026 e publicadas.
   firstOrCreate 5.24 confirmado com "entendi" em 15/10/2026 e publicado.
   Leitura de atributos 5.23 confirmada com "entendi" em 15/10/2026 e publicada.
@@ -27,7 +28,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: 8ec24b4, reexecução sequencial 5.25.
+  Último checkpoint publicado: f14564c, CatalogoEloquent 5.26.
   Nenhuma dependência ou serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -61,6 +62,7 @@
 - Etapa 5.24 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.25 confirmada com "entendi" em 15/10/2026.
 - Etapa 5.26 confirmada com "entendi" em 16/10/2026.
+- Etapa 5.27 confirmada com "entrendi" em 16/10/2026.
 
 ## Retomada em outro chat
 
@@ -333,6 +335,11 @@ remota retornaram `8ec24b482bd3febe764679f76f5519e740e631af`.
 Etapa 5.26 criou CatalogoEloquent com leitura de nomes do banco, cumprindo
 Catalogo; sintaxe, retorno e SQL real conferidos. Binding preservado;
 explicação apresentada e entendimento confirmado com "entendi" em 16/10/2026.
+Checkpoint 5.26 publicado: f14564c; HEAD, origin/main e consulta direta à main
+remota retornaram `f14564c29d64fdd07a709c48da7db1a978db445c`.
+Etapa 5.27 trocou o binding para CatalogoEloquent; resolução e página HTTP
+com Camiseta do banco conferidas. Explicação apresentada e entendimento
+confirmado com "entrendi" em 16/10/2026.
 
 ## Perfil e escolhas confirmadas no planejamento
 
@@ -3844,10 +3851,50 @@ Verificações em Docker:
   serviços e contador preservados.
 
 Entendimento da 5.26: confirmado com "entendi" em 16/10/2026.
-Publicação da 5.26: checkpoint preparado para commit/push; último publicado 8ec24b4.
-Próximo passo exato: publicar 5.26 e iniciar 5.27: trocar binding de Catalogo em AppServiceProvider
+Publicação da 5.26: checkpoint f14564c publicado com autorização persistente;
+HEAD, origin/main e main remota conferidos em f14564c29d64fdd07a709c48da7db1a978db445c.
+Próximo passo realizado na 5.27: trocar binding de Catalogo em AppServiceProvider
 para CatalogoEloquent e conferir HTTP /loja com a Camiseta persistida, explicando
 resolução no controller. Não alterar controller ou cadastrar novos produtos.
+
+## Etapa 5.27 — Página com catálogo do banco
+
+Objetivo: fazer o container fornecer o catálogo do banco ao controller existente.
+Aula em docs/aulas/05-27-binding-catalogo-eloquent.md.
+
+Implementação somente em backend/app/Providers/AppServiceProvider.php:
+import CatalogoDemonstracao substituído por CatalogoEloquent, e register
+passou a ligar Catalogo::class a CatalogoEloquent::class no bind.
+
+Explicação apresentada: provider/register/container, primeiro argumento como
+interface e segundo como implementação; ::class como nome de classe, não
+instanciação imediata. Resolução do construtor de LojaController e propriedade
+promovida private Catalogo $catalogo; index chama listarNomes e passa array
+para Blade. Serviço usa Produto/sqlsrv/loja_app; view percorre strings com
+escape. Contrato e formato preservados permitem a troca sem editar controller.
+Consulta ocorre na chamada listarNomes, não no simples registro do binding.
+
+Verificações em Docker:
+
+- php -l AppServiceProvider.php passou com código 0.
+- Container resolveu Catalogo como App\Services\CatalogoEloquent.
+- Diagnóstico do kernel HTTP conferiu banco loja/login loja_app e GET /loja
+  com HTTP 200, título Loja Fullstack, X-Curso Laravel, um li Camiseta.
+- QueryExecuted capturou uma consulta da requisição: select [nome] from
+  [produtos], bindings vazios. Sem escrita SQL ou execução de seeder.
+- Requisição HTTP real ao servidor ativo via PHP Docker, endereço interno
+  127.0.0.1:8000/loja, conferiu os mesmos status/título/header/item. Código 0.
+- Compose ativo publica backend no host em 127.0.0.1:8002. Link /loja indicado
+  para exercício acompanhado; resultado do aluno no navegador não informado.
+- git diff --check passou; código alterado somente no import/binding do provider.
+  Interface, serviço, model, controller, view, rotas, migrations, credenciais,
+  dependências, serviços e contador preservados.
+
+Entendimento da 5.27: confirmado com "entrendi" em 16/10/2026.
+Publicação da 5.27: checkpoint preparado para commit/push; último publicado f14564c.
+Próximo passo exato: publicar 5.27 e iniciar 5.28: ajustar somente título da lista e mensagem de
+ausência em backend/resources/views/loja.blade.php para catálogo persistido,
+preservando @if/@foreach/escape e verificando HTTP.
 
 ## Verificações e limitações do ambiente
 
@@ -3875,13 +3922,13 @@ resolução no controller. Não alterar controller ou cadastrar novos produtos.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `8ec24b4`,
-  `docs: confere reexecução sequencial do seeder`.
+- Último commit local publicado nesta retomada: `f14564c`,
+  `feat: cria catálogo com leitura Eloquent`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 15/10/2026 após o push com `git ls-remote`: `8ec24b4`,
-  igual a HEAD e origin/main. Serviço/documentação da 5.26 ainda fora de commit.
+- Remoto consultado em 16/10/2026 após o push com `git ls-remote`: `f14564c`,
+  igual a HEAD e origin/main. Provider/documentação da 5.27 ainda fora de commit.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -3971,11 +4018,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Chamada identificada na experiência temporária documentada, sem script
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
-- Ação imediata: publicar CatalogoEloquent 5.26 confirmado e iniciar 5.27.
+- Ação imediata: publicar binding 5.27 confirmado e iniciar 5.28.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
-- Entendimento da 5.26 recebido: publicar checkpoint e trocar o binding para
-  CatalogoEloquent na 5.27, conferindo resolução e resposta HTTP.
+- Entendimento da 5.27 recebido: publicar checkpoint e ajustar os textos da lista
+  na view na 5.28, mantendo estrutura e escape do Blade.
   Integração continuará com banco e credenciais próprios.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -4072,4 +4119,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 15/10/2026 | 5.23 — Leitura dos atributos do Produto | foreach e leitura de atributos no comando; sintaxe e saída real conferidas, sem gravação | Confirmado pelo aluno: "entendi" | Publicado e verificado em 11f46d2 |
 | 15/10/2026 | 5.24 — Busca antes do cadastro no seeder | firstOrCreate preparado com busca/dados separados; sintaxe conferida, sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 162b7aa |
 | 15/10/2026 | 5.25 — Reexecução sequencial do seeder | Duas chamadas só SELECT; quantidade/id/atributos/datas preservados e leitura posterior conferida | Confirmado pelo aluno: "entendi" | Publicado e verificado em 8ec24b4 |
-| 15/10/2026 | 5.26 — Catálogo com leitura Eloquent | Serviço cumpre interface; sintaxe/autoload/retorno/SELECT conferidos, binding preservado | Confirmado pelo aluno: "entendi", em 16/10/2026 | Checkpoint preparado para publicação |
+| 15/10/2026 | 5.26 — Catálogo com leitura Eloquent | Serviço cumpre interface; sintaxe/autoload/retorno/SELECT conferidos, binding preservado | Confirmado pelo aluno: "entendi", em 16/10/2026 | Publicado e verificado em f14564c |
+| 16/10/2026 | 5.27 — Página com catálogo do banco | Binding, sintaxe/resolução e HTTP 200 com um produto do banco conferidos | Confirmado pelo aluno: "entrendi" | Checkpoint preparado para publicação |

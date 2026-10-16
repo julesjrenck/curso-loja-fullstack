@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Contracts\Catalogo;
-use App\Services\CatalogoDemonstracao;
+use App\Services\CatalogoEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(Catalogo::class, CatalogoDemonstracao::class);
+        $this->app->bind(Catalogo::class, CatalogoEloquent::class);
     }
 
     /**

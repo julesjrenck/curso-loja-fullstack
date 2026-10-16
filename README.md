@@ -9,7 +9,7 @@ Módulo 1 — Preparação, Git e GitHub: concluído.
 Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
-Módulo 5 — SQL Server e persistência: etapa 5.26, catálogo com leitura Eloquent.
+Módulo 5 — SQL Server e persistência: etapa 5.27, página com catálogo do banco.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -19,8 +19,8 @@ está configurado como `origin`. A autenticação SSH funcionou, os commits inic
 foram publicados e a branch local `main` acompanha `origin/main`.
 
 O backend Laravel está executável em `backend/`, com dependências e configuração
-local. A página `/loja` apresenta produtos de demonstração em memória;
-a persistência em SQL Server será introduzida no módulo 5.
+local. A página `/loja` apresenta nomes de produtos persistidos no SQL Server,
+fornecidos por CatalogoEloquent através da interface Catalogo.
 Docker e Compose estão instalados. O serviço `php` constrói a imagem pelo
 Dockerfile, inclui Composer 2.10.3 e unzip 6.0-28+deb12u1 e inicia o servidor
 PHP 8.4.26 de desenvolvimento.
@@ -217,6 +217,10 @@ Checkpoint 5.25 publicado e conferido em 8ec24b4. Na 5.26, CatalogoEloquent
 implementa Catalogo e devolve nomes do banco com pluck('nome')->all(). Sintaxe,
 autoload, contrato, array ['Camiseta'] e SELECT somente de nome conferidos.
 Binding permanece demonstrativo; explicação apresentada, entendimento confirmado com "entendi" em 16/10/2026.
+Checkpoint 5.26 publicado e conferido em f14564c. Na 5.27, AppServiceProvider
+liga Catalogo a CatalogoEloquent. Resolução, sintaxe e HTTP /loja 200 com
+um item Camiseta, título e X-Curso conferidos; SELECT de nome capturado.
+Controller e view recebem o mesmo formato; explicação apresentada, entendimento confirmado com "entrendi".
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -306,6 +310,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Aula 5.24 — Busca antes do cadastro no seeder](docs/aulas/05-24-first-or-create-seeder.md)
 - [Aula 5.25 — Reexecução sequencial do seeder](docs/aulas/05-25-reexecucao-seeder.md)
 - [Aula 5.26 — Catálogo com leitura Eloquent](docs/aulas/05-26-catalogo-eloquent.md)
+- [Aula 5.27 — Página com catálogo do banco](docs/aulas/05-27-binding-catalogo-eloquent.md)
 
 ## Backend Laravel
 
@@ -495,7 +500,10 @@ docker compose exec -T backend php artisan migrate:status --database=sqlsrv_migr
 
 A [aula 5.15](docs/aulas/05-15-aplicar-migration-produtos.md) explica a aplicação,
 a tabela migrations e a verificação. As migrations padrão users/cache/jobs
-continuam sem aplicação. produtos começa vazia; a página ainda usa nomes em memória.
+continuam sem aplicação. produtos começa vazia; na 5.22 cadastramos a Camiseta.
+Na 5.27, o binding passou a fornecer CatalogoEloquent à página /loja, que lê
+os nomes desse banco pelo model Produto. A view ainda usa os textos de
+demonstração apresentados no módulo 4; sua revisão será a etapa 5.28.
 
 Para consultar os produtos pelo model Eloquent no terminal:
 

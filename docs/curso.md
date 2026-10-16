@@ -30,11 +30,11 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
 Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
-O módulo 5 confirmou e publicou a reexecução do seeder da 5.25.
-Na 5.26, CatalogoEloquent implementa Catalogo e lê nomes com pluck/all.
-Sintaxe, contrato, array retornado e SQL real conferidos; binding ainda
-demonstrativo. Explicação apresentada; entendimento confirmado com "entendi"
-em 16/10/2026. A 5.27 trocará o binding e conferirá a página lendo o banco.
+O módulo 5 confirmou e publicou CatalogoEloquent da 5.26.
+Na 5.27, AppServiceProvider liga Catalogo a CatalogoEloquent. Resolução e
+HTTP /loja com a Camiseta do banco conferidos, com SELECT de nome capturado.
+Explicação apresentada; entendimento confirmado com "entrendi" em 16/10/2026. A 5.28
+ajustará os textos da view para o catálogo persistido.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
