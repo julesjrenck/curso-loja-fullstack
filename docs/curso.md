@@ -45,8 +45,12 @@ Explicação apresentada; entendimento da 5.36 confirmado com "entendi" em
 19/10/2026 e publicado em 1c8c380. Na 5.37, .env.testing local criado com chave
 própria e senha existente de loja_testes; carregamento, criptografia e SELECT
 Laravel em loja_test conferidos. Ambiente normal segue loja/loja_app.
-Entendimento da 5.37 confirmado com "entendi" em 19/10/2026. Depois, 5.38: alinhar phpunit.xml
-ao SQL Server de testes. Estrutura pendente; nenhuma suíte executada.
+Entendimento da 5.37 confirmado com "entendi" em 19/10/2026 e publicado em d80d241.
+Na 5.38, phpunit.xml passou a sqlsrv/loja_test; XSD, variáveis pelo carregador
+real PHPUnit e SELECT Laravel conferidos, sem executar a suíte. Entendimento
+da 5.38 confirmado com "entendi" em 19/10/2026 após esclarecer APP_ENV.
+Depois, 5.39: revisar e executar os testes de
+exemplo existentes. Estrutura do banco de testes pendente; nenhuma suíte executada.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

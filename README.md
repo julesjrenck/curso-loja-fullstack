@@ -261,7 +261,12 @@ entendimento da 5.36 confirmado com "entendi" em 19/10/2026, publicado em 1c8c38
 Na 5.37, .env.testing local criado com chave própria e senha existente de
 loja_testes; carregamento e SELECT Laravel conferidos em loja_test, sem acesso
 a loja e sem tabelas. Execução normal segue loja/loja_app. Entendimento da 5.37
-confirmado com "entendi" em 19/10/2026; phpunit.xml ainda SQLite/:memory:, ajuste na 5.38.
+confirmado com "entendi" em 19/10/2026, publicado em d80d241. Na 5.38,
+phpunit.xml ajustado para sqlsrv/loja_test; XSD e aplicação das variáveis pelo
+carregador real PHPUnit conferidos. Diagnóstico Laravel confirmou .env.testing
+e conexão loja_test/loja_testes, sem acesso a loja e com zero tabelas.
+Entendimento da 5.38 confirmado com "entendi" após esclarecer APP_ENV em
+19/10/2026; próxima etapa: testes de exemplo.
 Nenhuma suíte executada. .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
