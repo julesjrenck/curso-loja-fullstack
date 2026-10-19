@@ -48,9 +48,12 @@ Laravel em loja_test conferidos. Ambiente normal segue loja/loja_app.
 Entendimento da 5.37 confirmado com "entendi" em 19/10/2026 e publicado em d80d241.
 Na 5.38, phpunit.xml passou a sqlsrv/loja_test; XSD, variáveis pelo carregador
 real PHPUnit e SELECT Laravel conferidos, sem executar a suíte. Entendimento
-da 5.38 confirmado com "entendi" em 19/10/2026 após esclarecer APP_ENV.
-Depois, 5.39: revisar e executar os testes de
-exemplo existentes. Estrutura do banco de testes pendente; nenhuma suíte executada.
+da 5.38 confirmado com "entendi" em 19/10/2026 após esclarecer APP_ENV,
+publicado em 734fc5f. Na 5.39, dois testes de exemplo apresentados e executados:
+2 testes/2 asserções passaram, sem código alterado. Não consultam SQL nem
+verificam catálogo; SELECT separado confirmou zero tabelas em loja_test.
+Entendimento da 5.39 confirmado com "entendi" em 19/10/2026. Depois, 5.40: preparar a tabela
+produtos em loja_test pela migration existente e conferir conexão/esquema.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

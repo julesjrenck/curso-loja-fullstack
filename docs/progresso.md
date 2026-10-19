@@ -4,22 +4,26 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.38 — Configuração PHPUnit para SQL Server.
-- Situação: backend/phpunit.xml ajustado em duas entradas: DB_CONNECTION sqlsrv
-  e DB_DATABASE loja_test. Validação XSD e carregador real de variáveis PHPUnit
-  conferidos em diagnóstico temporário; Laravel selecionou .env.testing e
-  conectou a loja_test como loja_testes, sem acesso a loja e com zero tabelas.
-  Chave/senha continuam apenas locais. Nenhuma suíte executada.
-  Explicação da 5.38 apresentada; entendimento confirmado com "entendi"
-  em 19/10/2026, após esclarecer a seleção de .env.testing. Publicar checkpoint.
+- Etapa atual: 5.39 — Primeira execução dos testes de exemplo do backend.
+- Situação: testes gerados Unit/ExampleTest e Feature/ExampleTest apresentados
+  e executados sem alterações. PHPUnit 12.5.39/PHP 8.4.26: 2 testes e 2 asserções,
+  código 0. Exemplo unitário confere true; exemplo Laravel confere GET / com 200.
+  Sem teste de catálogo ou consulta SQL nesses casos. SELECT separado após
+  a suíte confirmou loja_test/loja_testes, sem acesso a loja e zero tabelas.
+  Explicação da 5.39 apresentada; entendimento confirmado com "entendi"
+  em 19/10/2026. Publicar os registros e iniciar a preparação da 5.40.
+  Etapa 5.38 confirmada com "entendi" após esclarecer APP_ENV e publicada
+  em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.39, revisar e executar os testes de exemplo existentes.
-  Nenhuma suíte executada. Conta de testes criada e verificada na 5.35;
+  Próxima etapa após confirmação: 5.40, preparar a tabela produtos em loja_test
+  a partir da migration existente, conferindo conexão e esquema.
+  Suíte inicial de exemplos executada; testes de catálogo ainda pendentes.
+  Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
   Descoberta 5.33 confirmada com "entendi" em 16/10/2026 e publicada.
-  Estrutura do banco de testes pendente; nenhuma suíte executada.
+  Estrutura do banco de testes pendente; exemplos executados na 5.39.
   Instalação 5.32 confirmada com "entendi" em 16/10/2026 e publicada.
   Preparação 5.31 confirmada com "entendi" em 16/10/2026 e publicada.
   Ordenação 5.30 confirmada com "entendi" em 16/10/2026 e publicada.
@@ -43,7 +47,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: d80d241, ambiente local 5.37.
+  Último checkpoint pedagógico confirmado/publicado: 734fc5f, configuração PHPUnit 5.38.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -90,21 +94,21 @@
 - Etapa 5.36 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.37 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.38 confirmada com "entendi" em 19/10/2026, após esclarecer APP_ENV.
+- Etapa 5.39 confirmada com "entendi" em 19/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.37 confirmada com "entendi" e publicada
-em d80d24172b92045f93f0e9fd3fe1a2fd32bfdf91, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.38 implementada e explicada: phpunit.xml agora define
-sqlsrv/loja_test. Diagnóstico aplicou as variáveis pelo carregador real PHPUnit,
-iniciou Laravel e conferiu .env.testing, loja_test/loja_testes, sem acesso a loja
-e zero tabelas. XML validado no XSD instalado. Etapa 5.38 confirmada com
-"entendi" em 19/10/2026 após esclarecimento de APP_ENV. Próximo passo, 5.39: revisar os testes de
-exemplo existentes, executar essa suíte inicial e interpretar o alcance dos
-resultados, sem criar testes de catálogo ou tabelas antecipadamente.
-Nenhuma migration, seeder ou suíte executada até a 5.38. Em novo clone,
-.env.testing não vem do Git; preparar os valores locais antes de usar testes.
-Registros abaixo são históricos.
+Estado mais recente, em 19/10/2026: 5.38 confirmada com "entendi" após esclarecer
+APP_ENV e publicada em 734fc5f622c2c2030508e89d62050fbb5f00ec4b, igual a HEAD,
+origin/main e main remota no envio. Etapa 5.39 explicada/verificada: os dois
+testes de exemplo existentes passaram, 2 testes/2 asserções. Casos não consultam
+SQL nem verificam catálogo. SELECT separado pós-suíte confirmou loja_test/
+loja_testes, sem acesso a loja e zero tabelas. Entendimento da 5.39 confirmado
+com "entendi" em 19/10/2026. Próximo passo, 5.40: preparar a tabela produtos
+em loja_test a partir da migration existente, verificando conexão e esquema;
+testes do catálogo serão etapas posteriores. Em novo clone .env.testing não
+vem do Git; preparar os valores locais antes de usar testes. Registros abaixo
+são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
 5.34 conferidos. Git inicialmente sem alterações locais; HEAD, origin/main e
@@ -4437,13 +4441,55 @@ o seleciona. Não é o APP_ENV dentro de .env.testing que seleciona o próprio
 arquivo. --env=testing é o caminho explícito do console. Sem arquivo específico,
 o carregador mantém o nome anterior, normalmente .env; não cria a cópia.
 Após a explicação, aluno confirmou entendimento com "entendi" em 19/10/2026.
-Publicação da 5.38: XML e registros preparados para commit/push conforme
-autorização persistente; consultar Git e conferir o remoto após o envio.
-Último checkpoint confirmado/publicado: d80d241, etapa 5.37.
+Publicação da 5.38: checkpoint 734fc5f publicado conforme autorização persistente;
+HEAD, origin/main e main remota conferidos em 734fc5f622c2c2030508e89d62050fbb5f00ec4b.
 Próximo passo após a confirmação: 5.39,
 apresentar os dois testes de exemplo existentes, executar a suíte inicial e
 interpretar o que comprova. Banco de testes ainda sem estrutura de aplicação;
 não antecipar testes de catálogo ou criação de tabelas nessa revisão inicial.
+
+## Etapa 5.39 — Primeira execução dos testes de exemplo do backend
+
+Data: 19/10/2026. Objetivo: apresentar os testes gerados e verificar a suíte
+inicial sem escrever testes de catálogo ou preparar tabelas antecipadamente.
+Aula em docs/aulas/05-39-primeira-suite-backend.md.
+
+Implementação: nenhuma alteração no código. Apresentados tests/Unit/ExampleTest.php,
+tests/Feature/ExampleTest.php e tests/TestCase.php já existentes no backend.
+Executados em Docker com php vendor/bin/phpunit --testdox --colors=never
+--do-not-cache-result. Apenas registros adicionados nesta etapa.
+
+Explicação apresentada: namespace separa as duas classes ExampleTest; use
+escolhe o TestCase base. Exemplo unitário herda diretamente do PHPUnit e usa
+assertTrue(true). Exemplo Feature herda de Tests\\TestCase, que estende a base
+Laravel e prepara a aplicação. Método test_ é descoberto pelo PHPUnit; void
+indica ausência de valor retornado. $this->get('/') faz requisição interna
+e assertStatus(200) confere somente o status. Rota / retorna welcome;
+não é a rota /loja. Nenhum navegador ou servidor HTTP externo é necessário.
+RefreshDatabase aparece apenas em comentário, sem uso efetivo no teste.
+
+Verificações realizadas:
+
+- PHPUnit 12.5.39 em PHP 8.4.26 leu /app/phpunit.xml e executou exatamente
+  os dois exemplos: OK (2 tests, 2 assertions), código 0, sem falhas/avisos.
+- --testdox exibe descrições, --colors=never evita códigos de cor e
+  --do-not-cache-result evita escrita do cache de resultados no código somente leitura.
+- Casos não fazem consultas SQL nem assertions de catálogo. O resultado
+  comprova execução PHPUnit e resposta HTTP 200 da raiz no ambiente Laravel;
+  não comprova persistência, filtro, ordenação ou conteúdo do catálogo.
+- Diagnóstico separado após a suíte aplicou XML e consultou SQL: loja_test,
+  login/usuário loja_testes, HAS_DBACCESS loja = 0 e zero tabelas. Código 0.
+- Git limpo antes dos novos registros; arquivos privados continuam ignorados,
+  ausentes do índice. git diff --check passou; código/configuração preservados.
+  Nenhuma migration, seeder, instalação ou alteração de credencial executada.
+
+Entendimento da 5.39: confirmado com "entendi" em 19/10/2026.
+Publicação da 5.39: registros preparados para commit/push conforme autorização
+persistente; consultar Git e conferir o remoto após o envio.
+Último checkpoint confirmado/publicado: 734fc5f, etapa 5.38.
+Próximo passo após a confirmação: 5.40,
+preparar a tabela produtos em loja_test a partir da migration existente,
+verificando a identidade da conexão e o esquema. Não antecipar testes de catálogo.
 
 ## Verificações e limitações do ambiente
 
@@ -4471,14 +4517,14 @@ não antecipar testes de catálogo ou criação de tabelas nessa revisão inicia
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `d80d241`,
-  `docs: registra ambiente local Laravel de testes`.
+- Último commit local publicado conferido nesta retomada: `734fc5f`,
+  `test: configura PHPUnit para SQL Server de testes`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `d80d241`,
-  igual a HEAD e origin/main. Etapa 5.37 confirmada e publicada;
-  XML e documentação da 5.38 ficam locais até a confirmação de entendimento.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `734fc5f`,
+  igual a HEAD e origin/main. Etapa 5.38 confirmada e publicada;
+  documentação da 5.39 fica local até a confirmação de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4576,8 +4622,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Modelo da 5.36 confirmado/publicado. .env.testing da 5.37 preparado e
   carregamento/conexão verificados por leitura; entendimento confirmado com "entendi".
   Etapa 5.38 ajustou phpunit.xml e verificou XML/variáveis/conexão; entendimento
-  confirmado com "entendi" após esclarecer APP_ENV. Depois, 5.39: testes de exemplo.
-  Estrutura do banco de testes pendente.
+  confirmado com "entendi" após esclarecer APP_ENV. Na 5.39, exemplos passaram:
+  2 testes/2 asserções, entendimento confirmado com "entendi". Depois, 5.40: tabela produtos em
+  loja_test pela migration existente. Estrutura do banco de testes pendente.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -4685,4 +4732,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.35 — Aplicação da conta exclusiva de testes | Senha local e conta criadas; autenticação, permissões, isolamento e reexecução conferidos; zero tabelas | Confirmado pelo aluno: "entendi" | Publicado e verificado em 04a9a7c |
 | 19/10/2026 | 5.36 — Modelo do ambiente Laravel de testes | Modelo público e exceção Git preparados; análise phpdotenv e exclusões conferidas, sem configuração local | Confirmado pelo aluno: "entendi" | Publicado e verificado em 1c8c380 |
 | 19/10/2026 | 5.37 — Configuração local Laravel de testes | .env.testing local criado; chave própria, carregamento, criptografia e SELECT em loja_test conferidos; ambiente normal preservado | Confirmado pelo aluno: "entendi" | Publicado e verificado em d80d241; segredos ignorados |
-| 19/10/2026 | 5.38 — Configuração PHPUnit para SQL Server | Duas entradas XML ajustadas; XSD, carregador de variáveis e SELECT Laravel conferidos, sem suíte | Confirmado pelo aluno: "entendi", após esclarecer APP_ENV | Checkpoint preparado para publicação; consultar Git |
+| 19/10/2026 | 5.38 — Configuração PHPUnit para SQL Server | Duas entradas XML ajustadas; XSD, carregador de variáveis e SELECT Laravel conferidos, sem suíte | Confirmado pelo aluno: "entendi", após esclarecer APP_ENV | Publicado e verificado em 734fc5f |
+| 19/10/2026 | 5.39 — Primeira execução dos testes de exemplo do backend | Dois exemplos existentes executados: 2 testes/2 asserções; SELECT separado confirmou zero tabelas | Confirmado pelo aluno: "entendi" | Registros preparados para publicação; consultar Git |

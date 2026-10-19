@@ -266,8 +266,12 @@ phpunit.xml ajustado para sqlsrv/loja_test; XSD e aplicação das variáveis pel
 carregador real PHPUnit conferidos. Diagnóstico Laravel confirmou .env.testing
 e conexão loja_test/loja_testes, sem acesso a loja e com zero tabelas.
 Entendimento da 5.38 confirmado com "entendi" após esclarecer APP_ENV em
-19/10/2026; próxima etapa: testes de exemplo.
-Nenhuma suíte executada. .env.testing não vem do Git em novo clone; preparar
+19/10/2026, publicado em 734fc5f. Na 5.39, exemplos existentes executados:
+2 testes/2 asserções passaram. Conferem true e GET / com status 200, sem
+consulta SQL ou teste de catálogo. SELECT separado confirmou zero tabelas
+em loja_test. Entendimento da 5.39 confirmado com "entendi" em 19/10/2026; próxima etapa:
+tabela produtos no banco de testes. Detalhes em docs/aulas/05-39-primeira-suite-backend.md.
+.env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
