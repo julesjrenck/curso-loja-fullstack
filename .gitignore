@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+!/backend/.env.testing.example
 
 # Dependências instaladas por Composer e npm
 vendor/

@@ -4,13 +4,16 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.35 — Aplicação da conta exclusiva de testes.
-- Situação: loja_testes criada e verificada em loja_test, com leitura/escrita,
-  CREATE TABLE e ALTER dbo. Senha no .env local ignorado; modelo público vazio.
-  Autenticação, permissões efetivas, ausência de acesso a loja e reexecução
-  conferidas. Banco loja_test continua sem tabelas; nenhuma suíte executada.
-  Explicação da 5.35 apresentada; entendimento confirmado com "entendi"
-  em 19/10/2026. Preparar publicação e iniciar o modelo da 5.36.
+- Etapa atual: 5.36 — Modelo do ambiente Laravel de testes.
+- Situação: backend/.env.testing.example preparado com sqlsrv, banco loja_test,
+  usuário loja_testes, APP_KEY/DB_PASSWORD vazios e serviços de testes em memória.
+  Exceção específica no .gitignore permite versionar apenas o novo modelo.
+  Análise com phpdotenv em Docker passou, sem carregar variáveis ou conectar ao banco.
+  Explicação da 5.36 apresentada; entendimento confirmado com "entendi"
+  em 19/10/2026. Publicar o checkpoint e iniciar a preparação local da 5.37.
+  .env.testing ainda ausente; phpunit.xml continua SQLite/:memory:.
+  Nenhuma suíte executada. Conta de testes criada e verificada na 5.35;
+  entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
   Descoberta 5.33 confirmada com "entendi" em 16/10/2026 e publicada.
   Configuração Laravel e estrutura de testes pendentes; nenhuma suíte executada.
@@ -37,7 +40,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 49a22c5, confirmação 5.34.
+  Último checkpoint pedagógico confirmado/publicado: 04a9a7c, conta de testes 5.35.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -81,18 +84,20 @@
 - Etapa 5.33 confirmada com "entendi" em 16/10/2026.
 - Etapa 5.34 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.35 confirmada com "entendi" em 19/10/2026.
+- Etapa 5.36 confirmada com "entendi" em 19/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.34 confirmada com "entendi" e publicada
-em 49a22c5e54064d0e7acd340c9814cb521fafc7fa, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.35 aplicada e verificada; conta loja_testes criada em
-loja_test, senha somente no .env local ignorado, modelo público com campo vazio.
-Nenhuma tabela criada e nenhuma suíte executada. Entendimento da 5.35 confirmado
-com "entendi" em 19/10/2026; publicar checkpoint e iniciar
-5.36, preparar o modelo de ambiente de testes do Laravel em pequena etapa;
-configuração local, phpunit.xml e execução de testes serão tratadas conforme
-essa preparação. Registros de pausa abaixo descrevem estados anteriores.
+Estado mais recente, em 19/10/2026: 5.35 confirmada com "entendi" e publicada
+em 04a9a7cd16a9d07091b4cbaf50c3adc90e6402fc, igual a HEAD, origin/main e main
+remota no envio. Conta loja_testes criada/verificada em loja_test; senha no .env
+local da raiz. Etapa 5.36 implementada e explicada: modelo público
+backend/.env.testing.example e exceção específica no .gitignore. Análise com
+phpdotenv passou, sem aplicar o modelo ao ambiente. Entendimento da 5.36
+confirmado com "entendi" em 19/10/2026. Próximo passo: 5.37, preparar a cópia local
+backend/.env.testing com chave própria e senha existente de loja_testes,
+verificar carregamento e conexão por leitura, sem executar suíte ou migrations.
+phpunit.xml será ajustado em etapa posterior. Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
 5.34 conferidos. Git inicialmente sem alterações locais; HEAD, origin/main e
@@ -4291,11 +4296,55 @@ Verificações realizadas:
   Laravel, phpunit.xml, migration, seeder, dependência ou suíte alterada/executada.
 
 Entendimento da 5.35: confirmado com "entendi" em 19/10/2026.
-Publicação da 5.35: checkpoint preparado para commit/push conforme autorização
-persistente; consultar Git para o SHA e conferir o remoto após o envio.
-Último checkpoint confirmado/publicado: 49a22c5, etapa 5.34.
+Publicação da 5.35: checkpoint 04a9a7c publicado conforme autorização persistente;
+HEAD, origin/main e main remota conferidos em 04a9a7cd16a9d07091b4cbaf50c3adc90e6402fc.
 Próximo passo após a confirmação: iniciar 5.36 pelo modelo de ambiente de testes do Laravel, explicando a separação
 das configurações e sem executar testes antecipadamente.
+
+## Etapa 5.36 — Modelo do ambiente Laravel de testes
+
+Data: 19/10/2026. Objetivo: documentar as variáveis do ambiente Laravel de
+testes sem criar configuração local nem executar a suíte. Aula em
+docs/aulas/05-36-modelo-ambiente-testes.md.
+
+Implementação: backend/.env.testing.example com APP_ENV testing, APP_KEY vazio,
+DB_URL vazio, conexão sqlsrv, host Docker sqlserver:1433, banco loja_test,
+usuário loja_testes e DB_PASSWORD vazio. Opções TLS locais como na conexão
+estudada; cache/sessão/mail array, fila sync, broadcast null e BCRYPT_ROUNDS 4.
+Exceção !/backend/.env.testing.example no .gitignore da raiz permite versionar
+esse modelo específico; .env.testing e os arquivos com segredos continuam ignorados.
+
+Explicação apresentada: modelo público não é carregado automaticamente pelo
+Laravel. A cópia local será .env.testing, selecionada quando o ambiente de
+testes for solicitado; variáveis externas e phpunit.xml também participam
+da configuração. APP_ENV é ambiente Laravel, DB_CONNECTION é nome da conexão,
+DB_DATABASE é banco SQL e DB_USERNAME é login. DB_URL vazio evita definir DSN
+alternativo no modelo; chave/senha serão preparadas apenas na próxima etapa.
+Drivers array mantêm dados no processo; sync executa jobs no próprio processo;
+mail array não envia mensagens e broadcast null desativa o envio de broadcasts.
+
+Verificações realizadas:
+
+- PHP 8.4.26 e Composer 2.10.3 conferidos no backend Docker. Código instalado
+  de LoadEnvironmentVariables consultado para seleção de .env.testing.
+- phpdotenv analisou o modelo em diagnóstico temporário, conferindo os valores
+  públicos, chave/senha vazias e variáveis de processo preservadas. Código 0.
+  Nenhuma inicialização Laravel, consulta SQL ou suíte executada.
+- .env.testing ausente; XML lido confirmou sqlite/:memory: ainda presentes.
+- git check-ignore -v --no-index confirmou a exceção exata para o modelo e
+  exclusão de backend/.env.testing, backend/.env e .env. git diff --check passou.
+- Credenciais, phpunit.xml, config/database.php, dependências, serviços,
+  migrations e seeders preservados. Nenhuma instalação de Boost, conforme
+  prioridade das instruções do curso sobre o AGENTS.md gerado do backend.
+
+Entendimento da 5.36: confirmado com "entendi" em 19/10/2026.
+Publicação da 5.36: checkpoint preparado para commit/push conforme autorização
+persistente; consultar Git e conferir o remoto após o envio.
+Último checkpoint confirmado/publicado: 04a9a7c, etapa 5.35.
+Próximo passo após a confirmação: 5.37,
+preparar .env.testing local com chave própria e senha já existente de loja_testes,
+verificar carregamento e conexão em leitura. Não alterar phpunit.xml nem
+executar testes/migrations nessa preparação local.
 
 ## Verificações e limitações do ambiente
 
@@ -4323,14 +4372,14 @@ das configurações e sem executar testes antecipadamente.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `49a22c5`,
-  `docs: confirma entendimento do script da conta de testes`.
+- Último commit local publicado conferido nesta retomada: `04a9a7c`,
+  `build: prepara e verifica conta exclusiva de testes`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `49a22c5`,
-  igual a HEAD e origin/main. Etapa 5.34 confirmada e publicada;
-  alterações da 5.35 ficam locais até a confirmação de entendimento.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `04a9a7c`,
+  igual a HEAD e origin/main. Etapa 5.35 confirmada e publicada;
+  alterações da 5.36 ficam locais até a confirmação de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4425,8 +4474,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
 - Etapa 5.35 aplicada, verificada e confirmada com "entendi" em 19/10/2026.
-  Depois, 5.36: modelo de ambiente Laravel de testes. Configuração e estrutura
-  de testes ainda pendentes; conta já criada e banco de testes sem tabelas.
+  Modelo da 5.36 preparado, explicado e confirmado com "entendi". Depois, 5.37:
+  preparar .env.testing local, verificar carregamento e conexão em leitura.
+  Conta já criada; phpunit.xml e estrutura de testes continuam pendentes.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -4531,4 +4581,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 16/10/2026 | 5.32 — Ferramentas de testes instaladas | 33 pacotes instalados; PHPUnit/plataforma/109 versões/autoload conferidos, sem suíte | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6d86416 |
 | 16/10/2026 | 5.33 — Descoberta dos pacotes de desenvolvimento | Seis pacotes/manifests, ajuda de test, sintaxe e HTTP conferidos, sem suíte | Confirmado pelo aluno: "entendi" | Publicado e verificado em f14a335 |
 | 16/10/2026 | 5.34 — Script da conta exclusiva de testes | SQL preparado; PARSEONLY passou, sem DDL aplicado; revisão em 19/10 | Confirmado pelo aluno: "entendi", em 19/10/2026 | Confirmação publicada e verificada em 49a22c5 |
-| 19/10/2026 | 5.35 — Aplicação da conta exclusiva de testes | Senha local e conta criadas; autenticação, permissões, isolamento e reexecução conferidos; zero tabelas | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; consultar Git |
+| 19/10/2026 | 5.35 — Aplicação da conta exclusiva de testes | Senha local e conta criadas; autenticação, permissões, isolamento e reexecução conferidos; zero tabelas | Confirmado pelo aluno: "entendi" | Publicado e verificado em 04a9a7c |
+| 19/10/2026 | 5.36 — Modelo do ambiente Laravel de testes | Modelo público e exceção Git preparados; análise phpdotenv e exclusões conferidas, sem configuração local | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; consultar Git |

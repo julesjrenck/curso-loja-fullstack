@@ -254,7 +254,11 @@ em 19/10/2026 e publicado em 49a22c5. Na 5.35, senha local preparada e conta
 criada/verificada: permissões previstas em loja_test, sem acesso a loja,
 reexecução preservou a mesma senha. Zero tabelas no banco de testes.
 Explicação da 5.35 apresentada; entendimento confirmado com "entendi" em 19/10/2026.
-Configuração Laravel e estrutura de testes continuam pendentes.
+Checkpoint 5.35 publicado em 04a9a7c. Na 5.36, backend/.env.testing.example
+preparado para sqlsrv/loja_test/loja_testes, sem senha/chave. Exceção específica
+no .gitignore permite versionar o modelo. Análise com phpdotenv passou;
+entendimento da 5.36 confirmado com "entendi" em 19/10/2026. .env.testing ainda ausente e
+phpunit.xml ainda SQLite/:memory:; nenhuma suíte executada.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.

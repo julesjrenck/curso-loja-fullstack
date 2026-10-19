@@ -38,8 +38,12 @@ conferida depois. Revisão retomada e entendimento da 5.34 confirmado com
 Na 5.35, senha local preparada e conta loja_testes criada em loja_test;
 autenticação, permissões, ausência de acesso a loja e reexecução verificadas.
 Banco de testes continua sem tabelas. Explicação apresentada; entendimento da
-5.35 confirmado com "entendi" em 19/10/2026. Depois, 5.36: modelo de ambiente de testes Laravel.
-Configuração e estrutura de testes serão etapas posteriores; nenhuma suíte executada.
+5.35 confirmado com "entendi" em 19/10/2026 e publicado em 04a9a7c.
+Na 5.36, backend/.env.testing.example preparado e analisado com phpdotenv;
+modelo público versionável, arquivos locais com segredos continuam ignorados.
+Explicação apresentada; entendimento da 5.36 confirmado com "entendi" em 19/10/2026. Depois,
+5.37: cópia local .env.testing e diagnóstico de carregamento/conexão em leitura.
+phpunit.xml e estrutura de testes serão etapas posteriores; nenhuma suíte executada.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
