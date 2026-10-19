@@ -249,11 +249,12 @@ Ajuda de artisan test, sintaxe e HTTP do catálogo conferidos; nenhuma suíte
 executada. Entendimento confirmado com "entendi" em 16/10/2026; checkpoint
 5.33 publicado e conferido em f14a335. Na 5.34, criar-usuario-testes.sql preparado
 para loja_testes em loja_test; PARSEONLY passou sem aplicar o DDL e a conta
-continua ausente. Explicação apresentada, aguardando entendimento. Criação da
-conta, credenciais locais, configuração e estrutura de testes seguem pendentes.
-Sessão encerrada a pedido do aluno em 16/10/2026; retomar a explicação/dúvidas
-da 5.34 e aguardar entendimento antes de avançar. Registro de salvamento no Git
-não significa confirmação de aprendizado.
+continuava ausente naquela etapa. Entendimento da 5.34 confirmado com "entendi"
+em 19/10/2026 e publicado em 49a22c5. Na 5.35, senha local preparada e conta
+criada/verificada: permissões previstas em loja_test, sem acesso a loja,
+reexecução preservou a mesma senha. Zero tabelas no banco de testes.
+Explicação da 5.35 apresentada; entendimento confirmado com "entendi" em 19/10/2026.
+Configuração Laravel e estrutura de testes continuam pendentes.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.
@@ -418,8 +419,11 @@ executa testes. Configuração SQL Server de testes permanece pendente.
 Na 5.34, docker/sqlserver/criar-usuario-testes.sql foi preparado para login/usuário
 loja_testes em loja_test, com leitura/escrita, CREATE TABLE e ALTER dbo.
 Somente análise sintática com PARSEONLY; conta e permissões ainda não criadas.
-O marcador MSSQL_TESTS_PASSWORD será preenchido por variável local em etapa
-posterior; nenhum valor de senha foi adicionado ao projeto nesta aula.
+Na 5.35, o marcador MSSQL_TESTS_PASSWORD recebeu valor do .env local ignorado;
+.env.example contém somente o campo vazio. Conta aplicada e verificada com
+sqlcmd em Docker; autenticação, permissões e reexecução passaram. A conexão
+de loja_testes solicitando loja foi recusada. Nenhuma tabela criada ou suíte executada.
+Detalhes e comando em docs/aulas/05-35-aplicar-conta-testes.md.
 Storage e bootstrap/cache já estão graváveis, mantendo o código somente leitura,
 conforme a aula 4.5. Na 4.6, o ambiente foi preparado para sessões/cache em arquivo
 e tarefas síncronas; DB_CONNECTION=sqlsrv indica o banco futuro, ainda sem conexão.

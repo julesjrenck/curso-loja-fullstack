@@ -34,8 +34,12 @@ O módulo 5 confirmou e publicou a descoberta de pacotes da 5.33.
 Na 5.34, script de loja_testes em loja_test preparado e analisado com PARSEONLY,
 sem executar as instruções de criação/concessão. Ausência da conta e de tabelas
 conferida depois. Revisão retomada e entendimento da 5.34 confirmado com
-"entendi" em 19/10/2026. A 5.35 preparará senha local e aplicará/verificará o script. Configuração Laravel
-e estrutura de testes serão etapas posteriores; nenhuma suíte executada.
+"entendi" em 19/10/2026; confirmação publicada em 49a22c5.
+Na 5.35, senha local preparada e conta loja_testes criada em loja_test;
+autenticação, permissões, ausência de acesso a loja e reexecução verificadas.
+Banco de testes continua sem tabelas. Explicação apresentada; entendimento da
+5.35 confirmado com "entendi" em 19/10/2026. Depois, 5.36: modelo de ambiente de testes Laravel.
+Configuração e estrutura de testes serão etapas posteriores; nenhuma suíte executada.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
