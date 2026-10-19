@@ -41,9 +41,12 @@ Banco de testes continua sem tabelas. Explicação apresentada; entendimento da
 5.35 confirmado com "entendi" em 19/10/2026 e publicado em 04a9a7c.
 Na 5.36, backend/.env.testing.example preparado e analisado com phpdotenv;
 modelo público versionável, arquivos locais com segredos continuam ignorados.
-Explicação apresentada; entendimento da 5.36 confirmado com "entendi" em 19/10/2026. Depois,
-5.37: cópia local .env.testing e diagnóstico de carregamento/conexão em leitura.
-phpunit.xml e estrutura de testes serão etapas posteriores; nenhuma suíte executada.
+Explicação apresentada; entendimento da 5.36 confirmado com "entendi" em
+19/10/2026 e publicado em 1c8c380. Na 5.37, .env.testing local criado com chave
+própria e senha existente de loja_testes; carregamento, criptografia e SELECT
+Laravel em loja_test conferidos. Ambiente normal segue loja/loja_app.
+Entendimento da 5.37 confirmado com "entendi" em 19/10/2026. Depois, 5.38: alinhar phpunit.xml
+ao SQL Server de testes. Estrutura pendente; nenhuma suíte executada.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

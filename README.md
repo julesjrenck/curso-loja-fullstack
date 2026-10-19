@@ -257,8 +257,14 @@ Explicação da 5.35 apresentada; entendimento confirmado com "entendi" em 19/10
 Checkpoint 5.35 publicado em 04a9a7c. Na 5.36, backend/.env.testing.example
 preparado para sqlsrv/loja_test/loja_testes, sem senha/chave. Exceção específica
 no .gitignore permite versionar o modelo. Análise com phpdotenv passou;
-entendimento da 5.36 confirmado com "entendi" em 19/10/2026. .env.testing ainda ausente e
-phpunit.xml ainda SQLite/:memory:; nenhuma suíte executada.
+entendimento da 5.36 confirmado com "entendi" em 19/10/2026, publicado em 1c8c380.
+Na 5.37, .env.testing local criado com chave própria e senha existente de
+loja_testes; carregamento e SELECT Laravel conferidos em loja_test, sem acesso
+a loja e sem tabelas. Execução normal segue loja/loja_app. Entendimento da 5.37
+confirmado com "entendi" em 19/10/2026; phpunit.xml ainda SQLite/:memory:, ajuste na 5.38.
+Nenhuma suíte executada. .env.testing não vem do Git em novo clone; preparar
+os valores locais antes de usar --env=testing. Detalhes em
+docs/aulas/05-37-ambiente-local-testes.md.
 Na rede do projeto, outros containers acessam `http://php:8000/`.
 O volume `dados-demo`, montado em `/dados`, mantém um contador didático
 entre execuções de containers temporários.

@@ -4,19 +4,21 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.36 — Modelo do ambiente Laravel de testes.
-- Situação: backend/.env.testing.example preparado com sqlsrv, banco loja_test,
-  usuário loja_testes, APP_KEY/DB_PASSWORD vazios e serviços de testes em memória.
-  Exceção específica no .gitignore permite versionar apenas o novo modelo.
-  Análise com phpdotenv em Docker passou, sem carregar variáveis ou conectar ao banco.
-  Explicação da 5.36 apresentada; entendimento confirmado com "entendi"
-  em 19/10/2026. Publicar o checkpoint e iniciar a preparação local da 5.37.
-  .env.testing ainda ausente; phpunit.xml continua SQLite/:memory:.
+- Etapa atual: 5.37 — Configuração local Laravel de testes.
+- Situação: backend/.env.testing local preparado com chave própria e senha
+  existente de loja_testes, sem exposição de valores e ignorado pelo Git.
+  Laravel carregou .env.testing com --env=testing; configuração, criptografia
+  e SELECT de identidade em loja_test como loja_testes conferidos.
+  Sem acesso a loja, zero tabelas em loja_test. Execução normal segue loja/loja_app.
+  Explicação da 5.37 apresentada; entendimento confirmado com "entendi"
+  em 19/10/2026. Publicar os registros e iniciar o ajuste da 5.38.
+  Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
+  phpunit.xml continua SQLite/:memory:, ajuste pendente na 5.38.
   Nenhuma suíte executada. Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
   Descoberta 5.33 confirmada com "entendi" em 16/10/2026 e publicada.
-  Configuração Laravel e estrutura de testes pendentes; nenhuma suíte executada.
+  Ajuste de phpunit.xml e estrutura de testes pendentes; nenhuma suíte executada.
   Instalação 5.32 confirmada com "entendi" em 16/10/2026 e publicada.
   Preparação 5.31 confirmada com "entendi" em 16/10/2026 e publicada.
   Ordenação 5.30 confirmada com "entendi" em 16/10/2026 e publicada.
@@ -40,7 +42,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 04a9a7c, conta de testes 5.35.
+  Último checkpoint pedagógico confirmado/publicado: 1c8c380, modelo de testes 5.36.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -85,19 +87,21 @@
 - Etapa 5.34 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.35 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.36 confirmada com "entendi" em 19/10/2026.
+- Etapa 5.37 confirmada com "entendi" em 19/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.35 confirmada com "entendi" e publicada
-em 04a9a7cd16a9d07091b4cbaf50c3adc90e6402fc, igual a HEAD, origin/main e main
-remota no envio. Conta loja_testes criada/verificada em loja_test; senha no .env
-local da raiz. Etapa 5.36 implementada e explicada: modelo público
-backend/.env.testing.example e exceção específica no .gitignore. Análise com
-phpdotenv passou, sem aplicar o modelo ao ambiente. Entendimento da 5.36
-confirmado com "entendi" em 19/10/2026. Próximo passo: 5.37, preparar a cópia local
-backend/.env.testing com chave própria e senha existente de loja_testes,
-verificar carregamento e conexão por leitura, sem executar suíte ou migrations.
-phpunit.xml será ajustado em etapa posterior. Registros abaixo são históricos.
+Estado mais recente, em 19/10/2026: 5.36 confirmada com "entendi" e publicada
+em 1c8c3801f6ecfd62a8b6b0c7749caff24fde8582, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.37 implementada e explicada: backend/.env.testing
+local com chave própria e senha existente de loja_testes; arquivo ignorado,
+permissão 600. Carregamento e SELECT Laravel conferidos com --env=testing:
+loja_test/loja_testes, zero tabelas e sem acesso a loja. Execução normal conferida
+em loja/loja_app. Entendimento da 5.37 confirmado com "entendi" em 19/10/2026.
+Próximo passo: 5.38, alinhar phpunit.xml ao SQL Server de testes, explicar
+e conferir a configuração antes de executar qualquer suíte. Nenhuma migration,
+seeder ou suíte executada. Em novo clone .env.testing não vem do Git; preparar
+os valores locais antes dos diagnósticos. Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
 5.34 conferidos. Git inicialmente sem alterações locais; HEAD, origin/main e
@@ -4338,13 +4342,57 @@ Verificações realizadas:
   prioridade das instruções do curso sobre o AGENTS.md gerado do backend.
 
 Entendimento da 5.36: confirmado com "entendi" em 19/10/2026.
-Publicação da 5.36: checkpoint preparado para commit/push conforme autorização
-persistente; consultar Git e conferir o remoto após o envio.
-Último checkpoint confirmado/publicado: 04a9a7c, etapa 5.35.
+Publicação da 5.36: checkpoint 1c8c380 publicado conforme autorização persistente;
+HEAD, origin/main e main remota conferidos em 1c8c3801f6ecfd62a8b6b0c7749caff24fde8582.
 Próximo passo após a confirmação: 5.37,
 preparar .env.testing local com chave própria e senha já existente de loja_testes,
 verificar carregamento e conexão em leitura. Não alterar phpunit.xml nem
 executar testes/migrations nessa preparação local.
+
+## Etapa 5.37 — Configuração local Laravel de testes
+
+Data: 19/10/2026. Objetivo: preparar a cópia local do modelo e verificar o
+carregamento e a conexão Laravel por leitura. Aula em
+docs/aulas/05-37-ambiente-local-testes.md.
+
+Implementação: somente backend/.env.testing local criado, ignorado pelo Git,
+permissão 600, dono 1000:1000. PHP Docker leu o modelo público, gerou APP_KEY
+própria com Encrypter::generateKey('AES-256-CBC'), codificou com base64: e copiou
+MSSQL_TESTS_PASSWORD do .env da raiz para DB_PASSWORD. Valores não exibidos.
+Criação exclusiva evita sobrescrever arquivo existente. Hashes internos
+confirmaram .env da raiz, backend/.env e modelo preservados. Nenhuma senha
+redefinida, conta ou chave da aplicação normal alterada.
+
+Explicação apresentada: APP_KEY atende à criptografia Laravel; DB_PASSWORD
+autentica no SQL Server. Arquivos de ambiente isolam a configuração de cada
+processo. --env=testing seleciona .env.testing; não altera permanentemente o
+servidor HTTP nem a configuração das execuções normais. phpunit.xml ainda
+precisa ser alinhado ao SQL Server antes de rodar testes.
+
+Verificações realizadas:
+
+- PHP 8.4.26/Composer 2.10.3 conferidos no backend Docker; cipher AES-256-CBC
+  e geração de chave consultados no código instalado. Sem cache de configuração.
+- Diagnóstico temporário iniciou Laravel com --env=testing e confirmou arquivo
+  .env.testing, ambiente testing, sqlsrv/sqlserver:1433/loja_test/loja_testes,
+  chave e senha carregadas, cache/sessão/mail array e fila sync.
+- Chave de 32 bytes diferente da normal; criptografia e descriptografia de
+  texto diagnóstico conferidas sem imprimir chave ou conteúdo cifrado.
+- SELECT retornou banco loja_test, login/usuário loja_testes, acesso a loja 0
+  e zero tabelas. Comando loja:verificar-banco --env=testing repetiu a identidade;
+  sem essa opção retornou loja/loja_app. Ambos com código 0, somente leitura.
+- git check-ignore confirmou arquivos privados ignorados; git ls-files não
+  listou nenhum deles. Modelo público preservado; git diff --check passou.
+- Nenhuma alteração em phpunit.xml, código Laravel, dependências, serviços,
+  migrations ou seeders; nenhuma suíte executada. Clientes temporários removidos.
+
+Entendimento da 5.37: confirmado com "entendi" em 19/10/2026.
+Publicação da 5.37: registros preparados para commit/push conforme autorização
+persistente, sem .env.testing. Consultar Git e conferir o remoto após o envio.
+Último checkpoint confirmado/publicado: 1c8c380, etapa 5.36.
+Próximo passo após a confirmação: 5.38,
+alinhar phpunit.xml ao SQL Server de testes e verificar sua configuração,
+sem executar a suíte ou criar tabelas nessa alteração.
 
 ## Verificações e limitações do ambiente
 
@@ -4372,14 +4420,14 @@ executar testes/migrations nessa preparação local.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `04a9a7c`,
-  `build: prepara e verifica conta exclusiva de testes`.
+- Último commit local publicado conferido nesta retomada: `1c8c380`,
+  `build: prepara modelo do ambiente Laravel de testes`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `04a9a7c`,
-  igual a HEAD e origin/main. Etapa 5.35 confirmada e publicada;
-  alterações da 5.36 ficam locais até a confirmação de entendimento.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `1c8c380`,
+  igual a HEAD e origin/main. Etapa 5.36 confirmada e publicada;
+  documentação da 5.37 fica local até a confirmação de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4474,9 +4522,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
 - Etapa 5.35 aplicada, verificada e confirmada com "entendi" em 19/10/2026.
-  Modelo da 5.36 preparado, explicado e confirmado com "entendi". Depois, 5.37:
-  preparar .env.testing local, verificar carregamento e conexão em leitura.
-  Conta já criada; phpunit.xml e estrutura de testes continuam pendentes.
+  Modelo da 5.36 confirmado/publicado. .env.testing da 5.37 preparado e
+  carregamento/conexão verificados por leitura; entendimento confirmado com "entendi".
+  Depois, 5.38: alinhar phpunit.xml ao SQL Server de testes. Estrutura pendente.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -4582,4 +4630,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 16/10/2026 | 5.33 — Descoberta dos pacotes de desenvolvimento | Seis pacotes/manifests, ajuda de test, sintaxe e HTTP conferidos, sem suíte | Confirmado pelo aluno: "entendi" | Publicado e verificado em f14a335 |
 | 16/10/2026 | 5.34 — Script da conta exclusiva de testes | SQL preparado; PARSEONLY passou, sem DDL aplicado; revisão em 19/10 | Confirmado pelo aluno: "entendi", em 19/10/2026 | Confirmação publicada e verificada em 49a22c5 |
 | 19/10/2026 | 5.35 — Aplicação da conta exclusiva de testes | Senha local e conta criadas; autenticação, permissões, isolamento e reexecução conferidos; zero tabelas | Confirmado pelo aluno: "entendi" | Publicado e verificado em 04a9a7c |
-| 19/10/2026 | 5.36 — Modelo do ambiente Laravel de testes | Modelo público e exceção Git preparados; análise phpdotenv e exclusões conferidas, sem configuração local | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; consultar Git |
+| 19/10/2026 | 5.36 — Modelo do ambiente Laravel de testes | Modelo público e exceção Git preparados; análise phpdotenv e exclusões conferidas, sem configuração local | Confirmado pelo aluno: "entendi" | Publicado e verificado em 1c8c380 |
+| 19/10/2026 | 5.37 — Configuração local Laravel de testes | .env.testing local criado; chave própria, carregamento, criptografia e SELECT em loja_test conferidos; ambiente normal preservado | Confirmado pelo aluno: "entendi" | Registros preparados para publicação; segredos ignorados |
