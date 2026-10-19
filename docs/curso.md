@@ -56,8 +56,12 @@ Entendimento da 5.39 confirmado com "entendi" em 19/10/2026 e publicado em bdfb1
 Na 5.40, migration existente de produtos aplicada somente em loja_test:
 produtos vazia e migrations com lote 1. Esquema/status/reexecução conferidos;
 banco normal segue loja/loja_app com um produto. Entendimento da 5.40 confirmado
-com "entendi" em 19/10/2026. Depois, 5.41: primeiro teste de integração de catálogo vazio,
-explicando o isolamento dos dados de teste.
+com "entendi" em 19/10/2026 e publicado em b70f6f0. Na 5.41, primeiro teste
+de integração para catálogo vazio criado com DatabaseTransactions. Focado:
+1 teste/3 asserções; suíte: 3 testes/5 asserções, passaram. SELECT posterior
+confirmou zero produtos em loja_test e um em loja. Entendimento da 5.41
+confirmado com "entendi" em 19/10/2026. Depois, 5.42: cenário de produto ativo no mesmo arquivo,
+compartilhando a preparação isolada.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

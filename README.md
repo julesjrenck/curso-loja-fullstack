@@ -273,8 +273,13 @@ em loja_test. Entendimento da 5.39 confirmado com "entendi" em 19/10/2026,
 publicado em bdfb1a3. Na 5.40, migration existente de produtos aplicada em
 loja_test: produtos vazia, migrations com uma entrada no lote 1. Esquema,
 status e reexecução conferidos; banco normal com um produto preservado.
-Entendimento da 5.40 confirmado com "entendi" em 19/10/2026; próximo passo: integração de catálogo vazio.
-Detalhes em docs/aulas/05-40-migration-produtos-testes.md.
+Entendimento da 5.40 confirmado com "entendi" em 19/10/2026, publicado em b70f6f0.
+Na 5.41, CatalogoEloquentTest criado para catálogo vazio com DatabaseTransactions,
+conferência do destino antes de DELETE e assertSame do retorno []. Focado:
+1 teste/3 asserções; suíte completa: 3 testes/5 asserções, passaram. SELECT após
+execução confirmou zero produtos em loja_test e um no banco normal.
+Entendimento da 5.41 confirmado com "entendi" em 19/10/2026; próximo passo: produto ativo.
+Detalhes em docs/aulas/05-41-teste-catalogo-vazio.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
