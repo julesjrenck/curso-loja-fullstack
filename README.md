@@ -269,8 +269,12 @@ Entendimento da 5.38 confirmado com "entendi" após esclarecer APP_ENV em
 19/10/2026, publicado em 734fc5f. Na 5.39, exemplos existentes executados:
 2 testes/2 asserções passaram. Conferem true e GET / com status 200, sem
 consulta SQL ou teste de catálogo. SELECT separado confirmou zero tabelas
-em loja_test. Entendimento da 5.39 confirmado com "entendi" em 19/10/2026; próxima etapa:
-tabela produtos no banco de testes. Detalhes em docs/aulas/05-39-primeira-suite-backend.md.
+em loja_test. Entendimento da 5.39 confirmado com "entendi" em 19/10/2026,
+publicado em bdfb1a3. Na 5.40, migration existente de produtos aplicada em
+loja_test: produtos vazia, migrations com uma entrada no lote 1. Esquema,
+status e reexecução conferidos; banco normal com um produto preservado.
+Entendimento da 5.40 confirmado com "entendi" em 19/10/2026; próximo passo: integração de catálogo vazio.
+Detalhes em docs/aulas/05-40-migration-produtos-testes.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

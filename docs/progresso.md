@@ -4,26 +4,27 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.39 — Primeira execução dos testes de exemplo do backend.
-- Situação: testes gerados Unit/ExampleTest e Feature/ExampleTest apresentados
-  e executados sem alterações. PHPUnit 12.5.39/PHP 8.4.26: 2 testes e 2 asserções,
-  código 0. Exemplo unitário confere true; exemplo Laravel confere GET / com 200.
-  Sem teste de catálogo ou consulta SQL nesses casos. SELECT separado após
-  a suíte confirmou loja_test/loja_testes, sem acesso a loja e zero tabelas.
-  Explicação da 5.39 apresentada; entendimento confirmado com "entendi"
-  em 19/10/2026. Publicar os registros e iniciar a preparação da 5.40.
+- Etapa atual: 5.40 — Tabela produtos no banco de testes.
+- Situação: migration existente de produtos aplicada somente em loja_test,
+  com sqlsrv/loja_testes e --env=testing/--path. Tabelas dbo.produtos vazia e
+  dbo.migrations com uma entrada no lote 1; esquema conferido por SELECT.
+  Status [1] Ran e reexecução Nothing to migrate. Banco normal conferido em
+  loja/loja_app com um produto e uma migration. Nenhum seeder ou teste novo.
+  Explicação da 5.40 apresentada; entendimento confirmado com "entendi"
+  em 19/10/2026. Publicar os registros e iniciar o teste da 5.41.
+  Etapa 5.39 confirmada com "entendi" em 19/10/2026 e publicada em bdfb1a3.
   Etapa 5.38 confirmada com "entendi" após esclarecer APP_ENV e publicada
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.40, preparar a tabela produtos em loja_test
-  a partir da migration existente, conferindo conexão e esquema.
+  Próxima etapa após confirmação: 5.41, primeiro teste de integração do catálogo
+  vazio, explicando o isolamento dos dados de teste.
   Suíte inicial de exemplos executada; testes de catálogo ainda pendentes.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
   Descoberta 5.33 confirmada com "entendi" em 16/10/2026 e publicada.
-  Estrutura do banco de testes pendente; exemplos executados na 5.39.
+  Estrutura de produtos preparada no banco de testes; exemplos executados na 5.39.
   Instalação 5.32 confirmada com "entendi" em 16/10/2026 e publicada.
   Preparação 5.31 confirmada com "entendi" em 16/10/2026 e publicada.
   Ordenação 5.30 confirmada com "entendi" em 16/10/2026 e publicada.
@@ -47,7 +48,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 734fc5f, configuração PHPUnit 5.38.
+  Último checkpoint pedagógico confirmado/publicado: bdfb1a3, suíte inicial 5.39.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -95,20 +96,22 @@
 - Etapa 5.37 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.38 confirmada com "entendi" em 19/10/2026, após esclarecer APP_ENV.
 - Etapa 5.39 confirmada com "entendi" em 19/10/2026.
+- Etapa 5.40 confirmada com "entendi" em 19/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.38 confirmada com "entendi" após esclarecer
-APP_ENV e publicada em 734fc5f622c2c2030508e89d62050fbb5f00ec4b, igual a HEAD,
-origin/main e main remota no envio. Etapa 5.39 explicada/verificada: os dois
-testes de exemplo existentes passaram, 2 testes/2 asserções. Casos não consultam
-SQL nem verificam catálogo. SELECT separado pós-suíte confirmou loja_test/
-loja_testes, sem acesso a loja e zero tabelas. Entendimento da 5.39 confirmado
-com "entendi" em 19/10/2026. Próximo passo, 5.40: preparar a tabela produtos
-em loja_test a partir da migration existente, verificando conexão e esquema;
-testes do catálogo serão etapas posteriores. Em novo clone .env.testing não
-vem do Git; preparar os valores locais antes de usar testes. Registros abaixo
-são históricos.
+Estado mais recente, em 19/10/2026: 5.39 confirmada com "entendi" e publicada
+em bdfb1a3ded8be0ef265d6d6bd745e7385fb34354, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.40 aplicada e explicada: migration existente de produtos
+executada em loja_test/loja_testes com --env=testing --database=sqlsrv e --path
+do arquivo. Banco de testes tem apenas migrations e produtos, sem produtos
+cadastrados, uma migration no lote 1. Colunas/PK/default conferidos, status Ran,
+reexecução Nothing to migrate. Banco normal loja/loja_app segue com um produto
+e uma migration. Entendimento da 5.40 confirmado com "entendi" em 19/10/2026.
+Próximo passo, 5.41: primeiro teste de integração para catálogo vazio, explicando
+isolamento dos dados. Última suíte: exemplos da 5.39, 2 testes/2 asserções;
+não repetida nesta etapa. Em novo clone preparar .env.testing local e estrutura
+de loja_test antes dos testes. Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
 5.34 conferidos. Git inicialmente sem alterações locais; HEAD, origin/main e
@@ -4484,12 +4487,54 @@ Verificações realizadas:
   Nenhuma migration, seeder, instalação ou alteração de credencial executada.
 
 Entendimento da 5.39: confirmado com "entendi" em 19/10/2026.
-Publicação da 5.39: registros preparados para commit/push conforme autorização
-persistente; consultar Git e conferir o remoto após o envio.
-Último checkpoint confirmado/publicado: 734fc5f, etapa 5.38.
+Publicação da 5.39: checkpoint bdfb1a3 publicado conforme autorização persistente;
+HEAD, origin/main e main remota conferidos em bdfb1a3ded8be0ef265d6d6bd745e7385fb34354.
 Próximo passo após a confirmação: 5.40,
 preparar a tabela produtos em loja_test a partir da migration existente,
 verificando a identidade da conexão e o esquema. Não antecipar testes de catálogo.
+
+## Etapa 5.40 — Tabela produtos no banco de testes
+
+Data: 19/10/2026. Objetivo: preparar produtos em loja_test usando a migration
+existente, sem novos testes ou dados. Aula em docs/aulas/05-40-migration-produtos-testes.md.
+
+Implementação: arquivo 2026_10_14_123220_create_produtos_table.php reutilizado
+sem edição. Executado migrate --env=testing --database=sqlsrv --path desse
+arquivo --no-interaction --no-ansi no backend Docker. Criadas dbo.migrations
+e dbo.produtos em loja_test; não aplicadas as migrations de users, cache e jobs.
+Nenhuma alteração no código/configuração da aplicação; somente novos registros.
+
+Explicação apresentada: arquivo de migration é compartilhado entre ambientes,
+histórico de execução pertence a cada banco. --env seleciona .env.testing;
+--database recebe nome da conexão, não nome do banco; --path limita o arquivo.
+up cria produtos; migrations registra nome/batch e evita reaplicar. Preparação
+da estrutura não cadastra produtos nem copia dados do banco normal.
+
+Verificações realizadas:
+
+- Ajuda de migrate/migrate:status conferida na versão instalada. Prévia sem
+  cache de configuração confirmou testing/.env.testing/sqlsrv/loja_testes,
+  banco loja_test, zero tabelas, CREATE TABLE/ALTER dbo = 1/1 e acesso a loja = 0.
+- Aplicação com código 0: Creating migration table DONE e migration produtos DONE.
+- migrate:status para o mesmo caminho: [1] Ran. Reexecução do mesmo migrate:
+  Nothing to migrate, código 0, sem duplicar o registro.
+- SELECT confirmou somente migrations/produtos, zero produtos, uma entrada
+  2026_10_14_123220_create_produtos_table no lote 1. Colunas: id BIGINT IDENTITY
+  PK, nome NVARCHAR(150), preco_em_centavos INT, status NVARCHAR(20) default
+  ('ativo'), created_at/updated_at DATETIME2(3) nullable. Demais colunas NOT NULL.
+- Execução normal separada confirmou loja/loja_app, um produto e uma migration.
+  Nenhuma operação de escrita no banco normal; nenhum seeder executado.
+- git diff --check passou; arquivos privados continuam ignorados/fora do índice.
+  Nenhuma nova dependência, conta, configuração, teste ou alteração de credencial.
+  Suíte inicial da 5.39 não repetida: casos não usam a estrutura criada aqui.
+
+Entendimento da 5.40: confirmado com "entendi" em 19/10/2026.
+Publicação da 5.40: registros preparados para commit/push conforme autorização
+persistente; consultar Git e conferir o remoto após o envio.
+Último checkpoint confirmado/publicado: bdfb1a3, etapa 5.39.
+Próximo passo após a confirmação: 5.41,
+criar o primeiro teste de integração de catálogo vazio, explicando preparação
+e isolamento dos dados de teste, sem antecipar os demais cenários.
 
 ## Verificações e limitações do ambiente
 
@@ -4517,14 +4562,14 @@ verificando a identidade da conexão e o esquema. Não antecipar testes de catá
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `734fc5f`,
-  `test: configura PHPUnit para SQL Server de testes`.
+- Último commit local publicado conferido nesta retomada: `bdfb1a3`,
+  `docs: registra primeira suite de testes do backend`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `734fc5f`,
-  igual a HEAD e origin/main. Etapa 5.38 confirmada e publicada;
-  documentação da 5.39 fica local até a confirmação de entendimento.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `bdfb1a3`,
+  igual a HEAD e origin/main. Etapa 5.39 confirmada e publicada;
+  documentação da 5.40 fica local até a confirmação de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4623,8 +4668,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   carregamento/conexão verificados por leitura; entendimento confirmado com "entendi".
   Etapa 5.38 ajustou phpunit.xml e verificou XML/variáveis/conexão; entendimento
   confirmado com "entendi" após esclarecer APP_ENV. Na 5.39, exemplos passaram:
-  2 testes/2 asserções, entendimento confirmado com "entendi". Depois, 5.40: tabela produtos em
-  loja_test pela migration existente. Estrutura do banco de testes pendente.
+  2 testes/2 asserções, entendimento confirmado com "entendi". Na 5.40,
+  produtos/migrations criadas em loja_test; esquema/status/reexecução conferidos.
+  Entendimento confirmado com "entendi"; depois, 5.41: integração de catálogo vazio.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -4733,4 +4779,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.36 — Modelo do ambiente Laravel de testes | Modelo público e exceção Git preparados; análise phpdotenv e exclusões conferidas, sem configuração local | Confirmado pelo aluno: "entendi" | Publicado e verificado em 1c8c380 |
 | 19/10/2026 | 5.37 — Configuração local Laravel de testes | .env.testing local criado; chave própria, carregamento, criptografia e SELECT em loja_test conferidos; ambiente normal preservado | Confirmado pelo aluno: "entendi" | Publicado e verificado em d80d241; segredos ignorados |
 | 19/10/2026 | 5.38 — Configuração PHPUnit para SQL Server | Duas entradas XML ajustadas; XSD, carregador de variáveis e SELECT Laravel conferidos, sem suíte | Confirmado pelo aluno: "entendi", após esclarecer APP_ENV | Publicado e verificado em 734fc5f |
-| 19/10/2026 | 5.39 — Primeira execução dos testes de exemplo do backend | Dois exemplos existentes executados: 2 testes/2 asserções; SELECT separado confirmou zero tabelas | Confirmado pelo aluno: "entendi" | Registros preparados para publicação; consultar Git |
+| 19/10/2026 | 5.39 — Primeira execução dos testes de exemplo do backend | Dois exemplos existentes executados: 2 testes/2 asserções; SELECT separado confirmou zero tabelas | Confirmado pelo aluno: "entendi" | Publicado e verificado em bdfb1a3 |
+| 19/10/2026 | 5.40 — Tabela produtos no banco de testes | Migration existente aplicada em loja_test; esquema, registro lote 1, status e reexecução conferidos; zero produtos | Confirmado pelo aluno: "entendi" | Registros preparados para publicação; consultar Git |

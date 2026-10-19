@@ -52,8 +52,12 @@ da 5.38 confirmado com "entendi" em 19/10/2026 após esclarecer APP_ENV,
 publicado em 734fc5f. Na 5.39, dois testes de exemplo apresentados e executados:
 2 testes/2 asserções passaram, sem código alterado. Não consultam SQL nem
 verificam catálogo; SELECT separado confirmou zero tabelas em loja_test.
-Entendimento da 5.39 confirmado com "entendi" em 19/10/2026. Depois, 5.40: preparar a tabela
-produtos em loja_test pela migration existente e conferir conexão/esquema.
+Entendimento da 5.39 confirmado com "entendi" em 19/10/2026 e publicado em bdfb1a3.
+Na 5.40, migration existente de produtos aplicada somente em loja_test:
+produtos vazia e migrations com lote 1. Esquema/status/reexecução conferidos;
+banco normal segue loja/loja_app com um produto. Entendimento da 5.40 confirmado
+com "entendi" em 19/10/2026. Depois, 5.41: primeiro teste de integração de catálogo vazio,
+explicando o isolamento dos dados de teste.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
