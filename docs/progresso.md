@@ -2,15 +2,17 @@
 
 ## Estado atual
 
-- Última atualização: 16/10/2026, referência de data America/Sao_Paulo.
+- Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
 - Etapa atual: 5.34 — Script da conta exclusiva de testes.
 - Situação: criar-usuario-testes.sql preparado para loja_testes em loja_test,
   com leitura/escrita, CREATE TABLE e ALTER dbo. Sintaxe analisada com PARSEONLY;
   login/usuário continuam ausentes, zero tabelas no banco de testes.
   Sessão encerrada a pedido do aluno em 16/10/2026 para continuar outro dia.
-  Explicação da 5.34 apresentada; entendimento ainda não confirmado.
-  Retomar pela revisão do script e dúvidas da 5.34 antes de qualquer avanço.
+  Explicação da 5.34 apresentada; entendimento confirmado com "entendi"
+  em 19/10/2026. Próximo passo: 5.35, preparar senha local e aplicar/verificar o script.
+  Retomada em 19/10/2026: script revisado e explicação reapresentada;
+  aluno confirmou entendimento após a revisão, concluindo a 5.34.
   Descoberta 5.33 confirmada com "entendi" em 16/10/2026 e publicada.
   Nenhuma conta criada ou suíte executada; ambiente e estrutura de testes pendentes.
   Instalação 5.32 confirmada com "entendi" em 16/10/2026 e publicada.
@@ -36,7 +38,8 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint publicado: f14a335, descoberta dos pacotes 5.33.
+  Último checkpoint pedagógico confirmado/publicado: f14a335, descoberta 5.33.
+  Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
@@ -79,6 +82,23 @@
 - Etapa 5.33 confirmada com "entendi" em 16/10/2026.
 
 ## Retomada em outro chat
+
+Atualização após a retomada de 19/10/2026: aluno confirmou a 5.34 com "entendi".
+Script e explicação compreendidos; iniciar 5.35, preparar senha local e
+aplicar/verificar a conta loja_testes em loja_test. Configuração Laravel e
+estrutura de testes continuam para etapas posteriores. Registros de pausa
+abaixo descrevem o estado anterior a essa confirmação.
+
+Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
+5.34 conferidos. Git inicialmente sem alterações locais; HEAD, origin/main e
+consulta direta à main remota retornaram
+`a6ddff9ed037e6069bb07ae362e52d003d01f95c`, salvamento da pausa anterior.
+`docker compose ps --all` não listou containers deste projeto; nenhum foi iniciado.
+Revisão de login/usuário, contextos, permissões, condições e comandos do sqlcmd
+reapresentada. Nenhum SQL executado nesta retomada; ausência da conta/tabelas
+permanece como resultado da verificação de 16/10, sem nova consulta ao banco.
+Entendimento da 5.34 continua aguardando confirmação explícita. Próximo passo:
+responder dúvidas e aguardar essa confirmação antes de iniciar a 5.35.
 
 Encerramento mais recente: em 16/10/2026, o aluno pediu "salve o progresso,
 continuaremos outro dis". Pedido de pausa e salvamento; não é confirmação de
@@ -4213,13 +4233,15 @@ Verificações:
 - git diff --check passou; revisão de contexto, marcador de senha e concessões.
   Ambiente/modelo, configuração Laravel, dependências, serviços e contador preservados.
 
-Entendimento da 5.34: aguardando confirmação explícita.
+Entendimento da 5.34: confirmado com "entendi" em 19/10/2026.
+Retomada em 19/10/2026: explicação do script reapresentada, sem alteração no SQL
+ou execução no banco. Git remoto confirmado em a6ddff9 e nenhum container do
+projeto listado. Verificações SQL acima são as realizadas em 16/10/2026.
 Salvamento da 5.34: registro de encerramento preparado para commit/push a pedido
 expresso do aluno em 16/10/2026; não é confirmação de entendimento. Último
 checkpoint confirmado/publicado: f14a335, etapa 5.33. Consultar Git para o SHA
 do registro de encerramento, que não será escrito dentro do próprio commit.
-Próximo passo imediato: retomar a explicação/dúvidas da 5.34 e aguardar entendimento.
-Após confirmação, registrar essa confirmação e iniciar 5.35, preparar campo
+Próximo passo após a confirmação recebida: iniciar 5.35, preparar campo
 público vazio e senha somente no ambiente local ignorado, aplicar o script e conferir
 identidade, permissões em loja_test, ausência de acesso a loja e reexecução.
 Configuração Laravel e estrutura de testes serão etapas posteriores. Autorização
@@ -4251,14 +4273,15 @@ anterior de loja_migracoes em loja não é autorização específica da nova con
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado nesta retomada: `f14a335`,
-  `docs: registra descoberta dos pacotes de testes`.
+- Último commit local publicado conferido nesta retomada: `a6ddff9`,
+  `docs: salva retomada da etapa 5.34 sem confirmação`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 16/10/2026 após o push com `git ls-remote`: `f14a335`,
-  igual a HEAD e origin/main naquele envio. Registro de encerramento da 5.34
-  será salvo/publicado a pedido do aluno; consultar Git para a revisão mais recente.
+- Remoto consultado em 19/10/2026 com `git ls-remote`: `a6ddff9`,
+  igual a HEAD e origin/main. Salvamento da pausa da 5.34 publicado;
+  entendimento ainda pendente. Atualização documental desta retomada fica local
+  até o próximo checkpoint autorizado.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4349,7 +4372,7 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   persistente em src naquela etapa. Entendimento confirmado depois da explicação.
   Na 3.14, a chamada foi salva em src/exemplo-item-carrinho.php.
 - Sessão encerrada a pedido do aluno em 16/10/2026; continuar outro dia.
-- Na retomada: revisar o script da 5.34 e aguardar confirmação de entendimento.
+- Retomada da 5.34 realizada; entendimento confirmado com "entendi" em 19/10/2026.
 - Aviso do Composer: licença ausente. Configuração válida com código 0;
   nenhuma licença escolhida nesta aula.
 - Após entendimento da 5.34: registrar a confirmação e iniciar 5.35, preparar senha
@@ -4458,4 +4481,4 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 16/10/2026 | 5.31 — Preparação dos testes do backend | Ferramentas/lock/XML/banco diagnosticados; plataforma e simulação passaram, sem instalação | Confirmado pelo aluno: "entendi" | Publicado e verificado em 4233936 |
 | 16/10/2026 | 5.32 — Ferramentas de testes instaladas | 33 pacotes instalados; PHPUnit/plataforma/109 versões/autoload conferidos, sem suíte | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6d86416 |
 | 16/10/2026 | 5.33 — Descoberta dos pacotes de desenvolvimento | Seis pacotes/manifests, ajuda de test, sintaxe e HTTP conferidos, sem suíte | Confirmado pelo aluno: "entendi" | Publicado e verificado em f14a335 |
-| 16/10/2026 | 5.34 — Script da conta exclusiva de testes | SQL preparado; PARSEONLY passou e conta/tabelas continuam ausentes, sem DDL aplicado | Aguardando confirmação; pausa solicitada | Registro de encerramento preparado para publicação; consultar Git |
+| 16/10/2026 | 5.34 — Script da conta exclusiva de testes | SQL preparado; PARSEONLY passou, sem DDL aplicado; revisão em 19/10 | Confirmado pelo aluno: "entendi", em 19/10/2026 | Pausa publicada em a6ddff9; confirmação preparada para publicação |

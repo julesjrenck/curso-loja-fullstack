@@ -86,14 +86,13 @@ precisam de verificação na etapa de aplicação.
 
 ## Continuidade
 
-Script e explicação apresentados; entendimento da 5.34 aguardando confirmação
-explícita. Em 16/10/2026 o aluno pediu para salvar o progresso e continuar outro
+Script e explicação apresentados; entendimento da 5.34 confirmado com "entendi"
+em 19/10/2026, após a revisão. Em 16/10/2026 o aluno pediu para salvar o progresso e continuar outro
 dia. Registro de encerramento preparado para commit/push; isso não confirma
 entendimento. Último checkpoint confirmado/publicado: f14a335, descoberta 5.33.
 Consultar Git para o SHA do salvamento desta pausa.
 
-Na retomada: revisar esta explicação e dúvidas antes de aguardar entendimento.
-Após confirmação explícita, registrar a confirmação e iniciar 5.35, preparar
+Revisão e confirmação realizadas em 19/10/2026. Próximo passo: iniciar 5.35, preparar
 o campo público vazio e a senha somente no ambiente local ignorado, aplicar
 este script e verificar autenticação, permissões em loja_test, ausência de
 acesso a loja e reexecução. A conta é persistente e as permissões previstas
