@@ -311,8 +311,11 @@ sobrescritos e preço padrão. Teste 1/3 e suíte 6/14 passaram; rollback confer
 Entendimento da 5.49 confirmado com "entendi" em 19/10/2026, publicado em 9a08b80.
 Na 5.50, factory nos dois cadastros do cenário ativo/inativo, com nome/status
 explícitos e preço padrão. Teste 1/3 e suíte 6/14 passaram; rollback conferido.
-Entendimento da 5.50 confirmado com "entendi" em 19/10/2026; depois, 5.51: cenário de ordenação.
-Detalhes em docs/aulas/05-50-factory-teste-inativos.md.
+Entendimento da 5.50 confirmado com "entendi" em 19/10/2026, publicado em 10e723b.
+Na 5.51, factory no cenário de ordenação, com nomes/status controlados e preço
+padrão. Teste 1/3 e suíte 6/14 passaram; rollback conferido. Entendimento da
+5.51 confirmado com "entendi" em 19/10/2026; depois, 5.52: estado inativo na factory.
+Detalhes em docs/aulas/05-51-factory-teste-ordenacao.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

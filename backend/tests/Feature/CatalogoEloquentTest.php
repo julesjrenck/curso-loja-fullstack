@@ -64,15 +64,13 @@ class CatalogoEloquentTest extends TestCase
 
     public function test_retorna_nomes_em_ordem_alfabetica(): void
     {
-        Produto::create([
+        Produto::factory()->create([
             'nome' => 'Caneca',
-            'preco_em_centavos' => 2990,
             'status' => 'ativo',
         ]);
 
-        Produto::create([
+        Produto::factory()->create([
             'nome' => 'Camiseta',
-            'preco_em_centavos' => 4990,
             'status' => 'ativo',
         ]);
 
