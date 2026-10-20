@@ -367,8 +367,11 @@ Na 5.69, Produto com Fillable de categoria_id e método categoria/belongsTo;
 configuração em memória e suíte 6/14 passaram. Entendimento confirmado com "entendi"
 em 20/10/2026, publicado em 6292b4b. Na 5.70, primeiro teste de leitura da categoria
 relacionada passou: focado 1/5 e suíte 7/19, rollback conferido. Entendimento
-confirmado com "entendi" em 20/10/2026; depois, 5.71: cenário sem categoria.
-Detalhes em docs/aulas/05-70-teste-categoria-produto.md.
+confirmado com "entendi" em 20/10/2026, publicado em 68b586f. Na 5.71, segundo
+cenário verifica categoria_id e relação null no produto sem categoria; focado 2/9
+e suíte 8/23 passaram, rollback conferido. Entendimento confirmado com "entendi"
+em 20/10/2026; depois, 5.72: definição de hasMany em Categoria.
+Detalhes em docs/aulas/05-71-produto-sem-categoria.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

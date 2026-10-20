@@ -42,4 +42,17 @@ class ProdutoCategoriaTest extends TestCase
         $this->assertSame($categoria->id, $categoriaLida->id);
         $this->assertSame('Roupas', $categoriaLida->nome);
     }
+
+    public function test_produto_sem_categoria_retorna_relacao_nula(): void
+    {
+        $produto = Produto::factory()->create([
+            'nome' => 'Camiseta',
+            'status' => 'ativo',
+        ]);
+
+        $produto = Produto::findOrFail($produto->id);
+
+        $this->assertNull($produto->categoria_id);
+        $this->assertNull($produto->categoria);
+    }
 }

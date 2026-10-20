@@ -4,14 +4,16 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.70 — Teste de leitura da categoria do produto.
-- Situação: criado somente ProdutoCategoriaTest.php, com DatabaseTransactions
-  e identidade loja_test/loja_testes conferida no setUp. Um cenário cadastra
-  Acessórios e Roupas, liga Camiseta a Roupas, recarrega produto por ID e acessa
-  $produto->categoria. Tipo/ID/nome conferidos. Focado 1 teste/5 asserções;
-  suíte 7 testes/19 asserções passou. Após rollback, teste 0/0/3 e normal 0/1/3.
-  Implementação/verificações da 5.70 concluídas; explicação apresentada.
-  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.70 pendente.
+- Etapa atual: 5.71 — Produto sem categoria.
+- Situação: adicionado somente um segundo cenário em ProdutoCategoriaTest.php.
+  Cria Camiseta sem categoria_id, recarrega por findOrFail e verifica com
+  assertNull tanto categoria_id quanto $produto->categoria. Mesmo setUp com
+  identidade loja_test/loja_testes e DatabaseTransactions para rollback.
+  Arquivo focado 2 testes/9 asserções; suíte 8 testes/23 asserções passou.
+  Após rollback: teste 0 categorias/0 produtos/3 migrations; normal 0/1/3.
+  Implementação/verificações da 5.71 concluídas; explicação apresentada.
+  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.71 pendente.
+  Etapa 5.70 confirmada com "entendi" em 20/10/2026, publicada em 68b586f.
   Etapa 5.69 confirmada com "entendi" em 20/10/2026, publicada em 6292b4b.
   Etapa 5.68 confirmada com "entendi" em 20/10/2026, publicada em 55f7ea8.
   Etapa 5.67 confirmada com "entendi" em 20/10/2026, publicada em e384ae1.
@@ -41,7 +43,7 @@
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.70: 7 testes/19 asserções, incluindo leitura da categoria relacionada.
+  Última suíte na 5.71: 8 testes/23 asserções, incluindo produto sem categoria.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -51,8 +53,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.71, adicionar somente cenário de produto sem
-  categoria, conferindo categoria_id e relação como NULL com o mesmo rollback.
+  Próxima etapa após confirmação: 5.72, definir somente Categoria::produtos()
+  com hasMany, explicando a direção inversa e conferindo a configuração em memória.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -81,7 +83,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 6292b4b, belongsTo de Produto para Categoria 5.69.
+  Último checkpoint pedagógico confirmado/publicado: 68b586f, teste de leitura da categoria 5.70.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -160,23 +162,24 @@
 - Etapa 5.68 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.69 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.70 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.71 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: 5.69 confirmada com "entendi" e publicada em
-6292b4b5019d8a16f3868089ccae28d1b6afb29b, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.70 implementada/explicada: novo arquivo
-backend/tests/Feature/ProdutoCategoriaTest.php, com DatabaseTransactions e setUp
-conferindo banco/login antes dos cadastros. Único cenário cria Acessórios e Roupas,
-cria Camiseta pela factory com categoria_id de Roupas, recarrega por findOrFail e
-acessa $produto->categoria. Asserções verificam Categoria, ID esperado e nome Roupas.
-Focado 1 teste/5 asserções e suíte 7 testes/19 asserções passaram, código 0.
-SELECTs separados após suíte: teste 0 categorias/0 produtos/3 migrations e
-normal 0/1/3. Nenhuma relação inversa, model ou migration alterado nessa etapa.
-5.70 confirmada com "entendi" em 20/10/2026; publicar e iniciar 5.71:
-adicionar somente cenário de produto sem categoria, conferindo FK/relação NULL
-com o mesmo setUp e rollback, sem outros cenários ainda.
-Continuamos no módulo 5.
+Estado mais recente, em 20/10/2026: 5.70 confirmada com "entendi" e publicada em
+68b586fb05548f70a1a0b7160ce4bd2e8985e2c2, igual a HEAD, origin/main e main
+remota após o push. Na 5.71, acrescentado somente o cenário
+ test_produto_sem_categoria_retorna_relacao_nula em ProdutoCategoriaTest.php.
+Camiseta criada pela factory sem categoria_id, recarregada por findOrFail;
+assertNull verifica a FK e a propriedade de relacionamento. SetUp com identidade
+e DatabaseTransactions preservados. Arquivo focado 2 testes/9 asserções;
+suíte 8 testes/23 asserções, código 0. Consultas posteriores: loja_test/loja_testes
+0 categorias/0 produtos/3 migrations, loja/loja_app 0/1/3.
+Implementação/verificação/explicação da 5.71 concluídas, entendimento confirmado
+com "entendi" em 20/10/2026; publicação pendente.
+Publicar 5.71 e iniciar somente 5.72: Categoria::produtos()
+com hasMany, explicando direção inversa e conferindo configuração em memória.
+Teste da relação inversa ficará para outra etapa. Continuamos no módulo 5.
 Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
@@ -5718,11 +5721,41 @@ Verificações em PHP Docker:
   em models, migrations, factories, seeders ou serviços. Sem relação inversa ainda.
 
 Entendimento da 5.70: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.70: checkpoint concluído, pronto para commit/push autorizado.
-Último checkpoint confirmado/publicado: 6292b4b, etapa 5.69.
+Publicação da 5.70: 68b586fb05548f70a1a0b7160ce4bd2e8985e2c2, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
 Próximo passo exato após publicar: 5.71,
 adicionar somente cenário de produto sem categoria, conferindo categoria_id e
 relação NULL, com o mesmo setUp/rollback e sem outros cenários nessa etapa.
+
+## Etapa 5.71 — Produto sem categoria
+
+Implementação, explicação e verificações em 20/10/2026. Detalhes em
+docs/aulas/05-71-produto-sem-categoria.md.
+
+Única alteração funcional: segundo cenário em ProdutoCategoriaTest.php.
+Test_produto_sem_categoria_retorna_relacao_nula cria Camiseta/ativo pela factory,
+sem informar categoria_id. Factory fornece preço e não define categoria_id.
+Coluna anulável permite persistir NULL. FindOrFail recarrega produto por ID;
+assertNull confere categoria_id e $produto->categoria separadamente.
+Ausência de associação é representada por null, sem model Categoria.
+SetUp com asserções de banco/login e DatabaseTransactions preservados.
+
+Verificações em PHP Docker:
+
+- Arquivo focado: OK (2 tests, 9 assertions), código 0. Cenário novo soma quatro:
+  duas asserções de identidade e duas de ausência de categoria.
+- Suíte completa: OK (8 tests, 23 assertions), código 0.
+- SELECTs posteriores em processos separados: loja_test/loja_testes com
+  0 categorias/0 produtos/3 migrations; loja/loja_app com 0/1/3. Rollback conferido.
+- git diff --check passou. Models, migrations, factory e serviços preservados;
+  nenhum novo cadastro permanente ou alteração em arquivos privados de ambiente.
+
+Entendimento da 5.71: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.71: checkpoint concluído, pronto para commit/push autorizado.
+Último checkpoint confirmado/publicado: 68b586f, etapa 5.70.
+Próximo passo exato: publicar 5.71 e iniciar somente 5.72: definir Categoria::produtos() com retorno HasMany e
+$this->hasMany(Produto::class), explicando a direção inversa e conferindo em
+memória as chaves do relacionamento; teste com persistência em etapa posterior.
 
 ## Verificações e limitações do ambiente
 
@@ -5750,14 +5783,14 @@ relação NULL, com o mesmo setUp/rollback e sem outros cenários nessa etapa.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `6292b4b`,
-  `feat: relaciona Produto a Categoria com belongsTo`.
+- Último commit local publicado conferido nesta retomada: `68b586f`,
+  `test: verifica categoria relacionada ao produto`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `6292b4b`,
-  igual a HEAD e origin/main. Etapa 5.69 confirmada e publicada;
-  etapa 5.70 fica local aguardando confirmação explícita de entendimento.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `68b586f`,
+  igual a HEAD e origin/main. Etapa 5.70 confirmada e publicada;
+  etapa 5.71 fica local aguardando confirmação explícita de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5922,7 +5955,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   preparados; configuração em memória/sintaxe e suíte 6/14 passaram. Entendimento
   confirmado com "entendi" e publicado em 6292b4b. Na 5.70, primeiro teste de
   leitura da categoria relacionada criado; focado 1/5 e suíte 7/19 passaram,
-  rollback conferido. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.71: cenário sem categoria.
+  rollback conferido. Entendimento confirmado com "entendi" em 20/10/2026 e publicado em 68b586f.
+  Na 5.71, cenário sem categoria verifica FK/relação null; focado 2/9 e suíte 8/23
+  passaram, rollback conferido. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.72: hasMany em Categoria.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -6062,4 +6097,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.67 — REFERENCES e FK no teste | Concessão e migration aplicadas; coluna/FK/histórico conferidos, suíte 6/14 passou e teste vazio após rollback | Confirmado pelo aluno: "entendi" | Publicado e verificado em e384ae1 |
 | 20/10/2026 | 5.68 — REFERENCES e FK em loja | Concessão/migration aplicadas; FK/histórico e produto preservado com categoria_id NULL conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 55f7ea8 |
 | 20/10/2026 | 5.69 — Produto belongsTo Categoria | Fillable e método categoria adicionados; configuração em memória/zero SQL e suíte 6/14 passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6292b4b |
-| 20/10/2026 | 5.70 — Leitura da categoria relacionada | Novo teste com categoria/produto persistidos e leitura pela propriedade; focado 1/5 e suíte 7/19 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |
+| 20/10/2026 | 5.70 — Leitura da categoria relacionada | Novo teste com categoria/produto persistidos e leitura pela propriedade; focado 1/5 e suíte 7/19 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 68b586f |
+| 20/10/2026 | 5.71 — Produto sem categoria | Segundo cenário confere FK/relação null após recarga; focado 2/9 e suíte 8/23 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |
