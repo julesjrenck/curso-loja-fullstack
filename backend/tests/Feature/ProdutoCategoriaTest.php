@@ -100,4 +100,52 @@ class ProdutoCategoriaTest extends TestCase
         $this->assertNull($produto->categoria);
         $this->assertSame($categoria->id, Categoria::findOrFail($categoria->id)->id);
     }
+
+    public function test_lista_produtos_com_categorias_em_duas_consultas(): void
+    {
+        $roupas = Categoria::create(['nome' => 'Roupas']);
+        $acessorios = Categoria::create(['nome' => 'Acessórios']);
+        $ids = [];
+
+        foreach ([
+            ['Camiseta', $roupas->id],
+            ['Calça', $roupas->id],
+            ['Caneca', $acessorios->id],
+        ] as [$nome, $categoriaId]) {
+            $ids[] = Produto::factory()->create([
+                'nome' => $nome,
+                'status' => 'ativo',
+                'categoria_id' => $categoriaId,
+            ])->id;
+        }
+
+        $conexao = DB::connection();
+        $conexao->flushQueryLog();
+        $conexao->enableQueryLog();
+
+        try {
+            $produtos = Produto::query()
+                ->whereIn('id', $ids)
+                ->orderBy('id')
+                ->with('categoria')
+                ->get();
+
+            $this->assertCount(2, $conexao->getQueryLog());
+
+            $linhas = [];
+            foreach ($produtos as $produto) {
+                $linhas[] = $produto->nome.' -> '.$produto->categoria->nome;
+            }
+
+            $this->assertSame([
+                'Camiseta -> Roupas',
+                'Calça -> Roupas',
+                'Caneca -> Acessórios',
+            ], $linhas);
+            $this->assertCount(2, $conexao->getQueryLog());
+        } finally {
+            $conexao->disableQueryLog();
+            $conexao->flushQueryLog();
+        }
+    }
 }

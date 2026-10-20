@@ -181,7 +181,10 @@ aplicação. Entendimento confirmado com "entendi" em 20/10/2026, publicado em
 55d0045. Na 5.79, diagnóstico comparativo com with('categoria') retornou os mesmos
 nomes com 2 SELECTs em vez de 4, sem consultas adicionais no foreach. Rollback e
 contagens posteriores conferidos. Entendimento confirmado com "entendi"
-em 20/10/2026; depois, 5.80: teste permanente dos resultados e quantidade de consultas com with.
+em 20/10/2026, publicado em 70d44b5. Na 5.80, cenário permanente em
+ProdutoCategoriaTest exige resultados corretos e duas consultas antes/depois
+do foreach. Focado 5/27 e suíte 14/54 passaram, rollback conferido. Entendimento
+confirmado com "entendi" em 20/10/2026; depois, 5.81: primeiro INNER JOIN no SQL com diagnóstico.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
