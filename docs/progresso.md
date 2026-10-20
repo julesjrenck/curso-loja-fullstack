@@ -4,13 +4,16 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.64 — Migration de categoria_id preparada.
-- Situação: adicionada somente migration 2026_10_20_120347_add_categoria_id_to_produtos_table.php.
-  Up usa foreignId/nullable/constrained('categorias')/noActionOnDelete; down usa
-  dropConstrainedForeignId. Nova coluna opcional preservará produtos sem categoria;
-  restrição impedirá excluir categoria referenciada. Sintaxe passou, sem aplicar.
-  Implementação/verificação da 5.64 concluídas; explicação apresentada.
-  Entendimento confirmado com "entendi" em 20/10/2026. Checkpoint pronto para publicação.
+- Etapa atual: 5.65 — Tentativa da FK e permissão REFERENCES.
+- Situação: migrate de categoria_id em loja_test falhou com REFERENCES negado
+  em dbo.categorias, código 1. Conferência posterior confirmou coluna/FK ausentes
+  e migration Pending; nenhuma alteração parcial ficou aplicada.
+  Teste segue 0 categorias/0 produtos/2 migrations; normal 0/1/2. SELECTs
+  confirmaram REFERENCES = 0 para loja_testes e loja_migracoes em seus bancos.
+  Nenhuma permissão concedida; suíte planejada não executada após a falha.
+  Descoberta/verificações e explicação da 5.65 registradas; aplicação da FK pendente.
+  Entendimento confirmado com "entendi" em 20/10/2026. Checkpoint da descoberta pronto para publicação.
+  Etapa 5.64 confirmada com "entendi" em 20/10/2026, publicada em e5e6156.
   Etapa 5.63 confirmada com "entendi" em 20/10/2026, publicada em ce67886.
   Etapa 5.62 confirmada com "entendi" em 20/10/2026, publicada em e57dbbe.
   Etapa 5.61 confirmada com "entendi" em 20/10/2026, publicada em 4d3358d.
@@ -44,8 +47,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.65, aplicar somente essa migration em loja_test,
-  conferir coluna/FK/nulabilidade/histórico e executar suíte existente.
+  Próxima etapa: 5.66, preparar SQL público de GRANT REFERENCES
+  somente em loja_test.dbo.categorias para loja_testes e explicar, sem executar ainda.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -74,7 +77,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: ce67886, cadastro/leitura de Categoria 5.63.
+  Último checkpoint pedagógico confirmado/publicado: e5e6156, migration de categoria_id preparada 5.64.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -147,21 +150,26 @@
 - Etapa 5.62 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.63 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.64 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.65 confirmada com "entendi" em 20/10/2026, quanto à descoberta/permissão.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: 5.63 confirmada com "entendi" e publicada em
-ce678868ac122c51816f47c63de1ae58d8ea582c, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.64 implementada/explicada: gerada pelo Artisan em PHP
-Docker a migration 2026_10_20_120347_add_categoria_id_to_produtos_table.php.
-Up altera produtos com foreignId('categoria_id')->nullable()->constrained('categorias')
-->noActionOnDelete(); down remove restrição/coluna com dropConstrainedForeignId.
-Explicados NULL para produto sem categoria, referência a categorias.id e bloqueio
-de exclusão de categoria em uso. Migrations aplicadas preservadas; nenhuma alteração
-em models, factories ou seeders. Sintaxe passou; nenhum migrate, up/down ou SQL.
-Última suíte 6/14 permanece a da 5.53. Entendimento da 5.64 confirmado com "entendi"
-em 20/10/2026. Publicar o checkpoint e iniciar 5.65: aplicar somente esta migration
-em loja_test, conferir coluna/FK/nulabilidade/histórico e executar suíte existente.
+Estado mais recente, em 20/10/2026: 5.64 confirmada com "entendi" e publicada em
+e5e6156e28addc7f723d900d7953c20a267a9d8a, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.65 teve tentativa de migrate somente do arquivo
+2026_10_20_120347_add_categoria_id_to_produtos_table.php em loja_test/loja_testes:
+falhou com REFERENCES negado sobre dbo.categorias, código 1. A cadeia parou;
+suíte e verificações pós-sucesso planejadas não foram executadas.
+Conferências após falha: categoria_id/FK ausentes, status Pending, categorias/
+produtos vazios e duas migrations em loja_test; normal continua 0/1/2.
+SELECT HAS_PERMS_BY_NAME confirmou REFERENCES 0 em categorias para loja_testes
+em loja_test e loja_migracoes em loja. Nenhuma concessão foi feita; código
+da migration preservado. Última suíte 6/14 permanece a da 5.53.
+Entendimento da descoberta 5.65 confirmado com "entendi" em 20/10/2026. Publicar
+o checkpoint e iniciar 5.66: preparar SQL público para conceder REFERENCES apenas em
+loja_test.dbo.categorias ao usuário loja_testes, sem executar nessa preparação.
+Aplicar concessão, repetir migration e executar suíte continuam pendentes para
+etapas posteriores. Não afirmar FK criada nem testes executados na 5.65.
 Continuamos no módulo 5.
 Registros abaixo são históricos.
 
@@ -5467,11 +5475,51 @@ Sem alterações em models/factories/seeders. Segredos ignorados/fora do índice
 suíte não repetida para arquivo ainda não aplicado, último 6/14 pertence à 5.53.
 
 Entendimento da 5.64: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.64: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: ce67886, etapa 5.63.
-Próximo passo exato: publicar checkpoint e iniciar 5.65,
+Publicação da 5.64: e5e6156e28addc7f723d900d7953c20a267a9d8a, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
+Próximo passo planejado após confirmação: 5.65,
 aplicar somente esta migration em loja_test, conferir coluna/FK/nulabilidade/
 histórico e executar suíte existente, sem aplicar em loja nessa etapa.
+
+## Etapa 5.65 — Tentativa da FK e permissão REFERENCES
+
+Tentativa, descoberta e verificações em 20/10/2026. Detalhes em
+docs/aulas/05-65-permissao-references.md. Nenhum código da aplicação alterado.
+
+Antes: diagnóstico /tmp/curso-565-conferir-categoria-id.php com --env=testing e
+--antes confirmou loja_test/loja_testes, ALTER dbo permitido, categoria_id/FK
+ausentes, categorias/produtos vazios e duas migrations. Consulta normal 0/1/2.
+
+Executado migrate com --env=testing, --database=sqlsrv e --path apenas de
+2026_10_20_120347_add_categoria_id_to_produtos_table.php. Falhou, código 1:
+REFERENCES permission denied em loja_test.dbo.categorias. A falha ocorreu no
+ALTER TABLE que criaria a chave estrangeira. Comandos seguintes encadeados
+com &&, incluindo a suíte, não foram executados.
+
+Explicação: ALTER sobre produtos permite alterar a tabela, mas criar uma FK
+também exige REFERENCES na tabela referenciada. Isso não equivale a SELECT,
+CREATE TABLE ou ALTER. A permissão pode ser limitada a dbo.categorias no banco
+exclusivo de testes; não é necessário ampliar para db_owner/sysadmin.
+
+Conferências após falha:
+
+- Repetido diagnóstico --antes passou: coluna/FK ausentes; categorias/produtos
+  vazios e duas migrations, portanto nenhuma alteração parcial ficou aplicada.
+- migrate:status retornou Pending, código 0. Arquivo não registrado como aplicado.
+- Consulta normal: loja/loja_app, zero categorias/um produto/duas migrations.
+- HAS_PERMS_BY_NAME('dbo.categorias', 'OBJECT', 'REFERENCES') retornou 0 para
+  loja_testes em loja_test e loja_migracoes em loja. Somente SELECTs nessas consultas.
+- Nenhuma concessão executada. Suíte NÃO executada nesta etapa; último 6/14 é da
+  5.53. Aplicação da FK e execução da suíte permanecem pendentes.
+- git diff --check passou; segredos ignorados/fora do índice. Migration preservada.
+
+Entendimento da 5.65: confirmado com "entendi" em 20/10/2026, quanto à descoberta/permissão.
+Publicação da 5.65: checkpoint da descoberta concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: e5e6156, etapa 5.64.
+Próximo passo exato: publicar checkpoint e iniciar 5.66,
+preparar SQL público para GRANT REFERENCES apenas em loja_test.dbo.categorias
+ao usuário loja_testes, explicar escopo e não executar nessa etapa de preparação.
+Depois será necessário aplicar a concessão, repetir a migration e executar suíte.
 
 ## Verificações e limitações do ambiente
 
@@ -5499,14 +5547,14 @@ histórico e executar suíte existente, sem aplicar em loja nessa etapa.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `ce67886`,
-  `docs: demonstra cadastro e leitura de Categoria`.
+- Último commit local publicado conferido nesta retomada: `e5e6156`,
+  `build: prepara chave estrangeira de produto para categoria`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `ce67886`,
-  igual a HEAD e origin/main. Etapa 5.63 confirmada e publicada;
-  etapa 5.64 agora confirmada e pronta para publicação.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `e5e6156`,
+  igual a HEAD e origin/main. Etapa 5.64 confirmada e publicada;
+  etapa 5.65 agora confirmada e pronta para publicação da descoberta.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5657,7 +5705,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   conferidos, rollback para zero categorias. Entendimento confirmado com "entendi"
   e publicado em ce67886. Na 5.64, migration de categoria_id anulável/FK preparada,
   com bloqueio de exclusão de categoria referenciada; sintaxe passou, sem aplicar.
-  Entendimento confirmado com "entendi"; depois, 5.65: aplicar em loja_test e executar suíte existente.
+  Entendimento confirmado com "entendi" e publicado em e5e6156. Na 5.65,
+  aplicação falhou por REFERENCES negado, sem alteração parcial; status Pending.
+  Suíte não executada. Entendimento da descoberta confirmado com "entendi"; depois, 5.66: preparar concessão
+  restrita ao objeto categorias no banco de testes.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5791,4 +5842,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.61 — Categorias no banco da aplicação | Migration aplicada em loja com loja_migracoes; esquema/status/reexecução e produto preservado conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 4d3358d |
 | 20/10/2026 | 5.62 — Model Categoria | Classe gerada, Fillable de nome; sintaxe/configuração em memória passaram, zero SQL | Confirmado pelo aluno: "entendi" | Publicado e verificado em e57dbbe |
 | 20/10/2026 | 5.63 — Cadastro/leitura de Categoria | Create/findOrFail em loja_test conferidos, ID/datas preenchidos e rollback para zero categorias | Confirmado pelo aluno: "entendi" | Publicado e verificado em ce67886 |
-| 20/10/2026 | 5.64 — Migration categoria_id em produtos | Coluna anulável/FK e noActionOnDelete preparados; down remove FK/coluna; sintaxe passou, sem aplicar | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
+| 20/10/2026 | 5.64 — Migration categoria_id em produtos | Coluna anulável/FK e noActionOnDelete preparados; down remove FK/coluna; sintaxe passou, sem aplicar | Confirmado pelo aluno: "entendi" | Publicado e verificado em e5e6156 |
+| 20/10/2026 | 5.65 — Tentativa da FK e REFERENCES | Migrate falhou por permissão; coluna/FK ausentes e Pending confirmados; suíte não executada | Descoberta confirmada pelo aluno: "entendi" | Checkpoint da descoberta concluído; envio a verificar após commit |

@@ -351,8 +351,11 @@ Categoria em loja_test conferidos, ID/datas preenchidos e rollback para zero.
 Normal segue sem categorias/com um produto. Entendimento da 5.63 confirmado
 com "entendi" em 20/10/2026, publicado em ce67886. Na 5.64, migration de
 categoria_id anulável/FK preparada com noActionOnDelete; sintaxe passou, sem aplicar.
-Entendimento da 5.64 confirmado com "entendi" em 20/10/2026; depois, 5.65: aplicar em loja_test
-e executar suíte existente. Detalhes em docs/aulas/05-64-migration-categoria-produto.md.
+Entendimento da 5.64 confirmado com "entendi" em 20/10/2026, publicado em e5e6156.
+Na 5.65, aplicação em loja_test falhou por REFERENCES negado em categorias.
+Coluna/FK continuam ausentes e migration Pending; suíte não executada.
+Entendimento da descoberta confirmado com "entendi" em 20/10/2026; depois, 5.66: preparar
+concessão restrita ao objeto. Detalhes em docs/aulas/05-65-permissao-references.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

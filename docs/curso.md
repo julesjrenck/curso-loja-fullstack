@@ -131,8 +131,11 @@ conferidos com ID/datas, transação desfeita e contagens finais preservadas.
 Entendimento da 5.63 confirmado com "entendi" em 20/10/2026, publicado em ce67886.
 Na 5.64, migration de categoria_id anulável/FK em produtos preparada, com
 noActionOnDelete e reversão da FK/coluna. Sintaxe passou, sem aplicar.
-Entendimento da 5.64 confirmado com "entendi" em 20/10/2026; depois, 5.65: aplicar em loja_test,
-conferir metadados/histórico e executar suíte existente.
+Entendimento da 5.64 confirmado com "entendi" em 20/10/2026, publicado em e5e6156.
+Na 5.65, tentativa de aplicação em loja_test falhou por REFERENCES negado em
+categorias; coluna/FK ausentes e Pending confirmados após falha. Suíte planejada
+não executada. Entendimento da descoberta confirmado com "entendi" em 20/10/2026; depois, 5.66:
+preparar concessão REFERENCES restrita à tabela categorias do banco de testes.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
