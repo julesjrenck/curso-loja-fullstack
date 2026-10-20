@@ -157,8 +157,11 @@ Focado 2/9 e suíte 8/23 passaram, rollback conferido. Entendimento confirmado
 com "entendi" em 20/10/2026 e publicado em e41a1d4. Na 5.72, relação inversa
 hasMany definida em Categoria; sintaxe e configuração em memória com zero SQL
 conferidas. Suíte existente 8/23 passou; ainda não lê produtos por hasMany.
-Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.73: primeiro teste de leitura dos
-produtos de uma categoria, excluindo produto de outra categoria.
+Entendimento confirmado com "entendi" em 20/10/2026, publicado em 593cb81.
+Na 5.73, primeiro CategoriaProdutosTest cadastra duas categorias/três produtos,
+recarrega Roupas e verifica coleção somente com Camiseta/Calça pelos IDs, sem
+exigir ordem. Focado 1/5 e suíte 9/28 passaram, rollback conferido. Entendimento
+confirmado com "entendi" em 20/10/2026; depois, 5.74: cenário de categoria sem produtos.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
