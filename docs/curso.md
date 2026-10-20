@@ -194,7 +194,10 @@ conferidos. Entendimento confirmado com "entendi" em 20/10/2026, publicado em
 c700173. Na 5.83, mesmo LEFT JOIN por Query Builder comparado ao SQL: mesmos
 nomes/null, 1 SELECT por caso, zero antes de get, Collection de linhas simples.
 Rollback/contagens conferidos. Entendimento confirmado com "entendi"
-em 20/10/2026; depois, 5.84: count() para contar produtos de categoria sem carregar lista.
+em 20/10/2026, publicado em 829236f. Na 5.84, count() no Query Builder retornou
+inteiros 2/0 com um SELECT COUNT(*) por categoria, sem carregar lista. SQL/rollback/
+contagens conferidos. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.85:
+GROUP BY categoria_id e COUNT(*) em uma consulta SQL.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

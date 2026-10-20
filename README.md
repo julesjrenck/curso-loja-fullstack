@@ -405,8 +405,10 @@ comparação com INNER e rollback conferidos. Entendimento confirmado com "enten
 em 20/10/2026, publicado em c700173. Na 5.83, Query Builder comparado ao SQL:
 mesmos nomes/null, 1 SELECT por caso, zero antes de get e Collection de linhas
 simples. Rollback/contagens passaram. Entendimento confirmado com "entendi"
-em 20/10/2026; depois, 5.84: count() de produtos por categoria sem carregar lista.
-Detalhes em docs/aulas/05-83-left-join-query-builder.md.
+em 20/10/2026, publicado em 829236f. Na 5.84, count() retornou inteiros 2/0,
+um SELECT COUNT(*) por categoria, sem carregar lista; rollback/contagens passaram.
+Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.85: GROUP BY e COUNT em uma consulta.
+Detalhes em docs/aulas/05-84-count-produtos-categoria.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
