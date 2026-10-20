@@ -337,8 +337,11 @@ Na 5.58, modelagem categorias/produtos apresentada: um para muitos, IDs e chave
 estrangeira, somente exemplos/documentação. Entendimento confirmado com "entendi"
 em 20/10/2026, publicado em f680b99. Na 5.59, migration de categorias preparada
 com id, nome string(150) e timestamps(3), sintaxe passou, sem aplicar.
-Entendimento da 5.59 confirmado com "entendi" em 20/10/2026; depois, 5.60: aplicar em loja_test.
-Detalhes em docs/aulas/05-59-migration-categorias.md.
+Entendimento da 5.59 confirmado com "entendi" em 20/10/2026, publicado em 9e89010.
+Na 5.60, migration aplicada em loja_test; esquema/status/reexecução conferidos.
+Categorias/produtos vazios e duas migrations no teste; normal segue com um produto
+e uma migration. Entendimento da 5.60 confirmado em 20/10/2026; depois, 5.61:
+aplicar em loja com conta de migrations. Detalhes em docs/aulas/05-60-categorias-banco-testes.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

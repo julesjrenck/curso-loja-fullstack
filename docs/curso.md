@@ -116,8 +116,11 @@ Na 5.58, modelagem inicial categorias/produtos: um para muitos, chave primária
 e estrangeira explicados com exemplos ilustrativos, sem alterar código/esquema.
 Entendimento da 5.58 confirmado com "entendi" em 20/10/2026, publicado em f680b99.
 Na 5.59, migration de categorias gerada com id, nome string(150) e timestamps(3);
-sintaxe passou, sem aplicar. Entendimento da 5.59 confirmado com "entendi" em 20/10/2026;
-depois, 5.60: aplicar somente essa migration em loja_test e conferir estrutura/status.
+sintaxe passou, sem aplicar. Entendimento da 5.59 confirmado com "entendi" em
+20/10/2026, publicado em 9e89010. Na 5.60, migration aplicada somente em loja_test;
+esquema/status [2] Ran/reexecução conferidos, categorias e produtos vazios.
+Banco normal mantém um produto e uma migration. Entendimento da 5.60 confirmado
+em 20/10/2026; depois, 5.61: mesma migration em loja com conta de migrations.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
