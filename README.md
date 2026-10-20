@@ -402,8 +402,11 @@ sem categoria ficou fora do resultado e continuou no banco. Rollback conferido.
 Entendimento confirmado com "entendi" em 20/10/2026, publicado em dca90ec.
 Na 5.82, LEFT JOIN retornou Camiseta/Roupas e Caneca/null em 1 SELECT/2 linhas;
 comparação com INNER e rollback conferidos. Entendimento confirmado com "entendi"
-em 20/10/2026; depois, 5.83: expressar o mesmo LEFT JOIN com Query Builder.
-Detalhes em docs/aulas/05-82-left-join-produtos-categorias.md.
+em 20/10/2026, publicado em c700173. Na 5.83, Query Builder comparado ao SQL:
+mesmos nomes/null, 1 SELECT por caso, zero antes de get e Collection de linhas
+simples. Rollback/contagens passaram. Entendimento confirmado com "entendi"
+em 20/10/2026; depois, 5.84: count() de produtos por categoria sem carregar lista.
+Detalhes em docs/aulas/05-83-left-join-query-builder.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

@@ -190,8 +190,11 @@ fora do resultado e seguiu no banco. Rollback/contagens conferidos, sem mudar
 aplicação. Entendimento confirmado com "entendi" em 20/10/2026, publicado em
 dca90ec. Na 5.82, comparação com LEFT JOIN retornou também Caneca/null em
 1 SELECT/2 linhas, enquanto INNER retornou 1 linha. Nomes/NULL/rollback/contagens
-conferidos. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.83: mesmo LEFT JOIN
-com Query Builder.
+conferidos. Entendimento confirmado com "entendi" em 20/10/2026, publicado em
+c700173. Na 5.83, mesmo LEFT JOIN por Query Builder comparado ao SQL: mesmos
+nomes/null, 1 SELECT por caso, zero antes de get, Collection de linhas simples.
+Rollback/contagens conferidos. Entendimento confirmado com "entendi"
+em 20/10/2026; depois, 5.84: count() para contar produtos de categoria sem carregar lista.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
