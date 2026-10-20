@@ -326,8 +326,11 @@ SELECTs passaram. Exemplo de usuário depende de users, ausente nos dois bancos.
 Entendimento da 5.54 confirmado com "entendi" após nova explicação em 19/10/2026,
 publicado em def2f14. Na 5.55, ProdutoSeeder existente preservado/revisado;
 corrigida previsão de gerá-lo novamente. Sintaxe passou, sem executar cadastro.
-Entendimento da 5.55 confirmado com "entendi" em 19/10/2026; depois, 5.56: chamada no DatabaseSeeder.
-Detalhes em docs/aulas/05-55-produto-seeder-existente.md.
+Entendimento da 5.55 confirmado com "entendi" em 19/10/2026, publicado em 0f754ae.
+Na 5.56, DatabaseSeeder chama ProdutoSeeder com call; exemplo User removido.
+Sintaxe/autoload passaram, sem executar seeders. Entendimento da 5.56 confirmado
+com "entendi" em 19/10/2026; depois, 5.57: execução padrão em loja_test com rollback.
+Detalhes em docs/aulas/05-56-database-seeder-chama-produto.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

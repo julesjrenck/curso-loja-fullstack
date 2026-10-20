@@ -105,7 +105,10 @@ em 19/10/2026, após nova explicação com exemplo da loja, publicado em def2f14
 Na 5.55, corrigida previsão de gerar ProdutoSeeder: já existe desde a 5.20,
 com firstOrCreate desde a 5.24. Arquivo preservado/revisado em relação ao
 DatabaseSeeder; sintaxe passou, sem execução. Entendimento da 5.55 confirmado
-com "entendi" em 19/10/2026; depois, 5.56: ligar DatabaseSeeder ao ProdutoSeeder existente.
+com "entendi" em 19/10/2026, publicado em 0f754ae. Na 5.56, DatabaseSeeder chama
+ProdutoSeeder por call; exemplo de User removido. Sintaxe/autoload passaram,
+sem executar seeders. Entendimento da 5.56 confirmado com "entendi" em 19/10/2026; depois,
+5.57: verificar db:seed padrão em loja_test dentro de transação com rollback.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
