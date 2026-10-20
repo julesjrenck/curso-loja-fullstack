@@ -387,8 +387,11 @@ Focado final 3/15 e suíte 12/42 passaram, rollback conferido. Entendimento
 confirmado com "entendi" em 20/10/2026, publicado em 0730204. Na 5.77,
 dissociate/save conferidos antes/depois de gravar, com categoria preservada;
 focado 4/22 e suíte 13/49 passaram, rollback conferido. Entendimento confirmado
-com "entendi" em 20/10/2026; depois, 5.78: carregamento sob demanda e problema N+1.
-Detalhes em docs/aulas/05-77-dissociar-produto-categoria.md.
+com "entendi" em 20/10/2026, publicado em 7d94759. Na 5.78, diagnóstico temporário
+em loja_test conferiu 1 SELECT da lista + 3 das categorias = 4 (N+1), nomes e
+rollback. Somente documentação alterada; última suíte segue 13/49 da 5.77.
+Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.79: carregamento antecipado com with.
+Detalhes em docs/aulas/05-78-carregamento-sob-demanda-n-mais-um.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

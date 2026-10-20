@@ -174,7 +174,11 @@ focado final 3/15 e suíte 12/42 passaram, rollback conferido. Entendimento
 confirmado com "entendi" em 20/10/2026, publicado em 0730204. Na 5.77,
 dissociate/save conferidos antes/depois da gravação, com categoria preservada.
 Focado 4/22 e suíte 13/49 passaram, rollback conferido. Entendimento confirmado
-com "entendi" em 20/10/2026; depois, 5.78: diagnóstico de carregamento sob demanda e problema N+1.
+com "entendi" em 20/10/2026, publicado em 7d94759. Na 5.78, diagnóstico temporário
+em loja_test conferiu carregamento sob demanda: 1 SELECT de três produtos e 3
+SELECTs de categorias, total 4 (N+1). Nomes/rollback/contagens conferidos, sem mudar
+aplicação. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.79: with('categoria')
+e comparação de carregamento antecipado, com o mesmo rollback.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
