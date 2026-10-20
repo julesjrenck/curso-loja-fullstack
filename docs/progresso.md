@@ -4,14 +4,16 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.53 — Estado inativo aplicado ao teste.
-- Situação: cadastro da Caneca em test_omite_produtos_inativos_do_catalogo usa
-  Produto::factory()->inativo()->create(['nome' => 'Caneca']). Status explícito
-  removido do array; agora vem do estado da factory. Expectativa preservada.
-  Teste alterado: 1 teste/3 asserções; suíte: 6 testes/14 asserções, passaram.
-  SELECT posterior: zero produtos em loja_test e um no banco normal.
-  Implementação/verificações da 5.53 concluídas; explicação apresentada;
-  entendimento confirmado com "entendi" em 19/10/2026. Checkpoint pronto para publicação.
+- Etapa atual: 5.54 — Leitura do DatabaseSeeder existente.
+- Situação: DatabaseSeeder apresentado sem alterar código ou executar run/db:seed.
+  Rotina gerada usa UserFactory para cadastrar um usuário; linha de dez está
+  comentada. Imports, Seeder, WithoutModelEvents e run explicados.
+  Sintaxe/reflexão passaram. SELECTs confirmaram somente migrations/produtos
+  em loja e loja_test, sem users; o exemplo depende dessa tabela ausente.
+  Implementação da 5.54: somente documentação; explicação/verificações concluídas.
+  Entendimento confirmado com "entendi" após nova explicação em 19/10/2026.
+  Checkpoint da 5.54 pronto para publicação.
+  Etapa 5.53 confirmada com "entendi" em 19/10/2026, publicada em 6ac5518.
   Etapa 5.52 confirmada com "entendi" em 19/10/2026, publicada em edd3411.
   Etapa 5.51 confirmada com "entendi" em 19/10/2026, publicada em 5152ba4.
   Etapa 5.50 confirmada com "entendi" em 19/10/2026, publicada em 10e723b.
@@ -33,8 +35,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.54, apresentar DatabaseSeeder existente e
-  distinguir seeders, factories e migrations; analisar dependências sem executar db:seed.
+  Próxima etapa: 5.55, gerar somente a estrutura de ProdutoSeeder
+  com Artisan e explicar run vazio, sem preencher ou executar o seeder ainda.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -63,7 +65,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: edd3411, estado inativo na factory 5.52.
+  Último checkpoint pedagógico confirmado/publicado: 6ac5518, estado inativo aplicado ao teste 5.53.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -125,20 +127,24 @@
 - Etapa 5.51 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.52 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.53 confirmada com "entendi" em 19/10/2026.
+- Etapa 5.54 confirmada com "entendi" em 19/10/2026, após explicação com exemplo da loja.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.52 confirmada com "entendi" e publicada em
-edd34114bb9943bf6860a324368cee4739388d4e, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.53 implementada/explicada: somente o cadastro da Caneca
-no teste de ativo/inativo usa factory()->inativo()->create com nome explícito;
-status vem do estado da factory. Camiseta/ativo e expectativa ['Camiseta']
-preservados. Teste alterado 1/3 e suíte completa 6/14 passaram. SELECT posterior:
-zero produtos em loja_test/loja_testes e um em loja/loja_app, uma migration em
-cada banco. Nenhum novo script temporário necessário na 5.53; uso está no teste.
-Entendimento da 5.53 confirmado com "entendi" em 19/10/2026. Publicar o
-checkpoint e iniciar 5.54: apresentar DatabaseSeeder existente, distinguir
-seeders/factories/migrations e analisar suas dependências sem executar db:seed.
+Estado mais recente, em 19/10/2026: 5.53 confirmada com "entendi" e publicada em
+6ac5518805ab2706980570b94375e82ba495c2ee, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.54 apresentada/verificada: leitura do DatabaseSeeder
+gerado, sem alterar código ou executar run/db:seed. Distinguidos migration,
+factory e seeder; imports, WithoutModelEvents e cadastro de usuário explicados.
+Sintaxe/reflexão passaram; SELECTs confirmaram somente migrations/produtos nos
+dois bancos, sem users. Exemplo atual depende dessa tabela e não popula catálogo.
+Diagnóstico temporário /tmp/curso-554-inspecionar-seeder.php enviado ao PHP Docker
+pela entrada padrão; executou somente SELECTs, não invocou seeder.
+Última suíte permanece a da 5.53: 6 testes/14 asserções; não repetida para leitura.
+Entendimento da 5.54 confirmado com "entendi" após nova explicação com exemplo
+da loja em 19/10/2026. Publicar o checkpoint e iniciar 5.55: gerar somente
+estrutura de ProdutoSeeder com Artisan e
+explicar run vazio, sem preencher ou executar ainda.
 Continuamos no módulo 5.
 Registros abaixo são históricos.
 
@@ -5048,11 +5054,57 @@ Verificações em PHP Docker:
   dependência, serviço ou alteração em factory/model/serviço.
 
 Entendimento da 5.53: confirmado com "entendi" em 19/10/2026.
-Publicação da 5.53: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: edd3411, etapa 5.52.
-Próximo passo exato: publicar checkpoint e iniciar 5.54,
+Publicação da 5.53: 6ac5518805ab2706980570b94375e82ba495c2ee, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
+Próximo passo após confirmação: 5.54,
 apresentar DatabaseSeeder existente, distinguir seeders/factories/migrations e
 analisar dependências sem executar db:seed.
+
+## Etapa 5.54 — Leitura do DatabaseSeeder existente
+
+Explicação e verificações em 19/10/2026. Detalhes em
+docs/aulas/05-54-leitura-database-seeder.md. Nenhuma alteração no código da aplicação;
+somente documentação nesta etapa.
+
+DatabaseSeeder gerado em database/seeders foi apresentado: namespace, imports
+User/WithoutModelEvents/Seeder, herança, trait que desativa eventos de model na
+execução normal do seeder e run(): void. Linha User::factory(10)->create está
+comentada; cadastro executável usa UserFactory com nome/email fictícios fixos.
+Explicada a relação com User/HasFactory, atributos restantes de UserFactory e
+migration de users. Não aprofundamos autenticação ou dependências externas.
+
+Distinção apresentada: migration define estrutura, factory fornece atributos
+e pode montar/salvar models, seeder organiza a rotina de população de dados.
+Db:seed é o comando de execução do seeder; não foi executado. Seeders não ganham
+automaticamente o rollback que nossos testes têm com DatabaseTransactions.
+
+Verificações em PHP Docker:
+
+- php -l do DatabaseSeeder passou.
+- Reflexão confirmou herança de Seeder e método run público/void, sem invocá-lo.
+- SELECT de identidade e sys.tables confirmou loja/loja_app e
+  loja_test/loja_testes com somente migrations/produtos, sem users.
+  O cadastro padrão depende da tabela users, ainda ausente.
+- Diagnóstico /tmp/curso-554-inspecionar-seeder.php enviado pela entrada padrão
+  ao PHP do container, com e sem --env=testing; código 0 nas duas execuções.
+- WithoutModelEvents, Seeder::__invoke e resolução no SeedCommand consultados
+  no Laravel instalado. Nenhum INSERT, migration ou db:seed executado.
+- git diff --check passou; segredos ignorados/fora do índice. Suíte não repetida
+  para leitura/documentação; último resultado 6/14 pertence à etapa 5.53.
+
+Entendimento da 5.54: confirmado com "entendi" em 19/10/2026, após nova explicação.
+Dúvida recebida: "não entendi, seja mais claro". Explicação reapresentada com
+exemplo da loja: factory guarda atributos padrão; seeder reúne comandos de
+cadastro e pode usar a factory. Exemplo hipotético de run cadastrando Camiseta
+e Caneca com Produto::factory()->create, sem implementação/execução. Destacado
+que create salva em ambos os contextos; nos testes há rollback pelo trait,
+enquanto a rotina de seeding pode deixar exemplos cadastrados. Migration cria
+a estrutura necessária. O aluno confirmou entendimento com "entendi" em seguida.
+Publicação da 5.54: checkpoint concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: 6ac5518, etapa 5.53.
+Próximo passo exato: publicar checkpoint e iniciar 5.55,
+gerar somente a estrutura ProdutoSeeder com Artisan e explicar run vazio,
+sem preencher ou executar o seeder nessa etapa.
 
 ## Verificações e limitações do ambiente
 
@@ -5080,14 +5132,14 @@ analisar dependências sem executar db:seed.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `edd3411`,
-  `build: adiciona estado inativo na factory de Produto`.
+- Último commit local publicado conferido nesta retomada: `6ac5518`,
+  `test: aplica estado inativo ao teste de catalogo`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `edd3411`,
-  igual a HEAD e origin/main. Etapa 5.52 confirmada e publicada;
-  etapa 5.53 agora confirmada e pronta para publicação.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `6ac5518`,
+  igual a HEAD e origin/main. Etapa 5.53 confirmada e publicada;
+  etapa 5.54 agora confirmada e pronta para publicação.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5213,7 +5265,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   zero SQL, padrão ativo preservado; suíte existente 6/14 passou. Entendimento
   confirmado com "entendi" e publicado em edd3411. Na 5.53, estado aplicado ao
   cadastro da Caneca no teste; teste 1/3 e suíte 6/14 passaram, rollback conferido.
-  Entendimento confirmado com "entendi"; depois, 5.54: apresentar DatabaseSeeder sem executar.
+  Entendimento confirmado com "entendi" e publicado em 6ac5518. Na 5.54,
+  DatabaseSeeder apresentado sem execução; dependência users ausente confirmada
+  por SELECT nos dois bancos. Entendimento confirmado com "entendi" após nova
+  explicação com exemplo da loja; depois, 5.55: gerar somente
+  a estrutura de ProdutoSeeder e explicar run vazio.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5336,4 +5392,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.50 — Factory no cenário ativo/inativo | Dois cadastros com nome/status explícitos e preço padrão; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 10e723b |
 | 19/10/2026 | 5.51 — Factory no cenário de ordenação | Dois cadastros com nomes controlados e preço padrão; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5152ba4 |
 | 19/10/2026 | 5.52 — Estado inativo na factory | Método inativo com state; make conferido em memória sem SQL, padrão ativo preservado; suíte existente 6/14 passou | Confirmado pelo aluno: "entendi" | Publicado e verificado em edd3411 |
-| 19/10/2026 | 5.53 — Estado inativo aplicado ao teste | Cadastro da Caneca usa inativo()->create; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
+| 19/10/2026 | 5.53 — Estado inativo aplicado ao teste | Cadastro da Caneca usa inativo()->create; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6ac5518 |
+| 19/10/2026 | 5.54 — Leitura do DatabaseSeeder | Código gerado explicado; sintaxe/reflexão e SELECTs passaram, users ausente; seeder não executado | Confirmado pelo aluno: "entendi", após nova explicação | Checkpoint concluído; envio a verificar após commit |

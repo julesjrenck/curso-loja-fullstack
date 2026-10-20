@@ -320,8 +320,12 @@ sem SQL e com padrão ativo preservado. Suíte existente 6/14 passou.
 Entendimento da 5.52 confirmado com "entendi" em 19/10/2026, publicado em edd3411.
 Na 5.53, cadastro da Caneca no teste usa inativo()->create com nome explícito;
 teste 1/3 e suíte 6/14 passaram, rollback conferido. Entendimento da 5.53
-confirmado com "entendi" em 19/10/2026; depois, 5.54: apresentar DatabaseSeeder sem executar.
-Detalhes em docs/aulas/05-53-estado-inativo-no-teste.md.
+confirmado com "entendi" em 19/10/2026, publicado em 6ac5518.
+Na 5.54, DatabaseSeeder existente explicado sem execução; sintaxe/reflexão e
+SELECTs passaram. Exemplo de usuário depende de users, ausente nos dois bancos.
+Entendimento da 5.54 confirmado com "entendi" após nova explicação em 19/10/2026;
+depois, 5.55: estrutura ProdutoSeeder.
+Detalhes em docs/aulas/05-54-leitura-database-seeder.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

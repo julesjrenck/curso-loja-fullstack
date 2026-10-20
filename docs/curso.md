@@ -96,8 +96,13 @@ state com array; diagnóstico com make conferiu inativo em memória, padrão ati
 preservado e zero SQL. Suíte existente 6/14 passou. Entendimento da 5.52
 confirmado com "entendi" em 19/10/2026, publicado em edd3411. Na 5.53, cadastro
 da Caneca no teste usa inativo()->create com nome explícito. Teste 1/3 e suíte
-6/14 passaram, rollback conferido. Entendimento da 5.53 confirmado com "entendi" em 19/10/2026.
-Depois, 5.54: apresentar DatabaseSeeder e dependências, sem executar db:seed.
+6/14 passaram, rollback conferido. Entendimento da 5.53 confirmado com "entendi"
+em 19/10/2026, publicado em 6ac5518. Na 5.54, DatabaseSeeder existente apresentado
+sem execução; sintaxe/reflexão e SELECTs passaram. Rotina padrão cria usuário,
+depende de users, tabela ainda ausente nos dois bancos. Explicadas diferenças
+entre migration/factory/seeder. Entendimento da 5.54 confirmado com "entendi"
+em 19/10/2026, após nova explicação com exemplo da loja.
+Depois, 5.55: gerar somente estrutura de ProdutoSeeder e explicar run vazio.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
