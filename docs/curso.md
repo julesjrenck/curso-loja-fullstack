@@ -164,7 +164,10 @@ exigir ordem. Focado 1/5 e suíte 9/28 passaram, rollback conferido. Entendiment
 confirmado com "entendi" em 20/10/2026, publicado em 6ad0d19. Na 5.74, segundo
 cenário confere coleção vazia para categoria sem produtos. Focado 2/9 e suíte
 10/32 passaram, rollback conferido. Entendimento confirmado com "entendi"
-em 20/10/2026; depois, 5.75: filtrar ativos na consulta pelo método produtos(), em um cenário.
+em 20/10/2026, publicado em 5b9d800. Na 5.75, terceiro cenário usa
+produtos()->where('status', 'ativo')->get(), retornando somente ativo da categoria.
+Focado 3/13 e suíte 11/36 passaram, rollback conferido. Entendimento confirmado
+com "entendi" em 20/10/2026; depois, 5.76: associar produto à categoria por associate e save.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

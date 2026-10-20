@@ -69,4 +69,35 @@ class CategoriaProdutosTest extends TestCase
         $this->assertInstanceOf(Collection::class, $produtos);
         $this->assertCount(0, $produtos);
     }
+
+    public function test_categoria_consulta_somente_seus_produtos_ativos(): void
+    {
+        $roupas = Categoria::create(['nome' => 'Roupas']);
+        $acessorios = Categoria::create(['nome' => 'Acessórios']);
+
+        $camiseta = Produto::factory()->create([
+            'nome' => 'Camiseta',
+            'status' => 'ativo',
+            'categoria_id' => $roupas->id,
+        ]);
+
+        Produto::factory()->inativo()->create([
+            'nome' => 'Calça',
+            'categoria_id' => $roupas->id,
+        ]);
+
+        Produto::factory()->create([
+            'nome' => 'Caneca',
+            'status' => 'ativo',
+            'categoria_id' => $acessorios->id,
+        ]);
+
+        $roupas = Categoria::findOrFail($roupas->id);
+        $produtos = $roupas->produtos()
+            ->where('status', 'ativo')
+            ->get();
+
+        $this->assertCount(1, $produtos);
+        $this->assertSame([$camiseta->id], $produtos->modelKeys());
+    }
 }

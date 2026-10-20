@@ -378,8 +378,11 @@ de Acessórios; focado 1/5 e suíte 9/28 passaram, rollback conferido.
 Entendimento confirmado com "entendi" em 20/10/2026, publicado em 6ad0d19.
 Na 5.74, segundo cenário exige coleção vazia para categoria sem produtos;
 focado 2/9 e suíte 10/32 passaram, rollback conferido. Entendimento confirmado
-com "entendi" em 20/10/2026; depois, 5.75: filtrar ativos pelo método produtos().
-Detalhes em docs/aulas/05-74-categoria-sem-produtos.md.
+com "entendi" em 20/10/2026, publicado em 5b9d800. Na 5.75, terceiro cenário usa
+produtos()->where/get e retorna somente ativo da categoria; focado 3/13 e suíte
+11/36 passaram, rollback conferido. Entendimento confirmado com "entendi"
+em 20/10/2026; depois, 5.76: associate e save para associar produto à categoria.
+Detalhes em docs/aulas/05-75-produtos-ativos-categoria.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
