@@ -4,14 +4,14 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.63 — Cadastro e leitura de Categoria com rollback.
-- Situação: diagnóstico temporário em loja_test/loja_testes cadastrou Roupas
-  com Categoria::create e buscou por findOrFail. ID/datas preenchidos, exists true,
-  novo objeto lido com mesmo ID/nome; um INSERT observado. Rollback para zero
-  categorias. Consultas separadas: teste 0 categorias/0 produtos/2 migrations;
-  normal 0 categorias/1 produto/2 migrations. Nenhum código da aplicação alterado.
-  Execução/verificações da 5.63 concluídas; explicação apresentada.
+- Etapa atual: 5.64 — Migration de categoria_id preparada.
+- Situação: adicionada somente migration 2026_10_20_120347_add_categoria_id_to_produtos_table.php.
+  Up usa foreignId/nullable/constrained('categorias')/noActionOnDelete; down usa
+  dropConstrainedForeignId. Nova coluna opcional preservará produtos sem categoria;
+  restrição impedirá excluir categoria referenciada. Sintaxe passou, sem aplicar.
+  Implementação/verificação da 5.64 concluídas; explicação apresentada.
   Entendimento confirmado com "entendi" em 20/10/2026. Checkpoint pronto para publicação.
+  Etapa 5.63 confirmada com "entendi" em 20/10/2026, publicada em ce67886.
   Etapa 5.62 confirmada com "entendi" em 20/10/2026, publicada em e57dbbe.
   Etapa 5.61 confirmada com "entendi" em 20/10/2026, publicada em 4d3358d.
   Etapa 5.60 confirmada com "entemdi" em 20/10/2026, publicada em 04ab6bb.
@@ -44,9 +44,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.64, preparar migration para adicionar
-  categoria_id anulável em produtos com chave estrangeira para categorias,
-  explicar regra de exclusão e preservação dos produtos existentes, sem aplicar ainda.
+  Próxima etapa: 5.65, aplicar somente essa migration em loja_test,
+  conferir coluna/FK/nulabilidade/histórico e executar suíte existente.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -75,7 +74,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: e57dbbe, model Categoria 5.62.
+  Último checkpoint pedagógico confirmado/publicado: ce67886, cadastro/leitura de Categoria 5.63.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -147,22 +146,22 @@
 - Etapa 5.61 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.62 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.63 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.64 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: 5.62 confirmada com "entendi" e publicada em
-e57dbbe889c9dd8c7360c69ce9737a5fd203d679, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.63 executada/explicada pelo script temporário
-/tmp/curso-563-cadastrar-categoria.php enviado ao PHP Docker com --env=testing.
-Identidade/contagens conferidas, transação aberta, Categoria::create de Roupas
-e findOrFail por ID. ID gerado 1 nessa amostra, datas preenchidas, exists true,
-um INSERT, novo objeto lido com mesmo ID/nome. Finally fez rollback: zero
-categorias/produtos, duas migrations, zero transações abertas. Consultas separadas
-confirmaram teste 0 categorias/0 produtos/2 migrations e normal 0/1/2.
-Nenhum código da aplicação alterado. Última suíte 6/14 permanece a da 5.53.
-Entendimento da 5.63 confirmado com "entendi" em 20/10/2026. Publicar o checkpoint e iniciar 5.64:
-preparar migration para categoria_id anulável em produtos com FK para categorias,
-explicar regra de exclusão e preservação dos registros existentes, sem aplicar ainda.
+Estado mais recente, em 20/10/2026: 5.63 confirmada com "entendi" e publicada em
+ce678868ac122c51816f47c63de1ae58d8ea582c, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.64 implementada/explicada: gerada pelo Artisan em PHP
+Docker a migration 2026_10_20_120347_add_categoria_id_to_produtos_table.php.
+Up altera produtos com foreignId('categoria_id')->nullable()->constrained('categorias')
+->noActionOnDelete(); down remove restrição/coluna com dropConstrainedForeignId.
+Explicados NULL para produto sem categoria, referência a categorias.id e bloqueio
+de exclusão de categoria em uso. Migrations aplicadas preservadas; nenhuma alteração
+em models, factories ou seeders. Sintaxe passou; nenhum migrate, up/down ou SQL.
+Última suíte 6/14 permanece a da 5.53. Entendimento da 5.64 confirmado com "entendi"
+em 20/10/2026. Publicar o checkpoint e iniciar 5.65: aplicar somente esta migration
+em loja_test, conferir coluna/FK/nulabilidade/histórico e executar suíte existente.
 Continuamos no módulo 5.
 Registros abaixo são históricos.
 
@@ -5435,11 +5434,44 @@ Verificações:
   último resultado 6/14 é da 5.53.
 
 Entendimento da 5.63: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.63: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: e57dbbe, etapa 5.62.
-Próximo passo exato: publicar checkpoint e iniciar 5.64,
+Publicação da 5.63: ce678868ac122c51816f47c63de1ae58d8ea582c, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
+Próximo passo após confirmação: 5.64,
 preparar migration para categoria_id anulável em produtos com chave estrangeira
 para categorias, explicar regra de exclusão/preservação e conferir sem aplicar ainda.
+
+## Etapa 5.64 — Migration de categoria_id preparada
+
+Implementação, explicação e verificação em 20/10/2026. Detalhes em
+docs/aulas/05-64-migration-categoria-produto.md.
+
+Único arquivo de código adicionado:
+backend/database/migrations/2026_10_20_120347_add_categoria_id_to_produtos_table.php.
+Gerado com make:migration add_categoria_id_to_produtos_table --table=produtos,
+em PHP Docker, container temporário/usuário 1000:1000 e escrita somente em migrations.
+Código 0, dono local/modo 644. Migrations já aplicadas não foram alteradas.
+
+Up usa Schema::table, foreignId('categoria_id'), nullable antes de constrained,
+constrained('categorias') referenciando id, e noActionOnDelete. Explicados tipo
+compatível com categorias.id, NULL para produtos sem categoria e verificação de
+categoria existente quando ID preenchido. Exclusão da categoria será impedida
+enquanto houver produtos referenciando-a; não há exclusão em cascata nem remoção
+automática da associação. Down usa dropConstrainedForeignId, que remove a FK
+antes de remover a coluna, preservando a tabela produtos.
+
+Verificação: constrained, noActionOnDelete e dropConstrainedForeignId consultados
+no Laravel instalado em Docker; php -l da migration passou, código 0. Revisão dos
+trechos e git diff --check passaram. Nenhum migrate, up/down ou SQL executado.
+Aplicação/comportamento real da restrição ainda não verificados no SQL Server.
+Sem alterações em models/factories/seeders. Segredos ignorados/fora do índice;
+suíte não repetida para arquivo ainda não aplicado, último 6/14 pertence à 5.53.
+
+Entendimento da 5.64: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.64: checkpoint concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: ce67886, etapa 5.63.
+Próximo passo exato: publicar checkpoint e iniciar 5.65,
+aplicar somente esta migration em loja_test, conferir coluna/FK/nulabilidade/
+histórico e executar suíte existente, sem aplicar em loja nessa etapa.
 
 ## Verificações e limitações do ambiente
 
@@ -5467,14 +5499,14 @@ para categorias, explicar regra de exclusão/preservação e conferir sem aplica
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `e57dbbe`,
-  `build: adiciona model Categoria`.
+- Último commit local publicado conferido nesta retomada: `ce67886`,
+  `docs: demonstra cadastro e leitura de Categoria`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `e57dbbe`,
-  igual a HEAD e origin/main. Etapa 5.62 confirmada e publicada;
-  etapa 5.63 agora confirmada e pronta para publicação.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `ce67886`,
+  igual a HEAD e origin/main. Etapa 5.63 confirmada e publicada;
+  etapa 5.64 agora confirmada e pronta para publicação.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5622,8 +5654,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   e publicado em 4d3358d. Na 5.62, model Categoria gerado com Fillable de nome;
   sintaxe/configuração em memória passaram, zero SQL. Entendimento confirmado com "entendi"
   e publicado em e57dbbe. Na 5.63, cadastro/leitura de Categoria em loja_test
-  conferidos, rollback para zero categorias. Entendimento confirmado com "entendi"; depois, 5.64:
-  preparar migration de categoria_id anulável/FK em produtos, sem aplicar.
+  conferidos, rollback para zero categorias. Entendimento confirmado com "entendi"
+  e publicado em ce67886. Na 5.64, migration de categoria_id anulável/FK preparada,
+  com bloqueio de exclusão de categoria referenciada; sintaxe passou, sem aplicar.
+  Entendimento confirmado com "entendi"; depois, 5.65: aplicar em loja_test e executar suíte existente.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5756,4 +5790,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.60 — Categorias no banco de testes | Migration aplicada em loja_test, esquema/status/reexecução conferidos; categorias/produtos vazios, duas migrations | Confirmado pelo aluno: "entemdi" | Publicado e verificado em 04ab6bb |
 | 20/10/2026 | 5.61 — Categorias no banco da aplicação | Migration aplicada em loja com loja_migracoes; esquema/status/reexecução e produto preservado conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 4d3358d |
 | 20/10/2026 | 5.62 — Model Categoria | Classe gerada, Fillable de nome; sintaxe/configuração em memória passaram, zero SQL | Confirmado pelo aluno: "entendi" | Publicado e verificado em e57dbbe |
-| 20/10/2026 | 5.63 — Cadastro/leitura de Categoria | Create/findOrFail em loja_test conferidos, ID/datas preenchidos e rollback para zero categorias | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
+| 20/10/2026 | 5.63 — Cadastro/leitura de Categoria | Create/findOrFail em loja_test conferidos, ID/datas preenchidos e rollback para zero categorias | Confirmado pelo aluno: "entendi" | Publicado e verificado em ce67886 |
+| 20/10/2026 | 5.64 — Migration categoria_id em produtos | Coluna anulável/FK e noActionOnDelete preparados; down remove FK/coluna; sintaxe passou, sem aplicar | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |

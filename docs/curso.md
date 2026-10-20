@@ -128,8 +128,11 @@ Categoria criado com Fillable de nome; tabela/chave/timestamps e objeto em memó
 conferidos, zero SQL. Entendimento da 5.62 confirmado com "entendi" em 20/10/2026,
 publicado em e57dbbe. Na 5.63, create/findOrFail de categoria em loja_test
 conferidos com ID/datas, transação desfeita e contagens finais preservadas.
-Entendimento da 5.63 confirmado com "entendi" em 20/10/2026; depois, 5.64: preparar migration
-de categoria_id anulável com FK em produtos, sem aplicar ainda.
+Entendimento da 5.63 confirmado com "entendi" em 20/10/2026, publicado em ce67886.
+Na 5.64, migration de categoria_id anulável/FK em produtos preparada, com
+noActionOnDelete e reversão da FK/coluna. Sintaxe passou, sem aplicar.
+Entendimento da 5.64 confirmado com "entendi" em 20/10/2026; depois, 5.65: aplicar em loja_test,
+conferir metadados/histórico e executar suíte existente.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

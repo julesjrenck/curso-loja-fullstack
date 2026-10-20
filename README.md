@@ -349,8 +349,10 @@ sintaxe/configuração em memória passaram, zero SQL. Entendimento confirmado
 com "entendi" em 20/10/2026, publicado em e57dbbe. Na 5.63, cadastro/leitura de
 Categoria em loja_test conferidos, ID/datas preenchidos e rollback para zero.
 Normal segue sem categorias/com um produto. Entendimento da 5.63 confirmado
-com "entendi" em 20/10/2026; depois, 5.64: migration de categoria_id anulável/FK em produtos.
-Detalhes em docs/aulas/05-63-cadastro-leitura-categoria.md.
+com "entendi" em 20/10/2026, publicado em ce67886. Na 5.64, migration de
+categoria_id anulável/FK preparada com noActionOnDelete; sintaxe passou, sem aplicar.
+Entendimento da 5.64 confirmado com "entendi" em 20/10/2026; depois, 5.65: aplicar em loja_test
+e executar suíte existente. Detalhes em docs/aulas/05-64-migration-categoria-produto.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
