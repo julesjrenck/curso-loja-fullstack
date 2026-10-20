@@ -171,7 +171,10 @@ com "entendi" em 20/10/2026, publicado em 617408b. Na 5.76, cenário em
 ProdutoCategoriaTest confere associate em memória e persistência após save/recarga.
 Falha inicial por FK string/ID inteiro corrigida com conversão local na asserção;
 focado final 3/15 e suíte 12/42 passaram, rollback conferido. Entendimento
-confirmado com "entendi" em 20/10/2026; depois, 5.77: remover associação por dissociate/save.
+confirmado com "entendi" em 20/10/2026, publicado em 0730204. Na 5.77,
+dissociate/save conferidos antes/depois da gravação, com categoria preservada.
+Focado 4/22 e suíte 13/49 passaram, rollback conferido. Entendimento confirmado
+com "entendi" em 20/10/2026; depois, 5.78: diagnóstico de carregamento sob demanda e problema N+1.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

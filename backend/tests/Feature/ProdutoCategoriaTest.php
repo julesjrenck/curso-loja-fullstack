@@ -75,4 +75,29 @@ class ProdutoCategoriaTest extends TestCase
         $this->assertSame($categoria->id, (int) $produto->categoria_id);
         $this->assertSame($categoria->id, $produto->categoria->id);
     }
+
+    public function test_produto_pode_ficar_sem_categoria_apos_dissociacao(): void
+    {
+        $categoria = Categoria::create(['nome' => 'Roupas']);
+        $produto = Produto::factory()->create([
+            'nome' => 'Camiseta',
+            'status' => 'ativo',
+            'categoria_id' => $categoria->id,
+        ]);
+
+        $produto->categoria()->dissociate();
+
+        $this->assertNull($produto->categoria_id);
+        $this->assertSame(
+            $categoria->id,
+            (int) Produto::findOrFail($produto->id)->categoria_id
+        );
+
+        $produto->save();
+        $produto = Produto::findOrFail($produto->id);
+
+        $this->assertNull($produto->categoria_id);
+        $this->assertNull($produto->categoria);
+        $this->assertSame($categoria->id, Categoria::findOrFail($categoria->id)->id);
+    }
 }

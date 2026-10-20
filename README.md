@@ -384,8 +384,11 @@ produtos()->where/get e retorna somente ativo da categoria; focado 3/13 e suíte
 em 20/10/2026, publicado em 617408b. Na 5.76, associate/save conferidos antes e
 depois de gravar; comparação da FK recarregada ajustada por diferença de tipo.
 Focado final 3/15 e suíte 12/42 passaram, rollback conferido. Entendimento
-confirmado com "entendi" em 20/10/2026; depois, 5.77: dissociate/save para remover associação.
-Detalhes em docs/aulas/05-76-associar-produto-categoria.md.
+confirmado com "entendi" em 20/10/2026, publicado em 0730204. Na 5.77,
+dissociate/save conferidos antes/depois de gravar, com categoria preservada;
+focado 4/22 e suíte 13/49 passaram, rollback conferido. Entendimento confirmado
+com "entendi" em 20/10/2026; depois, 5.78: carregamento sob demanda e problema N+1.
+Detalhes em docs/aulas/05-77-dissociar-produto-categoria.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
