@@ -4,14 +4,15 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.60 — Categorias criada no banco de testes.
-- Situação: aplicada somente migration de categorias em loja_test/loja_testes.
-  Status [2] Ran; repetição Nothing to migrate. Metadados conferidos: id BIGINT
-  IDENTITY/chave primária, nome NVARCHAR(150), datas DATETIME2(3) anuláveis.
-  Categorias/produtos vazios, duas migrations no teste. Banco normal mantém
-  um produto e uma migration. Nenhum código da aplicação alterado nesta etapa.
-  Aplicação/verificações da 5.60 concluídas; explicação apresentada.
-  Entendimento confirmado com "entemdi" em 20/10/2026. Checkpoint pronto para publicação.
+- Etapa atual: 5.61 — Categorias criada no banco da aplicação.
+- Situação: aplicada somente migration de categorias em loja/loja_migracoes,
+  usando conexão sqlsrv_migracoes. Esquema/status/reexecução conferidos;
+  produto anterior preservado nas seis colunas. Loja_app lê categorias vazia;
+  conexão padrão continua sqlsrv. Loja agora tem duas migrations e um produto.
+  Loja_test continua com categorias/produtos vazios e duas migrations.
+  Aplicação/verificações da 5.61 concluídas; explicação apresentada.
+  Entendimento confirmado com "entendi" em 20/10/2026. Checkpoint pronto para publicação.
+  Etapa 5.60 confirmada com "entemdi" em 20/10/2026, publicada em 04ab6bb.
   Etapa 5.59 confirmada com "entendi" em 20/10/2026, publicada em 9e89010.
   Etapa 5.58 confirmada com "entendi" em 20/10/2026, publicada em f680b99.
   Etapa 5.57 confirmada com "entendi" em 19/10/2026, publicada em 5c65e6d.
@@ -41,8 +42,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.61, aplicar somente migration de categorias
-  em loja com conta loja_migracoes; conferir esquema/histórico e preservar o produto existente.
+  Próxima etapa: 5.62, criar somente model Categoria com nome
+  permitido para preenchimento, explicar tabela/timestamps e conferir sem persistir ainda.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -71,7 +72,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 9e89010, migration de categorias preparada 5.59.
+  Último checkpoint pedagógico confirmado/publicado: 04ab6bb, categorias no banco de testes 5.60.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -140,24 +141,25 @@
 - Etapa 5.58 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.59 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.60 confirmada com "entemdi" em 20/10/2026.
+- Etapa 5.61 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: 5.59 confirmada com "entendi" e publicada em
-9e890107b1a50c90c9df00e717875bb627425317, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.60 aplicada/explicada: somente migration
-2026_10_20_113601_create_categorias_table aplicada em loja_test/loja_testes por
-migrate --env=testing --database=sqlsrv --path do arquivo. Identidade/permissões
-e ausência da tabela conferidas antes. Status [2] Ran, repetição Nothing to migrate.
-Metadados confirmados: id BIGINT IDENTITY/PK, nome NVARCHAR(150) obrigatório,
-created_at/updated_at DATETIME2(3) anuláveis. Três tabelas no teste: categorias,
-migrations, produtos. Categorias/produtos vazios; categorias lote 2, produtos lote 1.
-Consulta normal: loja/loja_app com um produto e uma migration. Nenhum código da
-aplicação alterado; nenhum seeder, rollback ou migration de users/cache/jobs.
-Última suíte 6/14 permanece a da 5.53, sem repetição após verificação de DDL.
-Entendimento da 5.60 confirmado com "entemdi" em 20/10/2026. Publicar o checkpoint e iniciar 5.61:
-aplicar somente migration de categorias em loja com conta loja_migracoes,
-conferir esquema/histórico e preservar o produto existente.
+Estado mais recente, em 20/10/2026: 5.60 confirmada com "entemdi" e publicada em
+04ab6bb0f86c833a08e6582ee2634594aa072dab, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.61 aplicada/explicada: diagnóstico temporário
+/tmp/curso-561-categorias-loja.php inicializou Laravel normal em PHP Docker,
+conferiu loja/loja_migracoes e loja/loja_app, guardou produto em memória e chamou
+somente migration de categorias com --database=sqlsrv_migracoes/--path do arquivo.
+Status [2] Ran; reexecução conferiu Nothing to migrate. Esquema de categorias
+conferido por metadados; tabela vazia. Produto e objeto da tabela produtos
+preservados; default sqlsrv preservado, leitura por loja_app passou. Loja tem
+um produto e duas migrations. Loja_test segue categorias/produtos vazios e duas
+migrations, conferidos em processo separado. Nenhum código da aplicação alterado.
+Última suíte 6/14 permanece a da 5.53, sem repetição após verificação dirigida.
+Entendimento da 5.61 confirmado com "entendi" em 20/10/2026. Publicar o checkpoint e iniciar 5.62:
+criar somente model Categoria com nome permitido para preenchimento, explicar
+tabela/timestamps e conferir sem persistir categorias ou definir relações ainda.
 Continuamos no módulo 5.
 Registros abaixo são históricos.
 
@@ -5318,11 +5320,49 @@ Verificações:
   após verificação dirigida de DDL/histórico; último resultado 6/14 é da 5.53.
 
 Entendimento da 5.60: confirmado com "entemdi" em 20/10/2026.
-Publicação da 5.60: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: 9e89010, etapa 5.59.
-Próximo passo exato: publicar checkpoint e iniciar 5.61,
+Publicação da 5.60: 04ab6bb0f86c833a08e6582ee2634594aa072dab, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
+Próximo passo após confirmação: 5.61,
 aplicar somente migration de categorias em loja com conta loja_migracoes,
 conferir esquema/histórico e preservar o produto existente.
+
+## Etapa 5.61 — Categorias criada no banco da aplicação
+
+Aplicação, explicação e verificações em 20/10/2026. Detalhes em
+docs/aulas/05-61-categorias-banco-aplicacao.md. Nenhum código da aplicação alterado.
+
+Diagnóstico temporário /tmp/curso-561-categorias-loja.php enviado ao PHP Docker
+pela entrada padrão, sem --env=testing. Conferiu default sqlsrv, identidade
+loja/loja_migracoes/loja_migracoes da conexão sqlsrv_migracoes, permissões de
+criar tabela/alterar dbo e identidade loja/loja_app da conexão normal.
+Antes: somente migrations/produtos, uma migration no lote 1 e um produto.
+As seis colunas do produto e OBJECT_ID de produtos foram guardados em memória.
+
+Kernel->call('migrate') recebeu --database=sqlsrv_migracoes e --path apenas da
+migration de categorias, --no-interaction/--no-ansi. Não alteramos .env ou conta
+padrão; credenciais existentes foram usadas sem exibição. Código 0, DONE.
+
+Verificações:
+
+- migrate:status mostrou [2] Ran; reexecução retornou código 0 e diagnóstico
+  validou Nothing to migrate. Histórico com produtos no lote 1/categorias no lote 2.
+- Metadados: categorias com id BIGINT IDENTITY/PK, nome NVARCHAR(150) obrigatório
+  e datas DATETIME2(3) anuláveis. Somente categorias/migrations/produtos.
+- Categorias vazia nas conexões de migrations e da aplicação. Leitura loja_app
+  passou; configuração default continua sqlsrv.
+- Produto id/nome/preço/status/created_at/updated_at iguais à cópia anterior;
+  OBJECT_ID de produtos preservado. Nenhum seeder ou cadastro executado.
+- Consulta separada com loja_testes confirmou loja_test, categorias/produtos
+  vazios e duas migrations, estrutura preservada. Código 0 nas execuções.
+- git diff --check passou; segredos ignorados/fora do índice. Suíte não repetida
+  após verificação dirigida de esquema/preservação; último 6/14 é da 5.53.
+
+Entendimento da 5.61: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.61: checkpoint concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: 04ab6bb, etapa 5.60.
+Próximo passo exato: publicar checkpoint e iniciar 5.62,
+criar somente model Categoria com nome permitido para preenchimento, explicar
+tabela/timestamps e conferir sem persistir categorias ou definir relações ainda.
 
 ## Verificações e limitações do ambiente
 
@@ -5350,14 +5390,14 @@ conferir esquema/histórico e preservar o produto existente.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `9e89010`,
-  `build: prepara migration de categorias`.
+- Último commit local publicado conferido nesta retomada: `04ab6bb`,
+  `docs: verifica categorias no banco de testes`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `9e89010`,
-  igual a HEAD e origin/main. Etapa 5.59 confirmada e publicada;
-  etapa 5.60 agora confirmada e pronta para publicação.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `04ab6bb`,
+  igual a HEAD e origin/main. Etapa 5.60 confirmada e publicada;
+  etapa 5.61 agora confirmada e pronta para publicação.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5499,8 +5539,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   categorias preparada com id/nome/timestamps(3), sintaxe passou, sem aplicar.
   Entendimento confirmado com "entendi" e publicado em 9e89010. Na 5.60,
   categorias criada em loja_test, esquema/status/reexecução conferidos; teste
-  vazio e normal com um produto. Entendimento confirmado com "entemdi"; depois, 5.61: mesma
-  migration em loja com loja_migracoes, preservando o produto existente.
+  vazio e normal com um produto. Entendimento confirmado com "entemdi" e publicado
+  em 04ab6bb. Na 5.61, migration aplicada em loja com loja_migracoes; esquema,
+  histórico/reexecução e produto preservado conferidos. Entendimento confirmado com "entendi";
+  depois, 5.62: criar somente model Categoria, sem persistir ou definir relações.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5630,4 +5672,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.57 — Execução do seeder padrão com rollback | db:seed em loja_test chamou ProdutoSeeder, criou Camiseta, catálogo conferido; rollback/contagens passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5c65e6d |
 | 19/10/2026 | 5.58 — Modelagem categorias/produtos | Um para muitos, chave primária/estrangeira e referências explicados com exemplos; somente documentação | Confirmado pelo aluno: "entendi" em 20/10/2026 | Publicado e verificado em f680b99 |
 | 20/10/2026 | 5.59 — Migration de categorias | Artisan gerou migration; nome string(150) e timestamps(3) preparados, sintaxe passou; sem aplicar | Confirmado pelo aluno: "entendi" | Publicado e verificado em 9e89010 |
-| 20/10/2026 | 5.60 — Categorias no banco de testes | Migration aplicada em loja_test, esquema/status/reexecução conferidos; categorias/produtos vazios, duas migrations | Confirmado pelo aluno: "entemdi" | Checkpoint concluído; envio a verificar após commit |
+| 20/10/2026 | 5.60 — Categorias no banco de testes | Migration aplicada em loja_test, esquema/status/reexecução conferidos; categorias/produtos vazios, duas migrations | Confirmado pelo aluno: "entemdi" | Publicado e verificado em 04ab6bb |
+| 20/10/2026 | 5.61 — Categorias no banco da aplicação | Migration aplicada em loja com loja_migracoes; esquema/status/reexecução e produto preservado conferidos | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |

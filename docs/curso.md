@@ -120,7 +120,10 @@ sintaxe passou, sem aplicar. Entendimento da 5.59 confirmado com "entendi" em
 20/10/2026, publicado em 9e89010. Na 5.60, migration aplicada somente em loja_test;
 esquema/status [2] Ran/reexecução conferidos, categorias e produtos vazios.
 Banco normal mantém um produto e uma migration. Entendimento da 5.60 confirmado
-em 20/10/2026; depois, 5.61: mesma migration em loja com conta de migrations.
+em 20/10/2026, publicado em 04ab6bb. Na 5.61, mesma migration aplicada em loja com
+loja_migracoes; esquema/status/reexecução e produto preservado conferidos.
+Categorias vazia nos dois bancos, duas migrations em cada. Entendimento da 5.61
+confirmado com "entendi" em 20/10/2026; depois, 5.62: criar model Categoria e conferir sem persistir ainda.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
