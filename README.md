@@ -290,8 +290,12 @@ segue com um produto. Entendimento da 5.43 confirmado com "entendi" em
 19/10/2026, publicado em 62f465e. Na 5.44, cenário cadastra Caneca e depois
 Camiseta, ativas, e exige ['Camiseta', 'Caneca']. Focado: 4 testes/12 asserções;
 suíte: 6 testes/14 asserções, passaram. Zero produtos em loja_test após rollback.
-Entendimento da 5.44 confirmado com "entendi" em 19/10/2026; próximo passo: introdução e
-estrutura da factory de Produto. Detalhes em docs/aulas/05-44-teste-ordenacao-catalogo.md.
+Entendimento da 5.44 confirmado com "entendi" em 19/10/2026, publicado em 5810b26.
+Na 5.45, ProdutoFactory gerada pelo Artisan com definition vazio. Sintaxe,
+autoload, herança e resolução de Produto conferidos, sem SQL na inspeção.
+Model/testes preservados; nenhum dado criado. Entendimento da 5.45 confirmado
+com "entendi" em 19/10/2026; próximo passo: preencher/conferir atributos em memória.
+Detalhes em docs/aulas/05-45-estrutura-produto-factory.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

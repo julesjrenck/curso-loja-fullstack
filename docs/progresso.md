@@ -4,14 +4,15 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.44 — Teste da ordenação dos nomes do catálogo.
-- Situação: quarto cenário em CatalogoEloquentTest cadastra Caneca e depois
-  Camiseta, ambas ativas; exige ['Camiseta', 'Caneca']. setUp/trait preservados.
-  Focado: 4 testes/12 asserções; suíte: 6 testes/14 asserções, código 0.
-  SELECT posterior: zero produtos em loja_test e um no banco normal, uma
-  migration em cada banco. Nenhuma alteração no serviço ou configuração.
-  Explicação da 5.44 apresentada; entendimento confirmado com "entendi"
-  em 19/10/2026. Publicar checkpoint e iniciar a estrutura da 5.45.
+- Etapa atual: 5.45 — Estrutura da factory de Produto.
+- Situação: database/factories/ProdutoFactory.php gerado pelo Artisan em Docker,
+  com namespace/imports/herança Factory e definition retornando []. Sintaxe,
+  autoload, herança e modelName App\\Models\\Produto conferidos, sem SQL observado.
+  Model, testes, dados e configuração preservados; nenhum make/create da factory.
+  Explicação da 5.45 apresentada; entendimento confirmado com "entendi"
+  em 19/10/2026. Publicar checkpoint e preencher a definição na 5.46.
+  Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
+  Última suíte na 5.44: 6 testes/14 asserções; não repetida para classe ainda sem uso.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -21,8 +22,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.45, explicar factories e gerar somente a
-  estrutura de ProdutoFactory, sem preencher dados ou refatorar testes ainda.
+  Próxima etapa após confirmação: 5.46, preencher nome/preco_em_centavos/status
+  em definition e conferir atributos em memória, sem persistir ou refatorar testes.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -51,7 +52,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 62f465e, filtro de inativos 5.43.
+  Último checkpoint pedagógico confirmado/publicado: 5810b26, ordenação 5.44.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -104,20 +105,21 @@
 - Etapa 5.42 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.43 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.44 confirmada com "entendi" em 19/10/2026.
+- Etapa 5.45 confirmada com "entendi" em 19/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.43 confirmada com "entendi" e publicada
-em 62f465e0d1c266d61fb534bb895e4968ac327276, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.44 implementada/explicada: quarto cenário cadastra
-Caneca e depois Camiseta, ativas, e exige ['Camiseta', 'Caneca']. Focado:
-4 testes/12 asserções; suíte: 6 testes/14 asserções, código 0. SELECT posterior
-confirmou zero produtos em loja_test e um em loja, uma migration em cada banco.
-Entendimento da 5.44 confirmado com "entendi" em 19/10/2026. Próximo passo,
-5.45: explicar factories e gerar somente a estrutura de ProdutoFactory;
-preenchimento de atributos e uso nos testes serão etapas seguintes, sem
-antecipar. Continuamos no módulo 5. Em novo clone preparar .env.testing local
-e migration produtos em loja_test antes da suíte. Registros abaixo são históricos.
+Estado mais recente, em 19/10/2026: 5.44 confirmada com "entendi" e publicada
+em 5810b264a84a4d9f641c9eb8e98e8e166068d198, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.45 implementada/explicada: ProdutoFactory gerada por
+Artisan, definition retorna [], sintaxe/autoload/herança/modelName conferidos
+sem consultas SQL no diagnóstico da factory. Model/testes/configuração preservados,
+nenhum make/create executado. Entendimento da 5.45 confirmado com "entendi"
+em 19/10/2026. Próximo passo, 5.46: preencher nome/preco_em_centavos/status
+em definition e conferir os atributos em memória. Persistência e refatoração
+dos testes serão etapas posteriores. Última suíte da 5.44: 6 testes/14 asserções.
+Continuamos no módulo 5. Em novo clone preparar .env.testing e migration
+produtos em loja_test antes da suíte. Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
 5.34 conferidos. Git inicialmente sem alterações locais; HEAD, origin/main e
@@ -4688,12 +4690,54 @@ Verificações realizadas:
   dois ativos com os nomes Camiseta e Caneca.
 
 Entendimento da 5.44: confirmado com "entendi" em 19/10/2026.
-Publicação da 5.44: teste e registros preparados para commit/push conforme
-autorização persistente; consultar Git e conferir o remoto após o envio.
-Último checkpoint confirmado/publicado: 62f465e, etapa 5.43.
+Publicação da 5.44: checkpoint 5810b26 publicado conforme autorização persistente;
+HEAD, origin/main e main remota conferidos em 5810b264a84a4d9f641c9eb8e98e8e166068d198.
 Próximo passo após a confirmação: 5.45,
 explicar factories para preparação de dados e gerar somente ProdutoFactory,
 sem preencher atributos ou refatorar testes nessa etapa inicial.
+
+## Etapa 5.45 — Estrutura da factory de Produto
+
+Data: 19/10/2026. Objetivo: introduzir factories e gerar somente a estrutura
+de ProdutoFactory. Aula em docs/aulas/05-45-estrutura-produto-factory.md.
+
+Implementação: backend/database/factories/ProdutoFactory.php gerado por
+make:factory ProdutoFactory --model=Produto em container backend temporário,
+usuário 1000:1000, montagem gravável apenas em database/factories, sem mudar
+Compose. Arquivo com namespace Database\\Factories, imports Produto/Factory,
+@extends Factory<Produto>, método definition(): array e retorno [] com comentário.
+Model Produto, factory User e testes preservados. Não adicionamos HasFactory.
+
+Explicação apresentada: factory descreve dados padrão para montar models,
+útil na preparação de testes e também utilizável por seeders. Migration define
+estrutura; seeder executa cadastros; factory organiza a definição de atributos.
+Gerar a classe não monta Produto nem insere linhas. namespace se relaciona ao
+autoload Database\\Factories já configurado. extends herda recursos Laravel;
+anotações @extends/@return são documentação para ferramentas. definition
+retorna atributos padrão, ainda vazio. Associação ao Produto resolvida por
+convenção de nomes e conferida com modelName; docblock não cria model em execução.
+
+Verificações realizadas:
+
+- PHP 8.4.26/Composer 2.10.3, ajuda make:factory, stub e resolução modelName
+  conferidos no Laravel instalado em Docker.
+- Gerador terminou com código 0; container temporário removido. Arquivo dono
+  1000:1000, permissão 644. Somente ProdutoFactory apareceu antes dos registros.
+- php -l passou. Diagnóstico após bootstrap Laravel confirmou class_exists,
+  herança de Factory, definition === [] e modelName === App\\Models\\Produto.
+  Listener DB observou zero consultas na inspeção da factory; sem make/create.
+- git diff --check passou; segredos continuam ignorados/fora do índice.
+  Nenhuma dependência, migration, seeder, credencial ou dado alterado.
+- Suíte da 5.44 não repetida: arquivo gerado ainda sem uso em aplicação/testes.
+  Último resultado: 6 testes/14 asserções, registrado na etapa anterior.
+
+Entendimento da 5.45: confirmado com "entendi" em 19/10/2026.
+Publicação da 5.45: factory e registros preparados para commit/push conforme
+autorização persistente; consultar Git e conferir o remoto após o envio.
+Último checkpoint confirmado/publicado: 5810b26, etapa 5.44.
+Próximo passo após a confirmação: 5.46,
+preencher nome, preco_em_centavos e status na definição e conferir atributos
+em memória. Não persistir models nem refatorar os testes nessa próxima etapa.
 
 ## Verificações e limitações do ambiente
 
@@ -4721,14 +4765,14 @@ sem preencher atributos ou refatorar testes nessa etapa inicial.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `62f465e`,
-  `test: verifica filtro de produtos inativos no catalogo`.
+- Último commit local publicado conferido nesta retomada: `5810b26`,
+  `test: verifica ordenacao dos nomes do catalogo`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `62f465e`,
-  igual a HEAD e origin/main. Etapa 5.43 confirmada e publicada;
-  teste e documentação da 5.44 ficam locais até a confirmação de entendimento.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `5810b26`,
+  igual a HEAD e origin/main. Etapa 5.44 confirmada e publicada;
+  factory e documentação da 5.45 ficam locais até a confirmação de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4836,8 +4880,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Entendimento confirmado com "entendi". Na 5.43, filtro com ativo/inativo passou:
   focado 3 testes/9 asserções, suíte 5 testes/11 asserções. Entendimento confirmado com "entendi";
   depois, 5.44 implementou ordenação com dois ativos: focado 4 testes/12 asserções,
-  suíte 6 testes/14 asserções. Entendimento confirmado com "entendi"; depois, 5.45: estrutura da
-  factory de Produto para preparação de dados, ainda sem uso nos testes.
+  suíte 6 testes/14 asserções. Entendimento confirmado com "entendi". Na 5.45,
+  ProdutoFactory gerada, sem atributos/dados/uso em testes; sintaxe/autoload/model
+  conferidos. Entendimento confirmado com "entendi"; depois, 5.46: preencher e conferir atributos
+  em memória, sem persistência ou refatoração de testes.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -4951,4 +4997,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.41 — Primeiro teste de integração do catálogo vazio | Um cenário com transação/rollback; focado 1 teste/3 asserções e suíte 3 testes/5 asserções; estado dos bancos conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 94e4e3d |
 | 19/10/2026 | 5.42 — Produto ativo e preparação compartilhada | setUp compartilhado e segundo cenário; focado 2 testes/6 asserções e suíte inversa 4 testes/8 asserções; rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em aa8e5a4 |
 | 19/10/2026 | 5.43 — Teste do filtro de produtos inativos | Terceiro cenário com ativo/inativo; focado 3 testes/9 asserções e suíte 5 testes/11 asserções; rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 62f465e |
-| 19/10/2026 | 5.44 — Teste da ordenação do catálogo | Quarto cenário com dois ativos; focado 4 testes/12 asserções e suíte 6 testes/14 asserções; rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; consultar Git |
+| 19/10/2026 | 5.44 — Teste da ordenação do catálogo | Quarto cenário com dois ativos; focado 4 testes/12 asserções e suíte 6 testes/14 asserções; rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5810b26 |
+| 19/10/2026 | 5.45 — Estrutura da factory de Produto | Gerador criou somente classe; sintaxe, autoload, herança e modelName conferidos; definição vazia e zero SQL observado | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; consultar Git |

@@ -69,9 +69,11 @@ focado 3 testes/9 asserções e suíte 5 testes/11 asserções, passaram. Zero p
 em loja_test após rollback. Entendimento da 5.43 confirmado com "entendi" em
 19/10/2026 e publicado em 62f465e. Na 5.44, cenário de ordenação de dois ativos
 adicionado; focado 4 testes/12 asserções e suíte 6 testes/14 asserções, passaram.
-Entendimento da 5.44 confirmado com "entendi" em 19/10/2026. Depois, 5.45: explicar factories
-e gerar somente a estrutura de ProdutoFactory, ainda sem preencher atributos
-ou mudar os testes.
+Entendimento da 5.44 confirmado com "entendi" em 19/10/2026 e publicado em 5810b26.
+Na 5.45, estrutura de ProdutoFactory gerada; sintaxe/autoload/herança/modelName
+conferidos, definition vazio e nenhum dado criado. Entendimento da 5.45
+confirmado com "entendi" em 19/10/2026. Depois, 5.46: preencher a definição e conferir atributos
+em memória, sem persistir models ou refatorar testes ainda.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
