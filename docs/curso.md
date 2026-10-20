@@ -134,8 +134,11 @@ noActionOnDelete e reversão da FK/coluna. Sintaxe passou, sem aplicar.
 Entendimento da 5.64 confirmado com "entendi" em 20/10/2026, publicado em e5e6156.
 Na 5.65, tentativa de aplicação em loja_test falhou por REFERENCES negado em
 categorias; coluna/FK ausentes e Pending confirmados após falha. Suíte planejada
-não executada. Entendimento da descoberta confirmado com "entendi" em 20/10/2026; depois, 5.66:
-preparar concessão REFERENCES restrita à tabela categorias do banco de testes.
+não executada. Entendimento da descoberta confirmado com "entendi" em 20/10/2026,
+publicado em 91ed884. Na 5.66, script de GRANT REFERENCES restrito a categorias
+em loja_test preparado; PARSEONLY passou, permissão continua 0 e migration Pending.
+Entendimento da 5.66 confirmado com "entendi" em 20/10/2026; depois, 5.67: aplicar concessão e
+repetir migration/suíte somente no banco de testes.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

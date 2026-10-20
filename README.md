@@ -354,8 +354,11 @@ categoria_id anulável/FK preparada com noActionOnDelete; sintaxe passou, sem ap
 Entendimento da 5.64 confirmado com "entendi" em 20/10/2026, publicado em e5e6156.
 Na 5.65, aplicação em loja_test falhou por REFERENCES negado em categorias.
 Coluna/FK continuam ausentes e migration Pending; suíte não executada.
-Entendimento da descoberta confirmado com "entendi" em 20/10/2026; depois, 5.66: preparar
-concessão restrita ao objeto. Detalhes em docs/aulas/05-65-permissao-references.md.
+Entendimento da descoberta confirmado com "entendi" em 20/10/2026, publicado em 91ed884.
+Na 5.66, script de REFERENCES restrito a categorias no teste preparado; PARSEONLY
+passou, nenhuma concessão aplicada. Migration continua Pending. Entendimento
+confirmado com "entendi" em 20/10/2026; depois, 5.67: aplicar concessão e repetir migration/suíte.
+Detalhes em docs/aulas/05-66-script-references-testes.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
