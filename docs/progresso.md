@@ -4,18 +4,20 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.47 — Produto montado em memória pela factory.
-- Situação: demonstração em Docker executou ProdutoFactory::new()->make(),
-  retornando App\\Models\\Produto com atributos previstos. exists false,
-  ID/datas null, preço int e zero SQL observado. Nenhum registro salvo;
-  model, factory, testes e configuração preservados. Apenas novos registros da aula.
-  Explicação da 5.47 apresentada; entendimento confirmado com "entendi"
-  em 19/10/2026. Publicar os registros e iniciar o atalho da 5.48.
+- Etapa atual: 5.48 — Atalho de factory no model Produto.
+- Situação: somente Produto.php recebeu HasFactory e anotação de tipo conforme
+  padrão do User. Produto::factory() resolveu ProdutoFactory; make montou Produto
+  em memória com atributos previstos, exists false, ID/datas null e zero SQL
+  durante a demonstração. Suíte existente passou: 6 testes/14 asserções.
+  SELECT posterior: zero produtos em loja_test e um no banco normal.
+  Explicação da 5.48 apresentada; entendimento confirmado com "entendi" em
+  19/10/2026, após esclarecer onde o diagnóstico temporário foi executado.
+  Etapa 5.47 confirmada com "entendi" em 19/10/2026 e publicada em d90a8a4.
   Etapa 5.46 confirmada com "entendi" após esclarecer os métodos e publicada
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.44: 6 testes/14 asserções; não repetida para classe ainda sem uso.
+  Última suíte na 5.48: 6 testes/14 asserções, após alteração no model.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -25,8 +27,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.48, adicionar HasFactory ao model Produto
-  e conferir Produto::factory()->make() em memória, ainda sem refatorar testes.
+  Próxima etapa: 5.49, substituir somente o cadastro do cenário
+  de ativo por Produto::factory()->create, sobrescrevendo nome/status e conferindo rollback.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -55,7 +57,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 77dc3f9, atributos padrão 5.46.
+  Último checkpoint pedagógico confirmado/publicado: d90a8a4, make em memória 5.47.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -111,19 +113,24 @@
 - Etapa 5.45 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.46 confirmada com "entendi" em 19/10/2026, após esclarecer definition/make/create.
 - Etapa 5.47 confirmada com "entendi" em 19/10/2026.
+- Etapa 5.48 confirmada com "entendi" em 19/10/2026, após esclarecer o local da demonstração.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.46 confirmada com "entendi" após esclarecer
-os métodos e publicada em 77dc3f9f60a4cb4ceabd699517064e38b76b0467, igual a HEAD,
-origin/main e main remota no envio. Etapa 5.47 demonstrada/explicada em Docker:
-ProdutoFactory::new()->make() retornou Produto com atributos previstos,
-exists false, ID/datas null, preço int e zero SQL observado. Sem persistência
-ou alteração em código/model/factory/testes/configuração. Entendimento da 5.47
-confirmado com "entendi" em 19/10/2026. Próximo passo, 5.48: adicionar
-HasFactory ao model Produto e conferir Produto::factory()->make() em memória.
-Não antecipar persistência ou refatoração dos testes. Última suíte da 5.44:
-6 testes/14 asserções. Continuamos no módulo 5. Registros abaixo são históricos.
+Estado mais recente, em 19/10/2026: 5.47 confirmada com "entendi" e publicada
+em d90a8a407413b93ec597019428abe28b23a2c45f, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.48 implementada/explicada: HasFactory adicionado a
+Produto com imports e anotação de tipo conforme padrão do User. Atalho
+Produto::factory()->make() conferido em memória: ProdutoFactory/Produto,
+atributos previstos, exists false/ID e datas null, zero SQL na demonstração.
+Suíte existente passou com 6 testes/14 asserções; contagens posteriores: zero
+produtos em loja_test e um em loja, uma migration em cada banco.
+5.48 confirmada com "entendi" após esclarecer o local da demonstração.
+Publicar esse checkpoint e iniciar 5.49: substituir
+somente o cadastro do teste de produto ativo por factory()->create, controlando
+nome/status e usando preço padrão, dentro da transação já existente.
+Não antecipar conversão dos demais cenários. Continuamos no módulo 5.
+Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
 5.34 conferidos. Git inicialmente sem alterações locais; HEAD, origin/main e
@@ -4820,12 +4827,58 @@ Verificações realizadas:
   último resultado na 5.44: 6 testes/14 asserções.
 
 Entendimento da 5.47: confirmado com "entendi" em 19/10/2026.
-Publicação da 5.47: registros preparados para commit/push conforme autorização
-persistente; consultar Git e conferir o remoto após o envio.
-Último checkpoint confirmado/publicado: 77dc3f9, etapa 5.46.
+Publicação da 5.47: checkpoint d90a8a4 publicado conforme autorização persistente;
+HEAD, origin/main e main remota conferidos em d90a8a407413b93ec597019428abe28b23a2c45f.
 Próximo passo após a confirmação: 5.48,
 adicionar trait HasFactory ao model Produto e conferir o atalho
 Produto::factory()->make() em memória. Sem persistência ou refatoração dos testes.
+
+## Etapa 5.48 — Atalho de factory no model Produto
+
+Data: 19/10/2026. Objetivo: disponibilizar Produto::factory e conferir make
+em memória. Aula em docs/aulas/05-48-has-factory-produto.md.
+
+Implementação: somente backend/app/Models/Produto.php alterado. Imports
+Database\\Factories\\ProdutoFactory e Illuminate\\Database\\Eloquent\\Factories\\HasFactory;
+na classe, @use HasFactory<ProdutoFactory> e use HasFactory, seguindo User.
+Fillable, casts e demais arquivos PHP preservados; testes não refatorados.
+
+Explicação apresentada: trait incorpora factory() estático ao model. Import
+fora da classe resolve o nome; use dentro da classe incorpora métodos.
+Comentário @use informa tipo ao editor/ferramentas, não resolve a factory em
+execução. Laravel usa convenção de nomes Produto/ProdutoFactory. factory()
+retorna a receita; make retorna model preenchido sem salvar nesta factory.
+definition continua concentrando os atributos em ProdutoFactory.
+
+Verificações realizadas:
+
+- HasFactory/factoryForModel consultados no Laravel instalado em Docker.
+- php -l de Produto.php passou. Diagnóstico confirmou trait presente,
+  factory instanceof ProdutoFactory e make instanceof Produto; atributos
+  previstos, preço int, status ativo, exists false, ID/datas null. Código 0.
+- Amostra fictícia: nome "sequi et odit", preço 15187, ativo. Listener durante
+  make observou zero SQL; nenhuma chamada create/save na demonstração.
+- Suíte existente: OK (6 tests, 14 assertions), código 0. Inserções dos cenários
+  anteriores continuaram isoladas pelas transações; nenhum teste alterado.
+- SELECT após suíte: loja_test/loja_testes com zero produtos e uma migration;
+  loja/loja_app com um produto e uma migration.
+- git diff --check passou; segredos ignorados/fora do índice. Nenhuma nova
+  dependência, migration, seeder, conta ou alteração de credencial.
+
+Entendimento da 5.48: confirmado com "entendi" em 19/10/2026.
+Dúvida recebida: onde foi usado `$produto = Produto::factory()->make();`?
+Esclarecimento: somente na demonstração pelo script temporário
+`/tmp/curso-548-atalho-factory.php`, enviado pela entrada padrão ao PHP do
+container. O diagnóstico executou `$factory = Produto::factory();` e depois
+`$produto = $factory->make();`; a expressão encadeada é equivalente. Nenhum
+teste ou controller recebeu essa chamada. A alteração de código da 5.48 foi
+adicionar HasFactory ao model. Dúvida respondida; entendimento confirmado em seguida.
+Publicação da 5.48: checkpoint concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: d90a8a4, etapa 5.47.
+Próximo passo exato: publicar checkpoint e iniciar 5.49,
+usar Produto::factory()->create somente no cenário de ativo, sobrescrevendo
+nome/status e deixando o preço padrão. Conferir comportamento e rollback;
+não converter os demais cenários nessa etapa.
 
 ## Verificações e limitações do ambiente
 
@@ -4853,14 +4906,14 @@ Produto::factory()->make() em memória. Sem persistência ou refatoração dos t
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `77dc3f9`,
-  `build: define atributos padrao da factory de Produto`.
+- Último commit local publicado conferido nesta retomada: `d90a8a4`,
+  `docs: demonstra Produto em memoria pela factory`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `77dc3f9`,
-  igual a HEAD e origin/main. Etapa 5.46 confirmada e publicada;
-  documentação da 5.47 fica local até a confirmação de entendimento.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `d90a8a4`,
+  igual a HEAD e origin/main. Etapa 5.47 confirmada e publicada;
+  etapa 5.48 agora confirmada e pronta para publicação.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4973,8 +5026,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   conferidos. Entendimento confirmado com "entendi". Na 5.46, definição preenchida
   e dez arrays conferidos em memória sem SQL. Entendimento confirmado com "entendi"; depois,
   5.47 demonstrou Produto em memória com new()->make(), exists false/ID null,
-  zero SQL. Entendimento confirmado com "entendi"; depois, 5.48: HasFactory no model e atalho
-  Produto::factory()->make(), ainda sem persistir ou refatorar testes.
+  zero SQL. Entendimento confirmado com "entendi". Na 5.48, HasFactory no model
+  e atalho make conferidos em memória; suíte existente 6 testes/14 asserções passou.
+  Entendimento confirmado com "entendi"; depois, 5.49: factory create somente no cenário de ativo.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5091,4 +5145,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.44 — Teste da ordenação do catálogo | Quarto cenário com dois ativos; focado 4 testes/12 asserções e suíte 6 testes/14 asserções; rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5810b26 |
 | 19/10/2026 | 5.45 — Estrutura da factory de Produto | Gerador criou somente classe; sintaxe, autoload, herança e modelName conferidos; definição vazia e zero SQL observado | Confirmado pelo aluno: "entendi" | Publicado e verificado em 3e094e5 |
 | 19/10/2026 | 5.46 — Atributos padrão da factory de Produto | Definição preenchida; sintaxe e dez arrays conferidos, sem models ou SQL | Confirmado pelo aluno: "entendi", após esclarecer os métodos | Publicado e verificado em 77dc3f9 |
-| 19/10/2026 | 5.47 — Produto em memória pela factory | new()->make() retornou Produto, exists false/ID e datas null, atributos previstos e zero SQL | Confirmado pelo aluno: "entendi" | Registros preparados para publicação; consultar Git |
+| 19/10/2026 | 5.47 — Produto em memória pela factory | new()->make() retornou Produto, exists false/ID e datas null, atributos previstos e zero SQL | Confirmado pelo aluno: "entendi" | Publicado e verificado em d90a8a4 |
+| 19/10/2026 | 5.48 — HasFactory no model Produto | Atalho resolve factory/monta Produto em memória, sem SQL; suíte existente 6 testes/14 asserções passou | Confirmado pelo aluno: "entendi", após dúvida sobre local da demonstração | Checkpoint concluído; envio a verificar após commit |

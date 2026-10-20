@@ -77,9 +77,13 @@ definição preenchida com nome/preço fictícios e status ativo; dez arrays
 conferidos em memória, sem SQL ou models. Entendimento da 5.46 confirmado com
 "entendi" após esclarecer os métodos e publicado em 77dc3f9. Na 5.47,
 new()->make() montou Produto em memória, com exists false, ID/datas null,
-atributos previstos e zero SQL. Entendimento da 5.47 confirmado com "entendi" em 19/10/2026.
-Depois, 5.48: HasFactory no model e conferência de Produto::factory()->make(),
-sem persistência ou refatoração dos testes ainda.
+atributos previstos e zero SQL. Entendimento da 5.47 confirmado com "entendi"
+em 19/10/2026 e publicado em d90a8a4. Na 5.48, HasFactory adicionado a Produto;
+atalho factory()->make conferido em memória, zero SQL. Suíte existente:
+6 testes/14 asserções, passou. Entendimento da 5.48 confirmado com "entendi"
+em 19/10/2026, após esclarecer o local da demonstração.
+Depois, 5.49: factory()->create somente no teste de ativo, com atributos
+sobrescritos e rollback, sem converter os demais cenários ainda.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

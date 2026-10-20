@@ -301,9 +301,12 @@ Nenhum Produto montado/persistido; testes/model preservados. Entendimento da
 5.46 confirmado com "entendi" após esclarecer os métodos, publicado em 77dc3f9.
 Na 5.47, ProdutoFactory::new()->make() demonstrado: objeto Produto, atributos
 previstos, exists false, ID/datas null e zero SQL observado. Nenhum registro
-salvo; código/testes preservados. Entendimento da 5.47 confirmado com "entendi" em 19/10/2026;
-próximo passo: HasFactory no model e atalho Produto::factory()->make().
-Detalhes em docs/aulas/05-47-factory-make-produto.md.
+salvo; código/testes preservados. Entendimento da 5.47 confirmado com "entendi"
+em 19/10/2026, publicado em d90a8a4. Na 5.48, HasFactory adicionado ao Produto
+e atalho Produto::factory()->make() conferido em memória, sem SQL.
+Suíte existente passou: 6 testes/14 asserções; contagens após rollback preservadas.
+Entendimento da 5.48 confirmado com "entendi" em 19/10/2026; próximo passo: factory create no
+cenário de ativo, sem converter os demais. Detalhes em docs/aulas/05-48-has-factory-produto.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
