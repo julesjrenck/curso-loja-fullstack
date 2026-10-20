@@ -396,8 +396,11 @@ reduzidas de 4 para 2 e nenhum SELECT extra no foreach. Rollback/contagens passa
 Entendimento confirmado com "entendi" em 20/10/2026, publicado em 70d44b5.
 Na 5.80, teste permanente de with exige nomes corretos e duas consultas,
 sem SELECT extra no foreach; focado 5/27 e suíte 14/54 passaram, rollback conferido.
-Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.81: primeiro INNER JOIN no SQL.
-Detalhes em docs/aulas/05-80-teste-carregamento-antecipado.md.
+Entendimento confirmado com "entendi" em 20/10/2026, publicado em 3627952.
+Na 5.81, diagnóstico INNER JOIN retornou Camiseta/Roupas em 1 SELECT; Caneca
+sem categoria ficou fora do resultado e continuou no banco. Rollback conferido.
+Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.82: comparação com LEFT JOIN.
+Detalhes em docs/aulas/05-81-inner-join-produtos-categorias.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
