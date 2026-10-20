@@ -4,17 +4,18 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.78 — Carregamento sob demanda e problema N+1.
-- Situação: demonstração temporária /tmp/curso-578-n-mais-um.php executada pelo
-  PHP Docker em loja_test/loja_testes, com identidade conferida e rollback.
-  Duas categorias/três produtos preparados fora da medição. Lista por whereIn
-  de IDs gerou 1 SELECT; acesso a categoria no foreach acrescentou 3 SELECTs.
-  Total 4, mesmo com dois produtos na mesma categoria. RelationLoaded false
-  antes de cada primeiro acesso e true depois, resultados por nome conferidos.
-  Somente documentação alterada nesta etapa; aplicação/testes preservados.
+- Etapa atual: 5.79 — Carregamento antecipado com with.
+- Situação: diagnóstico temporário /tmp/curso-579-carregamento-antecipado.php
+  executado pelo PHP Docker em loja_test/loja_testes com identidade e rollback.
+  Mesmos três produtos/duas categorias, preparação fora da medição. Sem with:
+  1 SELECT após get e 4 após foreach. Com with('categoria'): 2 após get e 2 após
+  foreach, mesmos nomes. RelationLoaded true antes dos acessos no caso com with.
+  Cada comparação buscou novas instâncias, sem reutilizar relações carregadas.
+  Somente documentação alterada; aplicação/testes preservados.
   Após rollback: teste 0 categorias/0 produtos/3 migrations; normal 0/1/3.
-  Demonstração/verificações da 5.78 concluídas; explicação apresentada.
-  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.78 pendente.
+  Demonstração/verificações da 5.79 concluídas; explicação apresentada.
+  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.79 pendente.
+  Etapa 5.78 confirmada com "entendi" em 20/10/2026, publicada em 55d0045.
   Etapa 5.77 confirmada com "entendi" em 20/10/2026, publicada em 7d94759.
   Etapa 5.76 confirmada com "entendi" em 20/10/2026, publicada em 0730204.
   Etapa 5.75 confirmada com "entendi" em 20/10/2026, publicada em 617408b.
@@ -52,7 +53,7 @@
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.77: 13 testes/49 asserções. Na 5.78, diagnóstico próprio passou; suíte não reexecutada, código preservado.
+  Última suíte na 5.77: 13 testes/49 asserções. Na 5.79, diagnóstico comparativo passou; suíte não reexecutada, código preservado.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -62,8 +63,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.79, repetir diagnóstico com with('categoria'),
-  explicar carregamento antecipado e comparar 4 versus 2 SELECTs com rollback.
+  Próxima etapa após confirmação: 5.80, teste permanente de with('categoria')
+  em ProdutoCategoriaTest, conferindo resultados e duas consultas, sem SQL no foreach.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -92,7 +93,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 7d94759, dissociate/save na etapa 5.77.
+  Último checkpoint pedagógico confirmado/publicado: 55d0045, diagnóstico N+1 na etapa 5.78.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -179,28 +180,31 @@
 - Etapa 5.76 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.77 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.78 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.79 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: 5.77 confirmada com "entendi" e publicada em
-7d94759bc56a862794443e504fd44c4a9cb2e7bd, igual a HEAD, origin/main e main
-remota após o push. Na 5.78, somente documentação alterada; diagnóstico temporário
-/tmp/curso-578-n-mais-um.php executado pelo PHP Docker com --env=testing.
-Conferiu loja_test/loja_testes antes de iniciar transação, criou Roupas/Acessórios
-e Camiseta/Calça/Caneca. Listener mediu apenas SELECTs da leitura após preparação.
-Produto::query()->whereIn('id', $ids)->orderBy('id')->get() gerou 1 SELECT.
-Foreach acessando categoria->nome gerou mais 3: total 4 (N+1 com N=3), incluindo
-duas buscas de Roupas em instâncias distintas de Produto. RelationLoaded false
-antes/true depois e nomes esperados conferidos. Finally executou rollback.
-Processos posteriores conferiram teste 0 categorias/0 produtos/3 migrations e
-normal 0/1/3. Diagnóstico código 0; última suíte permanece 13/49 da 5.77, não
-reexecutada pois não houve mudança em aplicação/testes.
-Demonstração/verificação/explicação da 5.78 concluídas; entendimento confirmado
+Estado mais recente, em 20/10/2026: 5.78 confirmada com "entendi" e publicada em
+55d0045667f7fe0f16ac9a3b3caa501938691b1c, igual a HEAD, origin/main e main
+remota após o push. Na 5.79, somente documentação alterada; diagnóstico temporário
+/tmp/curso-579-carregamento-antecipado.php executado pelo PHP Docker com --env=testing.
+Identidade loja_test/loja_testes antes de cadastro; transação com dois grupos de
+leitura dos mesmos três produtos/duas categorias. DB::listen conta somente SELECTs
+após preparação, reiniciando contador entre casos. Sem with: 1 após get, 4 após
+foreach. Com with('categoria'): 2 após get, 2 após foreach, nomes iguais esperados.
+RelationLoaded false/true antes dos acessos nos dois casos. Novas instâncias por
+get em cada caso; nenhum reaproveitamento de relações da primeira leitura.
+Com with: SELECT de produtos e SELECT de categorias com WHERE id IN (IDs das duas
+categorias). Código 0; finally rollback. Contagens posteriores: teste 0 categorias/
+0 produtos/3 migrations; normal 0/1/3. Aplicação/testes preservados; suíte não
+reexecutada. Última execução segue 13/49 da 5.77.
+Demonstração/verificação/explicação da 5.79 concluídas; entendimento confirmado
 com "entendi" em 20/10/2026. Publicação pendente.
-Publicar e iniciar somente 5.79: repetir diagnóstico com
-with('categoria'), explicando carregamento antecipado e comparando 4 SELECTs com
-2 SELECTs, com os mesmos dados/resultados, identidade conferida e rollback.
-Sem mudar catálogo ou adicionar serviços. Continuamos no módulo 5.
+Publicar e iniciar somente 5.80: um cenário permanente em
+ProdutoCategoriaTest com with('categoria'), vários produtos/duas categorias,
+conferindo nomes corretos e duas consultas de leitura, sem novas consultas no
+foreach. Medição após fixtures e desativada ao final; mesmo setUp/rollback.
+Continuamos no módulo 5.
 Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
@@ -6018,11 +6022,48 @@ Verificações:
 - git diff --check passou; segredos fora do índice. Sem dependências novas.
 
 Entendimento da 5.78: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.78: checkpoint concluído, pronto para commit/push autorizado.
-Último checkpoint confirmado/publicado: 7d94759, etapa 5.77.
+Publicação da 5.78: 55d0045667f7fe0f16ac9a3b3caa501938691b1c, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
 Próximo passo exato: publicar e iniciar somente 5.79: repetir diagnóstico com with('categoria'), explicar
 carregamento antecipado e comparar 4 SELECTs com 2 para os mesmos dados/resultados,
 com identidade conferida e rollback, sem mudar catálogo ou adicionar serviços.
+
+## Etapa 5.79 — Carregamento antecipado com with
+
+Demonstração, explicação e verificações em 20/10/2026. Detalhes em
+docs/aulas/05-79-carregamento-antecipado-with.md.
+
+Somente documentação alterada. Diagnóstico temporário
+/tmp/curso-579-carregamento-antecipado.php carrega Laravel Docker e confere
+ambiente testing/banco loja_test/login loja_testes antes de cadastro. Transação
+cria Roupas/Acessórios e Camiseta/Calça/Caneca; guarda IDs para limitar leitura.
+DB::listen conta apenas SELECTs da leitura, com contador reiniciado a cada caso.
+Cada caso executa um get novo e recebe novas instâncias de Produto.
+
+Sem with: get gera 1 SELECT, relações não carregadas; foreach categoria->nome
+leva total a 4. Com with('categoria') antes de get: get gera 2 SELECTs, relações
+já carregadas; foreach mantém total 2. Resultados por nome iguais e corretos.
+SELECTs com with: um de produtos e outro de categorias com WHERE id IN das duas
+categorias. Eloquent associa os models carregados usando categoria_id/id.
+With recebe nome do relacionamento categoria, configurado em Produto::categoria.
+Get executa; foreach acessa as categorias já disponíveis em memória.
+
+Verificações:
+
+- Diagnóstico comparativo: código 0, casos 4 versus 2 SELECTs e resultados iguais.
+  RelationLoaded false no primeiro caso e true no segundo antes de acesso.
+- Finally rollback; SELECTs posteriores em processos separados conferiram teste
+  0 categorias/0 produtos/3 migrations e normal 0/1/3, com identidades esperadas.
+- Aplicação/testes preservados; suíte não reexecutada nesta etapa. Última execução:
+  13 testes/49 asserções na 5.77. git diff --check passou; segredos fora do índice.
+
+Entendimento da 5.79: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.79: checkpoint concluído, pronto para commit/push autorizado.
+Último checkpoint confirmado/publicado: 55d0045, etapa 5.78.
+Próximo passo exato: publicar e iniciar somente 5.80: um cenário permanente em ProdutoCategoriaTest com
+with('categoria'), vários produtos/duas categorias, resultados corretos e duas
+consultas de leitura, sem SQL adicional no foreach. Medição após fixtures e
+desativada ao final; mesmo setUp/rollback, sem mudanças na aplicação.
 
 ## Verificações e limitações do ambiente
 
@@ -6050,14 +6091,14 @@ com identidade conferida e rollback, sem mudar catálogo ou adicionar serviços.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `7d94759`,
-  `test: remove associacao do produto a categoria`.
+- Último commit local publicado conferido nesta retomada: `55d0045`,
+  `docs: demonstra carregamento sob demanda e problema N+1`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `7d94759`,
-  igual a HEAD e origin/main. Etapa 5.77 confirmada e publicada;
-  etapa 5.78 fica local aguardando confirmação explícita de entendimento.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `55d0045`,
+  igual a HEAD e origin/main. Etapa 5.78 confirmada e publicada;
+  etapa 5.79 fica local aguardando confirmação explícita de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -6243,7 +6284,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Entendimento confirmado com "entendi" em 20/10/2026 e publicado em 7d94759.
   Na 5.78, diagnóstico N+1 conferiu 1 SELECT da lista + 3 das categorias = 4,
   com rollback e contagens posteriores preservadas. Somente documentação.
-  Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.79: carregamento antecipado com with.
+  Entendimento confirmado com "entendi" em 20/10/2026 e publicado em 55d0045.
+  Na 5.79, diagnóstico com with confirmou resultados iguais e 2 SELECTs em vez
+  de 4, sem SQL adicional no foreach; rollback/contagens conferidos. Entendimento
+  confirmado com "entendi" em 20/10/2026; depois, 5.80: teste permanente da leitura antecipada.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -6391,4 +6435,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.75 — Produtos ativos da categoria | Terceiro cenário usa produtos()->where/get, exige somente ativo da categoria; focado 3/13 e suíte 11/36 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 617408b |
 | 20/10/2026 | 5.76 — Associar produto à categoria | Associate em memória e save/recarga conferidos; falha inicial por tipo da FK corrigida na asserção; focado final 3/15 e suíte 12/42 passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em 0730204 |
 | 20/10/2026 | 5.77 — Dissociar produto da categoria | Dissociate em memória e save/recarga conferidos, FK/relação null e categoria preservada; focado 4/22 e suíte 13/49 passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em 7d94759 |
-| 20/10/2026 | 5.78 — Carregamento sob demanda e N+1 | Diagnóstico temporário em loja_test conferiu 1+3=4 SELECTs, nomes e rollback; somente documentação alterada | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |
+| 20/10/2026 | 5.78 — Carregamento sob demanda e N+1 | Diagnóstico temporário em loja_test conferiu 1+3=4 SELECTs, nomes e rollback; somente documentação alterada | Confirmado pelo aluno: "entendi" | Publicado e verificado em 55d0045 |
+| 20/10/2026 | 5.79 — Carregamento antecipado com with | Diagnóstico comparativo confirmou mesmos resultados, 4 versus 2 SELECTs e zero SQL extra no foreach com with; rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |

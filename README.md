@@ -390,8 +390,11 @@ focado 4/22 e suíte 13/49 passaram, rollback conferido. Entendimento confirmado
 com "entendi" em 20/10/2026, publicado em 7d94759. Na 5.78, diagnóstico temporário
 em loja_test conferiu 1 SELECT da lista + 3 das categorias = 4 (N+1), nomes e
 rollback. Somente documentação alterada; última suíte segue 13/49 da 5.77.
-Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.79: carregamento antecipado com with.
-Detalhes em docs/aulas/05-78-carregamento-sob-demanda-n-mais-um.md.
+Entendimento confirmado com "entendi" em 20/10/2026, publicado em 55d0045.
+Na 5.79, with('categoria') conferido em diagnóstico: mesmos resultados, consultas
+reduzidas de 4 para 2 e nenhum SELECT extra no foreach. Rollback/contagens passaram.
+Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.80: teste permanente de with.
+Detalhes em docs/aulas/05-79-carregamento-antecipado-with.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

@@ -177,8 +177,11 @@ Focado 4/22 e suíte 13/49 passaram, rollback conferido. Entendimento confirmado
 com "entendi" em 20/10/2026, publicado em 7d94759. Na 5.78, diagnóstico temporário
 em loja_test conferiu carregamento sob demanda: 1 SELECT de três produtos e 3
 SELECTs de categorias, total 4 (N+1). Nomes/rollback/contagens conferidos, sem mudar
-aplicação. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.79: with('categoria')
-e comparação de carregamento antecipado, com o mesmo rollback.
+aplicação. Entendimento confirmado com "entendi" em 20/10/2026, publicado em
+55d0045. Na 5.79, diagnóstico comparativo com with('categoria') retornou os mesmos
+nomes com 2 SELECTs em vez de 4, sem consultas adicionais no foreach. Rollback e
+contagens posteriores conferidos. Entendimento confirmado com "entendi"
+em 20/10/2026; depois, 5.80: teste permanente dos resultados e quantidade de consultas com with.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
