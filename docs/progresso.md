@@ -4,15 +4,16 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.54 — Leitura do DatabaseSeeder existente.
-- Situação: DatabaseSeeder apresentado sem alterar código ou executar run/db:seed.
-  Rotina gerada usa UserFactory para cadastrar um usuário; linha de dez está
-  comentada. Imports, Seeder, WithoutModelEvents e run explicados.
-  Sintaxe/reflexão passaram. SELECTs confirmaram somente migrations/produtos
-  em loja e loja_test, sem users; o exemplo depende dessa tabela ausente.
-  Implementação da 5.54: somente documentação; explicação/verificações concluídas.
-  Entendimento confirmado com "entendi" após nova explicação em 19/10/2026.
-  Checkpoint da 5.54 pronto para publicação.
+- Etapa atual: 5.55 — Revisão do ProdutoSeeder existente.
+- Situação: corrigido próximo passo: ProdutoSeeder já foi gerado na 5.20 e usa
+  firstOrCreate desde a 5.24. Arquivo preservado; não gerar novamente.
+  Explicada relação entre seeder e model, dois arrays de firstOrCreate e
+  ausência de chamada a ProdutoSeeder no DatabaseSeeder atual.
+  Sintaxe passou em Docker; nenhum seeder executado ou cadastro alterado.
+  Implementação da 5.55: somente documentação; explicação/verificação concluídas.
+  Entendimento confirmado com "entendi" em 19/10/2026. Checkpoint pronto para publicação.
+  Etapa 5.54 confirmada com "entendi" após nova explicação em 19/10/2026,
+  publicada em def2f14.
   Etapa 5.53 confirmada com "entendi" em 19/10/2026, publicada em 6ac5518.
   Etapa 5.52 confirmada com "entendi" em 19/10/2026, publicada em edd3411.
   Etapa 5.51 confirmada com "entendi" em 19/10/2026, publicada em 5152ba4.
@@ -35,8 +36,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.55, gerar somente a estrutura de ProdutoSeeder
-  com Artisan e explicar run vazio, sem preencher ou executar o seeder ainda.
+  Próxima etapa: 5.56, substituir o exemplo de User em
+  DatabaseSeeder por chamada a ProdutoSeeder, explicando call, sem executar db:seed ainda.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -65,7 +66,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 6ac5518, estado inativo aplicado ao teste 5.53.
+  Último checkpoint pedagógico confirmado/publicado: def2f14, leitura do DatabaseSeeder 5.54.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -128,23 +129,23 @@
 - Etapa 5.52 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.53 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.54 confirmada com "entendi" em 19/10/2026, após explicação com exemplo da loja.
+- Etapa 5.55 confirmada com "entendi" em 19/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.53 confirmada com "entendi" e publicada em
-6ac5518805ab2706980570b94375e82ba495c2ee, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.54 apresentada/verificada: leitura do DatabaseSeeder
-gerado, sem alterar código ou executar run/db:seed. Distinguidos migration,
-factory e seeder; imports, WithoutModelEvents e cadastro de usuário explicados.
-Sintaxe/reflexão passaram; SELECTs confirmaram somente migrations/produtos nos
-dois bancos, sem users. Exemplo atual depende dessa tabela e não popula catálogo.
-Diagnóstico temporário /tmp/curso-554-inspecionar-seeder.php enviado ao PHP Docker
-pela entrada padrão; executou somente SELECTs, não invocou seeder.
+Estado mais recente, em 19/10/2026: 5.54 confirmada com "entendi" após nova
+explicação e publicada em def2f14508754ed2d6e9fafb290f4378a5de87c3, igual a
+HEAD, origin/main e main remota no envio. Ao preparar 5.55, corrigido erro no
+próximo passo: ProdutoSeeder já existe desde 5.20 (e811031), com cadastro 5.21
+(9da189c) e firstOrCreate 5.24 (162b7aa); não gerar nem sobrescrever.
+Etapa 5.55 reapresentou esse arquivo em relação ao DatabaseSeeder: busca Camiseta
+pelo nome, cadastra preço 4990/status ativo somente se ausente; não usa factory.
+DatabaseSeeder ainda contém apenas exemplo User e não chama ProdutoSeeder.
+Sintaxe do ProdutoSeeder passou em Docker, sem executar run/db:seed ou SQL.
 Última suíte permanece a da 5.53: 6 testes/14 asserções; não repetida para leitura.
-Entendimento da 5.54 confirmado com "entendi" após nova explicação com exemplo
-da loja em 19/10/2026. Publicar o checkpoint e iniciar 5.55: gerar somente
-estrutura de ProdutoSeeder com Artisan e
-explicar run vazio, sem preencher ou executar ainda.
+Entendimento da 5.55 confirmado com "entendi" em 19/10/2026. Publicar o checkpoint
+e iniciar 5.56: substituir exemplo de User em DatabaseSeeder por call de ProdutoSeeder,
+explicar a ligação sem executar db:seed nessa etapa.
 Continuamos no módulo 5.
 Registros abaixo são históricos.
 
@@ -5100,11 +5101,42 @@ e Caneca com Produto::factory()->create, sem implementação/execução. Destaca
 que create salva em ambos os contextos; nos testes há rollback pelo trait,
 enquanto a rotina de seeding pode deixar exemplos cadastrados. Migration cria
 a estrutura necessária. O aluno confirmou entendimento com "entendi" em seguida.
-Publicação da 5.54: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: 6ac5518, etapa 5.53.
-Próximo passo exato: publicar checkpoint e iniciar 5.55,
-gerar somente a estrutura ProdutoSeeder com Artisan e explicar run vazio,
-sem preencher ou executar o seeder nessa etapa.
+Publicação da 5.54: def2f14508754ed2d6e9fafb290f4378a5de87c3, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
+Correção do próximo passo: a indicação de gerar ProdutoSeeder novamente estava
+incorreta; arquivo já gerado na 5.20 e preenchido nas etapas seguintes. Na 5.55,
+revisar o seeder existente e sua relação com DatabaseSeeder, sem sobrescrever.
+
+## Etapa 5.55 — Revisão do ProdutoSeeder existente
+
+Explicação e verificação em 19/10/2026. Detalhes em
+docs/aulas/05-55-produto-seeder-existente.md. Nenhuma alteração no código.
+
+Antes de gerar um arquivo, inspeção encontrou ProdutoSeeder já versionado.
+Histórico conferido: e811031 gerou estrutura na 5.20, 9da189c escreveu cadastro
+na 5.21 e 162b7aa introduziu firstOrCreate na 5.24. Aulas 5.20/5.24/5.25
+consultadas. Corrigido plano de geração, preservando implementação e confirmações.
+
+Explicação reapresentada: ProdutoSeeder estende Seeder, importa Produto e usa
+run para buscar Camiseta pelo primeiro array de firstOrCreate. Se ausente,
+cadastra com preço 4990/status ativo do segundo array; se existente, reutiliza
+sem atualizar os atributos. Um seeder pode usar Eloquent diretamente, sem
+factory. DatabaseSeeder atual ainda não chama ProdutoSeeder: arquivos existentes
+não são executados automaticamente só por estarem em database/seeders.
+Comando --class=ProdutoSeeder já foi usado na 5.22/5.25 para seleção explícita;
+nenhuma nova execução nesta etapa.
+
+Verificação: php -l database/seeders/ProdutoSeeder.php em Docker passou, código 0.
+Nenhum run, db:seed, INSERT ou SELECT executado; nenhum model/tabela/dado alterado.
+Suíte não repetida para leitura/documentação. git diff --check passou; segredos
+continuam ignorados/fora do índice.
+
+Entendimento da 5.55: confirmado com "entendi" em 19/10/2026.
+Publicação da 5.55: checkpoint concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: def2f14, etapa 5.54.
+Próximo passo exato: publicar checkpoint e iniciar 5.56,
+substituir exemplo User em DatabaseSeeder por chamada a ProdutoSeeder com call,
+explicando o encadeamento sem executar db:seed nessa etapa.
 
 ## Verificações e limitações do ambiente
 
@@ -5132,14 +5164,14 @@ sem preencher ou executar o seeder nessa etapa.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `6ac5518`,
-  `test: aplica estado inativo ao teste de catalogo`.
+- Último commit local publicado conferido nesta retomada: `def2f14`,
+  `docs: apresenta seeders e suas dependencias`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `6ac5518`,
-  igual a HEAD e origin/main. Etapa 5.53 confirmada e publicada;
-  etapa 5.54 agora confirmada e pronta para publicação.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `def2f14`,
+  igual a HEAD e origin/main. Etapa 5.54 confirmada e publicada;
+  etapa 5.55 agora confirmada e pronta para publicação.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5268,8 +5300,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Entendimento confirmado com "entendi" e publicado em 6ac5518. Na 5.54,
   DatabaseSeeder apresentado sem execução; dependência users ausente confirmada
   por SELECT nos dois bancos. Entendimento confirmado com "entendi" após nova
-  explicação com exemplo da loja; depois, 5.55: gerar somente
-  a estrutura de ProdutoSeeder e explicar run vazio.
+  explicação com exemplo da loja e publicado em def2f14. Na 5.55, plano corrigido:
+  ProdutoSeeder já existe, foi preservado/revisado, sintaxe passou. Entendimento
+  confirmado com "entendi"; depois, 5.56: ligar DatabaseSeeder ao ProdutoSeeder existente.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5393,4 +5426,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.51 — Factory no cenário de ordenação | Dois cadastros com nomes controlados e preço padrão; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5152ba4 |
 | 19/10/2026 | 5.52 — Estado inativo na factory | Método inativo com state; make conferido em memória sem SQL, padrão ativo preservado; suíte existente 6/14 passou | Confirmado pelo aluno: "entendi" | Publicado e verificado em edd3411 |
 | 19/10/2026 | 5.53 — Estado inativo aplicado ao teste | Cadastro da Caneca usa inativo()->create; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6ac5518 |
-| 19/10/2026 | 5.54 — Leitura do DatabaseSeeder | Código gerado explicado; sintaxe/reflexão e SELECTs passaram, users ausente; seeder não executado | Confirmado pelo aluno: "entendi", após nova explicação | Checkpoint concluído; envio a verificar após commit |
+| 19/10/2026 | 5.54 — Leitura do DatabaseSeeder | Código gerado explicado; sintaxe/reflexão e SELECTs passaram, users ausente; seeder não executado | Confirmado pelo aluno: "entendi", após nova explicação | Publicado e verificado em def2f14 |
+| 19/10/2026 | 5.55 — Revisão do ProdutoSeeder existente | Corrigido plano de geração duplicada; arquivo preservado/revisado, sintaxe passou; sem execução | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |

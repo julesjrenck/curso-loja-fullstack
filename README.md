@@ -323,9 +323,11 @@ teste 1/3 e suíte 6/14 passaram, rollback conferido. Entendimento da 5.53
 confirmado com "entendi" em 19/10/2026, publicado em 6ac5518.
 Na 5.54, DatabaseSeeder existente explicado sem execução; sintaxe/reflexão e
 SELECTs passaram. Exemplo de usuário depende de users, ausente nos dois bancos.
-Entendimento da 5.54 confirmado com "entendi" após nova explicação em 19/10/2026;
-depois, 5.55: estrutura ProdutoSeeder.
-Detalhes em docs/aulas/05-54-leitura-database-seeder.md.
+Entendimento da 5.54 confirmado com "entendi" após nova explicação em 19/10/2026,
+publicado em def2f14. Na 5.55, ProdutoSeeder existente preservado/revisado;
+corrigida previsão de gerá-lo novamente. Sintaxe passou, sem executar cadastro.
+Entendimento da 5.55 confirmado com "entendi" em 19/10/2026; depois, 5.56: chamada no DatabaseSeeder.
+Detalhes em docs/aulas/05-55-produto-seeder-existente.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
