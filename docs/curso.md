@@ -114,8 +114,10 @@ Rollback/contagens conferidos: teste com zero produtos, normal com um.
 Entendimento da 5.57 confirmado com "entendi" em 19/10/2026, publicado em 5c65e6d.
 Na 5.58, modelagem inicial categorias/produtos: um para muitos, chave primária
 e estrangeira explicados com exemplos ilustrativos, sem alterar código/esquema.
-Entendimento da 5.58 confirmado com "entendi" em 20/10/2026; depois, 5.59: preparar migration
-de categorias com id, nome e timestamps, sem aplicar ainda.
+Entendimento da 5.58 confirmado com "entendi" em 20/10/2026, publicado em f680b99.
+Na 5.59, migration de categorias gerada com id, nome string(150) e timestamps(3);
+sintaxe passou, sem aplicar. Entendimento da 5.59 confirmado com "entendi" em 20/10/2026;
+depois, 5.60: aplicar somente essa migration em loja_test e conferir estrutura/status.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

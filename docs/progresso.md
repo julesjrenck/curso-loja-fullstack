@@ -4,13 +4,13 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.58 — Modelagem de categorias e produtos.
-- Situação: modelagem inicial apresentada com tabelas ilustrativas. Categoria
-  pode reunir vários produtos; produto categorizado pertence a uma categoria.
-  Explicados ID da categoria como chave primária, categoria_id no produto como
-  referência e chave estrangeira para garantir categoria existente.
-  Implementação da 5.58: somente documentação; código/esquema não alterados.
+- Etapa atual: 5.59 — Migration de categorias preparada.
+- Situação: gerado 2026_10_20_113601_create_categorias_table.php pelo Artisan em
+  PHP Docker. Up define id, nome string(150) e timestamps(3); down remove tabela.
+  Sintaxe passou; arquivo com dono local. Nenhum migrate/SQL executado nesta etapa.
+  Implementação/verificação da 5.59 concluídas; explicação apresentada.
   Entendimento confirmado com "entendi" em 20/10/2026. Checkpoint pronto para publicação.
+  Etapa 5.58 confirmada com "entendi" em 20/10/2026, publicada em f680b99.
   Etapa 5.57 confirmada com "entendi" em 19/10/2026, publicada em 5c65e6d.
   Etapa 5.56 confirmada com "entendi" em 19/10/2026, publicada em 07af123.
   Etapa 5.55 confirmada com "entendi" em 19/10/2026, publicada em 0f754ae.
@@ -38,8 +38,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.59, preparar migration create_categorias_table
-  com id, nome e timestamps, explicar up/down e conferir sintaxe sem aplicar ainda.
+  Próxima etapa: 5.60, aplicar somente migration de categorias
+  em loja_test e conferir estrutura/status, sem alterar produtos.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -68,7 +68,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 5c65e6d, execução padrão com rollback 5.57.
+  Último checkpoint pedagógico confirmado/publicado: f680b99, modelagem categorias/produtos 5.58.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -135,22 +135,22 @@
 - Etapa 5.56 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.57 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.58 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.59 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.57 confirmada com "entendi" e publicada em
-5c65e6d26394b8ac231addbecf80a10eb54257a0, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.58 apresentada: modelagem conceitual categorias/produtos
-com exemplos ilustrativos, não dados cadastrados. Uma categoria reúne vários
-produtos; produto categorizado referencia uma categoria por categoria_id.
-Explicadas chave primária e chave estrangeira; restrição ainda não implementada.
-Migration/model atuais de Produto conferidos; nenhum arquivo de categorias
-existente encontrado nas pastas de models/migrations. Código/esquema preservados,
-sem SQL ou execução de testes nesta etapa de documentação. Última suíte 6/14
-pertence à 5.53; última execução de banco é a 5.57, com rollback conferido.
-Entendimento da 5.58 confirmado com "entendi" em 20/10/2026. Publicar o checkpoint
-e iniciar 5.59: preparar migration create_categorias_table com id, nome e
-timestamps, explicar up/down e conferir sintaxe sem aplicar a migration ainda.
+Estado mais recente, em 20/10/2026: 5.58 confirmada com "entendi" e publicada em
+f680b996432bcb9b8f549d793a79673e90ce847b, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.59 implementada/explicada: migration
+backend/database/migrations/2026_10_20_113601_create_categorias_table.php gerada
+pelo Artisan em PHP Docker, com escrita somente na pasta de migrations e usuário
+1000:1000. Acrescentado nome string(150); timestamps ajustados para precisão 3.
+Up define categorias; down usa dropIfExists. Php -l passou, código 0. Nenhum
+migrate, SQL, model ou relacionamento implementado nesta etapa. Última suíte
+6/14 é da 5.53 e verificação de banco da 5.57; não são verificações desta migration.
+Entendimento da 5.59 confirmado com "entendi" em 20/10/2026. Publicar o checkpoint
+e iniciar 5.60: aplicar somente essa migration em loja_test e conferir estrutura
+e status, sem alterar produtos ou aplicar migrations geradas de users/cache/jobs.
 Continuamos no módulo 5.
 Registros abaixo são históricos.
 
@@ -5240,11 +5240,44 @@ git diff --check passaram. Nenhum SQL, teste ou comando de geração nesta etapa
 Segredos continuam ignorados/fora do índice.
 
 Entendimento da 5.58: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.58: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: 5c65e6d, etapa 5.57.
-Próximo passo exato: publicar checkpoint e iniciar 5.59,
+Publicação da 5.58: f680b996432bcb9b8f549d793a79673e90ce847b, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos em 20/10/2026 após o push.
+Próximo passo após confirmação: 5.59,
 preparar migration create_categorias_table com id, nome e timestamps, explicar
 up/down e conferir sintaxe, sem aplicar ainda nem alterar produtos/model.
+
+## Etapa 5.59 — Migration de categorias preparada
+
+Implementação, explicação e verificação em 20/10/2026. Detalhes em
+docs/aulas/05-59-migration-categorias.md.
+
+Único arquivo de código adicionado:
+backend/database/migrations/2026_10_20_113601_create_categorias_table.php.
+Gerado com make:migration create_categorias_table --create=categorias em container
+temporário do serviço backend, usuário 1000:1000 e bind rw somente de migrations.
+Comando código 0; dono local 1000:1000 e modo 644. Compose preservado.
+
+Migration gerada já tinha up/down, id e timestamps. Acrescentado nome string(150)
+e timestamps ajustados para (3), conforme precisão dos produtos. Explicados
+imports Migration/Blueprint/Schema, classe anônima, callback e métodos:
+up descreve criação, down descreve remoção. Nome obrigatório no esquema, sem
+unique nesta etapa; timestamps anuláveis e preenchidos pelo Eloquent ao persistir,
+não pelo simples fato de a migration existir. ID identifica a categoria.
+
+Verificação: ajuda do gerador consultada no Artisan instalado; php -l da migration
+passou em Docker, código 0. Revisão dos trechos e git diff --check passaram.
+Nenhum migrate, rollback, INSERT ou SELECT executado. Sintaxe não comprova
+aplicação no SQL Server; estrutura/status serão conferidos na etapa seguinte.
+Sem alteração de produtos, model, factory, seeder, dependência ou serviço.
+Segredos continuam ignorados/fora do índice. Suíte não repetida para arquivo ainda
+não aplicado; último resultado 6/14 continua identificado como histórico da 5.53.
+
+Entendimento da 5.59: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.59: checkpoint concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: f680b99, etapa 5.58.
+Próximo passo exato: publicar checkpoint e iniciar 5.60,
+aplicar somente migration de categorias em loja_test e conferir estrutura/status,
+sem alterar produtos nem aplicar migrations geradas de users/cache/jobs.
 
 ## Verificações e limitações do ambiente
 
@@ -5272,14 +5305,14 @@ up/down e conferir sintaxe, sem aplicar ainda nem alterar produtos/model.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `5c65e6d`,
-  `docs: verifica seeder padrao com rollback no banco de testes`.
+- Último commit local publicado conferido nesta retomada: `f680b99`,
+  `docs: modela categorias e sua relacao com produtos`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `5c65e6d`,
-  igual a HEAD e origin/main. Etapa 5.57 confirmada e publicada;
-  etapa 5.58 agora confirmada e pronta para publicação.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `f680b99`,
+  igual a HEAD e origin/main. Etapa 5.58 confirmada e publicada;
+  etapa 5.59 agora confirmada e pronta para publicação.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5417,8 +5450,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   conferido e rollback para zero produtos. Entendimento confirmado com "entendi"
   e publicado em 5c65e6d. Na 5.58, modelagem inicial categorias/produtos e chave
   estrangeira apresentadas com exemplos, sem alterar esquema. Entendimento confirmado
-  com "entendi" em 20/10/2026;
-  depois, 5.59: preparar somente migration de categorias.
+  com "entendi" em 20/10/2026 e publicado em f680b99. Na 5.59, migration de
+  categorias preparada com id/nome/timestamps(3), sintaxe passou, sem aplicar.
+  Entendimento confirmado com "entendi"; depois, 5.60: aplicar somente essa migration em loja_test.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5546,4 +5580,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.55 — Revisão do ProdutoSeeder existente | Corrigido plano de geração duplicada; arquivo preservado/revisado, sintaxe passou; sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 0f754ae |
 | 19/10/2026 | 5.56 — DatabaseSeeder chama ProdutoSeeder | Exemplo User substituído por call de ProdutoSeeder; sintaxe/autoload passaram, sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 07af123 |
 | 19/10/2026 | 5.57 — Execução do seeder padrão com rollback | db:seed em loja_test chamou ProdutoSeeder, criou Camiseta, catálogo conferido; rollback/contagens passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5c65e6d |
-| 19/10/2026 | 5.58 — Modelagem categorias/produtos | Um para muitos, chave primária/estrangeira e referências explicados com exemplos; somente documentação | Confirmado pelo aluno: "entendi" em 20/10/2026 | Checkpoint concluído; envio a verificar após commit |
+| 19/10/2026 | 5.58 — Modelagem categorias/produtos | Um para muitos, chave primária/estrangeira e referências explicados com exemplos; somente documentação | Confirmado pelo aluno: "entendi" em 20/10/2026 | Publicado e verificado em f680b99 |
+| 20/10/2026 | 5.59 — Migration de categorias | Artisan gerou migration; nome string(150) e timestamps(3) preparados, sintaxe passou; sem aplicar | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
