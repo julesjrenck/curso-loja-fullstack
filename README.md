@@ -305,8 +305,11 @@ salvo; código/testes preservados. Entendimento da 5.47 confirmado com "entendi"
 em 19/10/2026, publicado em d90a8a4. Na 5.48, HasFactory adicionado ao Produto
 e atalho Produto::factory()->make() conferido em memória, sem SQL.
 Suíte existente passou: 6 testes/14 asserções; contagens após rollback preservadas.
-Entendimento da 5.48 confirmado com "entendi" em 19/10/2026; próximo passo: factory create no
-cenário de ativo, sem converter os demais. Detalhes em docs/aulas/05-48-has-factory-produto.md.
+Entendimento da 5.48 confirmado com "entendi" em 19/10/2026, publicado em d465778.
+Na 5.49, cadastro do teste de ativo usa factory()->create com nome/status
+sobrescritos e preço padrão. Teste 1/3 e suíte 6/14 passaram; rollback conferido.
+Entendimento da 5.49 confirmado com "entendi" em 19/10/2026. Depois, 5.50: factory no cenário
+ativo/inativo. Detalhes em docs/aulas/05-49-factory-teste-produto-ativo.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

@@ -81,9 +81,11 @@ atributos previstos e zero SQL. Entendimento da 5.47 confirmado com "entendi"
 em 19/10/2026 e publicado em d90a8a4. Na 5.48, HasFactory adicionado a Produto;
 atalho factory()->make conferido em memória, zero SQL. Suíte existente:
 6 testes/14 asserções, passou. Entendimento da 5.48 confirmado com "entendi"
-em 19/10/2026, após esclarecer o local da demonstração.
-Depois, 5.49: factory()->create somente no teste de ativo, com atributos
-sobrescritos e rollback, sem converter os demais cenários ainda.
+em 19/10/2026, após esclarecer o local da demonstração, publicado em d465778.
+Na 5.49, factory()->create aplicada somente ao cadastro do teste de ativo:
+nome/status sobrescritos, preço padrão. Teste 1/3 e suíte 6/14 passaram;
+rollback conferido. Entendimento da 5.49 confirmado com "entendi" em 19/10/2026.
+Depois, 5.50: factory nos dois cadastros do cenário ativo/inativo.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

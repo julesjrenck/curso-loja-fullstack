@@ -35,9 +35,8 @@ class CatalogoEloquentTest extends TestCase
 
     public function test_retorna_nome_do_produto_ativo(): void
     {
-        Produto::create([
+        Produto::factory()->create([
             'nome' => 'Camiseta',
-            'preco_em_centavos' => 4990,
             'status' => 'ativo',
         ]);
 
