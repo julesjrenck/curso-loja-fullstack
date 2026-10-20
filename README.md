@@ -332,8 +332,11 @@ Sintaxe/autoload passaram, sem executar seeders. Entendimento da 5.56 confirmado
 com "entendi" em 19/10/2026, publicado em 07af123. Na 5.57, db:seed padrão em
 loja_test chamou ProdutoSeeder/criou Camiseta; catálogo e rollback conferidos.
 Teste voltou a zero produtos e banco normal mantém um produto. Entendimento da
-5.57 confirmado com "entendi" em 19/10/2026; depois, 5.58: modelagem de categorias/produtos.
-Detalhes em docs/aulas/05-57-executar-seeder-padrao.md.
+5.57 confirmado com "entendi" em 19/10/2026, publicado em 5c65e6d.
+Na 5.58, modelagem categorias/produtos apresentada: um para muitos, IDs e chave
+estrangeira, somente exemplos/documentação. Entendimento confirmado com "entendi" em 20/10/2026;
+depois, 5.59: preparar migration de categorias sem aplicar ainda.
+Detalhes em docs/aulas/05-58-modelagem-categorias-produtos.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

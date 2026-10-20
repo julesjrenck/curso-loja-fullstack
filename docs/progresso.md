@@ -2,16 +2,16 @@
 
 ## Estado atual
 
-- Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
+- Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.57 — Execução do seeder padrão com rollback.
-- Situação: db:seed padrão executado em loja_test/loja_testes por diagnóstico
-  temporário dentro de transação: chamou ProdutoSeeder, criou uma Camiseta
-  4990/ativo e catálogo retornou ['Camiseta']. Código 0, um INSERT observado.
-  Rollback final conferido: zero produtos, uma migration, zero transações abertas.
-  SELECTs separados: loja_test com zero produtos; loja com um produto anterior.
-  Implementação da 5.57: somente documentação; explicação/verificações concluídas.
-  Entendimento confirmado com "entendi" em 19/10/2026. Checkpoint pronto para publicação.
+- Etapa atual: 5.58 — Modelagem de categorias e produtos.
+- Situação: modelagem inicial apresentada com tabelas ilustrativas. Categoria
+  pode reunir vários produtos; produto categorizado pertence a uma categoria.
+  Explicados ID da categoria como chave primária, categoria_id no produto como
+  referência e chave estrangeira para garantir categoria existente.
+  Implementação da 5.58: somente documentação; código/esquema não alterados.
+  Entendimento confirmado com "entendi" em 20/10/2026. Checkpoint pronto para publicação.
+  Etapa 5.57 confirmada com "entendi" em 19/10/2026, publicada em 5c65e6d.
   Etapa 5.56 confirmada com "entendi" em 19/10/2026, publicada em 07af123.
   Etapa 5.55 confirmada com "entendi" em 19/10/2026, publicada em 0f754ae.
   Etapa 5.54 confirmada com "entendi" após nova explicação em 19/10/2026,
@@ -38,8 +38,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.58, apresentar categorias e relação um para
-  muitos com produtos, explicando chave estrangeira apenas na modelagem inicial.
+  Próxima etapa: 5.59, preparar migration create_categorias_table
+  com id, nome e timestamps, explicar up/down e conferir sintaxe sem aplicar ainda.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -68,7 +68,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 07af123, ligação dos seeders 5.56.
+  Último checkpoint pedagógico confirmado/publicado: 5c65e6d, execução padrão com rollback 5.57.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -134,23 +134,23 @@
 - Etapa 5.55 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.56 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.57 confirmada com "entendi" em 19/10/2026.
+- Etapa 5.58 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.56 confirmada com "entendi" e publicada em
-07af1238a439706caa32d5f543c26bdfd16f88d2, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.57 executada/explicada: diagnóstico temporário
-/tmp/curso-557-executar-seeder-padrao.php enviado ao PHP Docker com --env=testing.
-Confere ambiente/banco/login e tabela vazia; abre transação, chama db:seed pelo
-kernel sem --class e com --database=sqlsrv. DatabaseSeeder chamou ProdutoSeeder:
-código 0, um INSERT, Camiseta/4990/ativo com ID/datas e catálogo ['Camiseta'].
-Finally fez rollback; zero produtos, uma migration e zero transações abertas.
-SELECTs separados confirmaram loja_test/loja_testes com zero produtos e
-loja/loja_app com um produto. Nenhum código da aplicação alterado nesta etapa.
-Última suíte permanece a da 5.53: 6 testes/14 asserções; não repetida após
-verificação dirigida do seeder. Entendimento da 5.57 confirmado com "entendi"
-em 19/10/2026. Publicar o checkpoint e iniciar 5.58: apresentar categorias, relação um para
-muitos e chave estrangeira na modelagem, sem criar tabelas/models ainda.
+Estado mais recente, em 19/10/2026: 5.57 confirmada com "entendi" e publicada em
+5c65e6d26394b8ac231addbecf80a10eb54257a0, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.58 apresentada: modelagem conceitual categorias/produtos
+com exemplos ilustrativos, não dados cadastrados. Uma categoria reúne vários
+produtos; produto categorizado referencia uma categoria por categoria_id.
+Explicadas chave primária e chave estrangeira; restrição ainda não implementada.
+Migration/model atuais de Produto conferidos; nenhum arquivo de categorias
+existente encontrado nas pastas de models/migrations. Código/esquema preservados,
+sem SQL ou execução de testes nesta etapa de documentação. Última suíte 6/14
+pertence à 5.53; última execução de banco é a 5.57, com rollback conferido.
+Entendimento da 5.58 confirmado com "entendi" em 20/10/2026. Publicar o checkpoint
+e iniciar 5.59: preparar migration create_categorias_table com id, nome e
+timestamps, explicar up/down e conferir sintaxe sem aplicar a migration ainda.
 Continuamos no módulo 5.
 Registros abaixo são históricos.
 
@@ -5209,11 +5209,42 @@ Verificações:
   após verificação dirigida; último resultado 6/14 pertence à 5.53.
 
 Entendimento da 5.57: confirmado com "entendi" em 19/10/2026.
-Publicação da 5.57: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: 07af123, etapa 5.56.
-Próximo passo exato: publicar checkpoint e iniciar 5.58,
+Publicação da 5.57: 5c65e6d26394b8ac231addbecf80a10eb54257a0, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
+Próximo passo após confirmação: 5.58,
 apresentar categorias e relação um para muitos com produtos, explicando chave
 estrangeira na modelagem, sem criar tabelas/models nessa etapa.
+
+## Etapa 5.58 — Modelagem de categorias e produtos
+
+Explicação e revisão da modelagem em 19/10/2026. Detalhes em
+docs/aulas/05-58-modelagem-categorias-produtos.md. Somente documentação alterada.
+
+Problema: agrupar produtos por categoria. Modelo inicial de um para muitos:
+uma categoria pode reunir vários produtos; cada produto categorizado pertence
+a uma categoria. Exemplo ilustrativo: categorias 1/Roupas e 2/Acessórios;
+Camiseta/Calça referenciam 1 e Caneca referencia 2 por categoria_id.
+Esses IDs/nomes são exemplos, não resultado de consultas ou cadastros.
+
+Explicadas chave primária categorias.id e referência produtos.categoria_id.
+Chave estrangeira, quando implementada, verificará existência da categoria
+referenciada. Número sozinho não cria essa restrição. Nome da categoria fica
+na tabela de categorias; mudar esse nome não exige alterar cada produto.
+Obrigatoriedade/transição de produtos antigos e exclusão de categorias serão
+definidas nas etapas de alteração do esquema; não foram implementadas aqui.
+
+Verificação: model e migration atuais de Produto inspecionados, sem categoria_id
+ou relacionamento. Pastas de models/migrations conferidas antes de planejar nova
+migration; nenhum arquivo de categorias encontrado. Revisão dos exemplos e
+git diff --check passaram. Nenhum SQL, teste ou comando de geração nesta etapa.
+Segredos continuam ignorados/fora do índice.
+
+Entendimento da 5.58: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.58: checkpoint concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: 5c65e6d, etapa 5.57.
+Próximo passo exato: publicar checkpoint e iniciar 5.59,
+preparar migration create_categorias_table com id, nome e timestamps, explicar
+up/down e conferir sintaxe, sem aplicar ainda nem alterar produtos/model.
 
 ## Verificações e limitações do ambiente
 
@@ -5241,14 +5272,14 @@ estrangeira na modelagem, sem criar tabelas/models nessa etapa.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `07af123`,
-  `build: conecta DatabaseSeeder ao ProdutoSeeder`.
+- Último commit local publicado conferido nesta retomada: `5c65e6d`,
+  `docs: verifica seeder padrao com rollback no banco de testes`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `07af123`,
-  igual a HEAD e origin/main. Etapa 5.56 confirmada e publicada;
-  etapa 5.57 agora confirmada e pronta para publicação.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `5c65e6d`,
+  igual a HEAD e origin/main. Etapa 5.57 confirmada e publicada;
+  etapa 5.58 agora confirmada e pronta para publicação.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5383,8 +5414,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   call([ProdutoSeeder::class]); sintaxe/autoload passaram, seeders não executados.
   Entendimento confirmado com "entendi" e publicado em 07af123. Na 5.57,
   execução padrão em loja_test chamou ProdutoSeeder/criou Camiseta, catálogo
-  conferido e rollback para zero produtos. Entendimento confirmado com "entendi"; depois, 5.58:
-  modelagem inicial de categorias/relação com produtos, sem alterar o esquema.
+  conferido e rollback para zero produtos. Entendimento confirmado com "entendi"
+  e publicado em 5c65e6d. Na 5.58, modelagem inicial categorias/produtos e chave
+  estrangeira apresentadas com exemplos, sem alterar esquema. Entendimento confirmado
+  com "entendi" em 20/10/2026;
+  depois, 5.59: preparar somente migration de categorias.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5511,4 +5545,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.54 — Leitura do DatabaseSeeder | Código gerado explicado; sintaxe/reflexão e SELECTs passaram, users ausente; seeder não executado | Confirmado pelo aluno: "entendi", após nova explicação | Publicado e verificado em def2f14 |
 | 19/10/2026 | 5.55 — Revisão do ProdutoSeeder existente | Corrigido plano de geração duplicada; arquivo preservado/revisado, sintaxe passou; sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 0f754ae |
 | 19/10/2026 | 5.56 — DatabaseSeeder chama ProdutoSeeder | Exemplo User substituído por call de ProdutoSeeder; sintaxe/autoload passaram, sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 07af123 |
-| 19/10/2026 | 5.57 — Execução do seeder padrão com rollback | db:seed em loja_test chamou ProdutoSeeder, criou Camiseta, catálogo conferido; rollback/contagens passaram | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
+| 19/10/2026 | 5.57 — Execução do seeder padrão com rollback | db:seed em loja_test chamou ProdutoSeeder, criou Camiseta, catálogo conferido; rollback/contagens passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5c65e6d |
+| 19/10/2026 | 5.58 — Modelagem categorias/produtos | Um para muitos, chave primária/estrangeira e referências explicados com exemplos; somente documentação | Confirmado pelo aluno: "entendi" em 20/10/2026 | Checkpoint concluído; envio a verificar após commit |

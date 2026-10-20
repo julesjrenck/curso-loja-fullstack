@@ -111,8 +111,11 @@ sem executar seeders. Entendimento da 5.56 confirmado com "entendi" em 19/10/202
 publicado em 07af123. Na 5.57, db:seed padrão executado em loja_test dentro de
 transação: chamou ProdutoSeeder, criou Camiseta e catálogo retornou seu nome.
 Rollback/contagens conferidos: teste com zero produtos, normal com um.
-Entendimento da 5.57 confirmado com "entendi" em 19/10/2026; depois, 5.58: modelagem inicial de
-categorias, relação um para muitos e chave estrangeira, sem alterar esquema ainda.
+Entendimento da 5.57 confirmado com "entendi" em 19/10/2026, publicado em 5c65e6d.
+Na 5.58, modelagem inicial categorias/produtos: um para muitos, chave primária
+e estrangeira explicados com exemplos ilustrativos, sem alterar código/esquema.
+Entendimento da 5.58 confirmado com "entendi" em 20/10/2026; depois, 5.59: preparar migration
+de categorias com id, nome e timestamps, sem aplicar ainda.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
