@@ -294,8 +294,12 @@ Entendimento da 5.44 confirmado com "entendi" em 19/10/2026, publicado em 5810b2
 Na 5.45, ProdutoFactory gerada pelo Artisan com definition vazio. Sintaxe,
 autoload, herança e resolução de Produto conferidos, sem SQL na inspeção.
 Model/testes preservados; nenhum dado criado. Entendimento da 5.45 confirmado
-com "entendi" em 19/10/2026; próximo passo: preencher/conferir atributos em memória.
-Detalhes em docs/aulas/05-45-estrutura-produto-factory.md.
+com "entendi" em 19/10/2026, publicado em 3e094e5. Na 5.46, definition passou
+a gerar nome textual de três palavras, preço inteiro de 100 a 50000 centavos
+e status ativo. Sintaxe e dez arrays conferidos em memória, zero SQL observado.
+Nenhum Produto montado/persistido; testes/model preservados. Entendimento da
+5.46 confirmado com "entendi" após esclarecer os métodos; próximo passo: Produto em memória com make.
+Detalhes em docs/aulas/05-46-atributos-produto-factory.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

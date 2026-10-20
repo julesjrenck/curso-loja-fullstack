@@ -72,8 +72,11 @@ adicionado; focado 4 testes/12 asserções e suíte 6 testes/14 asserções, pas
 Entendimento da 5.44 confirmado com "entendi" em 19/10/2026 e publicado em 5810b26.
 Na 5.45, estrutura de ProdutoFactory gerada; sintaxe/autoload/herança/modelName
 conferidos, definition vazio e nenhum dado criado. Entendimento da 5.45
-confirmado com "entendi" em 19/10/2026. Depois, 5.46: preencher a definição e conferir atributos
-em memória, sem persistir models ou refatorar testes ainda.
+confirmado com "entendi" em 19/10/2026 e publicado em 3e094e5. Na 5.46,
+definição preenchida com nome/preço fictícios e status ativo; dez arrays
+conferidos em memória, sem SQL ou models. Entendimento da 5.46 confirmado com
+"entendi" em 19/10/2026 após esclarecer os métodos. Depois, 5.47: montar Produto em memória,
+sem persistência ou refatoração dos testes ainda.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

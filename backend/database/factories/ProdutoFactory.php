@@ -18,7 +18,9 @@ class ProdutoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nome' => fake()->words(3, true),
+            'preco_em_centavos' => fake()->numberBetween(100, 50000),
+            'status' => 'ativo',
         ];
     }
 }
