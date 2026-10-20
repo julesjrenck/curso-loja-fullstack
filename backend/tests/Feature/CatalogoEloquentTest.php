@@ -64,4 +64,23 @@ class CatalogoEloquentTest extends TestCase
 
         $this->assertSame(['Camiseta'], $catalogo->listarNomes());
     }
+
+    public function test_retorna_nomes_em_ordem_alfabetica(): void
+    {
+        Produto::create([
+            'nome' => 'Caneca',
+            'preco_em_centavos' => 2990,
+            'status' => 'ativo',
+        ]);
+
+        Produto::create([
+            'nome' => 'Camiseta',
+            'preco_em_centavos' => 4990,
+            'status' => 'ativo',
+        ]);
+
+        $catalogo = new CatalogoEloquent;
+
+        $this->assertSame(['Camiseta', 'Caneca'], $catalogo->listarNomes());
+    }
 }
