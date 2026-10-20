@@ -63,8 +63,11 @@ confirmou zero produtos em loja_test e um em loja. Entendimento da 5.41
 confirmado com "entendi" em 19/10/2026 e publicado em 94e4e3d. Na 5.42, setUp
 compartilhado e cenário de produto ativo preparados. Focado: 2 testes/6 asserções;
 suíte em ordem inversa: 4 testes/8 asserções, passaram. Zero produtos em loja_test
-após rollback. Entendimento da 5.42 confirmado com "entendi" em 19/10/2026. Depois, 5.43:
-cenário com ativo/inativo para verificar o filtro.
+após rollback. Entendimento da 5.42 confirmado com "entendi" em 19/10/2026 e
+publicado em aa8e5a4. Na 5.43, cenário com ativo/inativo exige somente o ativo:
+focado 3 testes/9 asserções e suíte 5 testes/11 asserções, passaram. Zero produtos
+em loja_test após rollback. Entendimento da 5.43 confirmado com "entendi" em 19/10/2026.
+Depois, 5.44: cenário de ordenação com dois produtos ativos.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

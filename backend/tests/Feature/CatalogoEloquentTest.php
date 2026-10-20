@@ -45,4 +45,23 @@ class CatalogoEloquentTest extends TestCase
 
         $this->assertSame(['Camiseta'], $catalogo->listarNomes());
     }
+
+    public function test_omite_produtos_inativos_do_catalogo(): void
+    {
+        Produto::create([
+            'nome' => 'Camiseta',
+            'preco_em_centavos' => 4990,
+            'status' => 'ativo',
+        ]);
+
+        Produto::create([
+            'nome' => 'Caneca',
+            'preco_em_centavos' => 2990,
+            'status' => 'inativo',
+        ]);
+
+        $catalogo = new CatalogoEloquent;
+
+        $this->assertSame(['Camiseta'], $catalogo->listarNomes());
+    }
 }

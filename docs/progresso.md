@@ -4,14 +4,15 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.42 — Produto ativo no catálogo e preparação compartilhada.
-- Situação: CatalogoEloquentTest agora usa setUp com parent::setUp, conferência
-  de banco/login e DELETE antes de cada cenário, dentro de DatabaseTransactions.
-  Segundo cenário cria Camiseta ativa e exige ['Camiseta']. Focado: 2 testes/
-  6 asserções; suíte em ordem inversa: 4 testes/8 asserções, código 0.
-  SELECT posterior: zero produtos em loja_test e um em loja, esquema preservado.
-  Explicação da 5.42 apresentada; entendimento confirmado com "entendi"
-  em 19/10/2026. Publicar checkpoint e iniciar o cenário da 5.43.
+- Etapa atual: 5.43 — Teste do filtro de produtos inativos.
+- Situação: um terceiro cenário adicionado a CatalogoEloquentTest, criando
+  Camiseta ativa e Caneca inativa, exigindo somente ['Camiseta']. setUp/trait
+  preservados. Focado: 3 testes/9 asserções; suíte: 5 testes/11 asserções,
+  código 0. SELECT posterior: zero produtos em loja_test e um no banco normal;
+  uma migration em cada banco. Nenhuma alteração no serviço ou configuração.
+  Explicação da 5.43 apresentada; entendimento confirmado com "entendi"
+  em 19/10/2026. Publicar checkpoint e iniciar o cenário da 5.44.
+  Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
   Etapa 5.40 confirmada com "entendi" em 19/10/2026 e publicada em b70f6f0.
   Etapa 5.39 confirmada com "entendi" em 19/10/2026 e publicada em bdfb1a3.
@@ -19,8 +20,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.43, cenário com produto ativo e inativo para
-  verificar o filtro. Ordenação e demais cenários pendentes.
+  Próxima etapa após confirmação: 5.44, cenário com dois ativos cadastrados
+  fora da ordem alfabética para verificar ordenação.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -49,7 +50,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 94e4e3d, catálogo vazio 5.41.
+  Último checkpoint pedagógico confirmado/publicado: aa8e5a4, produto ativo 5.42.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -100,20 +101,21 @@
 - Etapa 5.40 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.41 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.42 confirmada com "entendi" em 19/10/2026.
+- Etapa 5.43 confirmada com "entendi" em 19/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.41 confirmada com "entendi" e publicada
-em 94e4e3dff652e5c76b74064b0e43b12f4d6573c6, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.42 implementada/explicada: preparação do catálogo movida
-para setUp, começando com parent::setUp, conferências de banco/login e DELETE na
-transação. Novo cenário cadastra Camiseta ativa e exige ['Camiseta']. Focado:
-2 testes/6 asserções; suíte completa com --order-by=reverse, 4 testes/8 asserções.
-Consultas posteriores: zero produtos em loja_test, um em loja e esquema/histórico
-preservados. Entendimento da 5.42 confirmado com "entendi" em 19/10/2026.
-Próximo passo, 5.43: adicionar um cenário com produto ativo e inativo para verificar o
-filtro, sem antecipar ordenação. Em novo clone preparar .env.testing local e
-a migration produtos em loja_test antes da suíte. Registros abaixo são históricos.
+Estado mais recente, em 19/10/2026: 5.42 confirmada com "entendi" e publicada
+em aa8e5a4ed0e29cffd879ffa34f232ca271c633c2, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.43 implementada/explicada: terceiro cenário em
+CatalogoEloquentTest cadastra Camiseta ativa e Caneca inativa e exige ['Camiseta'].
+setUp/DatabaseTransactions preservados. Focado: 3 testes/9 asserções; suíte:
+5 testes/11 asserções, código 0. SELECT posterior confirmou zero produtos em
+loja_test e um em loja, uma migration em cada banco. Entendimento da 5.43
+confirmado com "entendi" em 19/10/2026. Próximo passo, 5.44: cenário com dois ativos
+cadastrados fora da ordem alfabética para verificar ordenação. Em novo clone,
+preparar .env.testing local e a migration produtos em loja_test antes da suíte.
+Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
 5.34 conferidos. Git inicialmente sem alterações locais; HEAD, origin/main e
@@ -4612,12 +4614,48 @@ Verificações realizadas:
   e ordenação ainda não têm seus cenários específicos.
 
 Entendimento da 5.42: confirmado com "entendi" em 19/10/2026.
-Publicação da 5.42: teste e registros preparados para commit/push conforme
-autorização persistente; consultar Git e conferir o remoto após o envio.
-Último checkpoint confirmado/publicado: 94e4e3d, etapa 5.41.
+Publicação da 5.42: checkpoint aa8e5a4 publicado conforme autorização persistente;
+HEAD, origin/main e main remota conferidos em aa8e5a4ed0e29cffd879ffa34f232ca271c633c2.
 Próximo passo após a confirmação: 5.43,
 adicionar cenário com um produto ativo e um inativo para verificar o filtro;
 não antecipar o cenário de ordenação.
+
+## Etapa 5.43 — Teste do filtro de produtos inativos
+
+Data: 19/10/2026. Objetivo: verificar exclusão de inativos com produtos dos dois
+estados presentes. Aula em docs/aulas/05-43-teste-filtro-inativos.md.
+
+Implementação: somente um método acrescentado a CatalogoEloquentTest.php,
+test_omite_produtos_inativos_do_catalogo. Produto::create cadastra Camiseta,
+4990, ativo, e Caneca, 2990, inativo. Serviço real listarNomes deve retornar
+exatamente ['Camiseta']. setUp, asserções de destino e DatabaseTransactions
+reutilizados sem alteração; nenhum outro cenário adicionado.
+
+Explicação apresentada: presença simultânea de ativo/inativo exercita o filtro
+where('status', 'ativo') do serviço. assertSame do array completo verifica
+inclusão da Camiseta e ausência da Caneca, sem exigir asserções separadas.
+As duas inserções são reais no SQL Server e desfeitas pelo rollback. Retorno
+com apenas um nome não verifica a ordenação entre vários produtos ativos.
+
+Verificações realizadas:
+
+- php -l passou. Focado no arquivo: OK (3 tests, 9 assertions), código 0.
+- Suíte completa: OK (5 tests, 11 assertions), código 0. Cada cenário do
+  catálogo tem duas asserções em setUp e uma de comportamento.
+- SELECT separado após a suíte: loja_test/loja_testes com zero produtos e uma
+  migration; loja/loja_app com um produto e uma migration. Rollback das fixtures
+  conferido sem gravação no banco normal.
+- git diff --check passou; arquivos privados ignorados/fora do índice.
+  Serviço, model, configuração, migrations e preparação de testes preservados;
+  sem instalação, seeder, conta nova ou alteração de credencial.
+
+Entendimento da 5.43: confirmado com "entendi" em 19/10/2026.
+Publicação da 5.43: teste e registros preparados para commit/push conforme
+autorização persistente; consultar Git e conferir o remoto após o envio.
+Último checkpoint confirmado/publicado: aa8e5a4, etapa 5.42.
+Próximo passo após a confirmação: 5.44,
+adicionar um cenário com dois produtos ativos cadastrados fora da ordem alfabética
+e exigir os nomes ordenados, sem antecipar outros cenários.
 
 ## Verificações e limitações do ambiente
 
@@ -4645,14 +4683,14 @@ não antecipar o cenário de ordenação.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `94e4e3d`,
-  `test: verifica catalogo vazio no SQL Server`.
+- Último commit local publicado conferido nesta retomada: `aa8e5a4`,
+  `test: verifica produto ativo e compartilha preparacao`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `94e4e3d`,
-  igual a HEAD e origin/main. Etapa 5.41 confirmada e publicada;
-  teste e documentação da 5.42 ficam locais até a confirmação de entendimento.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `aa8e5a4`,
+  igual a HEAD e origin/main. Etapa 5.42 confirmada e publicada;
+  teste e documentação da 5.43 ficam locais até a confirmação de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4757,7 +4795,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   implementada/explicada; focado 1 teste/3 asserções e suíte 3 testes/5 asserções.
   Entendimento confirmado com "entendi". Na 5.42, setUp compartilhado e cenário
   ativo passaram: focado 2 testes/6 asserções e suíte inversa 4 testes/8 asserções.
-  Entendimento confirmado com "entendi"; depois, 5.43: filtro com ativo e inativo.
+  Entendimento confirmado com "entendi". Na 5.43, filtro com ativo/inativo passou:
+  focado 3 testes/9 asserções, suíte 5 testes/11 asserções. Entendimento confirmado com "entendi";
+  depois, 5.44: teste de ordenação com dois ativos fora da ordem alfabética.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -4869,4 +4909,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.39 — Primeira execução dos testes de exemplo do backend | Dois exemplos existentes executados: 2 testes/2 asserções; SELECT separado confirmou zero tabelas | Confirmado pelo aluno: "entendi" | Publicado e verificado em bdfb1a3 |
 | 19/10/2026 | 5.40 — Tabela produtos no banco de testes | Migration existente aplicada em loja_test; esquema, registro lote 1, status e reexecução conferidos; zero produtos | Confirmado pelo aluno: "entendi" | Publicado e verificado em b70f6f0 |
 | 19/10/2026 | 5.41 — Primeiro teste de integração do catálogo vazio | Um cenário com transação/rollback; focado 1 teste/3 asserções e suíte 3 testes/5 asserções; estado dos bancos conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 94e4e3d |
-| 19/10/2026 | 5.42 — Produto ativo e preparação compartilhada | setUp compartilhado e segundo cenário; focado 2 testes/6 asserções e suíte inversa 4 testes/8 asserções; rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; consultar Git |
+| 19/10/2026 | 5.42 — Produto ativo e preparação compartilhada | setUp compartilhado e segundo cenário; focado 2 testes/6 asserções e suíte inversa 4 testes/8 asserções; rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em aa8e5a4 |
+| 19/10/2026 | 5.43 — Teste do filtro de produtos inativos | Terceiro cenário com ativo/inativo; focado 3 testes/9 asserções e suíte 5 testes/11 asserções; rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; consultar Git |
