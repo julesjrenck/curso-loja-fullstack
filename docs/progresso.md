@@ -4,14 +4,15 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.69 — Produto pertence a Categoria no Eloquent.
-- Situação: somente Produto.php alterado no código. Categoria_id acrescentado ao
-  Fillable; método categoria(): BelongsTo retorna belongsTo(Categoria::class).
-  Sintaxe/configuração em memória passaram: produtos.categoria_id → categorias.id,
-  model relacionado Categoria, zero SQL na demonstração. Suíte 6/14 passou.
-  Teste segue 0 categorias/0 produtos/3 migrations e normal 0/1/3.
-  Implementação/verificações da 5.69 concluídas; explicação apresentada.
-  Entendimento confirmado com "entendi" em 20/10/2026. Checkpoint pronto para publicação.
+- Etapa atual: 5.70 — Teste de leitura da categoria do produto.
+- Situação: criado somente ProdutoCategoriaTest.php, com DatabaseTransactions
+  e identidade loja_test/loja_testes conferida no setUp. Um cenário cadastra
+  Acessórios e Roupas, liga Camiseta a Roupas, recarrega produto por ID e acessa
+  $produto->categoria. Tipo/ID/nome conferidos. Focado 1 teste/5 asserções;
+  suíte 7 testes/19 asserções passou. Após rollback, teste 0/0/3 e normal 0/1/3.
+  Implementação/verificações da 5.70 concluídas; explicação apresentada.
+  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.70 pendente.
+  Etapa 5.69 confirmada com "entendi" em 20/10/2026, publicada em 6292b4b.
   Etapa 5.68 confirmada com "entendi" em 20/10/2026, publicada em 55f7ea8.
   Etapa 5.67 confirmada com "entendi" em 20/10/2026, publicada em e384ae1.
   Etapa 5.66 confirmada com "entendi" em 20/10/2026, publicada em 3924613.
@@ -40,7 +41,7 @@
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.69: 6 testes/14 asserções, após alteração do model Produto.
+  Última suíte na 5.70: 7 testes/19 asserções, incluindo leitura da categoria relacionada.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -50,9 +51,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.70, criar primeiro teste de integração
-  ProdutoCategoriaTest, cadastrar categoria/produto e verificar $produto->categoria,
-  com identidade de testes conferida e rollback.
+  Próxima etapa após confirmação: 5.71, adicionar somente cenário de produto sem
+  categoria, conferindo categoria_id e relação como NULL com o mesmo rollback.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -81,7 +81,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 55f7ea8, REFERENCES/FK no banco da aplicação 5.68.
+  Último checkpoint pedagógico confirmado/publicado: 6292b4b, belongsTo de Produto para Categoria 5.69.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -159,24 +159,23 @@
 - Etapa 5.67 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.68 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.69 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.70 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: 5.68 confirmada com "entendi" e publicada em
-55f7ea8a8f137dc60d9da6c6109799855f1b11b1, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.69 implementada/explicada: Produto.php recebeu categoria_id
-no Fillable, import de Relations\BelongsTo e método categoria(): BelongsTo,
-retornando $this->belongsTo(Categoria::class). Convenção consultada no framework
-instalado e conferida: produtos.categoria_id → categorias.id, model Categoria.
-Diagnóstico /tmp/curso-569-configurar-belongs-to.php montou Produto com categoria_id
-10 ilustrativo apenas em memória, chamou categoria() e conferiu configuração,
-sem SQL ou existência de categoria. Sintaxe passou; suíte existente 6 testes/14
-asserções passou. Consultas separadas: teste 0 categorias/0 produtos/3 migrations,
-normal 0/1/3. Não demonstrada ainda a leitura de uma categoria pela relação.
-Entendimento da 5.69 confirmado com "entendi" em 20/10/2026. Publicar o checkpoint e iniciar 5.70:
-criar somente primeiro teste ProdutoCategoriaTest, cadastrar categoria/produto e
-verificar $produto->categoria com transação/rollback e checagem de banco/login.
-Não adicionar relação inversa ou outros cenários nessa etapa.
+Estado mais recente, em 20/10/2026: 5.69 confirmada com "entendi" e publicada em
+6292b4b5019d8a16f3868089ccae28d1b6afb29b, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.70 implementada/explicada: novo arquivo
+backend/tests/Feature/ProdutoCategoriaTest.php, com DatabaseTransactions e setUp
+conferindo banco/login antes dos cadastros. Único cenário cria Acessórios e Roupas,
+cria Camiseta pela factory com categoria_id de Roupas, recarrega por findOrFail e
+acessa $produto->categoria. Asserções verificam Categoria, ID esperado e nome Roupas.
+Focado 1 teste/5 asserções e suíte 7 testes/19 asserções passaram, código 0.
+SELECTs separados após suíte: teste 0 categorias/0 produtos/3 migrations e
+normal 0/1/3. Nenhuma relação inversa, model ou migration alterado nessa etapa.
+5.70 confirmada com "entendi" em 20/10/2026; publicar e iniciar 5.71:
+adicionar somente cenário de produto sem categoria, conferindo FK/relação NULL
+com o mesmo setUp e rollback, sem outros cenários ainda.
 Continuamos no módulo 5.
 Registros abaixo são históricos.
 
@@ -5679,12 +5678,51 @@ Verificações em PHP Docker:
   Categoria, migrations, factories, seeders, serviços ou dependências.
 
 Entendimento da 5.69: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.69: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: 55f7ea8, etapa 5.68.
-Próximo passo exato: publicar checkpoint e iniciar 5.70,
+Publicação da 5.69: 6292b4b5019d8a16f3868089ccae28d1b6afb29b, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
+Próximo passo após confirmação: 5.70,
 criar somente primeiro teste ProdutoCategoriaTest, cadastrar categoria/produto e
 verificar $produto->categoria com identidade conferida e rollback. Sem relação
 inversa ou outros cenários nessa etapa.
+
+## Etapa 5.70 — Teste de leitura da categoria do produto
+
+Implementação, explicação e verificações em 20/10/2026. Detalhes em
+docs/aulas/05-70-teste-categoria-produto.md.
+
+Único arquivo funcional adicionado: backend/tests/Feature/ProdutoCategoriaTest.php.
+Importa Categoria/Produto, DatabaseTransactions, DB e TestCase. Trait envolve cada
+cenário em transação; setUp chama parent e confere loja_test/loja_testes com duas
+asserções antes dos cadastros. Não modifica TestCase ou testes existentes.
+
+Test_produto_carrega_sua_categoria cadastra Acessórios primeiro e Roupas depois.
+A categoria adicional verifica a escolha pela FK entre mais de uma possibilidade.
+ProdutoFactory cria Camiseta/ativo com categoria_id de Roupas e preço padrão.
+FindOrFail recarrega o produto, conferindo a ligação a partir dos dados persistidos.
+$categoriaLida = $produto->categoria acessa a propriedade de relacionamento;
+Eloquent usa categoria() e consulta a Categoria correspondente. Três asserções
+verificam instância de Categoria, ID esperado e nome Roupas.
+
+Explicada diferença entre categoria() (objeto BelongsTo) e categoria sem
+parênteses (registro relacionado, carregado quando necessário). Cadastros e
+consulta reais no SQL Server, sem mock ou associação pré-carregada em memória.
+
+Verificações em PHP Docker:
+
+- Arquivo focado: OK (1 test, 5 assertions), código 0. Duas asserções de identidade
+  e três de comportamento do relacionamento.
+- Suíte completa: OK (7 tests, 19 assertions), código 0.
+- SELECTs separados após suíte confirmaram teste 0 categorias/0 produtos/3 migrations
+  e normal 0 categorias/1 produto/3 migrations. Rollback conferido.
+- git diff --check passou; segredos ignorados/fora do índice. Nenhuma alteração
+  em models, migrations, factories, seeders ou serviços. Sem relação inversa ainda.
+
+Entendimento da 5.70: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.70: checkpoint concluído, pronto para commit/push autorizado.
+Último checkpoint confirmado/publicado: 6292b4b, etapa 5.69.
+Próximo passo exato após publicar: 5.71,
+adicionar somente cenário de produto sem categoria, conferindo categoria_id e
+relação NULL, com o mesmo setUp/rollback e sem outros cenários nessa etapa.
 
 ## Verificações e limitações do ambiente
 
@@ -5712,14 +5750,14 @@ inversa ou outros cenários nessa etapa.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `55f7ea8`,
-  `build: habilita REFERENCES para categorias no banco da aplicacao`.
+- Último commit local publicado conferido nesta retomada: `6292b4b`,
+  `feat: relaciona Produto a Categoria com belongsTo`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `55f7ea8`,
-  igual a HEAD e origin/main. Etapa 5.68 confirmada e publicada;
-  etapa 5.69 agora confirmada e pronta para publicação.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `6292b4b`,
+  igual a HEAD e origin/main. Etapa 5.69 confirmada e publicada;
+  etapa 5.70 fica local aguardando confirmação explícita de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5882,7 +5920,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   coluna NULL e metadados/histórico conferidos. Entendimento confirmado com "entendi"
   e publicado em 55f7ea8. Na 5.69, belongsTo/Fillable de categoria_id em Produto
   preparados; configuração em memória/sintaxe e suíte 6/14 passaram. Entendimento
-  confirmado com "entendi"; depois, 5.70: primeiro teste de leitura da categoria relacionada.
+  confirmado com "entendi" e publicado em 6292b4b. Na 5.70, primeiro teste de
+  leitura da categoria relacionada criado; focado 1/5 e suíte 7/19 passaram,
+  rollback conferido. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.71: cenário sem categoria.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -6021,4 +6061,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.66 — Script REFERENCES para testes | GRANT restrito preparado; PARSEONLY passou, permissão continua 0, migration Pending | Confirmado pelo aluno: "entendi" | Publicado e verificado em 3924613 |
 | 20/10/2026 | 5.67 — REFERENCES e FK no teste | Concessão e migration aplicadas; coluna/FK/histórico conferidos, suíte 6/14 passou e teste vazio após rollback | Confirmado pelo aluno: "entendi" | Publicado e verificado em e384ae1 |
 | 20/10/2026 | 5.68 — REFERENCES e FK em loja | Concessão/migration aplicadas; FK/histórico e produto preservado com categoria_id NULL conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 55f7ea8 |
-| 20/10/2026 | 5.69 — Produto belongsTo Categoria | Fillable e método categoria adicionados; configuração em memória/zero SQL e suíte 6/14 passaram | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
+| 20/10/2026 | 5.69 — Produto belongsTo Categoria | Fillable e método categoria adicionados; configuração em memória/zero SQL e suíte 6/14 passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6292b4b |
+| 20/10/2026 | 5.70 — Leitura da categoria relacionada | Novo teste com categoria/produto persistidos e leitura pela propriedade; focado 1/5 e suíte 7/19 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |

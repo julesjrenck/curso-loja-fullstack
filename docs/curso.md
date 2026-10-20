@@ -147,8 +147,11 @@ produto preservado com categoria_id NULL conferidos. Ambos os bancos têm coluna
 e três migrations. Entendimento da 5.68 confirmado com "entendi" em 20/10/2026,
 publicado em 55f7ea8. Na 5.69, Produto recebeu Fillable de categoria_id e método
 categoria com belongsTo; configuração em memória/zero SQL e suíte 6/14 passaram.
-Entendimento da 5.69 confirmado com "entendi" em 20/10/2026; depois, 5.70: primeiro teste de
-leitura da categoria relacionada com rollback.
+Entendimento da 5.69 confirmado com "entendi" em 20/10/2026, publicado em 6292b4b.
+Na 5.70, primeiro ProdutoCategoriaTest verifica categoria lida pela propriedade
+de produto recarregado; duas categorias e uma Camiseta preparadas no SQL Server.
+Focado 1/5 e suíte 7/19 passaram, rollback conferido. Entendimento confirmado
+com "entendi" em 20/10/2026; depois, 5.71: cenário de produto sem categoria.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

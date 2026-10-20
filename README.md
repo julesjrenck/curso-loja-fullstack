@@ -364,9 +364,11 @@ com "entendi" em 20/10/2026, publicado em e384ae1. Na 5.68, concessão/FK aplica
 em loja, produto preservado com categoria_id NULL e esquema/histórico conferidos.
 Entendimento da 5.68 confirmado com "entendi" em 20/10/2026, publicado em 55f7ea8.
 Na 5.69, Produto com Fillable de categoria_id e método categoria/belongsTo;
-configuração em memória e suíte 6/14 passaram. Entendimento confirmado com "entendi" em 20/10/2026;
-depois, 5.70: primeiro teste de leitura da categoria relacionada.
-Detalhes em docs/aulas/05-69-produto-belongs-to-categoria.md.
+configuração em memória e suíte 6/14 passaram. Entendimento confirmado com "entendi"
+em 20/10/2026, publicado em 6292b4b. Na 5.70, primeiro teste de leitura da categoria
+relacionada passou: focado 1/5 e suíte 7/19, rollback conferido. Entendimento
+confirmado com "entendi" em 20/10/2026; depois, 5.71: cenário sem categoria.
+Detalhes em docs/aulas/05-70-teste-categoria-produto.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
