@@ -308,8 +308,11 @@ Suíte existente passou: 6 testes/14 asserções; contagens após rollback prese
 Entendimento da 5.48 confirmado com "entendi" em 19/10/2026, publicado em d465778.
 Na 5.49, cadastro do teste de ativo usa factory()->create com nome/status
 sobrescritos e preço padrão. Teste 1/3 e suíte 6/14 passaram; rollback conferido.
-Entendimento da 5.49 confirmado com "entendi" em 19/10/2026. Depois, 5.50: factory no cenário
-ativo/inativo. Detalhes em docs/aulas/05-49-factory-teste-produto-ativo.md.
+Entendimento da 5.49 confirmado com "entendi" em 19/10/2026, publicado em 9a08b80.
+Na 5.50, factory nos dois cadastros do cenário ativo/inativo, com nome/status
+explícitos e preço padrão. Teste 1/3 e suíte 6/14 passaram; rollback conferido.
+Entendimento da 5.50 confirmado com "entendi" em 19/10/2026; depois, 5.51: cenário de ordenação.
+Detalhes em docs/aulas/05-50-factory-teste-inativos.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

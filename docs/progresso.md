@@ -4,13 +4,14 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.49 — Factory no teste de produto ativo.
-- Situação: somente o cadastro em test_retorna_nome_do_produto_ativo passou a
-  Produto::factory()->create, sobrescrevendo nome/status e usando preço padrão.
+- Etapa atual: 5.50 — Factory no cenário de ativo/inativo.
+- Situação: os dois cadastros de test_omite_produtos_inativos_do_catalogo passaram
+  a Produto::factory()->create, com nome/status explícitos e preço padrão.
   Teste alterado passou: 1 teste/3 asserções; suíte: 6 testes/14 asserções.
   SELECT posterior: zero produtos em loja_test e um no banco normal.
-  Implementação/verificações da 5.49 concluídas; explicação apresentada;
+  Implementação/verificações da 5.50 concluídas; explicação apresentada;
   entendimento confirmado com "entendi" em 19/10/2026. Checkpoint pronto para publicação.
+  Etapa 5.49 confirmada com "entendi" em 19/10/2026, publicada em 9a08b80.
   Etapa 5.48 confirmada com "entendi" após esclarecer onde o diagnóstico
   temporário foi executado, publicada em d465778.
   Etapa 5.47 confirmada com "entendi" em 19/10/2026 e publicada em d90a8a4.
@@ -18,7 +19,7 @@
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.49: 6 testes/14 asserções, após uso da factory no teste.
+  Última suíte na 5.50: 6 testes/14 asserções, após factory no cenário ativo/inativo.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -28,8 +29,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.50, usar factory()->create nos dois cadastros
-  do cenário de ativo/inativo, controlando nome/status e conferindo rollback.
+  Próxima etapa: 5.51, usar factory()->create nos dois cadastros
+  do cenário de ordenação, preservando a ordem de inserção e a expectativa.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -58,7 +59,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: d465778, HasFactory 5.48.
+  Último checkpoint pedagógico confirmado/publicado: 9a08b80, factory no teste de ativo 5.49.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -116,21 +117,22 @@
 - Etapa 5.47 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.48 confirmada com "entendi" em 19/10/2026, após esclarecer o local da demonstração.
 - Etapa 5.49 confirmada com "entendi" em 19/10/2026.
+- Etapa 5.50 confirmada com "entendi" em 19/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.48 confirmada com "entendi" após esclarecer
-o local do diagnóstico temporário; publicada em
-d4657785aaa6b481cd241c3358b9f84a2ec437d6, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.49 implementada/explicada: somente o cadastro no teste
-de produto ativo passou a Produto::factory()->create, sobrescrevendo nome/status
-e usando o preço da definição. Teste alterado: 1 teste/3 asserções; suíte:
-6 testes/14 asserções, passaram. SELECT posterior confirmou zero produtos em
-loja_test/loja_testes e um em loja/loja_app; uma migration em cada banco.
-Entendimento da 5.49 confirmado com "entendi" em 19/10/2026. Publicar esse
-checkpoint. Depois, 5.50: converter os dois cadastros do cenário de ativo/inativo
-para factory()->create, controlando nome/status e verificando rollback.
-Continuamos no módulo 5.
+Estado mais recente, em 19/10/2026: 5.49 confirmada com "entendi" e publicada em
+9a08b80eec48aad16cd233bdff2be54dc8ac3acc, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.50 implementada/explicada: os dois cadastros do cenário
+ativo/inativo usam Produto::factory()->create, nome/status explícitos e preço
+padrão. Caneca sobrescreve o padrão ativo com inativo; catálogo exige somente
+['Camiseta']. Teste alterado: 1 teste/3 asserções; suíte: 6 testes/14 asserções,
+passaram. SELECT posterior: zero produtos em loja_test/loja_testes e um em
+loja/loja_app, uma migration em cada banco. Entendimento da 5.50 confirmado
+com "entendi" em 19/10/2026. Publicar o checkpoint e iniciar 5.51:
+converter somente os dois cadastros do cenário de ordenação para factory create,
+preservando a ordem de inserção e a expectativa; verificar resultado/rollback.
+Continuamos no módulo 5; nenhum novo método state foi introduzido.
 Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
@@ -4909,11 +4911,41 @@ Verificação em PHP Docker:
   sem nova migration, dependência ou serviço.
 
 Entendimento da 5.49: confirmado com "entendi" em 19/10/2026.
-Publicação da 5.49: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: d465778, etapa 5.48.
-Próximo passo exato: publicar checkpoint e iniciar 5.50,
+Publicação da 5.49: 9a08b80eec48aad16cd233bdff2be54dc8ac3acc, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
+Próximo passo após confirmação: 5.50,
 converter somente os dois cadastros do cenário ativo/inativo para factory create,
 sobrescrevendo nome/status e conferindo resultado/rollback.
+
+## Etapa 5.50 — Factory no cenário de ativo/inativo
+
+Implementação, explicação e verificações em 19/10/2026. Detalhes em
+docs/aulas/05-50-factory-teste-inativos.md.
+
+Somente backend/tests/Feature/CatalogoEloquentTest.php alterado no código,
+no método test_omite_produtos_inativos_do_catalogo. Dois Produto::create
+substituídos por Produto::factory()->create; preços explícitos removidos.
+Nome/status continuam Camiseta/ativo e Caneca/inativo. A definição fornece
+o preço; array passado a create substitui inclusive o status ativo padrão.
+Cada chamada persiste um produto. CatalogoEloquent deve devolver ['Camiseta']
+apesar de os dois registros existirem durante o cenário. Expectativa e
+DatabaseTransactions preservados; cenário de ordenação ainda não convertido.
+
+Verificações em PHP Docker:
+
+- PHPUnit filtrado pelo método alterado: OK (1 test, 3 assertions), código 0.
+- Suíte completa: OK (6 tests, 14 assertions), código 0.
+- SELECT posterior: loja_test/loja_testes com zero produtos e uma migration;
+  loja/loja_app com um produto e uma migration. Rollback conferido.
+- git diff --check passou; credenciais ignoradas/fora do índice. Nenhuma nova
+  migration, dependência, serviço ou alteração na definição da factory.
+
+Entendimento da 5.50: confirmado com "entendi" em 19/10/2026.
+Publicação da 5.50: checkpoint concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: 9a08b80, etapa 5.49.
+Próximo passo exato: publicar checkpoint e iniciar 5.51,
+converter somente os dois cadastros do cenário de ordenação para factory create,
+preservando a ordem de inserção e a expectativa, e conferir resultado/rollback.
 
 ## Verificações e limitações do ambiente
 
@@ -4941,14 +4973,14 @@ sobrescrevendo nome/status e conferindo resultado/rollback.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `d465778`,
-  `build: habilita factory no model Produto`.
+- Último commit local publicado conferido nesta retomada: `9a08b80`,
+  `test: usa factory no cenario de produto ativo`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `d465778`,
-  igual a HEAD e origin/main. Etapa 5.48 confirmada e publicada;
-  etapa 5.49 agora confirmada e pronta para publicação.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `9a08b80`,
+  igual a HEAD e origin/main. Etapa 5.49 confirmada e publicada;
+  etapa 5.50 agora confirmada e pronta para publicação.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5065,8 +5097,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   e atalho make conferidos em memória; suíte existente 6 testes/14 asserções passou.
   Entendimento confirmado com "entendi" e publicado em d465778. Na 5.49,
   factory create aplicada somente ao cenário de ativo; teste 1/3 e suíte 6/14
-  passaram, rollback conferido. Entendimento confirmado com "entendi"; depois, 5.50: converter
-  os dois cadastros do cenário ativo/inativo, controlando nome/status.
+  passaram, rollback conferido. Entendimento confirmado com "entendi" e publicado
+  em 9a08b80. Na 5.50, dois cadastros do cenário ativo/inativo convertidos;
+  teste 1/3 e suíte 6/14 passaram, rollback conferido. Entendimento confirmado com "entendi";
+  depois, 5.51: converter somente o cenário de ordenação.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5185,4 +5219,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.46 — Atributos padrão da factory de Produto | Definição preenchida; sintaxe e dez arrays conferidos, sem models ou SQL | Confirmado pelo aluno: "entendi", após esclarecer os métodos | Publicado e verificado em 77dc3f9 |
 | 19/10/2026 | 5.47 — Produto em memória pela factory | new()->make() retornou Produto, exists false/ID e datas null, atributos previstos e zero SQL | Confirmado pelo aluno: "entendi" | Publicado e verificado em d90a8a4 |
 | 19/10/2026 | 5.48 — HasFactory no model Produto | Atalho resolve factory/monta Produto em memória, sem SQL; suíte existente 6 testes/14 asserções passou | Confirmado pelo aluno: "entendi", após dúvida sobre local da demonstração | Publicado e verificado em d465778 |
-| 19/10/2026 | 5.49 — Factory no teste de ativo | Cadastro pela factory com nome/status definidos; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
+| 19/10/2026 | 5.49 — Factory no teste de ativo | Cadastro pela factory com nome/status definidos; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 9a08b80 |
+| 19/10/2026 | 5.50 — Factory no cenário ativo/inativo | Dois cadastros com nome/status explícitos e preço padrão; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
