@@ -415,8 +415,11 @@ comparado ao SQL: mesmos grupos/totais 2/1, um SELECT por caso e zero antes de g
 Rollback/contagens passaram. Entendimento confirmado com "entendi"
 em 20/10/2026, publicado em a764ac5. Na 5.87, HAVING COUNT(*) >= 2 retornou
 somente Roupas/2, em um SELECT; IDs/rollback/contagens conferidos.
-Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.88: havingRaw no Query Builder.
-Detalhes em docs/aulas/05-87-having-grupos.md.
+Entendimento confirmado com "entendi" em 20/10/2026, publicado em 9416c4f.
+Na 5.88, havingRaw comparado ao SQL retornou só Roupas/2, um SELECT por caso,
+parâmetros separados e zero antes de get; rollback/contagens conferidos.
+Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.89: LEFT JOIN com contagem e categoria vazia.
+Detalhes em docs/aulas/05-88-having-query-builder.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

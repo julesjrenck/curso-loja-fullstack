@@ -205,7 +205,11 @@ totais 2/1, um SELECT por caso, zero antes de get e Collection de linhas simples
 Rollback/contagens conferidos. Entendimento confirmado com "entendi"
 em 20/10/2026, publicado em a764ac5. Na 5.87, HAVING COUNT(*) >= 2 filtrou
 os grupos e retornou só Roupas/2 em um SELECT. IDs/rollback/contagens conferidos.
-Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.88: havingRaw no Query Builder.
+Entendimento confirmado com "entendi" em 20/10/2026, publicado em 9416c4f.
+Na 5.88, havingRaw('COUNT(*) >= ?', [2]) comparado ao SQL: mesmo grupo Roupas/2,
+um SELECT por caso, parâmetros e zero antes de get conferidos. Rollback/contagens
+passaram. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.89: LEFT JOIN com
+COUNT(produtos.id) para incluir categoria vazia com total zero.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

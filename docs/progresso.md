@@ -4,16 +4,17 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.87 — HAVING para filtrar grupos.
-- Situação: diagnóstico temporário /tmp/curso-587-having-grupos.php executado
-  pelo PHP Docker em loja_test/loja_testes com identidade e rollback.
-  Roupas tem Camiseta/Calça; Acessórios tem Caneca. SQL GROUP BY categoria_id
-  com HAVING COUNT(*) >= ? (limite 2) retornou somente Roupas/2 em um SELECT.
-  WHERE seleciona linhas; HAVING filtra grupos pela contagem. IDs parametrizados.
+- Etapa atual: 5.88 — HAVING com Query Builder.
+- Situação: diagnóstico temporário /tmp/curso-588-having-query-builder.php
+  executado pelo PHP Docker em loja_test/loja_testes com identidade e rollback.
+  SQL/Builder com mesmos dados, havingRaw('COUNT(*) >= ?', [2]) retorna somente
+  Roupas/2 em um SELECT por caso. Bindings dos IDs/limite 2 conferidos separados;
+  zero SELECT antes de get, retorno Collection com um grupo.
   Somente documentação alterada. Após rollback: teste 0 categorias/0 produtos/
   3 migrations; normal 0/1/3.
-  Demonstração/verificações da 5.87 concluídas; explicação apresentada.
-  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.87 pendente.
+  Demonstração/verificações da 5.88 concluídas; explicação apresentada.
+  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.88 pendente.
+  Etapa 5.87 confirmada com "entendi" em 20/10/2026, publicada em 9416c4f.
   Etapa 5.86 confirmada com "entendi" em 20/10/2026, publicada em a764ac5.
   Etapa 5.85 confirmada com "entendi" em 20/10/2026, publicada em d797c48.
   Etapa 5.84 confirmada com "entendi" em 20/10/2026, publicada em fd95bdd.
@@ -60,7 +61,7 @@
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.80: 14 testes/54 asserções. Na 5.87, diagnóstico HAVING passou; suíte não reexecutada, código preservado.
+  Última suíte na 5.80: 14 testes/54 asserções. Na 5.88, diagnóstico havingRaw passou; suíte não reexecutada, código preservado.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -70,8 +71,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.88, mesmo filtro com havingRaw no Query
-  Builder, limite passado como parâmetro e comparação ao SQL, com rollback.
+  Próxima etapa após confirmação: 5.89, combinar LEFT JOIN e COUNT(produtos.id)
+  em SQL para contar por categoria incluindo categoria vazia com total 0, com rollback.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -100,7 +101,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: a764ac5, GROUP BY Builder na etapa 5.86.
+  Último checkpoint pedagógico confirmado/publicado: 9416c4f, HAVING SQL na etapa 5.87.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -196,31 +197,31 @@
 - Etapa 5.85 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.86 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.87 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.88 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: 5.86 confirmada com "entendi" e publicada em
-a764ac58e37f54300634de971ae97ece93c0596b, igual a HEAD, origin/main e main
-remota após o push. Primeira tentativa de publicação teve timeout da revisão
-automática antes de iniciar comandos; repetição permitida concluiu publicação.
-Na 5.87, somente documentação alterada; diagnóstico temporário
-/tmp/curso-587-having-grupos.php executado pelo PHP Docker com --env=testing.
+Estado mais recente, em 20/10/2026: 5.87 confirmada com "entendi" e publicada em
+9416c4f28f276ad91cfccc4df0149b3432f8dc89, igual a HEAD, origin/main e main
+remota após o push. Na 5.88, somente documentação alterada; diagnóstico temporário
+/tmp/curso-588-having-query-builder.php executado pelo PHP Docker com --env=testing.
 Conferiu testing/loja_test/loja_testes antes de cadastro. Transação prepara Roupas
-com Camiseta/Calça e Acessórios com Caneca. SQL por DB::select: SELECT categoria_id,
-COUNT(*) AS total FROM dbo.produtos WHERE categoria_id IN (?, ?) GROUP BY
-categoria_id HAVING COUNT(*) >= ? ORDER BY categoria_id. Parâmetros separados:
-IDs das categorias e limite 2. Resultado conferido: somente ID de Roupas/total 2,
-um SELECT/um grupo. Nesta execução Roupas ID 103, não fixado nas verificações.
-WHERE seleciona produtos antes do agrupamento, HAVING seleciona grupos pela contagem.
+com Camiseta/Calça e Acessórios com Caneca. SQL HAVING da 5.87 comparado ao Builder
+com select categoria_id/selectRaw COUNT(*)/whereIn/groupBy/havingRaw/orderBy/get.
+HavingRaw('COUNT(*) >= ?', [2]) inclui condição e parâmetro separados. GetBindings
+conferiu IDs e limite 2; zero SELECT antes de get. Um SELECT em cada caso, mesmo
+ID de Roupas/total 2, Collection com um grupo. Nesta execução Roupas ID 105, sem
+fixá-lo nas verificações; valores numéricos normalizados apenas na comparação.
 Código 0; finally rollback. Contagens posteriores teste 0 categorias/0 produtos/
 3 migrations e normal 0/1/3. Aplicação/testes preservados; suíte não reexecutada,
 última execução 14/54 da 5.80.
-Demonstração/verificação/explicação da 5.87 concluídas; entendimento confirmado
+Demonstração/verificação/explicação da 5.88 concluídas; entendimento confirmado
 com "entendi" em 20/10/2026. Publicação pendente.
-Publicar e iniciar somente 5.88: mesmo agrupamento filtrado
-com Query Builder e havingRaw('COUNT(*) >= ?', [2]), comparando ao SQL nos mesmos
-dados. Diagnóstico temporário loja_test com identidade e rollback; sem mudar
-aplicação ou combinar JOIN com agregação ainda. Continuamos no módulo 5.
+Publicar e iniciar somente 5.89: combinar LEFT JOIN e agregação
+em SQL a partir de categorias, contando COUNT(produtos.id), agrupando por ID/nome
+da categoria. Roupas com dois produtos e Acessórios vazia, resultados 2/0; explicar
+COUNT de coluna ignora NULL do lado sem correspondência. Diagnóstico temporário
+loja_test com identidade e rollback, sem mudar aplicação. Continuamos no módulo 5.
 Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
@@ -6358,12 +6359,48 @@ Verificações:
   14 testes/54 asserções da 5.80. git diff --check passou; segredos fora do índice.
 
 Entendimento da 5.87: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.87: checkpoint concluído, pronto para commit/push autorizado.
-Último checkpoint confirmado/publicado: a764ac5, etapa 5.86.
+Publicação da 5.87: 9416c4f28f276ad91cfccc4df0149b3432f8dc89, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
 Próximo passo exato: publicar e iniciar somente 5.88: mesmo filtro com Query Builder por
 havingRaw('COUNT(*) >= ?', [2]), comparando ao SQL nos mesmos dados. Diagnóstico
 temporário loja_test com identidade e rollback, sem mudar aplicação ou combinar
 JOIN com agregação ainda.
+
+## Etapa 5.88 — HAVING com Query Builder
+
+Demonstração, explicação e verificações em 20/10/2026. Detalhes em
+docs/aulas/05-88-having-query-builder.md.
+
+Somente documentação alterada. Diagnóstico temporário
+/tmp/curso-588-having-query-builder.php carrega Laravel Docker e confere
+testing/loja_test/loja_testes antes de cadastro. Mesma preparação: Roupas com
+Camiseta/Calça e Acessórios com Caneca. SQL HAVING da 5.87 comparado ao Builder
+com havingRaw('COUNT(*) >= ?', [2]) após groupBy e antes de orderBy/get.
+HavingRaw acrescenta condição SQL ao HAVING, usando array separado de parâmetros.
+GetBindings conferiu IDs e limite 2 na ordem esperada; método de construção sem
+SELECT. Get executou e retornou Collection de linhas simples com um grupo.
+
+SQL/Builder exigidos com mesmo ID de Roupas/total 2; um SELECT em cada caso.
+Acessórios/1 fica fora do resultado. Nesta execução Roupas ID 105, usado via model
+sem número fixo no código; casts numéricos somente na comparação dos resultados.
+Nomes exibidos por mapa PHP dos models preparados, sem consulta extra.
+
+Verificações:
+
+- Diagnóstico código 0; resultados/quantidade de consultas/retorno e bindings
+  esperados conferidos. SQL gerado contém HAVING COUNT(*) >= ?.
+- Finally rollback; SELECTs posteriores em processos separados conferiram teste
+  0 categorias/0 produtos/3 migrations e normal 0/1/3, identidades esperadas.
+- Aplicação/testes preservados; suíte não reexecutada. Última execução:
+  14 testes/54 asserções da 5.80. git diff --check passou; segredos fora do índice.
+
+Entendimento da 5.88: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.88: checkpoint concluído, pronto para commit/push autorizado.
+Último checkpoint confirmado/publicado: 9416c4f, etapa 5.87.
+Próximo passo exato: publicar e iniciar somente 5.89: LEFT JOIN a partir de categorias e COUNT(produtos.id),
+GROUP BY categorias.id/categorias.nome, com Roupas/2 e Acessórios/0. Explicar
+COUNT de coluna ignora NULL da linha sem correspondência. Diagnóstico SQL
+temporário loja_test com identidade e rollback, sem mudar aplicação.
 
 ## Verificações e limitações do ambiente
 
@@ -6391,14 +6428,14 @@ JOIN com agregação ainda.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `a764ac5`,
-  `docs: demonstra agrupamento com Query Builder`.
+- Último commit local publicado conferido nesta retomada: `9416c4f`,
+  `docs: demonstra HAVING para filtrar grupos`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `a764ac5`,
-  igual a HEAD e origin/main. Etapa 5.86 confirmada e publicada;
-  etapa 5.87 fica local aguardando confirmação explícita de entendimento.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `9416c4f`,
+  igual a HEAD e origin/main. Etapa 5.87 confirmada e publicada;
+  etapa 5.88 fica local aguardando confirmação explícita de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -6607,8 +6644,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   devolveu mesmos grupos/totais 2/1, um SELECT e zero antes de get; rollback
   conferido. Entendimento confirmado com "entendi" em 20/10/2026 e publicado em
   a764ac5. Na 5.87, HAVING COUNT(*) >= 2 retornou só Roupas/2, um SELECT/um grupo;
-  rollback/contagens conferidos. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.88: havingRaw
-  no Query Builder.
+  rollback/contagens conferidos. Entendimento confirmado com "entendi" em 20/10/2026
+  e publicado em 9416c4f. Na 5.88, havingRaw comparado ao SQL retornou só Roupas/2,
+  um SELECT por caso, parâmetros separados e zero antes de get; rollback conferido.
+  Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.89: LEFT JOIN com contagem incluindo categoria vazia.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -6765,4 +6804,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.84 — Count de produtos por categoria | Count retornou inteiros 2/0, um SELECT COUNT(*) por categoria sem carregar lista; rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em fd95bdd |
 | 20/10/2026 | 5.85 — GROUP BY categoria | SQL parametrizado agrupou produtos por categoria_id, um SELECT/dois grupos com totais 2/1; rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em d797c48 |
 | 20/10/2026 | 5.86 — GROUP BY Query Builder | SQL/Builder mesmos grupos e totais 2/1, um SELECT por caso e zero antes de get; retorno/rollback conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em a764ac5 |
-| 20/10/2026 | 5.87 — HAVING grupos | SQL parametrizado filtrou grupos com COUNT(*) >= 2, somente Roupas/2 em um SELECT; rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |
+| 20/10/2026 | 5.87 — HAVING grupos | SQL parametrizado filtrou grupos com COUNT(*) >= 2, somente Roupas/2 em um SELECT; rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 9416c4f |
+| 20/10/2026 | 5.88 — HAVING Query Builder | SQL/havingRaw mesmos grupo Roupas/2, um SELECT por caso, parâmetros separados e zero antes de get; rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |
