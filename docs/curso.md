@@ -90,8 +90,11 @@ factory com nome/status explícitos e preço padrão. Teste 1/3 e suíte 6/14
 passaram; rollback conferido. Entendimento da 5.50 confirmado com "entendi" em
 19/10/2026, publicado em 10e723b. Na 5.51, factory nos dois cadastros do cenário
 de ordenação, preservando nomes, status e ordem de inserção; teste 1/3 e suíte
-6/14 passaram, rollback conferido. Entendimento da 5.51 confirmado com "entendi" em 19/10/2026.
-Depois, 5.52: estado inativo na factory, conferido com make em memória.
+6/14 passaram, rollback conferido. Entendimento da 5.51 confirmado com "entendi"
+em 19/10/2026, publicado em 5152ba4. Na 5.52, inativo(): static na factory usa
+state com array; diagnóstico com make conferiu inativo em memória, padrão ativo
+preservado e zero SQL. Suíte existente 6/14 passou. Entendimento da 5.52
+confirmado com "entendi" em 19/10/2026; depois, 5.53: aplicar o estado ao cadastro da Caneca no teste.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

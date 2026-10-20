@@ -4,14 +4,15 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.51 — Factory no cenário de ordenação.
-- Situação: os dois cadastros de test_retorna_nomes_em_ordem_alfabetica passaram
-  a Produto::factory()->create, com nome/status explícitos e preço padrão.
-  Inserção Caneca/Camiseta e expectativa Camiseta/Caneca preservadas.
-  Teste alterado passou: 1 teste/3 asserções; suíte: 6 testes/14 asserções.
+- Etapa atual: 5.52 — Estado inativo na factory.
+- Situação: ProdutoFactory recebeu inativo(): static, usando state com array
+  de status inativo. Diagnóstico temporário com make confirmou novo objeto de
+  factory, Produto inativo em memória e factory original ainda ativa, sem SQL.
+  Sintaxe passou; suíte existente: 6 testes/14 asserções.
   SELECT posterior: zero produtos em loja_test e um no banco normal.
-  Implementação/verificações da 5.51 concluídas; explicação apresentada;
+  Implementação/verificações da 5.52 concluídas; explicação apresentada;
   entendimento confirmado com "entendi" em 19/10/2026. Checkpoint pronto para publicação.
+  Etapa 5.51 confirmada com "entendi" em 19/10/2026, publicada em 5152ba4.
   Etapa 5.50 confirmada com "entendi" em 19/10/2026, publicada em 10e723b.
   Etapa 5.49 confirmada com "entendi" em 19/10/2026, publicada em 9a08b80.
   Etapa 5.48 confirmada com "entendi" após esclarecer onde o diagnóstico
@@ -21,7 +22,7 @@
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.51: 6 testes/14 asserções, após factory no cenário de ordenação.
+  Última suíte na 5.52: 6 testes/14 asserções, após estado inativo na factory.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -31,8 +32,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.52, adicionar estado inativo em ProdutoFactory
-  e conferir com make em memória; aplicação aos testes ficará para outra etapa.
+  Próxima etapa: 5.53, aplicar inativo()->create ao cadastro
+  da Caneca no teste de ativos/inativos, mantendo nome explícito e verificando rollback.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -61,7 +62,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 10e723b, factory no cenário ativo/inativo 5.50.
+  Último checkpoint pedagógico confirmado/publicado: 5152ba4, factory no cenário de ordenação 5.51.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -121,21 +122,23 @@
 - Etapa 5.49 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.50 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.51 confirmada com "entendi" em 19/10/2026.
+- Etapa 5.52 confirmada com "entendi" em 19/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.50 confirmada com "entendi" e publicada em
-10e723b30cd8d6906c8a4be95800952c4ca8fb97, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.51 implementada/explicada: os dois cadastros do cenário
-de ordenação usam Produto::factory()->create, nome/status explícitos e preço
-padrão. Ordem de inserção Caneca/Camiseta e retorno esperado Camiseta/Caneca
-preservados. Teste alterado: 1 teste/3 asserções; suíte: 6 testes/14 asserções,
-passaram. SELECT posterior: zero produtos em loja_test/loja_testes e um em
-loja/loja_app, uma migration em cada banco. Todos os cadastros de produtos do
-CatalogoEloquentTest agora usam factory. Entendimento da 5.51 confirmado com
-"entendi" em 19/10/2026. Publicar o checkpoint e iniciar 5.52: adicionar um estado
-inativo em ProdutoFactory e conferir com make em memória; não aplicar aos
-testes nessa mesma etapa. Continuamos no módulo 5.
+Estado mais recente, em 19/10/2026: 5.51 confirmada com "entendi" e publicada em
+5152ba47349add5d6cbfa150dc18e66b3c441c0b, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.52 implementada/explicada: ProdutoFactory recebeu
+inativo(): static, que retorna state(['status' => 'inativo']). Diagnóstico em
+/tmp/curso-552-estado-inativo.php enviado ao PHP Docker pela entrada padrão:
+make gerou Produto inativo em memória, sem ID/datas e sem SQL; factory original
+permaneceu ativa, state devolveu outra instância. Sintaxe passou; suíte existente
+6 testes/14 asserções passou. SELECT posterior: zero produtos em loja_test e um
+em loja, uma migration em cada banco. Nenhum teste usa inativo() ainda.
+Entendimento da 5.52 confirmado com "entendi" em 19/10/2026. Publicar o
+checkpoint e iniciar 5.53: usar inativo()->create no cadastro da Caneca no cenário
+ativo/inativo, mantendo nome explícito e conferindo resultado/rollback.
+Continuamos no módulo 5.
 Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
@@ -4977,11 +4980,49 @@ Verificações em PHP Docker:
   dependência, migration, serviço ou alteração em model/factory/serviço.
 
 Entendimento da 5.51: confirmado com "entendi" em 19/10/2026.
-Publicação da 5.51: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: 10e723b, etapa 5.50.
-Próximo passo exato: publicar checkpoint e iniciar 5.52,
+Publicação da 5.51: 5152ba47349add5d6cbfa150dc18e66b3c441c0b, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
+Próximo passo após confirmação: 5.52,
 adicionar estado inativo em ProdutoFactory e conferir com make em memória,
 mantendo aplicação desse estado aos testes para outra etapa.
+
+## Etapa 5.52 — Estado inativo na factory
+
+Implementação, explicação e verificações em 19/10/2026. Detalhes em
+docs/aulas/05-52-estado-inativo-factory.md.
+
+Somente backend/database/factories/ProdutoFactory.php alterado no código.
+Método público inativo(): static retorna $this->state(['status' => 'inativo']).
+State herdado de Factory devolve uma nova instância com essa transformação;
+definition e a factory original continuam com status ativo. O tipo static
+descreve a instância da classe chamada, permitindo encadear make/create.
+Inativo configura a receita; make monta Produto e create persiste.
+
+Implementação de state e combinação de atributos consultadas no framework
+instalado em Docker; nenhum novo pacote ou mudança de dependências.
+Diagnóstico temporário /tmp/curso-552-estado-inativo.php enviado pela entrada
+padrão ao PHP do container com --env=testing. Usa factory original, chama
+inativo, monta um Produto de cada factory e verifica tipos, atributos e estado.
+Não foi acrescentada chamada ao novo método em testes ou controllers.
+
+Verificações em PHP Docker:
+
+- php -l da factory passou.
+- Diagnóstico: nova ProdutoFactory configurada; Produto inativo e padrão ativo;
+  ambos exists false, ID/datas null, nome textual e preço inteiro no intervalo.
+  Listener observou zero SQL; código 0.
+- Suíte existente: OK (6 tests, 14 assertions), código 0. Não verifica o método
+  novo diretamente; esse comportamento foi conferido pelo diagnóstico.
+- SELECT posterior: loja_test/loja_testes com zero produtos e uma migration;
+  loja/loja_app com um produto e uma migration.
+- git diff --check passou; segredos continuam ignorados/fora do índice.
+
+Entendimento da 5.52: confirmado com "entendi" em 19/10/2026.
+Publicação da 5.52: checkpoint concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: 5152ba4, etapa 5.51.
+Próximo passo exato: publicar checkpoint e iniciar 5.53,
+usar inativo()->create no cadastro da Caneca no cenário ativo/inativo,
+mantendo nome explícito e conferindo resultado/rollback.
 
 ## Verificações e limitações do ambiente
 
@@ -5009,14 +5050,14 @@ mantendo aplicação desse estado aos testes para outra etapa.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `10e723b`,
-  `test: usa factory no cenario de produtos inativos`.
+- Último commit local publicado conferido nesta retomada: `5152ba4`,
+  `test: usa factory no cenario de ordenacao`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `10e723b`,
-  igual a HEAD e origin/main. Etapa 5.50 confirmada e publicada;
-  etapa 5.51 agora confirmada e pronta para publicação.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `5152ba4`,
+  igual a HEAD e origin/main. Etapa 5.51 confirmada e publicada;
+  etapa 5.52 agora confirmada e pronta para publicação.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5137,8 +5178,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   em 9a08b80. Na 5.50, dois cadastros do cenário ativo/inativo convertidos;
   teste 1/3 e suíte 6/14 passaram, rollback conferido. Entendimento confirmado com "entendi"
   e publicado em 10e723b. Na 5.51, cenário de ordenação convertido; teste 1/3 e
-  suíte 6/14 passaram, rollback conferido. Entendimento confirmado com "entendi"; depois, 5.52:
-  estado inativo na factory, conferido somente em memória inicialmente.
+  suíte 6/14 passaram, rollback conferido. Entendimento confirmado com "entendi"
+  e publicado em 5152ba4. Na 5.52, estado inativo na factory conferido em memória:
+  zero SQL, padrão ativo preservado; suíte existente 6/14 passou. Entendimento
+  confirmado com "entendi"; depois, 5.53: usar o estado no cadastro da Caneca no teste.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5259,4 +5302,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.48 — HasFactory no model Produto | Atalho resolve factory/monta Produto em memória, sem SQL; suíte existente 6 testes/14 asserções passou | Confirmado pelo aluno: "entendi", após dúvida sobre local da demonstração | Publicado e verificado em d465778 |
 | 19/10/2026 | 5.49 — Factory no teste de ativo | Cadastro pela factory com nome/status definidos; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 9a08b80 |
 | 19/10/2026 | 5.50 — Factory no cenário ativo/inativo | Dois cadastros com nome/status explícitos e preço padrão; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 10e723b |
-| 19/10/2026 | 5.51 — Factory no cenário de ordenação | Dois cadastros com nomes controlados e preço padrão; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
+| 19/10/2026 | 5.51 — Factory no cenário de ordenação | Dois cadastros com nomes controlados e preço padrão; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5152ba4 |
+| 19/10/2026 | 5.52 — Estado inativo na factory | Método inativo com state; make conferido em memória sem SQL, padrão ativo preservado; suíte existente 6/14 passou | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |

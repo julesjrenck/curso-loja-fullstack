@@ -23,4 +23,11 @@ class ProdutoFactory extends Factory
             'status' => 'ativo',
         ];
     }
+
+    public function inativo(): static
+    {
+        return $this->state([
+            'status' => 'inativo',
+        ]);
+    }
 }

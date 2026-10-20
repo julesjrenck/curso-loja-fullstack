@@ -314,8 +314,11 @@ explícitos e preço padrão. Teste 1/3 e suíte 6/14 passaram; rollback conferi
 Entendimento da 5.50 confirmado com "entendi" em 19/10/2026, publicado em 10e723b.
 Na 5.51, factory no cenário de ordenação, com nomes/status controlados e preço
 padrão. Teste 1/3 e suíte 6/14 passaram; rollback conferido. Entendimento da
-5.51 confirmado com "entendi" em 19/10/2026; depois, 5.52: estado inativo na factory.
-Detalhes em docs/aulas/05-51-factory-teste-ordenacao.md.
+5.51 confirmado com "entendi" em 19/10/2026, publicado em 5152ba4.
+Na 5.52, método inativo na factory usa state; make conferido em memória,
+sem SQL e com padrão ativo preservado. Suíte existente 6/14 passou.
+Entendimento da 5.52 confirmado com "entendi" em 19/10/2026; depois, 5.53: usar o estado no teste.
+Detalhes em docs/aulas/05-52-estado-inativo-factory.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
