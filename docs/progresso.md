@@ -4,16 +4,17 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.81 — INNER JOIN entre produtos e categorias.
-- Situação: diagnóstico temporário /tmp/curso-581-inner-join.php executado pelo
+- Etapa atual: 5.82 — Comparação de INNER JOIN e LEFT JOIN.
+- Situação: diagnóstico temporário /tmp/curso-582-left-join.php executado pelo
   PHP Docker em loja_test/loja_testes com identidade conferida e rollback.
-  Cria Camiseta/Roupas e Caneca sem categoria. DB::select com INNER JOIN ON
-  categorias.id = produtos.categoria_id, WHERE IDs parametrizados e ORDER BY ID.
-  Retorna somente Camiseta -> Roupas, em 1 SELECT. Caneca segue no banco com FK
-  NULL, conferida por leitura separada fora da medição. Somente documentação alterada.
-  Após rollback: teste 0 categorias/0 produtos/3 migrations; normal 0/1/3.
-  Demonstração/verificações da 5.81 concluídas; explicação apresentada.
-  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.81 pendente.
+  Mesmos produtos Camiseta/Roupas e Caneca sem categoria. INNER JOIN: 1 SELECT,
+  1 linha; LEFT JOIN: 1 SELECT, 2 linhas (Caneca com categoria null). Mesmos ON,
+  IDs parametrizados e ordenação. Caneca continua com FK NULL no banco.
+  Somente documentação alterada. Após rollback: teste 0 categorias/0 produtos/
+  3 migrations; normal 0/1/3.
+  Demonstração/verificações da 5.82 concluídas; explicação apresentada.
+  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.82 pendente.
+  Etapa 5.81 confirmada com "entendi" em 20/10/2026, publicada em dca90ec.
   Etapa 5.80 confirmada com "entendi" em 20/10/2026, publicada em 3627952.
   Etapa 5.79 confirmada com "entendi" em 20/10/2026, publicada em 70d44b5.
   Etapa 5.78 confirmada com "entendi" em 20/10/2026, publicada em 55d0045.
@@ -54,7 +55,7 @@
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.80: 14 testes/54 asserções. Na 5.81, diagnóstico INNER JOIN passou; suíte não reexecutada, código preservado.
+  Última suíte na 5.80: 14 testes/54 asserções. Na 5.82, diagnóstico de JOINs passou; suíte não reexecutada, código preservado.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -64,8 +65,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.82, comparar INNER JOIN e LEFT JOIN com os
-  mesmos produtos, incluindo Caneca com categoria NULL no segundo caso, com rollback.
+  Próxima etapa após confirmação: 5.83, expressar o mesmo LEFT JOIN com Query
+  Builder (DB::table/leftJoin/select/whereIn/orderBy/get), diagnóstico com rollback.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -94,7 +95,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 3627952, teste de with na etapa 5.80.
+  Último checkpoint pedagógico confirmado/publicado: dca90ec, INNER JOIN na etapa 5.81.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -184,29 +185,30 @@
 - Etapa 5.79 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.80 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.81 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.82 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: 5.80 confirmada com "entendi" e publicada em
-362795246c945b1adca0abef77ccbb65310beaca, igual a HEAD, origin/main e main
-remota após o push. Na 5.81, somente documentação alterada; diagnóstico temporário
-/tmp/curso-581-inner-join.php executado pelo PHP Docker com --env=testing.
+Estado mais recente, em 20/10/2026: 5.81 confirmada com "entendi" e publicada em
+dca90ec1e18f06b7d8d3f2258a09c780c9bc4ad4, igual a HEAD, origin/main e main
+remota após o push. Na 5.82, somente documentação alterada; diagnóstico temporário
+/tmp/curso-582-left-join.php executado pelo PHP Docker com --env=testing.
 Conferiu testing/loja_test/loja_testes antes dos cadastros. Transação criou Roupas,
-Camiseta associada e Caneca sem categoria. DB::select executou SQL com INNER JOIN
-ON categorias.id = produtos.categoria_id, WHERE produtos.id IN (?, ?) e parâmetros
-separados com os IDs dos dois produtos. SELECT com aliases produto/categoria,
-ORDER BY produtos.id. Listener mediu só SELECT do JOIN: 1 consulta/1 linha,
-Camiseta -> Roupas. Caneca foi encontrada depois por ID com FK NULL, fora da
-medição, mostrando que não foi excluída. Finally rollback; contagens posteriores
-teste 0 categorias/0 produtos/3 migrations e normal 0/1/3. Diagnóstico código 0.
-Aplicação/testes preservados; suíte não reexecutada. Última execução segue 14/54.
-Demonstração/verificação/explicação da 5.81 concluídas; entendimento confirmado
+Camiseta associada e Caneca sem categoria. DB::select executou INNER JOIN e depois
+LEFT JOIN, mesmos ON/WHERE IDs parametrizados/ORDER BY. Listener reinicia medição
+entre consultas: INNER 1 SELECT/1 linha Camiseta/Roupas; LEFT 1 SELECT/2 linhas,
+Camiseta/Roupas e Caneca/null. Valor da categoria da segunda linha conferido como
+null real em PHP, exibido como NULL no diagnóstico. Caneca continua com FK null
+em leitura separada. Finally rollback; contagens posteriores teste 0 categorias/
+0 produtos/3 migrations e normal 0/1/3. Diagnóstico código 0.
+Aplicação/testes preservados; suíte não reexecutada, última execução 14/54 da 5.80.
+Demonstração/verificação/explicação da 5.82 concluídas; entendimento confirmado
 com "entendi" em 20/10/2026. Publicação pendente.
-Publicar e iniciar somente 5.82: comparar INNER JOIN/LEFT JOIN
-com os mesmos produtos, mostrando Caneca com categoria null no LEFT JOIN. SQL
-parametrizado em diagnóstico temporário em loja_test, identidade conferida e
-rollback, sem alterar aplicação ou apresentar outros tipos de JOIN.
-Continuamos no módulo 5.
+Publicar e iniciar somente 5.83: expressar esse LEFT JOIN com
+Query Builder, usando DB::table/leftJoin/select/whereIn/orderBy/get, comparar
+resultados com SQL parametrizado nos mesmos dados. Diagnóstico temporário em
+loja_test com identidade conferida e rollback; sem alterar aplicação ou introduzir
+outros tipos de JOIN. Continuamos no módulo 5.
 Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
@@ -6131,12 +6133,48 @@ Verificações:
   14 testes/54 asserções na 5.80. git diff --check passou; segredos fora do índice.
 
 Entendimento da 5.81: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.81: checkpoint concluído, pronto para commit/push autorizado.
-Último checkpoint confirmado/publicado: 3627952, etapa 5.80.
+Publicação da 5.81: dca90ec1e18f06b7d8d3f2258a09c780c9bc4ad4, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
 Próximo passo exato: publicar e iniciar somente 5.82: comparar INNER JOIN com LEFT JOIN nos mesmos produtos,
 conferindo que LEFT JOIN inclui Caneca com categoria null. Diagnóstico SQL
 parametrizado em loja_test com identidade conferida e rollback, sem mudar
 aplicação ou introduzir outros tipos de JOIN.
+
+## Etapa 5.82 — Comparação de INNER JOIN e LEFT JOIN
+
+Demonstração, explicação e verificações em 20/10/2026. Detalhes em
+docs/aulas/05-82-left-join-produtos-categorias.md.
+
+Somente documentação alterada. Diagnóstico temporário /tmp/curso-582-left-join.php
+carrega Laravel Docker e confere testing/loja_test/loja_testes antes dos cadastros.
+Transação prepara os mesmos dados: Roupas, Camiseta associada e Caneca sem categoria.
+Duas consultas por DB::select usam mesmos SELECT/ON/WHERE IDs parametrizados/ORDER
+BY, mudando INNER JOIN para LEFT JOIN. Listener mede um SELECT por caso; preparação
+e leitura posterior da FK fora da medição.
+
+Resultado INNER: uma linha Camiseta/Roupas. Resultado LEFT: duas linhas,
+Camiseta/Roupas e Caneca/null. Categoria da segunda linha conferida como null real,
+exibida como NULL. Produtos é a tabela à esquerda por estar no FROM; LEFT JOIN
+preserva seus produtos selecionados no WHERE mesmo sem correspondência em categorias,
+preenchendo colunas da categoria com NULL. Condição ON continua sendo igualdade
+entre categorias.id e produtos.categoria_id. Dados não foram alterados pela consulta.
+
+Verificações:
+
+- Diagnóstico: código 0; INNER 1 SELECT/1 linha, LEFT 1 SELECT/2 linhas e nomes/
+  categoria null esperados. Caneca com FK null conferida por leitura separada.
+- Finally rollback; SELECTs posteriores em processos separados conferiram teste
+  0 categorias/0 produtos/3 migrations e normal 0/1/3, com identidades esperadas.
+- Aplicação/testes preservados; suíte não reexecutada. Última execução:
+  14 testes/54 asserções da 5.80. git diff --check passou; segredos fora do índice.
+
+Entendimento da 5.82: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.82: checkpoint concluído, pronto para commit/push autorizado.
+Último checkpoint confirmado/publicado: dca90ec, etapa 5.81.
+Próximo passo exato: publicar e iniciar somente 5.83: Query Builder para o mesmo LEFT JOIN por
+DB::table/leftJoin/select/whereIn/orderBy/get, comparando com SQL parametrizado
+nos mesmos dados. Diagnóstico temporário em loja_test com identidade conferida e
+rollback, sem mudar aplicação ou introduzir outros tipos de JOIN.
 
 ## Verificações e limitações do ambiente
 
@@ -6164,14 +6202,14 @@ aplicação ou introduzir outros tipos de JOIN.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `3627952`,
-  `test: verifica carregamento antecipado em duas consultas`.
+- Último commit local publicado conferido nesta retomada: `dca90ec`,
+  `docs: demonstra INNER JOIN entre produtos e categorias`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `3627952`,
-  igual a HEAD e origin/main. Etapa 5.80 confirmada e publicada;
-  etapa 5.81 fica local aguardando confirmação explícita de entendimento.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `dca90ec`,
+  igual a HEAD e origin/main. Etapa 5.81 confirmada e publicada;
+  etapa 5.82 fica local aguardando confirmação explícita de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -6366,7 +6404,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   com "entendi" em 20/10/2026 e publicado em 3627952. Na 5.81, INNER JOIN
   parametrizado retornou Camiseta/Roupas em 1 SELECT; Caneca sem categoria ficou
   fora do resultado e continuou no banco. Rollback/contagens conferidos. Entendimento
-  confirmado com "entendi" em 20/10/2026; depois, 5.82: comparar com LEFT JOIN.
+  confirmado com "entendi" em 20/10/2026 e publicado em dca90ec. Na 5.82, LEFT JOIN
+  retornou também Caneca/null: 1 SELECT/2 linhas, comparado ao INNER 1 SELECT/1 linha.
+  Rollback/contagens conferidos. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.83: mesmo LEFT JOIN
+  com Query Builder.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -6517,4 +6558,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.78 — Carregamento sob demanda e N+1 | Diagnóstico temporário em loja_test conferiu 1+3=4 SELECTs, nomes e rollback; somente documentação alterada | Confirmado pelo aluno: "entendi" | Publicado e verificado em 55d0045 |
 | 20/10/2026 | 5.79 — Carregamento antecipado com with | Diagnóstico comparativo confirmou mesmos resultados, 4 versus 2 SELECTs e zero SQL extra no foreach com with; rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 70d44b5 |
 | 20/10/2026 | 5.80 — Teste de carregamento antecipado | Quinto cenário exige nomes corretos e duas consultas, sem SQL extra no foreach; focado 5/27 e suíte 14/54 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 3627952 |
-| 20/10/2026 | 5.81 — INNER JOIN produtos/categorias | Diagnóstico parametrizado retornou somente produto associado, 1 SELECT/1 linha; produto sem categoria preservado, rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |
+| 20/10/2026 | 5.81 — INNER JOIN produtos/categorias | Diagnóstico parametrizado retornou somente produto associado, 1 SELECT/1 linha; produto sem categoria preservado, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em dca90ec |
+| 20/10/2026 | 5.82 — LEFT JOIN produtos/categorias | INNER 1 SELECT/1 linha e LEFT 1 SELECT/2 linhas, incluindo Caneca/null; rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |

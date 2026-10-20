@@ -187,7 +187,11 @@ do foreach. Focado 5/27 e suíte 14/54 passaram, rollback conferido. Entendiment
 confirmado com "entendi" em 20/10/2026, publicado em 3627952. Na 5.81, INNER JOIN
 parametrizado retornou Camiseta/Roupas em 1 SELECT; Caneca sem categoria ficou
 fora do resultado e seguiu no banco. Rollback/contagens conferidos, sem mudar
-aplicação. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.82: comparar LEFT JOIN.
+aplicação. Entendimento confirmado com "entendi" em 20/10/2026, publicado em
+dca90ec. Na 5.82, comparação com LEFT JOIN retornou também Caneca/null em
+1 SELECT/2 linhas, enquanto INNER retornou 1 linha. Nomes/NULL/rollback/contagens
+conferidos. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.83: mesmo LEFT JOIN
+com Query Builder.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

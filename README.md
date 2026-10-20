@@ -399,8 +399,11 @@ sem SELECT extra no foreach; focado 5/27 e suíte 14/54 passaram, rollback confe
 Entendimento confirmado com "entendi" em 20/10/2026, publicado em 3627952.
 Na 5.81, diagnóstico INNER JOIN retornou Camiseta/Roupas em 1 SELECT; Caneca
 sem categoria ficou fora do resultado e continuou no banco. Rollback conferido.
-Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.82: comparação com LEFT JOIN.
-Detalhes em docs/aulas/05-81-inner-join-produtos-categorias.md.
+Entendimento confirmado com "entendi" em 20/10/2026, publicado em dca90ec.
+Na 5.82, LEFT JOIN retornou Camiseta/Roupas e Caneca/null em 1 SELECT/2 linhas;
+comparação com INNER e rollback conferidos. Entendimento confirmado com "entendi"
+em 20/10/2026; depois, 5.83: expressar o mesmo LEFT JOIN com Query Builder.
+Detalhes em docs/aulas/05-82-left-join-produtos-categorias.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
