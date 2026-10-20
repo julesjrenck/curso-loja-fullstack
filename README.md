@@ -298,8 +298,12 @@ com "entendi" em 19/10/2026, publicado em 3e094e5. Na 5.46, definition passou
 a gerar nome textual de três palavras, preço inteiro de 100 a 50000 centavos
 e status ativo. Sintaxe e dez arrays conferidos em memória, zero SQL observado.
 Nenhum Produto montado/persistido; testes/model preservados. Entendimento da
-5.46 confirmado com "entendi" após esclarecer os métodos; próximo passo: Produto em memória com make.
-Detalhes em docs/aulas/05-46-atributos-produto-factory.md.
+5.46 confirmado com "entendi" após esclarecer os métodos, publicado em 77dc3f9.
+Na 5.47, ProdutoFactory::new()->make() demonstrado: objeto Produto, atributos
+previstos, exists false, ID/datas null e zero SQL observado. Nenhum registro
+salvo; código/testes preservados. Entendimento da 5.47 confirmado com "entendi" em 19/10/2026;
+próximo passo: HasFactory no model e atalho Produto::factory()->make().
+Detalhes em docs/aulas/05-47-factory-make-produto.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

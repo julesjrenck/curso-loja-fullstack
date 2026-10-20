@@ -75,7 +75,10 @@ conferidos, definition vazio e nenhum dado criado. Entendimento da 5.45
 confirmado com "entendi" em 19/10/2026 e publicado em 3e094e5. Na 5.46,
 definição preenchida com nome/preço fictícios e status ativo; dez arrays
 conferidos em memória, sem SQL ou models. Entendimento da 5.46 confirmado com
-"entendi" em 19/10/2026 após esclarecer os métodos. Depois, 5.47: montar Produto em memória,
+"entendi" após esclarecer os métodos e publicado em 77dc3f9. Na 5.47,
+new()->make() montou Produto em memória, com exists false, ID/datas null,
+atributos previstos e zero SQL. Entendimento da 5.47 confirmado com "entendi" em 19/10/2026.
+Depois, 5.48: HasFactory no model e conferência de Produto::factory()->make(),
 sem persistência ou refatoração dos testes ainda.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
