@@ -144,8 +144,11 @@ Suíte 6/14 passou; teste vazio após testes. Normal segue sem coluna/permissão
 Entendimento da 5.67 confirmado com "entendi" em 20/10/2026, publicado em e384ae1.
 Na 5.68, concessão/migration aplicadas em loja com loja_migracoes; FK/histórico e
 produto preservado com categoria_id NULL conferidos. Ambos os bancos têm coluna/FK
-e três migrations. Entendimento da 5.68 confirmado com "entendi" em 20/10/2026; depois, 5.69:
-relacionamento de Produto para Categoria com belongsTo e Fillable de categoria_id.
+e três migrations. Entendimento da 5.68 confirmado com "entendi" em 20/10/2026,
+publicado em 55f7ea8. Na 5.69, Produto recebeu Fillable de categoria_id e método
+categoria com belongsTo; configuração em memória/zero SQL e suíte 6/14 passaram.
+Entendimento da 5.69 confirmado com "entendi" em 20/10/2026; depois, 5.70: primeiro teste de
+leitura da categoria relacionada com rollback.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
