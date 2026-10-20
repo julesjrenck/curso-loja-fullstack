@@ -343,8 +343,11 @@ Categorias/produtos vazios e duas migrations no teste; normal segue com um produ
 e uma migration. Entendimento da 5.60 confirmado em 20/10/2026, publicado em 04ab6bb.
 Na 5.61, categorias criada também em loja com loja_migracoes; esquema/status/
 reexecução e produto preservado conferidos. Ambos os bancos têm duas migrations;
-categorias vazia. Entendimento da 5.61 confirmado com "entendi" em 20/10/2026; depois, 5.62:
-model Categoria. Detalhes em docs/aulas/05-61-categorias-banco-aplicacao.md.
+categorias vazia. Entendimento da 5.61 confirmado com "entendi" em 20/10/2026,
+publicado em 4d3358d. Na 5.62, model Categoria com Fillable de nome gerado;
+sintaxe/configuração em memória passaram, zero SQL. Entendimento confirmado
+com "entendi" em 20/10/2026; depois, 5.63: cadastro/leitura em loja_test com rollback.
+Detalhes em docs/aulas/05-62-model-categoria.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

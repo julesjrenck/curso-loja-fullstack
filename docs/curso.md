@@ -123,7 +123,10 @@ Banco normal mantém um produto e uma migration. Entendimento da 5.60 confirmado
 em 20/10/2026, publicado em 04ab6bb. Na 5.61, mesma migration aplicada em loja com
 loja_migracoes; esquema/status/reexecução e produto preservado conferidos.
 Categorias vazia nos dois bancos, duas migrations em cada. Entendimento da 5.61
-confirmado com "entendi" em 20/10/2026; depois, 5.62: criar model Categoria e conferir sem persistir ainda.
+confirmado com "entendi" em 20/10/2026, publicado em 4d3358d. Na 5.62, model
+Categoria criado com Fillable de nome; tabela/chave/timestamps e objeto em memória
+conferidos, zero SQL. Entendimento da 5.62 confirmado com "entendi" em 20/10/2026; depois, 5.63:
+cadastro/leitura de categoria em loja_test dentro de transação com rollback.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
