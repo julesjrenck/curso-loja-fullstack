@@ -167,7 +167,11 @@ cenário confere coleção vazia para categoria sem produtos. Focado 2/9 e suít
 em 20/10/2026, publicado em 5b9d800. Na 5.75, terceiro cenário usa
 produtos()->where('status', 'ativo')->get(), retornando somente ativo da categoria.
 Focado 3/13 e suíte 11/36 passaram, rollback conferido. Entendimento confirmado
-com "entendi" em 20/10/2026; depois, 5.76: associar produto à categoria por associate e save.
+com "entendi" em 20/10/2026, publicado em 617408b. Na 5.76, cenário em
+ProdutoCategoriaTest confere associate em memória e persistência após save/recarga.
+Falha inicial por FK string/ID inteiro corrigida com conversão local na asserção;
+focado final 3/15 e suíte 12/42 passaram, rollback conferido. Entendimento
+confirmado com "entendi" em 20/10/2026; depois, 5.77: remover associação por dissociate/save.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

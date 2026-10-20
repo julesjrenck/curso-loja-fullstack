@@ -4,16 +4,19 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.75 — Consulta de produtos ativos da categoria.
-- Situação: adicionado somente um terceiro cenário em CategoriaProdutosTest.php.
-  Roupas tem Camiseta ativa/Calça inativa; Acessórios tem Caneca ativa. Recarrega
-  Roupas e usa produtos()->where('status', 'ativo')->get(). Confere quantidade 1
-  e ID exato da Camiseta; Calça/Caneca ficam fora por motivos diferentes.
-  Arquivo focado 3 testes/13 asserções; suíte 11 testes/36 asserções passou.
+- Etapa atual: 5.76 — Associação do produto à categoria.
+- Situação: adicionado somente um terceiro cenário em ProdutoCategoriaTest.php.
+  Cria Camiseta sem categoria e Roupas, usa categoria()->associate($categoria).
+  Confere FK em memória e FK ainda NULL em leitura separada do banco antes de
+  save. Depois de save/recarregar, confere FK e categoria relacionada persistidas.
+  Primeira execução falhou por FK string versus ID inteiro; comparação da FK
+  recarregada ajustada com (int) no teste, sem mudar model/schema.
+  Arquivo focado final 3 testes/15 asserções; suíte final 12 testes/42 asserções passou.
   Mesmo setUp loja_test/loja_testes e DatabaseTransactions. Após rollback:
   teste 0 categorias/0 produtos/3 migrations; normal 0/1/3.
-  Implementação/verificações da 5.75 concluídas; explicação apresentada.
-  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.75 pendente.
+  Implementação/verificações da 5.76 concluídas; explicação apresentada.
+  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.76 pendente.
+  Etapa 5.75 confirmada com "entendi" em 20/10/2026, publicada em 617408b.
   Etapa 5.74 confirmada com "entendi" em 20/10/2026, publicada em 5b9d800.
   Etapa 5.73 confirmada com "entendi" em 20/10/2026, publicada em 6ad0d19.
   Etapa 5.72 confirmada com "entendi" em 20/10/2026, publicada em 593cb81.
@@ -48,7 +51,7 @@
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.75: 11 testes/36 asserções, incluindo filtro na consulta hasMany.
+  Última suíte na 5.76: 12 testes/42 asserções, incluindo associate/save e recarga.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -58,8 +61,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.76, associar produto existente à categoria
-  com categoria()->associate(), save e recarga, em um cenário com rollback.
+  Próxima etapa após confirmação: 5.77, remover associação via categoria()->
+  dissociate(), save e recarga, em um único cenário com rollback.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -88,7 +91,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 5b9d800, categoria sem produtos 5.74.
+  Último checkpoint pedagógico confirmado/publicado: 617408b, consulta de ativos da categoria 5.75.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -172,26 +175,28 @@
 - Etapa 5.73 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.74 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.75 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.76 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: 5.74 confirmada com "entendi" e publicada em
-5b9d80059fc54f412bdd32a095e404ce2d52c088, igual a HEAD, origin/main e main
-remota após o push. Na 5.75, somente CategoriaProdutosTest.php alterado no código:
-terceiro cenário test_categoria_consulta_somente_seus_produtos_ativos. Cria
-Roupas com Camiseta ativa e Calça inativa via estado inativo da factory; Acessórios
-com Caneca ativa. Recarrega Roupas e usa produtos()->where('status', 'ativo')->get().
-AssertCount exige 1; assertSame/modelKeys exige ID da Camiseta. Método permite
-acrescentar filtro à consulta; get executa. Não houve filtro de coleção em memória.
-Arquivo focado OK 3 testes/13 asserções; suíte OK 11 testes/36 asserções, código 0.
-Mesmo setUp/DatabaseTransactions e cenários anteriores preservados. Consultas
-posteriores: teste 0 categorias/0 produtos/3 migrations; normal 0/1/3.
-Implementação/verificação/explicação da 5.75 concluídas; entendimento confirmado
+Estado mais recente, em 20/10/2026: 5.75 confirmada com "entendi" e publicada em
+617408b86bb0aa90b23f2704d81870d3d9c7a489, igual a HEAD, origin/main e main
+remota após o push. Na 5.76, somente ProdutoCategoriaTest.php alterado no código:
+terceiro cenário test_produto_pode_ser_associado_a_uma_categoria. Cria Camiseta
+sem categoria e Roupas; associate altera FK em memória, mas leitura separada do
+produto ainda tem FK null. Save grava, findOrFail recarrega e asserções conferem
+FK e ID da categoria relacionada. Driver retornou FK BIGINT como string depois
+da recarga; primeira execução falhou na comparação estrita. Ajustada somente a
+asserção da FK recarregada com (int), sem alterar model ou esquema.
+Resultado final focado 3 testes/15 asserções e suíte 12 testes/42 asserções, código 0.
+SetUp/DatabaseTransactions preservados. Consultas posteriores: teste 0 categorias/
+0 produtos/3 migrations; normal 0/1/3.
+Implementação/verificação/explicação da 5.76 concluídas; entendimento confirmado
 com "entendi" em 20/10/2026. Publicação pendente.
-Publicar e iniciar somente 5.76: cenário em ProdutoCategoriaTest
-que cria produto sem categoria e categoria, usa categoria()->associate($categoria),
-save e recarrega produto para conferir FK e relação persistidas. Explicar associate
-em memória e save para gravar, com mesmo setUp/rollback. Continuamos no módulo 5.
+Publicar e iniciar somente 5.77: um cenário em ProdutoCategoriaTest
+com produto já associado, categoria()->dissociate(), save e recarga para conferir
+FK/relação null e categoria preservada. Mesmo setUp/rollback, sem outros cenários.
+Continuamos no módulo 5.
 Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
@@ -5902,12 +5907,48 @@ Verificações em PHP Docker:
   factory, seeders, cenários anteriores e serviços preservados.
 
 Entendimento da 5.75: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.75: checkpoint concluído, pronto para commit/push autorizado.
-Último checkpoint confirmado/publicado: 5b9d800, etapa 5.74.
+Publicação da 5.75: 617408b86bb0aa90b23f2704d81870d3d9c7a489, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
 Próximo passo exato: publicar e iniciar somente 5.76: um cenário em ProdutoCategoriaTest criando produto sem
 categoria e categoria, usando categoria()->associate($categoria), save e recarga
 para conferir FK/relação persistidas. Explicar associação em memória e gravação,
 com mesmo setUp/rollback e sem outros cenários nessa etapa seguinte.
+
+## Etapa 5.76 — Associação do produto à categoria
+
+Implementação, explicação e verificações em 20/10/2026. Detalhes em
+docs/aulas/05-76-associar-produto-categoria.md.
+
+Única alteração funcional: terceiro cenário em ProdutoCategoriaTest.php.
+Test_produto_pode_ser_associado_a_uma_categoria cria Camiseta sem categoria e
+Categoria Roupas. Categoria()->associate($categoria) preenche FK em memória;
+assertSame confere ID, e assertNull em Produto::findOrFail separado confere que
+banco ainda tem NULL. Save grava a associação; recarga por findOrFail permite
+conferir FK e ID da categoria obtida pela propriedade de relacionamento.
+
+Primeira execução focada falhou: assertSame comparou ID inteiro à FK string
+retornada após leitura no SQL Server. Focado 3 testes/14 asserções e uma falha;
+suíte 12 testes/41 asserções e uma falha. Ajustada somente a comparação da FK
+recarregada para assertSame($categoria->id, (int) $produto->categoria_id).
+Conversão é local à asserção: model, schema e cast de preço foram preservados.
+Explicado que assertSame compara valor e tipo; não era ausência de associação.
+
+Verificações finais em PHP Docker:
+
+- Arquivo focado: OK (3 tests, 15 assertions), código 0. Cenário novo soma seis:
+  duas de identidade, duas antes de save e duas depois de save/recarga.
+- Suíte completa: OK (12 tests, 42 assertions), código 0.
+- SELECTs posteriores em processos separados: loja_test/loja_testes com
+  0 categorias/0 produtos/3 migrations; loja/loja_app com 0/1/3. Rollback conferido.
+- git diff --check passou; segredos fora do índice. Models, migrations,
+  factories, seeders, cenários anteriores e serviços preservados.
+
+Entendimento da 5.76: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.76: checkpoint concluído, pronto para commit/push autorizado.
+Último checkpoint confirmado/publicado: 617408b, etapa 5.75.
+Próximo passo exato: publicar e iniciar somente 5.77: um cenário em ProdutoCategoriaTest com produto associado,
+removendo associação por categoria()->dissociate(), save e recarga. Conferir
+FK/relação null e categoria preservada, com mesmo setUp/rollback e sem outros casos.
 
 ## Verificações e limitações do ambiente
 
@@ -5935,14 +5976,14 @@ com mesmo setUp/rollback e sem outros cenários nessa etapa seguinte.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `5b9d800`,
-  `test: verifica categoria sem produtos`.
+- Último commit local publicado conferido nesta retomada: `617408b`,
+  `test: filtra produtos ativos pela categoria`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `5b9d800`,
-  igual a HEAD e origin/main. Etapa 5.74 confirmada e publicada;
-  etapa 5.75 fica local aguardando confirmação explícita de entendimento.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `617408b`,
+  igual a HEAD e origin/main. Etapa 5.75 confirmada e publicada;
+  etapa 5.76 fica local aguardando confirmação explícita de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -6119,8 +6160,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   focado 2/9 e suíte 10/32 passaram, rollback conferido. Entendimento confirmado
   com "entendi" em 20/10/2026 e publicado em 5b9d800. Na 5.75, consulta por
   produtos()->where/get exige somente Camiseta ativa de Roupas; focado 3/13 e
-  suíte 11/36 passaram, rollback conferido. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.76:
-  associar produto à categoria com associate e save.
+  suíte 11/36 passaram, rollback conferido. Entendimento confirmado com "entendi"
+  em 20/10/2026 e publicado em 617408b. Na 5.76, associate/save verificados antes
+  e depois de gravar; comparação da FK normalizada após falha por tipo string/int.
+  Focado final 3/15 e suíte 12/42 passaram. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.77:
+  remover associação com dissociate e save.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -6265,4 +6309,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.72 — Categoria hasMany Produto | Definição da relação inversa, sintaxe/configuração em memória com zero SQL e suíte existente 8/23 passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em 593cb81 |
 | 20/10/2026 | 5.73 — Produtos da categoria | Primeiro teste hasMany confere coleção de dois produtos e exclusão de outra categoria; focado 1/5 e suíte 9/28 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6ad0d19 |
 | 20/10/2026 | 5.74 — Categoria sem produtos | Segundo cenário exige coleção com zero elementos; focado 2/9 e suíte 10/32 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 5b9d800 |
-| 20/10/2026 | 5.75 — Produtos ativos da categoria | Terceiro cenário usa produtos()->where/get, exige somente ativo da categoria; focado 3/13 e suíte 11/36 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |
+| 20/10/2026 | 5.75 — Produtos ativos da categoria | Terceiro cenário usa produtos()->where/get, exige somente ativo da categoria; focado 3/13 e suíte 11/36 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 617408b |
+| 20/10/2026 | 5.76 — Associar produto à categoria | Associate em memória e save/recarga conferidos; falha inicial por tipo da FK corrigida na asserção; focado final 3/15 e suíte 12/42 passaram | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |

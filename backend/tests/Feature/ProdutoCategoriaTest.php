@@ -55,4 +55,24 @@ class ProdutoCategoriaTest extends TestCase
         $this->assertNull($produto->categoria_id);
         $this->assertNull($produto->categoria);
     }
+
+    public function test_produto_pode_ser_associado_a_uma_categoria(): void
+    {
+        $produto = Produto::factory()->create([
+            'nome' => 'Camiseta',
+            'status' => 'ativo',
+        ]);
+        $categoria = Categoria::create(['nome' => 'Roupas']);
+
+        $produto->categoria()->associate($categoria);
+
+        $this->assertSame($categoria->id, $produto->categoria_id);
+        $this->assertNull(Produto::findOrFail($produto->id)->categoria_id);
+
+        $produto->save();
+        $produto = Produto::findOrFail($produto->id);
+
+        $this->assertSame($categoria->id, (int) $produto->categoria_id);
+        $this->assertSame($categoria->id, $produto->categoria->id);
+    }
 }

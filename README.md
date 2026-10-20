@@ -381,8 +381,11 @@ focado 2/9 e suíte 10/32 passaram, rollback conferido. Entendimento confirmado
 com "entendi" em 20/10/2026, publicado em 5b9d800. Na 5.75, terceiro cenário usa
 produtos()->where/get e retorna somente ativo da categoria; focado 3/13 e suíte
 11/36 passaram, rollback conferido. Entendimento confirmado com "entendi"
-em 20/10/2026; depois, 5.76: associate e save para associar produto à categoria.
-Detalhes em docs/aulas/05-75-produtos-ativos-categoria.md.
+em 20/10/2026, publicado em 617408b. Na 5.76, associate/save conferidos antes e
+depois de gravar; comparação da FK recarregada ajustada por diferença de tipo.
+Focado final 3/15 e suíte 12/42 passaram, rollback conferido. Entendimento
+confirmado com "entendi" em 20/10/2026; depois, 5.77: dissociate/save para remover associação.
+Detalhes em docs/aulas/05-76-associar-produto-categoria.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
