@@ -359,8 +359,11 @@ Na 5.66, script de REFERENCES restrito a categorias no teste preparado; PARSEONL
 passou, nenhuma concessão aplicada. Migration continua Pending. Entendimento
 confirmado com "entendi" em 20/10/2026, publicado em 3924613. Na 5.67, REFERENCES
 e FK aplicadas no teste, metadados/histórico e suíte 6/14 passaram; teste vazio
-após testes. Normal segue sem coluna/permissão. Entendimento confirmado com "entendi" em 20/10/2026;
-depois, 5.68: concessão/migration em loja. Detalhes em docs/aulas/05-67-references-fk-testes.md.
+após testes. Normal segue sem coluna/permissão nessa etapa. Entendimento confirmado
+com "entendi" em 20/10/2026, publicado em e384ae1. Na 5.68, concessão/FK aplicadas
+em loja, produto preservado com categoria_id NULL e esquema/histórico conferidos.
+Entendimento da 5.68 confirmado com "entendi" em 20/10/2026; depois, 5.69: belongsTo no model Produto.
+Detalhes em docs/aulas/05-68-references-fk-aplicacao.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
