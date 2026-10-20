@@ -52,9 +52,8 @@ class CatalogoEloquentTest extends TestCase
             'status' => 'ativo',
         ]);
 
-        Produto::factory()->create([
+        Produto::factory()->inativo()->create([
             'nome' => 'Caneca',
-            'status' => 'inativo',
         ]);
 
         $catalogo = new CatalogoEloquent;

@@ -94,7 +94,10 @@ de ordenação, preservando nomes, status e ordem de inserção; teste 1/3 e su�
 em 19/10/2026, publicado em 5152ba4. Na 5.52, inativo(): static na factory usa
 state com array; diagnóstico com make conferiu inativo em memória, padrão ativo
 preservado e zero SQL. Suíte existente 6/14 passou. Entendimento da 5.52
-confirmado com "entendi" em 19/10/2026; depois, 5.53: aplicar o estado ao cadastro da Caneca no teste.
+confirmado com "entendi" em 19/10/2026, publicado em edd3411. Na 5.53, cadastro
+da Caneca no teste usa inativo()->create com nome explícito. Teste 1/3 e suíte
+6/14 passaram, rollback conferido. Entendimento da 5.53 confirmado com "entendi" em 19/10/2026.
+Depois, 5.54: apresentar DatabaseSeeder e dependências, sem executar db:seed.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
