@@ -199,7 +199,11 @@ inteiros 2/0 com um SELECT COUNT(*) por categoria, sem carregar lista. SQL/rollb
 contagens conferidos. Entendimento confirmado com "entendi" em 20/10/2026,
 publicado em fd95bdd. Na 5.85, GROUP BY categoria_id e COUNT(*) retornaram
 dois grupos com totais 2/1 em um SELECT. IDs/rollback/contagens conferidos.
-Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.86: mesmo agrupamento no Query Builder.
+Entendimento confirmado com "entendi" em 20/10/2026, publicado em d797c48.
+Na 5.86, agrupamento via selectRaw/groupBy/get comparado ao SQL: mesmos grupos/
+totais 2/1, um SELECT por caso, zero antes de get e Collection de linhas simples.
+Rollback/contagens conferidos. Entendimento confirmado com "entendi"
+em 20/10/2026; depois, 5.87: HAVING para filtrar grupos por quantidade.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -410,8 +410,11 @@ um SELECT COUNT(*) por categoria, sem carregar lista; rollback/contagens passara
 Entendimento confirmado com "entendi" em 20/10/2026, publicado em fd95bdd.
 Na 5.85, GROUP BY categoria_id com COUNT(*) retornou dois grupos e totais 2/1 em
 um SELECT; IDs/rollback/contagens conferidos. Entendimento confirmado com "entendi"
-em 20/10/2026; depois, 5.86: mesmo agrupamento com Query Builder.
-Detalhes em docs/aulas/05-85-group-by-categoria.md.
+em 20/10/2026, publicado em d797c48. Na 5.86, agrupamento via Query Builder
+comparado ao SQL: mesmos grupos/totais 2/1, um SELECT por caso e zero antes de get.
+Rollback/contagens passaram. Entendimento confirmado com "entendi"
+em 20/10/2026; depois, 5.87: HAVING para filtrar grupos por quantidade.
+Detalhes em docs/aulas/05-86-group-by-query-builder.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
