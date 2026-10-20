@@ -346,8 +346,11 @@ reexecução e produto preservado conferidos. Ambos os bancos têm duas migratio
 categorias vazia. Entendimento da 5.61 confirmado com "entendi" em 20/10/2026,
 publicado em 4d3358d. Na 5.62, model Categoria com Fillable de nome gerado;
 sintaxe/configuração em memória passaram, zero SQL. Entendimento confirmado
-com "entendi" em 20/10/2026; depois, 5.63: cadastro/leitura em loja_test com rollback.
-Detalhes em docs/aulas/05-62-model-categoria.md.
+com "entendi" em 20/10/2026, publicado em e57dbbe. Na 5.63, cadastro/leitura de
+Categoria em loja_test conferidos, ID/datas preenchidos e rollback para zero.
+Normal segue sem categorias/com um produto. Entendimento da 5.63 confirmado
+com "entendi" em 20/10/2026; depois, 5.64: migration de categoria_id anulável/FK em produtos.
+Detalhes em docs/aulas/05-63-cadastro-leitura-categoria.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

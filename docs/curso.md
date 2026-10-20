@@ -125,8 +125,11 @@ loja_migracoes; esquema/status/reexecução e produto preservado conferidos.
 Categorias vazia nos dois bancos, duas migrations em cada. Entendimento da 5.61
 confirmado com "entendi" em 20/10/2026, publicado em 4d3358d. Na 5.62, model
 Categoria criado com Fillable de nome; tabela/chave/timestamps e objeto em memória
-conferidos, zero SQL. Entendimento da 5.62 confirmado com "entendi" em 20/10/2026; depois, 5.63:
-cadastro/leitura de categoria em loja_test dentro de transação com rollback.
+conferidos, zero SQL. Entendimento da 5.62 confirmado com "entendi" em 20/10/2026,
+publicado em e57dbbe. Na 5.63, create/findOrFail de categoria em loja_test
+conferidos com ID/datas, transação desfeita e contagens finais preservadas.
+Entendimento da 5.63 confirmado com "entendi" em 20/10/2026; depois, 5.64: preparar migration
+de categoria_id anulável com FK em produtos, sem aplicar ainda.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

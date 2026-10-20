@@ -4,13 +4,15 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.62 — Model Categoria preparado.
-- Situação: somente app/Models/Categoria.php adicionado no código. Model gerado
-  pelo Artisan recebeu Fillable de nome. Sintaxe e diagnóstico em memória passaram:
-  tabela categorias, chave id, timestamps, preenchimento de nome e zero SQL.
-  Nenhuma categoria cadastrada, relação ou factory implementada nesta etapa.
-  Implementação/verificações da 5.62 concluídas; explicação apresentada.
+- Etapa atual: 5.63 — Cadastro e leitura de Categoria com rollback.
+- Situação: diagnóstico temporário em loja_test/loja_testes cadastrou Roupas
+  com Categoria::create e buscou por findOrFail. ID/datas preenchidos, exists true,
+  novo objeto lido com mesmo ID/nome; um INSERT observado. Rollback para zero
+  categorias. Consultas separadas: teste 0 categorias/0 produtos/2 migrations;
+  normal 0 categorias/1 produto/2 migrations. Nenhum código da aplicação alterado.
+  Execução/verificações da 5.63 concluídas; explicação apresentada.
   Entendimento confirmado com "entendi" em 20/10/2026. Checkpoint pronto para publicação.
+  Etapa 5.62 confirmada com "entendi" em 20/10/2026, publicada em e57dbbe.
   Etapa 5.61 confirmada com "entendi" em 20/10/2026, publicada em 4d3358d.
   Etapa 5.60 confirmada com "entemdi" em 20/10/2026, publicada em 04ab6bb.
   Etapa 5.59 confirmada com "entendi" em 20/10/2026, publicada em 9e89010.
@@ -42,8 +44,9 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.63, demonstrar cadastro e leitura de Categoria
-  em loja_test dentro de transação com rollback, conferindo ID/datas e contagens.
+  Próxima etapa: 5.64, preparar migration para adicionar
+  categoria_id anulável em produtos com chave estrangeira para categorias,
+  explicar regra de exclusão e preservação dos produtos existentes, sem aplicar ainda.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -72,7 +75,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 4d3358d, categorias no banco da aplicação 5.61.
+  Último checkpoint pedagógico confirmado/publicado: e57dbbe, model Categoria 5.62.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -143,22 +146,23 @@
 - Etapa 5.60 confirmada com "entemdi" em 20/10/2026.
 - Etapa 5.61 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.62 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.63 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: 5.61 confirmada com "entendi" e publicada em
-4d3358d249ecb19e25cf560ba3797895d9620220, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.62 implementada/explicada: Categoria.php gerado pelo
-Artisan em PHP Docker; adicionado import Fillable e #[Fillable(['nome'])].
-Model estende Model; convenção conferida Categoria → categorias, chave id,
-inteiro incremental e timestamps created_at/updated_at. Diagnóstico temporário
-/tmp/curso-562-model-categoria.php montou new Categoria(['nome' => 'Roupas'])
-somente em memória: nome preenchido, exists false/ID e datas null, zero SQL.
-Sintaxe passou; não criados factory, relações, registros ou migrations adicionais.
-Última suíte 6/14 permanece a da 5.53; verificação dirigida do model não é suíte.
-Entendimento da 5.62 confirmado com "entendi" em 20/10/2026. Publicar o checkpoint e iniciar 5.63:
-demonstrar cadastro/leitura de Categoria em loja_test dentro de transação com
-rollback, conferindo ID/datas e contagens, sem persistir categorias no banco normal.
+Estado mais recente, em 20/10/2026: 5.62 confirmada com "entendi" e publicada em
+e57dbbe889c9dd8c7360c69ce9737a5fd203d679, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.63 executada/explicada pelo script temporário
+/tmp/curso-563-cadastrar-categoria.php enviado ao PHP Docker com --env=testing.
+Identidade/contagens conferidas, transação aberta, Categoria::create de Roupas
+e findOrFail por ID. ID gerado 1 nessa amostra, datas preenchidas, exists true,
+um INSERT, novo objeto lido com mesmo ID/nome. Finally fez rollback: zero
+categorias/produtos, duas migrations, zero transações abertas. Consultas separadas
+confirmaram teste 0 categorias/0 produtos/2 migrations e normal 0/1/2.
+Nenhum código da aplicação alterado. Última suíte 6/14 permanece a da 5.53.
+Entendimento da 5.63 confirmado com "entendi" em 20/10/2026. Publicar o checkpoint e iniciar 5.64:
+preparar migration para categoria_id anulável em produtos com FK para categorias,
+explicar regra de exclusão e preservação dos registros existentes, sem aplicar ainda.
 Continuamos no módulo 5.
 Registros abaixo são históricos.
 
@@ -5393,11 +5397,49 @@ Verificações em PHP Docker:
   para model novo ainda não usado pelos cenários; último 6/14 é da 5.53.
 
 Entendimento da 5.62: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.62: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: 4d3358d, etapa 5.61.
-Próximo passo exato: publicar checkpoint e iniciar 5.63,
+Publicação da 5.62: e57dbbe889c9dd8c7360c69ce9737a5fd203d679, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
+Próximo passo após confirmação: 5.63,
 demonstrar cadastro/leitura de Categoria em loja_test dentro de transação com
 rollback, conferindo ID/datas e contagens, sem cadastro no banco normal.
+
+## Etapa 5.63 — Cadastro e leitura de Categoria com rollback
+
+Execução, explicação e verificações em 20/10/2026. Detalhes em
+docs/aulas/05-63-cadastro-leitura-categoria.md. Nenhum código da aplicação alterado.
+
+Diagnóstico temporário /tmp/curso-563-cadastrar-categoria.php inicializou Laravel
+em PHP Docker com --env=testing. Antes do cadastro, conferiu ambiente/sqlsrv,
+loja_test/loja_testes, categorias/produtos vazios, duas migrations e nenhuma
+transação aberta. Executou dentro de beginTransaction/try/finally/rollBack:
+Categoria::create(['nome' => 'Roupas']) e Categoria::findOrFail($categoria->id).
+
+Explicação: create preenche nome conforme Fillable, insere no banco e retorna
+model persistido. SQL Server gera ID; Eloquent preenche created_at/updated_at.
+FindOrFail consulta pela chave primária e retorna model ou lança exceção se
+ausente. A leitura retornou outro objeto com mesmo ID/nome; não reutilizou a
+instância anterior. Rollback pertence à demonstração, não é automático de create.
+
+Verificações:
+
+- Um INSERT em categorias observado; uma linha durante a transação.
+- Amostra: Roupas, ID 1, exists true e datas preenchidas no model cadastrado e
+  lido. Novo objeto de leitura com ID/nome iguais. Código 0.
+- Após rollback: zero categorias/zero produtos, duas migrations, zero transações
+  abertas. Não prometida reutilização de ID após rollback.
+- /tmp/curso-563-resumo-bancos.php em processos separados: loja_test/loja_testes
+  0 categorias/0 produtos/2 migrations; loja/loja_app 0 categorias/1 produto/2
+  migrations. Somente SELECTs no banco normal. Código 0.
+- git diff --check passou; segredos ignorados/fora do índice. Nenhuma migration,
+  factory ou relação criada. Suíte não repetida após demonstração dirigida;
+  último resultado 6/14 é da 5.53.
+
+Entendimento da 5.63: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.63: checkpoint concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: e57dbbe, etapa 5.62.
+Próximo passo exato: publicar checkpoint e iniciar 5.64,
+preparar migration para categoria_id anulável em produtos com chave estrangeira
+para categorias, explicar regra de exclusão/preservação e conferir sem aplicar ainda.
 
 ## Verificações e limitações do ambiente
 
@@ -5425,14 +5467,14 @@ rollback, conferindo ID/datas e contagens, sem cadastro no banco normal.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `4d3358d`,
-  `docs: verifica categorias no banco da aplicacao`.
+- Último commit local publicado conferido nesta retomada: `e57dbbe`,
+  `build: adiciona model Categoria`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `4d3358d`,
-  igual a HEAD e origin/main. Etapa 5.61 confirmada e publicada;
-  etapa 5.62 agora confirmada e pronta para publicação.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `e57dbbe`,
+  igual a HEAD e origin/main. Etapa 5.62 confirmada e publicada;
+  etapa 5.63 agora confirmada e pronta para publicação.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5578,8 +5620,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   em 04ab6bb. Na 5.61, migration aplicada em loja com loja_migracoes; esquema,
   histórico/reexecução e produto preservado conferidos. Entendimento confirmado com "entendi"
   e publicado em 4d3358d. Na 5.62, model Categoria gerado com Fillable de nome;
-  sintaxe/configuração em memória passaram, zero SQL. Entendimento confirmado com "entendi";
-  depois, 5.63: cadastro/leitura em loja_test com rollback.
+  sintaxe/configuração em memória passaram, zero SQL. Entendimento confirmado com "entendi"
+  e publicado em e57dbbe. Na 5.63, cadastro/leitura de Categoria em loja_test
+  conferidos, rollback para zero categorias. Entendimento confirmado com "entendi"; depois, 5.64:
+  preparar migration de categoria_id anulável/FK em produtos, sem aplicar.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5711,4 +5755,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.59 — Migration de categorias | Artisan gerou migration; nome string(150) e timestamps(3) preparados, sintaxe passou; sem aplicar | Confirmado pelo aluno: "entendi" | Publicado e verificado em 9e89010 |
 | 20/10/2026 | 5.60 — Categorias no banco de testes | Migration aplicada em loja_test, esquema/status/reexecução conferidos; categorias/produtos vazios, duas migrations | Confirmado pelo aluno: "entemdi" | Publicado e verificado em 04ab6bb |
 | 20/10/2026 | 5.61 — Categorias no banco da aplicação | Migration aplicada em loja com loja_migracoes; esquema/status/reexecução e produto preservado conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 4d3358d |
-| 20/10/2026 | 5.62 — Model Categoria | Classe gerada, Fillable de nome; sintaxe/configuração em memória passaram, zero SQL | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
+| 20/10/2026 | 5.62 — Model Categoria | Classe gerada, Fillable de nome; sintaxe/configuração em memória passaram, zero SQL | Confirmado pelo aluno: "entendi" | Publicado e verificado em e57dbbe |
+| 20/10/2026 | 5.63 — Cadastro/leitura de Categoria | Create/findOrFail em loja_test conferidos, ID/datas preenchidos e rollback para zero categorias | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
