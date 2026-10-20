@@ -60,8 +60,11 @@ com "entendi" em 19/10/2026 e publicado em b70f6f0. Na 5.41, primeiro teste
 de integração para catálogo vazio criado com DatabaseTransactions. Focado:
 1 teste/3 asserções; suíte: 3 testes/5 asserções, passaram. SELECT posterior
 confirmou zero produtos em loja_test e um em loja. Entendimento da 5.41
-confirmado com "entendi" em 19/10/2026. Depois, 5.42: cenário de produto ativo no mesmo arquivo,
-compartilhando a preparação isolada.
+confirmado com "entendi" em 19/10/2026 e publicado em 94e4e3d. Na 5.42, setUp
+compartilhado e cenário de produto ativo preparados. Focado: 2 testes/6 asserções;
+suíte em ordem inversa: 4 testes/8 asserções, passaram. Zero produtos em loja_test
+após rollback. Entendimento da 5.42 confirmado com "entendi" em 19/10/2026. Depois, 5.43:
+cenário com ativo/inativo para verificar o filtro.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

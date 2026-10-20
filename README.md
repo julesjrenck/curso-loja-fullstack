@@ -278,8 +278,13 @@ Na 5.41, CatalogoEloquentTest criado para catálogo vazio com DatabaseTransactio
 conferência do destino antes de DELETE e assertSame do retorno []. Focado:
 1 teste/3 asserções; suíte completa: 3 testes/5 asserções, passaram. SELECT após
 execução confirmou zero produtos em loja_test e um no banco normal.
-Entendimento da 5.41 confirmado com "entendi" em 19/10/2026; próximo passo: produto ativo.
-Detalhes em docs/aulas/05-41-teste-catalogo-vazio.md.
+Entendimento da 5.41 confirmado com "entendi" em 19/10/2026, publicado em 94e4e3d.
+Na 5.42, setUp passou a preparar cada cenário e um segundo teste cria Camiseta
+ativa, exigindo ['Camiseta']. Focado: 2 testes/6 asserções; suíte em ordem inversa:
+4 testes/8 asserções, passaram. SELECT posterior confirmou zero produtos em
+loja_test e um no banco normal. Entendimento da 5.42 confirmado com "entendi" em 19/10/2026;
+próximo passo: cenário com ativo/inativo para verificar filtro.
+Detalhes em docs/aulas/05-42-teste-produto-ativo.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

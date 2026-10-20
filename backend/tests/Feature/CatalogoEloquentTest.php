@@ -12,8 +12,10 @@ class CatalogoEloquentTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function test_retorna_lista_vazia_quando_nao_ha_produtos(): void
+    protected function setUp(): void
     {
+        parent::setUp();
+
         $identidade = DB::selectOne(
             'SELECT DB_NAME() AS banco, SUSER_SNAME() AS login'
         );
@@ -22,9 +24,25 @@ class CatalogoEloquentTest extends TestCase
         $this->assertSame('loja_testes', $identidade->login);
 
         Produto::query()->delete();
+    }
 
+    public function test_retorna_lista_vazia_quando_nao_ha_produtos(): void
+    {
         $catalogo = new CatalogoEloquent;
 
         $this->assertSame([], $catalogo->listarNomes());
+    }
+
+    public function test_retorna_nome_do_produto_ativo(): void
+    {
+        Produto::create([
+            'nome' => 'Camiseta',
+            'preco_em_centavos' => 4990,
+            'status' => 'ativo',
+        ]);
+
+        $catalogo = new CatalogoEloquent;
+
+        $this->assertSame(['Camiseta'], $catalogo->listarNomes());
     }
 }

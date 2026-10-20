@@ -4,22 +4,23 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.41 — Primeiro teste de integração do catálogo vazio.
-- Situação: backend/tests/Feature/CatalogoEloquentTest.php criado com um cenário.
-  DatabaseTransactions abre transação/rollback na conexão padrão. Teste confere
-  banco/login reais antes de DELETE, prepara produtos vazia e exige [] de
-  CatalogoEloquent::listarNomes(). Focado: 1 teste/3 asserções; suíte: 3 testes/
-  5 asserções, código 0. Consulta posterior: zero produtos em loja_test e um em loja.
-  Explicação da 5.41 apresentada; entendimento confirmado com "entendi"
-  em 19/10/2026. Publicar checkpoint e iniciar o cenário da 5.42.
+- Etapa atual: 5.42 — Produto ativo no catálogo e preparação compartilhada.
+- Situação: CatalogoEloquentTest agora usa setUp com parent::setUp, conferência
+  de banco/login e DELETE antes de cada cenário, dentro de DatabaseTransactions.
+  Segundo cenário cria Camiseta ativa e exige ['Camiseta']. Focado: 2 testes/
+  6 asserções; suíte em ordem inversa: 4 testes/8 asserções, código 0.
+  SELECT posterior: zero produtos em loja_test e um em loja, esquema preservado.
+  Explicação da 5.42 apresentada; entendimento confirmado com "entendi"
+  em 19/10/2026. Publicar checkpoint e iniciar o cenário da 5.43.
+  Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
   Etapa 5.40 confirmada com "entendi" em 19/10/2026 e publicada em b70f6f0.
   Etapa 5.39 confirmada com "entendi" em 19/10/2026 e publicada em bdfb1a3.
   Etapa 5.38 confirmada com "entendi" após esclarecer APP_ENV e publicada
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.42, cenário de produto ativo no mesmo arquivo,
-  compartilhando a preparação isolada. Demais cenários do catálogo pendentes.
+  Próxima etapa após confirmação: 5.43, cenário com produto ativo e inativo para
+  verificar o filtro. Ordenação e demais cenários pendentes.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -48,7 +49,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: b70f6f0, estrutura de testes 5.40.
+  Último checkpoint pedagógico confirmado/publicado: 94e4e3d, catálogo vazio 5.41.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -98,21 +99,21 @@
 - Etapa 5.39 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.40 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.41 confirmada com "entendi" em 19/10/2026.
+- Etapa 5.42 confirmada com "entendi" em 19/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.40 confirmada com "entendi" e publicada
-em b70f6f081d99b4009681764ee090a94f0c8ac27d, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.41 implementada/explicada: CatalogoEloquentTest com
-DatabaseTransactions e um cenário de catálogo vazio. SELECT confere banco/login
-antes do DELETE, preparação ocorre na transação e assertSame exige []. Focado
-passou com 1 teste/3 asserções; suíte completa, 3 testes/5 asserções. SELECT após
-execução confirmou zero produtos em loja_test e um em loja; histórico de migration
-preservado. Entendimento da 5.41 confirmado com "entendi" em 19/10/2026.
-Próximo passo, 5.42: cenário de produto ativo no mesmo arquivo, compartilhando preparação
-isolada. Não antecipar filtro de inativos ou ordenação nessa próxima etapa.
-Em novo clone preparar .env.testing local e a migration produtos em loja_test
-antes da suíte. Registros abaixo são históricos.
+Estado mais recente, em 19/10/2026: 5.41 confirmada com "entendi" e publicada
+em 94e4e3dff652e5c76b74064b0e43b12f4d6573c6, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.42 implementada/explicada: preparação do catálogo movida
+para setUp, começando com parent::setUp, conferências de banco/login e DELETE na
+transação. Novo cenário cadastra Camiseta ativa e exige ['Camiseta']. Focado:
+2 testes/6 asserções; suíte completa com --order-by=reverse, 4 testes/8 asserções.
+Consultas posteriores: zero produtos em loja_test, um em loja e esquema/histórico
+preservados. Entendimento da 5.42 confirmado com "entendi" em 19/10/2026.
+Próximo passo, 5.43: adicionar um cenário com produto ativo e inativo para verificar o
+filtro, sem antecipar ordenação. Em novo clone preparar .env.testing local e
+a migration produtos em loja_test antes da suíte. Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
 5.34 conferidos. Git inicialmente sem alterações locais; HEAD, origin/main e
@@ -4572,12 +4573,51 @@ Verificações realizadas:
   filtro de inativos e ordenação ainda sem cenários automatizados.
 
 Entendimento da 5.41: confirmado com "entendi" em 19/10/2026.
-Publicação da 5.41: teste e registros preparados para commit/push conforme
-autorização persistente; consultar Git e conferir o remoto após o envio.
-Último checkpoint confirmado/publicado: b70f6f0, etapa 5.40.
+Publicação da 5.41: checkpoint 94e4e3d publicado conforme autorização persistente;
+HEAD, origin/main e main remota conferidos em 94e4e3dff652e5c76b74064b0e43b12f4d6573c6.
 Próximo passo após a confirmação: 5.42,
 acrescentar um cenário de produto ativo ao mesmo arquivo, compartilhando a
 preparação isolada. Não antecipar outros cenários.
+
+## Etapa 5.42 — Produto ativo no catálogo e preparação compartilhada
+
+Data: 19/10/2026. Objetivo: verificar retorno de produto ativo e compartilhar
+a preparação entre cenários. Aula em docs/aulas/05-42-teste-produto-ativo.md.
+
+Implementação: apenas CatalogoEloquentTest.php alterado. setUp protegido/void
+chama parent::setUp e executa as duas asserções de banco/login e DELETE antes
+de cada teste. Cenário vazio preservado. Novo cenário usa Produto::create com
+nome Camiseta, preco_em_centavos 4990 e status ativo; assertSame exige somente
+['Camiseta'] de listarNomes. Sem alteração no serviço/model/configuração/migrations.
+
+Explicação apresentada: setUp é um hook chamado pelo PHPUnit antes de cada
+teste. parent::setUp preserva inicialização Laravel e início da transação pelo
+trait; sua preparação vem depois. Cada teste recebe tabela vazia e tem rollback
+próprio. Produto::create grava a fixture no SQL Server dentro da transação;
+4990 centavos representam R$ 49,90. A consulta do catálogo relê o nome do banco.
+Valor e tipo do array são comparados por assertSame. As conferências também contam como
+asserções, duas por execução do setUp.
+
+Verificações realizadas:
+
+- php -l passou. Focado no arquivo: OK (2 tests, 6 assertions), código 0.
+- Suíte completa com --order-by=reverse: OK (4 tests, 8 assertions), código 0.
+  Casos de catálogo verificados em outra ordem além da execução focada.
+- SELECT após a suíte: loja_test/loja_testes, zero produtos, migrations/produtos
+  e histórico lote 1/esquema preservados. Registro inserido no cenário foi
+  desfeito no rollback. Ambiente normal loja/loja_app com um produto e uma migration.
+- git diff --check passou; arquivos privados ignorados/fora do índice.
+  Sem nova dependência, migration, seeder, conta ou alteração de credencial.
+- Cobertura atual: tabela sem produtos e um produto ativo. Filtro de inativos
+  e ordenação ainda não têm seus cenários específicos.
+
+Entendimento da 5.42: confirmado com "entendi" em 19/10/2026.
+Publicação da 5.42: teste e registros preparados para commit/push conforme
+autorização persistente; consultar Git e conferir o remoto após o envio.
+Último checkpoint confirmado/publicado: 94e4e3d, etapa 5.41.
+Próximo passo após a confirmação: 5.43,
+adicionar cenário com um produto ativo e um inativo para verificar o filtro;
+não antecipar o cenário de ordenação.
 
 ## Verificações e limitações do ambiente
 
@@ -4605,14 +4645,14 @@ preparação isolada. Não antecipar outros cenários.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `b70f6f0`,
-  `docs: registra produtos no banco exclusivo de testes`.
+- Último commit local publicado conferido nesta retomada: `94e4e3d`,
+  `test: verifica catalogo vazio no SQL Server`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `b70f6f0`,
-  igual a HEAD e origin/main. Etapa 5.40 confirmada e publicada;
-  teste e documentação da 5.41 ficam locais até a confirmação de entendimento.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `94e4e3d`,
+  igual a HEAD e origin/main. Etapa 5.41 confirmada e publicada;
+  teste e documentação da 5.42 ficam locais até a confirmação de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -4715,7 +4755,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   produtos/migrations criadas em loja_test; esquema/status/reexecução conferidos.
   Entendimento confirmado com "entendi". Na 5.41, integração de catálogo vazio
   implementada/explicada; focado 1 teste/3 asserções e suíte 3 testes/5 asserções.
-  Entendimento confirmado com "entendi"; depois, 5.42: produto ativo com preparação isolada.
+  Entendimento confirmado com "entendi". Na 5.42, setUp compartilhado e cenário
+  ativo passaram: focado 2 testes/6 asserções e suíte inversa 4 testes/8 asserções.
+  Entendimento confirmado com "entendi"; depois, 5.43: filtro com ativo e inativo.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -4826,4 +4868,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.38 — Configuração PHPUnit para SQL Server | Duas entradas XML ajustadas; XSD, carregador de variáveis e SELECT Laravel conferidos, sem suíte | Confirmado pelo aluno: "entendi", após esclarecer APP_ENV | Publicado e verificado em 734fc5f |
 | 19/10/2026 | 5.39 — Primeira execução dos testes de exemplo do backend | Dois exemplos existentes executados: 2 testes/2 asserções; SELECT separado confirmou zero tabelas | Confirmado pelo aluno: "entendi" | Publicado e verificado em bdfb1a3 |
 | 19/10/2026 | 5.40 — Tabela produtos no banco de testes | Migration existente aplicada em loja_test; esquema, registro lote 1, status e reexecução conferidos; zero produtos | Confirmado pelo aluno: "entendi" | Publicado e verificado em b70f6f0 |
-| 19/10/2026 | 5.41 — Primeiro teste de integração do catálogo vazio | Um cenário com transação/rollback; focado 1 teste/3 asserções e suíte 3 testes/5 asserções; estado dos bancos conferido | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; consultar Git |
+| 19/10/2026 | 5.41 — Primeiro teste de integração do catálogo vazio | Um cenário com transação/rollback; focado 1 teste/3 asserções e suíte 3 testes/5 asserções; estado dos bancos conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 94e4e3d |
+| 19/10/2026 | 5.42 — Produto ativo e preparação compartilhada | setUp compartilhado e segundo cenário; focado 2 testes/6 asserções e suíte inversa 4 testes/8 asserções; rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint preparado para publicação; consultar Git |
