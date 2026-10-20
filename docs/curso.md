@@ -107,8 +107,12 @@ com firstOrCreate desde a 5.24. Arquivo preservado/revisado em relação ao
 DatabaseSeeder; sintaxe passou, sem execução. Entendimento da 5.55 confirmado
 com "entendi" em 19/10/2026, publicado em 0f754ae. Na 5.56, DatabaseSeeder chama
 ProdutoSeeder por call; exemplo de User removido. Sintaxe/autoload passaram,
-sem executar seeders. Entendimento da 5.56 confirmado com "entendi" em 19/10/2026; depois,
-5.57: verificar db:seed padrão em loja_test dentro de transação com rollback.
+sem executar seeders. Entendimento da 5.56 confirmado com "entendi" em 19/10/2026,
+publicado em 07af123. Na 5.57, db:seed padrão executado em loja_test dentro de
+transação: chamou ProdutoSeeder, criou Camiseta e catálogo retornou seu nome.
+Rollback/contagens conferidos: teste com zero produtos, normal com um.
+Entendimento da 5.57 confirmado com "entendi" em 19/10/2026; depois, 5.58: modelagem inicial de
+categorias, relação um para muitos e chave estrangeira, sem alterar esquema ainda.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

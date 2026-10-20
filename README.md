@@ -329,8 +329,11 @@ corrigida previsão de gerá-lo novamente. Sintaxe passou, sem executar cadastro
 Entendimento da 5.55 confirmado com "entendi" em 19/10/2026, publicado em 0f754ae.
 Na 5.56, DatabaseSeeder chama ProdutoSeeder com call; exemplo User removido.
 Sintaxe/autoload passaram, sem executar seeders. Entendimento da 5.56 confirmado
-com "entendi" em 19/10/2026; depois, 5.57: execução padrão em loja_test com rollback.
-Detalhes em docs/aulas/05-56-database-seeder-chama-produto.md.
+com "entendi" em 19/10/2026, publicado em 07af123. Na 5.57, db:seed padrão em
+loja_test chamou ProdutoSeeder/criou Camiseta; catálogo e rollback conferidos.
+Teste voltou a zero produtos e banco normal mantém um produto. Entendimento da
+5.57 confirmado com "entendi" em 19/10/2026; depois, 5.58: modelagem de categorias/produtos.
+Detalhes em docs/aulas/05-57-executar-seeder-padrao.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

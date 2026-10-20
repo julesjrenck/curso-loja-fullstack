@@ -4,13 +4,15 @@
 
 - Última atualização: 19/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.56 — DatabaseSeeder chama ProdutoSeeder.
-- Situação: somente DatabaseSeeder.php alterado no código. Exemplo User e
-  import removidos; run agora contém $this->call([ProdutoSeeder::class]).
-  WithoutModelEvents preservado; ProdutoSeeder preservado com firstOrCreate.
-  Sintaxe/autoload/herança/run conferidos em Docker, sem executar seeders ou SQL.
-  Implementação/verificações da 5.56 concluídas; explicação apresentada.
+- Etapa atual: 5.57 — Execução do seeder padrão com rollback.
+- Situação: db:seed padrão executado em loja_test/loja_testes por diagnóstico
+  temporário dentro de transação: chamou ProdutoSeeder, criou uma Camiseta
+  4990/ativo e catálogo retornou ['Camiseta']. Código 0, um INSERT observado.
+  Rollback final conferido: zero produtos, uma migration, zero transações abertas.
+  SELECTs separados: loja_test com zero produtos; loja com um produto anterior.
+  Implementação da 5.57: somente documentação; explicação/verificações concluídas.
   Entendimento confirmado com "entendi" em 19/10/2026. Checkpoint pronto para publicação.
+  Etapa 5.56 confirmada com "entendi" em 19/10/2026, publicada em 07af123.
   Etapa 5.55 confirmada com "entendi" em 19/10/2026, publicada em 0f754ae.
   Etapa 5.54 confirmada com "entendi" após nova explicação em 19/10/2026,
   publicada em def2f14.
@@ -36,8 +38,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.57, verificar execução padrão de db:seed em
-  loja_test dentro de transação com rollback e conferir encadeamento/contagens.
+  Próxima etapa: 5.58, apresentar categorias e relação um para
+  muitos com produtos, explicando chave estrangeira apenas na modelagem inicial.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -66,7 +68,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 0f754ae, revisão do ProdutoSeeder 5.55.
+  Último checkpoint pedagógico confirmado/publicado: 07af123, ligação dos seeders 5.56.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -131,20 +133,24 @@
 - Etapa 5.54 confirmada com "entendi" em 19/10/2026, após explicação com exemplo da loja.
 - Etapa 5.55 confirmada com "entendi" em 19/10/2026.
 - Etapa 5.56 confirmada com "entendi" em 19/10/2026.
+- Etapa 5.57 confirmada com "entendi" em 19/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 19/10/2026: 5.55 confirmada com "entendi" e publicada em
-0f754aec08f491a658aac7d24f5150bbfefcf774, igual a HEAD, origin/main e main
-remota no envio. Etapa 5.56 implementada/explicada: DatabaseSeeder removeu
-import/exemplo User e chama $this->call([ProdutoSeeder::class]) em run.
-WithoutModelEvents preservado; ProdutoSeeder existente com firstOrCreate
-preservado. Explicados call herdado, ::class e namespace compartilhado.
-Sintaxe/autoload/herança/run conferidos em Docker sem invocar os seeders ou SQL.
-Última suíte permanece a da 5.53: 6 testes/14 asserções; não repetida nesta etapa.
-Entendimento da 5.56 confirmado com "entendi" em 19/10/2026. Publicar o checkpoint
-e iniciar 5.57: executar db:seed padrão em loja_test dentro de transação acompanhada
-de rollback, conferindo chamada a ProdutoSeeder e contagens sem deixar cadastros.
+Estado mais recente, em 19/10/2026: 5.56 confirmada com "entendi" e publicada em
+07af1238a439706caa32d5f543c26bdfd16f88d2, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.57 executada/explicada: diagnóstico temporário
+/tmp/curso-557-executar-seeder-padrao.php enviado ao PHP Docker com --env=testing.
+Confere ambiente/banco/login e tabela vazia; abre transação, chama db:seed pelo
+kernel sem --class e com --database=sqlsrv. DatabaseSeeder chamou ProdutoSeeder:
+código 0, um INSERT, Camiseta/4990/ativo com ID/datas e catálogo ['Camiseta'].
+Finally fez rollback; zero produtos, uma migration e zero transações abertas.
+SELECTs separados confirmaram loja_test/loja_testes com zero produtos e
+loja/loja_app com um produto. Nenhum código da aplicação alterado nesta etapa.
+Última suíte permanece a da 5.53: 6 testes/14 asserções; não repetida após
+verificação dirigida do seeder. Entendimento da 5.57 confirmado com "entendi"
+em 19/10/2026. Publicar o checkpoint e iniciar 5.58: apresentar categorias, relação um para
+muitos e chave estrangeira na modelagem, sem criar tabelas/models ainda.
 Continuamos no módulo 5.
 Registros abaixo são históricos.
 
@@ -5168,11 +5174,47 @@ Verificações em PHP Docker:
   migration, serviço ou teste. Suíte não repetida para essa ligação simples.
 
 Entendimento da 5.56: confirmado com "entendi" em 19/10/2026.
-Publicação da 5.56: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: 0f754ae, etapa 5.55.
-Próximo passo exato: publicar checkpoint e iniciar 5.57,
+Publicação da 5.56: 07af1238a439706caa32d5f543c26bdfd16f88d2, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
+Próximo passo após confirmação: 5.57,
 executar db:seed padrão em loja_test dentro de transação acompanhada de rollback,
 conferindo encadeamento e contagens sem deixar produtos no banco de testes.
+
+## Etapa 5.57 — Execução do seeder padrão com rollback
+
+Execução, explicação e verificações em 19/10/2026. Detalhes em
+docs/aulas/05-57-executar-seeder-padrao.md. Nenhum código da aplicação alterado.
+
+Diagnóstico temporário /tmp/curso-557-executar-seeder-padrao.php inicializou
+Laravel em PHP Docker com --env=testing. Conferiu ambiente, conexão sqlsrv,
+identidade loja_test/loja_testes, zero produtos/uma migration e nenhuma transação
+aberta antes de iniciar. BeginTransaction envolveu kernel->call('db:seed', ...)
+com --database=sqlsrv/--no-interaction/--no-ansi, sem --class. Finally chamou
+rollBack. Esse isolamento vem do diagnóstico, não do db:seed por padrão.
+
+Verificações:
+
+- Implementação de SeedCommand consultada para conferir uso da conexão.
+- Saída do Artisan mostrou ProdutoSeeder RUNNING/DONE via DatabaseSeeder.
+  Retorno do comando 0; listener observou um INSERT na tabela produtos.
+- Dentro da transação: um Produto Camiseta/4990/ativo, exists true, ID/datas
+  presentes; CatalogoEloquent retornou exatamente ['Camiseta'].
+- Após rollback: zero produtos, uma migration e zero transações abertas.
+  Identidades numéricas do SQL Server não são prometidas como reutilizáveis
+  após rollback; verificação trata de linhas, não de zerar contadores internos.
+- SELECTs em processos separados: loja_test/loja_testes com zero produtos e
+  loja/loja_app com um produto; uma migration em cada banco. Código 0.
+- Nenhum db:seed no banco normal. Nenhuma migration ou configuração alterada.
+- git diff --check passou; segredos ignorados/fora do índice. Suíte não repetida
+  após verificação dirigida; último resultado 6/14 pertence à 5.53.
+
+Entendimento da 5.57: confirmado com "entendi" em 19/10/2026.
+Publicação da 5.57: checkpoint concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: 07af123, etapa 5.56.
+Próximo passo exato: publicar checkpoint e iniciar 5.58,
+apresentar categorias e relação um para muitos com produtos, explicando chave
+estrangeira na modelagem, sem criar tabelas/models nessa etapa.
+
 ## Verificações e limitações do ambiente
 
 - Pasta inicial inspecionada: sem aplicação ou documentação anterior.
@@ -5199,14 +5241,14 @@ conferindo encadeamento e contagens sem deixar produtos no banco de testes.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `0f754ae`,
-  `docs: revisa ProdutoSeeder existente e sua execucao`.
+- Último commit local publicado conferido nesta retomada: `07af123`,
+  `build: conecta DatabaseSeeder ao ProdutoSeeder`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `0f754ae`,
-  igual a HEAD e origin/main. Etapa 5.55 confirmada e publicada;
-  etapa 5.56 agora confirmada e pronta para publicação.
+- Remoto consultado em 19/10/2026 após o push com `git ls-remote`: `07af123`,
+  igual a HEAD e origin/main. Etapa 5.56 confirmada e publicada;
+  etapa 5.57 agora confirmada e pronta para publicação.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5339,7 +5381,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   ProdutoSeeder já existe, foi preservado/revisado, sintaxe passou. Entendimento
   confirmado com "entendi" e publicado em 0f754ae. Na 5.56, ligação escrita com
   call([ProdutoSeeder::class]); sintaxe/autoload passaram, seeders não executados.
-  Entendimento confirmado com "entendi"; depois, 5.57: execução padrão em loja_test com rollback.
+  Entendimento confirmado com "entendi" e publicado em 07af123. Na 5.57,
+  execução padrão em loja_test chamou ProdutoSeeder/criou Camiseta, catálogo
+  conferido e rollback para zero produtos. Entendimento confirmado com "entendi"; depois, 5.58:
+  modelagem inicial de categorias/relação com produtos, sem alterar o esquema.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5465,4 +5510,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 19/10/2026 | 5.53 — Estado inativo aplicado ao teste | Cadastro da Caneca usa inativo()->create; teste 1/3 e suíte 6/14 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6ac5518 |
 | 19/10/2026 | 5.54 — Leitura do DatabaseSeeder | Código gerado explicado; sintaxe/reflexão e SELECTs passaram, users ausente; seeder não executado | Confirmado pelo aluno: "entendi", após nova explicação | Publicado e verificado em def2f14 |
 | 19/10/2026 | 5.55 — Revisão do ProdutoSeeder existente | Corrigido plano de geração duplicada; arquivo preservado/revisado, sintaxe passou; sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 0f754ae |
-| 19/10/2026 | 5.56 — DatabaseSeeder chama ProdutoSeeder | Exemplo User substituído por call de ProdutoSeeder; sintaxe/autoload passaram, sem execução | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
+| 19/10/2026 | 5.56 — DatabaseSeeder chama ProdutoSeeder | Exemplo User substituído por call de ProdutoSeeder; sintaxe/autoload passaram, sem execução | Confirmado pelo aluno: "entendi" | Publicado e verificado em 07af123 |
+| 19/10/2026 | 5.57 — Execução do seeder padrão com rollback | db:seed em loja_test chamou ProdutoSeeder, criou Camiseta, catálogo conferido; rollback/contagens passaram | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
