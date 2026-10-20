@@ -4,16 +4,17 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.84 — Contar produtos com count().
-- Situação: diagnóstico temporário /tmp/curso-584-count-produtos.php executado
-  pelo PHP Docker em loja_test/loja_testes com identidade conferida e rollback.
-  Roupas com Camiseta/Calça e Acessórios sem produtos. DB::table('produtos')->
-  where('categoria_id', $categoria->id)->count() retorna inteiros 2/0, um SELECT
-  COUNT(*) por categoria, sem carregar lista. Listener mediu só as contagens.
+- Etapa atual: 5.85 — GROUP BY e COUNT por categoria.
+- Situação: diagnóstico temporário /tmp/curso-585-group-by-categoria.php
+  executado pelo PHP Docker em loja_test/loja_testes com identidade e rollback.
+  Roupas tem Camiseta/Calça; Acessórios tem Caneca. SQL parametrizado SELECT
+  categoria_id, COUNT(*) AS total, GROUP BY categoria_id retornou dois grupos
+  com totais 2/1 em um SELECT. IDs conferidos; nomes exibidos por mapa em PHP.
   Somente documentação alterada. Após rollback: teste 0 categorias/0 produtos/
   3 migrations; normal 0/1/3.
-  Demonstração/verificações da 5.84 concluídas; explicação apresentada.
-  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.84 pendente.
+  Demonstração/verificações da 5.85 concluídas; explicação apresentada.
+  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.85 pendente.
+  Etapa 5.84 confirmada com "entendi" em 20/10/2026, publicada em fd95bdd.
   Etapa 5.83 confirmada com "entendi" em 20/10/2026, publicada em 829236f.
   Etapa 5.82 confirmada com "entendi" em 20/10/2026, publicada em c700173.
   Etapa 5.81 confirmada com "entendi" em 20/10/2026, publicada em dca90ec.
@@ -57,7 +58,7 @@
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.80: 14 testes/54 asserções. Na 5.84, diagnóstico count passou; suíte não reexecutada, código preservado.
+  Última suíte na 5.80: 14 testes/54 asserções. Na 5.85, diagnóstico GROUP BY passou; suíte não reexecutada, código preservado.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -67,8 +68,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.85, GROUP BY categoria_id com COUNT(*) em
-  uma consulta SQL, duas categorias com totais 2/1, diagnóstico com rollback.
+  Próxima etapa após confirmação: 5.86, mesmo agrupamento no Query Builder com
+  groupBy/selectRaw/get, comparar com SQL nos mesmos dados, com rollback.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -97,7 +98,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 829236f, Query Builder na etapa 5.83.
+  Último checkpoint pedagógico confirmado/publicado: fd95bdd, count por categoria na etapa 5.84.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -190,28 +191,32 @@
 - Etapa 5.82 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.83 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.84 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.85 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: 5.83 confirmada com "entendi" e publicada em
-829236f24585c77975b679410afccdec04203538, igual a HEAD, origin/main e main
-remota após o push. Na 5.84, somente documentação alterada; diagnóstico temporário
-/tmp/curso-584-count-produtos.php executado pelo PHP Docker com --env=testing.
+Estado mais recente, em 20/10/2026: 5.84 confirmada com "entendi" e publicada em
+fd95bdd4e3a77e67db5ff9f9d62fbb937c5c5d34, igual a HEAD, origin/main e main
+remota após o push. Na 5.85, somente documentação alterada; diagnóstico temporário
+/tmp/curso-585-group-by-categoria.php executado pelo PHP Docker com --env=testing.
 Conferiu testing/loja_test/loja_testes antes de cadastro. Transação prepara Roupas
-com Camiseta/Calça e Acessórios vazia. DB::table('produtos')->where('categoria_id',
-$categoria->id)->count() executado uma vez por categoria. Inteiros 2/0 conferidos
-estritamente; listener exige um SELECT contendo COUNT(*) por chamada, medição
-após preparação e reiniciada entre casos. SQL observado: select count(*) as
-[aggregate] from [produtos] where [categoria_id] = ?. Sem get/lista de produtos.
+com Camiseta/Calça e Acessórios com Caneca. SQL por DB::select: SELECT categoria_id,
+COUNT(*) AS total FROM dbo.produtos WHERE categoria_id IN (?, ?) GROUP BY
+categoria_id ORDER BY categoria_id. IDs passados separadamente. Listener mede
+somente SELECT da leitura: um SELECT/dois grupos, totais 2/1 e IDs corretos.
+Nesta execução IDs 99/100; variáveis de models usadas nas verificações, sem fixar
+IDs. Valores numéricos retornados normalizados para inteiros no diagnóstico.
+Nomes exibidos por mapa PHP dos models já criados, sem JOIN ou consultas extras.
 Código 0; finally rollback. Contagens posteriores teste 0 categorias/0 produtos/
 3 migrations e normal 0/1/3. Aplicação/testes preservados; suíte não reexecutada,
 última execução 14/54 da 5.80.
-Demonstração/verificação/explicação da 5.84 concluídas; entendimento confirmado
+Demonstração/verificação/explicação da 5.85 concluídas; entendimento confirmado
 com "entendi" em 20/10/2026. Publicação pendente.
-Publicar e iniciar somente 5.85: GROUP BY categoria_id e COUNT(*)
-em uma consulta SQL parametrizada sobre produtos, duas categorias com totais 2/1.
-Diagnóstico temporário loja_test com identidade e rollback, sem alterar aplicação
-ou introduzir JOIN com agregação ainda. Continuamos no módulo 5.
+Publicar e iniciar somente 5.86: mesmo agrupamento com Query
+Builder, select de categoria_id/selectRaw COUNT(*)/whereIn/groupBy/orderBy/get;
+comparar com SQL nos mesmos dados. Diagnóstico temporário loja_test com identidade
+e rollback, sem mudar aplicação ou acrescentar JOIN/agregação ainda.
+Continuamos no módulo 5.
 Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
@@ -6242,12 +6247,47 @@ Verificações:
   14 testes/54 asserções da 5.80. git diff --check passou; segredos fora do índice.
 
 Entendimento da 5.84: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.84: checkpoint concluído, pronto para commit/push autorizado.
-Último checkpoint confirmado/publicado: 829236f, etapa 5.83.
+Publicação da 5.84: fd95bdd4e3a77e67db5ff9f9d62fbb937c5c5d34, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
 Próximo passo exato: publicar e iniciar somente 5.85: GROUP BY categoria_id com COUNT(*) em uma consulta SQL
 parametrizada sobre produtos; duas categorias com totais 2/1. Diagnóstico temporário
 loja_test com identidade e rollback, sem alterar aplicação ou introduzir JOIN com
 agregação ainda.
+
+## Etapa 5.85 — GROUP BY e COUNT por categoria
+
+Demonstração, explicação e verificações em 20/10/2026. Detalhes em
+docs/aulas/05-85-group-by-categoria.md.
+
+Somente documentação alterada. Diagnóstico temporário
+/tmp/curso-585-group-by-categoria.php carrega Laravel Docker e confere
+testing/loja_test/loja_testes antes de cadastro. Transação prepara Roupas com
+Camiseta/Calça e Acessórios com Caneca, todos ativos.
+DB::select executa SELECT categoria_id, COUNT(*) AS total FROM dbo.produtos
+WHERE categoria_id IN (?, ?) GROUP BY categoria_id ORDER BY categoria_id,
+com IDs reais das categorias em array de parâmetros separado.
+
+GROUP BY reúne linhas com mesmo categoria_id; COUNT(*) conta cada grupo.
+Resultado tem uma linha por grupo: ID de Roupas/2 e ID de Acessórios/1.
+Nomes usados apenas na exibição por mapa PHP dos models da preparação. Não há
+JOIN ou busca adicional de nomes. Nesta execução IDs 99/100; não foram fixados
+no SQL ou verificações. Cast (int) nos valores numéricos apenas para comparar.
+
+Verificações:
+
+- Diagnóstico código 0; um SELECT, dois grupos e IDs/totais exatos 2/1.
+- Finally rollback; SELECTs posteriores em processos separados conferiram teste
+  0 categorias/0 produtos/3 migrations e normal 0/1/3, identidades esperadas.
+- Aplicação/testes preservados; suíte não reexecutada. Última execução:
+  14 testes/54 asserções da 5.80. git diff --check passou; segredos fora do índice.
+
+Entendimento da 5.85: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.85: checkpoint concluído, pronto para commit/push autorizado.
+Último checkpoint confirmado/publicado: fd95bdd, etapa 5.84.
+Próximo passo exato: publicar e iniciar somente 5.86: mesmo agrupamento com Query Builder por select de
+categoria_id/selectRaw COUNT(*)/whereIn/groupBy/orderBy/get, comparar com SQL
+nos mesmos dados. Diagnóstico temporário loja_test com identidade e rollback,
+sem mudar aplicação ou combinar JOIN com agregação ainda.
 
 ## Verificações e limitações do ambiente
 
@@ -6275,14 +6315,14 @@ agregação ainda.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `829236f`,
-  `docs: demonstra LEFT JOIN com Query Builder`.
+- Último commit local publicado conferido nesta retomada: `fd95bdd`,
+  `docs: demonstra count de produtos por categoria`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `829236f`,
-  igual a HEAD e origin/main. Etapa 5.83 confirmada e publicada;
-  etapa 5.84 fica local aguardando confirmação explícita de entendimento.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `fd95bdd`,
+  igual a HEAD e origin/main. Etapa 5.84 confirmada e publicada;
+  etapa 5.85 fica local aguardando confirmação explícita de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -6484,7 +6524,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   e 1 SELECT, sem SQL antes de get; rollback/contagens passaram. Entendimento confirmado
   com "entendi" em 20/10/2026 e publicado em 829236f. Na 5.84, count() retornou
   inteiros 2/0 e executou um SELECT COUNT(*) por categoria; rollback/contagens
-  conferidos. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.85: GROUP BY e COUNT em uma consulta.
+  conferidos. Entendimento confirmado com "entendi" em 20/10/2026 e publicado em
+  fd95bdd. Na 5.85, GROUP BY/COUNT por categoria_id retornou totais 2/1 em um
+  SELECT; IDs/rollback/contagens conferidos. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.86:
+  mesmo agrupamento no Query Builder.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -6638,4 +6681,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.81 — INNER JOIN produtos/categorias | Diagnóstico parametrizado retornou somente produto associado, 1 SELECT/1 linha; produto sem categoria preservado, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em dca90ec |
 | 20/10/2026 | 5.82 — LEFT JOIN produtos/categorias | INNER 1 SELECT/1 linha e LEFT 1 SELECT/2 linhas, incluindo Caneca/null; rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em c700173 |
 | 20/10/2026 | 5.83 — LEFT JOIN Query Builder | SQL e Builder com mesmos nomes/null, 1 SELECT por caso e zero antes de get; Collection/stdClass e rollback conferidos | Confirmado pelo aluno: "entendi" | Publicado e verificado em 829236f |
-| 20/10/2026 | 5.84 — Count de produtos por categoria | Count retornou inteiros 2/0, um SELECT COUNT(*) por categoria sem carregar lista; rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |
+| 20/10/2026 | 5.84 — Count de produtos por categoria | Count retornou inteiros 2/0, um SELECT COUNT(*) por categoria sem carregar lista; rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em fd95bdd |
+| 20/10/2026 | 5.85 — GROUP BY categoria | SQL parametrizado agrupou produtos por categoria_id, um SELECT/dois grupos com totais 2/1; rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |

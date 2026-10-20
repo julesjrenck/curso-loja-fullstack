@@ -407,8 +407,11 @@ mesmos nomes/null, 1 SELECT por caso, zero antes de get e Collection de linhas
 simples. Rollback/contagens passaram. Entendimento confirmado com "entendi"
 em 20/10/2026, publicado em 829236f. Na 5.84, count() retornou inteiros 2/0,
 um SELECT COUNT(*) por categoria, sem carregar lista; rollback/contagens passaram.
-Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.85: GROUP BY e COUNT em uma consulta.
-Detalhes em docs/aulas/05-84-count-produtos-categoria.md.
+Entendimento confirmado com "entendi" em 20/10/2026, publicado em fd95bdd.
+Na 5.85, GROUP BY categoria_id com COUNT(*) retornou dois grupos e totais 2/1 em
+um SELECT; IDs/rollback/contagens conferidos. Entendimento confirmado com "entendi"
+em 20/10/2026; depois, 5.86: mesmo agrupamento com Query Builder.
+Detalhes em docs/aulas/05-85-group-by-categoria.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
