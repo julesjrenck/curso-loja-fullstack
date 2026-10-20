@@ -357,8 +357,10 @@ Coluna/FK continuam ausentes e migration Pending; suíte não executada.
 Entendimento da descoberta confirmado com "entendi" em 20/10/2026, publicado em 91ed884.
 Na 5.66, script de REFERENCES restrito a categorias no teste preparado; PARSEONLY
 passou, nenhuma concessão aplicada. Migration continua Pending. Entendimento
-confirmado com "entendi" em 20/10/2026; depois, 5.67: aplicar concessão e repetir migration/suíte.
-Detalhes em docs/aulas/05-66-script-references-testes.md.
+confirmado com "entendi" em 20/10/2026, publicado em 3924613. Na 5.67, REFERENCES
+e FK aplicadas no teste, metadados/histórico e suíte 6/14 passaram; teste vazio
+após testes. Normal segue sem coluna/permissão. Entendimento confirmado com "entendi" em 20/10/2026;
+depois, 5.68: concessão/migration em loja. Detalhes em docs/aulas/05-67-references-fk-testes.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

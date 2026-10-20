@@ -137,8 +137,12 @@ categorias; coluna/FK ausentes e Pending confirmados após falha. Suíte planeja
 não executada. Entendimento da descoberta confirmado com "entendi" em 20/10/2026,
 publicado em 91ed884. Na 5.66, script de GRANT REFERENCES restrito a categorias
 em loja_test preparado; PARSEONLY passou, permissão continua 0 e migration Pending.
-Entendimento da 5.66 confirmado com "entendi" em 20/10/2026; depois, 5.67: aplicar concessão e
-repetir migration/suíte somente no banco de testes.
+Entendimento da 5.66 confirmado com "entendi" em 20/10/2026, publicado em 3924613.
+Na 5.67, concessão aplicada no teste, REFERENCES 1 e FK criada: categoria_id
+BIGINT NULL, referência a categorias.id/NO_ACTION, histórico lote 3 conferidos.
+Suíte 6/14 passou; teste vazio após testes. Normal segue sem coluna/permissão.
+Entendimento da 5.67 confirmado com "entendi" em 20/10/2026; depois, 5.68: concessão e mesma
+migration em loja com loja_migracoes, preservando o produto com categoria_id NULL.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

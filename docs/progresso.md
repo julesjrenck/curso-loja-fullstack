@@ -4,14 +4,16 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.66 — Script de REFERENCES preparado.
-- Situação: criado docker/sqlserver/conceder-references-categorias-testes.sql.
-  USE loja_test e GRANT REFERENCES somente em dbo.categorias para loja_testes;
-  script destinado ao sqlcmd, sem credenciais. PARSEONLY passou, sem executar GRANT.
-  SELECTs posteriores confirmaram REFERENCES 0 nas duas contas, coluna ausente,
-  migration Pending e contagens preservadas. Aplicação da FK/suíte ainda pendentes.
-  Implementação/verificações da 5.66 concluídas; explicação apresentada.
+- Etapa atual: 5.67 — REFERENCES e FK aplicadas no banco de testes.
+- Situação: script de GRANT aplicado somente em loja_test; loja_testes tem
+  REFERENCES efetivo 1, com GRANT explícito em dbo.categorias. Migration de
+  categoria_id aplicada com status [3] Ran. Coluna BIGINT NULL e FK para
+  categorias.id habilitada/confiável, DELETE/UPDATE NO_ACTION, conferidos.
+  Suíte: 6 testes/14 asserções passou. Teste voltou a 0 categorias/0 produtos,
+  três migrations. Loja continua 0/1/2, sem categoria_id e REFERENCES 0 para migrações.
+  Aplicação/verificações da 5.67 concluídas; explicação apresentada.
   Entendimento confirmado com "entendi" em 20/10/2026. Checkpoint pronto para publicação.
+  Etapa 5.66 confirmada com "entendi" em 20/10/2026, publicada em 3924613.
   Descoberta da 5.65 confirmada com "entendi" em 20/10/2026, publicada em 91ed884.
   Etapa 5.64 confirmada com "entendi" em 20/10/2026, publicada em e5e6156.
   Etapa 5.63 confirmada com "entendi" em 20/10/2026, publicada em ce67886.
@@ -37,7 +39,7 @@
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.53: 6 testes/14 asserções, após uso de inativo no teste.
+  Última suíte na 5.67: 6 testes/14 asserções, após aplicação da FK no banco de testes.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -47,8 +49,9 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa: 5.67, aplicar o script somente em loja_test,
-  conferir REFERENCES efetivo, repetir apenas migration de categoria_id e suíte existente.
+  Próxima etapa: 5.68, preparar/aplicar GRANT REFERENCES restrito
+  a dbo.categorias em loja para loja_migracoes, aplicar somente a mesma migration
+  e conferir o produto existente preservado com categoria_id NULL.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -77,7 +80,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 91ed884, descoberta de REFERENCES 5.65.
+  Último checkpoint pedagógico confirmado/publicado: 3924613, script de REFERENCES para testes 5.66.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -152,23 +155,26 @@
 - Etapa 5.64 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.65 confirmada com "entendi" em 20/10/2026, quanto à descoberta/permissão.
 - Etapa 5.66 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.67 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: descoberta 5.65 confirmada com "entendi" e
-publicada em 91ed88437740d62dcfdc824631848195425267de, igual a HEAD, origin/main
-e main remota no envio. Etapa 5.66 implementada/explicada: script público
-docker/sqlserver/conceder-references-categorias-testes.sql contém :ON ERROR EXIT,
-USE loja_test e GRANT REFERENCES ON OBJECT::dbo.categorias TO loja_testes, com GO.
-Arquivo analisado com PARSEONLY no SQL Server Docker, código 0; GRANT não executado.
-Consultas posteriores autenticadas como loja_testes/loja_migracoes confirmaram
-REFERENCES 0 em seus bancos, categoria_id ausente e contagens 0/0/2 no teste,
-0/1/2 no normal. Migration de categoria_id continua Pending; suíte não executada.
-Último resultado 6/14 permanece o da 5.53. Entendimento da 5.66 confirmado com
-"entendi" em 20/10/2026. Publicar o checkpoint e iniciar 5.67: aplicar script em loja_test, verificar
-REFERENCES efetivo e repetir somente migration de categoria_id e suíte existente,
-conferindo FK/histórico/contagens. Não conceder permissão nem aplicar FK em loja
-nessa mesma etapa.
+Estado mais recente, em 20/10/2026: 5.66 confirmada com "entendi" e publicada em
+39246132a84eb2b331cfa828e13a2454a3067f28, igual a HEAD, origin/main e main
+remota no envio. Etapa 5.67 aplicada/explicada: sqlcmd executou o script público
+conceder-references-categorias-testes.sql somente em loja_test. Conferido com
+loja_testes: REFERENCES efetivo 1 e GRANT explícito sobre dbo.categorias.
+Repetida apenas migration 2026_10_20_120347_add_categoria_id_to_produtos_table
+com --env=testing/--database=sqlsrv/--path: DONE, status [3] Ran. Categoria_id BIGINT
+NULL/sem IDENTITY; FK produtos_categoria_id_foreign aponta a dbo.categorias.id,
+habilitada/confiável, DELETE e UPDATE NO_ACTION. Suíte existente passou: 6 testes/
+14 asserções, código 0. Após testes, loja_test 0 categorias/0 produtos/3 migrations.
+Loja segue 0/1/2, sem categoria_id e sem REFERENCES para loja_migracoes. Nenhum
+código da aplicação alterado nesta etapa; nenhuma migration alterada.
+Entendimento da 5.67 confirmado com "entendi" em 20/10/2026. Publicar o checkpoint e iniciar 5.68:
+preparar/aplicar concessão REFERENCES apenas em loja.dbo.categorias para
+loja_migracoes, aplicar a mesma migration pela conexão sqlsrv_migracoes e conferir
+produto anterior preservado com categoria_id NULL.
 Continuamos no módulo 5.
 Registros abaixo são históricos.
 
@@ -5548,12 +5554,53 @@ Verificações:
 - git diff --check passou; segredos ignorados/fora do índice. Nenhum GRANT aplicado.
 
 Entendimento da 5.66: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.66: checkpoint concluído, pronto para commit/push conforme autorização persistente.
-Último checkpoint confirmado/publicado: 91ed884, etapa 5.65.
-Próximo passo exato: publicar checkpoint e iniciar 5.67,
+Publicação da 5.66: 39246132a84eb2b331cfa828e13a2454a3067f28, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
+Próximo passo após confirmação: 5.67,
 aplicar este script somente em loja_test, conferir REFERENCES efetivo e repetir
 apenas migration de categoria_id e suíte existente, verificando FK/histórico/
 contagens. Permissão/FK do banco normal continuam para outra etapa.
+
+## Etapa 5.67 — REFERENCES e FK aplicadas no banco de testes
+
+Aplicação, explicação e verificações em 20/10/2026. Detalhes em
+docs/aulas/05-67-references-fk-testes.md. Nenhum código da aplicação alterado.
+
+Antes: diagnóstico --antes da 5.65 confirmou loja_test/loja_testes, coluna/FK
+ausentes e categorias/produtos vazios, duas migrations. Sqlcmd no serviço SQL
+Server executou diretamente o script conceder-references-categorias-testes.sql,
+sem PARSEONLY, autenticando sa via variável interna SQLCMDPASSWORD. Código 0.
+
+Diagnóstico /tmp/curso-567-conferir-references.php autenticado como loja_testes
+conferiu REFERENCES efetivo 1 e sys.database_permissions com GRANT explícito
+somente no objeto dbo.categorias para esse usuário. Código 0.
+
+Executada migration de categoria_id com --env=testing, --database=sqlsrv e
+--path apenas do arquivo, --no-interaction/--no-ansi: DONE, código 0.
+Migrate:status retornou [3] Ran, código 0. Resolvida a pendência da tentativa 5.65.
+
+Verificações:
+
+- Suíte completa em PHP Docker: OK (6 tests, 14 assertions), código 0.
+- Diagnóstico pós-migration da 5.65 confirmou categoria_id BIGINT NULL sem
+  IDENTITY e FK produtos_categoria_id_foreign para dbo.categorias.id;
+  is_disabled/is_not_trusted = 0/0 e DELETE/UPDATE NO_ACTION.
+- Histórico: produtos lote 1, categorias lote 2, categoria_id lote 3.
+- Após testes, categorias/produtos vazios em loja_test; três migrations.
+- Consultas separadas: normal loja/loja_app continua zero categorias/um produto/
+  duas migrations, sem categoria_id. Loja_migracoes continua REFERENCES 0.
+- A suíte verifica catálogo e compatibilidade dos cadastros sem categoria;
+  ainda não testa IDs inválidos ou exclusão de categoria em uso.
+- git diff --check passou; segredos ignorados/fora do índice. Nenhum GRANT,
+  migration, cadastro ou mudança de conta da aplicação no banco normal.
+
+Entendimento da 5.67: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.67: checkpoint concluído, pronto para commit/push conforme autorização persistente.
+Último checkpoint confirmado/publicado: 3924613, etapa 5.66.
+Próximo passo exato: publicar checkpoint e iniciar 5.68,
+preparar/aplicar GRANT REFERENCES somente em loja.dbo.categorias para
+loja_migracoes, aplicar a mesma migration por sqlsrv_migracoes e conferir
+produto existente preservado com categoria_id NULL.
 
 ## Verificações e limitações do ambiente
 
@@ -5581,14 +5628,14 @@ contagens. Permissão/FK do banco normal continuam para outra etapa.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `91ed884`,
-  `docs: registra permissao REFERENCES necessaria para a FK`.
+- Último commit local publicado conferido nesta retomada: `3924613`,
+  `build: prepara REFERENCES restrito a categorias de testes`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `91ed884`,
-  igual a HEAD e origin/main. Descoberta 5.65 confirmada e publicada;
-  etapa 5.66 agora confirmada e pronta para publicação.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `3924613`,
+  igual a HEAD e origin/main. Etapa 5.66 confirmada e publicada;
+  etapa 5.67 agora confirmada e pronta para publicação.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -5744,7 +5791,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Suíte não executada. Entendimento da descoberta confirmado com "entendi" e
   publicado em 91ed884. Na 5.66, script de REFERENCES restrito a categorias em
   loja_test preparado; PARSEONLY passou, permissões continuam 0. Entendimento
-  confirmado com "entendi"; depois, 5.67: aplicar concessão e repetir migration/suíte no teste.
+  confirmado com "entendi" e publicado em 3924613. Na 5.67, concessão e FK
+  aplicadas no teste; metadados/histórico e suíte 6/14 passaram, contagens após
+  testes preservadas. Entendimento confirmado com "entendi"; depois, 5.68: mesmo preparo no
+  banco normal, preservando o produto com categoria_id NULL.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -5880,4 +5930,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.63 — Cadastro/leitura de Categoria | Create/findOrFail em loja_test conferidos, ID/datas preenchidos e rollback para zero categorias | Confirmado pelo aluno: "entendi" | Publicado e verificado em ce67886 |
 | 20/10/2026 | 5.64 — Migration categoria_id em produtos | Coluna anulável/FK e noActionOnDelete preparados; down remove FK/coluna; sintaxe passou, sem aplicar | Confirmado pelo aluno: "entendi" | Publicado e verificado em e5e6156 |
 | 20/10/2026 | 5.65 — Tentativa da FK e REFERENCES | Migrate falhou por permissão; coluna/FK ausentes e Pending confirmados; suíte não executada | Descoberta confirmada pelo aluno: "entendi" | Publicado e verificado em 91ed884 |
-| 20/10/2026 | 5.66 — Script REFERENCES para testes | GRANT restrito preparado; PARSEONLY passou, permissão continua 0, migration Pending | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
+| 20/10/2026 | 5.66 — Script REFERENCES para testes | GRANT restrito preparado; PARSEONLY passou, permissão continua 0, migration Pending | Confirmado pelo aluno: "entendi" | Publicado e verificado em 3924613 |
+| 20/10/2026 | 5.67 — REFERENCES e FK no teste | Concessão e migration aplicadas; coluna/FK/histórico conferidos, suíte 6/14 passou e teste vazio após rollback | Confirmado pelo aluno: "entendi" | Checkpoint concluído; envio a verificar após commit |
