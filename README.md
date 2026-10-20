@@ -375,8 +375,11 @@ sintaxe/configuração em memória com zero SQL e suíte existente 8/23 passaram
 Entendimento confirmado com "entendi" em 20/10/2026, publicado em 593cb81.
 Na 5.73, primeiro teste hasMany verifica dois produtos de Roupas e exclui produto
 de Acessórios; focado 1/5 e suíte 9/28 passaram, rollback conferido.
-Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.74: categoria sem produtos.
-Detalhes em docs/aulas/05-73-teste-produtos-categoria.md.
+Entendimento confirmado com "entendi" em 20/10/2026, publicado em 6ad0d19.
+Na 5.74, segundo cenário exige coleção vazia para categoria sem produtos;
+focado 2/9 e suíte 10/32 passaram, rollback conferido. Entendimento confirmado
+com "entendi" em 20/10/2026; depois, 5.75: filtrar ativos pelo método produtos().
+Detalhes em docs/aulas/05-74-categoria-sem-produtos.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.

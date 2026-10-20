@@ -4,16 +4,16 @@
 
 - Última atualização: 20/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.73 — Teste dos produtos de uma categoria.
-- Situação: criado somente CategoriaProdutosTest.php no código, com
-  DatabaseTransactions e setUp conferindo identidade loja_test/loja_testes.
-  Um cenário cadastra Roupas (Camiseta/Calça) e Acessórios (Caneca), recarrega
-  Roupas e acessa $roupas->produtos. Confere coleção, quantidade 2 e IDs exatos
-  com modelKeys/assertEqualsCanonicalizing, sem exigir ordem de retorno.
-  Teste focado 1 teste/5 asserções; suíte 9 testes/28 asserções passou.
+- Etapa atual: 5.74 — Categoria sem produtos.
+- Situação: adicionado somente um segundo cenário em CategoriaProdutosTest.php.
+  Cadastra Roupas sem produtos, recarrega categoria por ID e acessa produtos.
+  AssertInstanceOf exige Eloquent Collection e assertCount exige zero elementos.
+  Mesmo setUp com identidade loja_test/loja_testes e DatabaseTransactions.
+  Arquivo focado 2 testes/9 asserções; suíte 10 testes/32 asserções passou.
   Após rollback: teste 0 categorias/0 produtos/3 migrations; normal 0/1/3.
-  Implementação/verificações da 5.73 concluídas; explicação apresentada.
-  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.73 pendente.
+  Implementação/verificações da 5.74 concluídas; explicação apresentada.
+  Entendimento confirmado com "entendi" em 20/10/2026. Publicação da 5.74 pendente.
+  Etapa 5.73 confirmada com "entendi" em 20/10/2026, publicada em 6ad0d19.
   Etapa 5.72 confirmada com "entendi" em 20/10/2026, publicada em 593cb81.
   Etapa 5.71 confirmada com "entendi" em 20/10/2026, publicada em e41a1d4.
   Etapa 5.70 confirmada com "entendi" em 20/10/2026, publicada em 68b586f.
@@ -46,7 +46,7 @@
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.73: 9 testes/28 asserções, incluindo leitura por hasMany.
+  Última suíte na 5.74: 10 testes/32 asserções, incluindo coleção vazia por hasMany.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -56,8 +56,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.74, adicionar somente cenário de categoria
-  sem produtos, conferindo coleção vazia em CategoriaProdutosTest com rollback.
+  Próxima etapa após confirmação: 5.75, consultar produtos ativos de uma categoria
+  com produtos()->where(...)->get() em um único novo cenário, com rollback.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -86,7 +86,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 593cb81, Categoria hasMany Produto 5.72.
+  Último checkpoint pedagógico confirmado/publicado: 6ad0d19, teste dos produtos da categoria 5.73.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
@@ -168,24 +168,26 @@
 - Etapa 5.71 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.72 confirmada com "entendi" em 20/10/2026.
 - Etapa 5.73 confirmada com "entendi" em 20/10/2026.
+- Etapa 5.74 confirmada com "entendi" em 20/10/2026.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 20/10/2026: 5.72 confirmada com "entendi" e publicada em
-593cb81fc3e68e2f62f8706e0c8fdfff4f2b7626, igual a HEAD, origin/main e main
-remota após o push. Na 5.73, somente backend/tests/Feature/CategoriaProdutosTest.php
-adicionado ao código. Usa DatabaseTransactions e setUp com identidade
-loja_test/loja_testes. Um cenário cadastra Roupas (Camiseta/Calça) e Acessórios
-(Caneca), com ProdutoFactory e categoria_id explícito. Recarrega Roupas por ID,
-acessa $roupas->produtos e confere Eloquent Collection, quantidade 2 e IDs exatos
-via modelKeys/assertEqualsCanonicalizing, sem depender de ordem de retorno.
-Focado OK 1 teste/5 asserções; suíte OK 9 testes/28 asserções, código 0.
+Estado mais recente, em 20/10/2026: 5.73 confirmada com "entendi" e publicada em
+6ad0d19d0628b99647c0d562eafaadf3a55863ce, igual a HEAD, origin/main e main
+remota após o push. Na 5.74, somente CategoriaProdutosTest.php alterado no código:
+segundo cenário test_categoria_sem_produtos_retorna_colecao_vazia. Cria Roupas sem
+produtos, recarrega por findOrFail e acessa $categoria->produtos. Confere Eloquent
+Collection e quantidade zero. SetUp/DatabaseTransactions e primeiro cenário
+preservados. HasMany vazio retorna coleção, enquanto belongsTo sem associação
+retorna null, como já verificado na 5.71.
+Arquivo focado OK 2 testes/9 asserções; suíte OK 10 testes/32 asserções, código 0.
 Consultas posteriores: teste 0 categorias/0 produtos/3 migrations; normal 0/1/3.
-Implementação/verificação/explicação da 5.73 concluídas; entendimento confirmado
+Implementação/verificação/explicação da 5.74 concluídas; entendimento confirmado
 com "entendi" em 20/10/2026. Publicação pendente.
-Publicar e iniciar somente 5.74: adicionar em CategoriaProdutosTest
-um cenário de categoria sem produtos, recarregando categoria e verificando uma
-coleção vazia, com o mesmo setUp e rollback. Sem outros cenários nessa etapa.
+Publicar e iniciar somente 5.75: um novo cenário no mesmo teste,
+consultando produtos ativos de uma categoria por produtos()->where('status',
+'ativo')->get(). Explicar método para acrescentar filtro e get para executar;
+verificar somente produto ativo da categoria, com identidade conferida e rollback.
 Continuamos no módulo 5.
 Registros abaixo são históricos.
 
@@ -5830,11 +5832,43 @@ Verificações em PHP Docker:
   factories, seeders, cenários existentes e serviços preservados.
 
 Entendimento da 5.73: confirmado com "entendi" em 20/10/2026.
-Publicação da 5.73: checkpoint concluído, pronto para commit/push autorizado.
-Último checkpoint confirmado/publicado: 593cb81, etapa 5.72.
+Publicação da 5.73: 6ad0d19d0628b99647c0d562eafaadf3a55863ce, conforme autorização
+persistente; HEAD, origin/main e main remota conferidos após o push.
 Próximo passo exato: publicar e iniciar somente 5.74: segundo cenário em CategoriaProdutosTest, categoria sem
 produtos; recarregar categoria e conferir que relação retorna coleção vazia,
 com o mesmo setUp/rollback e sem outros cenários ainda.
+
+## Etapa 5.74 — Categoria sem produtos
+
+Implementação, explicação e verificações em 20/10/2026. Detalhes em
+docs/aulas/05-74-categoria-sem-produtos.md.
+
+Única alteração funcional: segundo cenário em CategoriaProdutosTest.php.
+Test_categoria_sem_produtos_retorna_colecao_vazia cadastra somente Categoria
+Roupas, recarrega por findOrFail e acessa $categoria->produtos. AssertInstanceOf
+confere Eloquent Collection; assertCount exige zero elementos.
+Explicação: hasMany retorna coleção mesmo sem resultados; belongsTo sem
+associação retorna null (5.71). Categoria existe, mas não tem produtos associados.
+Mesmo setUp com identidade loja_test/loja_testes e DatabaseTransactions preservado.
+
+Verificações em PHP Docker:
+
+- Arquivo focado: OK (2 tests, 9 assertions), código 0. Cenário novo soma quatro:
+  duas asserções de identidade e duas de coleção vazia.
+- Suíte completa: OK (10 tests, 32 assertions), código 0.
+- SELECTs posteriores em processos separados: loja_test/loja_testes com
+  0 categorias/0 produtos/3 migrations; loja/loja_app com 0/1/3. Rollback conferido.
+- git diff --check passou; segredos fora do índice. Models, migrations,
+  factories, seeders, cenários anteriores e serviços preservados.
+
+Entendimento da 5.74: confirmado com "entendi" em 20/10/2026.
+Publicação da 5.74: checkpoint concluído, pronto para commit/push autorizado.
+Último checkpoint confirmado/publicado: 6ad0d19, etapa 5.73.
+Próximo passo exato: publicar e iniciar somente 5.75: um novo cenário em CategoriaProdutosTest usando
+$categoria->produtos()->where('status', 'ativo')->get(), com ativo/inativo da
+categoria e ativo de outra categoria; exigir somente o ativo da primeira.
+Explicar método para acrescentar filtro e get para executar, com mesmo
+setUp/rollback, sem outros cenários ou mudanças em model nesta etapa seguinte.
 
 ## Verificações e limitações do ambiente
 
@@ -5862,14 +5896,14 @@ com o mesmo setUp/rollback e sem outros cenários ainda.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `593cb81`,
-  `feat: relaciona Categoria a seus produtos com hasMany`.
+- Último commit local publicado conferido nesta retomada: `6ad0d19`,
+  `test: verifica produtos associados a categoria`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `593cb81`,
-  igual a HEAD e origin/main. Etapa 5.72 confirmada e publicada;
-  etapa 5.73 fica local aguardando confirmação explícita de entendimento.
+- Remoto consultado em 20/10/2026 após o push com `git ls-remote`: `6ad0d19`,
+  igual a HEAD e origin/main. Etapa 5.73 confirmada e publicada;
+  etapa 5.74 fica local aguardando confirmação explícita de entendimento.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -6041,7 +6075,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   e suíte existente 8/23 passaram. Entendimento confirmado com "entendi" em 20/10/2026 e publicado em 593cb81.
   Na 5.73, primeiro teste hasMany cadastra duas categorias/três produtos e exige
   somente dois produtos de Roupas. Focado 1/5 e suíte 9/28 passaram, rollback
-  conferido. Entendimento confirmado com "entendi" em 20/10/2026; depois, 5.74: categoria sem produtos.
+  conferido. Entendimento confirmado com "entendi" em 20/10/2026 e publicado em 6ad0d19.
+  Na 5.74, segundo cenário exige coleção vazia para categoria sem produtos;
+  focado 2/9 e suíte 10/32 passaram, rollback conferido. Entendimento confirmado
+  com "entendi" em 20/10/2026; depois, 5.75: filtrar produtos ativos usando o método do relacionamento.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -6184,4 +6221,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.70 — Leitura da categoria relacionada | Novo teste com categoria/produto persistidos e leitura pela propriedade; focado 1/5 e suíte 7/19 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 68b586f |
 | 20/10/2026 | 5.71 — Produto sem categoria | Segundo cenário confere FK/relação null após recarga; focado 2/9 e suíte 8/23 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em e41a1d4 |
 | 20/10/2026 | 5.72 — Categoria hasMany Produto | Definição da relação inversa, sintaxe/configuração em memória com zero SQL e suíte existente 8/23 passaram | Confirmado pelo aluno: "entendi" | Publicado e verificado em 593cb81 |
-| 20/10/2026 | 5.73 — Produtos da categoria | Primeiro teste hasMany confere coleção de dois produtos e exclusão de outra categoria; focado 1/5 e suíte 9/28 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |
+| 20/10/2026 | 5.73 — Produtos da categoria | Primeiro teste hasMany confere coleção de dois produtos e exclusão de outra categoria; focado 1/5 e suíte 9/28 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 6ad0d19 |
+| 20/10/2026 | 5.74 — Categoria sem produtos | Segundo cenário exige coleção com zero elementos; focado 2/9 e suíte 10/32 passaram, rollback conferido | Confirmado pelo aluno: "entendi" | Checkpoint concluído, pronto para publicação |

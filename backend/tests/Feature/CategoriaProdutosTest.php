@@ -58,4 +58,15 @@ class CategoriaProdutosTest extends TestCase
             $produtos->modelKeys()
         );
     }
+
+    public function test_categoria_sem_produtos_retorna_colecao_vazia(): void
+    {
+        $categoria = Categoria::create(['nome' => 'Roupas']);
+
+        $categoria = Categoria::findOrFail($categoria->id);
+        $produtos = $categoria->produtos;
+
+        $this->assertInstanceOf(Collection::class, $produtos);
+        $this->assertCount(0, $produtos);
+    }
 }

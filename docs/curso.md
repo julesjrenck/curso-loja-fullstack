@@ -161,7 +161,10 @@ Entendimento confirmado com "entendi" em 20/10/2026, publicado em 593cb81.
 Na 5.73, primeiro CategoriaProdutosTest cadastra duas categorias/três produtos,
 recarrega Roupas e verifica coleção somente com Camiseta/Calça pelos IDs, sem
 exigir ordem. Focado 1/5 e suíte 9/28 passaram, rollback conferido. Entendimento
-confirmado com "entendi" em 20/10/2026; depois, 5.74: cenário de categoria sem produtos.
+confirmado com "entendi" em 20/10/2026, publicado em 6ad0d19. Na 5.74, segundo
+cenário confere coleção vazia para categoria sem produtos. Focado 2/9 e suíte
+10/32 passaram, rollback conferido. Entendimento confirmado com "entendi"
+em 20/10/2026; depois, 5.75: filtrar ativos na consulta pelo método produtos(), em um cenário.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
