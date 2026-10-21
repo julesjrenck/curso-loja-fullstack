@@ -214,7 +214,11 @@ Roupas/2 e Acessórios/0 em um SELECT. IDs/nomes/zero/rollback/contagens conferi
 Entendimento confirmado com "entendi" em 21/10/2026, publicado em d7a9051.
 Na 5.90, mesmo LEFT JOIN/COUNT no Builder retornou IDs/nomes/totais 2/0 iguais ao
 SQL, um SELECT por caso, zero antes de get. Retorno/parâmetros/rollback conferidos.
-Entendimento confirmado com "entendi" em 21/10/2026; depois, 5.91: withCount('produtos') no Eloquent.
+Entendimento confirmado com "entendi" em 21/10/2026, publicado em 1d801ae.
+Na 5.91, withCount('produtos') retornou models Categoria com produtos_count 2/0,
+um SELECT e coleção produtos sem carregar. Tipos/IDs/nomes/rollback/contagens
+conferidos. Entendimento confirmado com "entendi" em 21/10/2026; depois, 5.92: revisão da entrega
+persistida e pendências do módulo 5, sem iniciar módulo 6 nessa etapa.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -424,8 +424,11 @@ IDs/nomes/zero/rollback/contagens conferidos. Entendimento confirmado com "enten
 em 21/10/2026, publicado em d7a9051. Na 5.90, mesmo LEFT JOIN/COUNT no Builder
 retornou nomes/totais 2/0 iguais ao SQL, um SELECT por caso e zero antes de get.
 Retorno/parâmetros/rollback conferidos. Entendimento confirmado com "entendi"
-em 21/10/2026; depois, 5.91: withCount('produtos') no Eloquent.
-Detalhes em docs/aulas/05-90-left-join-count-query-builder.md.
+em 21/10/2026, publicado em 1d801ae. Na 5.91, withCount('produtos') retornou
+models Categoria com produtos_count 2/0 em um SELECT, sem carregar coleção de
+produtos; tipos/nomes/rollback conferidos. Entendimento confirmado com "entendi"
+em 21/10/2026; depois, 5.92: revisão da entrega persistida e pendências do módulo 5.
+Detalhes em docs/aulas/05-91-with-count-produtos.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
