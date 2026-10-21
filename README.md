@@ -421,8 +421,11 @@ parâmetros separados e zero antes de get; rollback/contagens conferidos.
 Entendimento confirmado com "entendi" em 20/10/2026, publicado em 0aa0ebc.
 Na 5.89, LEFT JOIN/COUNT(produtos.id) retornou Roupas/2 e Acessórios/0 em um SELECT;
 IDs/nomes/zero/rollback/contagens conferidos. Entendimento confirmado com "entendi"
-em 21/10/2026; depois, 5.90: mesma consulta no Query Builder.
-Detalhes em docs/aulas/05-89-left-join-count-produtos.md.
+em 21/10/2026, publicado em d7a9051. Na 5.90, mesmo LEFT JOIN/COUNT no Builder
+retornou nomes/totais 2/0 iguais ao SQL, um SELECT por caso e zero antes de get.
+Retorno/parâmetros/rollback conferidos. Entendimento confirmado com "entendi"
+em 21/10/2026; depois, 5.91: withCount('produtos') no Eloquent.
+Detalhes em docs/aulas/05-90-left-join-count-query-builder.md.
 .env.testing não vem do Git em novo clone; preparar
 os valores locais antes de usar --env=testing. Detalhes em
 docs/aulas/05-37-ambiente-local-testes.md.
