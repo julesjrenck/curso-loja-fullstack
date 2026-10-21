@@ -222,8 +222,9 @@ conferidos. Entendimento confirmado com "entendi" em 21/10/2026, publicado em
 a5e94b5. Na 5.92, entrega persistida revisada pelo fluxo GET /loja até SQL Server
 e Blade; binding/consulta CLI e HTTP 200 com Camiseta conferidos, sem mudar aplicação.
 Entendimento da revisão confirmado com "entendi" em 21/10/2026; módulo 5 concluído.
-Publicação registrada em docs/progresso.md. Próximo passo: alinhar a transição para
-módulo 6 com o aluno. Exercício sugerido no DBeaver segue sem relato de execução.
+Publicação registrada em docs/progresso.md. Em 21/10/2026, o aluno confirmou o
+encerramento do módulo 5 e decidiu iniciar o módulo 6 em outro momento. Curso em
+pausa; aguardar pedido de retomada. Exercício sugerido no DBeaver segue sem relato.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

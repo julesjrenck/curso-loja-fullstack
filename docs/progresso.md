@@ -17,7 +17,9 @@
   Entendimento confirmado com "entendi" em 21/10/2026; módulo 5 concluído.
   Etapa 5.92 publicada em 2964f04d5d3054bdcf6f142e1f64cc97f05abd81;
   HEAD, origin/main e consulta direta à main remota coincidiram após o push.
-  Módulo 6 não iniciado; próximo passo é alinhar a transição com o aluno.
+  Módulo 6 não iniciado. O aluno confirmou o encerramento do módulo 5 e pediu
+  para iniciar o módulo 6 em outro momento. Curso em pausa por decisão do aluno.
+  Próximo passo: aguardar pedido de retomada para iniciar o módulo 6 — APIs REST.
   Etapa 5.91 confirmada com "entendi" em 21/10/2026, publicada em a5e94b5.
   Etapa 5.90 confirmada com "entendi" em 21/10/2026, publicada em 1d801ae.
   Etapa 5.89 confirmada com "entendi" em 21/10/2026, publicada em d7a9051.
@@ -79,8 +81,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próximo passo: alinhar a transição para módulo 6 com o aluno,
-  sem iniciar conteúdo REST por conta própria.
+  Próximo passo: aguardar pedido de retomada do aluno para iniciar o módulo 6;
+  nenhuma nova etapa de ensino deve ser iniciada durante esta pausa.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -237,9 +239,13 @@ ou diagnósticos, enquanto página atual lista nomes ativos ordenados.
 Revisão/verificação/explicação da 5.92 concluídas; entendimento confirmado com
 "entendi" em 21/10/2026. Módulo 5 concluído. Publicação verificada em 2964f04.
 Este registro posterior documenta o resultado do envio; consultar Git para o SHA
-da atualização do registro. Próximo passo: alinhar a transição para módulo 6
-com o aluno, sem iniciar conteúdo REST por conta própria. Não exigir implementação
-solitária do exercício sugerido.
+da atualização do registro. Em seguida, o aluno declarou: "podemos concluir o
+modulo 5, mas vamos iniciar o modulo 6 em outro momento". Curso em pausa por
+decisão explícita do aluno. Próximo passo: aguardar pedido de retomada e então
+iniciar o módulo 6 — APIs REST. Não apresentar nova aula durante a pausa.
+Não exigir implementação solitária do exercício sugerido. Registro anterior da
+publicação salvo em 13eaadd5b95c525fddd7d64a9f6b7c2e447d3be7; esta atualização
+registra a decisão de pausa, sem alterações na aplicação ou novas verificações de execução.
 Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
@@ -6560,9 +6566,10 @@ Entendimento da 5.92: confirmado com "entendi" em 21/10/2026; módulo 5 concluí
 Publicação da 5.92: 2964f04d5d3054bdcf6f142e1f64cc97f05abd81 em 21/10/2026.
 Push concluído e HEAD/origin/main/consulta direta à main remota coincidentes.
 Último checkpoint publicado antes desta confirmação: a5e94b5, etapa 5.91.
-Próximo passo exato: alinhar a transição para módulo 6 com o aluno. Módulo 6 não iniciado; não construir API sem essa transição
-pedagógica. Nenhuma alteração de aplicação/testes nesta confirmação; verificações
-da revisão preservadas, sem reexecutar a suíte para alterações documentais.
+Próximo passo exato: aguardar pedido de retomada para iniciar o módulo 6,
+conforme decisão explícita do aluno de deixá-lo para outro momento. Nenhuma
+alteração de aplicação/testes nesta confirmação; verificações da revisão
+preservadas, sem reexecutar a suíte para alterações documentais.
 
 ## Verificações e limitações do ambiente
 
@@ -6821,7 +6828,8 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   confirmado com "entendi" em 21/10/2026 e publicado em a5e94b5. Na 5.92, fluxo
   real /loja revisado, binding/SELECT CLI e HTTP 200/Camiseta conferidos. Entendimento
   confirmado com "entendi" em 21/10/2026; publicado em 2964f04, módulo 5 concluído.
-  Alinhar transição para módulo 6. Exercício manual DBeaver continua sem relato do aluno.
+  Curso em pausa a pedido do aluno; aguardar retomada para iniciar módulo 6.
+  Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.

@@ -10,7 +10,7 @@ Módulo 2 — Docker: concluído.
 Módulo 3 — PHP moderno e OOP: concluído após a revisão 3.22.
 Módulo 4 — Laravel e MVC: concluído após a revisão 4.19.
 Módulo 5 — SQL Server e persistência: concluído após a revisão 5.92,
-confirmada em 21/10/2026. Módulo 6 — APIs REST: aguardando alinhamento da transição.
+confirmada em 21/10/2026. Módulo 6 — APIs REST: início adiado a pedido do aluno; curso em pausa.
 O roteiro, os registros de continuidade, as regras de exclusão e a apresentação
 do projeto estão criados. O repositório Git local foi inicializado com a branch
 `main`. O checkpoint inicial reúne os cinco arquivos de documentação e regras
@@ -431,7 +431,8 @@ produtos; tipos/nomes/rollback conferidos. Entendimento confirmado com "entendi"
 em 21/10/2026, publicado em a5e94b5. Na 5.92, fluxo /loja até SQL Server e Blade
 revisado; binding/SELECT CLI e HTTP 200 com Camiseta conferidos. Código preservado.
 Entendimento da revisão confirmado com "entendi" em 21/10/2026; módulo 5 concluído.
-Próximo passo: alinhar a transição para módulo 6 com o aluno. Publicação registrada
+O aluno decidiu iniciar o módulo 6 em outro momento. Aguardar pedido de retomada.
+Publicação registrada
 em docs/progresso.md. Exercício manual DBeaver segue sem relato.
 Detalhes em docs/aulas/05-92-revisao-catalogo-persistido.md.
 .env.testing não vem do Git em novo clone; preparar

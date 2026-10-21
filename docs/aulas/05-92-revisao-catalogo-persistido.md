@@ -93,6 +93,6 @@ continua sem relato de execução pelo aluno. As verificações atuais por ferra
 não substituem esse relato. É uma atividade sugerida de acompanhamento; o curso
 não exige que o aluno implemente sozinho para continuar.
 
-Revisão confirmada; módulo 5 encerrado em 21/10/2026. Próximo passo: alinhar a
-transição para módulo 6 — APIs REST com o aluno, respeitando a pausa pedagógica.
-Não iniciar conteúdo REST por conta própria.
+Revisão confirmada; módulo 5 encerrado em 21/10/2026. O aluno confirmou o
+encerramento e decidiu iniciar o módulo 6 — APIs REST em outro momento.
+Curso em pausa; aguardar pedido de retomada antes de apresentar novo conteúdo.
