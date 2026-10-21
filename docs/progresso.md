@@ -15,7 +15,8 @@
   verificação por ferramenta não foi tratada como execução desse exercício.
   Revisão/verificações da 5.92 concluídas em 21/10/2026; explicação apresentada.
   Entendimento confirmado com "entendi" em 21/10/2026; módulo 5 concluído.
-  Publicação da 5.92 pendente de envio e verificação remota nesta retomada.
+  Etapa 5.92 publicada em 2964f04d5d3054bdcf6f142e1f64cc97f05abd81;
+  HEAD, origin/main e consulta direta à main remota coincidiram após o push.
   Módulo 6 não iniciado; próximo passo é alinhar a transição com o aluno.
   Etapa 5.91 confirmada com "entendi" em 21/10/2026, publicada em a5e94b5.
   Etapa 5.90 confirmada com "entendi" em 21/10/2026, publicada em 1d801ae.
@@ -78,8 +79,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próximo passo: publicar o checkpoint concluído da 5.92 e alinhar a transição
-  para módulo 6 com o aluno, sem iniciar conteúdo REST por conta própria.
+  Próximo passo: alinhar a transição para módulo 6 com o aluno,
+  sem iniciar conteúdo REST por conta própria.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -109,7 +110,7 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: a5e94b5, withCount na etapa 5.91.
+  Último checkpoint pedagógico confirmado/publicado: 2964f04, revisão 5.92 e encerramento do módulo 5.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
 - Entendimento confirmado: módulos 1 a 5 completos, cada avanço confirmado
@@ -214,9 +215,10 @@
 
 ## Retomada em outro chat
 
-Estado mais recente, em 21/10/2026: 5.91 confirmada com "entendi" e publicada em
-a5e94b5a2821796830b17e2b2fc1fbd550355fef, igual a HEAD, origin/main e main
-remota após o push. Na 5.92, somente documentação alterada: revisão do fluxo real
+Estado mais recente, em 21/10/2026: 5.92 confirmada com "entendi" e publicada em
+2964f04d5d3054bdcf6f142e1f64cc97f05abd81, igual a HEAD, origin/main e main
+remota na conferência após esse push. Módulo 5 concluído. Na 5.92, somente
+documentação alterada: revisão do fluxo real
 de /loja. Routes/web.php -> LojaController@index, contrato Catalogo no construtor,
 binding em AppServiceProvider para CatalogoEloquent, consulta Produto filtrando
 ativo/ordenando nome/pluck/all, view loja.blade.php renderizando nomes ou mensagem
@@ -233,8 +235,9 @@ teste 0 categorias/0 produtos/3 migrations; normal 0/1/3. Suíte não reexecutad
 do aluno; não inventar execução. Relações/joins/contagens foram estudados em testes
 ou diagnósticos, enquanto página atual lista nomes ativos ordenados.
 Revisão/verificação/explicação da 5.92 concluídas; entendimento confirmado com
-"entendi" em 21/10/2026. Módulo 5 concluído. Publicação pendente de envio e
-verificação remota nesta retomada. Próximo passo: alinhar a transição para módulo 6
+"entendi" em 21/10/2026. Módulo 5 concluído. Publicação verificada em 2964f04.
+Este registro posterior documenta o resultado do envio; consultar Git para o SHA
+da atualização do registro. Próximo passo: alinhar a transição para módulo 6
 com o aluno, sem iniciar conteúdo REST por conta própria. Não exigir implementação
 solitária do exercício sugerido.
 Registros abaixo são históricos.
@@ -6554,10 +6557,10 @@ Entrega técnica revisada corresponde ao catálogo persistido do módulo 5; rela
 SQL e agregações estudados em testes/diagnósticos, sem ampliar a página antecipadamente.
 
 Entendimento da 5.92: confirmado com "entendi" em 21/10/2026; módulo 5 concluído.
-Publicação da 5.92: pendente de envio e verificação remota nesta retomada.
+Publicação da 5.92: 2964f04d5d3054bdcf6f142e1f64cc97f05abd81 em 21/10/2026.
+Push concluído e HEAD/origin/main/consulta direta à main remota coincidentes.
 Último checkpoint publicado antes desta confirmação: a5e94b5, etapa 5.91.
-Próximo passo exato: publicar o checkpoint concluído e alinhar a transição para
-módulo 6 com o aluno. Módulo 6 não iniciado; não construir API sem essa transição
+Próximo passo exato: alinhar a transição para módulo 6 com o aluno. Módulo 6 não iniciado; não construir API sem essa transição
 pedagógica. Nenhuma alteração de aplicação/testes nesta confirmação; verificações
 da revisão preservadas, sem reexecutar a suíte para alterações documentais.
 
@@ -6587,14 +6590,15 @@ da revisão preservadas, sem reexecutar a suíte para alterações documentais.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `a5e94b5`,
-  `docs: demonstra withCount de produtos no Eloquent`.
+- Último checkpoint pedagógico publicado conferido nesta retomada: `2964f04`,
+  `docs: conclui revisão e módulo de persistência`. Este registro posterior
+  documenta a publicação; consultar Git para o SHA do próprio registro.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 21/10/2026 após o push com `git ls-remote`: `a5e94b5`,
-  igual a HEAD e origin/main. Etapa 5.91 confirmada e publicada;
-  etapa 5.92 confirmada em 21/10/2026, com envio/verificação remota pendentes nesta retomada.
+- Remoto consultado em 21/10/2026 após o push da 5.92 com `git ls-remote`:
+  `2964f04d5d3054bdcf6f142e1f64cc97f05abd81`, igual a HEAD e origin/main
+  nessa conferência. Etapa 5.92 confirmada e publicada; módulo 5 concluído.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -6816,8 +6820,8 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   2/0 em um SELECT e coleção produtos sem carregar; rollback conferido. Entendimento
   confirmado com "entendi" em 21/10/2026 e publicado em a5e94b5. Na 5.92, fluxo
   real /loja revisado, binding/SELECT CLI e HTTP 200/Camiseta conferidos. Entendimento
-  confirmado com "entendi" em 21/10/2026; módulo 5 concluído. Publicar checkpoint
-  e alinhar transição para módulo 6. Exercício manual DBeaver continua sem relato do aluno.
+  confirmado com "entendi" em 21/10/2026; publicado em 2964f04, módulo 5 concluído.
+  Alinhar transição para módulo 6. Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -6979,4 +6983,4 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.89 — LEFT JOIN e COUNT produtos | SQL contou produtos por categoria, incluindo vazia com total 0; Roupas/2 e Acessórios/0 em um SELECT, rollback conferido | Confirmado pelo aluno: "entendi" em 21/10/2026 | Publicado e verificado em d7a9051 |
 | 21/10/2026 | 5.90 — LEFT JOIN/COUNT Query Builder | SQL/Builder mesmos IDs/nomes/totais 2/0, um SELECT por caso e zero antes de get; retorno/parâmetros/rollback conferidos | Confirmado pelo aluno: "entendi" em 21/10/2026 | Publicado e verificado em 1d801ae |
 | 21/10/2026 | 5.91 — WithCount produtos | Models Categoria com produtos_count 2/0, um SELECT e coleção produtos não carregada; tipos/IDs/nomes/rollback conferidos | Confirmado pelo aluno: "entendi" em 21/10/2026 | Publicado e verificado em a5e94b5 |
-| 21/10/2026 | 5.92 — Revisão catálogo persistido | Fluxo rota/controller/contrato/binding/Eloquent/SQL/view revisado; binding/SELECT CLI e HTTP 200/Camiseta conferidos, contagens preservadas | Confirmado pelo aluno: "entendi" em 21/10/2026; módulo 5 concluído | Checkpoint concluído, envio e verificação remota pendentes |
+| 21/10/2026 | 5.92 — Revisão catálogo persistido | Fluxo rota/controller/contrato/binding/Eloquent/SQL/view revisado; binding/SELECT CLI e HTTP 200/Camiseta conferidos, contagens preservadas | Confirmado pelo aluno: "entendi" em 21/10/2026; módulo 5 concluído | Publicado e verificado em 2964f04 |
