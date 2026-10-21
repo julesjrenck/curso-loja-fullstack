@@ -29,7 +29,8 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 ## Módulos
 
 Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
-Os módulos 1 a 4 foram concluídos, com entendimento da revisão 4.19 confirmado.
+Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
+em 21/10/2026. Os registros abaixo descrevem o percurso do módulo 5.
 O módulo 5 confirmou e publicou a descoberta de pacotes da 5.33.
 Na 5.34, script de loja_testes em loja_test preparado e analisado com PARSEONLY,
 sem executar as instruções de criação/concessão. Ausência da conta e de tabelas
@@ -217,8 +218,12 @@ SQL, um SELECT por caso, zero antes de get. Retorno/parâmetros/rollback conferi
 Entendimento confirmado com "entendi" em 21/10/2026, publicado em 1d801ae.
 Na 5.91, withCount('produtos') retornou models Categoria com produtos_count 2/0,
 um SELECT e coleção produtos sem carregar. Tipos/IDs/nomes/rollback/contagens
-conferidos. Entendimento confirmado com "entendi" em 21/10/2026; depois, 5.92: revisão da entrega
-persistida e pendências do módulo 5, sem iniciar módulo 6 nessa etapa.
+conferidos. Entendimento confirmado com "entendi" em 21/10/2026, publicado em
+a5e94b5. Na 5.92, entrega persistida revisada pelo fluxo GET /loja até SQL Server
+e Blade; binding/consulta CLI e HTTP 200 com Camiseta conferidos, sem mudar aplicação.
+Entendimento da revisão confirmado com "entendi" em 21/10/2026; módulo 5 concluído.
+Publicação registrada em docs/progresso.md. Próximo passo: alinhar a transição para
+módulo 6 com o aluno. Exercício sugerido no DBeaver segue sem relato de execução.
 Módulos 6 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

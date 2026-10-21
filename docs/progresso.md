@@ -4,16 +4,20 @@
 
 - Última atualização: 21/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.91 — Contagem pelo Eloquent com withCount.
-- Situação: diagnóstico temporário /tmp/curso-591-with-count-produtos.php
-  executado pelo PHP Docker em loja_test/loja_testes com identidade e rollback.
-  Categoria::query/whereIn/withCount('produtos')/orderBy/get retorna Eloquent
-  Collection de models Categoria, produtos_count 2/0 e um SELECT. Relação
-  produtos sem carregar; leitura dos totais no foreach sem SQL adicional.
-  SQL usa subconsulta COUNT(*) pela FK. Somente documentação alterada.
-  Após rollback: teste 0 categorias/0 produtos/3 migrations; normal 0/1/3.
-  Demonstração/verificações da 5.91 concluídas em 21/10/2026; explicação apresentada.
-  Entendimento confirmado com "entendi" em 21/10/2026. Publicação da 5.91 pendente.
+- Etapa atual: 5.92 — Revisão da entrega persistida do módulo 5.
+- Situação: fluxo GET /loja -> LojaController/contrato Catalogo -> binding
+  CatalogoEloquent -> Produto/SQL Server -> view loja revisado, sem alterar aplicação.
+  Diagnóstico /tmp/curso-592-revisar-catalogo.php conferiu loja/loja_app, binding,
+  listarNomes ['Camiseta'] e um SELECT no processo CLI. Requisição HTTP separada:
+  200, X-Curso Laravel e item Camiseta no HTML. Contagens dos bancos preservadas.
+  Última suíte registrada permanece 14/54 da 5.80, não reexecutada nesta revisão.
+  Consulta manual sugerida no DBeaver segue sem relato de execução do aluno;
+  verificação por ferramenta não foi tratada como execução desse exercício.
+  Revisão/verificações da 5.92 concluídas em 21/10/2026; explicação apresentada.
+  Entendimento confirmado com "entendi" em 21/10/2026; módulo 5 concluído.
+  Publicação da 5.92 pendente de envio e verificação remota nesta retomada.
+  Módulo 6 não iniciado; próximo passo é alinhar a transição com o aluno.
+  Etapa 5.91 confirmada com "entendi" em 21/10/2026, publicada em a5e94b5.
   Etapa 5.90 confirmada com "entendi" em 21/10/2026, publicada em 1d801ae.
   Etapa 5.89 confirmada com "entendi" em 21/10/2026, publicada em d7a9051.
   Etapa 5.88 confirmada com "entendi" em 20/10/2026, publicada em 0aa0ebc.
@@ -64,7 +68,7 @@
   em 77dc3f9.
   Etapa 5.45 confirmada com "entendi" em 19/10/2026 e publicada em 3e094e5.
   Etapa 5.44 confirmada com "entendi" em 19/10/2026 e publicada em 5810b26.
-  Última suíte na 5.80: 14 testes/54 asserções. Na 5.91, diagnóstico withCount passou; suíte não reexecutada, código preservado.
+  Última suíte na 5.80: 14 testes/54 asserções. Na 5.92, binding/SELECT/HTTP passaram; suíte não reexecutada, código preservado.
   Etapa 5.43 confirmada com "entendi" em 19/10/2026 e publicada em 62f465e.
   Etapa 5.42 confirmada com "entendi" em 19/10/2026 e publicada em aa8e5a4.
   Etapa 5.41 confirmada com "entendi" em 19/10/2026 e publicada em 94e4e3d.
@@ -74,9 +78,9 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próxima etapa após confirmação: 5.92, revisar entrega persistida e caminho
-  GET /loja -> controller/contrato/binding/CatalogoEloquent/Produto/view; conferir HTTP
-  e pendências do módulo 5, sem iniciar módulo 6 ou declarar entendimento não confirmado.
+  Próximo passo: publicar o checkpoint concluído da 5.92 e alinhar a transição
+  para módulo 6 com o aluno, sem iniciar conteúdo REST por conta própria.
+  Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
   Etapa 5.34 confirmada com "entendi" em 19/10/2026 e publicada em 49a22c5.
@@ -105,14 +109,15 @@
   Conta 5.13 confirmada com "entendi" em 14/10/2026 e publicada.
   Colunas 5.12 confirmadas com "entendi" em 14/10/2026 e publicadas.
   DBeaver: acesso confirmado pelo aluno; aviso cumprido na 5.6.
-  Último checkpoint pedagógico confirmado/publicado: 1d801ae, LEFT JOIN/COUNT Builder na etapa 5.90.
+  Último checkpoint pedagógico confirmado/publicado: a5e94b5, withCount na etapa 5.91.
   Salvamento da pausa publicado: a6ddff9; remoto conferido em 19/10/2026.
   Instaladas somente dependências já declaradas e fixadas no lock; nenhum serviço novo.
-- Entendimento confirmado: módulos 1, 2 e 3 completos, cada avanço confirmado
+- Entendimento confirmado: módulos 1 a 5 completos, cada avanço confirmado
   pelo aluno com "entendi". As etapas 3.1 a 3.10 foram confirmadas em 09/10/2026;
   etapas 3.11 a 3.22 confirmadas com "entendi" em 12/10/2026.
 - Módulo 4 iniciado em 12/10/2026 e concluído em 13/10/2026.
-- Módulo 5 iniciado em 13/10/2026; módulos 6 a 23 não iniciados.
+- Módulo 5 iniciado em 13/10/2026 e concluído em 21/10/2026, após confirmação da 5.92.
+- Módulos 6 a 23 não iniciados.
 - Etapas 4.1 a 4.19 confirmadas em 13/10/2026; módulo 4 concluído.
 - Etapa 5.1 confirmada com "entendi" em 13/10/2026.
 - Etapa 5.2 confirmada com "entendi" em 13/10/2026.
@@ -205,32 +210,33 @@
 - Etapa 5.89 confirmada com "entendi" em 21/10/2026.
 - Etapa 5.90 confirmada com "entendi" em 21/10/2026.
 - Etapa 5.91 confirmada com "entendi" em 21/10/2026.
+- Etapa 5.92 confirmada com "entendi" em 21/10/2026; módulo 5 concluído.
 
 ## Retomada em outro chat
 
-Estado mais recente, em 21/10/2026: 5.90 confirmada com "entendi" e publicada em
-1d801ae15aeff65989ec35cd245f891b8844c3cc, igual a HEAD, origin/main e main
-remota após o push. Na 5.91, somente documentação alterada; diagnóstico temporário
-/tmp/curso-591-with-count-produtos.php executado pelo PHP Docker com --env=testing.
-Conferiu testing/loja_test/loja_testes antes de cadastro. Transação prepara Roupas
-com Camiseta/Calça e Acessórios vazia. Categoria::query()->whereIn IDs->withCount
-('produtos')->orderBy('id')->get() usa relação hasMany existente no model.
-Listener após preparação: zero SELECTs na montagem, um após get e mesmo total
-após foreach. Retorno Eloquent Collection de Categoria, IDs/nomes e produtos_count
-2/0 conferidos; relationLoaded('produtos') false. SQL observado tem subconsulta
-SELECT COUNT(*) correlacionada pela FK e alias produtos_count dentro do SELECT
-de categorias. Atributo de resultado, sem criar coluna na tabela.
-Código 0; finally rollback. Contagens posteriores teste 0 categorias/0 produtos/
-3 migrations e normal 0/1/3. Aplicação/testes preservados; suíte não reexecutada,
-última execução 14/54 da 5.80.
-Demonstração/verificação/explicação da 5.91 concluídas; entendimento confirmado
-com "entendi" em 21/10/2026. Publicação pendente.
-Publicar e iniciar somente 5.92: revisão da entrega do módulo 5,
-retomando GET /loja em routes/web.php, LojaController, contrato Catalogo/binding
-AppServiceProvider, CatalogoEloquent->Produto e view loja. Conferir resposta HTTP
-e pendências registradas; distinguir código/verificação de entendimento. Não
-iniciar módulo 6 nesta revisão nem declarar módulo 5 concluído sem confirmação.
-Continuamos no módulo 5.
+Estado mais recente, em 21/10/2026: 5.91 confirmada com "entendi" e publicada em
+a5e94b5a2821796830b17e2b2fc1fbd550355fef, igual a HEAD, origin/main e main
+remota após o push. Na 5.92, somente documentação alterada: revisão do fluxo real
+de /loja. Routes/web.php -> LojaController@index, contrato Catalogo no construtor,
+binding em AppServiceProvider para CatalogoEloquent, consulta Produto filtrando
+ativo/ordenando nome/pluck/all, view loja.blade.php renderizando nomes ou mensagem
+vazia, middleware MarcarRespostaCurso com X-Curso Laravel.
+Diagnóstico temporário /tmp/curso-592-revisar-catalogo.php, PHP Docker sem
+--env=testing, conferiu loja/loja_app e implementação resolvida. ListarNomes
+retornou ['Camiseta'] em um SELECT no processo CLI, SQL de nome/ativo/order.
+Requisição HTTP real separada ao servidor em 127.0.0.1:8000/loja dentro do backend:
+HTTP 200, X-Curso Laravel, item HTML Camiseta e título Catálogo de produtos.
+Contagem de SELECT foi da chamada CLI do serviço, não da requisição HTTP separada.
+Código 0; somente leitura, sem cadastrar/alterar produto. Contagens posteriores:
+teste 0 categorias/0 produtos/3 migrations; normal 0/1/3. Suíte não reexecutada,
+última execução 14/54 da 5.80. Exercício manual DBeaver da 5.22 continua sem relato
+do aluno; não inventar execução. Relações/joins/contagens foram estudados em testes
+ou diagnósticos, enquanto página atual lista nomes ativos ordenados.
+Revisão/verificação/explicação da 5.92 concluídas; entendimento confirmado com
+"entendi" em 21/10/2026. Módulo 5 concluído. Publicação pendente de envio e
+verificação remota nesta retomada. Próximo passo: alinhar a transição para módulo 6
+com o aluno, sem iniciar conteúdo REST por conta própria. Não exigir implementação
+solitária do exercício sugerido.
 Registros abaixo são históricos.
 
 Retomada realizada em 19/10/2026: AGENTS.md, roteiro, progresso e aula/script
@@ -6510,11 +6516,50 @@ Verificações:
   14 testes/54 asserções da 5.80. git diff --check passou; segredos fora do índice.
 
 Entendimento da 5.91: confirmado com "entendi" em 21/10/2026.
-Publicação da 5.91: checkpoint concluído, pronto para commit/push autorizado.
-Último checkpoint confirmado/publicado: 1d801ae, etapa 5.90.
+Publicação da 5.91: a5e94b5a2821796830b17e2b2fc1fbd550355fef em 21/10/2026,
+conforme autorização persistente; HEAD, origin/main e main remota conferidos após o push.
 Próximo passo exato: publicar e iniciar somente 5.92: revisão da entrega persistida, caminho GET /loja/LojaController/
 Catalogo/binding/CatalogoEloquent/Produto/view loja, resposta HTTP e pendências
 registradas do módulo 5. Sem iniciar módulo 6 ou concluir o módulo sem confirmação.
+
+## Etapa 5.92 — Revisão da entrega persistida do módulo 5
+
+Revisão, explicação e verificações em 21/10/2026. Detalhes em
+docs/aulas/05-92-revisao-catalogo-persistido.md. Somente documentação alterada.
+
+Fluxo revisado: GET /loja em routes/web.php aponta LojaController@index.
+Controller recebe contrato Catalogo pelo construtor. AppServiceProvider liga
+Catalogo a CatalogoEloquent. ListarNomes usa Produto para consultar produtos
+ativos, ordenar por nome, extrair nomes e retornar array. Controller envia
+produtos/nomeLoja à view loja; Blade renderiza lista ou mensagem vazia e aplica
+escape. Middleware acrescenta cabeçalho X-Curso Laravel à resposta.
+
+Verificações em PHP Docker:
+
+- /tmp/curso-592-revisar-catalogo.php no ambiente normal: loja/loja_app conferidos,
+  binding CatalogoEloquent e listarNomes ['Camiseta'] em um SELECT CLI. Código 0.
+- Requisição HTTP real separada GET /loja pelo servidor do backend: 200,
+  X-Curso Laravel, título Catálogo de produtos e item Camiseta no HTML.
+  Não foi medida a quantidade de queries dessa requisição HTTP separada.
+- Contagens posteriores em processos separados: loja_test/loja_testes com
+  0 categorias/0 produtos/3 migrations e loja/loja_app com 0/1/3. Somente leitura.
+- Aplicação/testes preservados; suíte não reexecutada, última execução 14 testes/
+  54 asserções da 5.80. git diff --check passou; segredos fora do índice.
+
+Pendência de acompanhamento: consulta manual DBeaver sugerida na 5.22 não teve
+resultado informado pelo aluno. Acesso ao DBeaver foi confirmado na 5.6; isso é
+separado da execução desse exercício posterior. Verificação atual por ferramenta
+não substitui relato do aluno. Exercício sugerido não exige implementação solitária.
+Entrega técnica revisada corresponde ao catálogo persistido do módulo 5; relações,
+SQL e agregações estudados em testes/diagnósticos, sem ampliar a página antecipadamente.
+
+Entendimento da 5.92: confirmado com "entendi" em 21/10/2026; módulo 5 concluído.
+Publicação da 5.92: pendente de envio e verificação remota nesta retomada.
+Último checkpoint publicado antes desta confirmação: a5e94b5, etapa 5.91.
+Próximo passo exato: publicar o checkpoint concluído e alinhar a transição para
+módulo 6 com o aluno. Módulo 6 não iniciado; não construir API sem essa transição
+pedagógica. Nenhuma alteração de aplicação/testes nesta confirmação; verificações
+da revisão preservadas, sem reexecutar a suíte para alterações documentais.
 
 ## Verificações e limitações do ambiente
 
@@ -6542,14 +6587,14 @@ registradas do módulo 5. Sem iniciar módulo 6 ou concluir o módulo sem confir
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último commit local publicado conferido nesta retomada: `1d801ae`,
-  `docs: demonstra contagem por categoria com Query Builder`.
+- Último commit local publicado conferido nesta retomada: `a5e94b5`,
+  `docs: demonstra withCount de produtos no Eloquent`.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
-- Remoto consultado em 21/10/2026 após o push com `git ls-remote`: `1d801ae`,
-  igual a HEAD e origin/main. Etapa 5.90 confirmada e publicada;
-  etapa 5.91 fica local aguardando confirmação explícita de entendimento.
+- Remoto consultado em 21/10/2026 após o push com `git ls-remote`: `a5e94b5`,
+  igual a HEAD e origin/main. Etapa 5.91 confirmada e publicada;
+  etapa 5.92 confirmada em 21/10/2026, com envio/verificação remota pendentes nesta retomada.
   A rejeição inicial foi resolvida por aprovação explícita do aluno para
   publicar os checkpoints concluídos na branch pública `main` deste repositório;
   essa autorização permanece válida para os próximos checkpoints concluídos.
@@ -6769,7 +6814,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   rollback conferidos. Entendimento confirmado com "entendi" em 21/10/2026 e
   publicado em 1d801ae. Na 5.91, withCount retornou models Categoria com totais
   2/0 em um SELECT e coleção produtos sem carregar; rollback conferido. Entendimento
-  confirmado com "entendi" em 21/10/2026; depois, 5.92: revisão da entrega persistida e pendências do módulo 5.
+  confirmado com "entendi" em 21/10/2026 e publicado em a5e94b5. Na 5.92, fluxo
+  real /loja revisado, binding/SELECT CLI e HTTP 200/Camiseta conferidos. Entendimento
+  confirmado com "entendi" em 21/10/2026; módulo 5 concluído. Publicar checkpoint
+  e alinhar transição para módulo 6. Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
   não vêm do Git. Não alterar o contador do volume `dados-demo`.
@@ -6930,4 +6978,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 20/10/2026 | 5.88 — HAVING Query Builder | SQL/havingRaw mesmos grupo Roupas/2, um SELECT por caso, parâmetros separados e zero antes de get; rollback conferido | Confirmado pelo aluno: "entendi" | Publicado e verificado em 0aa0ebc |
 | 20/10/2026 | 5.89 — LEFT JOIN e COUNT produtos | SQL contou produtos por categoria, incluindo vazia com total 0; Roupas/2 e Acessórios/0 em um SELECT, rollback conferido | Confirmado pelo aluno: "entendi" em 21/10/2026 | Publicado e verificado em d7a9051 |
 | 21/10/2026 | 5.90 — LEFT JOIN/COUNT Query Builder | SQL/Builder mesmos IDs/nomes/totais 2/0, um SELECT por caso e zero antes de get; retorno/parâmetros/rollback conferidos | Confirmado pelo aluno: "entendi" em 21/10/2026 | Publicado e verificado em 1d801ae |
-| 21/10/2026 | 5.91 — WithCount produtos | Models Categoria com produtos_count 2/0, um SELECT e coleção produtos não carregada; tipos/IDs/nomes/rollback conferidos | Confirmado pelo aluno: "entendi" em 21/10/2026 | Checkpoint concluído, pronto para publicação |
+| 21/10/2026 | 5.91 — WithCount produtos | Models Categoria com produtos_count 2/0, um SELECT e coleção produtos não carregada; tipos/IDs/nomes/rollback conferidos | Confirmado pelo aluno: "entendi" em 21/10/2026 | Publicado e verificado em a5e94b5 |
+| 21/10/2026 | 5.92 — Revisão catálogo persistido | Fluxo rota/controller/contrato/binding/Eloquent/SQL/view revisado; binding/SELECT CLI e HTTP 200/Camiseta conferidos, contagens preservadas | Confirmado pelo aluno: "entendi" em 21/10/2026; módulo 5 concluído | Checkpoint concluído, envio e verificação remota pendentes |
