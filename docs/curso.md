@@ -227,7 +227,13 @@ encerramento do módulo 5 e decidiu iniciar o módulo 6 em outro momento.
 Retomada solicitada em 22/10/2026: módulo 6 iniciado na etapa 6.1, HTTP, HTML e
 JSON, usando a resposta existente de /loja. Explicação e verificação apresentadas;
 entendimento confirmado com "entendi" em 22/10/2026. Nenhuma rota de API criada
-nesta etapa. Próximo passo: primeira rota do catálogo em JSON na 6.2.
+nesta etapa. Checkpoint 6.1 publicado e verificado em 7ce865a. Na 6.2, registro
+de routes/api.php com prefixo api/v1 e GET /api/v1/produtos com nomes ativos
+ordenados em JSON implementados; contrato inicial em docs/api/catalogo.md.
+Sintaxes/registro e HTTP real da API e /loja conferidos; suíte existente 14/54
+passou, contagens preservadas. Explicação apresentada, entendimento da 6.2
+confirmado com "entendi" em 22/10/2026. Próximo passo: publicar e iniciar somente
+o primeiro teste HTTP da API na 6.3.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
