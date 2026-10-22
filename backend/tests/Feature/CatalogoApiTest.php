@@ -49,4 +49,23 @@ class CatalogoApiTest extends TestCase
             ->assertHeader('Content-Type', 'application/json')
             ->assertExactJson(['data' => ['Camiseta']]);
     }
+
+    public function test_omite_produtos_inativos_da_resposta_json(): void
+    {
+        Produto::factory()->create([
+            'nome' => 'Camiseta',
+            'status' => 'ativo',
+        ]);
+
+        Produto::factory()->inativo()->create([
+            'nome' => 'Caneca',
+        ]);
+
+        $resposta = $this->getJson('/api/v1/produtos');
+
+        $resposta
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertExactJson(['data' => ['Camiseta']]);
+    }
 }

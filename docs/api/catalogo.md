@@ -39,5 +39,10 @@ Na etapa 6.4, acrescentado cenário HTTP de uma Camiseta ativa que exige
 CatalogoApiTest com 2 testes/12 asserções passou; entendimento da 6.4 confirmado
 com "entendi" em 22/10/2026. Filtro de inativos e ordenação ainda não têm
 cenários HTTP próprios.
+Na 6.5, acrescentado cenário com Camiseta ativa e Caneca inativa, exigindo apenas
+Camiseta no JSON. Classe 3 testes/18 asserções e suíte 17/72 passaram;
+entendimento da 6.5 confirmado com "entendi" em 22/10/2026.
+A ordenação com vários ativos continua
+sem um cenário HTTP próprio.
 Este documento descreve o sucesso da primeira consulta. Erros, outros métodos,
 filtros, paginação e a descrição em OpenAPI serão estudados gradualmente.
