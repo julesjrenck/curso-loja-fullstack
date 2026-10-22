@@ -223,9 +223,12 @@ a5e94b5. Na 5.92, entrega persistida revisada pelo fluxo GET /loja até SQL Serv
 e Blade; binding/consulta CLI e HTTP 200 com Camiseta conferidos, sem mudar aplicação.
 Entendimento da revisão confirmado com "entendi" em 21/10/2026; módulo 5 concluído.
 Publicação registrada em docs/progresso.md. Em 21/10/2026, o aluno confirmou o
-encerramento do módulo 5 e decidiu iniciar o módulo 6 em outro momento. Curso em
-pausa; aguardar pedido de retomada. Exercício sugerido no DBeaver segue sem relato.
-Módulos 6 a 23 não iniciados.
+encerramento do módulo 5 e decidiu iniciar o módulo 6 em outro momento.
+Retomada solicitada em 22/10/2026: módulo 6 iniciado na etapa 6.1, HTTP, HTML e
+JSON, usando a resposta existente de /loja. Explicação e verificação apresentadas;
+entendimento confirmado com "entendi" em 22/10/2026. Nenhuma rota de API criada
+nesta etapa. Próximo passo: primeira rota do catálogo em JSON na 6.2.
+Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
 | Módulo | Conteúdo | Entrega verificável |

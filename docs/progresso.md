@@ -2,10 +2,24 @@
 
 ## Estado atual
 
-- Última atualização: 21/10/2026, referência de data America/Sao_Paulo.
-- Módulo atual: 5 — SQL Server e persistência.
-- Etapa atual: 5.92 — Revisão da entrega persistida do módulo 5.
-- Situação: fluxo GET /loja -> LojaController/contrato Catalogo -> binding
+- Última atualização: 22/10/2026, referência de data America/Sao_Paulo.
+- Módulo atual: 6 — APIs REST.
+- Etapa atual: 6.1 — HTTP, HTML e JSON.
+- Situação: retomada solicitada pelo aluno após a pausa do módulo 5. Introdução
+  à API HTTP, requisição/resposta, GET, status 200, Accept, Content-Type e
+  diferença entre HTML e JSON apresentada em docs/aulas/06-01-http-html-json.md.
+  GET /loja real pelo PHP Docker retornou 200, text/html; charset=utf-8,
+  X-Curso: Laravel e item Camiseta. Nenhuma rota de API criada; somente documentação.
+  Entendimento da 6.1 confirmado com "entendi" em 22/10/2026; checkpoint pronto
+  para publicação. Registrar o resultado após enviar e conferir o remoto.
+  Próximo passo: publicar a 6.1 e iniciar somente 6.2: registrar routes/api.php em bootstrap/app.php com prefixo
+  api/v1 e criar GET /api/v1/produtos com nomes do catálogo em JSON, documentando
+  o contrato inicial. Sem autenticação ou novas dependências nesta preparação.
+  Git sem alterações locais no início; HEAD e origin/main locais em
+  d098927cd69bd48624279ebc3859f84d3aa6e037. Remoto não consultado nesta retomada.
+  Última suíte permanece 14 testes/54 asserções da 5.80, não reexecutada nesta
+  etapa documental. Exercício sugerido no DBeaver continua sem relato.
+- Histórico recente do encerramento do módulo 5: fluxo GET /loja -> LojaController/contrato Catalogo -> binding
   CatalogoEloquent -> Produto/SQL Server -> view loja revisado, sem alterar aplicação.
   Diagnóstico /tmp/curso-592-revisar-catalogo.php conferiu loja/loja_app, binding,
   listarNomes ['Camiseta'] e um SELECT no processo CLI. Requisição HTTP separada:
@@ -17,9 +31,9 @@
   Entendimento confirmado com "entendi" em 21/10/2026; módulo 5 concluído.
   Etapa 5.92 publicada em 2964f04d5d3054bdcf6f142e1f64cc97f05abd81;
   HEAD, origin/main e consulta direta à main remota coincidiram após o push.
-  Módulo 6 não iniciado. O aluno confirmou o encerramento do módulo 5 e pediu
-  para iniciar o módulo 6 em outro momento. Curso em pausa por decisão do aluno.
-  Próximo passo: aguardar pedido de retomada para iniciar o módulo 6 — APIs REST.
+  O aluno confirmou o encerramento do módulo 5 e pediu para iniciar o módulo 6
+  em outro momento. Pausa encerrada pelo pedido de retomada em 22/10/2026;
+  situação atual e próximo passo registrados acima na etapa 6.1.
   Etapa 5.91 confirmada com "entendi" em 21/10/2026, publicada em a5e94b5.
   Etapa 5.90 confirmada com "entendi" em 21/10/2026, publicada em 1d801ae.
   Etapa 5.89 confirmada com "entendi" em 21/10/2026, publicada em d7a9051.
@@ -81,8 +95,8 @@
   em 734fc5f. Chave/senha continuam apenas locais e ignoradas pelo Git.
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
-  Próximo passo: aguardar pedido de retomada do aluno para iniciar o módulo 6;
-  nenhuma nova etapa de ensino deve ser iniciada durante esta pausa.
+  A pausa posterior ao módulo 5 foi encerrada em 22/10/2026; acompanhar a etapa
+  atual 6.1, cujo entendimento foi confirmado em 22/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -217,7 +231,21 @@
 
 ## Retomada em outro chat
 
-Estado mais recente, em 21/10/2026: 5.92 confirmada com "entendi" e publicada em
+Estado mais recente, em 22/10/2026: aluno solicitou iniciar módulo 6. Etapa 6.1
+apresentou API HTTP, GET, requisição/resposta, status/cabeçalhos/corpo e HTML/JSON.
+GET /loja real via PHP Docker: 200, Content-Type text/html; charset=utf-8,
+X-Curso: Laravel e item Camiseta conferidos; código 0. Somente documentação
+alterada. Aula em docs/aulas/06-01-http-html-json.md. Entendimento confirmado
+pelo aluno com "entendi" em 22/10/2026, após a explicação.
+Publicar a 6.1 e iniciar somente 6.2: registrar
+routes/api.php em bootstrap/app.php com prefixo api/v1 e criar GET /api/v1/produtos
+com nomes do catálogo em JSON, documentando o contrato inicial. Não instalar
+autenticação nem dependências antecipadamente. Git inicialmente limpo, HEAD e
+origin/main locais em d098927cd69bd48624279ebc3859f84d3aa6e037; sem consulta
+remota nesta retomada. Última suíte 14/54 da 5.80, não reexecutada. Exercício
+manual DBeaver continua sem relato; atividade sugerida não bloqueia o curso.
+
+Registro anterior da pausa, em 21/10/2026: 5.92 confirmada com "entendi" e publicada em
 2964f04d5d3054bdcf6f142e1f64cc97f05abd81, igual a HEAD, origin/main e main
 remota na conferência após esse push. Módulo 5 concluído. Na 5.92, somente
 documentação alterada: revisão do fluxo real
@@ -6571,6 +6599,37 @@ conforme decisão explícita do aluno de deixá-lo para outro momento. Nenhuma
 alteração de aplicação/testes nesta confirmação; verificações da revisão
 preservadas, sem reexecutar a suíte para alterações documentais.
 
+## Etapa 6.1 — HTTP, HTML e JSON
+
+Retomada solicitada em 22/10/2026, encerrando a pausa após o módulo 5.
+Instruções, roteiro, progresso, arquivos do fluxo atual e estado Git conferidos.
+Git inicialmente sem alterações locais; HEAD e origin/main locais em d098927.
+Nenhuma consulta remota nesta retomada.
+
+Explicação apresentada em docs/aulas/06-01-http-html-json.md: API como interface
+entre programas; requisição com método/endereço/cabeçalhos/corpo; resposta com
+status/cabeçalhos/corpo; GET para leitura, 200 para sucesso desta consulta,
+Accept e Content-Type; HTML montado por Blade versus dados JSON para um cliente.
+Exemplo JSON apenas didático, sem contrato definitivo ou rota implementada.
+Introduzida a ideia de recursos e o caminho planejado /api/v1/produtos.
+
+Verificação em PHP Docker, após docker compose ps confirmar serviços ativos:
+GET http://127.0.0.1:8000/loja com Accept: text/html retornou HTTP/1.1 200 OK,
+Content-Type: text/html; charset=utf-8, X-Curso: Laravel e <li>Camiseta</li>.
+Diagnóstico temporário pela entrada padrão exigiu status/tipo/item; código 0.
+Cabeçalhos de sessão não exibidos. Somente leitura; sem migration/seeder/cadastro.
+Nenhuma rota, controller ou dependência alterada. Suíte não reexecutada para
+documentação; última execução registrada 14/54 da 5.80.
+
+Entendimento: confirmado pelo aluno com "entendi" em 22/10/2026.
+Publicação: checkpoint pronto para commit/push conforme autorização persistente
+registrada em Git e GitHub; registrar o resultado após conferir o remoto.
+Pendência de acompanhamento: exercício DBeaver segue sem relato do aluno.
+Próximo passo exato: publicar o checkpoint e iniciar somente 6.2: registrar routes/api.php em
+bootstrap/app.php com prefixo api/v1 e criar GET /api/v1/produtos com nomes do
+catálogo em JSON; documentar o contrato inicial. Sem instalar autenticação ou
+novas dependências antecipadamente.
+
 ## Verificações e limitações do ambiente
 
 - Pasta inicial inspecionada: sem aplicação ou documentação anterior.
@@ -6828,7 +6887,8 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   confirmado com "entendi" em 21/10/2026 e publicado em a5e94b5. Na 5.92, fluxo
   real /loja revisado, binding/SELECT CLI e HTTP 200/Camiseta conferidos. Entendimento
   confirmado com "entendi" em 21/10/2026; publicado em 2964f04, módulo 5 concluído.
-  Curso em pausa a pedido do aluno; aguardar retomada para iniciar módulo 6.
+  Pausa encerrada em 22/10/2026 a pedido do aluno; etapa 6.1 apresentada,
+  entendimento confirmado com "entendi" em 22/10/2026. Publicar e iniciar 6.2.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -6992,3 +7052,4 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 21/10/2026 | 5.90 — LEFT JOIN/COUNT Query Builder | SQL/Builder mesmos IDs/nomes/totais 2/0, um SELECT por caso e zero antes de get; retorno/parâmetros/rollback conferidos | Confirmado pelo aluno: "entendi" em 21/10/2026 | Publicado e verificado em 1d801ae |
 | 21/10/2026 | 5.91 — WithCount produtos | Models Categoria com produtos_count 2/0, um SELECT e coleção produtos não carregada; tipos/IDs/nomes/rollback conferidos | Confirmado pelo aluno: "entendi" em 21/10/2026 | Publicado e verificado em a5e94b5 |
 | 21/10/2026 | 5.92 — Revisão catálogo persistido | Fluxo rota/controller/contrato/binding/Eloquent/SQL/view revisado; binding/SELECT CLI e HTTP 200/Camiseta conferidos, contagens preservadas | Confirmado pelo aluno: "entendi" em 21/10/2026; módulo 5 concluído | Publicado e verificado em 2964f04 |
+| 22/10/2026 | 6.1 — HTTP, HTML e JSON | Introdução à API e requisição/resposta; GET /loja real com 200, text/html e Camiseta; somente documentação | Confirmado pelo aluno: "entendi" em 22/10/2026 | Pronto para commit/push; conferir remoto após envio |
