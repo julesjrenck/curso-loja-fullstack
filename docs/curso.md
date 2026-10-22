@@ -246,8 +246,12 @@ preservadas. Explicação apresentada, entendimento da 6.5 confirmado com "enten
 em 22/10/2026; checkpoint publicado e verificado em bc86f52. Na 6.6, cenário HTTP
 de dois ativos inseridos em ordem inversa exige Camiseta/Caneca no JSON:
 classe 4/24 e suíte 18/78 passaram, contagens preservadas. Explicação apresentada,
-entendimento da 6.6 confirmado com "entendi" em 22/10/2026. Próximo passo:
-publicar e extrair a função da rota para ProdutoController@index da API na 6.7.
+entendimento da 6.6 confirmado com "entendi" em 22/10/2026; checkpoint publicado
+e verificado em daffb95. Na 6.7, função da rota extraída para
+Api\V1\ProdutoController@index; rota/DI/sintaxes conferidos, classe 4/24 e suíte
+18/78 passaram. HTTP real JSON/HTML e contagens preservados. Explicação apresentada,
+entendimento da 6.7 confirmado com "entendi" em 22/10/2026. Próximo passo: publicar
+e desenhar representação JSON de produto com id/nome/preco_em_centavos na 6.8 antes de implementá-la.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

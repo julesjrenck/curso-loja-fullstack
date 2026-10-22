@@ -4,18 +4,22 @@
 
 - Última atualização: 22/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.6 — Ordem dos nomes na resposta JSON.
-- Situação: quarto cenário em CatalogoApiTest cadastra Caneca e depois Camiseta,
-  ambas ativas, e exige 200, application/json e JSON exato data: ['Camiseta',
-  'Caneca'], incluindo a ordem da lista. SetUp/transação/factory existentes
-  reaproveitados; orderBy('nome') do serviço preservado.
-  Sintaxe válida; classe 4 testes/24 asserções e suíte 18 testes/78 asserções
-  passaram com --do-not-cache-result. SELECTs posteriores: loja_test/loja_testes
-  0 categorias/0 produtos; loja/loja_app 0/1. Nenhuma chamada pela rede nesta etapa.
-  Aula 06-06 e contrato docs/api/catalogo.md atualizados. Entendimento da 6.6
+- Etapa atual: 6.7 — Controller da API de produtos.
+- Situação: criado App\Http\Controllers\Api\V1\ProdutoController com
+  index(Catalogo $catalogo): JsonResponse; routes/api.php aponta para o método.
+  Injeção no método reaproveita o binding Catalogo/CatalogoEloquent. Resposta
+  continua data com nomes ativos ordenados; testes/serviço/prefixo preservados.
+  Sintaxes e route:list/grupo api corretos; classe 4 testes/24 asserções e suíte
+  18 testes/78 asserções passaram com --do-not-cache-result. HTTP real: API 200/
+  application/json/{"data":["Camiseta"]}; /loja 200/text/html com Camiseta.
+  SELECTs posteriores: loja_test/loja_testes 0 categorias/0 produtos; loja/loja_app 0/1.
+  Aula 06-07 e contrato docs/api/catalogo.md atualizados. Entendimento da 6.7
   confirmado com "entendi" em 22/10/2026; checkpoint pronto para publicação.
-  Próximo passo: publicar e iniciar somente 6.7, extrair função da rota para ProdutoController@index sob
-  App\Http\Controllers\Api\V1 e ajustar routes/api.php, preservando contrato/testes.
+  Próximo passo: publicar e iniciar somente 6.8, desenhar representação JSON com id/nome/preco_em_centavos
+  e impacto no contrato/testes, sem implementar a nova representação nessa etapa.
+  Etapa 6.6 confirmada com "entendi" em 22/10/2026 e publicada em
+  daffb9511b15c10f2b358658295f00f332bd17bf; HEAD, origin/main e main remota
+  coincidiram após o push.
   Etapa 6.5 confirmada com "entendi" em 22/10/2026 e publicada em
   bc86f52caf0e054fa32c74abaf834a374738f44e; HEAD, origin/main e main remota
   coincidiram após o push.
@@ -108,7 +112,7 @@
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
   A pausa posterior ao módulo 5 foi encerrada em 22/10/2026; acompanhar a etapa
-  atual 6.6, cujo entendimento foi confirmado em 22/10/2026.
+  atual 6.7, cujo entendimento foi confirmado em 22/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -243,19 +247,21 @@
 
 ## Retomada em outro chat
 
-Estado mais recente, em 22/10/2026: 6.5 confirmada com "entendi" e publicada em
-bc86f52caf0e054fa32c74abaf834a374738f44e; HEAD, origin/main e main remota
-coincidiram após push. Etapa 6.6 implementada/explicada/verificada, entendimento
-confirmado pelo aluno com "entendi" em 22/10/2026. Quarto cenário em CatalogoApiTest cadastra Caneca e depois
-Camiseta, ambas ativas; getJson exige 200, application/json e JSON exato
-data: ['Camiseta', 'Caneca'], incluindo a ordem. OrderBy do serviço preservado.
-Conferida implementação instalada de assertExact/reorderAssocKeys, sem alterações.
-Sintaxe válida; classe 4/24 e suíte 18/78 passaram com --do-not-cache-result.
-SELECTs posteriores: teste 0/0, normal 0/1 (categorias/produtos), identidades
-conferidas em processos separados. Aula 06-06 e docs/api/catalogo.md atualizados.
-Publicar a 6.6 e iniciar somente 6.7:
-extrair função da rota para ProdutoController@index em App\Http\Controllers\Api\V1
-e ajustar routes/api.php; preservar o contrato JSON e verificar os testes existentes.
+Estado mais recente, em 22/10/2026: 6.6 confirmada com "entendi" e publicada em
+daffb9511b15c10f2b358658295f00f332bd17bf; HEAD, origin/main e main remota
+coincidiram após push. Etapa 6.7 implementada/explicada/verificada, entendimento
+confirmado pelo aluno com "entendi" em 22/10/2026. Novo backend/app/Http/Controllers/Api/V1/ProdutoController.php
+com index(Catalogo $catalogo): JsonResponse e corpo da função anterior.
+Routes/api.php usa [ProdutoController::class, 'index']. Binding resolve o serviço
+existente por injeção no método. Prefixo api/v1 e contrato de nomes preservados.
+Sintaxes e route:list/grupo api corretos; testes existentes sem alterações:
+classe 4/24 e suíte 18/78 passaram com --do-not-cache-result. HTTP real por
+/tmp/curso-62-http.php: API 200/application/json/{"data":["Camiseta"]}; /loja
+200/text/html com Camiseta. SELECTs posteriores: teste 0/0, normal 0/1
+(categorias/produtos), identidades conferidas em processos separados.
+Aula 06-07 e docs/api/catalogo.md atualizados. Publicar a 6.7 e iniciar somente
+6.8: desenhar JSON de produto com
+id/nome/preco_em_centavos e impacto no contrato/testes, sem implementar ainda.
 Exercício DBeaver continua sem relato; atividade sugerida não bloqueia o curso.
 
 Registro anterior da pausa, em 21/10/2026: 5.92 confirmada com "entendi" e publicada em
@@ -6796,13 +6802,46 @@ Verificações PHP Docker, código 0:
   Requisições de teste internas Laravel, SQL Server real e rollback.
 
 Entendimento: confirmado pelo aluno com "entendi" em 22/10/2026.
-Publicação da 6.6: checkpoint pronto para commit/push conforme autorização
-persistente; registrar o resultado após conferir o remoto.
+Publicação da 6.6: daffb9511b15c10f2b358658295f00f332bd17bf em 22/10/2026;
+push concluído, HEAD, origin/main e main remota conferidos e coincidentes.
 Último checkpoint publicado: bc86f52caf0e054fa32c74abaf834a374738f44e, etapa 6.5;
 envio e consulta direta ao remoto conferidos neste turno.
 Próximo passo exato: publicar e iniciar somente 6.7: extrair a função da rota para ProdutoController@index
 sob App\Http\Controllers\Api\V1 e ajustar routes/api.php; preservar contrato JSON
 e verificar os cenários existentes.
+
+## Etapa 6.7 — Controller da API de produtos
+
+Implementação, explicação e verificações em 22/10/2026. Aula em
+docs/aulas/06-07-controller-api-produtos.md; contrato docs/api/catalogo.md atualizado.
+Dois arquivos de código: controller novo em app/Http/Controllers/Api/V1 e
+routes/api.php ajustado para [ProdutoController::class, 'index'].
+
+Index recebe Catalogo por injeção no método e retorna JsonResponse com
+data/listarNomes. Namespace/imports/herança e ::class explicados. Binding, serviço,
+testes e prefixo existentes preservados. Nenhuma dependência nova.
+
+Verificações PHP Docker, código 0:
+
+- php -l nos dois arquivos: sintaxes válidas.
+- route:list --path=api -vv: GET|HEAD api/v1/produtos ->
+  Api\V1\ProdutoController@index, grupo api.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result: 4 testes/
+  24 asserções passaram, sem mudar os testes.
+- php artisan test --do-not-cache-result: 18 testes/78 asserções passaram.
+- HTTP real por /tmp/curso-62-http.php: API 200/application/json e
+  {"data":["Camiseta"]}; /loja 200/text/html; charset=utf-8 e item Camiseta.
+- SELECTs separados por /tmp/curso-62-contagens.php após suíte/HTTP:
+  loja_test/loja_testes 0 categorias/0 produtos; loja/loja_app 0 categorias/1 produto.
+
+Entendimento: confirmado pelo aluno com "entendi" em 22/10/2026.
+Publicação da 6.7: checkpoint pronto para commit/push conforme autorização
+persistente; registrar o resultado após conferir o remoto.
+Último checkpoint publicado: daffb9511b15c10f2b358658295f00f332bd17bf, etapa 6.6;
+envio e consulta direta ao remoto conferidos neste turno.
+Próximo passo exato: publicar e iniciar somente 6.8: desenhar representação JSON de produto com id,
+nome e preco_em_centavos; discutir impacto no contrato e testes antes de
+implementar a nova consulta/serialização.
 
 ## Verificações e limitações do ambiente
 
@@ -6830,10 +6869,10 @@ e verificar os cenários existentes.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último checkpoint pedagógico publicado conferido nesta retomada: `bc86f52`,
-  `test: omite produtos inativos da API do catálogo`. HEAD, origin/main e main
+- Último checkpoint pedagógico publicado conferido nesta retomada: `daffb95`,
+  `test: verifica ordenação dos nomes na API do catálogo`. HEAD, origin/main e main
   consultada diretamente no remoto coincidiram após o push em 22/10/2026.
-  Este registro posterior documenta a publicação; alterações da 6.6 ainda locais.
+  Este registro posterior documenta a publicação; alterações da 6.7 ainda locais.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -7068,7 +7107,8 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Etapa 6.3 confirmada com "entendi" em 22/10/2026 e publicada em d9d0911.
   Etapa 6.4 confirmada com "entendi" em 22/10/2026 e publicada em 7defc2c.
   Etapa 6.5 confirmada com "entendi" em 22/10/2026 e publicada em bc86f52.
-  Etapa 6.6 confirmada com "entendi" em 22/10/2026; publicar e iniciar somente 6.7.
+  Etapa 6.6 confirmada com "entendi" em 22/10/2026 e publicada em daffb95.
+  Etapa 6.7 confirmada com "entendi" em 22/10/2026; publicar e iniciar somente 6.8.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -7237,4 +7277,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 22/10/2026 | 6.3 — Teste HTTP catálogo vazio | Novo teste com transação/banco exclusivo, status/cabeçalho/JSON; focado 1/6 e suíte 15/60 passaram, contagens preservadas | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em d9d0911 |
 | 22/10/2026 | 6.4 — Produto ativo no JSON | Segundo cenário HTTP via factory; classe 2/12 e suíte 16/66 passaram, rollback e contagens conferidos | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em 7defc2c |
 | 22/10/2026 | 6.5 — Omitir inativo no JSON | Terceiro cenário HTTP com estado inativo; classe 3/18 e suíte 17/72 passaram, rollback e contagens conferidos | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em bc86f52 |
-| 22/10/2026 | 6.6 — Ordenação no JSON | Quarto cenário HTTP com cadastros invertidos; classe 4/24 e suíte 18/78 passaram, rollback e contagens conferidos | Confirmado pelo aluno: "entendi" em 22/10/2026 | Pronto para commit/push; conferir remoto após envio |
+| 22/10/2026 | 6.6 — Ordenação no JSON | Quarto cenário HTTP com cadastros invertidos; classe 4/24 e suíte 18/78 passaram, rollback e contagens conferidos | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em daffb95 |
+| 22/10/2026 | 6.7 — Controller da API | Função extraída e rota ligada a index; classe 4/24, suíte 18/78, HTTP real JSON/HTML e contagens conferidos | Confirmado pelo aluno: "entendi" em 22/10/2026 | Pronto para commit/push; conferir remoto após envio |

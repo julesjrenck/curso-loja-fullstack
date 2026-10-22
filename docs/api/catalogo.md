@@ -49,5 +49,9 @@ e exige {"data":["Camiseta","Caneca"]}, incluindo a ordem da lista. Classe
 4 testes/24 asserções e suíte 18/78 passaram; entendimento da 6.6 confirmado
 com "entendi" em 22/10/2026. O contrato de sucesso agora tem cenários HTTP para catálogo vazio,
 produto ativo, omissão de inativo e ordenação desses nomes.
+Na 6.7, a ação foi movida para App\Http\Controllers\Api\V1\ProdutoController@index,
+mantendo URL e resposta. Os quatro testes HTTP existentes (4/24), a suíte (18/78)
+e HTTP real passaram; entendimento da 6.7 confirmado com "entendi" em 22/10/2026. O contrato atual
+continua retornando somente nomes.
 Este documento descreve o sucesso da primeira consulta. Erros, outros métodos,
 filtros, paginação e a descrição em OpenAPI serão estudados gradualmente.
