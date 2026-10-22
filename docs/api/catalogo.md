@@ -30,7 +30,9 @@ Quando não há produtos ativos, a resposta de sucesso continua 200:
 {"data":[]}
 ```
 
-O formato de lista vazia decorre da implementação e dos testes existentes do
-serviço; o teste HTTP específico desse cenário será a etapa 6.3.
+O formato de lista vazia foi verificado na etapa 6.3 pelo teste HTTP
+CatalogoApiTest, com SQL Server exclusivo de testes e rollback. Implementação,
+explicação e verificações da 6.3 apresentadas; entendimento confirmado pelo aluno
+com "entendi" em 22/10/2026.
 Este documento descreve o sucesso da primeira consulta. Erros, outros métodos,
 filtros, paginação e a descrição em OpenAPI serão estudados gradualmente.

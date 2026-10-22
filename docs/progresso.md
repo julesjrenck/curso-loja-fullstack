@@ -4,19 +4,20 @@
 
 - Última atualização: 22/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.2 — Primeira rota do catálogo em JSON.
-- Situação: bootstrap/app.php registra routes/api.php com prefixo api/v1. Nova
-  rota GET /produtos injeta Catalogo e retorna response()->json com data contendo
-  listarNomes. Contrato inicial em docs/api/catalogo.md; explicação na aula 06-02.
-  HTTP real: GET /api/v1/produtos retornou 200, application/json e
-  {"data":["Camiseta"]}; /loja retornou 200, text/html e item Camiseta.
-  Sintaxes e registro de rota/grupo api conferidos; suíte existente 14 testes/
-  54 asserções passou. Aviso apenas ao salvar cache de resultados na montagem
-  somente leitura; usar --do-not-cache-result em futuras execuções. Contagens
-  posteriores: loja_test/loja_testes 0 categorias/0 produtos; loja/loja_app 0/1.
-  Entendimento da 6.2 confirmado com "entendi" em 22/10/2026; checkpoint pronto
-  para publicação. Próximo passo: publicar e iniciar somente 6.3, primeiro teste HTTP do catálogo vazio
-  com banco exclusivo loja_test, status, Content-Type e JSON.
+- Etapa atual: 6.3 — Teste HTTP do catálogo vazio.
+- Situação: CatalogoApiTest criado com DatabaseTransactions e setUp que exige
+  loja_test/loja_testes antes de preparar produtos vazia. GetJson chama
+  /api/v1/produtos dentro da aplicação; resposta exige 200, application/json e
+  JSON exato data: []. SQL Server real, sem requisição pela rede nesta etapa.
+  Sintaxe válida; focado 1 teste/6 asserções e suíte 15 testes/60 asserções
+  passaram, com --do-not-cache-result e sem aviso de cache. Contagens posteriores
+  conferidas: loja_test/loja_testes 0 categorias/0 produtos; loja/loja_app 0/1.
+  Aula 06-03 e contrato docs/api/catalogo.md atualizados. Entendimento da 6.3
+  confirmado com "entendi" em 22/10/2026; checkpoint pronto para publicação.
+  Próximo passo: publicar e iniciar somente 6.4, um cenário HTTP com produto ativo usando factory.
+  Etapa 6.2 confirmada com "entendi" em 22/10/2026 e publicada em
+  28450ae4ed0ba7562dc07ea92f9f402cbdc18229; HEAD, origin/main e main remota
+  coincidiram após o push.
   Etapa 6.1 confirmada com "entendi" em 22/10/2026 e publicada em
   7ce865ade29038292a064649f5b509f9205d3d51; HEAD, origin/main e main remota
   coincidiram após o push. Exercício sugerido no DBeaver continua sem relato.
@@ -97,7 +98,7 @@
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
   A pausa posterior ao módulo 5 foi encerrada em 22/10/2026; acompanhar a etapa
-  atual 6.2, cujo entendimento foi confirmado em 22/10/2026.
+  atual 6.3, cujo entendimento foi confirmado em 22/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -232,20 +233,22 @@
 
 ## Retomada em outro chat
 
-Estado mais recente, em 22/10/2026: 6.1 confirmada com "entendi" e publicada em
-7ce865ade29038292a064649f5b509f9205d3d51, conferido em HEAD, origin/main e main
-remota após push. Etapa 6.2 implementada/explicada/verificada, com entendimento
-confirmado pelo aluno com "entendi" em 22/10/2026. Bootstrap/app.php registra routes/api.php e apiPrefix api/v1;
-rota GET /produtos usa função com Catalogo injetado e retorna JsonResponse com
-data/listarNomes. Contrato inicial docs/api/catalogo.md; aula 06-02.
-Sintaxes, route:list/grupo api e HTTP real passaram: API 200/application/json/
-{"data":["Camiseta"]}; página /loja 200/text/html com Camiseta.
-Suíte existente 14/54 passou, com aviso de cache em montagem somente leitura;
-usar --do-not-cache-result nas próximas execuções. Contagens pós-suíte conferidas:
-loja_test/loja_testes 0/0, loja/loja_app 0/1 (categorias/produtos). Nenhum teste
-HTTP específico da API ainda foi escrito; a verificação atual usou HTTP real.
-Publicar a 6.2 e iniciar somente 6.3: primeiro teste HTTP do catálogo vazio com DatabaseTransactions em
-loja_test, status, Content-Type e JSON. Exercício DBeaver continua sem relato.
+Estado mais recente, em 22/10/2026: 6.2 confirmada com "entendi" e publicada em
+28450ae4ed0ba7562dc07ea92f9f402cbdc18229; HEAD, origin/main e main remota
+coincidiram após push. Etapa 6.3 implementada/explicada/verificada, entendimento
+confirmado pelo aluno com "entendi" em 22/10/2026. Novo backend/tests/Feature/CatalogoApiTest.php usa
+DatabaseTransactions, confirma banco/login loja_test/loja_testes no setUp e
+apaga produtos dentro da transação para preparar o cenário vazio. GetJson
+processa GET /api/v1/produtos internamente pelo Laravel e SQL Server real;
+assertStatus 200, assertHeader application/json e assertExactJson data: [].
+Sintaxe válida, focado 1/6 e suíte 15/60 passaram, --do-not-cache-result evitou
+o aviso anterior de cache. Contagens posteriores: teste 0/0, normal 0/1
+(categorias/produtos), identidades conferidas em processos separados.
+Aula 06-03 e docs/api/catalogo.md registram detalhes. Sem nova consulta HTTP
+pela rede nesta etapa, sem alterar rota/serviço/esquema/dependências.
+Publicar a 6.3 e iniciar somente 6.4:
+um cenário HTTP de produto ativo via factory em CatalogoApiTest. Exercício DBeaver
+continua sem relato; atividade sugerida não bloqueia o curso.
 
 Registro anterior da pausa, em 21/10/2026: 5.92 confirmada com "entendi" e publicada em
 2964f04d5d3054bdcf6f142e1f64cc97f05abd81, igual a HEAD, origin/main e main
@@ -6658,13 +6661,45 @@ Verificações em Docker:
   Código 0. Nenhum cadastro permanente, migration, seeder ou dependência adicionada.
 
 Entendimento: confirmado pelo aluno com "entendi" em 22/10/2026.
-Publicação da 6.2: checkpoint pronto para commit/push conforme autorização
-persistente; registrar o resultado após conferir o remoto.
+Publicação da 6.2: 28450ae4ed0ba7562dc07ea92f9f402cbdc18229 em 22/10/2026;
+push concluído, HEAD, origin/main e main remota conferidos e coincidentes.
 Último checkpoint publicado: 7ce865ade29038292a064649f5b509f9205d3d51, etapa 6.1;
 envio e consulta direta ao remoto conferidos neste turno.
 Próximo passo exato: publicar e iniciar somente 6.3: primeiro teste HTTP automatizado do catálogo
 vazio em GET /api/v1/produtos, DatabaseTransactions e banco exclusivo loja_test,
 conferindo status, tipo de conteúdo e JSON.
+
+## Etapa 6.3 — Teste HTTP do catálogo vazio
+
+Implementação, explicação e verificações em 22/10/2026. Aula em
+docs/aulas/06-03-teste-api-catalogo-vazio.md; contrato inicial atualizado em
+docs/api/catalogo.md. Único código novo: backend/tests/Feature/CatalogoApiTest.php.
+
+Classe estende Tests\TestCase e usa DatabaseTransactions. SetUp chama o pai,
+confere banco loja_test/login loja_testes por SELECT e só então prepara produtos
+vazia por DELETE. Método test_retorna_json_com_lista_vazia_quando_nao_ha_produtos
+chama getJson('/api/v1/produtos') e exige status 200, Content-Type application/json
+e assertExactJson com data: []. Requisição interna Laravel, sem rede; banco e
+catálogo reais, transação desfeita ao encerrar. Rota/serviço existentes preservados.
+
+Verificações PHP Docker, código 0:
+
+- php -l no arquivo novo: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result: 1 teste/
+  6 asserções passou.
+- php artisan test --do-not-cache-result: 15 testes/60 asserções passaram,
+  sem aviso de cache de resultados.
+- SELECTs separados pelo diagnóstico /tmp/curso-62-contagens.php após a suíte:
+  loja_test/loja_testes 0 categorias/0 produtos; loja/loja_app 0 categorias/1 produto.
+  Sem migration, seeder, cadastro permanente ou nova dependência.
+
+Entendimento: confirmado pelo aluno com "entendi" em 22/10/2026.
+Publicação da 6.3: checkpoint pronto para commit/push conforme autorização
+persistente; registrar o resultado após conferir o remoto.
+Último checkpoint publicado: 28450ae4ed0ba7562dc07ea92f9f402cbdc18229, etapa 6.2;
+envio e consulta direta ao remoto conferidos neste turno.
+Próximo passo exato: publicar e iniciar somente 6.4: adicionar um cenário HTTP de produto ativo em
+CatalogoApiTest com factory, exigindo o nome na lista data da resposta JSON.
 
 ## Verificações e limitações do ambiente
 
@@ -6692,10 +6727,10 @@ conferindo status, tipo de conteúdo e JSON.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último checkpoint pedagógico publicado conferido nesta retomada: `7ce865a`,
-  `docs: apresenta HTTP e JSON e confirma etapa 6.1`. HEAD, origin/main e main
+- Último checkpoint pedagógico publicado conferido nesta retomada: `28450ae`,
+  `feat: adiciona primeira rota JSON do catálogo`. HEAD, origin/main e main
   consultada diretamente no remoto coincidiram após o push em 22/10/2026.
-  Este registro posterior documenta a publicação; alterações da 6.2 ainda locais.
+  Este registro posterior documenta a publicação; alterações da 6.3 ainda locais.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -6926,8 +6961,8 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   confirmado com "entendi" em 21/10/2026; publicado em 2964f04, módulo 5 concluído.
   Pausa encerrada em 22/10/2026 a pedido do aluno; etapa 6.1 apresentada,
   entendimento confirmado com "entendi" em 22/10/2026 e publicado em 7ce865a.
-  Etapa 6.2 implementada/explicada/verificada e confirmada com "entendi" em
-  22/10/2026; publicar e iniciar somente 6.3.
+  Etapa 6.2 confirmada com "entendi" em 22/10/2026 e publicada em 28450ae.
+  Etapa 6.3 confirmada com "entendi" em 22/10/2026; publicar e iniciar somente 6.4.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -7092,4 +7127,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 21/10/2026 | 5.91 — WithCount produtos | Models Categoria com produtos_count 2/0, um SELECT e coleção produtos não carregada; tipos/IDs/nomes/rollback conferidos | Confirmado pelo aluno: "entendi" em 21/10/2026 | Publicado e verificado em a5e94b5 |
 | 21/10/2026 | 5.92 — Revisão catálogo persistido | Fluxo rota/controller/contrato/binding/Eloquent/SQL/view revisado; binding/SELECT CLI e HTTP 200/Camiseta conferidos, contagens preservadas | Confirmado pelo aluno: "entendi" em 21/10/2026; módulo 5 concluído | Publicado e verificado em 2964f04 |
 | 22/10/2026 | 6.1 — HTTP, HTML e JSON | Introdução à API e requisição/resposta; GET /loja real com 200, text/html e Camiseta; somente documentação | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em 7ce865a |
-| 22/10/2026 | 6.2 — Primeira rota JSON | Registro/prefixo/rota, contrato inicial e HTTP real JSON/HTML conferidos; suíte 14/54 passou, contagens preservadas | Confirmado pelo aluno: "entendi" em 22/10/2026 | Pronto para commit/push; conferir remoto após envio |
+| 22/10/2026 | 6.2 — Primeira rota JSON | Registro/prefixo/rota, contrato inicial e HTTP real JSON/HTML conferidos; suíte 14/54 passou, contagens preservadas | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em 28450ae |
+| 22/10/2026 | 6.3 — Teste HTTP catálogo vazio | Novo teste com transação/banco exclusivo, status/cabeçalho/JSON; focado 1/6 e suíte 15/60 passaram, contagens preservadas | Confirmado pelo aluno: "entendi" em 22/10/2026 | Pronto para commit/push; conferir remoto após envio |

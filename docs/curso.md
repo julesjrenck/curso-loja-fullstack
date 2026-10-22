@@ -232,8 +232,12 @@ de routes/api.php com prefixo api/v1 e GET /api/v1/produtos com nomes ativos
 ordenados em JSON implementados; contrato inicial em docs/api/catalogo.md.
 Sintaxes/registro e HTTP real da API e /loja conferidos; suíte existente 14/54
 passou, contagens preservadas. Explicação apresentada, entendimento da 6.2
-confirmado com "entendi" em 22/10/2026. Próximo passo: publicar e iniciar somente
-o primeiro teste HTTP da API na 6.3.
+confirmado com "entendi" em 22/10/2026; checkpoint publicado e verificado em
+28450ae. Na 6.3, primeiro CatalogoApiTest verifica status, Content-Type e JSON
+do catálogo vazio com transação em loja_test. Focado 1/6 e suíte 15/60 passaram;
+contagens preservadas. Explicação apresentada, entendimento da 6.3 confirmado
+com "entendi" em 22/10/2026. Próximo passo: publicar e iniciar somente o cenário
+HTTP de produto ativo na 6.4.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
