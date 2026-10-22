@@ -4,17 +4,21 @@
 
 - Última atualização: 22/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.5 — Omitir produto inativo da resposta JSON.
-- Situação: terceiro cenário em CatalogoApiTest cadastra Camiseta ativa e Caneca
-  inativa com factory()->inativo()->create. GetJson exige 200, application/json
-  e JSON exato data: ['Camiseta']. SetUp e transação existentes reaproveitados;
-  estado inativo() da factory existente aplicado sem alterar a factory.
-  Sintaxe válida; classe 3 testes/18 asserções e suíte 17 testes/72 asserções
+- Etapa atual: 6.6 — Ordem dos nomes na resposta JSON.
+- Situação: quarto cenário em CatalogoApiTest cadastra Caneca e depois Camiseta,
+  ambas ativas, e exige 200, application/json e JSON exato data: ['Camiseta',
+  'Caneca'], incluindo a ordem da lista. SetUp/transação/factory existentes
+  reaproveitados; orderBy('nome') do serviço preservado.
+  Sintaxe válida; classe 4 testes/24 asserções e suíte 18 testes/78 asserções
   passaram com --do-not-cache-result. SELECTs posteriores: loja_test/loja_testes
   0 categorias/0 produtos; loja/loja_app 0/1. Nenhuma chamada pela rede nesta etapa.
-  Aula 06-05 e contrato docs/api/catalogo.md atualizados. Entendimento da 6.5
+  Aula 06-06 e contrato docs/api/catalogo.md atualizados. Entendimento da 6.6
   confirmado com "entendi" em 22/10/2026; checkpoint pronto para publicação.
-  Próximo passo: publicar e iniciar somente 6.6, cenário HTTP de ordenação com dois produtos ativos.
+  Próximo passo: publicar e iniciar somente 6.7, extrair função da rota para ProdutoController@index sob
+  App\Http\Controllers\Api\V1 e ajustar routes/api.php, preservando contrato/testes.
+  Etapa 6.5 confirmada com "entendi" em 22/10/2026 e publicada em
+  bc86f52caf0e054fa32c74abaf834a374738f44e; HEAD, origin/main e main remota
+  coincidiram após o push.
   Etapa 6.4 confirmada com "entendi" em 22/10/2026 e publicada em
   7defc2c2f695e73d2be27f8167acdb74f28ea746; HEAD, origin/main e main remota
   coincidiram após o push.
@@ -104,7 +108,7 @@
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
   A pausa posterior ao módulo 5 foi encerrada em 22/10/2026; acompanhar a etapa
-  atual 6.5, cujo entendimento foi confirmado em 22/10/2026.
+  atual 6.6, cujo entendimento foi confirmado em 22/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -239,18 +243,19 @@
 
 ## Retomada em outro chat
 
-Estado mais recente, em 22/10/2026: 6.4 confirmada com "entendi" e publicada em
-7defc2c2f695e73d2be27f8167acdb74f28ea746; HEAD, origin/main e main remota
-coincidiram após push. Etapa 6.5 implementada/explicada/verificada, entendimento
-confirmado pelo aluno com "entendi" em 22/10/2026. Terceiro cenário em CatalogoApiTest cadastra Camiseta/ativo
-e Caneca por factory()->inativo()->create. GetJson exige status 200,
-application/json e JSON exato data: ['Camiseta'], omitindo a Caneca.
-SetUp/DatabaseTransactions existentes e estado inativo() reaproveitados.
-Sintaxe válida; classe 3/18 e suíte 17/72 passaram com --do-not-cache-result.
+Estado mais recente, em 22/10/2026: 6.5 confirmada com "entendi" e publicada em
+bc86f52caf0e054fa32c74abaf834a374738f44e; HEAD, origin/main e main remota
+coincidiram após push. Etapa 6.6 implementada/explicada/verificada, entendimento
+confirmado pelo aluno com "entendi" em 22/10/2026. Quarto cenário em CatalogoApiTest cadastra Caneca e depois
+Camiseta, ambas ativas; getJson exige 200, application/json e JSON exato
+data: ['Camiseta', 'Caneca'], incluindo a ordem. OrderBy do serviço preservado.
+Conferida implementação instalada de assertExact/reorderAssocKeys, sem alterações.
+Sintaxe válida; classe 4/24 e suíte 18/78 passaram com --do-not-cache-result.
 SELECTs posteriores: teste 0/0, normal 0/1 (categorias/produtos), identidades
-conferidas em processos separados. Aula 06-05 e docs/api/catalogo.md atualizados.
-Publicar a 6.5 e iniciar somente 6.6:
-um cenário HTTP de ordenação com dois ativos inseridos em ordem inversa.
+conferidas em processos separados. Aula 06-06 e docs/api/catalogo.md atualizados.
+Publicar a 6.6 e iniciar somente 6.7:
+extrair função da rota para ProdutoController@index em App\Http\Controllers\Api\V1
+e ajustar routes/api.php; preservar o contrato JSON e verificar os testes existentes.
 Exercício DBeaver continua sem relato; atividade sugerida não bloqueia o curso.
 
 Registro anterior da pausa, em 21/10/2026: 5.92 confirmada com "entendi" e publicada em
@@ -6759,13 +6764,45 @@ Verificações PHP Docker, código 0:
   Sem migration, seeder, cadastro permanente ou nova dependência.
 
 Entendimento: confirmado pelo aluno com "entendi" em 22/10/2026.
-Publicação da 6.5: checkpoint pronto para commit/push conforme autorização
-persistente; registrar o resultado após conferir o remoto.
+Publicação da 6.5: bc86f52caf0e054fa32c74abaf834a374738f44e em 22/10/2026;
+push concluído, HEAD, origin/main e main remota conferidos e coincidentes.
 Último checkpoint publicado: 7defc2c2f695e73d2be27f8167acdb74f28ea746, etapa 6.4;
 envio e consulta direta ao remoto conferidos neste turno.
 Próximo passo exato: publicar e iniciar somente 6.6: adicionar cenário HTTP de ordenação em
 CatalogoApiTest com dois ativos inseridos em ordem inversa à alfabética,
 exigindo a ordem correta dos nomes na lista data da resposta.
+
+## Etapa 6.6 — Ordem dos nomes na resposta JSON
+
+Implementação, explicação e verificações em 22/10/2026. Aula em
+docs/aulas/06-06-teste-api-ordenacao.md; contrato docs/api/catalogo.md atualizado.
+Único código alterado: quarto cenário em backend/tests/Feature/CatalogoApiTest.php.
+
+Test_retorna_nomes_em_ordem_alfabetica_no_json cadastra Caneca antes de Camiseta,
+ambas ativas via factory, preço padrão. GetJson exige 200, application/json e
+JSON exato data: ['Camiseta', 'Caneca']. OrderBy('nome') existente no serviço
+reaproveitado. Conferida implementação instalada de assertExact/reorderAssocKeys:
+normaliza chaves associativas, preservando índices/valores da lista para comparação.
+Sem mudança de dependência ou dos testes anteriores.
+
+Verificações PHP Docker, código 0:
+
+- php -l em CatalogoApiTest: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result: 4 testes/
+  24 asserções passaram.
+- php artisan test --do-not-cache-result: 18 testes/78 asserções passaram.
+- SELECTs separados por /tmp/curso-62-contagens.php após a suíte:
+  loja_test/loja_testes 0 categorias/0 produtos; loja/loja_app 0 categorias/1 produto.
+  Requisições de teste internas Laravel, SQL Server real e rollback.
+
+Entendimento: confirmado pelo aluno com "entendi" em 22/10/2026.
+Publicação da 6.6: checkpoint pronto para commit/push conforme autorização
+persistente; registrar o resultado após conferir o remoto.
+Último checkpoint publicado: bc86f52caf0e054fa32c74abaf834a374738f44e, etapa 6.5;
+envio e consulta direta ao remoto conferidos neste turno.
+Próximo passo exato: publicar e iniciar somente 6.7: extrair a função da rota para ProdutoController@index
+sob App\Http\Controllers\Api\V1 e ajustar routes/api.php; preservar contrato JSON
+e verificar os cenários existentes.
 
 ## Verificações e limitações do ambiente
 
@@ -6793,10 +6830,10 @@ exigindo a ordem correta dos nomes na lista data da resposta.
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último checkpoint pedagógico publicado conferido nesta retomada: `7defc2c`,
-  `test: verifica produto ativo na API do catálogo`. HEAD, origin/main e main
+- Último checkpoint pedagógico publicado conferido nesta retomada: `bc86f52`,
+  `test: omite produtos inativos da API do catálogo`. HEAD, origin/main e main
   consultada diretamente no remoto coincidiram após o push em 22/10/2026.
-  Este registro posterior documenta a publicação; alterações da 6.5 ainda locais.
+  Este registro posterior documenta a publicação; alterações da 6.6 ainda locais.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -7030,7 +7067,8 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Etapa 6.2 confirmada com "entendi" em 22/10/2026 e publicada em 28450ae.
   Etapa 6.3 confirmada com "entendi" em 22/10/2026 e publicada em d9d0911.
   Etapa 6.4 confirmada com "entendi" em 22/10/2026 e publicada em 7defc2c.
-  Etapa 6.5 confirmada com "entendi" em 22/10/2026; publicar e iniciar somente 6.6.
+  Etapa 6.5 confirmada com "entendi" em 22/10/2026 e publicada em bc86f52.
+  Etapa 6.6 confirmada com "entendi" em 22/10/2026; publicar e iniciar somente 6.7.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -7198,4 +7236,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 22/10/2026 | 6.2 — Primeira rota JSON | Registro/prefixo/rota, contrato inicial e HTTP real JSON/HTML conferidos; suíte 14/54 passou, contagens preservadas | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em 28450ae |
 | 22/10/2026 | 6.3 — Teste HTTP catálogo vazio | Novo teste com transação/banco exclusivo, status/cabeçalho/JSON; focado 1/6 e suíte 15/60 passaram, contagens preservadas | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em d9d0911 |
 | 22/10/2026 | 6.4 — Produto ativo no JSON | Segundo cenário HTTP via factory; classe 2/12 e suíte 16/66 passaram, rollback e contagens conferidos | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em 7defc2c |
-| 22/10/2026 | 6.5 — Omitir inativo no JSON | Terceiro cenário HTTP com estado inativo; classe 3/18 e suíte 17/72 passaram, rollback e contagens conferidos | Confirmado pelo aluno: "entendi" em 22/10/2026 | Pronto para commit/push; conferir remoto após envio |
+| 22/10/2026 | 6.5 — Omitir inativo no JSON | Terceiro cenário HTTP com estado inativo; classe 3/18 e suíte 17/72 passaram, rollback e contagens conferidos | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em bc86f52 |
+| 22/10/2026 | 6.6 — Ordenação no JSON | Quarto cenário HTTP com cadastros invertidos; classe 4/24 e suíte 18/78 passaram, rollback e contagens conferidos | Confirmado pelo aluno: "entendi" em 22/10/2026 | Pronto para commit/push; conferir remoto após envio |

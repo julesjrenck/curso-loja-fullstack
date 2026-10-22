@@ -44,5 +44,10 @@ Camiseta no JSON. Classe 3 testes/18 asserções e suíte 17/72 passaram;
 entendimento da 6.5 confirmado com "entendi" em 22/10/2026.
 A ordenação com vários ativos continua
 sem um cenário HTTP próprio.
+Na 6.6, acrescentado cenário que cadastra Caneca e depois Camiseta, ambas ativas,
+e exige {"data":["Camiseta","Caneca"]}, incluindo a ordem da lista. Classe
+4 testes/24 asserções e suíte 18/78 passaram; entendimento da 6.6 confirmado
+com "entendi" em 22/10/2026. O contrato de sucesso agora tem cenários HTTP para catálogo vazio,
+produto ativo, omissão de inativo e ordenação desses nomes.
 Este documento descreve o sucesso da primeira consulta. Erros, outros métodos,
 filtros, paginação e a descrição em OpenAPI serão estudados gradualmente.

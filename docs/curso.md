@@ -243,8 +243,11 @@ entendimento da 6.4 confirmado com "entendi" em 22/10/2026; checkpoint publicado
 e verificado em 7defc2c. Na 6.5, cenário HTTP com ativo/inativo usa inativo() e
 exige apenas Camiseta no JSON; classe 3/18 e suíte 17/72 passaram, contagens
 preservadas. Explicação apresentada, entendimento da 6.5 confirmado com "entendi"
-em 22/10/2026. Próximo passo: publicar e iniciar somente o cenário HTTP de
-ordenação na 6.6.
+em 22/10/2026; checkpoint publicado e verificado em bc86f52. Na 6.6, cenário HTTP
+de dois ativos inseridos em ordem inversa exige Camiseta/Caneca no JSON:
+classe 4/24 e suíte 18/78 passaram, contagens preservadas. Explicação apresentada,
+entendimento da 6.6 confirmado com "entendi" em 22/10/2026. Próximo passo:
+publicar e extrair a função da rota para ProdutoController@index da API na 6.7.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
