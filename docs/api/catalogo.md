@@ -34,5 +34,10 @@ O formato de lista vazia foi verificado na etapa 6.3 pelo teste HTTP
 CatalogoApiTest, com SQL Server exclusivo de testes e rollback. Implementação,
 explicação e verificações da 6.3 apresentadas; entendimento confirmado pelo aluno
 com "entendi" em 22/10/2026.
+Na etapa 6.4, acrescentado cenário HTTP de uma Camiseta ativa que exige
+{"data":["Camiseta"]}, status 200 e Content-Type application/json. Classe
+CatalogoApiTest com 2 testes/12 asserções passou; entendimento da 6.4 confirmado
+com "entendi" em 22/10/2026. Filtro de inativos e ordenação ainda não têm
+cenários HTTP próprios.
 Este documento descreve o sucesso da primeira consulta. Erros, outros métodos,
 filtros, paginação e a descrição em OpenAPI serão estudados gradualmente.

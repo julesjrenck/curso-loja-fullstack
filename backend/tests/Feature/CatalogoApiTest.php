@@ -34,4 +34,19 @@ class CatalogoApiTest extends TestCase
             ->assertHeader('Content-Type', 'application/json')
             ->assertExactJson(['data' => []]);
     }
+
+    public function test_retorna_nome_do_produto_ativo_em_json(): void
+    {
+        Produto::factory()->create([
+            'nome' => 'Camiseta',
+            'status' => 'ativo',
+        ]);
+
+        $resposta = $this->getJson('/api/v1/produtos');
+
+        $resposta
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertExactJson(['data' => ['Camiseta']]);
+    }
 }

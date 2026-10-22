@@ -236,8 +236,11 @@ confirmado com "entendi" em 22/10/2026; checkpoint publicado e verificado em
 28450ae. Na 6.3, primeiro CatalogoApiTest verifica status, Content-Type e JSON
 do catálogo vazio com transação em loja_test. Focado 1/6 e suíte 15/60 passaram;
 contagens preservadas. Explicação apresentada, entendimento da 6.3 confirmado
-com "entendi" em 22/10/2026. Próximo passo: publicar e iniciar somente o cenário
-HTTP de produto ativo na 6.4.
+com "entendi" em 22/10/2026; checkpoint publicado e verificado em d9d0911.
+Na 6.4, cenário HTTP de produto ativo via factory exige Camiseta no JSON:
+classe 2/12 e suíte 16/66 passaram, contagens preservadas. Explicação apresentada,
+entendimento da 6.4 confirmado com "entendi" em 22/10/2026. Próximo passo:
+publicar e iniciar somente o cenário HTTP que omite produto inativo na 6.5.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
