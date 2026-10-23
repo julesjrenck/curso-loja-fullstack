@@ -90,5 +90,10 @@ ainda não está ligado à rota. Na 6.10, CatalogoEloquent recebeu listarProduto
 que retorna coleção de Produto ativos ordenados, selecionando id/nome/preço.
 Diagnóstico em loja_test conferiu vazio, ativos/inativo, ordem, campos/tipos,
 um SELECT por chamada e rollback; suíte existente 18/78 passou. HTTP real segue
-com nomes. Entendimento da 6.10 confirmado com "entendi" em 23/10/2026;
-próximo passo: declarar a leitura no contrato e implementá-la na demonstração.
+com nomes. Entendimento da 6.10 confirmado com "entendi" em 23/10/2026.
+Na 6.11, listarProdutos foi declarado em Catalogo e implementado na demonstração
+com coleção de três models fictícios, sem SQL. Binding Eloquent preservado,
+leitura pelo contrato em loja_test conferida e suíte 18/78 passou. HTTP real
+continua com nomes; entendimento da 6.11 confirmado com "entendi" em 23/10/2026.
+Próximo passo: integrar ProdutoResource::collection e atualizar o contrato
+ativo e os testes HTTP junto à troca para objetos com os três campos.

@@ -264,8 +264,12 @@ verificado em 13d9256. Na 6.10, listarProdutos() retorna coleção de Produto at
 ordenados com id/nome/preço. Diagnóstico de integração conferiu vazio/dados/
 filtro/ordem/campos/tipos/um SELECT e rollback; suíte existente 18/78 passou.
 HTTP real e contagens preservados. Explicação apresentada, entendimento da 6.10
-confirmado com "entendi" em 23/10/2026. Próximo passo: publicar e declarar
-listarProdutos() no contrato e preparar a implementação de demonstração na 6.11.
+confirmado com "entendi" em 23/10/2026; checkpoint publicado e verificado em
+9e8e6b6. Na 6.11, contrato declara listarProdutos e demonstração retorna coleção
+compatível em memória; binding Eloquent/leitura pelo contrato/zero SQL da demo
+conferidos, suíte 18/78 passou e HTTP/contagens preservados. Explicação apresentada,
+entendimento da 6.11 confirmado com "entendi" em 23/10/2026. Próximo passo: publicar
+e integrar leitura/resource e atualizar resposta, documentação e testes HTTP na 6.12.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
