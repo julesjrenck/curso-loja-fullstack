@@ -13,4 +13,6 @@ interface Catalogo
      * @return Collection<int, Produto>
      */
     public function listarProdutos(): Collection;
+
+    public function buscarProduto(int $id): ?Produto;
 }

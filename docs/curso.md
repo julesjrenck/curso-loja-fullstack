@@ -283,8 +283,13 @@ Na 6.14, CatalogoEloquent recebeu buscarProduto(int $id): ?Produto, filtrando
 ativo/ID e selecionando os três atributos. Diagnóstico no banco exclusivo conferiu
 dois ativos por IDs diferentes, ausente/inativo null, um SELECT e rollback;
 suíte 18/78 e HTTP/contagens preservados. Ainda sem ligação com contrato/demo/rota.
-Entendimento da 6.14 confirmado com "entendi" em 23/10/2026. Próximo passo: declarar buscarProduto em Catalogo e implementá-lo na demonstração,
-com verificações de memória/binding, sem ligar o HTTP ainda, na 6.15.
+Entendimento da 6.14 confirmado com "entendi" em 23/10/2026; checkpoint publicado
+e verificado em 198b07e. Na 6.15, Catalogo declara buscarProduto e a demonstração
+busca por foreach da coleção em memória, retornando Produto ou null. Diagnóstico
+conferiu contrato/assinatura/demo/zero SQL/binding/Eloquent/rollback; suíte 18/78,
+HTTP e contagens preservados. Entendimento da 6.15 confirmado com "entendi" em 23/10/2026.
+Próximo passo após confirmação: show e rota individual na 6.16, contrato/resource
+no sucesso e JSON 404 para ausência; explicar restrição do ID e verificar HTTP.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

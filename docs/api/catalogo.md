@@ -84,11 +84,13 @@ O formato de erro acima é específico dessa operação planejada; não document
 um tratamento geral de todos os erros do framework. Restrições sintáticas do ID
 serão detalhadas ao implementar. Desenho em docs/aulas/06-13-consulta-individual-contrato.md.
 
-Preparação interna na etapa 6.14: CatalogoEloquent recebeu buscarProduto(int $id):
-?Produto, com ativo/ID e os três atributos, verificado diretamente no banco
-exclusivo de testes com rollback. Ainda não declarado em Catalogo nem chamado
-por controller/rota; não torna esse endpoint executável. Entendimento da 6.14
-confirmado pelo aluno com "entendi" em 23/10/2026. Aula docs/aulas/06-14-busca-individual-servico.md.
+Preparação interna: na 6.14, CatalogoEloquent recebeu buscarProduto(int $id):
+?Produto, ativo/ID e três atributos; entendimento confirmado e checkpoint publicado.
+Na 6.15, método declarado em Catalogo e implementado por CatalogoDemonstracao,
+com busca em memória e null para ausente. Diagnóstico dirigido conferiu ambas as
+implementações pelo contrato. Ainda sem chamada por controller/rota; não torna
+esse endpoint executável. Entendimento da 6.15 confirmado com "entendi" em 23/10/2026. Aula
+docs/aulas/06-15-contrato-busca-individual.md.
 
 ## Implementação e verificação
 

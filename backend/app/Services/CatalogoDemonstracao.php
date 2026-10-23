@@ -41,4 +41,15 @@ class CatalogoDemonstracao implements Catalogo
 
         return new Collection([$calca, $camiseta, $tenis]);
     }
+
+    public function buscarProduto(int $id): ?Produto
+    {
+        foreach ($this->listarProdutos() as $produto) {
+            if ($produto->id === $id) {
+                return $produto;
+            }
+        }
+
+        return null;
+    }
 }
