@@ -81,5 +81,10 @@ eventuais consumidores. ListarNomes e a página Blade continuarão com strings;
 a evolução da API não deve alterar silenciosamente esse método.
 
 O desenho detalhado e o impacto nos testes estão em
-docs/aulas/06-08-representacao-produto.md. Próxima etapa:
-introduzir ProdutoResource e verificar em memória, sem trocar a rota ainda.
+docs/aulas/06-08-representacao-produto.md. Na 6.9, ProdutoResource foi criado
+com os três campos e verificado em memória: array exato, tipos int/string/int,
+zero SQL observado e model não salvo. Entendimento da 6.9 confirmado com "entendi"
+em 23/10/2026, após esclarecer que ainda não participa da resposta da API.
+HTTP real confirmou que o formato ativo continua sendo data com nomes; o resource
+ainda não está ligado à rota. Próximo passo: preparar a leitura
+listarProdutos() em CatalogoEloquent, preservando listarNomes e a resposta atual.

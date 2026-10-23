@@ -254,8 +254,13 @@ entendimento da 6.7 confirmado com "entendi" em 22/10/2026; checkpoint publicado
 e verificado em 0c2a14e. Na 6.8, desenhada representação de produto com
 id/nome/preco_em_centavos, campos/tipos e impacto na leitura, consumidores e testes.
 Somente documentação; API continua retornando nomes. Explicação apresentada,
-entendimento da 6.8 confirmado com "entendi" em 22/10/2026. Próximo passo: publicar
-e introduzir ProdutoResource e verificar em memória na 6.9, sem trocar a rota ainda.
+entendimento da 6.8 confirmado com "entendi" em 22/10/2026; checkpoint publicado
+e verificado em 3a92c90. Na 6.9, ProdutoResource mapeia os três campos e foi
+conferido em memória: tipos/valores, model não salvo e zero SQL observado.
+HTTP real confirmou formato anterior de nomes e HTML preservados. Explicação
+apresentada, entendimento da 6.9 confirmado com "entendi" em 23/10/2026 após
+esclarecer que ainda não participa da resposta da API. Próximo passo: publicar
+e criar listarProdutos() no serviço, sem trocar a resposta da rota ainda.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
