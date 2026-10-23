@@ -86,5 +86,9 @@ com os três campos e verificado em memória: array exato, tipos int/string/int,
 zero SQL observado e model não salvo. Entendimento da 6.9 confirmado com "entendi"
 em 23/10/2026, após esclarecer que ainda não participa da resposta da API.
 HTTP real confirmou que o formato ativo continua sendo data com nomes; o resource
-ainda não está ligado à rota. Próximo passo: preparar a leitura
-listarProdutos() em CatalogoEloquent, preservando listarNomes e a resposta atual.
+ainda não está ligado à rota. Na 6.10, CatalogoEloquent recebeu listarProdutos(),
+que retorna coleção de Produto ativos ordenados, selecionando id/nome/preço.
+Diagnóstico em loja_test conferiu vazio, ativos/inativo, ordem, campos/tipos,
+um SELECT por chamada e rollback; suíte existente 18/78 passou. HTTP real segue
+com nomes. Entendimento da 6.10 confirmado com "entendi" em 23/10/2026;
+próximo passo: declarar a leitura no contrato e implementá-la na demonstração.

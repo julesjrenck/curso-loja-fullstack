@@ -4,25 +4,26 @@
 
 - Última atualização: 23/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.9 — ProdutoResource em memória.
-- Situação: criado app/Http/Resources/ProdutoResource.php, estende JsonResource
-  e define toArray(Request): array com id/nome/preco_em_centavos. Conferidos
-  sintaxe, autoload e resolve em memória: dados exatos 123/Camiseta/4990,
-  tipos int/string/int, status omitido, model exists false e atributos preservados.
-  Zero SQL observado depois do listener. ID fictício em memória, sem cadastro.
-  HTTP real: API 200/application/json/{"data":["Camiseta"]}; /loja 200/text/html
-  com Camiseta. Resource ainda não integrado à rota; listarNomes/interface
-  e controller preservados. Aula 06-09 e contrato documentados.
-  Entendimento da 6.9 confirmado com "entendi" em 23/10/2026 após o esclarecimento;
-  checkpoint pronto para publicação.
-  Em 23/10/2026, aluno perguntou se o resource ainda não foi usado. Esclarecido:
-  usado somente no diagnóstico em memória, ainda sem integração à API. Controller
-  conferido e segue listarNomes. Pergunta não tratada como confirmação de entendimento.
-  Próximo passo: publicar e iniciar somente 6.10, adicionar listarProdutos() em CatalogoEloquent com
-  coleção de Produto ativos ordenados e ID/nome/preço, verificando a leitura.
-  Preservar listarNomes, interface e resposta da rota nessa preparação.
-  Última suíte permanece 18 testes/78 asserções da 6.7, não repetida para resource
-  ainda isolado. Verificação da transformação por diagnóstico em memória.
+- Etapa atual: 6.10 — Leitura dos produtos para a API.
+- Situação: CatalogoEloquent recebeu listarProdutos(): Collection, com retorno
+  de models Produto ativos ordenados por nome, get(['id', 'nome', 'preco_em_centavos']).
+  Importada Collection do Eloquent e documentados índices/tipo dos elementos.
+  ListarNomes/interface/controller/resource existentes preservados; nova leitura
+  ainda não integrada à resposta da API.
+  Diagnóstico em transação loja_test/loja_testes conferiu coleção vazia e cenário
+  com dois ativos/um inativo: IDs/nomes/preços/campos/tipos/ordem corretos, um
+  SELECT por chamada e zero consultas adicionais no foreach; rollback executado.
+  Sintaxe válida, suíte existente 18 testes/78 asserções passou. HTTP real:
+  API 200/application/json/{"data":["Camiseta"]}; /loja 200/text/html/Camiseta.
+  SELECTs posteriores: teste 0 categorias/0 produtos; normal 0/1, identidades conferidas.
+  Aula 06-10 e docs/api/catalogo.md atualizados. Entendimento da 6.10 confirmado
+  com "entendi" em 23/10/2026; checkpoint pronto para publicação.
+  Próximo passo: publicar e iniciar somente 6.11,
+  declarar listarProdutos() no contrato Catalogo e preparar CatalogoDemonstracao
+  com coleção de Produto compatível, mantendo listarNomes e a resposta HTTP atual.
+  Etapa 6.9 confirmada com "entendi" em 23/10/2026 após esclarecer uso isolado do
+  resource; publicada em 13d9256f17017b869ec5f8bd82f6b7df40f02208. HEAD,
+  origin/main e main remota coincidiram após o push.
   Etapa 6.8 confirmada com "entendi" em 22/10/2026 e publicada em
   3a92c9074c598c715647e2e4c734cb9d1903622d; HEAD, origin/main e main remota
   coincidiram após o push.
@@ -124,7 +125,7 @@
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
   A pausa posterior ao módulo 5 foi encerrada em 22/10/2026; acompanhar a etapa
-  atual 6.9, cujo entendimento foi confirmado em 23/10/2026.
+  atual 6.10, cujo entendimento foi confirmado em 23/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -259,23 +260,23 @@
 
 ## Retomada em outro chat
 
-Estado mais recente, em 23/10/2026: 6.8 confirmada com "entendi" e publicada em
-3a92c9074c598c715647e2e4c734cb9d1903622d; HEAD, origin/main e main remota
-coincidiram após push. Etapa 6.9 implementada/explicada/verificada, entendimento
-confirmado pelo aluno com "entendi" em 23/10/2026 após esclarecer uso apenas no
-diagnóstico em memória. Novo app/Http/Resources/ProdutoResource.php estende
-JsonResource e define toArray com id/nome/preco_em_centavos. Diagnóstico
-/tmp/curso-69-resource-memoria.php usa Produto não salvo, id fictício '123',
-preço '4990' e nome Camiseta; resolve(Request::create(...)) conferiu array exato,
-tipos int/string/int, status omitido, exists false e atributos preservados.
-Listener pós-bootstrap registrou zero SQL. HTTP real pelo diagnóstico da 6.2
-confirmou API com nomes (200/application/json/{"data":["Camiseta"]}) e /loja
-com HTML/Camiseta (200). Não integrar resource à rota antes da etapa prevista.
-Última suíte registrada 18/78 da 6.7, não repetida para classe ainda isolada.
-Aula 06-09 e docs/api/catalogo.md atualizados. Publicar a 6.9 e iniciar somente
-6.10: adicionar listarProdutos() em CatalogoEloquent,
-coleção de Produto ativos ordenados com ID/nome/preço, e verificar leitura;
-preservar listarNomes/interface/controller/resposta da rota nessa preparação.
+Estado mais recente, em 23/10/2026: 6.9 confirmada com "entendi" e publicada em
+13d9256f17017b869ec5f8bd82f6b7df40f02208; HEAD, origin/main e main remota
+coincidiram após push. Etapa 6.10 implementada/explicada/verificada, entendimento
+confirmado pelo aluno com "entendi" em 23/10/2026. CatalogoEloquent recebeu listarProdutos(): Collection do
+Eloquent, com where ativo/orderBy nome/get de id,nome,preco_em_centavos.
+ListarNomes/interface/controller/resource e resposta da rota preservados.
+Diagnóstico /tmp/curso-610-listar-produtos.php em loja_test/loja_testes, transação
+e rollback: vazio retorna Collection vazia/um SELECT; com Caneca e Camiseta ativas
+e Tênis inativo retorna só Camiseta/4990 e Caneca/2990, IDs dos cadastros, campos
+exatos e tipos int/string/int, um SELECT sem SQL extra no foreach.
+Sintaxe válida, suíte existente 18/78 passou; HTTP real API com nomes e /loja
+HTML/Camiseta, ambos 200. Contagens pós-diagnóstico/suíte/HTTP: teste 0/0 e
+normal 0/1 (categorias/produtos), identidades conferidas em processos separados.
+Aula 06-10 e docs/api/catalogo.md atualizados. Publicar a 6.10 e iniciar somente
+6.11: declarar listarProdutos() no
+contrato Catalogo e preparar implementação compatível em CatalogoDemonstracao;
+manter listarNomes e ainda não trocar a resposta HTTP nessa etapa.
 Exercício DBeaver continua sem relato; atividade sugerida não bloqueia o curso.
 
 Registro anterior da pausa, em 21/10/2026: 5.92 confirmada com "entendi" e publicada em
@@ -6919,8 +6920,8 @@ Verificações PHP Docker, código 0:
   Sem migration, seeder, cadastro ou nova dependência.
 
 Entendimento: confirmado pelo aluno com "entendi" em 23/10/2026, após o esclarecimento abaixo.
-Publicação da 6.9: checkpoint pronto para commit/push conforme autorização
-persistente; registrar o resultado após conferir o remoto.
+Publicação da 6.9: 13d9256f17017b869ec5f8bd82f6b7df40f02208 em 23/10/2026;
+push concluído, HEAD, origin/main e main remota conferidos e coincidentes.
 
 Dúvida esclarecida em 23/10/2026: aluno perguntou se o resource criado ainda
 não foi usado. Confirmado que foi exercitado apenas no diagnóstico em memória;
@@ -6934,6 +6935,46 @@ envio e consulta direta ao remoto conferidos neste turno.
 Próximo passo exato: publicar e iniciar somente 6.10: adicionar listarProdutos() em CatalogoEloquent,
 retornando coleção de Produto ativos ordenados com ID/nome/preço e verificar
 leitura, preservando listarNomes, interface Catalogo, controller e resposta da rota.
+
+## Etapa 6.10 — Leitura dos produtos para a API
+
+Implementação, explicação e verificações em 23/10/2026. Aula em
+docs/aulas/06-10-leitura-produtos-api.md; contrato docs/api/catalogo.md atualizado.
+Único código alterado: backend/app/Services/CatalogoEloquent.php.
+
+Adicionado listarProdutos(): Collection, com import Illuminate\Database\Eloquent\Collection
+e phpdoc Collection<int, Produto>. Query mantém ativos/ordem por nome e get
+seleciona id/nome/preco_em_centavos, retornando models com esses atributos.
+ListarNomes/interface/controller/resource existentes preservados; método novo
+ainda não conectado à resposta HTTP. Consulta separada de transformação/JSON.
+
+Verificações PHP Docker, código 0:
+
+- php -l em CatalogoEloquent: sintaxe válida.
+- /tmp/curso-610-listar-produtos.php carregou .env.testing e exigiu identidade
+  loja_test/loja_testes antes de transação/DELETE. Vazio: Collection/0 models/
+  um SELECT. Depois cadastrou Caneca ativa/2990, Camiseta ativa/4990 e Tênis
+  inativo/9990 por factories. Leitura retornou dois models persistidos, só três
+  campos, IDs dos cadastros e nomes/preços em ordem Camiseta/4990, Caneca/2990.
+  Tipos int/string/int conferidos por comparação estrita. Um SELECT com binding
+  ativo e zero SQL extra no foreach. Rollback em finally.
+- SQL: select [id], [nome], [preco_em_centavos] from [produtos] where [status] = ?
+  order by [nome] asc. Query log separado da preparação dos dados.
+- php artisan test --do-not-cache-result: suíte existente 18 testes/78 asserções passou.
+- HTTP real por /tmp/curso-62-http.php: API 200/application/json/{"data":["Camiseta"]};
+  /loja 200/text/html; charset=utf-8 e item Camiseta.
+- SELECTs separados por /tmp/curso-62-contagens.php após diagnóstico/suíte/HTTP:
+  loja_test/loja_testes 0 categorias/0 produtos; loja/loja_app 0 categorias/1 produto.
+  Nenhuma migration, seeder, nova dependência ou cadastro permanente.
+
+Entendimento: confirmado pelo aluno com "entendi" em 23/10/2026.
+Publicação da 6.10: checkpoint pronto para commit/push conforme autorização
+persistente; registrar o resultado após conferir o remoto.
+Último checkpoint publicado: 13d9256f17017b869ec5f8bd82f6b7df40f02208, etapa 6.9;
+envio e consulta direta ao remoto conferidos neste turno.
+Próximo passo exato: publicar e iniciar somente 6.11: declarar listarProdutos() no contrato Catalogo
+com retorno Collection de Produto e preparar a implementação compatível em
+CatalogoDemonstracao, mantendo listarNomes e a resposta HTTP atual.
 
 ## Verificações e limitações do ambiente
 
@@ -6961,10 +7002,10 @@ leitura, preservando listarNomes, interface Catalogo, controller e resposta da r
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último checkpoint pedagógico publicado conferido nesta retomada: `3a92c90`,
-  `docs: define próxima representação JSON de produto`. HEAD, origin/main e main
-  consultada diretamente no remoto coincidiram após o push em 22/10/2026.
-  Este registro posterior documenta a publicação; alterações da 6.9 ainda locais.
+- Último checkpoint pedagógico publicado conferido nesta retomada: `13d9256`,
+  `feat: define ProdutoResource e verifica transformação em memória`. HEAD, origin/main e main
+  consultada diretamente no remoto coincidiram após o push em 23/10/2026.
+  Este registro posterior documenta a publicação; alterações da 6.10 ainda locais.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -7202,7 +7243,8 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Etapa 6.6 confirmada com "entendi" em 22/10/2026 e publicada em daffb95.
   Etapa 6.7 confirmada com "entendi" em 22/10/2026 e publicada em 0c2a14e.
   Etapa 6.8 confirmada com "entendi" em 22/10/2026 e publicada em 3a92c90.
-  Etapa 6.9 confirmada com "entendi" em 23/10/2026; publicar e iniciar somente 6.10.
+  Etapa 6.9 confirmada com "entendi" em 23/10/2026 e publicada em 13d9256.
+  Etapa 6.10 confirmada com "entendi" em 23/10/2026; publicar e iniciar somente 6.11.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -7374,4 +7416,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 22/10/2026 | 6.6 — Ordenação no JSON | Quarto cenário HTTP com cadastros invertidos; classe 4/24 e suíte 18/78 passaram, rollback e contagens conferidos | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em daffb95 |
 | 22/10/2026 | 6.7 — Controller da API | Função extraída e rota ligada a index; classe 4/24, suíte 18/78, HTTP real JSON/HTML e contagens conferidos | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em 0c2a14e |
 | 22/10/2026 | 6.8 — Desenho JSON de produto | Campos/tipos/impactos documentados; dois exemplos JSON conferidos no PHP Docker, sem mudar aplicação | Confirmado pelo aluno: "entendi" em 22/10/2026 | Publicado e verificado em 3a92c90 |
-| 22–23/10/2026 | 6.9 — ProdutoResource | Mapeamento explícito verificado em memória, tipos/atributos/zero SQL e HTTP atual conferidos; uso isolado esclarecido | Confirmado pelo aluno: "entendi" em 23/10/2026 | Pronto para commit/push; conferir remoto após envio |
+| 22–23/10/2026 | 6.9 — ProdutoResource | Mapeamento explícito verificado em memória, tipos/atributos/zero SQL e HTTP atual conferidos; uso isolado esclarecido | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 13d9256 |
+| 23/10/2026 | 6.10 — Leitura de produtos | Método retorna models com três campos; diagnóstico SQL/coleção/filtro/ordem/rollback, suíte 18/78, HTTP e contagens conferidos | Confirmado pelo aluno: "entendi" em 23/10/2026 | Pronto para commit/push; conferir remoto após envio |

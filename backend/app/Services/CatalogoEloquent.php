@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Contracts\Catalogo;
 use App\Models\Produto;
+use Illuminate\Database\Eloquent\Collection;
 
 class CatalogoEloquent implements Catalogo
 {
@@ -14,5 +15,16 @@ class CatalogoEloquent implements Catalogo
             ->orderBy('nome')
             ->pluck('nome')
             ->all();
+    }
+
+    /**
+     * @return Collection<int, Produto>
+     */
+    public function listarProdutos(): Collection
+    {
+        return Produto::query()
+            ->where('status', 'ativo')
+            ->orderBy('nome')
+            ->get(['id', 'nome', 'preco_em_centavos']);
     }
 }

@@ -259,8 +259,13 @@ e verificado em 3a92c90. Na 6.9, ProdutoResource mapeia os três campos e foi
 conferido em memória: tipos/valores, model não salvo e zero SQL observado.
 HTTP real confirmou formato anterior de nomes e HTML preservados. Explicação
 apresentada, entendimento da 6.9 confirmado com "entendi" em 23/10/2026 após
-esclarecer que ainda não participa da resposta da API. Próximo passo: publicar
-e criar listarProdutos() no serviço, sem trocar a resposta da rota ainda.
+esclarecer que ainda não participa da resposta da API; checkpoint publicado e
+verificado em 13d9256. Na 6.10, listarProdutos() retorna coleção de Produto ativos
+ordenados com id/nome/preço. Diagnóstico de integração conferiu vazio/dados/
+filtro/ordem/campos/tipos/um SELECT e rollback; suíte existente 18/78 passou.
+HTTP real e contagens preservados. Explicação apresentada, entendimento da 6.10
+confirmado com "entendi" em 23/10/2026. Próximo passo: publicar e declarar
+listarProdutos() no contrato e preparar a implementação de demonstração na 6.11.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
