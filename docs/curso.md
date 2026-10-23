@@ -278,8 +278,13 @@ esclarecer a busca no banco; checkpoint publicado e verificado em 1b1d288.
 Na 6.13, desenhada consulta individual GET /api/v1/produtos/{id}, sucesso 200
 com objeto em data e 404 com message para inexistente/inativo. Somente documentação;
 nenhuma rota individual implementada. Entendimento da 6.13 confirmado pelo aluno
-com "entendi" em 23/10/2026. Próximo passo: buscarProduto no serviço
-e diagnóstico com banco exclusivo/rollback na 6.14.
+com "entendi" em 23/10/2026; checkpoint publicado e verificado em 1690d72.
+Na 6.14, CatalogoEloquent recebeu buscarProduto(int $id): ?Produto, filtrando
+ativo/ID e selecionando os três atributos. Diagnóstico no banco exclusivo conferiu
+dois ativos por IDs diferentes, ausente/inativo null, um SELECT e rollback;
+suíte 18/78 e HTTP/contagens preservados. Ainda sem ligação com contrato/demo/rota.
+Entendimento da 6.14 confirmado com "entendi" em 23/10/2026. Próximo passo: declarar buscarProduto em Catalogo e implementá-lo na demonstração,
+com verificações de memória/binding, sem ligar o HTTP ainda, na 6.15.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

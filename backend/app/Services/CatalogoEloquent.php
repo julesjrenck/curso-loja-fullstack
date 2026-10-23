@@ -27,4 +27,12 @@ class CatalogoEloquent implements Catalogo
             ->orderBy('nome')
             ->get(['id', 'nome', 'preco_em_centavos']);
     }
+
+    public function buscarProduto(int $id): ?Produto
+    {
+        return Produto::query()
+            ->where('status', 'ativo')
+            ->whereKey($id)
+            ->first(['id', 'nome', 'preco_em_centavos']);
+    }
 }
