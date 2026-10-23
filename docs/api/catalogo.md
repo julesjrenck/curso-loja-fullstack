@@ -51,46 +51,54 @@ Sem produtos ativos, o sucesso continua 200 e o corpo é:
 {"data":[]}
 ```
 
-Este documento descreve o sucesso da listagem. Consulta individual, outras
-operações, erros, filtros, paginação e OpenAPI serão introduzidos gradualmente.
+O sucesso da listagem está descrito acima. Consulta individual é descrita abaixo;
+outras operações, erros gerais, filtros, paginação e OpenAPI entrarão gradualmente.
 
-## Consulta individual — desenho da etapa 6.13
+## Consultar produto por ID
 
-Planejada em 23/10/2026, ainda não implementada; entendimento da 6.13 confirmado
-pelo aluno com "entendi" em 23/10/2026. A seção de listagem acima continua descrevendo o contrato ativo.
+Implementado na 6.16 em 23/10/2026; explicação e verificações apresentadas,
+entendimento da 6.16 confirmado com "entendi" em 23/10/2026. Desenho da 6.13 confirmado anteriormente.
 
-- Método e caminho planejados: GET /api/v1/produtos/{id}.
-- ID de caminho: identificador inteiro positivo, por exemplo /api/v1/produtos/1.
-- Sem corpo de requisição; Accept: application/json.
+- Método e caminho: GET /api/v1/produtos/{id}.
+- URL local ilustrativa: http://127.0.0.1:8002/api/v1/produtos/1.
+- ID obrigatório: inteiro positivo em decimal sem zeros à esquerda, até
+  PHP_INT_MAX (9223372036854775807 na imagem PHP 64 bits atual).
+- Sem corpo de requisição; Accept: application/json recomendado.
+- Acesso público de leitura; não há parâmetro de consulta neste contrato inicial.
 - Produto ativo encontrado: 200 e Content-Type application/json.
-- ID inexistente ou produto inativo: 404 e Content-Type application/json.
+- ID válido inexistente ou de produto inativo: 404 e Content-Type application/json.
 
-Sucesso com um objeto em data, usando os campos/tipos da listagem:
+Sucesso com um objeto em data, usando os mesmos campos/tipos da listagem:
 
 ```json
 {"data":{"id":1,"nome":"Camiseta","preco_em_centavos":4990}}
 ```
 
-O ID do exemplo é ilustrativo. Na resposta real deverá corresponder ao solicitado.
-Para inexistente ou inativo, o corpo planejado será o mesmo:
+ID e preço ilustrativos; o ID real corresponde ao solicitado. Inexistente e
+inativo recebem o mesmo corpo:
 
 ```json
 {"message":"Produto não encontrado."}
 ```
 
-Essa é a regra do catálogo público, sem excluir o produto inativo do banco.
-Coleção vazia continua 200/data: []; consulta individual indisponível será 404.
-O formato de erro acima é específico dessa operação planejada; não documenta
-um tratamento geral de todos os erros do framework. Restrições sintáticas do ID
-serão detalhadas ao implementar. Desenho em docs/aulas/06-13-consulta-individual-contrato.md.
+Essa é a regra do catálogo público, sem excluir o produto inativo. Coleção vazia
+continua 200/data: []; produto individual indisponível retorna 404.
+ID numérico positivo acima da faixa de int também retorna 404 com essa message,
+sem consultar o banco. Formatos fora do padrão, como abc, 0, -1, 1.5 ou 01,
+recebem 404 JSON do roteamento, sem executar show. O corpo desses erros de rota
+não está padronizado por este contrato; a message exata é produzida por show.
 
-Preparação interna: na 6.14, CatalogoEloquent recebeu buscarProduto(int $id):
-?Produto, ativo/ID e três atributos; entendimento confirmado e checkpoint publicado.
-Na 6.15, método declarado em Catalogo e implementado por CatalogoDemonstracao,
-com busca em memória e null para ausente. Diagnóstico dirigido conferiu ambas as
-implementações pelo contrato. Ainda sem chamada por controller/rota; não torna
-esse endpoint executável. Entendimento da 6.15 confirmado com "entendi" em 23/10/2026. Aula
-docs/aulas/06-15-contrato-busca-individual.md.
+ProdutoController@show recebe Catalogo e o ID textual, valida/converte o inteiro,
+chama buscarProduto e retorna ProdutoResource ou JsonResponse. O binding continua
+CatalogoEloquent; a consulta filtra ativo/ID e seleciona os três campos.
+CatalogoDemonstracao implementa a mesma assinatura, em memória.
+
+Na 6.16, diagnóstico pelo kernel HTTP em banco exclusivo/transação conferiu dois
+ativos, ausente, inativo e formatos/faixa do ID; dados fictícios desfeitos.
+HTTP real confirmou produto com ID obtido da listagem e erro para número acima
+da faixa. Suíte existente 18/78 passou; testes permanentes da consulta individual
+serão introduzidos a partir da 6.17. Aula docs/aulas/06-16-consulta-individual-http.md.
+O desenho histórico está em docs/aulas/06-13-consulta-individual-contrato.md.
 
 ## Implementação e verificação
 
@@ -113,5 +121,5 @@ contrato interno foram preparados nas 6.9–6.11. Na 6.12, resposta e testes for
 trocados juntos para objetos. Consumidores do formato anterior precisam ler
 nome dentro de cada item. Não há endpoint separado de nomes nesta API.
 
-O histórico detalhado está em docs/progresso.md e nas aulas 06-02 a 06-12.
-A descrição atual acima corresponde ao código executável.
+O histórico detalhado está em docs/progresso.md e nas aulas 06-02 a 06-16.
+As descrições atuais de listagem e consulta individual correspondem ao código executável.

@@ -287,9 +287,13 @@ Entendimento da 6.14 confirmado com "entendi" em 23/10/2026; checkpoint publicad
 e verificado em 198b07e. Na 6.15, Catalogo declara buscarProduto e a demonstração
 busca por foreach da coleção em memória, retornando Produto ou null. Diagnóstico
 conferiu contrato/assinatura/demo/zero SQL/binding/Eloquent/rollback; suíte 18/78,
-HTTP e contagens preservados. Entendimento da 6.15 confirmado com "entendi" em 23/10/2026.
-Próximo passo após confirmação: show e rota individual na 6.16, contrato/resource
-no sucesso e JSON 404 para ausência; explicar restrição do ID e verificar HTTP.
+HTTP e contagens preservados. Entendimento da 6.15 confirmado com "entendi" em
+23/10/2026; checkpoint publicado e verificado em 8961d02. Na 6.16, show e rota
+individual ligados: parâmetro positivo sem zero inicial, conversão validada para
+int, busca pelo contrato, ProdutoResource no sucesso e JSON 404/message na ausência.
+Diagnóstico HTTP em banco exclusivo/transação conferiu ativo/ausente/inativo e
+formato/faixa do ID; suíte 18/78, HTTP real e contagens preservados. Contrato ativo
+atualizado. Entendimento da 6.16 confirmado com "entendi" em 23/10/2026. Próximo passo: primeiro teste permanente de consulta individual ativa na 6.17.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
