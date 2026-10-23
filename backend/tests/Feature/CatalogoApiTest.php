@@ -59,6 +59,34 @@ class CatalogoApiTest extends TestCase
             ]);
     }
 
+    public function test_retorna_produto_ativo_pelo_id_em_json(): void
+    {
+        Produto::factory()->create([
+            'nome' => 'Caneca',
+            'status' => 'ativo',
+            'preco_em_centavos' => 2990,
+        ]);
+
+        $camiseta = Produto::factory()->create([
+            'nome' => 'Camiseta',
+            'status' => 'ativo',
+            'preco_em_centavos' => 4990,
+        ]);
+
+        $resposta = $this->getJson('/api/v1/produtos/'.$camiseta->id);
+
+        $resposta
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertExactJson([
+                'data' => [
+                    'id' => $camiseta->id,
+                    'nome' => 'Camiseta',
+                    'preco_em_centavos' => 4990,
+                ],
+            ]);
+    }
+
     public function test_omite_produtos_inativos_da_resposta_json(): void
     {
         $camiseta = Produto::factory()->create([

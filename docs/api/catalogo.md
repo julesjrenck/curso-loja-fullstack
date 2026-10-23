@@ -96,8 +96,13 @@ CatalogoDemonstracao implementa a mesma assinatura, em memória.
 Na 6.16, diagnóstico pelo kernel HTTP em banco exclusivo/transação conferiu dois
 ativos, ausente, inativo e formatos/faixa do ID; dados fictícios desfeitos.
 HTTP real confirmou produto com ID obtido da listagem e erro para número acima
-da faixa. Suíte existente 18/78 passou; testes permanentes da consulta individual
-serão introduzidos a partir da 6.17. Aula docs/aulas/06-16-consulta-individual-http.md.
+da faixa. Suíte existente 18/78 passou naquela etapa. Na 6.17, acrescentado teste
+permanente de produto ativo pelo ID, com outro ativo cadastrado, exigindo status,
+tipo e JSON exato com data em objeto. Classe 5/30 e suíte 19/84 passaram; contagens
+preservadas. Entendimento da 6.17 confirmado com "entendi" em 23/10/2026. Erros e restrições ainda cobertos só
+pelo diagnóstico anterior, não por testes permanentes. Aulas
+docs/aulas/06-16-consulta-individual-http.md e
+docs/aulas/06-17-teste-consulta-individual-ativa.md.
 O desenho histórico está em docs/aulas/06-13-consulta-individual-contrato.md.
 
 ## Implementação e verificação
@@ -107,8 +112,9 @@ ProdutoResource::collection. O binding resolve CatalogoEloquent, que seleciona
 id/nome/preço dos ativos em ordem. Laravel transforma os resources e envolve a
 lista em data. ListarNomes continua atendendo ao fluxo da página Blade /loja.
 
-Os quatro cenários HTTP de CatalogoApiTest cobrem vazio, produto ativo, omissão
-de inativo e ordenação, exigindo o JSON exato com IDs gerados e preços explícitos.
+Os quatro cenários de listagem em CatalogoApiTest cobrem vazio, produto ativo,
+omissão de inativo e ordenação, exigindo JSON exato com IDs gerados e preços
+explícitos. Na 6.17, a classe passou a cinco cenários com a consulta individual ativa.
 Na 6.12: classe 4 testes/24 asserções e suíte 18 testes/78 asserções passaram.
 HTTP real confirmou o objeto com três campos; /loja manteve HTML e Camiseta.
 Contagens dos bancos preservadas após os testes; dados fictícios desfeitos.
@@ -121,5 +127,5 @@ contrato interno foram preparados nas 6.9–6.11. Na 6.12, resposta e testes for
 trocados juntos para objetos. Consumidores do formato anterior precisam ler
 nome dentro de cada item. Não há endpoint separado de nomes nesta API.
 
-O histórico detalhado está em docs/progresso.md e nas aulas 06-02 a 06-16.
+O histórico detalhado está em docs/progresso.md e nas aulas 06-02 a 06-17.
 As descrições atuais de listagem e consulta individual correspondem ao código executável.

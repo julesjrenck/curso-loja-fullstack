@@ -293,7 +293,13 @@ individual ligados: parâmetro positivo sem zero inicial, conversão validada pa
 int, busca pelo contrato, ProdutoResource no sucesso e JSON 404/message na ausência.
 Diagnóstico HTTP em banco exclusivo/transação conferiu ativo/ausente/inativo e
 formato/faixa do ID; suíte 18/78, HTTP real e contagens preservados. Contrato ativo
-atualizado. Entendimento da 6.16 confirmado com "entendi" em 23/10/2026. Próximo passo: primeiro teste permanente de consulta individual ativa na 6.17.
+atualizado. Entendimento da 6.16 confirmado com "entendi" em 23/10/2026; publicado
+e verificado em 10c7293. Na 6.17, um teste permanente pede o ID real da Camiseta,
+com Caneca também cadastrada, e exige 200/tipo/JSON exato em objeto. Classe 5/30 e
+suíte 19/84 passaram, contagens preservadas. Aplicação preservada, HTTP real não
+repetido. Entendimento da 6.17 confirmado com "entendi" em 23/10/2026. Aluno pediu
+para continuar outro dia; curso em pausa, sem iniciar a 6.18. Quando solicitar
+retomada, próximo passo: teste de ID válido inexistente com 404/message na 6.18.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

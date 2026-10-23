@@ -4,25 +4,29 @@
 
 - Última atualização: 23/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.16 — Consulta individual pelo HTTP.
-- Situação: GET /api/v1/produtos/{id} ligado a ProdutoController@show. Rota exige
-  [1-9][0-9]*; controller recebe ID textual, filter_var/FILTER_VALIDATE_INT com
-  min_range 1 converte para inteiro. Acima da faixa, produto fica null e a resposta
-  é 404 sem chamar o serviço.
-  Produto encontrado vira ProdutoResource, 200/data em objeto; ausência/inativo
-  vira JsonResponse 404/{"message":"Produto não encontrado."}. Formatos inválidos
-  recebem 404 JSON do roteamento, sem promessa de corpo exato. Index preservado.
-  Diagnóstico pelo kernel em loja_test/loja_testes/transação: dois ativos corretos,
-  inativo/ausente/PHP_INT_MAX sem cadastro 404/message, um SELECT por busca válida;
-  formatos inválidos e acima do inteiro sem SQL. Inativo preservado e rollback.
-  Sintaxes e rotas conferidas; suíte existente 18 testes/78 asserções passou.
-  HTTP real: ID da listagem consultado, 200 JSON objeto Camiseta/4990; número
-  acima da faixa 404/message. Listagem/HTML preservados, contagens teste 0/0 e
-  normal 0/1. Contrato ativo e aula 06-16 atualizados; explicação apresentada,
-  entendimento da 6.16 confirmado com "entendi" em 23/10/2026; pronto para publicação.
-  Próximo passo após confirmação: 6.17, um teste permanente em CatalogoApiTest
-  para produto ativo pelo ID, factory/preço explícito, status/tipo/JSON exato
-  com data em objeto. Reutilizar transação e identidade de testes existentes.
+- Etapa atual: 6.17 — Teste da consulta individual de produto ativo, concluída.
+- Curso em pausa a pedido do aluno em 23/10/2026: "entendi, vamos continuar outro dia".
+  Entendimento confirmado; não iniciar a 6.18 até solicitação de retomada.
+- Situação: CatalogoApiTest recebeu um cenário permanente de GET por ID ativo.
+  Cria Caneca antes de Camiseta, pede o ID real da Camiseta, exige 200,
+  Content-Type application/json e JSON exato com data em objeto e três campos.
+  Reutiliza identidade loja_test/loja_testes, setUp e DatabaseTransactions;
+  nenhum código de aplicação alterado. Sintaxe válida; classe 5 testes/30
+  asserções e suíte 19 testes/84 asserções passaram. Contagens posteriores:
+  teste 0 categorias/0 produtos, normal 0 categorias/1 produto. Fixtures desfeitas.
+  HTTP real não repetido, última verificação por socket pertence à 6.16.
+  Aula 06-17 e contrato ativo atualizados. Entendimento da 6.17 confirmado com
+  "entendi" em 23/10/2026; checkpoint pronto para publicação. Erros individuais ainda verificados
+  apenas nos diagnósticos da 6.16, não pelo teste permanente novo.
+  Próximo passo somente quando o aluno pedir retomada: 6.18, um teste em
+  CatalogoApiTest de ID válido
+  inexistente com catálogo vazio pelo setUp; exigir 404/application/json e
+  JSON exato {"message":"Produto não encontrado."}.
+- Etapa 6.16: consulta HTTP confirmada com "entendi" em 23/10/2026 e publicada
+  em 10c72935393ae82fe972b78d50413243c8f1a58d. HEAD, origin/main e main remota
+  coincidiram após push. Rota/show, restrição de ID, serviço pelo contrato e
+  ProdutoResource ou JSON 404/message; diagnóstico HTTP completo, suíte 18/78,
+  HTTP real e contagens conferidos naquela etapa.
 - Etapa 6.15: contrato e demo confirmados com "entendi" em 23/10/2026 e publicados
   em 8961d02c515cf7f4ed82f4dc56be54ab1fb1e628. HEAD, origin/main e main remota
   coincidiram após push; assinatura/demo/zero SQL/binding/Eloquent conferidos.
@@ -165,7 +169,7 @@
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
   A pausa posterior ao módulo 5 foi encerrada em 22/10/2026; acompanhar a etapa
-  atual 6.16, cujo entendimento foi confirmado em 23/10/2026.
+  6.17 concluída, entendimento confirmado em 23/10/2026; curso em pausa a pedido do aluno.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -300,23 +304,23 @@
 
 ## Retomada em outro chat
 
-Estado mais recente, em 23/10/2026: 6.15 confirmada com "entendi", publicada em
-8961d02c515cf7f4ed82f4dc56be54ab1fb1e628; HEAD/origin/main/main remota coincidiram
-após push. Etapa 6.16 implementada/explicada/verificada; entendimento confirmado
-com "entendi" em 23/10/2026.
-Show e rota GET /api/v1/produtos/{id} ligados, padrão [1-9][0-9]*, ID textual
-validado/conversão int por filter_var min_range 1; ProdutoResource com data em
-objeto no sucesso ou JsonResponse 404/message na ausência. Não há SQL acima da
-faixa do inteiro; formatos inválidos recebem 404 do roteamento sem corpo prometido.
-Diagnóstico /tmp/curso-616-http-individual.php pelo kernel em loja_test/loja_testes
-com fixtures/transação: dois ativos, inativo/ausente e formato/faixa do ID passaram,
-SQL observado e rollback. Sintaxes/rotas conferidas, suíte existente 18/78 passou.
-/tmp/curso-616-http-real.php confirmou HTTP real individual com ID da listagem,
-200 JSON Camiseta/4990 e 404 para ID acima da faixa; listagem/HTML preservados.
-Contagens teste 0/0 e normal 0/1 categorias/produtos. Aula 06-16 e contrato ativo.
-Após confirmação: publicar 6.16 e iniciar somente 6.17, primeiro teste permanente
-de consulta individual ativa em CatalogoApiTest, factory/preço e ID cadastrado,
-status/tipo/JSON exato com data em objeto. Não acrescentar os demais cenários ainda.
+Estado mais recente, em 23/10/2026: 6.16 confirmada com "entendi", publicada em
+10c72935393ae82fe972b78d50413243c8f1a58d; HEAD/origin/main/main remota coincidiram
+após push. Etapa 6.17 implementada/explicada/verificada; entendimento confirmado
+com "entendi" em 23/10/2026. Aluno pediu "vamos continuar outro dia"; curso em
+pausa. Não iniciar a 6.18 até solicitação de retomada.
+CatalogoApiTest recebeu test_retorna_produto_ativo_pelo_id_em_json: Caneca e depois
+Camiseta por factory, ID real da Camiseta no GET, 200/application/json e JSON
+exato com data em objeto. Sem alteração de controller/rota/resource/serviço.
+SetUp e DatabaseTransactions mantidos; sintaxe válida, classe 5/30 e suíte 19/84
+passaram. Contagens teste 0/0 e normal 0/1 categorias/produtos, identidades conferidas.
+Último HTTP por socket: 6.16; não repetido nesta etapa de teste. Agora 4 cenários
+permanentes de listagem e 1 de consulta individual ativa; demais erros/restrições
+continuam somente no diagnóstico da 6.16. Aula 06-17 e contrato atualizados.
+Publicar a 6.17 confirmada. Somente quando o aluno pedir para retomar, iniciar
+6.18, um teste permanente de
+ID válido inexistente no catálogo vazio pelo setUp, 404/application/json e
+JSON exato com message definida. Preservar os demais cenários.
 Integração HTTP anterior, etapa 6.12:
 ProdutoController@index retorna AnonymousResourceCollection
 por ProdutoResource::collection($catalogo->listarProdutos()). Agora o resource
@@ -7272,14 +7276,50 @@ Verificações PHP Docker, código 0:
 Referências de rota/filtro PHP conferidas em documentação oficial. Diagnóstico
 HTTP pelo kernel não usa socket; HTTP real conferido separadamente.
 Entendimento da 6.16: confirmado com "entendi" em 23/10/2026.
-Checkpoint pronto para publicação conforme autorização persistente.
-Último checkpoint publicado: 8961d02c515cf7f4ed82f4dc56be54ab1fb1e628, etapa 6.15,
-HEAD/origin/main/main remota conferidos após push em 23/10/2026.
-Próximo passo exato após confirmação: publicar e iniciar somente 6.17, um teste
+Publicação da 6.16: 10c72935393ae82fe972b78d50413243c8f1a58d,
+`feat: expõe consulta individual de produto na API`. HEAD/origin/main/main remota
+conferidos após push em 23/10/2026. Checkpoint anterior: 8961d02, etapa 6.15.
+Continuidade realizada após confirmação e publicação: 6.17, um teste
 permanente em CatalogoApiTest para produto ativo por ID, factory/preço explícito,
 status 200, Content-Type application/json e JSON exato com data em objeto.
 Reutilizar DatabaseTransactions e identidade do banco de testes. Inexistente,
 inativo e restrições serão tratados em etapas seguintes. DBeaver segue sem relato.
+
+## Etapa 6.17 — Teste da consulta individual de produto ativo
+
+Implementação, explicação e verificações em 23/10/2026. Aula
+docs/aulas/06-17-teste-consulta-individual-ativa.md. Somente CatalogoApiTest
+alterado na aplicação. Cenário test_retorna_produto_ativo_pelo_id_em_json cria
+Caneca/2990 antes de Camiseta/4990, ambas ativas; pede o ID gerado da Camiseta.
+Exige 200, Content-Type application/json e JSON exato com data em objeto contendo
+id/nome/preco_em_centavos. Outro produto cadastrado ajuda a conferir seleção por
+ID; não testa ordenação. Sem assumir ID 1. Teste integra rota/DI/controller/
+serviço/SQL/resource pelo kernel HTTP, sem socket ou substituição do catálogo.
+
+SetUp, identidade loja_test/loja_testes e DatabaseTransactions mantidos. Fixtures
+criadas por factory e desfeitas ao fim dos testes. Controller/rota/resource/serviço
+preservados. Quatro testes de listagem continuam.
+
+Verificações PHP Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result: 5 testes/30
+  asserções passaram, incluindo a consulta ativa individual.
+- php artisan test --do-not-cache-result: 19 testes/84 asserções passaram.
+- SELECTs separados por /tmp/curso-62-contagens.php: loja_test/loja_testes
+  0 categorias/0 produtos; loja/loja_app 0 categorias/1 produto.
+
+HTTP real não repetido: último resultado por socket pertence à 6.16. O teste novo
+não cobre erros, inativos ou restrições de ID; diagnósticos anteriores separados.
+Sem migration, dependência ou cadastro permanente. Exercício DBeaver sem relato.
+Entendimento da 6.17: confirmado com "entendi" em 23/10/2026.
+Pausa solicitada: "vamos continuar outro dia". Não avançar até pedido de retomada.
+Publicação: checkpoint pronto para commit/push conforme autorização persistente.
+Último checkpoint publicado: 10c72935393ae82fe972b78d50413243c8f1a58d, etapa 6.16,
+HEAD/origin/main/main remota conferidos após push em 23/10/2026.
+Próximo passo exato quando o aluno pedir retomada: iniciar somente 6.18, um teste
+permanente de ID válido inexistente em CatalogoApiTest, catálogo vazio pelo setUp,
+404/application/json e JSON exato {"message":"Produto não encontrado."}.
 
 ## Verificações e limitações do ambiente
 
@@ -7307,10 +7347,10 @@ inativo e restrições serão tratados em etapas seguintes. DBeaver segue sem re
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último checkpoint pedagógico publicado conferido nesta retomada: `8961d02`,
-  `feat: amplia contrato do catálogo com busca por ID`. HEAD, origin/main e main
+- Último checkpoint pedagógico publicado conferido nesta retomada: `10c7293`,
+  `feat: expõe consulta individual de produto na API`. HEAD, origin/main e main
   consultada diretamente no remoto coincidiram após o push em 23/10/2026.
-  Este registro posterior documenta a publicação; alterações da 6.16 ainda locais.
+  Este registro posterior documenta a publicação; alterações da 6.17 ainda locais.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -7555,8 +7595,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Etapa 6.13 confirmada com "entendi" em 23/10/2026 e publicada em 1690d72.
   Etapa 6.14 confirmada com "entendi" em 23/10/2026 e publicada em 198b07e.
   Etapa 6.15 confirmada com "entendi" em 23/10/2026 e publicada em 8961d02.
-  Etapa 6.16 confirmada com "entendi" em 23/10/2026.
-  Após confirmação, publicar e iniciar somente 6.17, teste de consulta individual ativa.
+  Etapa 6.16 confirmada com "entendi" em 23/10/2026 e publicada em 10c7293.
+  Etapa 6.17 confirmada com "entendi" em 23/10/2026; curso em pausa a pedido do aluno.
+  Publicar checkpoint; ao receber pedido de retomada, iniciar somente 6.18,
+  teste de ID inexistente.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -7735,4 +7777,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 23/10/2026 | 6.13 — Desenho da consulta individual | Contrato planejado com 200/objeto e 404/mensagem; dois exemplos JSON validados no PHP Docker, sem alterar aplicação | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 1690d72 |
 | 23/10/2026 | 6.14 — Busca por ID no serviço | buscarProduto retorna Produto ou null; diagnóstico dirigido ativo/ausente/inativo/SQL/rollback, suíte 18/78 e HTTP/contagens preservados | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 198b07e |
 | 23/10/2026 | 6.15 — Busca no contrato e demo | Assinatura e busca em memória; diagnóstico contrato/demo/zero SQL/binding/Eloquent/rollback, suíte 18/78 e HTTP/contagens preservados | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 8961d02 |
-| 23/10/2026 | 6.16 — Consulta individual HTTP | Show e rota com ID restrito/validado; diagnóstico HTTP ativo/ausente/inativo/formato/faixa/rollback, suíte 18/78, HTTP real e contagens conferidos | Confirmado pelo aluno: "entendi" em 23/10/2026 | Pronto para commit/push; conferir remoto após envio |
+| 23/10/2026 | 6.16 — Consulta individual HTTP | Show e rota com ID restrito/validado; diagnóstico HTTP ativo/ausente/inativo/formato/faixa/rollback, suíte 18/78, HTTP real e contagens conferidos | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 10c7293 |
+| 23/10/2026 | 6.17 — Teste individual ativo | Cenário permanente com outro ativo e ID real solicitado, JSON exato em objeto; classe 5/30, suíte 19/84 e contagens conferidas | Confirmado pelo aluno: "entendi" em 23/10/2026; pausa solicitada | Pronto para commit/push; conferir remoto após envio |
