@@ -268,8 +268,14 @@ confirmado com "entendi" em 23/10/2026; checkpoint publicado e verificado em
 9e8e6b6. Na 6.11, contrato declara listarProdutos e demonstração retorna coleção
 compatível em memória; binding Eloquent/leitura pelo contrato/zero SQL da demo
 conferidos, suíte 18/78 passou e HTTP/contagens preservados. Explicação apresentada,
-entendimento da 6.11 confirmado com "entendi" em 23/10/2026. Próximo passo: publicar
-e integrar leitura/resource e atualizar resposta, documentação e testes HTTP na 6.12.
+entendimento da 6.11 confirmado com "entendi" em 23/10/2026; checkpoint publicado
+e verificado em 11ccc75. Na 6.12, controller retorna ProdutoResource::collection
+de listarProdutos e os quatro testes HTTP exigem objetos id/nome/preço. Contrato
+ativo atualizado junto à resposta; classe 4/24 e suíte 18/78 passaram. HTTP real
+confirmou objeto/Camiseta/4990 e HTML preservado; contagens mantidas. Explicação
+apresentada, entendimento da 6.12 confirmado com "entendi" em 23/10/2026 após
+esclarecer a busca no banco. Próximo passo: publicar e desenhar consulta individual
+e respostas 200/404 na 6.13.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

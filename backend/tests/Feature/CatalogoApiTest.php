@@ -35,11 +35,12 @@ class CatalogoApiTest extends TestCase
             ->assertExactJson(['data' => []]);
     }
 
-    public function test_retorna_nome_do_produto_ativo_em_json(): void
+    public function test_retorna_produto_ativo_em_json(): void
     {
-        Produto::factory()->create([
+        $camiseta = Produto::factory()->create([
             'nome' => 'Camiseta',
             'status' => 'ativo',
+            'preco_em_centavos' => 4990,
         ]);
 
         $resposta = $this->getJson('/api/v1/produtos');
@@ -47,18 +48,28 @@ class CatalogoApiTest extends TestCase
         $resposta
             ->assertStatus(200)
             ->assertHeader('Content-Type', 'application/json')
-            ->assertExactJson(['data' => ['Camiseta']]);
+            ->assertExactJson([
+                'data' => [
+                    [
+                        'id' => $camiseta->id,
+                        'nome' => 'Camiseta',
+                        'preco_em_centavos' => 4990,
+                    ],
+                ],
+            ]);
     }
 
     public function test_omite_produtos_inativos_da_resposta_json(): void
     {
-        Produto::factory()->create([
+        $camiseta = Produto::factory()->create([
             'nome' => 'Camiseta',
             'status' => 'ativo',
+            'preco_em_centavos' => 4990,
         ]);
 
         Produto::factory()->inativo()->create([
             'nome' => 'Caneca',
+            'preco_em_centavos' => 2990,
         ]);
 
         $resposta = $this->getJson('/api/v1/produtos');
@@ -66,19 +77,29 @@ class CatalogoApiTest extends TestCase
         $resposta
             ->assertStatus(200)
             ->assertHeader('Content-Type', 'application/json')
-            ->assertExactJson(['data' => ['Camiseta']]);
+            ->assertExactJson([
+                'data' => [
+                    [
+                        'id' => $camiseta->id,
+                        'nome' => 'Camiseta',
+                        'preco_em_centavos' => 4990,
+                    ],
+                ],
+            ]);
     }
 
-    public function test_retorna_nomes_em_ordem_alfabetica_no_json(): void
+    public function test_retorna_produtos_em_ordem_alfabetica_no_json(): void
     {
-        Produto::factory()->create([
+        $caneca = Produto::factory()->create([
             'nome' => 'Caneca',
             'status' => 'ativo',
+            'preco_em_centavos' => 2990,
         ]);
 
-        Produto::factory()->create([
+        $camiseta = Produto::factory()->create([
             'nome' => 'Camiseta',
             'status' => 'ativo',
+            'preco_em_centavos' => 4990,
         ]);
 
         $resposta = $this->getJson('/api/v1/produtos');
@@ -86,6 +107,19 @@ class CatalogoApiTest extends TestCase
         $resposta
             ->assertStatus(200)
             ->assertHeader('Content-Type', 'application/json')
-            ->assertExactJson(['data' => ['Camiseta', 'Caneca']]);
+            ->assertExactJson([
+                'data' => [
+                    [
+                        'id' => $camiseta->id,
+                        'nome' => 'Camiseta',
+                        'preco_em_centavos' => 4990,
+                    ],
+                    [
+                        'id' => $caneca->id,
+                        'nome' => 'Caneca',
+                        'preco_em_centavos' => 2990,
+                    ],
+                ],
+            ]);
     }
 }
