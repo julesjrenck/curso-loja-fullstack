@@ -55,3 +55,31 @@ e HTTP real passaram; entendimento da 6.7 confirmado com "entendi" em 22/10/2026
 continua retornando somente nomes.
 Este documento descreve o sucesso da primeira consulta. Erros, outros métodos,
 filtros, paginação e a descrição em OpenAPI serão estudados gradualmente.
+
+## Próxima representação — desenho da etapa 6.8
+
+Planejado em 22/10/2026, ainda não implementado; entendimento do desenho
+confirmado pelo aluno com "entendi" em 22/10/2026. O contrato ativo acima
+continua retornando nomes.
+
+Cada item de data passará a ser um objeto com id inteiro, nome string e
+preco_em_centavos inteiro, todos obrigatórios e não nulos. Exemplo ilustrativo,
+sem vínculo com o ID real do banco:
+
+```json
+{"data":[{"id":1,"nome":"Camiseta","preco_em_centavos":4990}]}
+```
+
+4990 centavos correspondem a R$ 49,90. Manteremos GET /api/v1/produtos, status
+200, Content-Type application/json, ativos e ordenação por nome. Lista vazia
+continuará data: []; sem paginação nesta fase. Os campos status, categoria e
+timestamps não farão parte dessa representação.
+
+Trocar strings por objetos é uma mudança incompatível no formato dos itens.
+Preparar leitura e transformação e coordenar a troca com documentação, testes e
+eventuais consumidores. ListarNomes e a página Blade continuarão com strings;
+a evolução da API não deve alterar silenciosamente esse método.
+
+O desenho detalhado e o impacto nos testes estão em
+docs/aulas/06-08-representacao-produto.md. Próxima etapa:
+introduzir ProdutoResource e verificar em memória, sem trocar a rota ainda.

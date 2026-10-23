@@ -250,8 +250,12 @@ entendimento da 6.6 confirmado com "entendi" em 22/10/2026; checkpoint publicado
 e verificado em daffb95. Na 6.7, função da rota extraída para
 Api\V1\ProdutoController@index; rota/DI/sintaxes conferidos, classe 4/24 e suíte
 18/78 passaram. HTTP real JSON/HTML e contagens preservados. Explicação apresentada,
-entendimento da 6.7 confirmado com "entendi" em 22/10/2026. Próximo passo: publicar
-e desenhar representação JSON de produto com id/nome/preco_em_centavos na 6.8 antes de implementá-la.
+entendimento da 6.7 confirmado com "entendi" em 22/10/2026; checkpoint publicado
+e verificado em 0c2a14e. Na 6.8, desenhada representação de produto com
+id/nome/preco_em_centavos, campos/tipos e impacto na leitura, consumidores e testes.
+Somente documentação; API continua retornando nomes. Explicação apresentada,
+entendimento da 6.8 confirmado com "entendi" em 22/10/2026. Próximo passo: publicar
+e introduzir ProdutoResource e verificar em memória na 6.9, sem trocar a rota ainda.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
