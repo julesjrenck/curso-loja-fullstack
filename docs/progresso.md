@@ -16,7 +16,8 @@
   teste 0 categorias/0 produtos, normal 0 categorias/1 produto. Fixtures desfeitas.
   HTTP real não repetido, última verificação por socket pertence à 6.16.
   Aula 06-17 e contrato ativo atualizados. Entendimento da 6.17 confirmado com
-  "entendi" em 23/10/2026; checkpoint pronto para publicação. Erros individuais ainda verificados
+  "entendi" em 23/10/2026; checkpoint publicado e verificado em
+  c474f249ea8b071afbc3972da5404d104f7d05d2. Erros individuais ainda verificados
   apenas nos diagnósticos da 6.16, não pelo teste permanente novo.
   Próximo passo somente quando o aluno pedir retomada: 6.18, um teste em
   CatalogoApiTest de ID válido
@@ -304,8 +305,8 @@
 
 ## Retomada em outro chat
 
-Estado mais recente, em 23/10/2026: 6.16 confirmada com "entendi", publicada em
-10c72935393ae82fe972b78d50413243c8f1a58d; HEAD/origin/main/main remota coincidiram
+Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
+c474f249ea8b071afbc3972da5404d104f7d05d2; HEAD/origin/main/main remota coincidiram
 após push. Etapa 6.17 implementada/explicada/verificada; entendimento confirmado
 com "entendi" em 23/10/2026. Aluno pediu "vamos continuar outro dia"; curso em
 pausa. Não iniciar a 6.18 até solicitação de retomada.
@@ -317,7 +318,9 @@ passaram. Contagens teste 0/0 e normal 0/1 categorias/produtos, identidades conf
 Último HTTP por socket: 6.16; não repetido nesta etapa de teste. Agora 4 cenários
 permanentes de listagem e 1 de consulta individual ativa; demais erros/restrições
 continuam somente no diagnóstico da 6.16. Aula 06-17 e contrato atualizados.
-Publicar a 6.17 confirmada. Somente quando o aluno pedir para retomar, iniciar
+A publicação do checkpoint da 6.17 está verificada. Este registro posterior salva
+o resultado da publicação e a pausa; consultar Git para o SHA deste salvamento.
+Somente quando o aluno pedir para retomar, iniciar
 6.18, um teste permanente de
 ID válido inexistente no catálogo vazio pelo setUp, 404/application/json e
 JSON exato com message definida. Preservar os demais cenários.
@@ -7314,9 +7317,11 @@ não cobre erros, inativos ou restrições de ID; diagnósticos anteriores separ
 Sem migration, dependência ou cadastro permanente. Exercício DBeaver sem relato.
 Entendimento da 6.17: confirmado com "entendi" em 23/10/2026.
 Pausa solicitada: "vamos continuar outro dia". Não avançar até pedido de retomada.
-Publicação: checkpoint pronto para commit/push conforme autorização persistente.
-Último checkpoint publicado: 10c72935393ae82fe972b78d50413243c8f1a58d, etapa 6.16,
-HEAD/origin/main/main remota conferidos após push em 23/10/2026.
+Publicação da 6.17: c474f249ea8b071afbc3972da5404d104f7d05d2,
+`test: verifica consulta individual de produto ativo`. HEAD/origin/main/main remota
+conferidos após push em 23/10/2026. Checkpoint anterior: 10c7293, etapa 6.16.
+Este registro posterior documenta o resultado da publicação e a pausa, sem nova
+implementação, aula ou execução de testes. Consultar Git para o SHA deste salvamento.
 Próximo passo exato quando o aluno pedir retomada: iniciar somente 6.18, um teste
 permanente de ID válido inexistente em CatalogoApiTest, catálogo vazio pelo setUp,
 404/application/json e JSON exato {"message":"Produto não encontrado."}.
@@ -7347,10 +7352,11 @@ permanente de ID válido inexistente em CatalogoApiTest, catálogo vazio pelo se
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último checkpoint pedagógico publicado conferido nesta retomada: `10c7293`,
-  `feat: expõe consulta individual de produto na API`. HEAD, origin/main e main
+- Último checkpoint pedagógico publicado conferido nesta retomada: `c474f24`,
+  `test: verifica consulta individual de produto ativo`. HEAD, origin/main e main
   consultada diretamente no remoto coincidiram após o push em 23/10/2026.
-  Este registro posterior documenta a publicação; alterações da 6.17 ainda locais.
+  Este registro posterior documenta a publicação da 6.17 e o pedido de pausa.
+  Consultar Git para o SHA do salvamento documental posterior; sem novas aulas.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -7596,8 +7602,8 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Etapa 6.14 confirmada com "entendi" em 23/10/2026 e publicada em 198b07e.
   Etapa 6.15 confirmada com "entendi" em 23/10/2026 e publicada em 8961d02.
   Etapa 6.16 confirmada com "entendi" em 23/10/2026 e publicada em 10c7293.
-  Etapa 6.17 confirmada com "entendi" em 23/10/2026; curso em pausa a pedido do aluno.
-  Publicar checkpoint; ao receber pedido de retomada, iniciar somente 6.18,
+  Etapa 6.17 confirmada com "entendi" em 23/10/2026 e publicada em c474f24.
+  Curso em pausa a pedido do aluno. Ao receber pedido de retomada, iniciar somente 6.18,
   teste de ID inexistente.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
@@ -7778,4 +7784,4 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 23/10/2026 | 6.14 — Busca por ID no serviço | buscarProduto retorna Produto ou null; diagnóstico dirigido ativo/ausente/inativo/SQL/rollback, suíte 18/78 e HTTP/contagens preservados | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 198b07e |
 | 23/10/2026 | 6.15 — Busca no contrato e demo | Assinatura e busca em memória; diagnóstico contrato/demo/zero SQL/binding/Eloquent/rollback, suíte 18/78 e HTTP/contagens preservados | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 8961d02 |
 | 23/10/2026 | 6.16 — Consulta individual HTTP | Show e rota com ID restrito/validado; diagnóstico HTTP ativo/ausente/inativo/formato/faixa/rollback, suíte 18/78, HTTP real e contagens conferidos | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 10c7293 |
-| 23/10/2026 | 6.17 — Teste individual ativo | Cenário permanente com outro ativo e ID real solicitado, JSON exato em objeto; classe 5/30, suíte 19/84 e contagens conferidas | Confirmado pelo aluno: "entendi" em 23/10/2026; pausa solicitada | Pronto para commit/push; conferir remoto após envio |
+| 23/10/2026 | 6.17 — Teste individual ativo | Cenário permanente com outro ativo e ID real solicitado, JSON exato em objeto; classe 5/30, suíte 19/84 e contagens conferidas | Confirmado pelo aluno: "entendi" em 23/10/2026; pausa solicitada | Publicado e verificado em c474f24 |

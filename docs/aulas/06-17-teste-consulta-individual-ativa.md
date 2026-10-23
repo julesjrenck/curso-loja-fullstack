@@ -101,7 +101,9 @@ não tratar o teste novo como cobertura desses erros.
 
 Em 23/10/2026, aluno confirmou entendimento e pediu: "vamos continuar outro dia".
 Curso em pausa a pedido do aluno; não iniciar nova aula até pedido de retomada.
-Checkpoint confirmado, pronto para publicação conforme autorização persistente.
+Checkpoint publicado em c474f249ea8b071afbc3972da5404d104f7d05d2; HEAD,
+origin/main e main consultada diretamente no remoto coincidiram após push.
+Resultado da publicação registrado neste salvamento posterior, sem nova aula.
 Próximo passo exato, somente quando o aluno pedir para retomar: 6.18, acrescentar um teste permanente de ID válido inexistente
 em CatalogoApiTest, com catálogo vazio preparado pelo setUp. Exigir status 404,
 Content-Type application/json e JSON exato {"message":"Produto não encontrado."}.

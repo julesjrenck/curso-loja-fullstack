@@ -297,7 +297,8 @@ atualizado. Entendimento da 6.16 confirmado com "entendi" em 23/10/2026; publica
 e verificado em 10c7293. Na 6.17, um teste permanente pede o ID real da Camiseta,
 com Caneca também cadastrada, e exige 200/tipo/JSON exato em objeto. Classe 5/30 e
 suíte 19/84 passaram, contagens preservadas. Aplicação preservada, HTTP real não
-repetido. Entendimento da 6.17 confirmado com "entendi" em 23/10/2026. Aluno pediu
+repetido. Entendimento da 6.17 confirmado com "entendi" em 23/10/2026; checkpoint
+publicado e verificado em c474f24. Aluno pediu
 para continuar outro dia; curso em pausa, sem iniciar a 6.18. Quando solicitar
 retomada, próximo passo: teste de ID válido inexistente com 404/message na 6.18.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
