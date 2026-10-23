@@ -54,6 +54,36 @@ Sem produtos ativos, o sucesso continua 200 e o corpo é:
 Este documento descreve o sucesso da listagem. Consulta individual, outras
 operações, erros, filtros, paginação e OpenAPI serão introduzidos gradualmente.
 
+## Consulta individual — desenho da etapa 6.13
+
+Planejada em 23/10/2026, ainda não implementada; entendimento da 6.13 confirmado
+pelo aluno com "entendi" em 23/10/2026. A seção de listagem acima continua descrevendo o contrato ativo.
+
+- Método e caminho planejados: GET /api/v1/produtos/{id}.
+- ID de caminho: identificador inteiro positivo, por exemplo /api/v1/produtos/1.
+- Sem corpo de requisição; Accept: application/json.
+- Produto ativo encontrado: 200 e Content-Type application/json.
+- ID inexistente ou produto inativo: 404 e Content-Type application/json.
+
+Sucesso com um objeto em data, usando os campos/tipos da listagem:
+
+```json
+{"data":{"id":1,"nome":"Camiseta","preco_em_centavos":4990}}
+```
+
+O ID do exemplo é ilustrativo. Na resposta real deverá corresponder ao solicitado.
+Para inexistente ou inativo, o corpo planejado será o mesmo:
+
+```json
+{"message":"Produto não encontrado."}
+```
+
+Essa é a regra do catálogo público, sem excluir o produto inativo do banco.
+Coleção vazia continua 200/data: []; consulta individual indisponível será 404.
+O formato de erro acima é específico dessa operação planejada; não documenta
+um tratamento geral de todos os erros do framework. Restrições sintáticas do ID
+serão detalhadas ao implementar. Desenho em docs/aulas/06-13-consulta-individual-contrato.md.
+
 ## Implementação e verificação
 
 ProdutoController@index chama Catalogo::listarProdutos e retorna

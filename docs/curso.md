@@ -274,8 +274,12 @@ de listarProdutos e os quatro testes HTTP exigem objetos id/nome/preço. Contrat
 ativo atualizado junto à resposta; classe 4/24 e suíte 18/78 passaram. HTTP real
 confirmou objeto/Camiseta/4990 e HTML preservado; contagens mantidas. Explicação
 apresentada, entendimento da 6.12 confirmado com "entendi" em 23/10/2026 após
-esclarecer a busca no banco. Próximo passo: publicar e desenhar consulta individual
-e respostas 200/404 na 6.13.
+esclarecer a busca no banco; checkpoint publicado e verificado em 1b1d288.
+Na 6.13, desenhada consulta individual GET /api/v1/produtos/{id}, sucesso 200
+com objeto em data e 404 com message para inexistente/inativo. Somente documentação;
+nenhuma rota individual implementada. Entendimento da 6.13 confirmado pelo aluno
+com "entendi" em 23/10/2026. Próximo passo: buscarProduto no serviço
+e diagnóstico com banco exclusivo/rollback na 6.14.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

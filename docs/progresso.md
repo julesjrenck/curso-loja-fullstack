@@ -4,8 +4,21 @@
 
 - Última atualização: 23/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.12 — ProdutoResource na resposta HTTP.
-- Situação: ProdutoController@index retorna AnonymousResourceCollection por
+- Etapa atual: 6.13 — Desenho da consulta individual de produto.
+- Situação: contrato planejado de GET /api/v1/produtos/{id} documentado na aula
+  06-13 e em docs/api/catalogo.md: ativo retorna 200/data em objeto com
+  id/nome/preco_em_centavos; inexistente ou inativo retorna 404 com
+  {"message":"Produto não encontrado."}. Regra do catálogo público, sem excluir
+  o inativo. Corpo de erro específico da operação, ainda a implementar.
+  Nenhuma rota, consulta ou teste novo: somente documentação nesta etapa.
+  Dois exemplos JSON da aula extraídos e validados pelo PHP Docker, código 0,
+  incluindo campos/tipos e distinção objeto/lista. Isso verifica os exemplos,
+  não o HTTP futuro. Entendimento da 6.13 confirmado pelo aluno com "entendi"
+  em 23/10/2026; checkpoint pronto para publicação. Próximo passo: 6.14, adicionar buscarProduto(int $id):
+  ?Produto em CatalogoEloquent, filtrando ativo/ID e lendo os três atributos;
+  verificar ativo/inexistente/inativo no banco exclusivo de testes com rollback.
+  Preservar interface, controller, rota e listagem nessa preparação.
+- Última implementação, etapa 6.12: ProdutoController@index retorna AnonymousResourceCollection por
   ProdutoResource::collection($catalogo->listarProdutos()). Resource participa
   agora da resposta HTTP; envelope data gerado pelo Laravel. Quatro testes da
   API adaptados para objetos id/nome/preco_em_centavos, IDs das factories e
@@ -17,14 +30,14 @@
   SELECTs posteriores: teste 0 categorias/0 produtos; normal 0/1, identidades conferidas.
   Aula 06-12 e contrato ativo docs/api/catalogo.md atualizados. Entendimento da
   6.12 confirmado com "entendi" em 23/10/2026 após o esclarecimento;
-  checkpoint pronto para publicação.
+  checkpoint publicado em 1b1d2884526058f394ef8fa02fbc5f7ea247831b;
+  HEAD, origin/main e main remota coincidiram após o push.
   Em 23/10/2026, esclarecida dúvida sobre onde ocorre a busca: controller chama
   listarProdutos via Catalogo; binding resolve CatalogoEloquent; get executa
   SELECT no método listarProdutos. Resource transforma os modelos já retornados.
   Pergunta não tratada como confirmação; houve confirmação explícita posterior.
-  Próximo passo: publicar e iniciar
-  somente 6.13, desenhar GET /api/v1/produtos/{id}, resposta 200 com produto e
-  404 para inexistente/inativo, antes de implementar.
+  Suíte não repetida na 6.13, que modifica somente documentos; os resultados
+  de aplicação acima pertencem à 6.12.
   Etapa 6.11 confirmada com "entendi" em 23/10/2026 e publicada em
   11ccc75015471663258a355445e40fe8d47a70af; HEAD, origin/main e main remota
   coincidiram após o push.
@@ -135,7 +148,7 @@
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
   A pausa posterior ao módulo 5 foi encerrada em 22/10/2026; acompanhar a etapa
-  atual 6.12, cujo entendimento foi confirmado em 23/10/2026.
+  atual 6.13, cujo entendimento foi confirmado em 23/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -270,10 +283,18 @@
 
 ## Retomada em outro chat
 
-Estado mais recente, em 23/10/2026: 6.11 confirmada com "entendi" e publicada em
-11ccc75015471663258a355445e40fe8d47a70af; HEAD, origin/main e main remota
-coincidiram após push. Etapa 6.12 implementada/explicada/verificada, entendimento
-confirmado pelo aluno com "entendi" em 23/10/2026 após esclarecer a busca no banco.
+Estado mais recente, em 23/10/2026: 6.12 confirmada com "entendi" após esclarecer
+a busca no banco, publicada em 1b1d2884526058f394ef8fa02fbc5f7ea247831b;
+HEAD, origin/main e main remota coincidiram após push. Etapa atual 6.13:
+desenho documental de GET /api/v1/produtos/{id}, 200/data em objeto para ativo,
+404/{"message":"Produto não encontrado."} para inexistente/inativo. A regra
+não exclui o inativo; erro específico dessa operação. Dois exemplos JSON da
+aula validados no PHP Docker, campos/tipos e envelope conferidos, código 0.
+Nenhuma rota, consulta ou teste novo; entendimento confirmado com "entendi"
+em 23/10/2026. Publicar 6.13 e iniciar somente 6.14: buscarProduto(int $id):
+?Produto no serviço CatalogoEloquent, filtro ativo/ID e três atributos, diagnóstico
+ativo/inexistente/inativo no banco exclusivo de testes com rollback, preservando
+interface/controller/rota/listagem. Última implementação/verificação: etapa 6.12.
 ProdutoController@index retorna AnonymousResourceCollection
 por ProdutoResource::collection($catalogo->listarProdutos()). Agora o resource
 participa da resposta pública com data em lista de objetos id/nome/preço.
@@ -287,9 +308,7 @@ conferidas em processos separados. ListarNomes/Blade preservados; contrato ativo
 reescrito em docs/api/catalogo.md, histórico nas aulas/progresso. Aula 06-12.
 O diagnóstico antigo /tmp/curso-62-http.php espera o formato histórico de strings;
 usar /tmp/curso-612-http.php para a resposta atual.
-Publicar a 6.12 e iniciar somente 6.13: desenhar
-consulta individual GET /api/v1/produtos/{id}, 200 com produto e 404 para
-inexistente/inativo, antes de implementar.
+Suíte não repetida na etapa documental 6.13; resultados acima pertencem à 6.12.
 Exercício DBeaver continua sem relato; atividade sugerida não bloqueia o curso.
 
 Registro anterior da pausa, em 21/10/2026: 5.92 confirmada com "entendi" e publicada em
@@ -7062,8 +7081,9 @@ nas aulas e neste histórico. /tmp/curso-62-http.php é histórico e espera stri
 usar o diagnóstico da 6.12 nas verificações futuras da resposta atual.
 
 Entendimento: confirmado pelo aluno com "entendi" em 23/10/2026, após esclarecer a dúvida abaixo.
-Publicação da 6.12: checkpoint pronto para commit/push conforme autorização
-persistente; registrar o resultado após conferir o remoto.
+Publicação da 6.12: commit 1b1d2884526058f394ef8fa02fbc5f7ea247831b,
+`feat: retorna produtos serializados por resource na API`, enviado em 23/10/2026.
+HEAD, origin/main e main consultada diretamente no remoto coincidiram após o push.
 
 Dúvida esclarecida em 23/10/2026: aluno perguntou onde o produto é buscado no
 banco. Apontado CatalogoEloquent::listarProdutos, em app/Services/CatalogoEloquent.php:
@@ -7075,10 +7095,43 @@ somente registro atualizado, sem novos testes ou avanço naquele esclarecimento.
 A pergunta não foi tratada como confirmação; posteriormente o aluno confirmou
 com "entendi" em 23/10/2026.
 
-Último checkpoint publicado: 11ccc75015471663258a355445e40fe8d47a70af, etapa 6.11;
-envio e consulta direta ao remoto conferidos neste turno.
-Próximo passo exato: publicar e iniciar somente 6.13: desenhar GET /api/v1/produtos/{id}, resposta
+Último checkpoint publicado: 1b1d2884526058f394ef8fa02fbc5f7ea247831b, etapa 6.12;
+envio e consulta direta ao remoto conferidos após a confirmação.
+Continuidade realizada: 6.13, desenhar GET /api/v1/produtos/{id}, resposta
 200 com um produto e 404 para inexistente ou inativo, sem implementar ainda.
+
+## Etapa 6.13 — Desenho da consulta individual de produto
+
+Documentação e explicação em 23/10/2026. Aula
+docs/aulas/06-13-consulta-individual-contrato.md, seção planejada no contrato
+docs/api/catalogo.md e roteiro atualizados. Aplicação preservada.
+
+GET /api/v1/produtos/{id} identifica um produto pelo ID inteiro positivo,
+não pela posição na lista. Ativo encontrado: 200/application/json com data
+em objeto contendo id/nome/preco_em_centavos, mesmos tipos da listagem.
+Inexistente ou inativo: 404/application/json com somente
+{"message":"Produto não encontrado."}. A indisponibilidade do inativo é regra
+do catálogo público, sem apagar o registro. Formato de erro específico desta
+operação planejada, cuja produção será explícita; não generalizar para exceções.
+Coleção vazia continua 200/data: [], pois a consulta da coleção teve sucesso.
+Semântica de 200/404 conferida na RFC 9110; restrição sintática do ID fica para a rota.
+
+Verificação: PHP Docker recebeu o Markdown pela entrada padrão, extraiu os dois
+blocos JSON e decodificou com JSON_THROW_ON_ERROR; conferiu chaves, tipos,
+data em objeto no sucesso e mensagem exata no erro. Dois exemplos válidos,
+código 0. Não comprova o HTTP planejado. Nenhum SQL ou novo teste HTTP executado.
+Última suíte: 18 testes/78 asserções da 6.12; classe da API 4/24, não repetidas
+para documentos. Diagnóstico atual da listagem: /tmp/curso-612-http.php.
+
+Entendimento: confirmado pelo aluno com "entendi" em 23/10/2026.
+Publicação da 6.13: checkpoint pronto para commit/push conforme autorização persistente.
+Último checkpoint publicado: 1b1d2884526058f394ef8fa02fbc5f7ea247831b, etapa 6.12,
+HEAD/origin/main/main remota conferidos após push em 23/10/2026.
+Próximo passo exato, após confirmação: publicar e iniciar somente 6.14,
+adicionar buscarProduto(int $id): ?Produto em CatalogoEloquent, filtro ativo/ID e
+três atributos públicos. Verificar ativo, inexistente e inativo no banco exclusivo
+de testes com rollback. Preservar interface, controller, rota e listagem nesta
+preparação. Exercício manual DBeaver continua sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -7106,10 +7159,10 @@ Próximo passo exato: publicar e iniciar somente 6.13: desenhar GET /api/v1/prod
 - Conta pelo conector: `julesjrenck`; acesso Git SSH verificado após o cadastro
   da chave pública pelo aluno.
 - Primeiro commit local: `afb0d2c`, `docs: inicia curso e registra progresso`.
-- Último checkpoint pedagógico publicado conferido nesta retomada: `11ccc75`,
-  `feat: amplia contrato do catálogo com leitura de produtos`. HEAD, origin/main e main
+- Último checkpoint pedagógico publicado conferido nesta retomada: `1b1d288`,
+  `feat: retorna produtos serializados por resource na API`. HEAD, origin/main e main
   consultada diretamente no remoto coincidiram após o push em 23/10/2026.
-  Este registro posterior documenta a publicação; alterações da 6.12 ainda locais.
+  Este registro posterior documenta a publicação; documentos da 6.13 ainda locais.
 - Primeiro envio verificado: `a43617042726cda586c24b630eab8734b53f7a3c`.
 - Último commit publicado: consultar `git rev-parse origin/main` ou a página
   do repositório; comparar com `git rev-parse HEAD` para conferir sincronização.
@@ -7350,7 +7403,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Etapa 6.9 confirmada com "entendi" em 23/10/2026 e publicada em 13d9256.
   Etapa 6.10 confirmada com "entendi" em 23/10/2026 e publicada em 9e8e6b6.
   Etapa 6.11 confirmada com "entendi" em 23/10/2026 e publicada em 11ccc75.
-  Etapa 6.12 confirmada com "entendi" em 23/10/2026; publicar e iniciar somente 6.13.
+  Etapa 6.12 confirmada com "entendi" em 23/10/2026 e publicada em 1b1d288.
+  Etapa 6.13 confirmada com "entendi" em 23/10/2026.
+  Publicar e iniciar somente 6.14, buscarProduto no serviço.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -7525,4 +7580,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 22–23/10/2026 | 6.9 — ProdutoResource | Mapeamento explícito verificado em memória, tipos/atributos/zero SQL e HTTP atual conferidos; uso isolado esclarecido | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 13d9256 |
 | 23/10/2026 | 6.10 — Leitura de produtos | Método retorna models com três campos; diagnóstico SQL/coleção/filtro/ordem/rollback, suíte 18/78, HTTP e contagens conferidos | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 9e8e6b6 |
 | 23/10/2026 | 6.11 — Contrato listarProdutos | Interface e demo compatíveis; memória/zero SQL/binding/leitura, suíte 18/78, HTTP e contagens conferidos | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 11ccc75 |
-| 23/10/2026 | 6.12 — Resource no HTTP | Controller e testes com objetos; classe 4/24, suíte 18/78, HTTP real e contagens conferidos; contrato ativo atualizado | Confirmado pelo aluno: "entendi" em 23/10/2026 após esclarecimento | Pronto para commit/push; conferir remoto após envio |
+| 23/10/2026 | 6.12 — Resource no HTTP | Controller e testes com objetos; classe 4/24, suíte 18/78, HTTP real e contagens conferidos; contrato ativo atualizado | Confirmado pelo aluno: "entendi" em 23/10/2026 após esclarecimento | Publicado e verificado em 1b1d288 |
+| 23/10/2026 | 6.13 — Desenho da consulta individual | Contrato planejado com 200/objeto e 404/mensagem; dois exemplos JSON validados no PHP Docker, sem alterar aplicação | Confirmado pelo aluno: "entendi" em 23/10/2026 | Pronto para commit/push; conferir remoto após envio |
