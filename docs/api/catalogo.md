@@ -168,3 +168,7 @@ O desenho da etapa 6.23 está em [aula 06-23](../aulas/06-23-contrato-paginacao-
 A aplicação continua devolvendo todos os ativos no formato atual descrito acima.
 Parâmetro page, validação e envelope paginado serão ligados em etapas posteriores;
 esta referência não altera o contrato executável.
+
+Na 6.24, preparado [ListarProdutosRequest](../aulas/06-24-form-request-page.md),
+com regras verificadas diretamente em memória. A classe ainda não participa da
+rota; a validação de page não faz parte do comportamento HTTP atual.

@@ -324,9 +324,15 @@ listagem: page opcional/padrão 1, fixo 10 por página, page de 1 a 1000000 sem 
 iniciais, inválidos 422, ativos ordenados por nome/ID e data/links/meta. Três
 exemplos conferidos em memória, zero SQL e nenhum cadastro; aplicação permanece
 sem paginação. Explicação apresentada, entendimento da 6.23 confirmado com "entendi"
-em 30/10/2026. Checkpoint concluído, publicação em preparação. Última suíte 27/133
-pertence à 6.22. Próximo passo: publicar checkpoint e iniciar
-6.24, criar Form Request para validar page, sem ligar a paginação à rota ainda.
+em 30/10/2026; checkpoint publicado e verificado em 92ce498. Na 6.24, criado
+ListarProdutosRequest com authorize true e regras de page opcional/inteiro decimal
+sem zeros iniciais entre 1 e 1000000. Diagnóstico direto: 4 entradas aceitas,
+12 rejeitadas com 422 JSON e zero SQL; suíte existente 27/133 passou, contagens
+preservadas. Classe ainda sem ligação à rota, API segue sem paginação/validação
+de page. Explicação apresentada; entendimento da 6.24 confirmado com "entendi"
+em 30/10/2026. Checkpoint concluído, publicação em preparação. Próximo passo:
+publicar checkpoint e iniciar 6.25, método pagina(): int com conversão/default 1
+no Form Request, ainda sem ligação à rota.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

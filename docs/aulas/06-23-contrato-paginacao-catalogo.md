@@ -229,10 +229,10 @@ e dependências preservados. Suíte não repetida: último resultado pertence à
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint concluído,
-publicação em preparação; resultado será registrado após conferir o remoto.
-Próximo passo: publicar checkpoint e iniciar somente 6.24, criar um Form Request
-para validar page
-opcional entre 1 e 1000000, ainda sem ligar a paginação à rota. Ausência de page
-representará página 1 na integração. Explicar e verificar as regras no arquivo
-novo antes de seguir para consulta paginada.
+Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint publicado em
+92ce498e85ae0352a2eb5c94103bc6b9f1aad281, `docs: desenha contrato de paginação do catálogo`.
+HEAD, origin/main e main consultada diretamente no remoto coincidiram após push.
+Resultado registrado na etapa seguinte, sem incluir o SHA no próprio commit.
+Continuidade realizada na 6.24: criar Form Request para validar page opcional
+entre 1 e 1000000, ainda sem ligar a paginação à rota. Ausência de page
+representará página 1 na integração.
