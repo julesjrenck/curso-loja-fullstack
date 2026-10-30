@@ -363,9 +363,13 @@ confirmado com "entendi" em 30/10/2026. Checkpoint publicado e verificado em
 6f0af42. Na 6.30, acrescentado teste de page=0 exigindo 422/JSON, message e erro
 associado a page, sem fixar tradução. Classe 15/128 e suíte 29/182 passaram,
 contagens preservadas. Explicação apresentada; entendimento da 6.30 confirmado
+com "entendi" em 30/10/2026. Checkpoint publicado e verificado em d834624.
+Na 6.31, teste de page=0 generalizado com DataProvider de onze queries inválidas,
+exigindo 422/JSON/message/errors.page. Classe 25/208 e suíte 39/262 passaram;
+contagens preservadas. Explicação apresentada; entendimento da 6.31 confirmado
 com "entendi" em 30/10/2026. Publicação em preparação; publicar e iniciar somente
-6.31: expandir o teste
-de páginas inválidas com DataProvider.
+6.32: teste permanente
+de página válida após a última, com 200/data vazia e total preservado.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

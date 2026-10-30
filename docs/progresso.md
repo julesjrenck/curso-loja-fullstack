@@ -4,8 +4,20 @@
 
 - Última atualização: 30/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.30 — Teste permanente da rejeição de page=0.
+- Etapa atual: 6.31 — Páginas inválidas com DataProvider.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.31: implementada, explicada e verificada em 30/10/2026;
+  entendimento confirmado com "entendi" em 30/10/2026. Teste de page=0 generalizado para receber
+  string query; provider paginasInvalidas fornece onze casos nomeados: zero,
+  vazio, negativo, decimal, zero inicial, letras, array, sinal positivo codificado,
+  notação científica, acima do limite e acima de int. Asserções HTTP anteriores
+  preservadas: 422/JSON/message/errors.page. Nenhuma mudança na aplicação.
+  Sintaxe válida; classe 25 testes/208 asserções e suíte 39 testes/262 asserções
+  passaram. Contagens antes/depois: teste 0 categorias/0 produtos; normal
+  0 categorias/1 produto. Aula 06-31 e cobertura do contrato atualizadas.
+  Publicação em preparação. Próximo passo: publicar e iniciar
+  somente 6.32: teste permanente de página válida após a última, com resposta
+  200/data vazia e total do catálogo preservado.
 - Situação da 6.30: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado com "entendi" em 30/10/2026. Novo método em CatalogoApiTest solicita
   page=0, exige 422/application/json, chave message e erro associado a page,
@@ -13,8 +25,8 @@
   Sintaxe válida; classe 15 testes/128 asserções e suíte 29 testes/182 asserções
   passaram. Contagens antes/depois: teste 0 categorias/0 produtos; normal
   0 categorias/1 produto. Aula 06-30 e cobertura do contrato atualizadas.
-  Publicação em preparação. Próximo passo: publicar
-  e iniciar somente 6.31, expandindo o teste de páginas inválidas com DataProvider.
+  Publicação verificada em d834624f2196cd6980e41747f568c970b2af1c6e; HEAD/origin/main/main
+  remota coincidiram após push em 30/10/2026. Continuidade realizada na 6.31.
 - Situação da 6.29: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado pelo aluno com "entendi" em 30/10/2026. Um novo método em CatalogoApiTest
   cria onze ativos e um inativo, com empate de nome nas posições 10/11, e exige
@@ -340,7 +352,8 @@
   6.27 implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026;
   6.28 confirmada/publicada e 6.29 implementada/explicada/verificada em 30/10/2026,
   entendimento da 6.29 confirmado com "entendi" em 30/10/2026 e checkpoint publicado.
-  6.30 implementada/explicada/verificada, entendimento confirmado com "entendi" em 30/10/2026.
+  6.30 confirmada/publicada e 6.31 implementada/explicada/verificada em 30/10/2026,
+  entendimento da 6.31 confirmado com "entendi" em 30/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -475,18 +488,18 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 30/10/2026: 6.29 confirmada com "entendi" e publicada em
-6f0af4292ce354b2395fd553490cfc6325b4d233; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.30 implementada, explicada e verificada; entendimento confirmado com "entendi" em 30/10/2026.
-CatalogoApiTest recebeu test_retorna_422_em_json_para_pagina_zero: GET com page=0,
-status 422, Content-Type application/json, chave message e erro em errors.page.
-Texto das mensagens não é fixado. Sem fixtures adicionais nem mudanças na aplicação.
-Classe 15/128 e suíte 29/182 passaram. Contagens antes/depois: teste 0 categorias/0
-produtos; normal 0 categorias/1 produto. Aula docs/aulas/06-30-teste-pagina-zero.md.
-Página 2 e page=0 têm testes permanentes; demais entradas inválidas e limites
-continuam nos diagnósticos anteriores. Publicação em preparação; próximo passo:
-publicar e iniciar somente 6.31, expandindo o cenário de páginas inválidas com
-DataProvider. Não implementar a etapa seguinte antes da confirmação.
+Estado mais recente em 30/10/2026: 6.30 confirmada com "entendi" e publicada em
+d834624f2196cd6980e41747f568c970b2af1c6e; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.31 implementada, explicada e verificada; entendimento confirmado com "entendi" em 30/10/2026.
+CatalogoApiTest generaliza o teste de page=0 para string query com DataProvider
+paginasInvalidas: onze casos nomeados exigem 422/JSON/message/errors.page,
+incluindo array, sinal positivo codificado e valor acima da faixa de int.
+Classe 25/208 e suíte 39/262 passaram. Contagens antes/depois: teste 0 categorias/0
+produtos; normal 0 categorias/1 produto. Código da aplicação preservado.
+Aula docs/aulas/06-31-paginas-invalidas-provider.md e contrato atualizados.
+Publicação em preparação. Próximo passo: publicar e iniciar somente 6.32, um teste
+permanente de página válida após a última, com 200/data vazia e total preservado.
+Página após a última e limite superior válido ainda só têm diagnóstico específico.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -8075,10 +8088,49 @@ Verificações em Docker, código 0:
 
 Código da aplicação preservado. O novo teste cobre page=0; outras entradas
 inválidas e limites permanecem nos diagnósticos anteriores. Não mede SQL.
-Entendimento da 6.30: confirmado com "entendi" em 30/10/2026. Publicação em preparação.
-Último checkpoint publicado: 6f0af4292ce354b2395fd553490cfc6325b4d233, etapa 6.29.
-Próximo passo: publicar e iniciar somente 6.31, expandindo o
-teste de páginas inválidas com DataProvider. Exercício DBeaver segue sem relato.
+Entendimento da 6.30: confirmado com "entendi" em 30/10/2026.
+Publicação: d834624f2196cd6980e41747f568c970b2af1c6e; HEAD/origin/main/main remota coincidiram
+após push em 30/10/2026. Continuidade realizada na 6.31. DBeaver segue sem relato.
+
+## Etapa 6.31 — Páginas inválidas com DataProvider
+
+Implementação, explicação e verificações em 30/10/2026 após confirmação e
+publicação da 6.30 em d834624f2196cd6980e41747f568c970b2af1c6e.
+Aula docs/aulas/06-31-paginas-invalidas-provider.md. Alterado somente
+backend/tests/Feature/CatalogoApiTest.php como código: teste renomeado para
+test_retorna_422_em_json_para_pagina_invalida(string $query), atributo
+DataProvider('paginasInvalidas') e novo provider público estático.
+
+Provider retorna onze linhas nomeadas, cada uma com uma string de query:
+page=0, page=, page=-1, page=1.5, page=01, page=abc, page[]=1, page=%2B1,
+page=1e3, page=1000001 e page concatenado com PHP_INT_MAX.'0'. Último é texto,
+sem operação aritmética que causaria overflow. %2B entrega o sinal + literal;
++ cru seria decodificado como espaço. Page vazio está presente, não omitido.
+
+Cada linha vira execução isolada com asserções anteriores de 422, cabeçalho
+application/json, chave message e chave page em errors. A lista interna fornece
+o argumento query; a chave externa identifica a execução. Provider é estático,
+sem banco nem container; setUp e transação rodam para cada caso HTTP.
+Nenhum fixture extra ou alteração no Form Request, controller e demais classes.
+
+Verificações em Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result: 25 testes/208
+  asserções passaram; onze casos substituem o único caso de page=0, saldo +10/+80.
+- php artisan test --do-not-cache-result: 39 testes/262 asserções passaram.
+- SELECTs antes/depois por /tmp/curso-618-contagens.php: loja_test/loja_testes
+  0 categorias/0 produtos; loja/loja_app 0 categorias/1 produto.
+- git diff --check: sem erros.
+
+Os onze cenários inválidos antes diagnósticos passam a ter cobertura permanente
+HTTP. Asserções não medem SQL nem fixam tradução. Limite superior válido e página
+válida além da última ainda têm apenas diagnóstico específico.
+Entendimento da 6.31: confirmado com "entendi" em 30/10/2026. Publicação em preparação.
+Último checkpoint publicado: d834624f2196cd6980e41747f568c970b2af1c6e, etapa 6.30.
+Próximo passo: publicar e iniciar somente 6.32, teste permanente
+de página válida após a última, com 200/data vazia e total do catálogo preservado.
+Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -8388,8 +8440,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   com "entendi" em 30/10/2026; publicada em 6f0af42. Na 6.30, teste de page=0
   implementado/explicado/verificado: classe 15/128 e suíte 29/182 passaram,
   contagens preservadas. Entendimento confirmado com "entendi" em 30/10/2026;
-  publicar e iniciar somente 6.31:
-  expandir teste de páginas inválidas com DataProvider.
+  publicada em d834624. Na 6.31, onze entradas inválidas com DataProvider
+  implementadas/explicadas/verificadas: classe 25/208, suíte 39/262 e contagens
+  passaram. Entendimento confirmado com "entendi" em 30/10/2026; publicar e
+  iniciar somente 6.32: teste de
+  página válida após a última, com 200/data vazia e total preservado.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -8582,4 +8637,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 30/10/2026 | 6.27 — Contrato e demonstração paginada | Assinatura/demo/binding/JSON/zero SQL da demo e leitura Eloquent pelo contrato conferidos; suíte existente 27/133 e contagens preservadas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em 431fced |
 | 30/10/2026 | 6.28 — Paginação HTTP da listagem | Controller/4 testes/contrato adaptados; classe 13/107, suíte 27/161, diagnósticos kernel/socket, rollback e contagens conferidos | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicada e verificada: ed21a33 |
 | 30/10/2026 | 6.29 — Teste permanente da segunda página | Onze ativos/inativo, empate por ID, produto/links/meta; classe 14/120 e suíte 28/174 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: 6f0af42 |
-| 30/10/2026 | 6.30 — Teste permanente de page=0 | GET inválido exige 422/JSON/message/errors.page; classe 15/128 e suíte 29/182 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicação em preparação |
+| 30/10/2026 | 6.30 — Teste permanente de page=0 | GET inválido exige 422/JSON/message/errors.page; classe 15/128 e suíte 29/182 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: d834624 |
+| 30/10/2026 | 6.31 — Páginas inválidas com DataProvider | Onze casos HTTP de 422/JSON/message/errors.page; classe 25/208 e suíte 39/262 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicação em preparação |

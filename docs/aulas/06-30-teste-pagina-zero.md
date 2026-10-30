@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 30/10/2026 após confirmação da 6.29
 com "entendi" e publicação em 6f0af4292ce354b2395fd553490cfc6325b4d233.
 HEAD, origin/main e main remota coincidiram após push. Entendimento da 6.30
-confirmado com "entendi" em 30/10/2026; publicação em preparação.
+confirmado com "entendi" em 30/10/2026; checkpoint publicado em
+d834624f2196cd6980e41747f568c970b2af1c6e, com remoto conferido.
 
 O objetivo é manter na suíte uma verificação HTTP da validação de entrada.
 Até aqui, page=0 tinha sido conferido por diagnóstico temporário na 6.28.
@@ -78,8 +79,7 @@ produto. Git diff --check passou. A aplicação mantém seu código anterior.
 
 ## Continuidade
 
-Roteiro, progresso e registro de cobertura atualizados. Entendimento da 6.30
-confirmado com "entendi" em 30/10/2026; publicação em preparação. Publicar e
-iniciar somente 6.31: expandir o cenário de páginas inválidas com DataProvider,
-reaproveitando as asserções para outras entradas. Demais entradas inválidas e
-limites continuam conferidos pelos diagnósticos anteriores.
+Entendimento confirmado com "entendi" em 30/10/2026; checkpoint publicado em
+d834624f2196cd6980e41747f568c970b2af1c6e, com HEAD/origin/main/main remota conferidos.
+Continuidade realizada na [aula 6.31](06-31-paginas-invalidas-provider.md),
+expandindo o cenário de páginas inválidas com DataProvider.

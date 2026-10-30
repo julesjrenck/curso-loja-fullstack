@@ -259,15 +259,33 @@ class CatalogoApiTest extends TestCase
             ->assertJsonPath('meta.to', 11);
     }
 
-    public function test_retorna_422_em_json_para_pagina_zero(): void
+    #[DataProvider('paginasInvalidas')]
+    public function test_retorna_422_em_json_para_pagina_invalida(string $query): void
     {
-        $resposta = $this->getJson('/api/v1/produtos?page=0');
+        $resposta = $this->getJson('/api/v1/produtos?'.$query);
 
         $resposta
             ->assertStatus(422)
             ->assertHeader('Content-Type', 'application/json')
             ->assertJsonStructure(['message'])
             ->assertJsonValidationErrors(['page']);
+    }
+
+    public static function paginasInvalidas(): array
+    {
+        return [
+            'zero' => ['page=0'],
+            'vazia' => ['page='],
+            'negativa' => ['page=-1'],
+            'decimal' => ['page=1.5'],
+            'zero inicial' => ['page=01'],
+            'letras' => ['page=abc'],
+            'array' => ['page[]=1'],
+            'sinal positivo' => ['page=%2B1'],
+            'notação científica' => ['page=1e3'],
+            'acima do limite' => ['page=1000001'],
+            'acima da faixa de int' => ['page='.PHP_INT_MAX.'0'],
+        ];
     }
 
     private function assertPaginaUnica(TestResponse $resposta, array $produtos): void

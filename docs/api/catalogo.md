@@ -204,11 +204,25 @@ Novo teste solicita GET /api/v1/produtos?page=0 sem criar produtos. Exige 422,
 Content-Type application/json, chave message e campo page em errors usando
 assertJsonValidationErrors(['page']). Não fixa o texto traduzível nem restringe
 a existência de outros campos de erro. A regra min:1 já existia no Form Request;
-o teste protege sua integração HTTP. Não mede SQL. Outras entradas inválidas e
-limites continuam nos diagnósticos anteriores.
+o teste protege sua integração HTTP. Não mede SQL. Na 6.30, outras entradas
+inválidas e limites ainda foram conferidos somente por diagnóstico.
 Classe 15 testes/128 asserções e suíte 29 testes/182 asserções passaram, contagens
 preservadas. Entendimento da 6.30 confirmado com "entendi" em 30/10/2026. Explicação na
 [aula 06-30](../aulas/06-30-teste-pagina-zero.md).
+
+## Cobertura acrescentada na 6.31
+
+O teste de page=0 foi generalizado com DataProvider de onze queries: zero,
+vazio, negativo, decimal, zero inicial, letras, array (page[]=1), sinal positivo
+(page=%2B1), notação científica, acima do limite (1000001) e acima da faixa de
+int (PHP_INT_MAX concatenado com '0'). Cada execução exige 422/application/json,
+message e campo page em errors, sem fixar tradução. O sinal + é codificado para
+que a query não o transforme em espaço; vazio presente é diferente de omissão.
+Classe 25 testes/208 asserções e suíte 39 testes/262 asserções passaram;
+contagens preservadas. Código da aplicação preservado. Página válida após a
+última e limite superior válido continuam nos diagnósticos específicos anteriores.
+Entendimento da 6.31 confirmado com "entendi" em 30/10/2026. Explicação na
+[aula 06-31](../aulas/06-31-paginas-invalidas-provider.md).
 
 ## Evolução
 
