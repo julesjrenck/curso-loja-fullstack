@@ -131,6 +131,20 @@ class CatalogoApiTest extends TestCase
             ->assertJsonStructure(['message']);
     }
 
+    public function test_retorna_404_em_json_para_id_acima_da_faixa_de_int(): void
+    {
+        $idForaDaFaixa = PHP_INT_MAX.'0';
+
+        $resposta = $this->getJson('/api/v1/produtos/'.$idForaDaFaixa);
+
+        $resposta
+            ->assertStatus(404)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertExactJson([
+                'message' => 'Produto não encontrado.',
+            ]);
+    }
+
     public function test_omite_produtos_inativos_da_resposta_json(): void
     {
         $camiseta = Produto::factory()->create([

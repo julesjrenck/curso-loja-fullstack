@@ -83,8 +83,9 @@ cobertos somente pelo diagnóstico histórico da 6.16. Sem novo HTTP por socket.
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint concluído,
-publicação em preparação; resultado será registrado após conferir o remoto.
-Próximo passo: publicar checkpoint e iniciar somente 6.21, um teste de ID numérico
-acima da faixa de int,
+Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint publicado em
+a23d68800e5c48f503cf29a4d0e477c54cf94386, `test: verifica consulta com ID malformado`.
+HEAD, origin/main e main consultada diretamente no remoto coincidiram após push.
+Resultado registrado na etapa seguinte, sem incluir o SHA no próprio commit.
+Continuidade realizada na 6.21: teste de ID numérico acima da faixa de int,
 que corresponde ao padrão da rota mas recebe 404/message específica de show.
