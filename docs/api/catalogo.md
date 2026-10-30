@@ -99,10 +99,17 @@ HTTP real confirmou produto com ID obtido da listagem e erro para número acima
 da faixa. Suíte existente 18/78 passou naquela etapa. Na 6.17, acrescentado teste
 permanente de produto ativo pelo ID, com outro ativo cadastrado, exigindo status,
 tipo e JSON exato com data em objeto. Classe 5/30 e suíte 19/84 passaram; contagens
-preservadas. Entendimento da 6.17 confirmado com "entendi" em 23/10/2026. Erros e restrições ainda cobertos só
-pelo diagnóstico anterior, não por testes permanentes. Aulas
+preservadas. Entendimento da 6.17 confirmado com "entendi" em 23/10/2026.
+Na 6.18, em 30/10/2026, acrescentado teste permanente de ID válido inexistente
+com catálogo vazio pelo setUp: exige 404/application/json e message exata.
+Classe 6/36 e suíte 20/90 passaram; contagens antes/depois preservadas.
+Explicação apresentada; entendimento da 6.18 confirmado pelo aluno com "entendi"
+em 30/10/2026.
+Inativo individual e restrições de ID continuam cobertos apenas pelo diagnóstico
+anterior. Aulas
 docs/aulas/06-16-consulta-individual-http.md e
-docs/aulas/06-17-teste-consulta-individual-ativa.md.
+docs/aulas/06-17-teste-consulta-individual-ativa.md e
+docs/aulas/06-18-teste-consulta-individual-inexistente.md.
 O desenho histórico está em docs/aulas/06-13-consulta-individual-contrato.md.
 
 ## Implementação e verificação
@@ -115,6 +122,7 @@ lista em data. ListarNomes continua atendendo ao fluxo da página Blade /loja.
 Os quatro cenários de listagem em CatalogoApiTest cobrem vazio, produto ativo,
 omissão de inativo e ordenação, exigindo JSON exato com IDs gerados e preços
 explícitos. Na 6.17, a classe passou a cinco cenários com a consulta individual ativa.
+Na 6.18, passou a seis cenários com ID inexistente (classe 6/36, suíte 20/90).
 Na 6.12: classe 4 testes/24 asserções e suíte 18 testes/78 asserções passaram.
 HTTP real confirmou o objeto com três campos; /loja manteve HTML e Camiseta.
 Contagens dos bancos preservadas após os testes; dados fictícios desfeitos.
@@ -127,5 +135,5 @@ contrato interno foram preparados nas 6.9–6.11. Na 6.12, resposta e testes for
 trocados juntos para objetos. Consumidores do formato anterior precisam ler
 nome dentro de cada item. Não há endpoint separado de nomes nesta API.
 
-O histórico detalhado está em docs/progresso.md e nas aulas 06-02 a 06-17.
+O histórico detalhado está em docs/progresso.md e nas aulas 06-02 a 06-18.
 As descrições atuais de listagem e consulta individual correspondem ao código executável.

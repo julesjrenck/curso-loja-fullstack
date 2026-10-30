@@ -298,9 +298,13 @@ e verificado em 10c7293. Na 6.17, um teste permanente pede o ID real da Camiseta
 com Caneca também cadastrada, e exige 200/tipo/JSON exato em objeto. Classe 5/30 e
 suíte 19/84 passaram, contagens preservadas. Aplicação preservada, HTTP real não
 repetido. Entendimento da 6.17 confirmado com "entendi" em 23/10/2026; checkpoint
-publicado e verificado em c474f24. Aluno pediu
-para continuar outro dia; curso em pausa, sem iniciar a 6.18. Quando solicitar
-retomada, próximo passo: teste de ID válido inexistente com 404/message na 6.18.
+publicado e verificado em c474f24. Pausa encerrada pelo pedido de retomada em
+30/10/2026. Na 6.18, acrescentado teste de ID válido inexistente com catálogo
+vazio pelo setUp, exigindo 404/application/json e message exata. Classe 6/36 e
+suíte 20/90 passaram; contagens antes/depois preservadas. Explicação apresentada;
+entendimento da 6.18 confirmado pelo aluno com "entendi" em 30/10/2026.
+Checkpoint concluído, publicação em preparação. Próximo passo: publicar o
+checkpoint e iniciar 6.19, um teste da consulta individual de produto inativo.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

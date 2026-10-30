@@ -87,6 +87,18 @@ class CatalogoApiTest extends TestCase
             ]);
     }
 
+    public function test_retorna_404_em_json_para_id_inexistente(): void
+    {
+        $resposta = $this->getJson('/api/v1/produtos/1');
+
+        $resposta
+            ->assertStatus(404)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertExactJson([
+                'message' => 'Produto não encontrado.',
+            ]);
+    }
+
     public function test_omite_produtos_inativos_da_resposta_json(): void
     {
         $camiseta = Produto::factory()->create([
