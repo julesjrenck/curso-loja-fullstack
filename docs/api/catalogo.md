@@ -231,9 +231,19 @@ meta com current_page 2, per_page 10, total 1, last_page 1 e from/to null.
 Links first/last/prev apontam para 1 e next é null. Assim a página pedida fica
 vazia sem perder a contagem de ativos do catálogo. Aplicação preservada.
 Classe 26 testes/221 asserções e suíte 40 testes/275 asserções passaram;
-contagens antes/depois preservadas. Limite superior válido ainda só tem diagnóstico
-específico anterior. Entendimento da 6.32 confirmado com "entendi" em 30/10/2026. Explicação na
+contagens antes/depois preservadas. Na 6.32, o limite superior válido ainda tinha
+apenas diagnóstico específico anterior. Entendimento da 6.32 confirmado com "entendi" em 30/10/2026. Explicação na
 [aula 06-32](../aulas/06-32-pagina-apos-ultima.md).
+
+## Cobertura acrescentada na 6.33
+
+O teste após a última recebe pagina/paginaAnterior pelo provider paginasAposUltima:
+[2, 1] e [1000000, 999999]. Cada caso cria um ativo, exige 200/JSON/data [], total 1,
+última 1, from/to null e página atual solicitada. Links first/last apontam para 1,
+prev para a página anterior indicada e next é null. O limite válido 1000000 fica
+coberto permanentemente, assim como o inválido 1000001/422 já coberto na 6.31.
+Classe da API passou; suíte completa 41 testes/288 asserções passou, contagens
+preservadas. Código da aplicação preservado. Entendimento da 6.33 confirmado com "entendi" em 30/10/2026. Explicação na [aula 06-33](../aulas/06-33-limite-paginacao.md).
 
 ## Evolução
 

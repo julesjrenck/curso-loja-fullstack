@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 30/10/2026 após confirmação da 6.31
 com "entendi" e publicação em 3a782ca8ba8055b5de5f0e4db31ab3db63df24ed.
 HEAD, origin/main e main remota coincidiram após push. Entendimento da 6.32
-confirmado com "entendi" em 30/10/2026; publicação em preparação.
+confirmado com "entendi" em 30/10/2026; checkpoint publicado em
+db652dd14c6470319f15375328f6d10903c863e7, com remoto conferido.
 
 Uma alteração de código em backend/tests/Feature/CatalogoApiTest.php: novo teste
 test_retorna_pagina_vazia_apos_a_ultima_sem_perder_total. O cenário foi conferido
@@ -94,7 +95,7 @@ desfez o produto temporário. Git diff --check passou. Código da aplicação pr
 
 ## Continuidade
 
-Roteiro, progresso e cobertura do contrato atualizados. Entendimento confirmado
-com "entendi" em 30/10/2026; publicação em preparação. Publicar e iniciar somente
-6.33: ampliar este teste para conferir o limite válido page=1000000, com página
-atual, total e links corretos. Esse limite ainda só tem diagnóstico específico.
+Entendimento confirmado com "entendi" em 30/10/2026; checkpoint publicado em
+db652dd14c6470319f15375328f6d10903c863e7, com HEAD/origin/main/main remota conferidos.
+Continuidade realizada na [aula 6.33](06-33-limite-paginacao.md), ampliando o teste
+para o limite válido page=1000000.

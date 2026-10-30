@@ -259,7 +259,8 @@ class CatalogoApiTest extends TestCase
             ->assertJsonPath('meta.to', 11);
     }
 
-    public function test_retorna_pagina_vazia_apos_a_ultima_sem_perder_total(): void
+    #[DataProvider('paginasAposUltima')]
+    public function test_retorna_pagina_vazia_apos_a_ultima_sem_perder_total(int $pagina, int $paginaAnterior): void
     {
         Produto::factory()->create([
             'nome' => 'Camiseta',
@@ -267,7 +268,7 @@ class CatalogoApiTest extends TestCase
             'preco_em_centavos' => 4990,
         ]);
 
-        $resposta = $this->getJson('/api/v1/produtos?page=2');
+        $resposta = $this->getJson('/api/v1/produtos?page='.$pagina);
         $url = url('/api/v1/produtos');
 
         $resposta
@@ -277,15 +278,23 @@ class CatalogoApiTest extends TestCase
             ->assertJsonPath('links', [
                 'first' => $url.'?page=1',
                 'last' => $url.'?page=1',
-                'prev' => $url.'?page=1',
+                'prev' => $url.'?page='.$paginaAnterior,
                 'next' => null,
             ])
-            ->assertJsonPath('meta.current_page', 2)
+            ->assertJsonPath('meta.current_page', $pagina)
             ->assertJsonPath('meta.per_page', 10)
             ->assertJsonPath('meta.total', 1)
             ->assertJsonPath('meta.last_page', 1)
             ->assertJsonPath('meta.from', null)
             ->assertJsonPath('meta.to', null);
+    }
+
+    public static function paginasAposUltima(): array
+    {
+        return [
+            'logo após a última' => [2, 1],
+            'limite superior válido' => [1000000, 999999],
+        ];
     }
 
     #[DataProvider('paginasInvalidas')]

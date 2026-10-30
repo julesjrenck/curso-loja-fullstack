@@ -4,8 +4,19 @@
 
 - Última atualização: 30/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.32 — Página válida após a última preserva o total.
+- Etapa atual: 6.33 — Limite superior válido da paginação.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.33: implementada, explicada e verificada em 30/10/2026;
+  entendimento confirmado com "entendi" em 30/10/2026. Teste de página além da última passou a
+  receber int pagina/paginaAnterior pelo DataProvider paginasAposUltima, com
+  pares [2, 1] e [1000000, 999999]. Um ativo por execução, 200/JSON/data [],
+  total 1, última 1, página solicitada preservada e links corretos. Aplicação
+  preservada; limite inválido 1000001 segue coberto por 422 no provider anterior.
+  Sintaxe válida; suíte completa 41 testes/288 asserções passou. Contagens
+  antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1 produto.
+  Aula 06-33 e cobertura do contrato atualizadas. Publicação em preparação.
+  Próximo passo: publicar e iniciar somente 6.34: definir o
+  contrato do filtro por nome e sua relação com a paginação, sem implementar ainda.
 - Situação da 6.32: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado com "entendi" em 30/10/2026. Novo teste em CatalogoApiTest cria um
   ativo e solicita page=2: exige 200/JSON/data [], total 1, página atual 2,
@@ -13,9 +24,8 @@
   preservado. Sintaxe válida; classe 26 testes/221 asserções e suíte 40 testes/275
   asserções passaram. Contagens antes/depois: teste 0 categorias/0 produtos;
   normal 0 categorias/1 produto. Aula 06-32 e cobertura do contrato atualizadas.
-  Publicação em preparação. Próximo passo: publicar e iniciar
-  somente 6.33: ampliar o teste para conferir o limite válido page=1000000,
-  com página atual, total e links corretos.
+  Publicação verificada em db652dd14c6470319f15375328f6d10903c863e7; HEAD/origin/main/main
+  remota coincidiram após push em 30/10/2026. Continuidade realizada na 6.33.
 - Situação da 6.31: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado com "entendi" em 30/10/2026. Teste de page=0 generalizado para receber
   string query; provider paginasInvalidas fornece onze casos nomeados: zero,
@@ -363,7 +373,8 @@
   entendimento da 6.29 confirmado com "entendi" em 30/10/2026 e checkpoint publicado.
   6.30 confirmada/publicada e 6.31 implementada/explicada/verificada em 30/10/2026,
   entendimento da 6.31 confirmado com "entendi" em 30/10/2026 e publicada.
-  6.32 implementada/explicada/verificada, entendimento confirmado com "entendi" em 30/10/2026.
+  6.32 confirmada/publicada e 6.33 implementada/explicada/verificada em 30/10/2026,
+  entendimento da 6.33 confirmado com "entendi" em 30/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -498,18 +509,19 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 30/10/2026: 6.31 confirmada com "entendi" e publicada em
-3a782ca8ba8055b5de5f0e4db31ab3db63df24ed; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.32 implementada, explicada e verificada; entendimento confirmado com "entendi" em 30/10/2026.
-CatalogoApiTest recebeu test_retorna_pagina_vazia_apos_a_ultima_sem_perder_total:
-um ativo, page=2 retorna 200/JSON/data [], total 1, current_page 2, last_page 1,
-per_page 10, from/to null e links first/last/prev para 1, next null.
-Classe 26/221 e suíte 40/275 passaram. Contagens antes/depois: teste 0 categorias/0
-produtos; normal 0 categorias/1 produto. Aplicação preservada; fixture desfeita.
-Aula docs/aulas/06-32-pagina-apos-ultima.md e cobertura do contrato atualizadas.
-Publicação em preparação. Próximo passo: publicar e iniciar somente 6.33, ampliando
-o teste para o limite válido page=1000000, com página atual, total e links corretos.
-Esse limite válido ainda só tem diagnóstico específico anterior.
+Estado mais recente em 30/10/2026: 6.32 confirmada com "entendi" e publicada em
+db652dd14c6470319f15375328f6d10903c863e7; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.33 implementada, explicada e verificada; entendimento confirmado com "entendi" em 30/10/2026.
+CatalogoApiTest generaliza o cenário após a última com provider paginasAposUltima:
+pares [2, 1] e [1000000, 999999] entram como pagina/paginaAnterior inteiros.
+Cada execução cria um ativo e exige 200/data [], total 1, última 1, página atual
+solicitada, from/to null, links first/last 1, prev indicado e next null.
+Classe da API passou; suíte completa 41/288 passou. Contagens antes/depois:
+teste 0 categorias/0 produtos; normal 0 categorias/1 produto. Aplicação preservada.
+Aula docs/aulas/06-33-limite-paginacao.md e cobertura do contrato atualizadas.
+O limite válido 1000000 tem teste permanente, assim como o inválido 1000001/422.
+Publicação em preparação. Próximo passo: publicar e iniciar somente 6.34: definir
+contrato de filtro por nome e interação com paginação, sem implementar o filtro ainda.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -8169,10 +8181,43 @@ Verificações em Docker, código 0:
 Aplicação, helper de página única e demais testes preservados. Cenário antes
 conferido por diagnóstico agora tem cobertura HTTP permanente. Limite superior
 válido ainda tem apenas diagnóstico específico anterior.
-Entendimento da 6.32: confirmado com "entendi" em 30/10/2026. Publicação em preparação.
-Último checkpoint publicado: 3a782ca8ba8055b5de5f0e4db31ab3db63df24ed, etapa 6.31.
-Próximo passo: publicar e iniciar somente 6.33, ampliando o
-teste para page=1000000 e conferindo página atual, total e links. DBeaver sem relato.
+Entendimento da 6.32: confirmado com "entendi" em 30/10/2026.
+Publicação: db652dd14c6470319f15375328f6d10903c863e7; HEAD/origin/main/main remota coincidiram
+após push em 30/10/2026. Continuidade realizada na 6.33. DBeaver segue sem relato.
+
+## Etapa 6.33 — Limite superior válido da paginação
+
+Implementação, explicação e verificações em 30/10/2026 após confirmação e
+publicação da 6.32 em db652dd14c6470319f15375328f6d10903c863e7.
+Aula docs/aulas/06-33-limite-paginacao.md. Conjunto inseparável em CatalogoApiTest:
+teste após a última recebe int pagina/int paginaAnterior; atributo DataProvider
+e provider público estático paginasAposUltima com pares [2, 1] e [1000000, 999999].
+
+Requisição concatena pagina à query. Asserções de current_page e links.prev
+usam argumentos do provider; demais expectativas do cenário anterior preservadas.
+Cada caso cria um ativo em transação e exige 200/JSON/data [], total 1, última 1,
+per_page 10, from/to null, first/last para 1 e next null. Para 1000000, prev
+aponta para 999999 mesmo que esteja vazia neste catálogo. Última página e página
+anterior têm significados distintos. Não se cria um milhão de registros.
+Limite máximo é inclusivo: 1000000 aceito, 1000001 rejeitado no provider anterior.
+
+Verificações em Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result: classe passou,
+  incluindo as duas execuções de paginasAposUltima e os onze inválidos anteriores.
+- php artisan test --do-not-cache-result: 41 testes/288 asserções passaram;
+  um caso e treze asserções a mais que na 6.32.
+- SELECTs antes/depois por /tmp/curso-618-contagens.php: loja_test/loja_testes
+  0 categorias/0 produtos; loja/loja_app 0 categorias/1 produto.
+- git diff --check: sem erros.
+
+Código da aplicação preservado; limite válido agora tem cobertura HTTP permanente.
+Entendimento da 6.33: confirmado com "entendi" em 30/10/2026. Publicação em preparação.
+Último checkpoint publicado: db652dd14c6470319f15375328f6d10903c863e7, etapa 6.32.
+Próximo passo: publicar e iniciar somente 6.34, definindo o
+contrato do filtro por nome e interação com paginação, sem implementar ainda.
+Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -8487,8 +8532,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   passaram. Entendimento confirmado com "entendi" em 30/10/2026; publicada em
   3a782ca. Na 6.32, página após a última implementada/explicada/verificada:
   classe 26/221, suíte 40/275 e contagens passaram. Entendimento confirmado
+  com "entendi" em 30/10/2026; publicada em db652dd. Na 6.33, teste ampliado
+  para page=1000000, suíte 41/288 e contagens passaram. Entendimento confirmado
   com "entendi" em 30/10/2026;
-  publicar e iniciar somente 6.33: ampliar teste para limite válido page=1000000.
+  publicar e iniciar somente 6.34: definir contrato do filtro por nome/paginação,
+  sem implementar ainda.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -8683,4 +8731,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 30/10/2026 | 6.29 — Teste permanente da segunda página | Onze ativos/inativo, empate por ID, produto/links/meta; classe 14/120 e suíte 28/174 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: 6f0af42 |
 | 30/10/2026 | 6.30 — Teste permanente de page=0 | GET inválido exige 422/JSON/message/errors.page; classe 15/128 e suíte 29/182 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: d834624 |
 | 30/10/2026 | 6.31 — Páginas inválidas com DataProvider | Onze casos HTTP de 422/JSON/message/errors.page; classe 25/208 e suíte 39/262 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: 3a782ca |
-| 30/10/2026 | 6.32 — Página após a última preserva total | Um ativo/page=2 exige 200/data [], total 1, links/meta; classe 26/221 e suíte 40/275 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicação em preparação |
+| 30/10/2026 | 6.32 — Página após a última preserva total | Um ativo/page=2 exige 200/data [], total 1, links/meta; classe 26/221 e suíte 40/275 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: db652dd |
+| 30/10/2026 | 6.33 — Limite superior válido | Provider de páginas 2/1000000 exige 200/data [], total e links; suíte 41/288 passou; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicação em preparação |

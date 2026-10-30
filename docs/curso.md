@@ -371,8 +371,14 @@ com "entendi" em 30/10/2026. Checkpoint publicado e verificado em 3a782ca.
 Na 6.32, teste de um ativo/page=2 exige 200/data [], total 1, página atual 2,
 última 1, from/to null e links. Classe 26/221 e suíte 40/275 passaram; contagens
 preservadas. Explicação apresentada; entendimento da 6.32 confirmado com "entendi"
-em 30/10/2026. Publicação em preparação; publicar e iniciar somente 6.33: ampliar o teste para o limite
-válido page=1000000, conferindo página atual, total e links.
+em 30/10/2026. Checkpoint publicado e verificado em db652dd. Na 6.33, teste
+após a última generalizado com provider de páginas 2/1000000 e anteriores 1/999999.
+Ambas retornam 200/data [], total 1, última 1 e links corretos. Classe da API
+passou; suíte completa 41/288 passou, contagens preservadas. Explicação apresentada;
+entendimento da 6.33 confirmado com "entendi" em 30/10/2026. Publicação em
+preparação; publicar e iniciar
+somente 6.34: definir contrato do filtro por nome e interação com paginação,
+sem implementar o filtro ainda.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
