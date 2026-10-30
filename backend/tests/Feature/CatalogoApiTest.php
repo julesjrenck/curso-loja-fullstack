@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Produto;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
@@ -30,10 +31,7 @@ class CatalogoApiTest extends TestCase
     {
         $resposta = $this->getJson('/api/v1/produtos');
 
-        $resposta
-            ->assertStatus(200)
-            ->assertHeader('Content-Type', 'application/json')
-            ->assertExactJson(['data' => []]);
+        $this->assertPaginaUnica($resposta, []);
     }
 
     public function test_retorna_produto_ativo_em_json(): void
@@ -46,18 +44,13 @@ class CatalogoApiTest extends TestCase
 
         $resposta = $this->getJson('/api/v1/produtos');
 
-        $resposta
-            ->assertStatus(200)
-            ->assertHeader('Content-Type', 'application/json')
-            ->assertExactJson([
-                'data' => [
-                    [
-                        'id' => $camiseta->id,
-                        'nome' => 'Camiseta',
-                        'preco_em_centavos' => 4990,
-                    ],
-                ],
-            ]);
+        $this->assertPaginaUnica($resposta, [
+            [
+                'id' => $camiseta->id,
+                'nome' => 'Camiseta',
+                'preco_em_centavos' => 4990,
+            ],
+        ]);
     }
 
     public function test_retorna_produto_ativo_pelo_id_em_json(): void
@@ -173,18 +166,13 @@ class CatalogoApiTest extends TestCase
 
         $resposta = $this->getJson('/api/v1/produtos');
 
-        $resposta
-            ->assertStatus(200)
-            ->assertHeader('Content-Type', 'application/json')
-            ->assertExactJson([
-                'data' => [
-                    [
-                        'id' => $camiseta->id,
-                        'nome' => 'Camiseta',
-                        'preco_em_centavos' => 4990,
-                    ],
-                ],
-            ]);
+        $this->assertPaginaUnica($resposta, [
+            [
+                'id' => $camiseta->id,
+                'nome' => 'Camiseta',
+                'preco_em_centavos' => 4990,
+            ],
+        ]);
     }
 
     public function test_retorna_produtos_em_ordem_alfabetica_no_json(): void
@@ -203,22 +191,40 @@ class CatalogoApiTest extends TestCase
 
         $resposta = $this->getJson('/api/v1/produtos');
 
+        $this->assertPaginaUnica($resposta, [
+            [
+                'id' => $camiseta->id,
+                'nome' => 'Camiseta',
+                'preco_em_centavos' => 4990,
+            ],
+            [
+                'id' => $caneca->id,
+                'nome' => 'Caneca',
+                'preco_em_centavos' => 2990,
+            ],
+        ]);
+    }
+
+    private function assertPaginaUnica(TestResponse $resposta, array $produtos): void
+    {
+        $total = count($produtos);
+        $url = url('/api/v1/produtos');
+
         $resposta
             ->assertStatus(200)
             ->assertHeader('Content-Type', 'application/json')
-            ->assertExactJson([
-                'data' => [
-                    [
-                        'id' => $camiseta->id,
-                        'nome' => 'Camiseta',
-                        'preco_em_centavos' => 4990,
-                    ],
-                    [
-                        'id' => $caneca->id,
-                        'nome' => 'Caneca',
-                        'preco_em_centavos' => 2990,
-                    ],
-                ],
-            ]);
+            ->assertJsonPath('data', $produtos)
+            ->assertJsonPath('links', [
+                'first' => $url.'?page=1',
+                'last' => $url.'?page=1',
+                'prev' => null,
+                'next' => null,
+            ])
+            ->assertJsonPath('meta.current_page', 1)
+            ->assertJsonPath('meta.per_page', 10)
+            ->assertJsonPath('meta.total', $total)
+            ->assertJsonPath('meta.last_page', 1)
+            ->assertJsonPath('meta.from', $total === 0 ? null : 1)
+            ->assertJsonPath('meta.to', $total === 0 ? null : $total);
     }
 }

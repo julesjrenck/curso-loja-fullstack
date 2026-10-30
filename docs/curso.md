@@ -348,9 +348,16 @@ páginas 1/2 com 3/0 itens, JSON/links/zero SQL da demo, binding Eloquent e leit
 pelo contrato conferidos. Suíte existente 27/133 passou; contagens preservadas.
 Ainda sem ligação à rota, API segue sem paginação/validação de page. Explicação
 apresentada, entendimento da 6.27 confirmado com "entendi" em 30/10/2026.
+Checkpoint publicado e verificado em 431fced. Na 6.28, index recebe Form Request
+e retorna paginação pelo contrato: page validado/default 1, data/links/meta,
+inválidos 422. Quatro testes de listagem adaptados e contrato ativo atualizado;
+classe 13/107 e suíte 27/161 passaram. Diagnósticos HTTP pelo kernel/transação
+conferiram onze ativos/inativo, páginas/limites/erros sem SQL/rollback; socket
+confirmou listagem, page=2 vazia, individual, 422 e Blade. Contagens preservadas.
+Explicação apresentada; entendimento da 6.28 confirmado com "entendi" em 30/10/2026.
 Checkpoint concluído, publicação em preparação. Próximo passo: publicar checkpoint
-e iniciar 6.28, integrar Form Request/paginação no index e adaptar testes e
-contrato ativo da listagem ao JSON paginado.
+e iniciar 6.29, um teste permanente de página 2 com onze
+ativos, um inativo e empate por ID, exigindo produto/meta/links corretos.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
