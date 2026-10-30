@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 30/10/2026 após confirmação da 6.28
 com "entendi" e publicação em ed21a330288ff3af17d777e1bbcb53e95016e90b.
 HEAD, origin/main e main remota coincidiram após push. Entendimento da 6.29
-confirmado com "entendi" em 30/10/2026; publicação em preparação.
+confirmado com "entendi" em 30/10/2026; checkpoint publicado em
+6f0af4292ce354b2395fd553490cfc6325b4d233, com remoto conferido.
 
 Uma alteração de código em backend/tests/Feature/CatalogoApiTest.php:
 test_retorna_segunda_pagina_com_ativos_e_desempate_por_id. O comportamento que
@@ -102,7 +103,8 @@ aplicação, migrations, dependências ou cadastros permanentes.
 ## Continuidade
 
 Registro de progresso, roteiro e cobertura do contrato atualizados. Entendimento
-da 6.29 confirmado com "entendi" em 30/10/2026; publicação em preparação.
-Próximo passo: publicar e iniciar somente 6.30: um teste permanente de
-page=0 com 422/JSON e errors.page. Demais limites e erros seguem nos diagnósticos
-anteriores; não foram acrescentados à suíte nesta etapa.
+da 6.29 confirmado com "entendi" em 30/10/2026; checkpoint publicado em
+6f0af4292ce354b2395fd553490cfc6325b4d233, com remoto conferido.
+Continuidade realizada na [aula 6.30](06-30-teste-pagina-zero.md), com um teste
+permanente de page=0 com 422/JSON e errors.page. Demais limites e erros foram
+conferidos nos diagnósticos anteriores, sem teste permanente deles na 6.29.

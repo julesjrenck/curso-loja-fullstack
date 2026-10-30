@@ -259,6 +259,17 @@ class CatalogoApiTest extends TestCase
             ->assertJsonPath('meta.to', 11);
     }
 
+    public function test_retorna_422_em_json_para_pagina_zero(): void
+    {
+        $resposta = $this->getJson('/api/v1/produtos?page=0');
+
+        $resposta
+            ->assertStatus(422)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonStructure(['message'])
+            ->assertJsonValidationErrors(['page']);
+    }
+
     private function assertPaginaUnica(TestResponse $resposta, array $produtos): void
     {
         $total = count($produtos);

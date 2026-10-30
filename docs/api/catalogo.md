@@ -194,9 +194,21 @@ last para 2 e next null. Confere página 2, per_page 10, total 11, última 2 e
 from/to 11. Assim cobre seleção, filtro, desempate, total e navegação nessa página.
 Classe 14 testes/120 asserções e suíte 28 testes/174 asserções passaram;
 contagens dos bancos preservadas. Nenhuma alteração no contrato HTTP executável.
-Limites e respostas 422 continuam nos diagnósticos anteriores, sem teste
-permanente novo deles. Entendimento da 6.29 confirmado com "entendi" em 30/10/2026.
+Na 6.29, limites e respostas 422 foram conferidos apenas nos diagnósticos
+anteriores; o primeiro teste permanente de 422 foi acrescentado na 6.30. Entendimento da 6.29 confirmado com "entendi" em 30/10/2026.
 Explicação na [aula 06-29](../aulas/06-29-teste-segunda-pagina.md).
+
+## Cobertura acrescentada na 6.30
+
+Novo teste solicita GET /api/v1/produtos?page=0 sem criar produtos. Exige 422,
+Content-Type application/json, chave message e campo page em errors usando
+assertJsonValidationErrors(['page']). Não fixa o texto traduzível nem restringe
+a existência de outros campos de erro. A regra min:1 já existia no Form Request;
+o teste protege sua integração HTTP. Não mede SQL. Outras entradas inválidas e
+limites continuam nos diagnósticos anteriores.
+Classe 15 testes/128 asserções e suíte 29 testes/182 asserções passaram, contagens
+preservadas. Entendimento da 6.30 confirmado com "entendi" em 30/10/2026. Explicação na
+[aula 06-30](../aulas/06-30-teste-pagina-zero.md).
 
 ## Evolução
 
