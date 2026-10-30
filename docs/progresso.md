@@ -4,8 +4,20 @@
 
 - Última atualização: 30/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.21 — Teste da consulta individual com ID acima da faixa de int.
+- Etapa atual: 6.22 — Data provider para IDs malformados na consulta individual.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.22: implementada, explicada e verificada em 30/10/2026;
+  entendimento confirmado pelo aluno com "entendi" em 30/10/2026. CatalogoApiTest importa
+  DataProvider, liga o teste existente a idsMalformados por atributo e recebe
+  string $id. Provider public static retorna cinco conjuntos nomeados: abc, 0,
+  -1, 1.5 e 01. Cada execução exige 404/application/json e estrutura com message,
+  sem texto fixo. Mantidos os outros oito métodos de teste, setUp, identidade
+  loja_test/loja_testes e DatabaseTransactions por execução. Sintaxe válida;
+  classe 13 testes/79 asserções e suíte 27 testes/133 asserções passaram.
+  Contagens antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1
+  produto. HTTP por socket não repetido. Aula 06-22 e contrato atualizados;
+  Checkpoint concluído; publicação em preparação. Próximo passo: publicar e iniciar 6.23,
+  desenhar o contrato de paginação de GET /api/v1/produtos, antes de implementá-la.
 - Situação da 6.21: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado pelo aluno com "entendi" em 30/10/2026. Novo cenário em CatalogoApiTest
   concatena PHP_INT_MAX com '0', consulta esse ID textual numérico e exige
@@ -15,9 +27,9 @@
   Sintaxe válida; classe 9 testes/55 asserções e suíte 23 testes/109 asserções
   passaram. Contagens antes/depois: teste 0 categorias/0 produtos; normal
   0 categorias/1 produto. HTTP por socket não repetido. Aula 06-21 e contrato
-  atualizados; checkpoint concluído, publicação em preparação.
-  Próximo passo: publicar checkpoint e iniciar 6.22, ampliar o teste de ID malformado com data provider
-  para os casos abc, 0, -1, 1.5 e 01, sem fixar a message do roteamento.
+  atualizados; checkpoint publicado em a79fc87b9d257899467c7fe161c5ab7819986fbe.
+  HEAD/origin/main/main remota coincidiram após push em 30/10/2026.
+  Continuidade realizada na 6.22, data provider para formatos malformados.
 - Situação da 6.20: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado pelo aluno com "entendi" em 30/10/2026. Novo cenário em CatalogoApiTest
   consulta /api/v1/produtos/abc, exige 404/application/json e presença de message
@@ -214,7 +226,8 @@
   6.18 confirmada/publicada e 6.19 implementada/verificada em 30/10/2026;
   entendimento da 6.19 confirmado com "entendi" em 30/10/2026; 6.20 implementada
   e verificada, com entendimento confirmado com "entendi" em 30/10/2026; 6.21
-  implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026.
+  implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026;
+  6.22 implementada/verificada e entendimento confirmado com "entendi" em 30/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -349,19 +362,19 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 30/10/2026: 6.20 confirmada com "entendi" e publicada em
-a23d68800e5c48f503cf29a4d0e477c54cf94386; HEAD/origin/main/main remota conferidos.
-Etapa 6.21 implementada, explicada e verificada; entendimento confirmado pelo aluno
+Estado mais recente em 30/10/2026: 6.21 confirmada com "entendi" e publicada em
+a79fc87b9d257899467c7fe161c5ab7819986fbe; HEAD/origin/main/main remota conferidos.
+Etapa 6.22 implementada, explicada e verificada; entendimento confirmado pelo aluno
 com "entendi" em 30/10/2026.
-Novo teste monta ID com PHP_INT_MAX.'0', consulta a URL e exige
-404/application/json e JSON exato com message específica de show. O valor passa
-no padrão da rota, mas excede int e é rejeitado por FILTER_VALIDATE_INT.
-Mantidos identidade, setUp e DatabaseTransactions. Sintaxe válida; classe 9/55 e
-suíte 23/109 passaram. Contagens antes/depois: teste 0/0 e normal 0/1
-categorias/produtos. Sem novo HTTP por socket. Aula 06-21 e contrato atualizados;
-Publicação da 6.21 em preparação. Próximo passo: publicar checkpoint e iniciar
-6.22, ampliar o teste
-de ID malformado com data provider para abc, 0, -1, 1.5 e 01, sem message fixa.
+Teste existente de ID malformado recebe string $id e usa atributo DataProvider
+para idsMalformados, método public static com cinco conjuntos nomeados de strings:
+abc, 0, -1, 1.5 e 01. Cada execução exige 404/JSON/estrutura com message, sem
+texto fixo. Mantidos os outros oito métodos de teste e isolamento por execução.
+Sintaxe válida; classe 13/79 e suíte 27/133 passaram. Contagens antes/depois:
+teste 0/0 e normal 0/1 categorias/produtos. Sem novo HTTP por socket. Aula 06-22
+e contrato atualizados; publicação em preparação. Próximo passo: publicar checkpoint
+e iniciar 6.23,
+desenhar contrato de paginação da listagem GET /api/v1/produtos antes de implementar.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -7539,11 +7552,58 @@ Agora há quatro cenários permanentes de listagem e cinco individuais: ativo,
 inexistente, inativo, abc malformado e ID acima da faixa de int. Demais formatos
 continuam somente no diagnóstico histórico da 6.16. HTTP por socket não repetido.
 Entendimento da 6.21: confirmado pelo aluno com "entendi" em 30/10/2026.
-Publicação da 6.21: em preparação; resultado será registrado após conferir o remoto.
-Último checkpoint publicado e remoto conferido: a23d68800e5c48f503cf29a4d0e477c54cf94386,
-etapa 6.20. Próximo passo: publicar checkpoint e iniciar somente 6.22, ampliar o teste de ID malformado
-com data provider para abc, 0, -1, 1.5 e 01, sem fixar message do roteamento.
+Publicação da 6.21: a79fc87b9d257899467c7fe161c5ab7819986fbe,
+`test: verifica consulta com ID acima da faixa de int`. HEAD, origin/main e main
+consultada diretamente no remoto coincidiram após push em 30/10/2026. Resultado
+registrado na etapa seguinte, sem incluir o SHA no próprio commit.
+Continuidade realizada na 6.22: data provider para os formatos de ID malformado.
 Exercício DBeaver segue sem relato; não bloqueia o curso.
+
+## Etapa 6.22 — Data provider para IDs malformados na consulta individual
+
+Implementação, explicação e verificações em 30/10/2026 após confirmação e
+publicação da 6.21. Aula docs/aulas/06-22-data-provider-ids-malformados.md.
+Somente CatalogoApiTest alterado no código, em conjunto inseparável: import de
+PHPUnit\Framework\Attributes\DataProvider, atributo #[DataProvider('idsMalformados')]
+no teste existente, parâmetro string $id no método/concatenação da URL e provider
+public static idsMalformados(): array com cinco conjuntos nomeados. Valores
+'abc', '0', '-1', '1.5' e '01' mantidos como strings, cada um em um array interno
+com um argumento. Nomes letras/zero/negativo/decimal/zero inicial aparecem no relatório.
+
+Atributo explicado como metadado que o PHPUnit lê para obter os argumentos.
+Cada array interno fornece o parâmetro $id; provider retorna dados simples,
+sem Laravel/SQL/$this. Providers são avaliados antes de setUp; cada execução do
+teste recebe sua própria preparação e rollback de DatabaseTransactions.
+Mantidos status 404, application/json e assertJsonStructure(['message']), sem
+fixar corpo completo do erro de roteamento. Os outros oito métodos de teste e
+código de aplicação preservados. Não foram criados cinco métodos duplicados.
+
+Referência oficial PHPUnit 12.5 consultada para atributo, provider public/static,
+arrays de argumentos, nomes dos conjuntos e execução anterior ao setUp:
+https://docs.phpunit.de/en/12.5/writing-tests-for-phpunit.html#data-providers.
+
+Verificações PHP Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result: 13 testes/79
+  asserções passaram; os cinco conjuntos aparecem individualmente no relatório.
+- php artisan test --do-not-cache-result: 27 testes/133 asserções passaram.
+- SELECTs separados antes/depois por /tmp/curso-618-contagens.php:
+  loja_test/loja_testes 0 categorias/0 produtos; loja/loja_app 0 categorias/1 produto.
+- git diff --check: sem erros.
+
+Total da classe passou de 9 para 13 execuções: um caso malformado virou cinco,
+acrescentando quatro execuções e 24 asserções. Há quatro cenários de listagem e
+nove execuções individuais: ativo, inexistente, inativo, cinco formatos e faixa
+excedida. Outros formatos, como 1e3 e +1, seguem no diagnóstico histórico da
+6.16. Testes verificam resposta pública; não contam SQL nem instrumentam entrada
+em show. HTTP por socket não repetido nesta etapa.
+Entendimento da 6.22: confirmado pelo aluno com "entendi" em 30/10/2026.
+Publicação da 6.22: em preparação; resultado será registrado após conferir o remoto.
+Último checkpoint publicado e remoto conferido: a79fc87b9d257899467c7fe161c5ab7819986fbe,
+etapa 6.21. Próximo passo: publicar checkpoint e iniciar somente 6.23, desenhar contrato de paginação
+de GET /api/v1/produtos, antes de implementar. Módulo 6 continua; demais módulos
+não iniciados. Exercício DBeaver segue sem relato; não bloqueia o curso.
 
 ## Verificações e limitações do ambiente
 
@@ -7831,7 +7891,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   passaram. Entendimento confirmado com "entendi" em 30/10/2026 e publicada em
   a23d688. Na 6.21, teste de faixa de int implementado/explicado/verificado,
   classe 9/55 e suíte 23/109 passaram. Entendimento confirmado com "entendi" em
-  30/10/2026; publicar e iniciar 6.22, data provider para formatos de ID malformado.
+  30/10/2026 e publicada em a79fc87. Na 6.22, data provider de cinco formatos
+  implementado/explicado/verificado, classe 13/79 e suíte 27/133 passaram. Entendimento
+  confirmado com "entendi" em 30/10/2026; publicar e iniciar 6.23, contrato de paginação.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -8015,4 +8077,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 30/10/2026 | 6.18 — Teste individual inexistente | GET com ID válido em catálogo vazio, 404/tipo/JSON exato; classe 6/36, suíte 20/90 e contagens antes/depois conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em d6fac24 |
 | 30/10/2026 | 6.19 — Teste individual inativo | Factory inativa, GET por ID real, 404/tipo/JSON exato e registro/status preservados; classe 7/43, suíte 21/97 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em a137a9a |
 | 30/10/2026 | 6.20 — Teste individual ID malformado | GET abc, 404/tipo/estrutura com message sem texto fixo; classe 8/49, suíte 22/103 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em a23d688 |
-| 30/10/2026 | 6.21 — Teste individual ID fora da faixa | ID por concatenação de PHP_INT_MAX com zero, 404/tipo/JSON exato; classe 9/55, suíte 23/109 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Checkpoint concluído; publicação em preparação |
+| 30/10/2026 | 6.21 — Teste individual ID fora da faixa | ID por concatenação de PHP_INT_MAX com zero, 404/tipo/JSON exato; classe 9/55, suíte 23/109 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em a79fc87 |
+| 30/10/2026 | 6.22 — Data provider de IDs malformados | Cinco conjuntos nomeados no teste existente; classe 13/79, suíte 27/133 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Checkpoint concluído; publicação em preparação |

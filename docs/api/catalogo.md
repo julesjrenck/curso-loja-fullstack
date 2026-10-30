@@ -116,14 +116,20 @@ apresentada; entendimento da 6.20 confirmado com "entendi" em 30/10/2026.
 Na 6.21, em 30/10/2026, acrescentado teste permanente de ID numérico acima da
 faixa de int por PHP_INT_MAX.'0', exigindo 404/application/json e message exata.
 Classe 9/55 e suíte 23/109 passaram; contagens preservadas. Explicação apresentada;
-entendimento da 6.21 confirmado com "entendi" em 30/10/2026. Outros formatos continuam cobertos
-apenas pelo diagnóstico anterior. Aulas:
+entendimento da 6.21 confirmado com "entendi" em 30/10/2026.
+Na 6.22, em 30/10/2026, teste de ID malformado ampliado com data provider de
+cinco conjuntos: abc, 0, -1, 1.5 e 01. Cada execução exige 404/application/json e
+presença de message, sem texto fixo. Classe 13/79 e suíte 27/133 passaram;
+contagens preservadas. Explicação apresentada; entendimento da 6.22 confirmado
+com "entendi" em 30/10/2026. Outros formatos, como 1e3 e +1, seguem somente no diagnóstico anterior.
+Aulas:
 docs/aulas/06-16-consulta-individual-http.md,
 docs/aulas/06-17-teste-consulta-individual-ativa.md,
 docs/aulas/06-18-teste-consulta-individual-inexistente.md,
 docs/aulas/06-19-teste-consulta-individual-inativa.md,
-docs/aulas/06-20-teste-consulta-individual-id-malformado.md e
-docs/aulas/06-21-teste-consulta-individual-id-fora-faixa.md.
+docs/aulas/06-20-teste-consulta-individual-id-malformado.md,
+docs/aulas/06-21-teste-consulta-individual-id-fora-faixa.md e
+docs/aulas/06-22-data-provider-ids-malformados.md.
 O desenho histórico está em docs/aulas/06-13-consulta-individual-contrato.md.
 
 ## Implementação e verificação
@@ -140,6 +146,7 @@ Na 6.18, passou a seis cenários com ID inexistente (classe 6/36, suíte 20/90).
 Na 6.19, passou a sete com o inativo individual (classe 7/43, suíte 21/97).
 Na 6.20, passou a oito com abc malformado (classe 8/49, suíte 22/103).
 Na 6.21, passou a nove com ID acima da faixa de int (classe 9/55, suíte 23/109).
+Na 6.22, o caso malformado virou cinco execuções: classe 13/79, suíte 27/133.
 Na 6.12: classe 4 testes/24 asserções e suíte 18 testes/78 asserções passaram.
 HTTP real confirmou o objeto com três campos; /loja manteve HTML e Camiseta.
 Contagens dos bancos preservadas após os testes; dados fictícios desfeitos.
@@ -152,5 +159,5 @@ contrato interno foram preparados nas 6.9–6.11. Na 6.12, resposta e testes for
 trocados juntos para objetos. Consumidores do formato anterior precisam ler
 nome dentro de cada item. Não há endpoint separado de nomes nesta API.
 
-O histórico detalhado está em docs/progresso.md e nas aulas 06-02 a 06-21.
+O histórico detalhado está em docs/progresso.md e nas aulas 06-02 a 06-22.
 As descrições atuais de listagem e consulta individual correspondem ao código executável.

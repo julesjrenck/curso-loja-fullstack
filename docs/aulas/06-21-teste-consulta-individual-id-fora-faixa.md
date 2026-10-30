@@ -90,7 +90,9 @@ continuam somente no diagnóstico histórico da 6.16. Sem novo HTTP por socket.
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint concluído,
-publicação em preparação; resultado será registrado após conferir o remoto.
-Próximo passo: publicar checkpoint e iniciar somente 6.22, ampliar o teste de ID malformado com data
+Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint publicado em
+a79fc87b9d257899467c7fe161c5ab7819986fbe, `test: verifica consulta com ID acima da faixa de int`.
+HEAD, origin/main e main consultada diretamente no remoto coincidiram após push.
+Resultado registrado na etapa seguinte, sem incluir o SHA no próprio commit.
+Continuidade realizada na 6.22: ampliar o teste de ID malformado com data
 provider para abc, 0, -1, 1.5 e 01, sem fixar a message do roteamento.

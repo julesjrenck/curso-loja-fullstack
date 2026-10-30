@@ -314,9 +314,14 @@ com "entendi" em 30/10/2026; checkpoint publicado e verificado em a23d688.
 Na 6.21, teste de ID numérico acima da faixa de int usa PHP_INT_MAX.'0' e exige
 404/application/json e message exata de show. Classe 9/55 e suíte 23/109 passaram;
 contagens preservadas. Explicação apresentada, entendimento da 6.21 confirmado
-com "entendi" em 30/10/2026. Checkpoint concluído, publicação em preparação.
-Próximo passo: publicar checkpoint e iniciar 6.22, ampliar o
-teste de ID malformado com data provider para abc, 0, -1, 1.5 e 01.
+com "entendi" em 30/10/2026; checkpoint publicado e verificado em a79fc87.
+Na 6.22, teste de ID malformado parametrizado com DataProvider/idsMalformados:
+abc, 0, -1, 1.5 e 01 em conjuntos nomeados. Cada um exige 404/JSON/estrutura com
+message. Classe 13/79 e suíte 27/133 passaram; contagens preservadas. Explicação
+apresentada, entendimento da 6.22 confirmado com "entendi" em 30/10/2026.
+Checkpoint concluído; publicação em preparação. Próximo passo: publicar checkpoint
+e iniciar 6.23, desenhar contrato de paginação de GET /api/v1/produtos,
+antes de implementar.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

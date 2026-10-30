@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Produto;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class CatalogoApiTest extends TestCase
@@ -121,14 +122,26 @@ class CatalogoApiTest extends TestCase
         ]);
     }
 
-    public function test_retorna_404_em_json_para_id_malformado(): void
+    #[DataProvider('idsMalformados')]
+    public function test_retorna_404_em_json_para_id_malformado(string $id): void
     {
-        $resposta = $this->getJson('/api/v1/produtos/abc');
+        $resposta = $this->getJson('/api/v1/produtos/'.$id);
 
         $resposta
             ->assertStatus(404)
             ->assertHeader('Content-Type', 'application/json')
             ->assertJsonStructure(['message']);
+    }
+
+    public static function idsMalformados(): array
+    {
+        return [
+            'letras' => ['abc'],
+            'zero' => ['0'],
+            'negativo' => ['-1'],
+            'decimal' => ['1.5'],
+            'zero inicial' => ['01'],
+        ];
     }
 
     public function test_retorna_404_em_json_para_id_acima_da_faixa_de_int(): void
