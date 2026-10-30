@@ -4,8 +4,20 @@
 
 - Última atualização: 30/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.24 — Form Request para validar page da listagem.
+- Etapa atual: 6.25 — Página validada como inteiro e valor padrão no Form Request.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.25: implementada, explicada e verificada em 30/10/2026;
+  entendimento confirmado pelo aluno com "entendi" em 30/10/2026. ListarProdutosRequest recebeu
+  pagina(): int com (int) $this->validated('page', 1), para uso após validação.
+  Diagnóstico de 16 entradas: ausente retorna int 1; válidas '1'/'2'/'1000000'
+  retornam int 1/2/1000000, preservando validated original. Doze inválidas seguem
+  rejeitadas com 422 JSON antes da chamada ao método. Zero SQL observado.
+  Sintaxe válida; suíte existente 27 testes/133 asserções passou. Contagens
+  antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1 produto.
+  Ainda sem ligação à rota, API segue sem paginação/validação de page. Aula 06-25
+  e referência no contrato atualizadas; checkpoint concluído, publicação em preparação.
+  Próximo passo: publicar checkpoint e iniciar 6.26, adicionar paginarProdutos(int $pagina) ao serviço
+  CatalogoEloquent, com dez ativos por página em ordem nome/ID, sem ligar à rota.
 - Situação da 6.24: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado pelo aluno com "entendi" em 30/10/2026. Novo ListarProdutosRequest
   estende FormRequest, authorize true para leitura pública e rules de page:
@@ -16,9 +28,9 @@
   um erro por caso, zero SQL. Ausente produz validated []; válidas mantêm strings.
   Sintaxe válida; suíte existente 27 testes/133 asserções passou. Contagens
   antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1 produto.
-  Aula 06-24 e referência no contrato atualizadas. Checkpoint concluído, publicação
-  em preparação. Próximo passo: publicar checkpoint e iniciar 6.25, acrescentar pagina(): int ao Form Request para
-  devolver page validado convertido ou padrão 1, ainda sem ligação à rota.
+  Aula 06-24 e referência no contrato atualizadas. Checkpoint publicado em
+  3d89485cd53137a76d9c2d40d55d15a0adff0157; HEAD/origin/main/main remota
+  coincidiram após push em 30/10/2026. Continuidade realizada na 6.25.
 - Situação da 6.23: desenho e explicação apresentados em 30/10/2026;
   entendimento confirmado pelo aluno com "entendi" em 30/10/2026. Somente documentação alterada,
   paginação ainda não implementada na API. Aula 06-23 planeja page opcional,
@@ -257,7 +269,8 @@
   implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026;
   6.22 confirmada/publicada e 6.23 desenhada/verificada em memória em 30/10/2026;
   entendimento da 6.23 confirmado com "entendi" em 30/10/2026; 6.24 implementada
-  e verificada, entendimento confirmado com "entendi" em 30/10/2026.
+  e verificada, entendimento confirmado com "entendi" em 30/10/2026; 6.25
+  implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -392,21 +405,20 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 30/10/2026: 6.23 confirmada com "entendi" e publicada em
-92ce498e85ae0352a2eb5c94103bc6b9f1aad281; HEAD/origin/main/main remota conferidos.
-Etapa 6.24 implementada, explicada e verificada; entendimento confirmado pelo aluno
+Estado mais recente em 30/10/2026: 6.24 confirmada com "entendi" e publicada em
+3d89485cd53137a76d9c2d40d55d15a0adff0157; HEAD/origin/main/main remota conferidos.
+Etapa 6.25 implementada, explicada e verificada; entendimento confirmado pelo aluno
 com "entendi" em 30/10/2026.
-Novo app/Http/Requests/ListarProdutosRequest.php com authorize true e regras de
-page opcional, preenchido quando presente, inteiro decimal sem zeros iniciais
-entre 1 e 1000000. Bail interrompe no primeiro erro do campo. Classe ainda não
-usada pelo controller; API segue sem paginação/validação de page. Diagnóstico
-validateResolved/handler conferiu 4 entradas aceitas e 12 rejeitadas com 422 JSON,
-message/errors.page e um erro por caso, zero SQL. Validar não converte as strings;
-ausente devolve validated [], sem default injetado. Sintaxe válida; suíte existente
-27/133 passou. Contagens antes/depois: teste 0/0, normal 0/1 categorias/produtos.
-Aula 06-24 e referência no contrato atualizadas; publicação em preparação.
-Próximo passo: publicar checkpoint e iniciar 6.25, método pagina(): int com conversão/default 1 no mesmo
-Form Request, ainda sem ligar à rota.
+ListarProdutosRequest recebeu pagina(): int com cast de validated('page', 1),
+para usar após validação. Diagnóstico de 16 entradas: quatro válidas retornam
+int esperado (ausente 1, '1' 1, '2' 2, '1000000' 1000000), dados validados originais
+preservados; doze inválidas rejeitadas com 422 JSON antes de pagina. Zero SQL.
+Sintaxe válida; suíte existente 27/133 passou; contagens antes/depois teste 0/0,
+normal 0/1 categorias/produtos. Classe ainda não usada pelo controller; API segue
+sem paginação/validação de page. Aula 06-25 e referência no contrato atualizadas;
+Publicação da 6.25 em preparação. Próximo passo: publicar checkpoint e iniciar
+6.26, método paginarProdutos(int $pagina)
+em CatalogoEloquent com dez ativos por página em ordem nome/ID, ainda sem rota.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -7720,11 +7732,54 @@ rota ou middlewares globais. Não comprova validação na API publicada. A conex
 com a rota e seus testes permanentes será feita em etapas posteriores. Não houve
 cadastro permanente, migration ou dependência nova.
 Entendimento da 6.24: confirmado pelo aluno com "entendi" em 30/10/2026.
-Publicação da 6.24: em preparação; resultado será registrado após conferir o remoto.
-Último checkpoint publicado e remoto conferido: 92ce498e85ae0352a2eb5c94103bc6b9f1aad281,
-etapa 6.23. Próximo passo: publicar checkpoint e iniciar somente 6.25, acrescentar pagina(): int em
-ListarProdutosRequest para devolver page validado convertido ou padrão 1,
-ainda sem ligação à rota. Exercício DBeaver segue sem relato; não bloqueia o curso.
+Publicação da 6.24: 3d89485cd53137a76d9c2d40d55d15a0adff0157,
+`feat: prepara validação da página do catálogo`. HEAD, origin/main e main
+consultada diretamente no remoto coincidiram após push em 30/10/2026. Resultado
+registrado na etapa seguinte, sem incluir o SHA no próprio commit.
+Continuidade realizada na 6.25: pagina(): int para valor validado/default 1. Exercício DBeaver segue sem relato; não bloqueia o curso.
+
+## Etapa 6.25 — Página validada como inteiro e valor padrão no Form Request
+
+Implementação, explicação e verificações em 30/10/2026 após confirmação e
+publicação da 6.24. Aula docs/aulas/06-25-pagina-validada-inteira.md. Somente
+ListarProdutosRequest alterado no código, com método pagina(): int que retorna
+(int) $this->validated('page', 1). Busca nos dados validados, usa 1 se ausente e
+converte explicitamente para inteiro. Authorize/regras preservados. Método é
+para uso após validação: não executa validação por si só nem torna inválidos
+válidos. Form Request ainda não recebido pelo controller; API permanece sem
+validação de page ou paginação.
+
+Assinatura/implementação de FormRequest::validated($key, $default) conferidas na
+fonte instalada do Laravel. Explicados $this, chave, padrão, cast e retorno int.
+Dados de validated continuam [] para ausente e strings para válidos; pagina
+fornece a representação numérica para a futura consulta.
+
+Verificações PHP Docker, código 0:
+
+- php -l app/Http/Requests/ListarProdutosRequest.php: sintaxe válida.
+- /tmp/curso-625-pagina.php adapta o diagnóstico da 6.24 e chama pagina somente
+  após validateResolved bem-sucedido. Quatro casos aceitos: ausente -> int 1;
+  '1' -> int 1; '2' -> int 2; '1000000' -> int 1000000. Valores comparados com
+  expectativas explícitas e tipo conferido; validated original preservado.
+- Doze inválidas seguem rejeitadas antes de pagina: abc, 0, -1, 1.5, 01, vazio,
+  null, array ['1'], +1, 1e3, 1000001 e PHP_INT_MAX.'0'. Handler conferido com
+  422/application/json e message/errors.page com uma mensagem por caso.
+  Zero SQL observado via DB::listen. Sem kernel/rota/middlewares nesse diagnóstico.
+- php artisan test --do-not-cache-result: suíte existente 27 testes/133 asserções
+  passou. Sem teste permanente novo do método nesta etapa.
+- SELECTs separados antes/depois por /tmp/curso-618-contagens.php:
+  loja_test/loja_testes 0 categorias/0 produtos; loja/loja_app 0 categorias/1 produto.
+- git diff --check: sem erros.
+
+Sem alteração de rota/controller/serviço/contrato, cadastro permanente, migration
+ou dependência nova. Diagnóstico não comprova integração HTTP futura.
+Entendimento da 6.25: confirmado pelo aluno com "entendi" em 30/10/2026.
+Publicação da 6.25: em preparação; resultado será registrado após conferir o remoto.
+Último checkpoint publicado e remoto conferido: 3d89485cd53137a76d9c2d40d55d15a0adff0157,
+etapa 6.24. Próximo passo: publicar checkpoint e iniciar somente 6.26, adicionar paginarProdutos(int
+$pagina) em CatalogoEloquent com dez ativos por página, nome/ID e retorno
+LengthAwarePaginator, sem alterar contrato/rota ainda. Exercício DBeaver segue
+sem relato; não bloqueia o curso.
 
 ## Verificações e limitações do ambiente
 
@@ -8018,8 +8073,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de paginação desenhado/explicado/conferido em memória; entendimento confirmado
   com "entendi" em 30/10/2026 e publicada em 92ce498. Na 6.24, Form Request
   implementado/explicado/verificado: 16 entradas diretas e suíte existente 27/133
-  passaram. Entendimento confirmado com "entendi" em 30/10/2026; publicar e iniciar
-  6.25, pagina(): int.
+  passaram. Entendimento confirmado com "entendi" em 30/10/2026 e publicada em
+  3d89485. Na 6.25, pagina(): int implementado/explicado/verificado, 16 entradas e
+  suíte existente 27/133 passaram. Entendimento confirmado com "entendi" em
+  30/10/2026; publicar e iniciar 6.26, paginação no serviço Eloquent.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -8206,4 +8263,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 30/10/2026 | 6.21 — Teste individual ID fora da faixa | ID por concatenação de PHP_INT_MAX com zero, 404/tipo/JSON exato; classe 9/55, suíte 23/109 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em a79fc87 |
 | 30/10/2026 | 6.22 — Data provider de IDs malformados | Cinco conjuntos nomeados no teste existente; classe 13/79, suíte 27/133 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em 6f49a06 |
 | 30/10/2026 | 6.23 — Contrato planejado de paginação | Desenho documentado; três exemplos com resource/paginador em memória conferidos, zero SQL e nenhum cadastro; aplicação preservada | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em 92ce498 |
-| 30/10/2026 | 6.24 — Form Request de page | Classe preparada sem ligação à rota; diagnóstico de 16 entradas/422 JSON/zero SQL e suíte existente 27/133 passaram; contagens preservadas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Checkpoint concluído; publicação em preparação |
+| 30/10/2026 | 6.24 — Form Request de page | Classe preparada sem ligação à rota; diagnóstico de 16 entradas/422 JSON/zero SQL e suíte existente 27/133 passaram; contagens preservadas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em 3d89485 |
+| 30/10/2026 | 6.25 — Página validada como int | Método pagina com padrão 1; diagnóstico de 16 entradas/tipos/422/zero SQL e suíte existente 27/133 passaram; contagens preservadas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Checkpoint concluído; publicação em preparação |

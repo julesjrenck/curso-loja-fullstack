@@ -172,3 +172,7 @@ esta referência não altera o contrato executável.
 Na 6.24, preparado [ListarProdutosRequest](../aulas/06-24-form-request-page.md),
 com regras verificadas diretamente em memória. A classe ainda não participa da
 rota; a validação de page não faz parte do comportamento HTTP atual.
+
+Na 6.25, preparado [pagina(): int](../aulas/06-25-pagina-validada-inteira.md) no
+Form Request para obter a página validada ou o padrão 1. Ainda sem ligação à rota;
+o comportamento HTTP atual permanece sem paginação e sem validar page.

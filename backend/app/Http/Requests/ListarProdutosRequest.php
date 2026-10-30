@@ -6,6 +6,11 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ListarProdutosRequest extends FormRequest
 {
+    public function pagina(): int
+    {
+        return (int) $this->validated('page', 1);
+    }
+
     public function authorize(): bool
     {
         return true;

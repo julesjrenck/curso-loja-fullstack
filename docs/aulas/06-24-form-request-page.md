@@ -130,8 +130,9 @@ e testes permanentes quando for introduzida.
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint concluído,
-publicação em preparação; resultado será registrado após conferir o remoto.
-Próximo passo: publicar checkpoint e iniciar somente 6.25, acrescentar pagina(): int
-ao Form Request
-para devolver page validado convertido ou padrão 1, ainda sem ligação à rota.
+Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint publicado em
+3d89485cd53137a76d9c2d40d55d15a0adff0157, `feat: prepara validação da página do catálogo`.
+HEAD, origin/main e main consultada diretamente no remoto coincidiram após push.
+Resultado registrado na etapa seguinte, sem incluir o SHA no próprio commit.
+Continuidade realizada na 6.25: acrescentar pagina(): int ao Form Request para
+obter page validado convertido ou padrão 1, ainda sem ligação à rota.

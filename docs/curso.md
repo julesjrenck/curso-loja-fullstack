@@ -330,9 +330,14 @@ sem zeros iniciais entre 1 e 1000000. Diagnóstico direto: 4 entradas aceitas,
 12 rejeitadas com 422 JSON e zero SQL; suíte existente 27/133 passou, contagens
 preservadas. Classe ainda sem ligação à rota, API segue sem paginação/validação
 de page. Explicação apresentada; entendimento da 6.24 confirmado com "entendi"
-em 30/10/2026. Checkpoint concluído, publicação em preparação. Próximo passo:
-publicar checkpoint e iniciar 6.25, método pagina(): int com conversão/default 1
-no Form Request, ainda sem ligação à rota.
+em 30/10/2026; checkpoint publicado e verificado em 3d89485. Na 6.25,
+ListarProdutosRequest recebeu pagina(): int, cast de validated('page', 1) para
+obter inteiro ou padrão 1 após validação. Diagnóstico de 16 entradas/tipos/erros
+passou, zero SQL; suíte existente 27/133 passou e contagens preservadas. API segue
+sem paginação/validação de page. Explicação apresentada, entendimento da 6.25
+confirmado com "entendi" em 30/10/2026. Checkpoint concluído, publicação em preparação.
+Próximo passo: publicar checkpoint e iniciar 6.26, adicionar
+paginarProdutos(int $pagina) em CatalogoEloquent, sem ligação à rota ainda.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
