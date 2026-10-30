@@ -161,3 +161,10 @@ nome dentro de cada item. Não há endpoint separado de nomes nesta API.
 
 O histórico detalhado está em docs/progresso.md e nas aulas 06-02 a 06-22.
 As descrições atuais de listagem e consulta individual correspondem ao código executável.
+
+## Planejamento de paginação — ainda não implementado
+
+O desenho da etapa 6.23 está em [aula 06-23](../aulas/06-23-contrato-paginacao-catalogo.md).
+A aplicação continua devolvendo todos os ativos no formato atual descrito acima.
+Parâmetro page, validação e envelope paginado serão ligados em etapas posteriores;
+esta referência não altera o contrato executável.

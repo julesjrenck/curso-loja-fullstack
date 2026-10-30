@@ -4,8 +4,22 @@
 
 - Última atualização: 30/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.22 — Data provider para IDs malformados na consulta individual.
+- Etapa atual: 6.23 — Desenho do contrato de paginação da listagem.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.23: desenho e explicação apresentados em 30/10/2026;
+  entendimento confirmado pelo aluno com "entendi" em 30/10/2026. Somente documentação alterada,
+  paginação ainda não implementada na API. Aula 06-23 planeja page opcional,
+  padrão 1, dez produtos por página, validação de inteiro decimal sem zeros
+  iniciais entre 1 e 1000000 com 422 para inválidos, ativos em ordem nome/ID e
+  envelope data/links/meta. Vazio e página válida após a última continuam 200.
+  Três exemplos conferidos em memória com LengthAwarePaginator e ProdutoResource:
+  página 2 de 11 ativos, catálogo vazio e página 3 após a última. Status/JSON/meta/
+  links conferidos, zero SQL observado, model não persistido. Diagnóstico não
+  usa rota nem comprova validação ou SQL paginado. Contrato executável permanece
+  sem paginação; recebeu somente link para o desenho futuro. Suíte não repetida,
+  último resultado 27/133 pertence à 6.22. Checkpoint concluído; publicação em preparação.
+  Próximo passo: publicar checkpoint e iniciar 6.24, criar Form Request de page opcional entre 1 e
+  1000000, sem ligar a paginação à rota nessa etapa.
 - Situação da 6.22: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado pelo aluno com "entendi" em 30/10/2026. CatalogoApiTest importa
   DataProvider, liga o teste existente a idsMalformados por atributo e recebe
@@ -16,8 +30,9 @@
   classe 13 testes/79 asserções e suíte 27 testes/133 asserções passaram.
   Contagens antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1
   produto. HTTP por socket não repetido. Aula 06-22 e contrato atualizados;
-  Checkpoint concluído; publicação em preparação. Próximo passo: publicar e iniciar 6.23,
-  desenhar o contrato de paginação de GET /api/v1/produtos, antes de implementá-la.
+  Checkpoint publicado em 6f49a067ba84f64ede316593b5f40c8164fd461c.
+  HEAD/origin/main/main remota coincidiram após push em 30/10/2026.
+  Continuidade realizada na 6.23, desenho de paginação sem alterar aplicação.
 - Situação da 6.21: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado pelo aluno com "entendi" em 30/10/2026. Novo cenário em CatalogoApiTest
   concatena PHP_INT_MAX com '0', consulta esse ID textual numérico e exige
@@ -227,7 +242,8 @@
   entendimento da 6.19 confirmado com "entendi" em 30/10/2026; 6.20 implementada
   e verificada, com entendimento confirmado com "entendi" em 30/10/2026; 6.21
   implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026;
-  6.22 implementada/verificada e entendimento confirmado com "entendi" em 30/10/2026.
+  6.22 confirmada/publicada e 6.23 desenhada/verificada em memória em 30/10/2026;
+  entendimento da 6.23 confirmado com "entendi" em 30/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -362,19 +378,18 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 30/10/2026: 6.21 confirmada com "entendi" e publicada em
-a79fc87b9d257899467c7fe161c5ab7819986fbe; HEAD/origin/main/main remota conferidos.
-Etapa 6.22 implementada, explicada e verificada; entendimento confirmado pelo aluno
-com "entendi" em 30/10/2026.
-Teste existente de ID malformado recebe string $id e usa atributo DataProvider
-para idsMalformados, método public static com cinco conjuntos nomeados de strings:
-abc, 0, -1, 1.5 e 01. Cada execução exige 404/JSON/estrutura com message, sem
-texto fixo. Mantidos os outros oito métodos de teste e isolamento por execução.
-Sintaxe válida; classe 13/79 e suíte 27/133 passaram. Contagens antes/depois:
-teste 0/0 e normal 0/1 categorias/produtos. Sem novo HTTP por socket. Aula 06-22
-e contrato atualizados; publicação em preparação. Próximo passo: publicar checkpoint
-e iniciar 6.23,
-desenhar contrato de paginação da listagem GET /api/v1/produtos antes de implementar.
+Estado mais recente em 30/10/2026: 6.22 confirmada com "entendi" e publicada em
+6f49a067ba84f64ede316593b5f40c8164fd461c; HEAD/origin/main/main remota conferidos.
+Etapa 6.23 desenhada, explicada e conferida em memória; entendimento confirmado
+pelo aluno com "entendi" em 30/10/2026. Aula 06-23 documenta futura paginação: page padrão 1, fixo 10 por
+página, page decimal sem zeros iniciais entre 1 e 1000000 com 422 para inválidos,
+ativos em ordem nome/ID, data/links/meta, vazio/após a última 200. Três exemplos
+com LengthAwarePaginator/ProdutoResource conferidos em memória, zero SQL e model
+não persistido. Aplicação segue sem paginação; contrato executável preservado e
+com link para o desenho. Suíte não repetida, último resultado 27/133 da 6.22.
+Publicação da 6.23 em preparação. Próximo passo: publicar checkpoint e iniciar
+6.24, criar Form Request para validar page
+opcional entre 1 e 1000000, sem ligar a paginação à rota ainda.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -7599,11 +7614,53 @@ excedida. Outros formatos, como 1e3 e +1, seguem no diagnóstico histórico da
 6.16. Testes verificam resposta pública; não contam SQL nem instrumentam entrada
 em show. HTTP por socket não repetido nesta etapa.
 Entendimento da 6.22: confirmado pelo aluno com "entendi" em 30/10/2026.
-Publicação da 6.22: em preparação; resultado será registrado após conferir o remoto.
-Último checkpoint publicado e remoto conferido: a79fc87b9d257899467c7fe161c5ab7819986fbe,
-etapa 6.21. Próximo passo: publicar checkpoint e iniciar somente 6.23, desenhar contrato de paginação
-de GET /api/v1/produtos, antes de implementar. Módulo 6 continua; demais módulos
+Publicação da 6.22: 6f49a067ba84f64ede316593b5f40c8164fd461c,
+`test: parametriza IDs malformados da API`. HEAD, origin/main e main consultada
+diretamente no remoto coincidiram após push em 30/10/2026. Resultado registrado
+na etapa seguinte, sem incluir o SHA no próprio commit. Continuidade realizada
+na 6.23: desenho do contrato de paginação sem alterar a aplicação. Módulo 6 continua; demais módulos
 não iniciados. Exercício DBeaver segue sem relato; não bloqueia o curso.
+
+## Etapa 6.23 — Desenho do contrato de paginação da listagem
+
+Desenho, explicação e verificação em memória em 30/10/2026 após confirmação e
+publicação da 6.22. Aula docs/aulas/06-23-contrato-paginacao-catalogo.md.
+Somente documentação alterada: aplicação e contrato executável continuam sem
+paginação; docs/api/catalogo.md recebeu link para o desenho futuro.
+
+Decisões do desenho: GET /api/v1/produtos?page=2, page opcional/padrão 1; tamanho
+fixo 10, sem parâmetro per_page. Page decimal positivo sem zeros iniciais entre
+1 e 1000000, limite do projeto para deslocamento máximo de 9999990 linhas;
+inválidos planejam 422 JSON com message/errors.page sem textos fixos. Somente
+ativos, ordem por nome com ID crescente como desempate. Produto mantém os três
+campos. Envelope data/links/meta do resource paginado Laravel, com total,
+current_page, last_page, per_page, from/to, path e meta.links. Vazio e página
+válida após a última: 200/data [], from/to null; last_page pelo menos 1.
+Consulta individual e Blade preservados. Impacto futuro nos consumidores e nos
+testes com JSON exato explicado. Implementação será feita em etapas posteriores.
+
+Referências oficiais Laravel 13 de paginação/resources e fonte instalada de
+PaginatedResourceResponse conferidas. Diagnóstico /tmp/curso-623-paginacao.php
+executado por PHP Docker, código 0. Monta Produto com forceFill somente em
+memória, LengthAwarePaginator com itens recortados/total/tamanho/página/path e
+ProdutoResource::collection(...)->toResponse(...). Confere JSON decodificado,
+status 200/application/json, produto, dados de paginação e links em três casos:
+página 2 de 11 ativos com um item, catálogo vazio e página 3 após última 2.
+DB::listen observou zero SQL e model manteve exists false. Exemplos completos
+salvos em /tmp/curso-623-exemplos.json e usados na aula. Rótulos de navegação em
+inglês da simulação são ilustrativos/localizáveis. Git diff --check passou.
+
+Isso verifica serialização em memória, não validação de page, ordenação, SQL
+paginado ou ligação HTTP futura. Regra de 422 está somente desenhada. Suíte não
+repetida porque apenas documentos mudaram; último resultado 27 testes/133
+asserções e contagens teste 0/0/normal 0/1 pertencem à 6.22.
+Entendimento da 6.23: confirmado pelo aluno com "entendi" em 30/10/2026.
+Publicação da 6.23: em preparação; resultado será registrado após conferir o remoto.
+Último checkpoint publicado e remoto conferido: 6f49a067ba84f64ede316593b5f40c8164fd461c,
+etapa 6.22. Próximo passo: publicar checkpoint e iniciar somente 6.24, criar Form Request para page
+opcional/decimal positivo sem zeros iniciais entre 1 e 1000000, sem ligar a
+paginação à rota nessa etapa. Ausência de page representará página 1 na integração.
+Exercício DBeaver segue sem relato; não bloqueia o curso.
 
 ## Verificações e limitações do ambiente
 
@@ -7893,7 +7950,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   classe 9/55 e suíte 23/109 passaram. Entendimento confirmado com "entendi" em
   30/10/2026 e publicada em a79fc87. Na 6.22, data provider de cinco formatos
   implementado/explicado/verificado, classe 13/79 e suíte 27/133 passaram. Entendimento
-  confirmado com "entendi" em 30/10/2026; publicar e iniciar 6.23, contrato de paginação.
+  confirmado com "entendi" em 30/10/2026 e publicada em 6f49a06. Na 6.23, contrato
+  de paginação desenhado/explicado/conferido em memória; entendimento confirmado
+  com "entendi" em 30/10/2026. Publicar e iniciar 6.24, Form Request para page.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -8078,4 +8137,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 30/10/2026 | 6.19 — Teste individual inativo | Factory inativa, GET por ID real, 404/tipo/JSON exato e registro/status preservados; classe 7/43, suíte 21/97 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em a137a9a |
 | 30/10/2026 | 6.20 — Teste individual ID malformado | GET abc, 404/tipo/estrutura com message sem texto fixo; classe 8/49, suíte 22/103 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em a23d688 |
 | 30/10/2026 | 6.21 — Teste individual ID fora da faixa | ID por concatenação de PHP_INT_MAX com zero, 404/tipo/JSON exato; classe 9/55, suíte 23/109 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em a79fc87 |
-| 30/10/2026 | 6.22 — Data provider de IDs malformados | Cinco conjuntos nomeados no teste existente; classe 13/79, suíte 27/133 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Checkpoint concluído; publicação em preparação |
+| 30/10/2026 | 6.22 — Data provider de IDs malformados | Cinco conjuntos nomeados no teste existente; classe 13/79, suíte 27/133 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em 6f49a06 |
+| 30/10/2026 | 6.23 — Contrato planejado de paginação | Desenho documentado; três exemplos com resource/paginador em memória conferidos, zero SQL e nenhum cadastro; aplicação preservada | Confirmado pelo aluno: "entendi" em 30/10/2026 | Checkpoint concluído; publicação em preparação |

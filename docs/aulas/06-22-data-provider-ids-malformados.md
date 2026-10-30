@@ -108,8 +108,9 @@ somente no diagnóstico histórico da 6.16.
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint concluído,
-publicação em preparação; resultado será registrado após conferir o remoto.
-Próximo passo: publicar checkpoint e iniciar somente 6.23, desenhar o contrato
-de paginação da listagem
+Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint publicado em
+6f49a067ba84f64ede316593b5f40c8164fd461c, `test: parametriza IDs malformados da API`.
+HEAD, origin/main e main consultada diretamente no remoto coincidiram após push.
+Resultado registrado na etapa seguinte, sem incluir o SHA no próprio commit.
+Continuidade realizada na 6.23: desenhar o contrato de paginação da listagem
 GET /api/v1/produtos, antes de implementar. Módulo 6 continua.

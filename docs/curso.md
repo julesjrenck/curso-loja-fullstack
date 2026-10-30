@@ -319,9 +319,14 @@ Na 6.22, teste de ID malformado parametrizado com DataProvider/idsMalformados:
 abc, 0, -1, 1.5 e 01 em conjuntos nomeados. Cada um exige 404/JSON/estrutura com
 message. Classe 13/79 e suíte 27/133 passaram; contagens preservadas. Explicação
 apresentada, entendimento da 6.22 confirmado com "entendi" em 30/10/2026.
-Checkpoint concluído; publicação em preparação. Próximo passo: publicar checkpoint
-e iniciar 6.23, desenhar contrato de paginação de GET /api/v1/produtos,
-antes de implementar.
+Checkpoint publicado e verificado em 6f49a06. Na 6.23, desenhada paginação da
+listagem: page opcional/padrão 1, fixo 10 por página, page de 1 a 1000000 sem zeros
+iniciais, inválidos 422, ativos ordenados por nome/ID e data/links/meta. Três
+exemplos conferidos em memória, zero SQL e nenhum cadastro; aplicação permanece
+sem paginação. Explicação apresentada, entendimento da 6.23 confirmado com "entendi"
+em 30/10/2026. Checkpoint concluído, publicação em preparação. Última suíte 27/133
+pertence à 6.22. Próximo passo: publicar checkpoint e iniciar
+6.24, criar Form Request para validar page, sem ligar a paginação à rota ainda.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
