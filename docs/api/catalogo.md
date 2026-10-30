@@ -219,10 +219,21 @@ int (PHP_INT_MAX concatenado com '0'). Cada execução exige 422/application/jso
 message e campo page em errors, sem fixar tradução. O sinal + é codificado para
 que a query não o transforme em espaço; vazio presente é diferente de omissão.
 Classe 25 testes/208 asserções e suíte 39 testes/262 asserções passaram;
-contagens preservadas. Código da aplicação preservado. Página válida após a
-última e limite superior válido continuam nos diagnósticos específicos anteriores.
+contagens preservadas. Código da aplicação preservado. Na 6.31, página após a
+última e limite superior válido ainda tinham apenas diagnóstico específico.
 Entendimento da 6.31 confirmado com "entendi" em 30/10/2026. Explicação na
 [aula 06-31](../aulas/06-31-paginas-invalidas-provider.md).
+
+## Cobertura acrescentada na 6.32
+
+Novo teste cria um ativo e solicita page=2. Exige 200/application/json/data [],
+meta com current_page 2, per_page 10, total 1, last_page 1 e from/to null.
+Links first/last/prev apontam para 1 e next é null. Assim a página pedida fica
+vazia sem perder a contagem de ativos do catálogo. Aplicação preservada.
+Classe 26 testes/221 asserções e suíte 40 testes/275 asserções passaram;
+contagens antes/depois preservadas. Limite superior válido ainda só tem diagnóstico
+específico anterior. Entendimento da 6.32 confirmado com "entendi" em 30/10/2026. Explicação na
+[aula 06-32](../aulas/06-32-pagina-apos-ultima.md).
 
 ## Evolução
 

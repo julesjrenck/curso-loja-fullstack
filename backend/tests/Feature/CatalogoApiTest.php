@@ -259,6 +259,35 @@ class CatalogoApiTest extends TestCase
             ->assertJsonPath('meta.to', 11);
     }
 
+    public function test_retorna_pagina_vazia_apos_a_ultima_sem_perder_total(): void
+    {
+        Produto::factory()->create([
+            'nome' => 'Camiseta',
+            'status' => 'ativo',
+            'preco_em_centavos' => 4990,
+        ]);
+
+        $resposta = $this->getJson('/api/v1/produtos?page=2');
+        $url = url('/api/v1/produtos');
+
+        $resposta
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonPath('data', [])
+            ->assertJsonPath('links', [
+                'first' => $url.'?page=1',
+                'last' => $url.'?page=1',
+                'prev' => $url.'?page=1',
+                'next' => null,
+            ])
+            ->assertJsonPath('meta.current_page', 2)
+            ->assertJsonPath('meta.per_page', 10)
+            ->assertJsonPath('meta.total', 1)
+            ->assertJsonPath('meta.last_page', 1)
+            ->assertJsonPath('meta.from', null)
+            ->assertJsonPath('meta.to', null);
+    }
+
     #[DataProvider('paginasInvalidas')]
     public function test_retorna_422_em_json_para_pagina_invalida(string $query): void
     {

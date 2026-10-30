@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 30/10/2026 após confirmação da 6.30
 com "entendi" e publicação em d834624f2196cd6980e41747f568c970b2af1c6e.
 HEAD, origin/main e main remota coincidiram após push. Entendimento da 6.31
-confirmado com "entendi" em 30/10/2026; publicação em preparação.
+confirmado com "entendi" em 30/10/2026; checkpoint publicado em
+3a782ca8ba8055b5de5f0e4db31ab3db63df24ed, com remoto conferido.
 
 Um conjunto inseparável em backend/tests/Feature/CatalogoApiTest.php: generalizar
 o teste de page=0 e fornecer onze entradas inválidas por DataProvider. A classe
@@ -93,8 +94,7 @@ Git diff --check passou. Este teste não mede consultas SQL.
 
 ## Continuidade
 
-Roteiro, progresso e cobertura do contrato atualizados. Entendimento confirmado
-com "entendi" em 30/10/2026; publicação em preparação. Publicar e iniciar somente
-6.32: teste permanente de página válida após a última, com 200/data vazia e total
-do catálogo preservado. Esse caso e o limite superior válido permanecem com
-diagnósticos específicos anteriores até receberem testes permanentes.
+Entendimento confirmado com "entendi" em 30/10/2026; checkpoint publicado em
+3a782ca8ba8055b5de5f0e4db31ab3db63df24ed, com HEAD/origin/main/main remota conferidos.
+Continuidade realizada na [aula 6.32](06-32-pagina-apos-ultima.md), com um teste
+permanente de página válida após a última, preservando o total do catálogo.
