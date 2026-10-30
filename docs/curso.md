@@ -335,9 +335,15 @@ ListarProdutosRequest recebeu pagina(): int, cast de validated('page', 1) para
 obter inteiro ou padrão 1 após validação. Diagnóstico de 16 entradas/tipos/erros
 passou, zero SQL; suíte existente 27/133 passou e contagens preservadas. API segue
 sem paginação/validação de page. Explicação apresentada, entendimento da 6.25
-confirmado com "entendi" em 30/10/2026. Checkpoint concluído, publicação em preparação.
-Próximo passo: publicar checkpoint e iniciar 6.26, adicionar
-paginarProdutos(int $pagina) em CatalogoEloquent, sem ligação à rota ainda.
+confirmado com "entendi" em 30/10/2026; checkpoint publicado em 509ed43. Na 6.26,
+CatalogoEloquent recebeu paginarProdutos com dez ativos por página, ordem nome/ID,
+três campos e LengthAwarePaginator. Diagnóstico SQL transacional conferiu vazio,
+onze ativos/inativo, empate por ID entre páginas, totais e páginas 1/2/3 com
+10/1/0 itens; rollback e contagens conferidos. Suíte existente 27/133 passou.
+Ainda sem contrato/demo/rota, API segue sem paginação/validação de page. Explicação
+apresentada, entendimento da 6.26 confirmado com "entendi" em 30/10/2026.
+Checkpoint concluído, publicação em preparação. Próximo passo: publicar checkpoint
+e iniciar 6.27, declarar paginação no contrato e implementá-la na demo em memória.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

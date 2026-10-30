@@ -80,9 +80,10 @@ HTTP futura. Não houve cadastro permanente, migration ou dependência nova.
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint concluído,
-publicação em preparação; resultado será registrado após conferir o remoto.
-Próximo passo: publicar checkpoint e iniciar somente 6.26, adicionar
-paginarProdutos(int $pagina) a
-CatalogoEloquent, com dez produtos ativos por página em ordem nome/ID e retorno
+Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint publicado em
+509ed431eada39804a81c4b04b670fb5cdcd8534, `feat: obtém página validada como inteiro`.
+HEAD, origin/main e main consultada diretamente no remoto coincidiram após push.
+Resultado registrado na etapa seguinte, sem incluir o SHA no próprio commit.
+Continuidade realizada na 6.26: adicionar paginarProdutos(int $pagina) a
+CatalogoEloquent, com dez ativos por página em ordem nome/ID e retorno
 LengthAwarePaginator, ainda sem mudar contrato ou ligar à rota.

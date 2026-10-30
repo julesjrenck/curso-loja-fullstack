@@ -176,3 +176,7 @@ rota; a validação de page não faz parte do comportamento HTTP atual.
 Na 6.25, preparado [pagina(): int](../aulas/06-25-pagina-validada-inteira.md) no
 Form Request para obter a página validada ou o padrão 1. Ainda sem ligação à rota;
 o comportamento HTTP atual permanece sem paginação e sem validar page.
+
+Na 6.26, preparado [paginarProdutos no serviço Eloquent](../aulas/06-26-paginacao-servico-eloquent.md),
+com SQL paginado verificado no banco exclusivo de testes e rollback. Método ainda
+sem contrato/demo/controller/rota; a API segue com o contrato atual sem paginação.

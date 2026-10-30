@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Contracts\Catalogo;
 use App\Models\Produto;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CatalogoEloquent implements Catalogo
 {
@@ -26,6 +27,18 @@ class CatalogoEloquent implements Catalogo
             ->where('status', 'ativo')
             ->orderBy('nome')
             ->get(['id', 'nome', 'preco_em_centavos']);
+    }
+
+    /**
+     * @return LengthAwarePaginator<int, Produto>
+     */
+    public function paginarProdutos(int $pagina): LengthAwarePaginator
+    {
+        return Produto::query()
+            ->where('status', 'ativo')
+            ->orderBy('nome')
+            ->orderBy('id')
+            ->paginate(10, ['id', 'nome', 'preco_em_centavos'], 'page', $pagina);
     }
 
     public function buscarProduto(int $id): ?Produto
