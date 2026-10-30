@@ -4,8 +4,19 @@
 
 - Última atualização: 30/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.18 — Teste da consulta individual com ID inexistente.
+- Etapa atual: 6.19 — Teste da consulta individual de produto inativo.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.19: implementada, explicada e verificada em 30/10/2026;
+  entendimento confirmado pelo aluno com "entendi" em 30/10/2026. Novo cenário em CatalogoApiTest
+  cadastra Caneca inativa pela factory, consulta o ID real, exige
+  404/application/json e message exata; assertDatabaseHas confirma que o registro
+  continua inativo após a requisição. Mantidos setUp, identidade loja_test/loja_testes
+  e DatabaseTransactions. Sintaxe válida; classe 7 testes/43 asserções e suíte
+  21 testes/97 asserções passaram. Contagens antes/depois: teste 0 categorias/0
+  produtos; normal 0 categorias/1 produto. HTTP por socket não repetido.
+  Aula 06-19 e contrato atualizados. Checkpoint concluído; publicação em preparação.
+  Próximo passo exato: publicar checkpoint e iniciar 6.20, um teste de ID malformado rejeitado
+  pela rota, sem exigir a message específica de show.
 - Situação da 6.18: implementada, explicada e verificada; entendimento confirmado
   pelo aluno com "entendi" em 30/10/2026. CatalogoApiTest recebeu
   test_retorna_404_em_json_para_id_inexistente: GET /api/v1/produtos/1 com catálogo
@@ -14,12 +25,9 @@
   DatabaseTransactions mantidos. Sintaxe válida; classe 6 testes/36 asserções e
   suíte 20 testes/90 asserções passaram. Contagens antes/depois: teste
   0 categorias/0 produtos; normal 0 categorias/1 produto. HTTP por socket não
-  repetido. Aula 06-18 e contrato atualizados. Checkpoint concluído, publicação
-  em preparação conforme autorização existente. Último salvamento anterior: d47bee20ff14e0fd78b8a8463cc903ede5601b92,
-  igual a origin/main na consulta local desta retomada; sem nova consulta remota.
-  Próximo passo exato: publicar o checkpoint conforme autorização persistente
-  e iniciar 6.19, um
-  teste de consulta individual de produto inativo, exigindo o mesmo 404/message.
+  repetido. Aula 06-18 e contrato atualizados. Checkpoint publicado em
+  d6fac241a0c9d32315e6403a5cea51040bb7a0c8; HEAD/origin/main/main remota
+  coincidiram após push em 30/10/2026. Continuidade realizada na 6.19.
 - Etapa 6.17 concluída: CatalogoApiTest recebeu um cenário permanente de GET por ID ativo.
   Cria Caneca antes de Camiseta, pede o ID real da Camiseta, exige 200,
   Content-Type application/json e JSON exato com data em objeto e três campos.
@@ -180,7 +188,8 @@
   Etapa 5.37 confirmada com "entendi" em 19/10/2026 e publicada em d80d241.
   Etapa 5.36 confirmada com "entendi" em 19/10/2026 e publicada em 1c8c380.
   A pausa posterior ao módulo 5 foi encerrada em 22/10/2026; acompanhar a etapa
-  6.18 implementada/verificada e entendimento confirmado em 30/10/2026.
+  6.18 confirmada/publicada e 6.19 implementada/verificada em 30/10/2026;
+  entendimento da 6.19 confirmado com "entendi" em 30/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -315,17 +324,17 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 30/10/2026: aluno solicitou retomada e início da 6.18.
-Etapa implementada, explicada e verificada; entendimento confirmado pelo aluno
+Estado mais recente em 30/10/2026: 6.18 confirmada com "entendi" e publicada em
+d6fac241a0c9d32315e6403a5cea51040bb7a0c8; HEAD/origin/main/main remota conferidos.
+Etapa 6.19 implementada, explicada e verificada; entendimento confirmado pelo aluno
 com "entendi" em 30/10/2026.
-Teste de ID válido inexistente usa /api/v1/produtos/1 e o catálogo vazio pelo
-setUp; exige 404/application/json e JSON exato com message. Sintaxe válida,
-classe 6/36 e suíte 20/90 passaram. Contagens antes/depois: teste 0/0 e normal
-0/1 categorias/produtos. Sem nova verificação HTTP por socket. Aula 06-18 e
-contrato atualizados; checkpoint concluído, publicação em preparação. Último salvamento
-anterior d47bee20ff14e0fd78b8a8463cc903ede5601b92 coincide com origin/main local.
-Próximo passo: publicar checkpoint com autorização existente e iniciar 6.19,
-um teste de consulta individual de inativo com 404/message e cadastro preservado.
+Novo teste cadastra Caneca inativa, consulta seu ID real e exige 404/JSON/message
+exata; assertDatabaseHas exige registro ainda inativo após a requisição. Mantidos
+setUp e DatabaseTransactions. Sintaxe válida; classe 7/43 e suíte 21/97 passaram.
+Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos. HTTP por socket
+não repetido. Aula 06-19 e contrato atualizados; publicação em preparação.
+Próximo passo: publicar checkpoint e iniciar 6.20, um teste de ID malformado como abc
+rejeitado pela rota com 404 JSON, sem exigir a message específica de show.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -7383,12 +7392,48 @@ Agora há quatro cenários permanentes de listagem, um individual ativo e um
 individual inexistente. Inativo individual e restrições de ID continuam somente
 no diagnóstico histórico da 6.16. HTTP real não repetido nesta etapa.
 Entendimento da 6.18: confirmado pelo aluno com "entendi" em 30/10/2026.
-Publicação da 6.18: em preparação; resultado e SHA serão registrados após conferir o remoto.
-Último salvamento anterior consultado: d47bee20ff14e0fd78b8a8463cc903ede5601b92,
-igual a origin/main local; nenhuma nova verificação remota nesta etapa.
-Próximo passo exato: publicar checkpoint conforme autorização existente; depois
-iniciar somente 6.19, um teste
-permanente do ID real de produto inativo com 404/message e cadastro preservado.
+Publicação da 6.18: d6fac241a0c9d32315e6403a5cea51040bb7a0c8,
+`test: verifica consulta de produto inexistente`. HEAD, origin/main e main
+consultada diretamente no remoto coincidiram após push em 30/10/2026.
+Resultado registrado na etapa seguinte, sem tentar incluir o SHA no próprio commit.
+Continuidade realizada na 6.19: teste individual de produto inativo.
+Exercício DBeaver segue sem relato; não bloqueia o curso.
+
+## Etapa 6.19 — Teste da consulta individual de produto inativo
+
+Implementação, explicação e verificações em 30/10/2026 após confirmação e
+publicação da 6.18. Aula docs/aulas/06-19-teste-consulta-individual-inativa.md.
+Somente CatalogoApiTest alterado no código: método
+test_retorna_404_em_json_para_produto_inativo cria Caneca/2990 pela factory com
+inativo()->create, consulta seu ID gerado, exige 404/application/json e JSON
+exato {"message":"Produto não encontrado."}. assertDatabaseHas exige que o
+registro com aquele ID continue em produtos com status inativo após a requisição.
+O teste não fixa ID nem altera produto normal; setUp, identidade e transação mantidos.
+
+Fluxo explicado: produto existe, mas buscarProduto filtra status ativo e ID;
+first retorna null para o inativo e show responde com o mesmo erro do inexistente.
+A asserção no banco ocorre antes do rollback do teste e verifica preservação do
+registro/status. Apenas ao encerrar o teste DatabaseTransactions desfaz o cadastro
+fictício. Demais cenários e código de aplicação preservados.
+
+Verificações PHP Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result: 7 testes/43
+  asserções passaram.
+- php artisan test --do-not-cache-result: 21 testes/97 asserções passaram.
+- SELECTs separados antes/depois pelo script temporário /tmp/curso-618-contagens.php:
+  loja_test/loja_testes 0 categorias/0 produtos; loja/loja_app 0 categorias/1 produto.
+- git diff --check: sem erros.
+
+Agora há quatro cenários permanentes de listagem e três individuais: ativo,
+inexistente e inativo. Restrições de ID ainda cobertas somente pelo diagnóstico
+histórico da 6.16; nenhum novo HTTP por socket nesta etapa.
+Entendimento da 6.19: confirmado pelo aluno com "entendi" em 30/10/2026.
+Publicação da 6.19: em preparação; resultado será registrado após conferir o remoto.
+Último checkpoint publicado e remoto conferido: d6fac241a0c9d32315e6403a5cea51040bb7a0c8,
+etapa 6.18. Próximo passo: publicar checkpoint e iniciar somente 6.20, um teste para ID malformado
+como abc, rejeitado pela rota com 404 JSON, sem exigir message específica de show.
 Exercício DBeaver segue sem relato; não bloqueia o curso.
 
 ## Verificações e limitações do ambiente
@@ -7670,7 +7715,9 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Etapa 6.17 confirmada com "entendi" em 23/10/2026 e publicada em c474f24.
   Retomada solicitada em 30/10/2026: 6.18 implementada/explicada/verificada,
   classe 6/36 e suíte 20/90 passaram. Entendimento confirmado com "entendi" em
-  30/10/2026. Publicar checkpoint e iniciar 6.19, teste individual de produto inativo.
+  30/10/2026 e publicada em d6fac24. Na 6.19, teste individual de inativo
+  implementado/explicado/verificado, classe 7/43 e suíte 21/97 passaram. Entendimento
+  confirmado com "entendi" em 30/10/2026; publicar e iniciar 6.20, teste de ID malformado.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -7851,4 +7898,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 23/10/2026 | 6.15 — Busca no contrato e demo | Assinatura e busca em memória; diagnóstico contrato/demo/zero SQL/binding/Eloquent/rollback, suíte 18/78 e HTTP/contagens preservados | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 8961d02 |
 | 23/10/2026 | 6.16 — Consulta individual HTTP | Show e rota com ID restrito/validado; diagnóstico HTTP ativo/ausente/inativo/formato/faixa/rollback, suíte 18/78, HTTP real e contagens conferidos | Confirmado pelo aluno: "entendi" em 23/10/2026 | Publicado e verificado em 10c7293 |
 | 23/10/2026 | 6.17 — Teste individual ativo | Cenário permanente com outro ativo e ID real solicitado, JSON exato em objeto; classe 5/30, suíte 19/84 e contagens conferidas | Confirmado pelo aluno: "entendi" em 23/10/2026; pausa solicitada | Publicado e verificado em c474f24 |
-| 30/10/2026 | 6.18 — Teste individual inexistente | GET com ID válido em catálogo vazio, 404/tipo/JSON exato; classe 6/36, suíte 20/90 e contagens antes/depois conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Checkpoint concluído; publicação em preparação |
+| 30/10/2026 | 6.18 — Teste individual inexistente | GET com ID válido em catálogo vazio, 404/tipo/JSON exato; classe 6/36, suíte 20/90 e contagens antes/depois conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em d6fac24 |
+| 30/10/2026 | 6.19 — Teste individual inativo | Factory inativa, GET por ID real, 404/tipo/JSON exato e registro/status preservados; classe 7/43, suíte 21/97 e contagens conferidas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Checkpoint concluído; publicação em preparação |

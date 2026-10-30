@@ -80,9 +80,9 @@ histórico da 6.16, sem cobertura permanente desses cenários nesta aula.
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint concluído,
-publicação em preparação; resultado será registrado após conferir o remoto. Último salvamento anterior consultado no Git: d47bee2,
-igual a origin/main local; checkpoint da 6.17 publicado em c474f24.
-Próximo passo: publicar checkpoint com autorização existente e iniciar 6.19,
-um teste de
-consulta individual de produto inativo com 404/message e cadastro preservado.
+Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint publicado em
+d6fac241a0c9d32315e6403a5cea51040bb7a0c8, `test: verifica consulta de produto inexistente`.
+HEAD, origin/main e main consultada diretamente no remoto coincidiram após push.
+Resultado registrado na etapa seguinte, sem tentar incluir o SHA no próprio commit.
+Continuidade realizada na 6.19, teste individual de produto inativo com o mesmo
+404/message e registro/status preservados após a requisição.

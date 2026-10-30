@@ -99,6 +99,28 @@ class CatalogoApiTest extends TestCase
             ]);
     }
 
+    public function test_retorna_404_em_json_para_produto_inativo(): void
+    {
+        $caneca = Produto::factory()->inativo()->create([
+            'nome' => 'Caneca',
+            'preco_em_centavos' => 2990,
+        ]);
+
+        $resposta = $this->getJson('/api/v1/produtos/'.$caneca->id);
+
+        $resposta
+            ->assertStatus(404)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertExactJson([
+                'message' => 'Produto não encontrado.',
+            ]);
+
+        $this->assertDatabaseHas('produtos', [
+            'id' => $caneca->id,
+            'status' => 'inativo',
+        ]);
+    }
+
     public function test_omite_produtos_inativos_da_resposta_json(): void
     {
         $camiseta = Produto::factory()->create([
