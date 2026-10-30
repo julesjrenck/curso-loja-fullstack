@@ -150,8 +150,7 @@ Sem cadastro permanente, migration, configuração ou dependência nova.
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint concluído,
-publicação em preparação; resultado será registrado após conferir o remoto.
-Próximo passo: publicar checkpoint e iniciar somente 6.29, um teste permanente
-da segunda página com
-onze ativos, um inativo e empate por ID, exigindo produto/meta/links corretos.
+Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint publicado em
+ed21a330288ff3af17d777e1bbcb53e95016e90b; HEAD/origin/main/main remota coincidiram
+após push. Continuidade realizada na [aula 6.29](06-29-teste-segunda-pagina.md),
+com um teste permanente da segunda página.

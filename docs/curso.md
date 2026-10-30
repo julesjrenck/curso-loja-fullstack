@@ -355,9 +355,13 @@ classe 13/107 e suíte 27/161 passaram. Diagnósticos HTTP pelo kernel/transaç�
 conferiram onze ativos/inativo, páginas/limites/erros sem SQL/rollback; socket
 confirmou listagem, page=2 vazia, individual, 422 e Blade. Contagens preservadas.
 Explicação apresentada; entendimento da 6.28 confirmado com "entendi" em 30/10/2026.
-Checkpoint concluído, publicação em preparação. Próximo passo: publicar checkpoint
-e iniciar 6.29, um teste permanente de página 2 com onze
-ativos, um inativo e empate por ID, exigindo produto/meta/links corretos.
+Checkpoint publicado e verificado em ed21a33. Na 6.29, acrescentado um teste
+permanente de página 2 com onze ativos, um inativo e empate por ID nas posições
+10/11. Exige produto completo, links e metadados; classe 14/120 e suíte 28/174
+passaram, contagens preservadas. Explicação apresentada; entendimento da 6.29
+confirmado com "entendi" em 30/10/2026. Publicação em preparação; publicar e
+iniciar somente 6.30:
+um teste permanente de page=0 com 422/JSON e errors.page.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -4,8 +4,18 @@
 
 - Última atualização: 30/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.28 — Paginação e validação de page na resposta HTTP da listagem.
+- Etapa atual: 6.29 — Teste permanente da segunda página do catálogo.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.29: implementada, explicada e verificada em 30/10/2026;
+  entendimento confirmado pelo aluno com "entendi" em 30/10/2026. Um novo método em CatalogoApiTest
+  cria onze ativos e um inativo, com empate de nome nas posições 10/11, e exige
+  página 2 com somente o segundo Produto 10, identificado pelo ID gerado.
+  Confere data completa, status/JSON, links e seis metadados, total 11 sem inativo.
+  Sintaxe válida; classe 14 testes/120 asserções e suíte 28 testes/174 asserções
+  passaram. Contagens antes/depois: teste 0 categorias/0 produtos; normal
+  0 categorias/1 produto. Aula 06-29 e cobertura do contrato atualizadas.
+  Publicação em preparação. Próximo passo: publicar e iniciar
+  somente 6.30: um teste permanente de page=0 com 422 e errors.page.
 - Situação da 6.28: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado pelo aluno com "entendi" em 30/10/2026. Index agora recebe
   ListarProdutosRequest e chama paginarProdutos($request->pagina()) pelo contrato,
@@ -19,9 +29,9 @@
   rollback. HTTP real conferiu listagem paginada/Camiseta/4990, page=2 vazia,
   individual por ID da listagem, page=0 com 422 e Blade HTML/Camiseta. Contagens
   antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1 produto.
-  Contrato ativo reescrito e aula 06-28 criada; checkpoint concluído, publicação
-  em preparação. Próximo passo: publicar checkpoint e iniciar 6.29, um teste permanente da segunda página com onze
-  ativos, um inativo e desempate por ID, exigindo produto/meta/links corretos.
+  Contrato ativo reescrito e aula 06-28 criada; checkpoint publicado em
+  ed21a330288ff3af17d777e1bbcb53e95016e90b. HEAD/origin/main/main remota coincidiram
+  após push em 30/10/2026. Continuidade realizada na 6.29.
 - Situação da 6.27: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado pelo aluno com "entendi" em 30/10/2026. Contrato Catalogo passou a
   declarar paginarProdutos(int $pagina): LengthAwarePaginator; demo implementa
@@ -319,7 +329,8 @@
   implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026;
   6.26 implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026;
   6.27 implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026;
-  6.28 implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026.
+  6.28 confirmada/publicada e 6.29 implementada/explicada/verificada em 30/10/2026,
+  entendimento da 6.29 confirmado com "entendi" em 30/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -454,23 +465,17 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 30/10/2026: 6.27 confirmada com "entendi" e publicada em
-431fced2fbb03b5e1e053961deac7f6860ed49d4; HEAD/origin/main/main remota conferidos.
-Etapa 6.28 implementada, explicada e verificada; entendimento confirmado pelo aluno
-com "entendi" em 30/10/2026.
-Index recebe ListarProdutosRequest e chama paginação pelo contrato; API agora
-valida page e retorna data/links/meta. Quatro testes de listagem usam helper
-assertPaginaUnica; individuais preservados. Classe 13/107 e suíte 27/161 passaram.
-Diagnóstico pelo kernel HTTP/transação em loja_test: vazio, onze ativos/inativo,
-empate por ID, padrão/page=1/2/3/1000000, onze inválidos 422 sem SQL, individual
-preservado e rollback. HTTP real no normal: listagem Camiseta/4990 com meta,
-page=2 vazia, individual por ID obtido da lista, page=0 com 422 e Blade preservado.
-Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos. Aula 06-28 e
-contrato ativo atualizados; publicação em preparação. Os casos de páginas seguintes,
-limites e erro 422 continuam nos diagnósticos, sem novo teste permanente deles.
-Próximo passo: publicar checkpoint e iniciar 6.29, um teste permanente da página 2
-com onze ativos, um inativo e
-empate por ID, exigindo produto, metadados e links corretos.
+Estado mais recente em 30/10/2026: 6.28 confirmada com "entendi" e publicada em
+ed21a330288ff3af17d777e1bbcb53e95016e90b; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.29 implementada, explicada e verificada; entendimento confirmado com "entendi" em 30/10/2026.
+CatalogoApiTest tem um novo teste de page=2 com onze ativos e um inativo, empate
+por ID na divisão entre páginas, produto esperado pelo ID gerado, data completa,
+links e metadados. Classe 14/120 e suíte 28/174 passaram. Contagens antes/depois:
+teste 0 categorias/0 produtos; normal 0 categorias/1 produto. Código da aplicação
+preservado. Aula docs/aulas/06-29-teste-segunda-pagina.md e contrato atualizados.
+Página 2 agora tem teste permanente; limites e 422 permanecem nos diagnósticos.
+Publicação em preparação. Próximo passo: publicar o checkpoint e iniciar
+somente 6.30: um teste permanente de page=0 com 422/JSON e errors.page.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -7989,11 +7994,46 @@ as primeiras páginas dos quatro cenários antigos e preservam nove casos indivi
 páginas seguintes/limites/422 foram conferidos por diagnósticos, sem novo teste
 permanente específico ainda. Sem cadastro permanente, migration ou dependência nova.
 Entendimento da 6.28: confirmado pelo aluno com "entendi" em 30/10/2026.
-Publicação da 6.28: em preparação; resultado será registrado após conferir o remoto.
-Último checkpoint publicado e remoto conferido: 431fced2fbb03b5e1e053961deac7f6860ed49d4,
-etapa 6.27. Próximo passo: publicar checkpoint e iniciar somente 6.29, um teste permanente da página 2
-com onze ativos, um inativo e empate por ID, exigindo produto/meta/links corretos.
+Publicação da 6.28: ed21a330288ff3af17d777e1bbcb53e95016e90b; HEAD/origin/main/main remota
+coincidiram após push em 30/10/2026. Continuidade realizada na 6.29.
 Exercício DBeaver segue sem relato; não bloqueia o curso.
+
+## Etapa 6.29 — Teste permanente da segunda página do catálogo
+
+Implementação, explicação e verificações em 30/10/2026 após confirmação e
+publicação da 6.28 em ed21a330288ff3af17d777e1bbcb53e95016e90b.
+Aula docs/aulas/06-29-teste-segunda-pagina.md. Uma alteração de código:
+novo método test_retorna_segunda_pagina_com_ativos_e_desempate_por_id em
+backend/tests/Feature/CatalogoApiTest.php. Aplicação e helper anterior preservados.
+
+Factories criam primeiro dois ativos chamados Produto 10, com preços 1000/2000;
+o segundo model é guardado em ultimoProduto. Laço decrescente cria Produto 09
+até Produto 01 usando sprintf('Produto %02d', $numero) para nomes com dois dígitos. Um Produto 00
+inativo completa o cenário. A ordenação nome/ID deve colocar os homônimos nas
+posições 10/11, levando somente o de maior ID à página 2. IDs não são fixados.
+
+GetJson solicita /api/v1/produtos?page=2 e atravessa o fluxo HTTP da aplicação.
+Asserções exigem 200/application/json, data inteira com o produto de preço 2000,
+links first/prev para página 1, last para 2 e next null. Metadados: página 2,
+tamanho 10, total 11, última 2, posições from/to 11. Total 11 protege a contagem
+contra inclusão do inativo. DatabaseTransactions desfaz as fixtures.
+
+Verificações em Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result: 14 testes/120
+  asserções passaram; um cenário e treze asserções a mais que na 6.28.
+- php artisan test --do-not-cache-result: 28 testes/174 asserções passaram.
+- SELECTs antes/depois: loja_test/loja_testes 0 categorias/0 produtos;
+  loja/loja_app 0 categorias/1 produto, por /tmp/curso-618-contagens.php.
+- git diff --check: sem erros.
+
+Página 2 passa a ter cobertura permanente. Limites e validação 422 seguem
+conferidos apenas pelos diagnósticos anteriores; não foram acrescentados aqui.
+Entendimento da 6.29: confirmado com "entendi" em 30/10/2026. Publicação em preparação.
+Último checkpoint publicado: ed21a330288ff3af17d777e1bbcb53e95016e90b, etapa 6.28.
+Próximo passo: publicar e iniciar somente 6.30, um teste
+permanente de page=0 com 422/JSON e errors.page. DBeaver continua sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -8297,8 +8337,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   existente 27/133 passou. Entendimento confirmado com "entendi" em 30/10/2026;
   publicada em 431fced. Na 6.28, integração HTTP implementada/explicada/verificada:
   classe 13/107, suíte 27/161, diagnósticos HTTP/kernel/socket e contagens passaram.
-  Entendimento confirmado com "entendi" em 30/10/2026; publicar e iniciar 6.29,
-  teste permanente de page=2.
+  Entendimento confirmado com "entendi" em 30/10/2026; publicada em ed21a33.
+  Na 6.29, teste permanente de page=2 implementado/explicado/verificado, classe
+  14/120 e suíte 28/174 passaram, contagens preservadas. Entendimento confirmado
+  com "entendi" em 30/10/2026;
+  publicar e iniciar somente 6.30: teste de page=0 com 422/errors.page.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -8489,4 +8532,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 30/10/2026 | 6.25 — Página validada como int | Método pagina com padrão 1; diagnóstico de 16 entradas/tipos/422/zero SQL e suíte existente 27/133 passaram; contagens preservadas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em 509ed43 |
 | 30/10/2026 | 6.26 — Paginação no serviço Eloquent | Método preparado; diagnóstico SQL de vazio/11 ativos/inativo/ordem/3 páginas/rollback e suíte existente 27/133 passaram; contagens preservadas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em 407e9a5 |
 | 30/10/2026 | 6.27 — Contrato e demonstração paginada | Assinatura/demo/binding/JSON/zero SQL da demo e leitura Eloquent pelo contrato conferidos; suíte existente 27/133 e contagens preservadas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em 431fced |
-| 30/10/2026 | 6.28 — Paginação HTTP da listagem | Controller/4 testes/contrato adaptados; classe 13/107, suíte 27/161, diagnósticos kernel/socket, rollback e contagens conferidos | Confirmado pelo aluno: "entendi" em 30/10/2026 | Checkpoint concluído; publicação em preparação |
+| 30/10/2026 | 6.28 — Paginação HTTP da listagem | Controller/4 testes/contrato adaptados; classe 13/107, suíte 27/161, diagnósticos kernel/socket, rollback e contagens conferidos | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicada e verificada: ed21a33 |
+| 30/10/2026 | 6.29 — Teste permanente da segunda página | Onze ativos/inativo, empate por ID, produto/links/meta; classe 14/120 e suíte 28/174 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicação em preparação |

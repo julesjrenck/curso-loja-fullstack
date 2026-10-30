@@ -205,6 +205,60 @@ class CatalogoApiTest extends TestCase
         ]);
     }
 
+    public function test_retorna_segunda_pagina_com_ativos_e_desempate_por_id(): void
+    {
+        Produto::factory()->create([
+            'nome' => 'Produto 10',
+            'status' => 'ativo',
+            'preco_em_centavos' => 1000,
+        ]);
+
+        $ultimoProduto = Produto::factory()->create([
+            'nome' => 'Produto 10',
+            'status' => 'ativo',
+            'preco_em_centavos' => 2000,
+        ]);
+
+        for ($numero = 9; $numero >= 1; $numero--) {
+            Produto::factory()->create([
+                'nome' => sprintf('Produto %02d', $numero),
+                'status' => 'ativo',
+                'preco_em_centavos' => $numero * 100,
+            ]);
+        }
+
+        Produto::factory()->inativo()->create([
+            'nome' => 'Produto 00',
+            'preco_em_centavos' => 500,
+        ]);
+
+        $resposta = $this->getJson('/api/v1/produtos?page=2');
+        $url = url('/api/v1/produtos');
+
+        $resposta
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonPath('data', [
+                [
+                    'id' => $ultimoProduto->id,
+                    'nome' => 'Produto 10',
+                    'preco_em_centavos' => 2000,
+                ],
+            ])
+            ->assertJsonPath('links', [
+                'first' => $url.'?page=1',
+                'last' => $url.'?page=2',
+                'prev' => $url.'?page=1',
+                'next' => null,
+            ])
+            ->assertJsonPath('meta.current_page', 2)
+            ->assertJsonPath('meta.per_page', 10)
+            ->assertJsonPath('meta.total', 11)
+            ->assertJsonPath('meta.last_page', 2)
+            ->assertJsonPath('meta.from', 11)
+            ->assertJsonPath('meta.to', 11);
+    }
+
     private function assertPaginaUnica(TestResponse $resposta, array $produtos): void
     {
         $total = count($produtos);

@@ -177,13 +177,26 @@ produtos e normal 0 categorias/1 produto.
 Diagnóstico adicional pelo kernel HTTP em loja_test/transação conferiu vazio,
 onze ativos/inativo, empate por ID entre páginas, padrão/page=1/2/3/1000000,
 links/metadados, onze entradas inválidas com 422/zero SQL e individual preservado.
-Rollback desfez fixtures. Página 2/limites/422 ainda não têm teste permanente
-novo nesta etapa; não confundir a suíte adaptada com cobertura desses cenários.
+Rollback desfez fixtures. Na 6.28, páginas seguintes/limites/422 foram conferidos
+por diagnóstico; a cobertura permanente da página 2 foi acrescentada na 6.29.
 
 HTTP real conferiu listagem paginada, page=2 vazia no banco normal com um ativo,
 individual pelo ID obtido da listagem, page=0 com 422 e /loja com HTML/produto.
 Diagnósticos: /tmp/curso-628-http-paginacao.php e /tmp/curso-628-http-real.php.
 Explicação e comandos na [aula 06-28](../aulas/06-28-paginacao-http.md).
+
+## Cobertura acrescentada na 6.29
+
+Um teste permanente solicita page=2 com onze ativos e um inativo. Dois ativos
+chamados Produto 10 ocupam as posições 10/11 na ordem nome/ID. A resposta deve
+conter apenas o segundo, com ID gerado e preço 2000; links first/prev para 1,
+last para 2 e next null. Confere página 2, per_page 10, total 11, última 2 e
+from/to 11. Assim cobre seleção, filtro, desempate, total e navegação nessa página.
+Classe 14 testes/120 asserções e suíte 28 testes/174 asserções passaram;
+contagens dos bancos preservadas. Nenhuma alteração no contrato HTTP executável.
+Limites e respostas 422 continuam nos diagnósticos anteriores, sem teste
+permanente novo deles. Entendimento da 6.29 confirmado com "entendi" em 30/10/2026.
+Explicação na [aula 06-29](../aulas/06-29-teste-segunda-pagina.md).
 
 ## Evolução
 
