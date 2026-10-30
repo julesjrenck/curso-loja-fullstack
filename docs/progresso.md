@@ -4,8 +4,23 @@
 
 - Última atualização: 30/10/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.26 — Consulta paginada de produtos ativos no serviço Eloquent.
+- Etapa atual: 6.27 — Paginação no contrato Catalogo e na demonstração em memória.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.27: implementada, explicada e verificada em 30/10/2026;
+  entendimento confirmado pelo aluno com "entendi" em 30/10/2026. Contrato Catalogo passou a
+  declarar paginarProdutos(int $pagina): LengthAwarePaginator; demo implementa
+  com listarProdutos, forPage/values e paginator de tamanho 10 com total/path/pageName.
+  Eloquent já atendia à assinatura, binding preservado. Diagnóstico conferiu
+  assinatura, demo páginas 1/2 com 3/0 itens, total 3/última 1, models não
+  persistidos, JSON/links coerentes e zero SQL da demo. Resolução de Catalogo
+  continua Eloquent e leitura paginada pelo contrato no teste vazio fez um COUNT.
+  Método usa página explícita, mesmo com page=99 na requisição sintética.
+  Sintaxes válidas; suíte existente 27 testes/133 asserções passou. Contagens
+  antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1 produto.
+  Ainda sem ligação ao controller/rota; API segue sem paginação/validação de page.
+  Aula 06-27 e referência no contrato atualizadas; checkpoint concluído, publicação
+  em preparação. Próximo passo: publicar checkpoint e iniciar 6.28, integrar ListarProdutosRequest/paginarProdutos ao
+  index e adaptar os quatro testes de listagem e contrato ativo ao JSON paginado.
 - Situação da 6.26: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado pelo aluno com "entendi" em 30/10/2026. CatalogoEloquent recebeu
   paginarProdutos(int $pagina): LengthAwarePaginator com filtro ativo, ordem
@@ -18,9 +33,9 @@
   com OFFSET/FETCH na busca. Rollback desfez fixtures; inativo preservado antes
   dele. Sintaxe válida; suíte existente 27 testes/133 asserções passou. Contagens
   antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1 produto.
-  Aula 06-26 e referência no contrato atualizadas; checkpoint concluído, publicação
-  em preparação. Próximo passo: publicar checkpoint e iniciar 6.27, declarar paginarProdutos no contrato Catalogo e
-  implementar assinatura compatível em CatalogoDemonstracao, ainda sem rota.
+  Aula 06-26 e referência no contrato atualizadas; checkpoint publicado em
+  407e9a57cdd3c577f74f26c157904043d039bbc5. HEAD/origin/main/main remota
+  coincidiram após push em 30/10/2026. Continuidade realizada na 6.27.
 - Situação da 6.25: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado pelo aluno com "entendi" em 30/10/2026. ListarProdutosRequest recebeu
   pagina(): int com (int) $this->validated('page', 1), para uso após validação.
@@ -286,7 +301,8 @@
   entendimento da 6.23 confirmado com "entendi" em 30/10/2026; 6.24 implementada
   e verificada, entendimento confirmado com "entendi" em 30/10/2026; 6.25
   implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026;
-  6.26 implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026.
+  6.26 implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026;
+  6.27 implementada/verificada, entendimento confirmado com "entendi" em 30/10/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -421,21 +437,22 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 30/10/2026: 6.25 confirmada com "entendi" e publicada em
-509ed431eada39804a81c4b04b670fb5cdcd8534; HEAD/origin/main/main remota conferidos.
-Etapa 6.26 implementada, explicada e verificada; entendimento confirmado pelo aluno
+Estado mais recente em 30/10/2026: 6.26 confirmada com "entendi" e publicada em
+407e9a57cdd3c577f74f26c157904043d039bbc5; HEAD/origin/main/main remota conferidos.
+Etapa 6.27 implementada, explicada e verificada; entendimento confirmado pelo aluno
 com "entendi" em 30/10/2026.
-CatalogoEloquent recebeu paginarProdutos(int $pagina): LengthAwarePaginator,
-filtro ativo, ordem nome/ID, paginate com tamanho 10 e id/nome/preço. Diagnóstico
-em loja_test/loja_testes/transação conferiu vazio, onze ativos e um inativo,
-páginas 1/2/3 com 10/1/0 itens, total 11 e última 2, empate por ID entre páginas,
-filtro, campos/tipos, COUNT/SELECT parametrizados e OFFSET/FETCH. Vazio: um COUNT;
-catálogo com ativos: duas consultas por página. Rollback e contagens conferidos:
-teste 0/0, normal 0/1 categorias/produtos. Sintaxe válida; suíte existente 27/133
-passou. Método ainda sem contrato/demo/rota; API segue sem paginação/validação
-de page. Aula 06-26 e referência no contrato atualizadas; publicação em preparação.
-Próximo passo: publicar checkpoint e iniciar 6.27, declarar paginarProdutos no contrato e implementar assinatura
-compatível na demonstração em memória, ainda sem ligar à rota.
+Catalogo declara paginarProdutos(int $pagina): LengthAwarePaginator e demo
+implementa com listarProdutos, forPage/values, total da coleção e tamanho 10.
+Path/pageName preparados para links; Eloquent e binding preservados. Diagnóstico
+conferiu assinatura, demo páginas 1/2 com 3/0 itens, total 3/última 1, models
+não salvos, JSON/links e zero SQL da demo. Chamada Eloquent por resolução de
+Catalogo no banco exclusivo vazio fez um COUNT; identidade conferida. Página
+explícita prevalece sobre page=99 da requisição sintética. Sintaxes válidas;
+suíte existente 27/133 passou. Contagens antes/depois: teste 0/0, normal 0/1
+categorias/produtos. Sem ligação ao controller/rota, API segue sem paginação.
+Aula 06-27 e referência no contrato atualizadas; publicação em preparação.
+Próximo passo: publicar checkpoint e iniciar 6.28, integrar Form Request/paginação no index e adaptar os quatro
+testes de listagem e contrato ativo ao JSON paginado. Consulta individual preservada.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -7843,11 +7860,60 @@ Diagnóstico chama o serviço diretamente, sem controller/resource/rota. Confere
 SQL paginado real no banco exclusivo; não comprova integração HTTP futura.
 Sem cadastro permanente, migration ou dependência nova.
 Entendimento da 6.26: confirmado pelo aluno com "entendi" em 30/10/2026.
-Publicação da 6.26: em preparação; resultado será registrado após conferir o remoto.
-Último checkpoint publicado e remoto conferido: 509ed431eada39804a81c4b04b670fb5cdcd8534,
-etapa 6.25. Próximo passo: publicar checkpoint e iniciar somente 6.27, declarar paginarProdutos(int
-$pagina): LengthAwarePaginator no contrato e implementar assinatura compatível
-em CatalogoDemonstracao em memória, preservando binding Eloquent e sem rota.
+Publicação da 6.26: 407e9a57cdd3c577f74f26c157904043d039bbc5,
+`feat: pagina produtos ativos no catálogo Eloquent`. HEAD, origin/main e main
+consultada diretamente no remoto coincidiram após push em 30/10/2026. Resultado
+registrado na etapa seguinte, sem incluir o SHA no próprio commit.
+Continuidade realizada na 6.27: paginação no contrato e na demo em memória.
+Exercício DBeaver segue sem relato; não bloqueia o curso.
+
+## Etapa 6.27 — Paginação no contrato Catalogo e na demonstração em memória
+
+Implementação, explicação e verificações em 30/10/2026 após confirmação e
+publicação da 6.26. Aula docs/aulas/06-27-contrato-paginacao-demo.md. Conjunto
+inseparável de aplicação: interface Catalogo e CatalogoDemonstracao. Ambos
+importam LengthAwarePaginator e documentam itens Produto. Interface exige
+paginarProdutos(int $pagina): LengthAwarePaginator; demo usa a coleção existente
+por listarProdutos, recorta forPage($pagina, 10)->values e constrói paginator
+com total da coleção, tamanho 10, página explícita, path atual e pageName page.
+
+Explicados contrato/implementações compatíveis, recorte da coleção em memória,
+índices sequenciais de values, construtor com total antes do recorte e links.
+Demo preserva os três produtos/IDs/preços e demais métodos. Eloquent já possui
+assinatura compatível; seu código e binding de AppServiceProvider preservados.
+Controller ainda usa listarProdutos: API continua sem paginação/validação de page.
+
+Verificações PHP Docker, código 0:
+
+- php -l nos dois arquivos: sintaxes válidas.
+- /tmp/curso-627-contrato-paginacao.php com APP_ENV=testing exige identidade
+  loja_test/loja_testes. Reflection confere parâmetro int/retorno do contrato;
+  demo implementa Catalogo, resolução do contrato continua CatalogoEloquent.
+- Request sintética usa base local da API com page=99, mas chamadas recebem 1/2:
+  páginas explícitas corretas. Demo retorna 3/0 itens, tamanho 10, total 3 e
+  última 1. Models ativos/exists false e IDs/nomes/preços esperados conferidos.
+- ProdutoResource::collection(...)->toResponse(...) conferiu 200/application/json,
+  data em lista com valores exatos, meta e links first/last/prev/next coerentes.
+  ListarNomes e buscas anteriores preservados. Zero SQL da demo observado.
+- Chamada paginarProdutos(1) no serviço resolvido por Catalogo, banco de testes
+  vazio: paginator com total 0/itens 0/página 1/tamanho 10 e um COUNT parametrizado
+  por ativo. Somente leitura; sem transação/fixtures novas nesta etapa.
+- php artisan test --do-not-cache-result: suíte existente 27 testes/133 asserções
+  passou. Sem teste permanente novo do contrato/demo nesta etapa.
+- SELECTs separados antes/depois por /tmp/curso-618-contagens.php:
+  loja_test/loja_testes 0 categorias/0 produtos; loja/loja_app 0 categorias/1 produto.
+- git diff --check: sem erros.
+
+Diagnóstico direto dos objetos e da serialização, sem kernel/rota/socket.
+Conferiu binding e leitura paginada pelo contrato, não integração HTTP futura.
+Sem alteração de controller/rota/Form Request/Eloquent, cadastro permanente,
+migration ou dependência nova.
+Entendimento da 6.27: confirmado pelo aluno com "entendi" em 30/10/2026.
+Publicação da 6.27: em preparação; resultado será registrado após conferir o remoto.
+Último checkpoint publicado e remoto conferido: 407e9a57cdd3c577f74f26c157904043d039bbc5,
+etapa 6.26. Próximo passo: publicar checkpoint e iniciar somente 6.28, integrar ListarProdutosRequest
+com paginarProdutos em ProdutoController@index e adaptar os quatro testes da
+listagem e contrato ativo ao envelope paginado, preservando show.
 Exercício DBeaver segue sem relato; não bloqueia o curso.
 
 ## Verificações e limitações do ambiente
@@ -8147,8 +8213,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   suíte existente 27/133 passaram. Entendimento confirmado com "entendi" em
   30/10/2026 e publicada em 509ed43. Na 6.26, paginação no serviço Eloquent
   implementada/explicada/verificada com SQL e rollback; suíte existente 27/133
-  passou. Entendimento confirmado com "entendi" em 30/10/2026; publicar e iniciar
-  6.27, contrato/demo.
+  passou. Entendimento confirmado com "entendi" em 30/10/2026 e publicada em
+  407e9a5. Na 6.27, contrato/demo implementados/explicados/verificados, suíte
+  existente 27/133 passou. Entendimento confirmado com "entendi" em 30/10/2026;
+  publicar e iniciar 6.28, integração HTTP da paginação e testes/contrato da listagem.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -8337,4 +8405,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 30/10/2026 | 6.23 — Contrato planejado de paginação | Desenho documentado; três exemplos com resource/paginador em memória conferidos, zero SQL e nenhum cadastro; aplicação preservada | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em 92ce498 |
 | 30/10/2026 | 6.24 — Form Request de page | Classe preparada sem ligação à rota; diagnóstico de 16 entradas/422 JSON/zero SQL e suíte existente 27/133 passaram; contagens preservadas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em 3d89485 |
 | 30/10/2026 | 6.25 — Página validada como int | Método pagina com padrão 1; diagnóstico de 16 entradas/tipos/422/zero SQL e suíte existente 27/133 passaram; contagens preservadas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em 509ed43 |
-| 30/10/2026 | 6.26 — Paginação no serviço Eloquent | Método preparado; diagnóstico SQL de vazio/11 ativos/inativo/ordem/3 páginas/rollback e suíte existente 27/133 passaram; contagens preservadas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Checkpoint concluído; publicação em preparação |
+| 30/10/2026 | 6.26 — Paginação no serviço Eloquent | Método preparado; diagnóstico SQL de vazio/11 ativos/inativo/ordem/3 páginas/rollback e suíte existente 27/133 passaram; contagens preservadas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Publicado e verificado em 407e9a5 |
+| 30/10/2026 | 6.27 — Contrato e demonstração paginada | Assinatura/demo/binding/JSON/zero SQL da demo e leitura Eloquent pelo contrato conferidos; suíte existente 27/133 e contagens preservadas | Confirmado pelo aluno: "entendi" em 30/10/2026 | Checkpoint concluído; publicação em preparação |

@@ -180,3 +180,7 @@ o comportamento HTTP atual permanece sem paginação e sem validar page.
 Na 6.26, preparado [paginarProdutos no serviço Eloquent](../aulas/06-26-paginacao-servico-eloquent.md),
 com SQL paginado verificado no banco exclusivo de testes e rollback. Método ainda
 sem contrato/demo/controller/rota; a API segue com o contrato atual sem paginação.
+
+Na 6.27, preparada [paginação no contrato e na demonstração](../aulas/06-27-contrato-paginacao-demo.md),
+com assinatura compatível, recorte em memória e binding Eloquent conferidos.
+Controller ainda usa listarProdutos; o contrato HTTP executável permanece igual.

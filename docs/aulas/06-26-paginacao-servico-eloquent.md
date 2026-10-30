@@ -136,9 +136,10 @@ Sem cadastro permanente, migration ou dependência nova.
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint concluído,
-publicação em preparação; resultado será registrado após conferir o remoto.
-Próximo passo: publicar checkpoint e iniciar somente 6.27, declarar
-paginarProdutos(int $pagina):
-LengthAwarePaginator no contrato Catalogo e implementar assinatura compatível
-em CatalogoDemonstracao em memória, preservando binding Eloquent e sem rota.
+Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint publicado em
+407e9a57cdd3c577f74f26c157904043d039bbc5, `feat: pagina produtos ativos no catálogo Eloquent`.
+HEAD, origin/main e main consultada diretamente no remoto coincidiram após push.
+Resultado registrado na etapa seguinte, sem incluir o SHA no próprio commit.
+Continuidade realizada na 6.27: declarar paginarProdutos no contrato Catalogo e
+implementar assinatura compatível em CatalogoDemonstracao em memória, preservando
+binding Eloquent e sem rota.

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Contracts\Catalogo;
 use App\Models\Produto;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CatalogoDemonstracao implements Catalogo
 {
@@ -40,6 +41,25 @@ class CatalogoDemonstracao implements Catalogo
         $tenis->id = 3;
 
         return new Collection([$calca, $camiseta, $tenis]);
+    }
+
+    /**
+     * @return LengthAwarePaginator<int, Produto>
+     */
+    public function paginarProdutos(int $pagina): LengthAwarePaginator
+    {
+        $produtos = $this->listarProdutos();
+
+        return new LengthAwarePaginator(
+            $produtos->forPage($pagina, 10)->values(),
+            $produtos->count(),
+            10,
+            $pagina,
+            [
+                'path' => LengthAwarePaginator::resolveCurrentPath(),
+                'pageName' => 'page',
+            ],
+        );
     }
 
     public function buscarProduto(int $id): ?Produto

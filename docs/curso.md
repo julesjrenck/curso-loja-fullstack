@@ -342,8 +342,15 @@ onze ativos/inativo, empate por ID entre páginas, totais e páginas 1/2/3 com
 10/1/0 itens; rollback e contagens conferidos. Suíte existente 27/133 passou.
 Ainda sem contrato/demo/rota, API segue sem paginação/validação de page. Explicação
 apresentada, entendimento da 6.26 confirmado com "entendi" em 30/10/2026.
+Checkpoint publicado e verificado em 407e9a5. Na 6.27, contrato declara
+paginarProdutos e demo implementa recorte em memória com paginator. Assinatura,
+páginas 1/2 com 3/0 itens, JSON/links/zero SQL da demo, binding Eloquent e leitura
+pelo contrato conferidos. Suíte existente 27/133 passou; contagens preservadas.
+Ainda sem ligação à rota, API segue sem paginação/validação de page. Explicação
+apresentada, entendimento da 6.27 confirmado com "entendi" em 30/10/2026.
 Checkpoint concluído, publicação em preparação. Próximo passo: publicar checkpoint
-e iniciar 6.27, declarar paginação no contrato e implementá-la na demo em memória.
+e iniciar 6.28, integrar Form Request/paginação no index e adaptar testes e
+contrato ativo da listagem ao JSON paginado.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
