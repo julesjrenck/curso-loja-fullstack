@@ -121,6 +121,16 @@ class CatalogoApiTest extends TestCase
         ]);
     }
 
+    public function test_retorna_404_em_json_para_id_malformado(): void
+    {
+        $resposta = $this->getJson('/api/v1/produtos/abc');
+
+        $resposta
+            ->assertStatus(404)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonStructure(['message']);
+    }
+
     public function test_omite_produtos_inativos_da_resposta_json(): void
     {
         $camiseta = Produto::factory()->create([

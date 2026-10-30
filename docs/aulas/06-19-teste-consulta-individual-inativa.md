@@ -91,7 +91,9 @@ histórico da 6.16. HTTP por socket não repetido nesta etapa.
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint concluído,
-publicação em preparação; resultado será registrado após conferir o remoto.
-Próximo passo: publicar checkpoint e iniciar somente 6.20, um teste de ID malformado como abc rejeitado
+Entendimento confirmado com "entendi" em 30/10/2026. Checkpoint publicado em
+a137a9aeaa07ca6f3c7711ecb4b8cc629ac1f26a, `test: verifica consulta individual de produto inativo`.
+HEAD, origin/main e main consultada diretamente no remoto coincidiram após push.
+Resultado registrado na etapa seguinte, sem incluir o SHA no próprio commit.
+Continuidade realizada na 6.20: um teste de ID malformado como abc rejeitado
 pela rota com 404 JSON, sem exigir a message específica de show.
