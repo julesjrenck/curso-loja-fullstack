@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.38
 com "entendi" e publicação em 90cdc350c849b6d0731e13a63aa251139bd0c01e.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.39
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+a1ded6b8bd8994a956ac5a52efeb576737af641f, com remoto conferido.
 
 Uma alteração de código em backend/app/Http/Controllers/Api/V1/ProdutoController.php:
 ligar os componentes preparados e manter a busca nos links de paginação.
@@ -104,6 +105,7 @@ teste permanente novo do filtro HTTP nesta etapa; os diagnósticos são separado
 
 ## Continuidade
 
-Roteiro, progresso e contrato atual atualizados. Entendimento confirmado com
-"entendi" em 01/11/2026; publicação em preparação. Publicar e iniciar somente 6.40: um teste
+Entendimento confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+a1ded6b8bd8994a956ac5a52efeb576737af641f, com HEAD/origin/main/main remota conferidos.
+Continuidade realizada na [aula 6.40](06-40-teste-busca-nome.md), com um teste
 HTTP permanente da busca por nome, exigindo ativos correspondentes, total e links.

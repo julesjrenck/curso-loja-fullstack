@@ -205,6 +205,63 @@ class CatalogoApiTest extends TestCase
         ]);
     }
 
+    public function test_filtra_ativos_por_trecho_do_nome_no_json(): void
+    {
+        $kit = Produto::factory()->create([
+            'nome' => 'Kit de camiseta',
+            'status' => 'ativo',
+            'preco_em_centavos' => 6990,
+        ]);
+
+        $camiseta = Produto::factory()->create([
+            'nome' => 'Camiseta azul',
+            'status' => 'ativo',
+            'preco_em_centavos' => 4990,
+        ]);
+
+        Produto::factory()->create([
+            'nome' => 'Caneca',
+            'status' => 'ativo',
+            'preco_em_centavos' => 2990,
+        ]);
+
+        Produto::factory()->inativo()->create([
+            'nome' => 'Camiseta antiga',
+            'preco_em_centavos' => 1990,
+        ]);
+
+        $resposta = $this->getJson('/api/v1/produtos?nome=camiseta');
+        $url = url('/api/v1/produtos');
+
+        $resposta
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonPath('data', [
+                [
+                    'id' => $camiseta->id,
+                    'nome' => 'Camiseta azul',
+                    'preco_em_centavos' => 4990,
+                ],
+                [
+                    'id' => $kit->id,
+                    'nome' => 'Kit de camiseta',
+                    'preco_em_centavos' => 6990,
+                ],
+            ])
+            ->assertJsonPath('links', [
+                'first' => $url.'?nome=camiseta&page=1',
+                'last' => $url.'?nome=camiseta&page=1',
+                'prev' => null,
+                'next' => null,
+            ])
+            ->assertJsonPath('meta.current_page', 1)
+            ->assertJsonPath('meta.per_page', 10)
+            ->assertJsonPath('meta.total', 2)
+            ->assertJsonPath('meta.last_page', 1)
+            ->assertJsonPath('meta.from', 1)
+            ->assertJsonPath('meta.to', 2);
+    }
+
     public function test_retorna_segunda_pagina_com_ativos_e_desempate_por_id(): void
     {
         Produto::factory()->create([

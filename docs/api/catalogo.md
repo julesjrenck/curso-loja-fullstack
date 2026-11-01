@@ -364,6 +364,19 @@ antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1 produto.
 Explicação na [aula 06-39](../aulas/06-39-filtro-nome-http.md). Entendimento da 6.39
 confirmado com "entendi" em 01/11/2026.
 
+## Cobertura acrescentada na 6.40
+
+Novo teste permanente cria dois ativos correspondentes (Camiseta azul e Kit de
+camiseta), Caneca ativa e Camiseta antiga inativa. Nome=camiseta exige somente
+os dois correspondentes em ordem, com IDs gerados e campos/preços completos.
+Links first/last mantêm nome=camiseta&page=1, prev/next null. Metadados exigem
+página 1, tamanho 10, total 2, última 1 e posições 1/2. Classe 28 testes/247
+asserções e suíte 42 testes/301 asserções passaram; contagens preservadas.
+Aplicação preservada, sem alteração do contrato HTTP. Outros cenários do filtro
+continuam nos diagnósticos anteriores, sem novos testes permanentes específicos
+nesta etapa. Entendimento da 6.40 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-40](../aulas/06-40-teste-busca-nome.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com
