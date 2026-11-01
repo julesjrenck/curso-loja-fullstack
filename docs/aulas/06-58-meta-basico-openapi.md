@@ -3,7 +3,8 @@
 Implementação, explicação e verificação em 01/11/2026 após confirmação da 6.57
 com "entendi" e publicação em 12acc7e80669c400f7635df1a0437f01e8939100.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.58
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+5b108b2cebbf739bf113710f9ab7d1efd465a552, com referências local e remotas coincidentes.
 
 ## Objeto e campos básicos
 
@@ -90,7 +91,6 @@ alterada; sem consultas ou nova suíte. Última suíte executada na 6.49:
 ## Continuidade
 
 Contrato, roteiro e progresso atualizados. Entendimento confirmado com "entendi"
-em 01/11/2026, durante o encerramento do registro. Publicação em preparação.
-Publicar e iniciar
-somente 6.59: descrever meta.links como lista de opções com url/label/page/active,
-tipos e obrigatoriedade.
+em 01/11/2026, durante o encerramento do registro. Publicação verificada em
+5b108b2cebbf739bf113710f9ab7d1efd465a552. Continuidade na
+[aula 06-59](06-59-meta-links-openapi.md).

@@ -104,7 +104,8 @@
                         "last_page",
                         "from",
                         "to",
-                        "path"
+                        "path",
+                        "links"
                       ],
                       "properties": {
                         "current_page": {
@@ -147,6 +148,44 @@
                         "path": {
                           "type": "string",
                           "description": "URL base da listagem, sem parâmetros da query."
+                        },
+                        "links": {
+                          "type": "array",
+                          "description": "Opções de navegação geradas pelo paginador; URLs não nulas preservam o nome normalizado quando informado.",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "url",
+                              "label",
+                              "page",
+                              "active"
+                            ],
+                            "properties": {
+                              "url": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ],
+                                "description": "URL de navegação, ou null quando a opção não tem destino."
+                              },
+                              "label": {
+                                "type": "string",
+                                "description": "Rótulo de exibição; pode variar com a tradução."
+                              },
+                              "page": {
+                                "type": [
+                                  "integer",
+                                  "null"
+                                ],
+                                "minimum": 1,
+                                "description": "Página de destino, ou null quando não houver."
+                              },
+                              "active": {
+                                "type": "boolean",
+                                "description": "Indica se a opção numérica representa a página atual."
+                              }
+                            }
+                          }
                         }
                       }
                     }

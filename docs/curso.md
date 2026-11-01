@@ -498,9 +498,14 @@ página/tamanho/total/última/posições/path, tipos e limites; per_page const 1
 from/to inteiro ou null. PHP Docker leu JSON/campos; conferido contra contrato/
 testes/serviço. Meta.links será posterior. Sem validador OpenAPI ou nova suíte;
 última suíte 66/620 da 6.49. Explicação apresentada; entendimento da 6.58
-confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar e
-iniciar somente 6.59: meta.links com
-url/label/page/active, tipos e obrigatoriedade.
+confirmado com "entendi" em 01/11/2026 e publicada em 5b108b2. Na 6.59,
+meta.links obrigatório, lista de objetos com url/label/page/active obrigatórios,
+tipos e descrições; label e quantidade da lista livres, active boolean.
+PHP Docker leu JSON/campos, conferidos contra contrato/teste. Sem validador
+OpenAPI ou nova suíte; última suíte 66/620 da 6.49. Explicação apresentada;
+entendimento da 6.59 confirmado com "entendi" em 01/11/2026.
+Publicação em preparação; publicar e iniciar somente 6.60:
+corpo 422 JSON com message/errors por campo, sem mensagens traduzidas fixas.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

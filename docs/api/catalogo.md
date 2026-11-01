@@ -589,6 +589,17 @@ instâncias, dependências novas, produção alterada, consultas ou nova suíte.
 Entendimento da 6.58 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-58](../aulas/06-58-meta-basico-openapi.md).
 
+## Meta.links no OpenAPI na 6.59
+
+[Openapi.json](openapi.json) exige meta.links como array, com items object e
+required url/label/page/active. Url string ou null, label string, page integer
+mínimo 1 ou null e active boolean. Descrições registram destinos, rótulos
+variáveis com tradução e indicação da página numérica atual. Lista sem
+quantidade fixa. PHP Docker confirmou sintaxe/campos; comparado com contrato
+e teste existente. Sem validador OpenAPI ou de instâncias, dependências novas,
+produção alterada, consultas ou nova suíte. Entendimento da 6.59 confirmado
+com "entendi" em 01/11/2026. Explicação na [aula 06-59](../aulas/06-59-meta-links-openapi.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com
