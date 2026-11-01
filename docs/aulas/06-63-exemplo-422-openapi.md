@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.62 com "entendi" e publicação em 57e7f4aca3ff845a62ba7542138571964f6d4bb1.
-Entendimento da 6.63 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.63 confirmado com "entendi" em 01/11/2026; publicação
+verificada em f8aaa6bfa0110dcf6565cf960dc2c3f8a3e8454f, referências local e remotas coincidentes.
 
 ## Corpo de erro com valores concretos
 
@@ -86,6 +87,5 @@ não comprova conformidade de respostas reais com o schema.
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026. Publicar o checkpoint. Próxima etapa, 6.64:
-acrescentar a operação GET /api/v1/produtos/{id} ao OpenAPI, com parâmetro id
-e descrições das respostas 200/404.
+com "entendi" em 01/11/2026; publicação verificada em f8aaa6bfa0110dcf6565cf960dc2c3f8a3e8454f.
+Continuidade na [aula 06-64](06-64-consulta-id-openapi.md).

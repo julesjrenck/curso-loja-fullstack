@@ -656,6 +656,23 @@ Detectados tipo array, minItems 1 e minProperties 1. Schemas e exemplo 200
 preservados. Sem dependências novas, SQL ou nova suíte Laravel. Entendimento
 confirmado com "entendi" em 01/11/2026. Explicação na [aula 06-63](../aulas/06-63-exemplo-422-openapi.md).
 
+## Consulta individual no OpenAPI na 6.64
+
+[Openapi.json](openapi.json) recebeu GET /api/v1/produtos/{id}, summary e
+operationId consultarProduto. Parâmetro id in path/required true/schema
+integer minimum 1; descrição registra formato decimal positivo sem sinal ou
+zeros iniciais e faixa PHP_INT_MAX. O schema numérico não codifica sozinho
+a forma textual nem o máximo do backend. Respostas 200/404 descritas; corpos
+desta operação ainda serão documentados. Conferido contra rota/controller/
+Eloquent/testes existentes por leitura.
+
+Mesma imagem/configuração Redocly: lint Docker código 0. Cópia sem declaração
+de id rejeitada/código 1/path-parameters-defined; cópia com required false
+aceita/código 0, limitação observada da ferramenta/configuração. Original
+conferido manualmente com true conforme a especificação. Listagem e schemas
+preservados. Sem produção alterada, SQL ou nova suíte Laravel. Entendimento
+confirmado com "entendi" em 01/11/2026. Explicação na [aula 06-64](../aulas/06-64-consulta-id-openapi.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

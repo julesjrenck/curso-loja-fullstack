@@ -280,6 +280,32 @@
           }
         }
       }
+    },
+    "/api/v1/produtos/{id}": {
+      "get": {
+        "summary": "Consultar produto ativo pelo ID",
+        "operationId": "consultarProduto",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Identificador do produto, em decimal positivo sem sinal ou zeros iniciais. Deve caber na faixa de inteiros do PHP do backend (PHP_INT_MAX); formato inválido ou valor fora da faixa recebe 404.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Produto ativo encontrado."
+          },
+          "404": {
+            "description": "Produto não encontrado, inativo ou identificador inválido."
+          }
+        }
+      }
     }
   },
   "components": {

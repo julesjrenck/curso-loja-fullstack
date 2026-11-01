@@ -524,9 +524,16 @@ sem captura HTTP, SQL ou nova suíte Laravel. Entendimento confirmado com
 message e errors.nome/lista de mensagens ilustrativas; mesma imagem/regra,
 documento código 0. Três cópias inválidas rejeitadas com código 1: mensagem
 sem lista, lista vazia e objeto errors vazio. Schemas/exemplo 200 preservados;
-sem captura HTTP, SQL ou nova suíte Laravel. Explicação apresentada;
-entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.64:
-GET /api/v1/produtos/{id} no OpenAPI, parâmetro id e descrições de 200/404.
+sem captura HTTP, SQL ou nova suíte Laravel. Entendimento confirmado com
+"entendi" em 01/11/2026 e publicada em f8aaa6b. Na 6.64, GET /api/v1/produtos/{id}
+com summary/operationId, id in path/required true/schema integer mínimo 1 e
+limites textuais descritos; respostas 200/404 com descrições, corpos pendentes.
+Conferido contra código/testes por leitura. Lint Docker código 0; cópia sem
+id declarado rejeitada/código 1. Cópia com required false aceita/código 0:
+limitação observada, original true conferido pela especificação. Sem novas
+dependências, produção alterada, SQL ou nova suíte Laravel. Explicação apresentada;
+entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.65:
+corpo 200 individual com data objeto referenciado a Produto.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
