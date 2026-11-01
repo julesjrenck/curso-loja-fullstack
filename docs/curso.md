@@ -482,9 +482,14 @@ object, required dos três campos e properties com integer/string/integer;
 preço em centavos. PHP Docker leu JSON/campos; conferido contra resource/model/
 migration/contrato. Ainda sem referência nas respostas ou validador OpenAPI;
 última suíte 66/620 da 6.49. Explicação apresentada; entendimento da 6.55
-confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar e
-iniciar somente 6.56: content/application/json
-em 200, data como lista e items/$ref para Produto, deixando links/meta para depois.
+confirmado com "entendi" em 01/11/2026 e publicada em 9930c33. Na 6.56,
+resposta 200 recebeu corpo application/json/object/data obrigatório, array
+até dez itens com $ref para Produto. PHP Docker leu campos e percorreu a
+referência local. Descrição parcial; links/meta virão depois. Sem validador
+OpenAPI ou nova suíte; última suíte 66/620 da 6.49. Explicação apresentada;
+entendimento da 6.56 confirmado com "entendi" em 01/11/2026.
+Publicação em preparação; publicar e iniciar somente 6.57:
+links de 200 com first/last/prev/next, obrigatoriedade e possibilidade de null.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

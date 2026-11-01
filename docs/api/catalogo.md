@@ -547,12 +547,24 @@ Entendimento da 6.54 confirmado com "entendi" em 01/11/2026. Explicação na
 
 [Openapi.json](openapi.json) recebeu components.schemas.Produto, type object,
 required com id/nome/preco_em_centavos e properties integer/string/integer.
-Preço descrito em centavos. Componente ainda não referenciado nas respostas;
+Preço descrito em centavos. Na 6.55, componente ainda não referenciado nas respostas;
 escopo de tipos/presença, sem proibição de campos adicionais. PHP Docker
 confirmou sintaxe e leitura; comparado com resource/model/migration/contrato.
 Sem validador OpenAPI, dependências novas, produção alterada, consultas ou nova
 suíte. Entendimento da 6.55 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-55](../aulas/06-55-schema-produto-openapi.md).
+
+## Data da resposta 200 no OpenAPI na 6.56
+
+[Openapi.json](openapi.json) recebeu content/application/json em 200: schema
+object, data obrigatório, array com maxItems 10 e items.$ref para
+#/components/schemas/Produto. Lista vazia permitida. Descrição parcial do
+corpo; links/meta continuam na API e serão detalhados nas próximas etapas.
+PHP Docker confirmou sintaxe, leitura e destino dessa referência local.
+Conferido contra código e contrato. Sem validador OpenAPI ou de instâncias,
+dependências novas, produção alterada, consultas ou nova suíte.
+Entendimento da 6.56 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-56](../aulas/06-56-data-resposta-openapi.md).
 
 ## Evolução
 

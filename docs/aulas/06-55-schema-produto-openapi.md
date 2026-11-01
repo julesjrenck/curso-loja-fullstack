@@ -3,7 +3,8 @@
 Implementação, explicação e verificação em 01/11/2026 após confirmação da 6.54
 com "entendi" e publicação em 2210731acb5d1aac4e5379cd0de6dbcf74fdd501.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.55
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+9930c338f2ed1764608ff5139587882ba1b26c6c, com referências local e remotas coincidentes.
 
 ## Componente criado
 
@@ -99,6 +100,5 @@ produção alterado. Sem consultas ou nova suíte; última suíte executada na
 ## Continuidade
 
 Contrato, roteiro e progresso atualizados. Entendimento confirmado com "entendi"
-em 01/11/2026; publicação em preparação. Publicar e iniciar
-somente 6.56: ligar Produto à resposta 200 por content/application/json, data
-como lista e items com $ref, deixando links/meta para as etapas seguintes.
+em 01/11/2026; publicação verificada em 9930c338f2ed1764608ff5139587882ba1b26c6c.
+Continuidade na [aula 06-56](06-56-data-resposta-openapi.md).

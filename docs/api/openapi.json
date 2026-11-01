@@ -43,7 +43,26 @@
         ],
         "responses": {
           "200": {
-            "description": "Página de produtos ativos correspondentes à busca, incluindo paginação. A lista pode estar vazia."
+            "description": "Página de produtos ativos correspondentes à busca, incluindo paginação. A lista pode estar vazia.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "maxItems": 10,
+                      "items": {
+                        "$ref": "#/components/schemas/Produto"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
           "422": {
             "description": "Parâmetros de consulta inválidos."
