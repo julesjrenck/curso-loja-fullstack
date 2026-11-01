@@ -477,8 +477,14 @@ string de 1–100 caracteres, sem default e descrição de normalização/busca
 literal/caixa/acentos/links. PHP Docker leu JSON/campos, comparados com código
 e contrato. Sem validador OpenAPI ou nova suíte; última suíte 66/620 da 6.49.
 Explicação apresentada; entendimento da 6.54 confirmado com "entendi" em
-01/11/2026. Publicação em preparação; publicar e iniciar somente 6.55: components.schemas.Produto com três campos públicos,
-tipos e obrigatoriedade, antes de referenciá-lo nas respostas.
+01/11/2026 e publicada em 2210731. Na 6.55, criado components.schemas.Produto:
+object, required dos três campos e properties com integer/string/integer;
+preço em centavos. PHP Docker leu JSON/campos; conferido contra resource/model/
+migration/contrato. Ainda sem referência nas respostas ou validador OpenAPI;
+última suíte 66/620 da 6.49. Explicação apresentada; entendimento da 6.55
+confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar e
+iniciar somente 6.56: content/application/json
+em 200, data como lista e items/$ref para Produto, deixando links/meta para depois.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

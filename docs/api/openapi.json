@@ -51,5 +51,30 @@
         }
       }
     }
+  },
+  "components": {
+    "schemas": {
+      "Produto": {
+        "type": "object",
+        "description": "Representação pública de um produto do catálogo.",
+        "required": [
+          "id",
+          "nome",
+          "preco_em_centavos"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "preco_em_centavos": {
+            "type": "integer",
+            "description": "Preço em centavos; 4990 representa R$ 49,90."
+          }
+        }
+      }
+    }
   }
 }

@@ -543,6 +543,17 @@ alterada, consultas ou nova suíte. Schemas de resposta ainda serão descritos.
 Entendimento da 6.54 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-54](../aulas/06-54-nome-openapi.md).
 
+## Schema Produto no OpenAPI na 6.55
+
+[Openapi.json](openapi.json) recebeu components.schemas.Produto, type object,
+required com id/nome/preco_em_centavos e properties integer/string/integer.
+Preço descrito em centavos. Componente ainda não referenciado nas respostas;
+escopo de tipos/presença, sem proibição de campos adicionais. PHP Docker
+confirmou sintaxe e leitura; comparado com resource/model/migration/contrato.
+Sem validador OpenAPI, dependências novas, produção alterada, consultas ou nova
+suíte. Entendimento da 6.55 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-55](../aulas/06-55-schema-produto-openapi.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

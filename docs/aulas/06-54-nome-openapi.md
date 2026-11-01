@@ -3,7 +3,8 @@
 Implementação, explicação e verificação em 01/11/2026 após confirmação da 6.53
 com "entendi" e publicação em b4aa8214b8be02b542cfc68d3ab96a2e044dc800.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.54
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+2210731acb5d1aac4e5379cd0de6dbcf74fdd501, com referências local e remotas coincidentes.
 
 ## Alteração
 
@@ -87,6 +88,5 @@ suíte; última suíte executada na 6.49: 66 testes/620 asserções.
 ## Continuidade
 
 Contrato, roteiro e progresso atualizados. Entendimento confirmado com "entendi"
-em 01/11/2026; publicação em preparação. Publicar e iniciar
-somente 6.55: introduzir components.schemas.Produto com os três campos públicos,
-seus tipos e obrigatoriedade, antes de referenciá-lo nas respostas.
+em 01/11/2026; publicação verificada em 2210731acb5d1aac4e5379cd0de6dbcf74fdd501.
+Continuidade na [aula 06-55](06-55-schema-produto-openapi.md).
