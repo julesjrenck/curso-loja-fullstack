@@ -5,6 +5,10 @@ Explicação e verificações apresentadas; entendimento da 6.28 confirmado pelo
 com "entendi" em 30/10/2026. A listagem agora retorna data/links/meta. Consulta individual mantém
 seu contrato anterior. Desenho histórico em ../aulas/06-23-contrato-paginacao-catalogo.md.
 
+Na 6.35, em 01/11/2026, a validação de nome foi acrescentada ao Form Request.
+Nome válido ainda não é aplicado como filtro à consulta. Entendimento da 6.35
+confirmado com "entendi" em 01/11/2026.
+
 ## Listar produtos
 
 - Método e caminho: GET /api/v1/produtos.
@@ -19,6 +23,11 @@ seu contrato anterior. Desenho histórico em ../aulas/06-23-contrato-paginacao-c
   na URL, por exemplo page=%2B1; um + literal é decodificado como espaço.
 - Tamanho fixo: até 10 produtos por página. Per_page não é parâmetro de
   requisição suportado; per_page na resposta informa essa capacidade fixa.
+- Nome tem somente validação implementada na 6.35: opcional; quando presente,
+  texto não vazio de até 100 caracteres após normalização do Laravel. Espaços
+  externos são removidos, internos preservados; '0' é texto válido. Vazio, array
+  ou acima de 100 recebe 422/errors.nome. Nome válido ainda não filtra produtos
+  nem é preservado nos links. O filtro completo segue planejado para próximas etapas.
 - Outros filtros e parâmetros não fazem parte deste contrato.
 
 Somente produtos ativos, em ordem de nome segundo a ordenação SQL Server do
@@ -116,8 +125,8 @@ last_page 2. Page=3 é válida e retorna 200/data [], current_page 3, total 11,
 last_page 2, from/to null, prev para page=2 e next null. Page inválida ou fora do
 intervalo permitido recebe 422, mesmo que a coleção esteja vazia.
 
-No erro de validação, o corpo contém message e errors.page, uma lista de
-mensagens. Seus textos não são fixados pelo contrato. Esse 422 pertence à
+No erro de validação, o corpo contém message e errors.page e/ou errors.nome,
+conforme os campos inválidos; cada campo contém uma lista de mensagens. Seus textos não são fixados pelo contrato. Esse 422 pertence à
 validação da query da listagem; produto individual indisponível continua 404.
 
 O consumidor precisa navegar pelas páginas para obter todos os ativos.
@@ -251,10 +260,23 @@ O filtro por nome está desenhado na [aula 06-34](../aulas/06-34-contrato-filtro
 ainda sem implementação. Planejado: nome opcional como trecho literal de 1 a 100
 caracteres após normalização, filtrar ativos antes de contar/paginar e preservar
 nome nos links. Comparação seguirá a collation atual, ignorando caixa e distinguindo
-acentos. A API executável continua conforme as seções de listagem e consulta
-individual acima: nome ainda não é um parâmetro suportado pelo contrato atual.
+acentos. A validação de nome entrou na 6.35; a busca por nome e a preservação nos
+links ainda não estão implementadas. As seções de listagem e consulta individual
+acima descrevem o comportamento executável atual.
 Entendimento da 6.34 confirmado com "entendi" em 01/11/2026. As verificações de collation não
 constituem teste do filtro HTTP futuro.
+
+## Implementação parcial na 6.35 — validação de nome
+
+ListarProdutosRequest valida nome com bail/sometimes/required/string/max:100.
+Index já usa esse Form Request, portanto entradas inválidas agora recebem 422
+antes de executar o controller. Nome válido ainda não é passado ao serviço.
+Diagnóstico HTTP temporário conferiu 12 válidos/7 inválidos, normalização/tipos,
+limites de caracteres ASCII/Unicode e ausência de SQL nas rejeições. Dois ativos
+em transação continuaram na resposta com nome=zzzinexistente: filtro não aplicado.
+Consulta individual preservada, rollback e contagens conferidos. Suíte existente
+41 testes/288 asserções passou; ainda sem teste permanente novo para nome.
+Explicação na [aula 06-35](../aulas/06-35-validacao-nome.md). Entendimento da 6.35 confirmado com "entendi" em 01/11/2026.
 
 ## Evolução
 

@@ -381,9 +381,14 @@ em d86aa98. Na 6.34, contrato do filtro nome desenhado: trecho literal opcional
 links preservam nome e comparação segue collation atual. SELECTs confirmaram
 caixa ignorada/acentos distintos e contagens preservadas. Filtro ainda não
 implementado; somente documentação. Explicação apresentada; entendimento da
-6.34 confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar
-e iniciar somente 6.35:
-regras de validação de nome no Form Request, ainda sem aplicar filtro à consulta.
+6.34 confirmado com "entendi" em 01/11/2026 e publicada em 4bb1291. Na 6.35,
+ListarProdutosRequest recebeu nome com bail/sometimes/required/string/max:100.
+Validação já ativa no HTTP; nome válido ainda não filtra. Diagnóstico conferiu
+12 válidos/7 inválidos, normalização/tipos/Unicode/422 sem SQL e rollback; suíte
+existente 41/288 passou, contagens preservadas. Explicação apresentada; entendimento
+da 6.35 confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar
+e iniciar somente
+6.36: método nome(): ?string para nome validado ou null, ainda sem filtro na consulta.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

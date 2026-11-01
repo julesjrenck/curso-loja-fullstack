@@ -5,7 +5,8 @@
 Desenho, explicação e verificações em 30/10/2026 após confirmação da 6.33 com
 "entendi" e publicação em d86aa98520fdf6a728c629ce6e3a028deaa431eb. HEAD,
 origin/main e main remota conferidos após push. Entendimento da 6.34 confirmado
-com "entendi" em 01/11/2026; publicação em preparação.
+com "entendi" em 01/11/2026; checkpoint publicado em
+4bb129121f344e1b4c59a1166346b0315cde3a3a, com remoto conferido.
 
 Esta etapa define o comportamento para a implementação gradual. O filtro ainda
 não está implementado: o [contrato atual](../api/catalogo.md) continua aceitando
@@ -110,7 +111,8 @@ resultado da 6.33: 41 testes/288 asserções passaram.
 
 ## Continuidade
 
-Roteiro, progresso e referência no contrato atual atualizados. Entendimento da
-6.34 confirmado com "entendi" em 01/11/2026; publicação em preparação. Publicar
-e iniciar somente 6.35: acrescentar as regras de validação de nome em
-ListarProdutosRequest e verificar as entradas, ainda sem aplicar o filtro à consulta.
+Entendimento confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+4bb129121f344e1b4c59a1166346b0315cde3a3a, com HEAD/origin/main/main remota conferidos.
+Continuidade realizada na [aula 6.35](06-35-validacao-nome.md), com validação de
+nome no Form Request, ainda sem aplicar o filtro à consulta. As seções acima
+registram o desenho da 6.34; o contrato atual acompanha cada parte implementada.

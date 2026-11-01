@@ -4,8 +4,21 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.34 — Contrato planejado do filtro por nome.
+- Etapa atual: 6.35 — Validação do parâmetro nome.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.35: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. ListarProdutosRequest recebeu nome com
+  bail/sometimes/required/string/max:100. Nome omitido aceito; presente vazio,
+  array ou acima de 100 rejeitado com 422/errors.nome. Controller já usa o
+  Form Request, então validação é ativa; nome válido ainda não filtra a consulta.
+  Diagnóstico HTTP temporário conferiu 12 entradas válidas e 7 inválidas,
+  normalização, tipos, Unicode 100/101, erros por campo sem SQL, listagem sem
+  filtro e individual preservado. Rollback confirmado. Sintaxe válida; suíte
+  existente 41 testes/288 asserções passou. Contagens antes/depois: teste
+  0 categorias/0 produtos; normal 0 categorias/1 produto. Aula 06-35 e contrato
+  atualizados. Publicação em preparação. Próximo passo: publicar
+  e iniciar somente 6.36: método nome(): ?string para obter o nome validado ou
+  null quando omitido, ainda sem aplicar o filtro à consulta.
 - Situação da 6.34: contrato desenhado, explicado e verificado em 30/10/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Aula 06-34 define nome opcional, trecho
   literal de 1 a 100 caracteres após normalização; omitido sem filtro, vazio/
@@ -16,9 +29,8 @@
   confirmaram SQL_Latin1_General_CP1_CI_AS nos dois bancos, caixa igual/acentos
   diferentes e contagens teste 0 categorias/0 produtos, normal 0 categorias/1
   produto. Diff e links locais conferidos; suíte não repetida para documentação.
-  Publicação em preparação. Próximo passo: publicar e iniciar
-  somente 6.35: regras de validação de nome em ListarProdutosRequest, ainda sem
-  aplicar o filtro à consulta.
+  Publicação verificada em 4bb129121f344e1b4c59a1166346b0315cde3a3a; HEAD/origin/main/main
+  remota coincidiram após push em 01/11/2026. Continuidade realizada na 6.35.
 - Situação da 6.33: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado com "entendi" em 30/10/2026. Teste de página além da última passou a
   receber int pagina/paginaAnterior pelo DataProvider paginasAposUltima, com
@@ -388,7 +400,8 @@
   entendimento da 6.31 confirmado com "entendi" em 30/10/2026 e publicada.
   6.32 confirmada/publicada e 6.33 implementada/explicada/verificada em 30/10/2026,
   entendimento da 6.33 confirmado com "entendi" em 30/10/2026 e publicada.
-  6.34 desenhada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.34 confirmada/publicada em 01/11/2026 e 6.35 implementada/explicada/verificada,
+  entendimento da 6.35 confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -523,20 +536,19 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 30/10/2026: 6.33 confirmada com "entendi" e publicada em
-d86aa98520fdf6a728c629ce6e3a028deaa431eb; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.34 desenhada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Aula docs/aulas/06-34-contrato-filtro-nome.md define nome opcional, trecho literal
-1..100 após normalização, omitido sem filtro, vazio/array/excesso com 422/errors.nome.
-Preservar ativos, ordem nome/ID, dez por página e formato; filtrar antes de
-contar/paginar, total dos correspondentes, nome nos links de navegação. Caixa
-ignorada, acentos distintos conforme collation da coluna SQL_Latin1_General_CP1_CI_AS.
-SELECTs no PHP Docker verificaram collation/comparações e contagens: teste
-0 categorias/0 produtos; normal 0 categorias/1 produto. Somente documentação
-alterada; filtro ainda não implementado e suíte não repetida. Último resultado
-6.33: 41 testes/288 asserções passaram. Contrato atual tem link para o planejamento.
-Publicação em preparação. Próximo passo: publicar e iniciar somente 6.35, regras de
-validação de nome no Form Request, ainda sem aplicar o filtro à consulta.
+Estado mais recente em 01/11/2026: 6.34 confirmada com "entendi" e publicada em
+4bb129121f344e1b4c59a1166346b0315cde3a3a; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.35 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+ListarProdutosRequest valida nome com bail/sometimes/required/string/max:100.
+Nome omitido aceito; vazio/array/excesso rejeitado com 422/errors.nome. Validação
+já ativa no HTTP porque index já usa o Form Request. Nome válido ainda não filtra.
+Diagnóstico /tmp/curso-635-validacao-nome.php no PHP Docker: 12 válidos/7 inválidos,
+normalização/tipos, 100/101 ASCII/Unicode, nomes e page juntos, zero SQL durante
+validação, listagem com termo inexistente devolvendo dois ativos, individual 200
+e rollback. Suíte existente 41/288 passou. Contagens antes/depois: teste 0/0 e
+normal 0/1 categorias/produtos. Aula docs/aulas/06-35-validacao-nome.md.
+Publicação em preparação. Próximo passo: publicar e iniciar somente 6.36: método
+nome(): ?string com nome validado ou null quando omitido. Ainda sem filtro na consulta.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -8265,11 +8277,53 @@ Verificações:
 - Sem alteração em PHP/serviços/configuração/banco; suíte não repetida. Último
   resultado da 6.33: 41 testes/288 asserções passaram; não é cobertura do filtro novo.
 
-Entendimento da 6.34: confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: d86aa98520fdf6a728c629ce6e3a028deaa431eb, etapa 6.33.
-Próximo passo: publicar e iniciar somente 6.35, acrescentando
-regras de nome em ListarProdutosRequest e verificando entradas, sem aplicar o
-filtro à consulta ainda. Exercício DBeaver segue sem relato.
+Entendimento da 6.34: confirmado com "entendi" em 01/11/2026.
+Publicação: 4bb129121f344e1b4c59a1166346b0315cde3a3a; HEAD/origin/main/main remota coincidiram
+após push em 01/11/2026. Continuidade realizada na 6.35. DBeaver segue sem relato.
+
+## Etapa 6.35 — Validação do parâmetro nome
+
+Implementação, explicação e verificações em 01/11/2026 após confirmação e
+publicação da 6.34 em 4bb129121f344e1b4c59a1166346b0315cde3a3a.
+Aula docs/aulas/06-35-validacao-nome.md. Uma alteração de código em
+ListarProdutosRequest::rules: nome recebe bail, sometimes, required, string e
+max:100. Regras de page preservadas. Controller/contrato/serviços/rotas preservados.
+
+Sometimes torna o parâmetro opcional; required exige conteúdo quando presente.
+String rejeita arrays; max limita caracteres do texto; bail para na primeira
+falha daquele campo. Normalização global ocorre antes: espaços externos
+removidos e vazio convertido em null, ainda rejeitado por required. Texto '0'
+é válido e espaços internos preservados. Form Request já integra index, então
+erros de nome passam a produzir 422/message/errors.nome no HTTP atual.
+Nome válido ainda não é usado para filtrar produtos ou manter nome nos links.
+
+Verificações em Docker, código 0:
+
+- php -l app/Http/Requests/ListarProdutosRequest.php: sintaxe válida.
+- php artisan test --do-not-cache-result --compact: suíte existente 41 testes/288
+  asserções passou. Ainda sem novos testes permanentes para nome nesta etapa.
+- /tmp/curso-635-validacao-nome.php exige loja_test/loja_testes e usa kernel HTTP.
+  Rota de diagnóstico criada apenas em memória no processo CLI recebe o mesmo
+  Form Request e devolve validated/pagina para 12 entradas válidas: omitido,
+  texto, espaços externos/internos, '0', um caractere, 100 ASCII/Unicode,
+  símbolos %_[, +, &, nome com page=2. Tipos e normalização exatos conferidos,
+  zero SQL durante cada requisição dessa rota.
+- Sete entradas inválidas na rota real /api/v1/produtos: vazio, só espaços,
+  array lista/associativo, 101 ASCII/Unicode e nome vazio com page=0. Todas
+  422/application/json/message, errors.nome e errors.page quando aplicável,
+  um erro por campo e zero SQL por requisição (após o guard de identidade).
+- Em transação, dois ativos Camiseta/Caneca; nome=zzzinexistente recebe 200
+  com ambos, total 2 e duas consultas: confirmação de que filtro ainda não
+  foi aplicado. Individual por ID gerado segue 200. Rollback confirmado.
+- SELECTs antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1
+  produto, por /tmp/curso-618-contagens.php. Nenhum cadastro permanente.
+- Git diff --check e links locais da documentação conferidos.
+
+Entendimento da 6.35: confirmado com "entendi" em 01/11/2026. Publicação em preparação.
+Último checkpoint publicado: 4bb129121f344e1b4c59a1166346b0315cde3a3a, etapa 6.34.
+Próximo passo: publicar e iniciar somente 6.36, método
+nome(): ?string para obter validated('nome') ou null quando omitido; ainda sem
+aplicar o filtro à consulta. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -8589,8 +8643,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   com "entendi" em 30/10/2026; publicada em d86aa98. Na 6.34, contrato de nome
   desenhado/explicado/verificado por inspeção, SELECTs de collation e links/diff;
   filtro ainda não implementado. Entendimento confirmado com "entendi" em
-  01/11/2026; publicar e iniciar
-  somente 6.35: validação de nome no Form Request, sem aplicar filtro à consulta.
+  01/11/2026; publicada em 4bb1291. Na 6.35, validação de nome implementada,
+  explicada e verificada com 12 válidos/7 inválidos, suíte 41/288 e rollback;
+  contagens preservadas. Entendimento confirmado com "entendi" em 01/11/2026;
+  publicar e iniciar somente
+  6.36: método nome(): ?string, ainda sem aplicar filtro à consulta.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -8787,4 +8844,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 30/10/2026 | 6.31 — Páginas inválidas com DataProvider | Onze casos HTTP de 422/JSON/message/errors.page; classe 25/208 e suíte 39/262 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: 3a782ca |
 | 30/10/2026 | 6.32 — Página após a última preserva total | Um ativo/page=2 exige 200/data [], total 1, links/meta; classe 26/221 e suíte 40/275 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: db652dd |
 | 30/10/2026 | 6.33 — Limite superior válido | Provider de páginas 2/1000000 exige 200/data [], total e links; suíte 41/288 passou; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: d86aa98 |
-| 30/10/2026 | 6.34 — Contrato planejado do filtro por nome | Entrada/trecho literal/ativos/total/links definidos; collation e contagens conferidas por SELECT; filtro ainda não implementado | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 30/10/2026 | 6.34 — Contrato planejado do filtro por nome | Entrada/trecho literal/ativos/total/links definidos; collation e contagens conferidas por SELECT; filtro ainda não implementado | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 4bb1291 |
+| 01/11/2026 | 6.35 — Validação de nome | Regras no Form Request; diagnóstico 12 válidos/7 inválidos, tipos/normalização/422/zero SQL e rollback; suíte 41/288 e contagens passaram | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

@@ -31,6 +31,13 @@ class ListarProdutosRequest extends FormRequest
                 'max:1000000',
                 'regex:/\A[1-9][0-9]*\z/',
             ],
+            'nome' => [
+                'bail',
+                'sometimes',
+                'required',
+                'string',
+                'max:100',
+            ],
         ];
     }
 }
