@@ -4,8 +4,23 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.66 — Corpo 404 da consulta individual no OpenAPI.
+- Etapa atual: 6.67 — Exemplo 200 da consulta individual no OpenAPI.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.67: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. OpenAPI recebeu example permanente ao
+  lado do schema de 200/application/json da consulta individual: data objeto
+  com id 1/nome Camiseta/preco_em_centavos 4990, ilustrando sucesso para ID 1.
+  Valores ilustrativos, sem captura HTTP ou inserção no banco. Conferido com
+  schema Produto e teste existente por leitura. Mesma configuração Redocly e
+  imagem 2.65.0/digest: lint código 0, sem erros ou avisos, incluindo validação
+  do novo exemplo contra o schema. Só example de 200 individual acrescentado;
+  schemas/outros contratos/configuração intactos. Limite da 6.64 segue registrado,
+  id original required true. Sem novas dependências, produção alterada, SQL ou
+  nova suíte Laravel; última suíte 6.49, 66/620. Aula 06-67, contrato e registros
+  atualizados; diff e links conferidos. Publicação em preparação.
+  Próximo passo: publicar e iniciar somente 6.68:
+  acrescentar um exemplo permanente de resposta 404 da consulta individual e
+  validá-lo em Docker.
 - Situação da 6.66: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Resposta 404 da consulta individual no
   OpenAPI recebeu content/application/json/schema object, required message e
@@ -20,8 +35,8 @@
   registrado, id original required true. Sem novas dependências, produção
   alterada, captura HTTP, SQL ou nova suíte Laravel; última suíte 6.49, 66/620.
   Aula 06-66, contrato e registros atualizados; diff e links conferidos.
-  Publicação em preparação. Próximo passo: publicar e iniciar somente 6.67: acrescentar um exemplo permanente de
-  resposta 200 da consulta individual e validá-lo em Docker.
+  Publicação verificada em a9e7c41fb4fc0a24c8b461e5f891c8773058c2b5; HEAD/origin/main/main
+  remota coincidiram após push em 01/11/2026. Continuidade realizada na 6.67.
 - Situação da 6.65: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Resposta 200 da consulta individual no
   OpenAPI recebeu content/application/json/schema object, required data e
@@ -805,7 +820,8 @@
   6.63 confirmada/publicada em 01/11/2026;
   6.64 confirmada/publicada em 01/11/2026;
   6.65 confirmada/publicada em 01/11/2026;
-  6.66 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.66 confirmada/publicada em 01/11/2026;
+  6.67 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -940,27 +956,24 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.65 confirmada com "entendi" e publicada em
-087430c1f2c1c8fe943a95f6fd0239fa527d16cf; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.66 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-OpenAPI 3.2.1: 404 individual recebeu content/application/json/schema object,
-required message e properties.message string. Descrição registra frase do
-controller (Produto não encontrado.) para inexistente/inativo/fora da faixa
-e texto variável em erros de roteamento. Sem enum/const ou exemplo permanente.
-Leitura de controller/bootstrap/testes existentes conferiu contrato atual.
-Mesma configuração Redocly e imagem:
+Estado mais recente em 01/11/2026: 6.66 confirmada com "entendi" e publicada em
+a9e7c41fb4fc0a24c8b461e5f891c8773058c2b5; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.67 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+OpenAPI 3.2.1: example permanente em 200/application/json da consulta individual,
+ao lado de schema: data objeto com id 1/nome Camiseta/preço inteiro 4990.
+Ilustra sucesso para ID 1; não captura HTTP nem insere produto. Conferido por
+leitura com schema Produto e teste existente. Mesma configuração Redocly/imagem:
 redocly/cli:2.65.0@sha256:42acee0d7e629a9d0376d8df579dc325e51da727de06a31036bccc02409a7e11.
-Lint Docker sem rede/bind somente leitura passou com código 0. Quatro cópias
-em /tmp/curso-666 receberam exemplos apenas temporários: frase do controller
-e outro texto ilustrativo passaram/código 0; message número e ausente foram
-rejeitados/código 1 pela regra de exemplos. Documento preservado após diagnósticos;
-só content de 404 individual acrescentado, demais contratos/configuração intactos.
-Limite de required false da 6.64 permanece registrado; original true preservado.
-Sem novas dependências, produção alterada, captura HTTP, SQL ou nova suíte
-Laravel; última suíte 6.49, 66/620. Aula docs/aulas/06-66-corpo-404-consulta-openapi.md,
-contrato e registros atualizados; diff/links conferidos. Publicação em preparação. Próximo passo: publicar e iniciar
-somente 6.67: acrescentar um exemplo permanente de resposta 200 da consulta
-individual e validá-lo em Docker.
+Lint Docker descartável/sem rede/docs/api em leitura retornou 0, sem erros ou
+avisos, incluindo verificação dos valores do novo exemplo contra o schema.
+Só example de 200 individual acrescentado; schemas/outros contratos/configuração
+preservados. Limite de required false da 6.64 continua registrado; original true.
+Sem novas dependências, produção alterada, SQL ou nova suíte Laravel; última
+suíte 6.49, 66/620. Aula docs/aulas/06-67-exemplo-200-consulta-openapi.md, contrato
+e registros atualizados; diff/links conferidos. Publicação em preparação.
+Próximo passo: publicar e iniciar somente 6.68:
+acrescentar um exemplo permanente de resposta 404 da consulta individual e
+validá-lo em Docker.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -9807,10 +9820,39 @@ Limite de required false da 6.64 continua registrado; id original true.
 Validação do documento/exemplos não executa endpoints nem comprova respostas
 reais. Sem novas dependências, produção alterada, captura HTTP, SQL ou nova
 suíte Laravel; última suíte 6.49, 66/620.
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+a9e7c41fb4fc0a24c8b461e5f891c8773058c2b5; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.67. Exercício DBeaver segue sem relato.
+
+## Etapa 6.67 — Exemplo 200 da consulta individual no OpenAPI
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação e
+publicação da 6.66 em a9e7c41fb4fc0a24c8b461e5f891c8773058c2b5.
+Aula docs/aulas/06-67-exemplo-200-consulta-openapi.md. Em 200/application/json
+de GET /api/v1/produtos/{id}, acrescentado example ao lado de schema:
+data objeto com id 1/nome Camiseta/preco_em_centavos 4990. Ilustra sucesso
+para ID 1 e preço R$ 49,90. Valores ilustrativos, sem captura HTTP, default,
+inserção no banco ou mudança da resposta real. Conferido por leitura com
+schema Produto e teste existente da consulta individual.
+
+Mesma configuração Redocly, com no-invalid-media-type-examples severity error,
+e imagem redocly/cli:2.65.0@sha256:42acee0d7e629a9d0376d8df579dc325e51da727de06a31036bccc02409a7e11.
+Docker descartável/sem rede/docs/api em leitura/workdir /spec, comando lint
+openapi.json --config redocly.yaml retornou 0, sem erros ou avisos, incluindo
+os valores do exemplo contra o schema que referencia Produto.
+Sem novos diagnósticos negativos nesta etapa; os controles anteriores constam
+nos registros da 6.65/6.66. Limite de required false da 6.64 preservado nos
+registros; original id in path/required true permanece correto.
+
+Git diff --check e links locais conferidos. Só example de 200 individual
+acrescentado; schemas/outros status/listagem/componentes/configuração intactos.
+Validação do exemplo escrito não executa endpoint nem comprova respostas reais.
+Sem novas dependências, produção alterada, captura HTTP, SQL ou nova suíte
+Laravel; última suíte executada na 6.49: 66 testes/620 asserções.
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: 087430c1f2c1c8fe943a95f6fd0239fa527d16cf, etapa 6.65.
-Próximo passo: publicar e iniciar somente 6.67:
-acrescentar um exemplo permanente de resposta 200 da consulta individual e
+Último checkpoint publicado: a9e7c41fb4fc0a24c8b461e5f891c8773058c2b5, etapa 6.66.
+Próximo passo: publicar e iniciar somente 6.68:
+acrescentar um exemplo permanente de resposta 404 da consulta individual e
 validá-lo em Docker. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
@@ -10227,7 +10269,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Na 6.66, 404 individual object/message obrigatório/string, descrição com
   variação de texto. Lint código 0; duas frases aceitas/código 0, número/ausente
   rejeitados/código 1 em cópias temporárias. Entendimento confirmado com
-  "entendi" em 01/11/2026. Publicar e iniciar somente 6.67: exemplo permanente de 200 individual
+  "entendi" em 01/11/2026, publicada em a9e7c41. Na 6.67, exemplo permanente
+  de 200 individual com data objeto/Camiseta/id 1/preço 4990; lint Docker código
+  0, valores validados contra o schema. Entendimento confirmado com "entendi"
+  em 01/11/2026. Publicar e iniciar somente 6.68: exemplo permanente de 404 individual
   e validação em Docker.
   Última suíte Laravel permanece 66/620 da 6.49.
   Exercício manual DBeaver continua sem relato do aluno.
@@ -10458,4 +10503,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.63 — Exemplo 422 | Message/errors.nome ilustrativos, mesma regra/imagem; Docker código 0, três cópias inválidas código 1; diff e links; sem nova suíte Laravel | Confirmado com "entendi" em 01/11/2026 | Publicado em f8aaa6b; remoto conferido |
 | 01/11/2026 | 6.64 — Consulta individual OpenAPI | GET/id path obrigatório/200/404; lint código 0, id sem declaração código 1; required false aceito em cópia (limitação); diff e links | Confirmado com "entendi" em 01/11/2026 | Publicado em e1b025b; remoto conferido |
 | 01/11/2026 | 6.65 — Corpo 200 individual | Object/data obrigatório/$ref Produto; lint código 0, exemplo temporário válido código 0, lista/sem data código 1; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicado em 087430c; remoto conferido |
-| 01/11/2026 | 6.66 — Corpo 404 individual | Object/message obrigatório/string, texto variável; lint e duas frases código 0, número/ausente código 1 em cópias; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.66 — Corpo 404 individual | Object/message obrigatório/string, texto variável; lint e duas frases código 0, número/ausente código 1 em cópias; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicado em a9e7c41; remoto conferido |
+| 01/11/2026 | 6.67 — Exemplo 200 individual | Example permanente com data objeto/Camiseta/id 1/preço 4990, lint Docker código 0 com validação dos valores; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

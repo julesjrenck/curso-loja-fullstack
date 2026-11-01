@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.65 com "entendi" e publicação em 087430c1f2c1c8fe943a95f6fd0239fa527d16cf.
-Entendimento da 6.66 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.66 confirmado com "entendi" em 01/11/2026; publicação
+verificada em a9e7c41fb4fc0a24c8b461e5f891c8773058c2b5, referências local e remotas coincidentes.
 
 ## Um campo obrigatório de texto
 
@@ -86,6 +87,5 @@ dependências, captura HTTP, SQL ou nova suíte Laravel; última suíte na 6.49:
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026. Publicar o checkpoint. Próxima etapa, 6.67:
-acrescentar um exemplo permanente de resposta 200 da consulta individual e
-validá-lo em Docker.
+com "entendi" em 01/11/2026; publicação verificada em a9e7c41fb4fc0a24c8b461e5f891c8773058c2b5.
+Continuidade na [aula 06-67](06-67-exemplo-200-consulta-openapi.md).

@@ -312,6 +312,13 @@
                       "$ref": "#/components/schemas/Produto"
                     }
                   }
+                },
+                "example": {
+                  "data": {
+                    "id": 1,
+                    "nome": "Camiseta",
+                    "preco_em_centavos": 4990
+                  }
                 }
               }
             }

@@ -544,9 +544,14 @@ message obrigatório/string; descrição distingue controller e variação em er
 de roteamento, sem frase única no schema. Lint código 0; cópias temporárias
 com duas frases aceitas/código 0, message número/ausente rejeitados/código 1.
 Sem exemplo permanente, dependências novas, produção alterada, SQL ou nova
-suíte Laravel. Explicação apresentada; entendimento confirmado com "entendi"
-em 01/11/2026. Publicar e iniciar somente 6.67: exemplo permanente de 200 individual
-validado em Docker.
+suíte Laravel. Entendimento confirmado com "entendi" em 01/11/2026 e publicada
+em a9e7c41. Na 6.67, example permanente de 200 individual: data objeto com
+Camiseta/id 1/preço inteiro 4990, ao lado do schema. Valores ilustrativos,
+sem captura HTTP ou inserção no banco. Lint Docker código 0, incluindo regra
+de exemplos; schemas/outros contratos preservados. Sem novas dependências,
+produção alterada, SQL ou nova suíte Laravel. Explicação apresentada;
+entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.68:
+exemplo permanente de 404 individual validado em Docker.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
