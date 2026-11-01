@@ -1,13 +1,10 @@
 # API de catálogo — contrato atual
 
-Paginação e validação de page implementadas na etapa 6.28 em 30/10/2026.
-Explicação e verificações apresentadas; entendimento da 6.28 confirmado pelo aluno
-com "entendi" em 30/10/2026. A listagem agora retorna data/links/meta. Consulta individual mantém
-seu contrato anterior. Desenho histórico em ../aulas/06-23-contrato-paginacao-catalogo.md.
-
-Na 6.35, em 01/11/2026, a validação de nome foi acrescentada ao Form Request.
-Nome válido ainda não é aplicado como filtro à consulta. Entendimento da 6.35
-confirmado com "entendi" em 01/11/2026.
+Contrato executável da listagem com paginação e filtro por nome, integrado na
+etapa 6.39 em 01/11/2026. Explicação e verificações apresentadas; entendimento da
+6.39 confirmado com "entendi" em 01/11/2026. Consulta individual mantém seu contrato anterior.
+Desenhos históricos: [paginação](../aulas/06-23-contrato-paginacao-catalogo.md) e
+[filtro por nome](../aulas/06-34-contrato-filtro-nome.md).
 
 ## Listar produtos
 
@@ -23,15 +20,26 @@ confirmado com "entendi" em 01/11/2026.
   na URL, por exemplo page=%2B1; um + literal é decodificado como espaço.
 - Tamanho fixo: até 10 produtos por página. Per_page não é parâmetro de
   requisição suportado; per_page na resposta informa essa capacidade fixa.
-- Nome tem somente validação implementada na 6.35: opcional; quando presente,
-  texto não vazio de até 100 caracteres após normalização do Laravel. Espaços
-  externos são removidos, internos preservados; '0' é texto válido. Vazio, array
-  ou acima de 100 recebe 422/errors.nome. Nome válido ainda não filtra produtos
-  nem é preservado nos links. O filtro completo segue planejado para próximas etapas.
+- Nome opcional na query: ?nome=camiseta&page=2. Omitido não filtra por nome.
+  Quando presente, texto não vazio de até 100 caracteres após normalização do
+  Laravel. Espaços externos removidos, internos preservados; '0' é texto válido.
+  Vazio, somente espaços, array ou acima de 100 recebe 422/errors.nome.
+- Nome seleciona produtos cujo nome contenha o trecho literal, em qualquer
+  posição. Ignora maiúsculas/minúsculas e distingue acentos conforme a collation
+  SQL_Latin1_General_CP1_CI_AS da coluna no projeto. Camiseta corresponde a camiseta;
+  Tênis corresponde a tênis, mas não a tenis. Não faz busca aproximada ou por
+  palavras separadas; %, _ e [ são caracteres literais, sem curingas.
+- Na URL, codificar valores reservados: + como %2B, % como %25 e & como %26.
+  Texto validado é passado como parâmetro SQL.
+- Links de navegação preservam somente nome normalizado, quando informado,
+  além do page gerenciado pelo paginador. Ordem dos parâmetros não é relevante.
+  Parâmetros desconhecidos são ignorados e não são repassados aos links.
 - Outros filtros e parâmetros não fazem parte deste contrato.
 
 Somente produtos ativos, em ordem de nome segundo a ordenação SQL Server do
-projeto e ID crescente como desempate. O total conta apenas ativos. A sequência
+projeto e ID crescente como desempate. Nome é aplicado antes de contar e paginar.
+O total conta somente os ativos correspondentes ao filtro; sem nome, todos os
+ativos. A sequência
 é determinística com dados inalterados; mudanças entre requisições podem mover
 itens entre páginas da paginação por número.
 
@@ -100,13 +108,26 @@ status, categoria e timestamps não são enviados. Data é sempre uma lista com
 somente os produtos da página solicitada.
 
 Links contém first/last/prev/next, URLs de navegação. Prev e next são null quando
-não há página anterior ou seguinte. Meta contém:
+não há página anterior ou seguinte. URLs não nulas preservam nome normalizado,
+assim como as de meta.links. Exemplo real com nome=Camiseta no catálogo local:
+
+```json
+{
+  "first": "http://127.0.0.1:8002/api/v1/produtos?nome=Camiseta&page=1",
+  "last": "http://127.0.0.1:8002/api/v1/produtos?nome=Camiseta&page=1",
+  "prev": null,
+  "next": null
+}
+```
+
+Em um catálogo com doze correspondentes, next na primeira página aponta para
+nome=Camiseta&page=2 e a segunda mantém total 12. Meta contém:
 
 | Campo | Tipo JSON | Significado |
 | --- | --- | --- |
 | current_page | inteiro | Página solicitada; padrão 1. |
 | per_page | inteiro | Capacidade fixa 10, mesmo com menos itens na página. |
-| total | inteiro | Total de produtos ativos em todas as páginas. |
+| total | inteiro | Total de ativos correspondentes em todas as páginas; sem nome, todos os ativos. |
 | last_page | inteiro | Última página calculada; pelo menos 1. |
 | from e to | inteiro ou null | Posições inicial/final na lista; null para página vazia. |
 | path | string | URL base da listagem. |
@@ -117,10 +138,10 @@ Cada item de meta.links contém url (string/null), label (string), page
 com a tradução; não são identificadores de negócio. O consumidor pode usar
 links.next/prev para navegação sem interpretar esses rótulos.
 
-Sem ativos, continua 200: data [], total 0, current_page 1 se omitido, last_page 1,
+Sem ativos correspondentes, continua 200: data [], total 0, current_page 1 se omitido, last_page 1,
 from/to null, first/last para page=1 e prev/next null. O envelope mantém links/meta.
 
-Com onze ativos, page=1 retorna dez e page=2 retorna um; ambas têm total 11 e
+Com onze ativos correspondentes, page=1 retorna dez e page=2 retorna um; ambas têm total 11 e
 last_page 2. Page=3 é válida e retorna 200/data [], current_page 3, total 11,
 last_page 2, from/to null, prev para page=2 e next null. Page inválida ou fora do
 intervalo permitido recebe 422, mesmo que a coleção esteja vazia.
@@ -129,19 +150,19 @@ No erro de validação, o corpo contém message e errors.page e/ou errors.nome,
 conforme os campos inválidos; cada campo contém uma lista de mensagens. Seus textos não são fixados pelo contrato. Esse 422 pertence à
 validação da query da listagem; produto individual indisponível continua 404.
 
-O consumidor precisa navegar pelas páginas para obter todos os ativos.
+O consumidor precisa navegar pelas páginas para obter todos os ativos correspondentes.
 A partir da 6.28, uma única resposta da listagem contém apenas a página solicitada.
 
 ## Consultar produto por ID
 
-Implementado na 6.16, preservado na 6.28.
+Implementado na 6.16, preservado na 6.39.
 
 - Método e caminho: GET /api/v1/produtos/{id}.
 - URL local ilustrativa: http://127.0.0.1:8002/api/v1/produtos/1.
 - ID obrigatório: inteiro positivo em decimal sem zeros à esquerda, até
   PHP_INT_MAX (9223372036854775807 na imagem PHP 64 bits atual).
 - Sem corpo de requisição; Accept: application/json recomendado.
-- Acesso público de leitura; não recebe os parâmetros de paginação da listagem.
+- Acesso público de leitura; não recebe os parâmetros page/nome da listagem.
 - Produto ativo encontrado: 200 e Content-Type application/json.
 - ID válido inexistente ou de produto inativo: 404 e Content-Type application/json.
 
@@ -163,7 +184,13 @@ recebe esse mesmo 404/message, sem consultar o banco. Formatos fora do padrão,
 como abc, 0, -1, 1.5 ou 01, recebem 404 JSON do roteamento antes de show. O texto
 desses erros de rota não é padronizado por este contrato.
 
-## Implementação e verificações da 6.28
+## Histórico de implementação e verificações
+
+Os registros abaixo descrevem o estado em cada etapa. Referências a partes
+pendentes nesses registros são históricas; o comportamento atual está nas
+seções de listagem e consulta individual acima.
+
+### Implementação e verificações da 6.28
 
 ProdutoController@index recebe ListarProdutosRequest e Catalogo. Laravel resolve
 e valida o Form Request antes de executar index; pagina() fornece o inteiro
@@ -194,7 +221,7 @@ individual pelo ID obtido da listagem, page=0 com 422 e /loja com HTML/produto.
 Diagnósticos: /tmp/curso-628-http-paginacao.php e /tmp/curso-628-http-real.php.
 Explicação e comandos na [aula 06-28](../aulas/06-28-paginacao-http.md).
 
-## Cobertura acrescentada na 6.29
+### Cobertura acrescentada na 6.29
 
 Um teste permanente solicita page=2 com onze ativos e um inativo. Dois ativos
 chamados Produto 10 ocupam as posições 10/11 na ordem nome/ID. A resposta deve
@@ -207,7 +234,7 @@ Na 6.29, limites e respostas 422 foram conferidos apenas nos diagnósticos
 anteriores; o primeiro teste permanente de 422 foi acrescentado na 6.30. Entendimento da 6.29 confirmado com "entendi" em 30/10/2026.
 Explicação na [aula 06-29](../aulas/06-29-teste-segunda-pagina.md).
 
-## Cobertura acrescentada na 6.30
+### Cobertura acrescentada na 6.30
 
 Novo teste solicita GET /api/v1/produtos?page=0 sem criar produtos. Exige 422,
 Content-Type application/json, chave message e campo page em errors usando
@@ -219,7 +246,7 @@ Classe 15 testes/128 asserções e suíte 29 testes/182 asserções passaram, co
 preservadas. Entendimento da 6.30 confirmado com "entendi" em 30/10/2026. Explicação na
 [aula 06-30](../aulas/06-30-teste-pagina-zero.md).
 
-## Cobertura acrescentada na 6.31
+### Cobertura acrescentada na 6.31
 
 O teste de page=0 foi generalizado com DataProvider de onze queries: zero,
 vazio, negativo, decimal, zero inicial, letras, array (page[]=1), sinal positivo
@@ -233,7 +260,7 @@ contagens preservadas. Código da aplicação preservado. Na 6.31, página após
 Entendimento da 6.31 confirmado com "entendi" em 30/10/2026. Explicação na
 [aula 06-31](../aulas/06-31-paginas-invalidas-provider.md).
 
-## Cobertura acrescentada na 6.32
+### Cobertura acrescentada na 6.32
 
 Novo teste cria um ativo e solicita page=2. Exige 200/application/json/data [],
 meta com current_page 2, per_page 10, total 1, last_page 1 e from/to null.
@@ -244,7 +271,7 @@ contagens antes/depois preservadas. Na 6.32, o limite superior válido ainda tin
 apenas diagnóstico específico anterior. Entendimento da 6.32 confirmado com "entendi" em 30/10/2026. Explicação na
 [aula 06-32](../aulas/06-32-pagina-apos-ultima.md).
 
-## Cobertura acrescentada na 6.33
+### Cobertura acrescentada na 6.33
 
 O teste após a última recebe pagina/paginaAnterior pelo provider paginasAposUltima:
 [2, 1] e [1000000, 999999]. Cada caso cria um ativo, exige 200/JSON/data [], total 1,
@@ -254,7 +281,7 @@ coberto permanentemente, assim como o inválido 1000001/422 já coberto na 6.31.
 Classe da API passou; suíte completa 41 testes/288 asserções passou, contagens
 preservadas. Código da aplicação preservado. Entendimento da 6.33 confirmado com "entendi" em 30/10/2026. Explicação na [aula 06-33](../aulas/06-33-limite-paginacao.md).
 
-## Próxima evolução planejada — etapa 6.34
+### Desenho do filtro — etapa 6.34
 
 O filtro por nome está desenhado na [aula 06-34](../aulas/06-34-contrato-filtro-nome.md),
 com implementação gradual. Planejado: nome opcional como trecho literal de 1 a 100
@@ -266,7 +293,7 @@ acima descrevem o comportamento executável atual.
 Entendimento da 6.34 confirmado com "entendi" em 01/11/2026. As verificações de collation não
 constituem teste do filtro HTTP futuro.
 
-## Implementação parcial na 6.35 — validação de nome
+### Implementação parcial na 6.35 — validação de nome
 
 ListarProdutosRequest valida nome com bail/sometimes/required/string/max:100.
 Index já usa esse Form Request, portanto entradas inválidas agora recebem 422
@@ -278,7 +305,7 @@ Consulta individual preservada, rollback e contagens conferidos. Suíte existent
 41 testes/288 asserções passou; ainda sem teste permanente novo para nome.
 Explicação na [aula 06-35](../aulas/06-35-validacao-nome.md). Entendimento da 6.35 confirmado com "entendi" em 01/11/2026.
 
-## Preparação interna na 6.36 — nome validado
+### Preparação interna na 6.36 — nome validado
 
 ListarProdutosRequest recebeu nome(): ?string com validated('nome'). Depois da
 validação, retorna texto normalizado ou null quando omitido, preservando '0'.
@@ -288,7 +315,7 @@ Diagnóstico conferiu valores/tipos de 12 válidos, sete rejeições e rollback;
 suíte existente 41 testes/288 asserções passou, contagens preservadas.
 Explicação na [aula 06-36](../aulas/06-36-nome-validado.md). Entendimento da 6.36 confirmado com "entendu" em 01/11/2026.
 
-## Preparação interna na 6.37 — filtro no serviço Eloquent
+### Preparação interna na 6.37 — filtro no serviço Eloquent
 
 CatalogoEloquent::paginarProdutos recebe segundo argumento opcional nome=null.
 Se não for null, acrescenta CHARINDEX(?, [nome]) > 0 com binding antes de paginar.
@@ -300,7 +327,7 @@ conferidos. Na 6.37, contrato/demo ainda não declaravam o argumento. O HTTP
 continua validando nome, sem filtrar a busca nem manter nome nos links.
 Explicação na [aula 06-37](../aulas/06-37-filtro-nome-eloquent.md). Entendimento da 6.37 confirmado com "entendi" em 01/11/2026.
 
-## Preparação interna na 6.38 — contrato e demonstração
+### Preparação interna na 6.38 — contrato e demonstração
 
 Catalogo declara nome opcional ?string=null em paginarProdutos, e demonstração
 atende à assinatura com Collection::filter e mb_stripos em UTF-8 !== false.
@@ -312,6 +339,31 @@ contagens preservadas. Controller ainda não envia nome: busca HTTP e preservaç
 nos links permanecem pendentes. Explicação na
 [aula 06-38](../aulas/06-38-contrato-demo-filtro-nome.md). Entendimento da 6.38 confirmado com "entendi" em 01/11/2026.
 
+## Implementação e verificações da 6.39
+
+Index chama paginarProdutos(pagina(), nome()) pelo contrato. Appends recebe
+safe()->only(['nome']), selecionando apenas o nome validado/normalizado para os
+links. Resource preserva data/links/meta e o paginator gera as URLs com codificação.
+Omitido não acrescenta nome; page é gerenciado pelo paginator. Binding Eloquent
+preservado, sem alterações nas rotas, Form Request, serviços ou resource.
+
+Diagnóstico HTTP em loja_test/transação conferiu 19 sucessos, produtos completos,
+ordem/empate, totais/páginas, SQL com bindings ativo/nome, literais/reservados/
+Unicode e todos os links, inclusive meta.links, com query decodificada. Doze
+correspondentes entre vinte ativos, além de um inativo, produzem 10/2/0/0 itens
+nas páginas 1/2/3/1000000, total 12 e última 2. Seguir next manteve o filtro.
+Parâmetros desconhecidos excluídos dos links. Seis inválidos mantiveram 422/JSON
+sem SQL; consultas individuais 200/404 preservadas. Rollback confirmado.
+
+HTTP real local conferiu Camiseta/4990 com nome normalizado nos links, página 2
+vazia total 1, termo inexistente total 0, erros de nome/page, individual e Blade.
+Diagnósticos: /tmp/curso-639-http-filtro-nome.php e /tmp/curso-639-http-real.php;
+snapshot /tmp/curso-639-http-real.json. Suíte existente 41 testes/288 asserções
+passou; ainda sem teste permanente novo do filtro HTTP nesta etapa. Contagens
+antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1 produto.
+Explicação na [aula 06-39](../aulas/06-39-filtro-nome-http.md). Entendimento da 6.39
+confirmado com "entendi" em 01/11/2026.
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com
@@ -319,4 +371,5 @@ id/nome/preço. Da 6.23 à 6.27, paginação foi desenhada e preparada sem mudar
 HTTP. Na 6.28, listagem e testes foram adaptados para data/links/meta, page opcional
 e 422 para entradas inválidas. O histórico detalhado está em docs/progresso.md
 e nas aulas; as seções de listagem e consulta individual acima descrevem o código
-executável atual. Filtros adicionais, outras operações e OpenAPI entrarão gradualmente.
+executável atual. Na 6.39, nome passou a filtrar a busca HTTP e a ser preservado
+nos links. Filtros adicionais, outras operações e OpenAPI entrarão gradualmente.

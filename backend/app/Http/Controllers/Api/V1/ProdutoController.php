@@ -13,7 +13,10 @@ class ProdutoController extends Controller
 {
     public function index(ListarProdutosRequest $request, Catalogo $catalogo): AnonymousResourceCollection
     {
-        return ProdutoResource::collection($catalogo->paginarProdutos($request->pagina()));
+        $paginacao = $catalogo->paginarProdutos($request->pagina(), $request->nome());
+        $paginacao->appends($request->safe()->only(['nome']));
+
+        return ProdutoResource::collection($paginacao);
     }
 
     public function show(Catalogo $catalogo, string $id): ProdutoResource|JsonResponse

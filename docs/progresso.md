@@ -4,8 +4,21 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.38 — Nome opcional no contrato e na demonstração.
+- Etapa atual: 6.39 — Filtro por nome e links no HTTP.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.39: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Index passa pagina()/nome() ao contrato,
+  acrescenta safe()->only(['nome']) aos links com appends e devolve resources.
+  Busca HTTP agora filtra ativos antes de contar/paginar; links e meta.links
+  preservam nome normalizado, parâmetros desconhecidos excluídos. Diagnóstico
+  kernel/transação: 19 sucessos, navegação next, 6 inválidos 422 sem SQL,
+  individual 200/404 e rollback. HTTP real confirmou filtro/Camiseta, links,
+  página 2 vazia total 1, sem correspondência total 0, erros e Blade. Sintaxe
+  válida; suíte existente 41 testes/288 asserções passou. Contagens antes/depois:
+  teste 0/0 e normal 0/1 categorias/produtos. Contrato atual/aula 06-39 atualizados.
+  Publicação em preparação. Próximo passo: publicar e iniciar
+  somente 6.40: teste HTTP permanente da busca por nome, exigindo ativos
+  correspondentes, total e links filtrados.
 - Situação da 6.38: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Catalogo declara paginarProdutos com nome
   opcional ?string=null; demonstração atende à assinatura e filtra coleção com
@@ -16,9 +29,9 @@
   leitura pelo contrato no Eloquent com/sem nome. Sintaxes válidas; suíte
   existente 41 testes/288 asserções passou. Contagens antes/depois: teste 0/0 e
   normal 0/1 categorias/produtos. Controller ainda não envia nome; HTTP sem filtro.
-  Aula 06-38 e contrato atualizados. Publicação em preparação.
-  Próximo passo: publicar e iniciar somente 6.39: integrar nome no controller
-  e preservar o parâmetro validado nos links, verificando o fluxo HTTP.
+  Aula 06-38 e contrato atualizados. Publicação verificada em
+  90cdc350c849b6d0731e13a63aa251139bd0c01e; HEAD/origin/main/main remota coincidiram
+  após push em 01/11/2026. Continuidade realizada na 6.39.
 - Situação da 6.37: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. CatalogoEloquent::paginarProdutos recebe
   nome opcional ?string=null. Consulta mantém ativos e acrescenta
@@ -442,7 +455,8 @@
   entendimento da 6.35 confirmado com "entendi" em 01/11/2026 e publicada.
   6.36 confirmada/publicada em 01/11/2026 e 6.37 implementada/explicada/verificada,
   entendimento da 6.37 confirmado com "entendi" em 01/11/2026 e publicada.
-  6.38 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.38 confirmada/publicada em 01/11/2026 e 6.39 implementada/explicada/verificada,
+  entendimento da 6.39 confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -577,20 +591,21 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.37 confirmada com "entendi" e publicada em
-4d345643f0652d85fb172c9cf76af11c62aea569; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.38 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Catalogo declara segundo argumento opcional ?string nome=null em paginarProdutos;
-demo recebe o mesmo argumento e filtra via mb_stripos/UTF-8 !== false antes de
-contar e recortar. Eloquent já atende à assinatura. Controller ainda não envia nome,
-portanto HTTP ainda sem filtro. Binding preservado. Diagnóstico
-/tmp/curso-638-contrato-demo-nome.php: três assinaturas, 15 cenários da demo,
-JSON/links/listas/tipos e zero SQL; models não persistidos. Pelo contrato, Eloquent
-recebe nome e faz COUNT parametrizado no teste vazio; chamada antiga também funciona.
-Sintaxes válidas; suíte existente 41/288 passou. Contagens antes/depois: teste 0/0,
-normal 0/1 categorias/produtos. Aula docs/aulas/06-38-contrato-demo-filtro-nome.md.
-Publicação em preparação. Próximo passo: publicar e iniciar somente 6.39: integrar
-nome no controller e preservar o parâmetro validado nos links, verificando HTTP.
+Estado mais recente em 01/11/2026: 6.38 confirmada com "entendi" e publicada em
+90cdc350c849b6d0731e13a63aa251139bd0c01e; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.39 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+ProdutoController@index passa pagina e nome ao catálogo, appends apenas nome
+validado via safe()->only, resource serializa. Filtro por nome agora ativo no HTTP,
+total filtrado e links/meta.links mantêm nome normalizado; desconhecidos excluídos.
+Diagnóstico /tmp/curso-639-http-filtro-nome.php no kernel: 19 sucessos, 12 ativos
+correspondentes entre 20, páginas/limites/empate, literais/reservados/Unicode,
+normalização, next, 6 inválidos 422 sem SQL, individual 200/404 e rollback.
+HTTP real /tmp/curso-639-http-real.php: Camiseta, links com nome, page=2 vazia
+total 1, sem correspondência total 0, 422 e Blade preservado. Suíte existente
+41/288 passou. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
+Aula docs/aulas/06-39-filtro-nome-http.md e contrato atual atualizados.
+Publicação em preparação. Próximo passo: publicar e iniciar somente 6.40: teste
+HTTP permanente da busca por nome com ativos correspondentes, total e links.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -8490,10 +8505,60 @@ Verificações em Docker, código 0:
   produto, por /tmp/curso-618-contagens.php.
 - Manual oficial PHP mb_stripos consultado; git diff --check e links locais conferidos.
 
-Entendimento da 6.38: confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: 4d345643f0652d85fb172c9cf76af11c62aea569, etapa 6.37.
-Próximo passo: publicar e iniciar somente 6.39: integrar nome
-no controller e preservar o parâmetro validado nos links, verificando HTTP.
+Entendimento da 6.38: confirmado com "entendi" em 01/11/2026.
+Publicação: 90cdc350c849b6d0731e13a63aa251139bd0c01e; HEAD/origin/main/main remota coincidiram
+após push em 01/11/2026. Continuidade realizada na 6.39. DBeaver segue sem relato.
+
+## Etapa 6.39 — Filtro por nome e links no HTTP
+
+Implementação, explicação e verificações em 01/11/2026 após confirmação e
+publicação da 6.38 em 90cdc350c849b6d0731e13a63aa251139bd0c01e.
+Aula docs/aulas/06-39-filtro-nome-http.md. Uma alteração de código em
+ProdutoController@index: obtém paginator pelo contrato com pagina()/nome(),
+appends(safe()->only(['nome'])) e retorna coleção de resources do paginator.
+Nenhuma alteração de rota, Form Request, serviço, binding ou resource.
+
+Nome já normalizado/validado entra no serviço e no array selecionado para links.
+Safe fornece dados validados; only seleciona nome. Omitido produz array vazio;
+page é gerenciado pelo paginator. Appends altera as URLs de navegação, incluindo
+meta.links, sem modificar consulta/itens. Parâmetros desconhecidos não são
+repassados. Filtro ativo/nome, ordem nome/ID, total filtrado e recorte agora
+integrados no HTTP; formato data/links/meta preservado.
+
+Verificações em Docker, código 0:
+
+- php -l app/Http/Controllers/Api/V1/ProdutoController.php: sintaxe válida.
+- php artisan test --do-not-cache-result --compact: suíte existente 41 testes/288
+  asserções passou; ainda sem teste permanente novo do filtro HTTP nesta etapa.
+- /tmp/curso-639-http-filtro-nome.php exige loja_test/loja_testes vazio e usa kernel
+  HTTP completo em transação. Dezenove sucessos: vazio filtrado, '0', padrão,
+  páginas 1/2/3/1000000, normalização com desconhecido, trecho no meio, sem
+  correspondência, sem nome com desconhecido, %, _, [, apóstrofo, reservados+
+  Unicode, caixa/acentos e texto SQL literal. JSON completo de produtos, totais,
+  páginas/posições e bindings ativo/nome conferidos.
+- Doze correspondentes entre vinte ativos e um inativo: 10/2/0/0 itens nas
+  páginas 1/2/3/1000000, total 12/última 2. Empate nas posições 10/11 por ID.
+  Sem nome total 20. Zero correspondências um COUNT; total positivo duas consultas.
+- Todos os links e meta.links analisados por query decodificada: somente nome
+  normalizado e page; valores reservados/Unicode preservados, URLs nulas mantidas.
+  GET pelo next da primeira página manteve filtro e itens esperados.
+- Seis inválidos 422/JSON/message/errors e zero SQL: vazio, espaços, array,
+  101 Unicode, nome vazio/page=0 e nome válido/page=1000001. Individual ativo
+  200/inativo 404 preservados; inativo permanece antes do rollback.
+- /tmp/curso-639-http-real.php faz HTTP por socket no servidor normal, sem escrita:
+  listagem/Camiseta/4990, nome com espaços e desconhecido normalizado para links
+  nome=Camiseta, página 2 vazia total 1, termo inexistente total 0, nome vazio e
+  page=0 com 422, individual pelo ID observado 200, /loja HTML/produto preservado.
+  Snapshot em /tmp/curso-639-http-real.json; ID 1 observado, não assumido no script.
+- Rollback e transação encerrada conferidos; SELECTs antes/depois: teste
+  0 categorias/0 produtos; normal 0 categorias/1 produto. Sem cadastro permanente.
+- Fonte instalada e documentação oficial de appends consultadas; git diff --check
+  e links locais conferidos. Contrato atual reescrito para a busca já disponível.
+
+Entendimento da 6.39: confirmado com "entendi" em 01/11/2026. Publicação em preparação.
+Último checkpoint publicado: 90cdc350c849b6d0731e13a63aa251139bd0c01e, etapa 6.38.
+Próximo passo: publicar e iniciar somente 6.40: teste HTTP
+permanente da busca por nome, exigindo ativos correspondentes, total e links.
 Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
@@ -8825,7 +8890,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   confirmado com "entendi" em 01/11/2026; publicada em 4d34564. Na 6.38,
   contrato/demo implementados/explicados/verificados: quinze cenários sem SQL,
   assinaturas/binding/leitura pelo contrato e suíte 41/288 passaram. Entendimento
-  confirmado com "entendi" em 01/11/2026; publicar e iniciar somente 6.39: controller e links com nome validado.
+  confirmado com "entendi" em 01/11/2026; publicada em 90cdc35. Na 6.39,
+  nome integrado no HTTP/links, 19 sucessos/6 inválidos no kernel, HTTP real,
+  suíte 41/288 e contagens passaram. Entendimento confirmado com "entendi" em
+  01/11/2026; publicar e iniciar
+  somente 6.40: teste HTTP permanente da busca por nome/ativos/total/links.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -9026,4 +9095,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.35 — Validação de nome | Regras no Form Request; diagnóstico 12 válidos/7 inválidos, tipos/normalização/422/zero SQL e rollback; suíte 41/288 e contagens passaram | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 618eb1a |
 | 01/11/2026 | 6.36 — Nome validado como string/null | Método nome no Form Request; diagnóstico valores/tipos de 12 válidos e 7 inválidos, rollback e suíte 41/288 passaram; contagens preservadas | Confirmado com "entendu" em 01/11/2026 | Publicado e verificado: 0b9afb8 |
 | 01/11/2026 | 6.37 — Filtro literal no serviço Eloquent | Nome opcional/CHARINDEX parametrizado; 18 cenários SQL, rollback e suíte 41/288 passaram; HTTP ainda sem filtro e contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 4d34564 |
-| 01/11/2026 | 6.38 — Nome opcional no contrato/demo | Assinaturas alinhadas e filtro em memória; 15 cenários sem SQL, JSON/binding/leitura pelo contrato e suíte 41/288 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.38 — Nome opcional no contrato/demo | Assinaturas alinhadas e filtro em memória; 15 cenários sem SQL, JSON/binding/leitura pelo contrato e suíte 41/288 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 90cdc35 |
+| 01/11/2026 | 6.39 — Filtro por nome no HTTP/links | Controller integra nome e appends validado; 19 sucessos/6 inválidos, kernel/HTTP real, rollback e suíte 41/288 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

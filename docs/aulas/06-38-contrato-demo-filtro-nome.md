@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.37
 com "entendi" e publicação em 4d345643f0652d85fb172c9cf76af11c62aea569.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.38
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+90cdc350c849b6d0731e13a63aa251139bd0c01e, com remoto conferido.
 
 Conjunto inseparável: adaptar backend/app/Contracts/Catalogo.php e
 backend/app/Services/CatalogoDemonstracao.php ao argumento opcional de nome.
@@ -116,7 +117,7 @@ teste permanente do filtro nesta etapa. Diagnóstico exige loja_test/loja_testes
 
 ## Continuidade
 
-Roteiro, progresso e [contrato atual](../api/catalogo.md) atualizados. Entendimento
-confirmado com "entendi" em 01/11/2026; publicação em preparação. Publicar e iniciar
-somente 6.39: integrar nome no controller e preservar o parâmetro validado nos
-links, verificando o fluxo HTTP.
+Entendimento confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+90cdc350c849b6d0731e13a63aa251139bd0c01e, com HEAD/origin/main/main remota conferidos.
+Continuidade realizada na [aula 6.39](06-39-filtro-nome-http.md), integrando nome
+no controller e preservando o parâmetro validado nos links de paginação.
