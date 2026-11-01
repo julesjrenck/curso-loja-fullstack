@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026, após confirmação da
 6.60 com "entendi" e publicação em 6ace636836a8c4d83eb003f0bcea899ed74b7fb6.
-Entendimento da 6.61 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.61 confirmado com "entendi" em 01/11/2026; publicação
+verificada em a7e7d42bbf9ddd10ec6dcabdaab21c3a944c5623, referências local e remotas coincidentes.
 
 ## O que estamos verificando
 
@@ -99,6 +100,5 @@ não executa os endpoints nem comprova que suas respostas seguem os schemas.
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026. Publicar este checkpoint. Próxima etapa, 6.62:
-acrescentar um exemplo completo de resposta 200 ao OpenAPI e validar seus
-valores contra o schema em Docker.
+com "entendi" em 01/11/2026; publicação verificada em a7e7d42bbf9ddd10ec6dcabdaab21c3a944c5623.
+Continuidade na [aula 06-62](06-62-exemplo-200-openapi.md).

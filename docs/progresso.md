@@ -4,8 +4,26 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.61 — Validação OpenAPI em Docker.
+- Etapa atual: 6.62 — Exemplo completo da resposta 200 no OpenAPI.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.62: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. OpenAPI recebeu example ao lado do
+  schema de 200/application/json: uma Camiseta/id 1/preço 4990 centavos,
+  data/links/meta completos, página única sem filtro, rótulos ilustrativos.
+  Redocly mantém extends spec e recebeu no-invalid-media-type-examples com
+  severity error e allowAdditionalProperties true, coerente com schemas abertos.
+  Mesma imagem 2.65.0 fixada por digest; lint Docker retornou 0. Três cópias
+  em /tmp/curso-662 falharam com código 1 pela regra de exemplos: preço texto,
+  nome obrigatório ausente via $ref e per_page 11 violando const 10.
+  Documento original preservado após diagnósticos. Conferência de coerência
+  entre dados/links/meta por leitura, sem validação automática dessas relações.
+  Exemplo ilustrativo, não capturado de HTTP; não valida respostas reais nem
+  insere produtos. Sem dependências novas, SQL ou nova suíte Laravel;
+  última suíte 6.49, 66/620. Aula 06-62, contrato e registros atualizados;
+  diff e links conferidos. Publicação em preparação. Próximo passo:
+  publicar e iniciar somente 6.63: acrescentar
+  um exemplo de resposta 422 ao OpenAPI e validar seus valores com a mesma
+  regra em Docker.
 - Situação da 6.61: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Criado docs/api/redocly.yaml com extends
   spec. Redocly CLI 2.65.0 executado por imagem Docker fixada também por digest,
@@ -17,10 +35,9 @@
   foram validadas contra schemas. Sem dependências Composer/npm no projeto,
   serviço permanente novo, produção alterada, SQL ou nova suíte Laravel;
   última suíte 6.49, 66/620. Aula 06-61, contrato e registros atualizados;
-  diff e links conferidos. Publicação em preparação. Próximo passo:
-  publicar e iniciar somente 6.62: acrescentar
-  um exemplo completo de resposta 200 ao OpenAPI e validar seus valores contra
-  o schema em Docker.
+  diff e links conferidos. Publicação verificada em a7e7d42bbf9ddd10ec6dcabdaab21c3a944c5623;
+  HEAD/origin/main/main remota coincidiram após push em 01/11/2026.
+  Continuidade realizada na 6.62.
 - Situação da 6.60: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Resposta 422 em openapi.json recebeu
   content/application/json/schema object, required message/errors. Message
@@ -718,7 +735,8 @@
   6.54 e 6.55 confirmadas/publicadas em 01/11/2026;
   6.56 e 6.57 confirmadas/publicadas em 01/11/2026;
   6.58, 6.59 e 6.60 confirmadas/publicadas em 01/11/2026;
-  6.61 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.61 confirmada/publicada em 01/11/2026;
+  6.62 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -853,24 +871,25 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.60 confirmada com "entendi" e publicada em
-6ace636836a8c4d83eb003f0bcea899ed74b7fb6; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.61 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Criado docs/api/redocly.yaml com extends spec. Imagem fixada:
-redocly/cli:2.65.0@sha256:42acee0d7e629a9d0376d8df579dc325e51da727de06a31036bccc02409a7e11.
-Versão 2.65.0 e digest conferidos; regras estruturais suportam OAS 3.2.
-Docker run descartável/sem rede/bind docs/api somente leitura, lint do documento
-OpenAPI 3.2.1 passou com código 0. Duas cópias controladas em /tmp/curso-661
-falharam com código 1: sem info.title por struct e referência inexistente por
-no-unresolved-refs. Documento do projeto intacto. Sem ignorar regras/erros.
-Validação de estrutura/referências, não de respostas HTTP reais. Sem novas
-dependências Composer/npm ou serviço permanente, produção alterada, SQL ou
-nova suíte Laravel; última suíte 6.49, 66/620. Aula
-docs/aulas/06-61-validacao-openapi.md, contrato e registros atualizados;
-diff/links conferidos. Publicação em preparação. Próximo passo:
-publicar e iniciar somente 6.62: acrescentar um
-exemplo completo de resposta 200 ao OpenAPI e validar seus valores contra o
-schema em Docker.
+Estado mais recente em 01/11/2026: 6.61 confirmada com "entendi" e publicada em
+a7e7d42bbf9ddd10ec6dcabdaab21c3a944c5623; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.62 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+OpenAPI 3.2.1 recebeu example em 200/application/json, irmão de schema: Camiseta
+id 1/preço inteiro 4990, página única com data/links/meta completos, sem filtro.
+Dados e rótulos ilustrativos; não representam captura HTTP ou estado do banco.
+Redocly.yaml recebeu no-invalid-media-type-examples, severity error e
+allowAdditionalProperties true para preservar abertura dos schemas existentes.
+Mesma imagem redocly/cli:2.65.0@sha256:42acee0d7e629a9d0376d8df579dc325e51da727de06a31036bccc02409a7e11.
+Lint Docker sem rede/bind somente leitura passou com código 0. Três cópias
+em /tmp/curso-662 falharam com código 1 esperado: preço string, nome ausente
+no produto referenciado e per_page 11 contra const 10. Documento do projeto
+preservado após diagnósticos. Coerência entre totais, itens e URLs conferida
+por leitura; essas relações não foram acrescentadas ao schema. Sem validação
+de respostas reais, dependências novas, SQL ou nova suíte Laravel; última
+suíte 6.49, 66/620. Aula docs/aulas/06-62-exemplo-200-openapi.md, contrato e
+registros atualizados; diff/links conferidos. Publicação em preparação.
+Próximo passo: publicar e iniciar somente 6.63:
+acrescentar um exemplo de resposta 422 ao OpenAPI e validar seus valores com a mesma regra em Docker.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -9540,11 +9559,44 @@ sem alterações nesta etapa. Não usamos a sugestão de gerar arquivo de ignore
 Git diff --check e links locais conferidos. Validação estrutural/referências
 não comprova correspondência de respostas reais aos schemas. Nenhuma produção
 alterada, consulta SQL ou nova suíte Laravel; última suíte 6.49, 66/620.
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+a7e7d42bbf9ddd10ec6dcabdaab21c3a944c5623; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.62. Exercício DBeaver segue sem relato.
+
+## Etapa 6.62 — Exemplo completo da resposta 200 no OpenAPI
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação e
+publicação da 6.61 em a7e7d42bbf9ddd10ec6dcabdaab21c3a944c5623.
+Aula docs/aulas/06-62-exemplo-200-openapi.md. Acrescentado example ao lado do
+schema de 200/application/json: data com Camiseta/id 1/preço inteiro 4990;
+links first/last para página 1 e prev/next null; meta página 1, capacidade 10,
+total 1, última 1, posições 1/1, path e três opções em meta.links.
+Rótulos Anterior/1/Próximo são ilustrativos, não fixam tradução da API.
+Exemplo não é default, não altera retorno real nem insere dados no SQL Server.
+
+Redocly.yaml mantém extends spec e acrescenta no-invalid-media-type-examples:
+severity error e allowAdditionalProperties true. A opção preserva a abertura
+dos schemas, sem enfraquecer tipos, required ou const das propriedades declaradas.
+Fonte oficial da regra consultada, com suporte OAS 3.2. Imagem anterior mantida:
+redocly/cli:2.65.0@sha256:42acee0d7e629a9d0376d8df579dc325e51da727de06a31036bccc02409a7e11.
+Mesmo docker run --rm --network none, docs/api:/spec:ro e workdir /spec,
+lint openapi.json --config redocly.yaml retornou 0, sem erros ou avisos.
+
+Três cópias em /tmp/curso-662, montadas somente leitura em /casos, testaram
+as rejeições pela regra no-invalid-media-type-examples. Preco-texto.json:
+preco_em_centavos string "4990" em vez de integer; sem-nome.json: campo nome
+obrigatório removido do Produto referenciado; capacidade-onze.json: per_page
+11 contra const 10. Cada execução retornou 1 e um erro esperado. Nenhuma regra
+ignorada. Documento original preservado após diagnósticos; cópias não versionadas.
+
+Git diff --check e links locais conferidos. Relações total/itens/posições/URLs
+conferidas por leitura; o schema atual não garante automaticamente essa coerência.
+Não houve captura HTTP nem validação de respostas reais. Sem novas dependências,
+produção alterada, SQL ou nova suíte Laravel; última suíte 6.49, 66/620.
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: 6ace636836a8c4d83eb003f0bcea899ed74b7fb6, etapa 6.60.
-Próximo passo: publicar e iniciar somente 6.62:
-acrescentar um exemplo completo de resposta 200 ao OpenAPI e validar seus
-valores contra o schema em Docker. Exercício DBeaver segue sem relato.
+Último checkpoint publicado: a7e7d42bbf9ddd10ec6dcabdaab21c3a944c5623, etapa 6.61.
+Próximo passo: publicar e iniciar somente 6.63:
+acrescentar um exemplo de resposta 422 ao OpenAPI e validar seus valores com a mesma regra em Docker. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -9942,8 +9994,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   confirmado com "entendi" em 01/11/2026; sem validador OpenAPI ou nova suíte.
   Publicada em 6ace636. Na 6.61, Redocly CLI 2.65.0/digest e extends spec:
   documento passou com código 0; cópias sem título/com ref inválida falharam
-  com código 1 esperado. Entendimento confirmado com "entendi" em 01/11/2026. Publicar
-  e iniciar somente 6.62: exemplo completo de 200 e validação de seus valores.
+  com código 1 esperado. Entendimento confirmado com "entendi" em 01/11/2026,
+  publicada em a7e7d42. Na 6.62, exemplo 200 completo e regra de validação de
+  valores: original código 0; preço texto/nome ausente/per_page 11 rejeitados
+  com código 1. Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar
+  somente 6.63: exemplo 422 e validação com a mesma regra em Docker.
   Última suíte Laravel permanece 66/620 da 6.49.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
@@ -10168,4 +10223,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.58 — Meta básico | Sete campos obrigatórios/tipos/limites, per_page const 10, from/to inteiro ou null; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 5b108b2; remoto conferido |
 | 01/11/2026 | 6.59 — Meta.links | Lista de opções, quatro obrigatórios/tipos e rótulos livres; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 4e8f8ed; remoto conferido |
 | 01/11/2026 | 6.60 — Corpo 422 | JSON object/message/errors obrigatórios; campo -> lista de textos, mínimos um campo/uma mensagem; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 6ace636; remoto conferido |
-| 01/11/2026 | 6.61 — Validação OpenAPI | Redocly 2.65.0/digest, preset spec; documento código 0, dois controles inválidos código 1; diff e links; sem nova suíte Laravel | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.61 — Validação OpenAPI | Redocly 2.65.0/digest, preset spec; documento código 0, dois controles inválidos código 1; diff e links; sem nova suíte Laravel | Confirmado com "entendi" em 01/11/2026 | Publicado em a7e7d42; remoto conferido |
+| 01/11/2026 | 6.62 — Exemplo 200 | Corpo completo ilustrativo, regra de exemplos como erro; Docker código 0, três cópias inválidas código 1; diff e links; sem nova suíte Laravel | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

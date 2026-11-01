@@ -513,9 +513,15 @@ da 6.60 confirmado com "entendi" em 01/11/2026 e publicada em 6ace636.
 Na 6.61, Redocly CLI 2.65.0/imagem por digest e redocly.yaml/extends spec.
 Documento passou em Docker com código 0; duas cópias inválidas rejeitadas com
 código 1 (struct/título e no-unresolved-refs). OpenAPI preservado, sem nova
-suíte Laravel; última suíte 66/620 da 6.49. Explicação apresentada;
-entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.62:
-exemplo completo de resposta 200 e validação de seus valores contra o schema.
+suíte Laravel; última suíte 66/620 da 6.49. Entendimento confirmado com
+"entendi" em 01/11/2026 e publicada em a7e7d42. Na 6.62, exemplo 200 completo
+com Camiseta e paginação; regra no-invalid-media-type-examples como erro,
+allowAdditionalProperties true acompanha schemas abertos. Mesma imagem Docker:
+original código 0; cópias com preço texto/nome ausente/per_page 11 rejeitadas
+com código 1. Dados ilustrativos, coerência de totais/URLs lida separadamente;
+sem captura HTTP, SQL ou nova suíte Laravel. Explicação apresentada;
+entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.63:
+exemplo de resposta 422 e validação de seus valores com a mesma regra em Docker.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

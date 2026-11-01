@@ -1,2 +1,6 @@
 extends:
   - spec
+rules:
+  no-invalid-media-type-examples:
+    severity: error
+    allowAdditionalProperties: true

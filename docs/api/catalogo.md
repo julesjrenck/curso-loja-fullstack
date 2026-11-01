@@ -624,6 +624,23 @@ Sem dependências Composer/npm, serviço permanente novo, produção alterada, S
 ou nova suíte Laravel. Entendimento confirmado com "entendi" em 01/11/2026. Comandos, digest
 e explicação na [aula 06-61](../aulas/06-61-validacao-openapi.md).
 
+## Exemplo 200 e validação de valores na 6.62
+
+[Openapi.json](openapi.json) recebeu example ao lado do schema de
+200/application/json: uma Camiseta/id 1/preço 4990 e paginação completa,
+sem filtro, com uma página. Os valores e rótulos são ilustrativos; não são
+uma captura HTTP, nem definem defaults ou alteram o banco.
+
+[Redocly.yaml](redocly.yaml) acrescenta no-invalid-media-type-examples com
+severity error e allowAdditionalProperties true, coerente com os schemas
+abertos. Mesma imagem 2.65.0/digest e comando Docker: documento código 0;
+três cópias temporárias rejeitadas com código 1 esperado (preço string, nome
+ausente no Produto referenciado e per_page 11 contra const 10).
+Relações entre totais/itens/URLs conferidas por leitura; o schema não garante
+essa coerência automaticamente. Sem captura/validação de respostas reais,
+SQL ou nova suíte Laravel. Entendimento confirmado com "entendi" em 01/11/2026. Explicação
+na [aula 06-62](../aulas/06-62-exemplo-200-openapi.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com
