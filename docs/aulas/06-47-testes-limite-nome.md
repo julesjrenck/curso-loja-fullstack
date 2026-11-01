@@ -3,7 +3,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.46
 com "entendi" e publicação em 466053ab71a1faac095b8d42a53795847afe702b.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.47
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+716032b43e3cd2fb2eb0543210c2cf0b961e38bd, com referências local e remotas coincidentes.
 
 ## Alteração
 
@@ -71,6 +72,6 @@ transação; DatabaseTransactions desfaz as alterações. SELECTs antes/depois p
 ## Continuidade
 
 Roteiro, progresso e cobertura do [contrato atual](../api/catalogo.md) atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
-Publicar e iniciar somente 6.48: teste permanente de
-sensibilidade a acentos na busca por nome, conforme a collation SQL Server já estudada.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada em
+716032b43e3cd2fb2eb0543210c2cf0b961e38bd, com referências local e remotas coincidentes.
+Continuidade na [aula 06-48](06-48-testes-acentos-nome.md).

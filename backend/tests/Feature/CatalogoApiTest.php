@@ -414,6 +414,62 @@ class CatalogoApiTest extends TestCase
         ];
     }
 
+    #[DataProvider('buscasComAcentos')]
+    public function test_distingue_acentos_e_ignora_caixa_na_busca_por_nome(string $nome, string $chaveEsperada): void
+    {
+        $produtos = [
+            'sem acento' => Produto::factory()->create([
+                'nome' => 'Kit de tenis',
+                'status' => 'ativo',
+                'preco_em_centavos' => 4990,
+            ]),
+            'com acento' => Produto::factory()->create([
+                'nome' => 'Kit de tênis',
+                'status' => 'ativo',
+                'preco_em_centavos' => 5990,
+            ]),
+        ];
+        $esperado = $produtos[$chaveEsperada];
+        $resposta = $this->getJson('/api/v1/produtos?'.http_build_query(['nome' => $nome]));
+        $url = url('/api/v1/produtos').'?'.http_build_query([
+            'nome' => $nome,
+            'page' => 1,
+        ]);
+
+        $resposta
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonPath('data', [
+                [
+                    'id' => $esperado->id,
+                    'nome' => $esperado->nome,
+                    'preco_em_centavos' => $esperado->preco_em_centavos,
+                ],
+            ])
+            ->assertJsonPath('links', [
+                'first' => $url,
+                'last' => $url,
+                'prev' => null,
+                'next' => null,
+            ])
+            ->assertJsonPath('meta.current_page', 1)
+            ->assertJsonPath('meta.per_page', 10)
+            ->assertJsonPath('meta.total', 1)
+            ->assertJsonPath('meta.last_page', 1)
+            ->assertJsonPath('meta.from', 1)
+            ->assertJsonPath('meta.to', 1);
+    }
+
+    public static function buscasComAcentos(): array
+    {
+        return [
+            'sem acento em minúsculas' => ['tenis', 'sem acento'],
+            'sem acento em maiúsculas' => ['TENIS', 'sem acento'],
+            'com acento em minúsculas' => ['tênis', 'com acento'],
+            'com acento em maiúsculas' => ['TÊNIS', 'com acento'],
+        ];
+    }
+
     public function test_mantem_filtro_e_total_ao_seguir_proxima_pagina(): void
     {
         $primeiroEmpate = Produto::factory()->create([

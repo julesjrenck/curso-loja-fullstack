@@ -4,8 +4,20 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.47 — Aceitação do limite de 100 caracteres no nome.
+- Etapa atual: 6.48 — Testes de acentos e caixa na busca por nome.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.48: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Novo teste com DataProvider buscasComAcentos
+  cria Kit de tenis e Kit de tênis ativos. Quatro buscas: tenis/TENIS retornam
+  somente o primeiro; tênis/TÊNIS somente o segundo. Mapa de models seleciona
+  expectativa pelo provider; exige objeto completo, total 1, metadados e links
+  preservando texto, caixa e acento. Aplicação e collation preservadas.
+  Sintaxe válida; classe 52 testes/540 asserções e suíte 66 testes/594 asserções
+  passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
+  Aula 06-48 e cobertura do contrato atualizadas. Publicação em preparação.
+  Próximo passo: publicar e iniciar
+  somente 6.49: teste permanente de preservação do filtro em meta.links,
+  sem fixar rótulos traduzidos.
 - Situação da 6.47: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Duas entradas acrescentadas ao provider
   nomesLiterais: str_repeat('a', 100) e str_repeat('á', 100). Mesmo teste HTTP
@@ -13,10 +25,9 @@
   preservando texto. Provider agora tem nove casos; aplicação preservada.
   Sintaxe válida; classe 48 testes/488 asserções e suíte 62 testes/542 asserções
   passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
-  Aula 06-47 e cobertura do contrato atualizadas. Publicação em preparação.
-  Próximo passo: publicar e iniciar
-  somente 6.48: teste permanente de sensibilidade a acentos na busca por nome,
-  conforme a collation SQL Server já estudada.
+  Aula 06-47 e cobertura do contrato atualizadas. Publicação verificada em
+  716032b43e3cd2fb2eb0543210c2cf0b961e38bd; HEAD/origin/main/main remota coincidiram após push
+  em 01/11/2026. Continuidade realizada na 6.48.
 - Situação da 6.46: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Novo teste cria onze Camisetas ativas
   com factory()->count(11), uma Caneca ativa e uma Camiseta inativa.
@@ -543,8 +554,8 @@
   entendimento da 6.41 confirmado com "entendi" em 01/11/2026 e publicada.
   6.42 e 6.43 confirmadas/publicadas em 01/11/2026;
   6.44 e 6.45 confirmadas/publicadas em 01/11/2026;
-  6.46 confirmada/publicada em 01/11/2026 e 6.47 implementada/explicada/verificada;
-  entendimento da 6.47 confirmado com "entendi" em 01/11/2026.
+  6.46 e 6.47 confirmadas/publicadas em 01/11/2026;
+  6.48 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -679,19 +690,19 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.46 confirmada com "entendi" e publicada em
-466053ab71a1faac095b8d42a53795847afe702b; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.47 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Provider nomesLiterais de CatalogoApiTest recebeu str_repeat('a', 100) e
-str_repeat('á', 100), passando de sete para nove casos. Método existente cria
-um ativo correspondente, um não correspondente e um correspondente inativo;
-exige 200/JSON, único objeto completo, total 1, metadados e links com texto.
-Assim, 100 ASCII/á são aceitos; casos anteriores de 101 continuam rejeitados.
-Classe 48/488 e suíte 62/542 passaram. Contagens antes/depois: teste 0/0 e normal
-0/1 categorias/produtos. Aplicação preservada. Aula
-docs/aulas/06-47-testes-limite-nome.md e cobertura do contrato atualizadas.
-Publicação em preparação. Próximo passo: publicar e iniciar somente 6.48: teste permanente de sensibilidade a acentos
-na busca por nome, conforme a collation SQL Server já estudada.
+Estado mais recente em 01/11/2026: 6.47 confirmada com "entendi" e publicada em
+716032b43e3cd2fb2eb0543210c2cf0b961e38bd; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.48 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+CatalogoApiTest recebeu test_distingue_acentos_e_ignora_caixa_na_busca_por_nome
+com provider buscasComAcentos: tenis/TENIS esperam Kit de tenis; tênis/TÊNIS,
+Kit de tênis. Cada execução cria os dois ativos, escolhe a expectativa em mapa
+de models pela chave do provider e exige único objeto completo, total 1,
+metadados e links com texto preservado. Classe 52/540 e suíte 66/594 passaram.
+Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos. Aplicação e
+collation preservadas. Aula docs/aulas/06-48-testes-acentos-nome.md e cobertura
+do contrato atualizadas. Publicação em preparação. Próximo passo:
+publicar e iniciar somente 6.49: teste permanente
+de preservação do filtro em meta.links, sem fixar rótulos traduzidos.
 Meta.links e outros casos seguem nos diagnósticos até terem cobertura específica.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
@@ -8936,10 +8947,51 @@ Verificações em Docker, código 0:
   produto, por /tmp/curso-618-contagens.php.
 - Git diff --check e links locais conferidos.
 
-Casos de 101 caracteres ASCII/á continuam exigindo 422. Entendimento confirmado com
-"entendi" em 01/11/2026. Publicação em preparação. Último checkpoint publicado:
-466053ab71a1faac095b8d42a53795847afe702b, etapa 6.46. Próximo passo: publicar e iniciar somente 6.48: teste permanente de sensibilidade a
-acentos na busca por nome, conforme a collation SQL Server já estudada.
+Casos de 101 caracteres ASCII/á continuam exigindo 422. Entendimento confirmado
+com "entendi" em 01/11/2026. Publicação verificada em
+716032b43e3cd2fb2eb0543210c2cf0b961e38bd; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.48. Exercício DBeaver segue sem relato.
+
+## Etapa 6.48 — Testes de acentos e caixa na busca por nome
+
+Implementação, explicação e verificações em 01/11/2026 após confirmação e
+publicação da 6.47 em 716032b43e3cd2fb2eb0543210c2cf0b961e38bd.
+Aula docs/aulas/06-48-testes-acentos-nome.md. Conjunto inseparável em
+CatalogoApiTest: test_distingue_acentos_e_ignora_caixa_na_busca_por_nome,
+atributo DataProvider('buscasComAcentos') e provider público estático de quatro casos.
+
+Mapa produtos contém dois models ativos com chaves sem acento/com acento:
+Kit de tenis a 4990 e Kit de tênis a 5990 centavos. Provider fornece nome e
+chaveEsperada; tenis/TENIS selecionam sem acento e tênis/TÊNIS com acento.
+A expectativa é selecionada a partir das fixtures, sem consultar o catálogo.
+Http_build_query codifica entrada e links esperados. Cada resposta exige
+200/JSON, único objeto completo com ID gerado, total 1, current_page 1,
+per_page 10, last_page 1, from/to 1 e links first/last com texto/caixa/acento
+preservados; prev/next null. Caixa ignorada na comparação não é conversão
+do parâmetro para minúsculas ou remoção de acentos.
+
+Confere pelo HTTP o comportamento CI/AS já documentado da coluna: ignora
+caixa e distingue acentos. Documentação oficial Microsoft consultada sobre
+collation/Unicode. Nenhuma collation ou implementação alterada. Não representa
+cobertura de todas as equivalências Unicode; dois produtos e quatro entradas.
+Sem medição SQL ou novas asserções meta.links; setUp e DatabaseTransactions
+preservam identidade e isolamento do banco de testes.
+
+Verificações em Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result --compact:
+  52 testes/540 asserções passaram.
+- php artisan test --do-not-cache-result --compact: 66 testes/594 asserções
+  passaram; quatro casos e 52 asserções a mais que na 6.47.
+- SELECTs antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1
+  produto, por /tmp/curso-618-contagens.php.
+- Git diff --check e links locais conferidos.
+
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
+Último checkpoint publicado: 716032b43e3cd2fb2eb0543210c2cf0b961e38bd, etapa 6.47.
+Próximo passo: publicar e iniciar somente 6.49:
+teste permanente de preservação do filtro em meta.links, sem fixar rótulos traduzidos.
 Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
@@ -9297,8 +9349,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   confirmado com "entendi" em 01/11/2026; publicada em 466053a.
   Na 6.47, duas entradas de 100 caracteres acrescentadas ao provider:
   classe 48/488 e suíte 62/542 passaram; contagens preservadas. Entendimento
-  confirmado com "entendi" em 01/11/2026; publicar e iniciar somente 6.48: sensibilidade
-  a acentos na busca por nome, conforme a collation SQL Server já estudada.
+  confirmado com "entendi" em 01/11/2026; publicada em 716032b.
+  Na 6.48, quatro buscas com acentos/caixa implementadas/explicadas/verificadas:
+  classe 52/540 e suíte 66/594 passaram; contagens preservadas. Entendimento
+  confirmado com "entendi" em 01/11/2026; publicar e iniciar somente 6.49: preservação
+  do filtro em meta.links, sem fixar rótulos traduzidos.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -9508,4 +9563,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.44 — Nomes literais | Sete casos: %, _, [, apóstrofo, +, & e string 0; único ativo correspondente e links; classe 44/436 e suíte 58/490 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 2adfac2; remoto conferido |
 | 01/11/2026 | 6.45 — Busca sem correspondência | Caneca ativa/Camiseta inativa; 200/data vazia/total zero/posições null/links filtrados; classe 45/449 e suíte 59/503 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em be303c9; remoto conferido |
 | 01/11/2026 | 6.46 — Página após a última filtrada | Onze correspondentes; página 3 vazia/total 11/última 2/links filtrados; classe 46/462 e suíte 60/516 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 466053a; remoto conferido |
-| 01/11/2026 | 6.47 — Limite válido do nome | Provider ampliado com 100 letras a/á; retorno e links; classe 48/488 e suíte 62/542 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.47 — Limite válido do nome | Provider ampliado com 100 letras a/á; retorno e links; classe 48/488 e suíte 62/542 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 716032b; remoto conferido |
+| 01/11/2026 | 6.48 — Acentos e caixa | Quatro casos tenis/TENIS/tênis/TÊNIS, objeto exclusivo e links; classe 52/540 e suíte 66/594 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

@@ -441,9 +441,14 @@ entendimento da 6.46 confirmado com "entendi" em 01/11/2026 e publicada em
 466053a. Na 6.47, provider nomesLiterais recebe 100 letras a e 100 letras á;
 mesmo teste exige único ativo correspondente, total 1 e links com texto.
 Classe 48/488 e suíte 62/542 passaram; contagens preservadas. Explicação
-apresentada; entendimento da 6.47 confirmado com "entendi" em 01/11/2026.
-Publicação em preparação; publicar e iniciar somente 6.48: teste de sensibilidade a acentos na busca por nome, conforme a
-collation SQL Server já estudada.
+apresentada; entendimento da 6.47 confirmado com "entendi" em 01/11/2026 e
+publicada em 716032b. Na 6.48, provider de quatro buscas confere distinção de
+acentos e comparação sem diferença de caixa: tenis/TENIS e tênis/TÊNIS.
+Exige objeto exclusivo, total e links com texto preservado. Classe 52/540 e
+suíte 66/594 passaram; contagens preservadas. Explicação apresentada;
+entendimento da 6.48 confirmado com "entendi" em 01/11/2026.
+Publicação em preparação; publicar e iniciar somente 6.49:
+teste de preservação do filtro em meta.links, sem fixar rótulos traduzidos.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

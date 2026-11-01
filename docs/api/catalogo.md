@@ -461,6 +461,18 @@ sem medição SQL ou novas asserções meta.links. O caso acentuado usa a letra 
 Entendimento da 6.47 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-47](../aulas/06-47-testes-limite-nome.md).
 
+## Cobertura acrescentada na 6.48
+
+Novo método HTTP com provider buscasComAcentos cria Kit de tenis e Kit de tênis
+ativos. As buscas tenis/TENIS selecionam somente o primeiro;
+tênis/TÊNIS selecionam somente o segundo. Quatro casos exigem objeto completo,
+total 1, metadados e links preservando texto, caixa e acento do parâmetro.
+Confere o comportamento CI/AS documentado; aplicação e collation preservadas.
+Classe 52 testes/540 asserções e suíte 66 testes/594 asserções passaram;
+contagens preservadas. Sem medição SQL ou novas asserções meta.links.
+Entendimento da 6.48 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-48](../aulas/06-48-testes-acentos-nome.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com
