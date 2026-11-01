@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.36
 com "entendu" e publicação em 0b9afb840eb276b10bbeca3031f68cc393d4d14a.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.37
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+4d345643f0652d85fb172c9cf76af11c62aea569, com remoto conferido.
 
 Uma alteração de código em backend/app/Services/CatalogoEloquent.php: preparar
 o filtro literal no método de paginação. O controller ainda não envia nome.
@@ -107,7 +108,7 @@ e cria fixtures em transação, desfeitas em finally.
 
 ## Continuidade
 
-Roteiro, progresso e [contrato atual](../api/catalogo.md) atualizados. Entendimento
-confirmado com "entendi" em 01/11/2026; publicação em preparação. Publicar e iniciar
-somente 6.38: declarar nome opcional em Catalogo e implementar filtro equivalente
-na demonstração, ainda sem mudar controller.
+Entendimento confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+4d345643f0652d85fb172c9cf76af11c62aea569, com HEAD/origin/main/main remota conferidos.
+Continuidade realizada na [aula 6.38](06-38-contrato-demo-filtro-nome.md), com
+nome opcional no contrato e filtro na demonstração, ainda sem mudar controller.

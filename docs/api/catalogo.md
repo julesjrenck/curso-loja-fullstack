@@ -296,9 +296,21 @@ Filtro ativo, nome/ID, dez por página e campos preservados. Contagem e busca us
 o mesmo filtro literal; null/omitido mantém a consulta anterior. Dezoito cenários
 SQL transacionais conferidos, incluindo páginas/totais/empate, literais, caixa/
 acentos e '0'. Suíte existente 41 testes/288 asserções passou, rollback e contagens
-conferidos. Contrato/demo/controller ainda não recebem esse argumento: o HTTP
+conferidos. Na 6.37, contrato/demo ainda não declaravam o argumento. O HTTP
 continua validando nome, sem filtrar a busca nem manter nome nos links.
 Explicação na [aula 06-37](../aulas/06-37-filtro-nome-eloquent.md). Entendimento da 6.37 confirmado com "entendi" em 01/11/2026.
+
+## Preparação interna na 6.38 — contrato e demonstração
+
+Catalogo declara nome opcional ?string=null em paginarProdutos, e demonstração
+atende à assinatura com Collection::filter e mb_stripos em UTF-8 !== false.
+Filtro antes da contagem e recorte; values renumera a lista. Quinze cenários da
+demo/JSON/links/tipos passaram sem SQL, incluindo caixa/acentos, '0' e páginas
+vazias com total filtrado. Assinaturas compatíveis, binding Eloquent preservado
+e chamadas pelo contrato com/sem nome conferidas. Suíte existente 41/288 passou;
+contagens preservadas. Controller ainda não envia nome: busca HTTP e preservação
+nos links permanecem pendentes. Explicação na
+[aula 06-38](../aulas/06-38-contrato-demo-filtro-nome.md). Entendimento da 6.38 confirmado com "entendi" em 01/11/2026.
 
 ## Evolução
 

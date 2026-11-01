@@ -18,7 +18,7 @@ interface Catalogo
     /**
      * @return LengthAwarePaginator<int, Produto>
      */
-    public function paginarProdutos(int $pagina): LengthAwarePaginator;
+    public function paginarProdutos(int $pagina, ?string $nome = null): LengthAwarePaginator;
 
     public function buscarProduto(int $id): ?Produto;
 }

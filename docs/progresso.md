@@ -4,8 +4,21 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.37 — Filtro literal por nome no serviço Eloquent.
+- Etapa atual: 6.38 — Nome opcional no contrato e na demonstração.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.38: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Catalogo declara paginarProdutos com nome
+  opcional ?string=null; demonstração atende à assinatura e filtra coleção com
+  mb_stripos(..., 0, 'UTF-8') !== false quando nome !== null. Filtro antes de
+  count/forPage; ordem, values, formato e tamanho preservados. Eloquent já atende
+  à assinatura; binding preservado. Diagnóstico conferiu três assinaturas,
+  quinze cenários da demo/JSON/links/tipos sem SQL, models não persistidos e
+  leitura pelo contrato no Eloquent com/sem nome. Sintaxes válidas; suíte
+  existente 41 testes/288 asserções passou. Contagens antes/depois: teste 0/0 e
+  normal 0/1 categorias/produtos. Controller ainda não envia nome; HTTP sem filtro.
+  Aula 06-38 e contrato atualizados. Publicação em preparação.
+  Próximo passo: publicar e iniciar somente 6.39: integrar nome no controller
+  e preservar o parâmetro validado nos links, verificando o fluxo HTTP.
 - Situação da 6.37: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. CatalogoEloquent::paginarProdutos recebe
   nome opcional ?string=null. Consulta mantém ativos e acrescenta
@@ -16,9 +29,9 @@
   literais e parâmetros. HTTP ainda não filtra: contrato/demo/controller não
   alterados. Sintaxe válida; suíte existente 41 testes/288 asserções passou.
   Rollback e contagens antes/depois: teste 0/0, normal 0/1 categorias/produtos.
-  Aula 06-37 e contrato atualizados. Publicação em preparação.
-  Próximo passo: publicar e iniciar somente 6.38: declarar nome opcional em
-  Catalogo e implementar filtro equivalente na demonstração, sem mudar controller.
+  Aula 06-37 e contrato atualizados. Publicação verificada em
+  4d345643f0652d85fb172c9cf76af11c62aea569; HEAD/origin/main/main remota coincidiram
+  após push em 01/11/2026. Continuidade realizada na 6.38.
 - Situação da 6.36: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendu" em 01/11/2026. ListarProdutosRequest recebeu nome():
   ?string, devolvendo validated('nome'). Omitido retorna null; presente válido
@@ -428,7 +441,8 @@
   6.34 confirmada/publicada em 01/11/2026 e 6.35 implementada/explicada/verificada,
   entendimento da 6.35 confirmado com "entendi" em 01/11/2026 e publicada.
   6.36 confirmada/publicada em 01/11/2026 e 6.37 implementada/explicada/verificada,
-  entendimento da 6.37 confirmado com "entendi" em 01/11/2026.
+  entendimento da 6.37 confirmado com "entendi" em 01/11/2026 e publicada.
+  6.38 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -563,22 +577,20 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.36 confirmada com "entendu" e publicada em
-0b9afb840eb276b10bbeca3031f68cc393d4d14a; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.37 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-CatalogoEloquent::paginarProdutos(int pagina, ?string nome=null) prepara consulta
-ativa, filtro CHARINDEX parametrizado se nome !== null e paginação nome/ID/10.
-Somente serviço concreto alterado; contrato/demo/controller preservados, logo
-nome válido ainda não filtra no HTTP. Diagnóstico /tmp/curso-637-filtro-nome.php:
-18 cenários SQL com transação, doze correspondentes entre vinte ativos, inativo,
-páginas/limites/total/empate, null/omitido, '0', caixa/acentos, símbolos e bindings.
-HTTP com nome inexistente segue dez itens/total 26 após fixtures extras, confirmando
-falta de integração. Rollback conferido; suíte existente 41/288 passou.
-Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
-Aula docs/aulas/06-37-filtro-nome-eloquent.md; contrato atual atualizado.
-Publicação em preparação. Próximo passo: publicar e iniciar somente 6.38: declarar
-nome opcional em Catalogo e implementar filtro equivalente na demonstração,
-ainda sem mudar controller.
+Estado mais recente em 01/11/2026: 6.37 confirmada com "entendi" e publicada em
+4d345643f0652d85fb172c9cf76af11c62aea569; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.38 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Catalogo declara segundo argumento opcional ?string nome=null em paginarProdutos;
+demo recebe o mesmo argumento e filtra via mb_stripos/UTF-8 !== false antes de
+contar e recortar. Eloquent já atende à assinatura. Controller ainda não envia nome,
+portanto HTTP ainda sem filtro. Binding preservado. Diagnóstico
+/tmp/curso-638-contrato-demo-nome.php: três assinaturas, 15 cenários da demo,
+JSON/links/listas/tipos e zero SQL; models não persistidos. Pelo contrato, Eloquent
+recebe nome e faz COUNT parametrizado no teste vazio; chamada antiga também funciona.
+Sintaxes válidas; suíte existente 41/288 passou. Contagens antes/depois: teste 0/0,
+normal 0/1 categorias/produtos. Aula docs/aulas/06-38-contrato-demo-filtro-nome.md.
+Publicação em preparação. Próximo passo: publicar e iniciar somente 6.39: integrar
+nome no controller e preservar o parâmetro validado nos links, verificando HTTP.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -8435,11 +8447,54 @@ Verificações em Docker, código 0:
 - Documentação oficial Microsoft CHARINDEX consultada; git diff --check e links
   locais conferidos.
 
-Entendimento da 6.37: confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: 0b9afb840eb276b10bbeca3031f68cc393d4d14a, etapa 6.36.
-Próximo passo: publicar e iniciar somente 6.38: declarar nome
-opcional em Catalogo e implementar filtro equivalente na demonstração, ainda
-sem mudar controller. Exercício DBeaver segue sem relato.
+Entendimento da 6.37: confirmado com "entendi" em 01/11/2026.
+Publicação: 4d345643f0652d85fb172c9cf76af11c62aea569; HEAD/origin/main/main remota coincidiram
+após push em 01/11/2026. Continuidade realizada na 6.38. DBeaver segue sem relato.
+
+## Etapa 6.38 — Nome opcional no contrato e na demonstração
+
+Implementação, explicação e verificações em 01/11/2026 após confirmação e
+publicação da 6.37 em 4d345643f0652d85fb172c9cf76af11c62aea569.
+Aula docs/aulas/06-38-contrato-demo-filtro-nome.md. Conjunto inseparável:
+Catalogo::paginarProdutos passa a declarar ?string nome=null; CatalogoDemonstracao
+atende à assinatura com filtro em memória antes de contar e recortar.
+
+Quando nome !== null, Collection::filter recebe arrow function tipada Produto
+retornando mb_stripos(nome do produto, nome buscado, 0, 'UTF-8') !== false.
+Busca trecho sem diferenciar caixa; para os nomes da demo distingue acentos.
+Posição zero é correspondência válida, por isso comparação estrita com false.
+Nome '0' não é omitido. Valores literais, sem SQL. Filter preserva ordem/chaves;
+forPage recorta e values renumera a lista. Count agora conta correspondentes.
+Modelos fixos continuam não persistidos, todos ativos. Demonstração em PHP
+não constitui implementação geral da collation SQL Server para qualquer texto.
+Eloquent já atende à assinatura; binding e controller preservados, HTTP sem filtro.
+
+Verificações em Docker, código 0:
+
+- php -l em Catalogo.php e CatalogoDemonstracao.php: sintaxes válidas.
+- php artisan test --do-not-cache-result --compact: suíte existente 41 testes/288
+  asserções passou, sem teste permanente novo nesta etapa.
+- /tmp/curso-638-contrato-demo-nome.php exige loja_test/loja_testes vazio.
+  Reflection confere as três assinaturas: dois parâmetros, nome opcional/anulável,
+  padrão null e retorno LengthAwarePaginator. Quinze cenários da demo: omitido,
+  null, dois correspondentes, início/caixa, meio, acento/caixa, sem acento,
+  %, _, [, apóstrofo, '0', sem correspondência, página 2/1000000 filtradas.
+- IDs esperados, ordem, total, tamanho, página explícita, última, posições,
+  lista renumerada e models ativos/exists false conferidos. Resource produz
+  JSON/listas/três campos/tipos e links coerentes. Página explícita respeitada
+  mesmo com page=99 na requisição sintética. Quinze casos da demo com zero SQL.
+- Container continua resolvendo Catalogo para CatalogoEloquent. Chamadas pelo
+  contrato omitindo nome ou com nome explícito retornam vazio no teste e fazem
+  um COUNT cada, bindings ativo ou ativo/nome conferidos. Nenhuma escrita SQL.
+- SELECTs antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1
+  produto, por /tmp/curso-618-contagens.php.
+- Manual oficial PHP mb_stripos consultado; git diff --check e links locais conferidos.
+
+Entendimento da 6.38: confirmado com "entendi" em 01/11/2026. Publicação em preparação.
+Último checkpoint publicado: 4d345643f0652d85fb172c9cf76af11c62aea569, etapa 6.37.
+Próximo passo: publicar e iniciar somente 6.39: integrar nome
+no controller e preservar o parâmetro validado nos links, verificando HTTP.
+Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -8767,8 +8822,10 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   confirmado com "entendu" em 01/11/2026; publicada em 0b9afb8. Na 6.37,
   filtro literal no serviço implementado/explicado/verificado com 18 cenários SQL,
   suíte 41/288 e contagens preservadas; HTTP ainda sem filtro. Entendimento
-  confirmado com "entendi" em 01/11/2026;
-  publicar e iniciar somente 6.38: contrato/demo com nome opcional, sem controller.
+  confirmado com "entendi" em 01/11/2026; publicada em 4d34564. Na 6.38,
+  contrato/demo implementados/explicados/verificados: quinze cenários sem SQL,
+  assinaturas/binding/leitura pelo contrato e suíte 41/288 passaram. Entendimento
+  confirmado com "entendi" em 01/11/2026; publicar e iniciar somente 6.39: controller e links com nome validado.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -8968,4 +9025,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 30/10/2026 | 6.34 — Contrato planejado do filtro por nome | Entrada/trecho literal/ativos/total/links definidos; collation e contagens conferidas por SELECT; filtro ainda não implementado | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 4bb1291 |
 | 01/11/2026 | 6.35 — Validação de nome | Regras no Form Request; diagnóstico 12 válidos/7 inválidos, tipos/normalização/422/zero SQL e rollback; suíte 41/288 e contagens passaram | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 618eb1a |
 | 01/11/2026 | 6.36 — Nome validado como string/null | Método nome no Form Request; diagnóstico valores/tipos de 12 válidos e 7 inválidos, rollback e suíte 41/288 passaram; contagens preservadas | Confirmado com "entendu" em 01/11/2026 | Publicado e verificado: 0b9afb8 |
-| 01/11/2026 | 6.37 — Filtro literal no serviço Eloquent | Nome opcional/CHARINDEX parametrizado; 18 cenários SQL, rollback e suíte 41/288 passaram; HTTP ainda sem filtro e contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.37 — Filtro literal no serviço Eloquent | Nome opcional/CHARINDEX parametrizado; 18 cenários SQL, rollback e suíte 41/288 passaram; HTTP ainda sem filtro e contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 4d34564 |
+| 01/11/2026 | 6.38 — Nome opcional no contrato/demo | Assinaturas alinhadas e filtro em memória; 15 cenários sem SQL, JSON/binding/leitura pelo contrato e suíte 41/288 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

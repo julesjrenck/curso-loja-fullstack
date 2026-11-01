@@ -46,9 +46,15 @@ class CatalogoDemonstracao implements Catalogo
     /**
      * @return LengthAwarePaginator<int, Produto>
      */
-    public function paginarProdutos(int $pagina): LengthAwarePaginator
+    public function paginarProdutos(int $pagina, ?string $nome = null): LengthAwarePaginator
     {
         $produtos = $this->listarProdutos();
+
+        if ($nome !== null) {
+            $produtos = $produtos->filter(
+                fn (Produto $produto): bool => mb_stripos($produto->nome, $nome, 0, 'UTF-8') !== false,
+            );
+        }
 
         return new LengthAwarePaginator(
             $produtos->forPage($pagina, 10)->values(),

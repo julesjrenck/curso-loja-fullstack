@@ -396,10 +396,14 @@ parametrizado antes de paginar. Diagnóstico de 18 cenários SQL conferiu filtro
 total/páginas/empate, literais, caixa/acentos, null/'0', bindings e rollback;
 suíte existente 41/288 passou, contagens preservadas. Contrato/demo/controller
 preservados, HTTP ainda sem filtro. Explicação apresentada; entendimento da
-6.37 confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar
-e iniciar somente 6.38:
-declarar nome opcional em Catalogo e implementar filtro equivalente na demonstração,
-ainda sem mudar controller.
+6.37 confirmado com "entendi" em 01/11/2026 e publicada em 4d34564. Na 6.38,
+Catalogo declara nome opcional e demonstração filtra via mb_stripos/UTF-8 antes
+de contar/recortar, usando !== false para aceitar posição zero. Quinze cenários
+da demo/JSON sem SQL, assinaturas/binding e passagem pelo contrato conferidos;
+suíte existente 41/288 passou, contagens preservadas. HTTP ainda sem filtro.
+Explicação apresentada; entendimento da 6.38 confirmado com "entendi" em 01/11/2026.
+Publicação em preparação; publicar e iniciar somente 6.39: integrar nome no controller e preservar parâmetro
+validado nos links, verificando HTTP.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
