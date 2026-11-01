@@ -3,7 +3,8 @@
 Implementação, explicação e verificação em 01/11/2026 após confirmação da 6.56
 com "entendi" e publicação em d1a7b18d3963c857ec0f9617a683a41bc5539abb.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.57
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+12acc7e80669c400f7635df1a0437f01e8939100, com referências local e remotas coincidentes.
 
 ## Objeto obrigatório
 
@@ -84,6 +85,5 @@ dependências novas, consultas ou nova suíte; última suíte executada na 6.49:
 ## Continuidade
 
 Contrato, roteiro e progresso atualizados. Entendimento confirmado com "entendi"
-em 01/11/2026; publicação em preparação. Publicar e iniciar
-somente 6.58: campos básicos de meta (página, tamanho, total, posições e path),
-incluindo from/to com possibilidade de null; meta.links será descrito depois.
+em 01/11/2026; publicação verificada em 12acc7e80669c400f7635df1a0437f01e8939100.
+Continuidade na [aula 06-58](06-58-meta-basico-openapi.md).

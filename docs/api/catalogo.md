@@ -577,6 +577,18 @@ teste existente. Sem validador OpenAPI ou de instâncias, dependências novas,
 produção alterada, consultas ou nova suíte. Entendimento da 6.57 confirmado
 com "entendi" em 01/11/2026. Explicação na [aula 06-57](../aulas/06-57-links-resposta-openapi.md).
 
+## Meta básico no OpenAPI na 6.58
+
+[Openapi.json](openapi.json) exige meta no corpo 200, object com sete campos
+obrigatórios. Current_page integer 1–1000000, per_page integer/const 10, total
+integer >=0, last_page integer >=1, from/to integer >=1 ou null e path string.
+Descrições registram capacidade fixa, total global filtrado e posições null
+em página vazia. Meta.links será descrito depois. PHP Docker confirmou JSON/
+campos, comparados com contrato/testes/serviço. Sem validador OpenAPI ou de
+instâncias, dependências novas, produção alterada, consultas ou nova suíte.
+Entendimento da 6.58 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-58](../aulas/06-58-meta-basico-openapi.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

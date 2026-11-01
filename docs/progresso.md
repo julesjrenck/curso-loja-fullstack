@@ -4,8 +4,21 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.57 — Links da resposta 200 no OpenAPI.
+- Etapa atual: 6.58 — Campos básicos de meta no OpenAPI.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.58: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026, durante o encerramento do registro. Corpo 200 em openapi.json exige meta,
+  object com sete obrigatórios: current_page/per_page/total/last_page/from/to/path.
+  Current_page integer 1–1000000; per_page integer/const 10; total integer mínimo
+  0; last_page integer mínimo 1; from/to integer ou null, mínimo 1 quando número;
+  path string. Descrições explicam total global filtrado, capacidade fixa e
+  posições null em página vazia. Meta.links ainda será descrito.
+  PHP Docker leu JSON/obrigatórios/sete schemas e ausência de meta.links, código 0.
+  Conferido contra contrato/testes/serviço; sem validador OpenAPI ou de instâncias,
+  dependências novas, produção alterada, consultas ou nova suíte; última suíte
+  6.49, 66/620. Aula 06-58, contrato e registros atualizados; diff e links
+  conferidos. Publicação em preparação. Próximo passo: publicar e iniciar somente 6.59: descrever meta.links
+  como lista de opções com url/label/page/active, tipos e obrigatoriedade.
 - Situação da 6.57: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Schema de 200 em openapi.json agora exige
   data e links. Links é object com required first/last/prev/next: first/last
@@ -15,10 +28,9 @@
   contrato e teste existente. Sem validador OpenAPI ou de instâncias,
   dependências novas, produção alterada, consultas ou nova suíte; última suíte
   6.49, 66/620. Meta será detalhado depois. Aula 06-57, contrato e registros
-  atualizados; diff e links conferidos. Publicação em preparação.
-  Próximo passo: publicar e iniciar somente 6.58:
-  descrever campos básicos de meta (página, tamanho, total, posições e path),
-  incluindo from/to com possibilidade de null; meta.links fica para depois.
+  atualizados; diff e links conferidos. Publicação verificada em
+  12acc7e80669c400f7635df1a0437f01e8939100; HEAD/origin/main/main remota coincidiram após push
+  em 01/11/2026. Continuidade realizada na 6.58.
 - Situação da 6.56: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Resposta 200 em openapi.json recebeu
   content/application/json/schema object, required data e properties.data
@@ -665,8 +677,8 @@
   6.50 e 6.51 confirmadas/publicadas em 01/11/2026;
   6.52 e 6.53 confirmadas/publicadas em 01/11/2026;
   6.54 e 6.55 confirmadas/publicadas em 01/11/2026;
-  6.56 confirmada/publicada em 01/11/2026 e 6.57 implementada/explicada/verificada;
-  entendimento da 6.57 confirmado com "entendi" em 01/11/2026.
+  6.56 e 6.57 confirmadas/publicadas em 01/11/2026;
+  6.58 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -801,22 +813,22 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.56 confirmada com "entendi" e publicada em
-d1a7b18d3963c857ec0f9617a683a41bc5539abb; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.57 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Docs/api/openapi.json acrescentou links ao required do corpo 200 e a properties:
-object, required first/last/prev/next, first/last string, prev/next type [string,
-null]. Descrições de destinos, ausência de página e nome normalizado nos links.
-Presença obrigatória distinta de aceitar null. PHP Docker retornou 0: JSON
-válido, required data/links, quatro campos obrigatórios e tipos/descrição lidos.
-Conferido contra contrato/teste existente; fontes oficiais consultadas. Meta
-segue para próxima etapa. Sem validador OpenAPI ou de instâncias, dependências
-novas, produção alterada, consultas ou nova suíte; última suíte 6.49, 66/620.
-Aula docs/aulas/06-57-links-resposta-openapi.md, contrato e registros atualizados;
-diff/links conferidos. Publicação em preparação. Próximo passo:
-publicar e iniciar somente 6.58: campos básicos
-de meta (página, tamanho, total, posições e path), incluindo from/to com
-possibilidade de null; meta.links será descrito depois.
+Estado mais recente em 01/11/2026: 6.57 confirmada com "entendi" e publicada em
+12acc7e80669c400f7635df1a0437f01e8939100; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.58 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Docs/api/openapi.json exige meta no corpo 200 e descreve object com sete campos
+obrigatórios: current_page inteiro 1–1000000, per_page inteiro/const 10, total
+inteiro >=0, last_page inteiro >=1, from/to inteiro >=1 ou null e path string.
+Descrições de capacidade fixa, total global filtrado, posições e URL base.
+PHP Docker retornou 0: JSON válido, três obrigatórios no corpo, sete schemas
+lidos e meta.links ainda ausente da descrição. Comparados com contrato/testes/
+serviço; fontes oficiais consultadas. Sem validador OpenAPI ou de instâncias,
+dependências novas, produção alterada, consultas ou nova suíte; última suíte
+6.49, 66/620. Aula docs/aulas/06-58-meta-basico-openapi.md, contrato e registros
+atualizados; diff/links conferidos. Publicação em preparação.
+Próximo passo: publicar e iniciar somente 6.59:
+descrever meta.links como lista de opções com url/label/page/active, tipos e
+obrigatoriedade.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -9368,12 +9380,40 @@ type/null consultadas. Git diff --check e links locais conferidos.
 Sem validador OpenAPI ou validação de instâncias. Nenhuma dependência nova ou
 produção alterada. Sem consultas ou nova suíte; última suíte 6.49, 66/620.
 
-Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: d1a7b18d3963c857ec0f9617a683a41bc5539abb, etapa 6.56.
-Próximo passo: publicar e iniciar somente 6.58:
-descrever campos básicos de meta (página, tamanho, total, posições e path),
-incluindo from/to com possibilidade de null; meta.links será descrito depois.
-Exercício DBeaver segue sem relato.
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+12acc7e80669c400f7635df1a0437f01e8939100; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.58. Exercício DBeaver segue sem relato.
+
+## Etapa 6.58 — Campos básicos de meta no OpenAPI
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação e
+publicação da 6.57 em 12acc7e80669c400f7635df1a0437f01e8939100.
+Aula docs/aulas/06-58-meta-basico-openapi.md. Corpo 200 em docs/api/openapi.json
+recebe meta em required e properties. Meta é object com required de sete campos:
+current_page, per_page, total, last_page, from, to, path. Meta.links será posterior.
+
+Current_page integer/minimum 1/maximum 1000000; per_page integer/const 10;
+total integer/minimum 0; last_page integer/minimum 1; from/to type [integer,
+null] com minimum 1 para valor numérico; path string. Descrições preservam
+capacidade fixa, total de ativos correspondentes em todas as páginas, última
+página pelo menos 1, posições null em página vazia e URL base sem query.
+Const restringe valor no schema. From/to obrigatórios mesmo quando null;
+página vazia pode manter total positivo ao pedir depois da última.
+
+PHP Docker via STDIN/json_decode com JSON_THROW_ON_ERROR, sem boot Laravel:
+código 0, JSON válido, required data/links/meta e sete schemas com tipos,
+limites/const/descrições lidos; meta.links descrito false (ainda ausente).
+Comparados com contrato, testes permanentes e paginate(10) do serviço. Fontes
+oficiais JSON Schema const/range consultadas. Git diff --check e links locais
+conferidos. Sem validador OpenAPI ou validação de instâncias. Nenhuma dependência
+nova ou produção alterada. Sem consultas ou nova suíte; última suíte 6.49, 66/620.
+
+Entendimento confirmado com "entendi" em 01/11/2026, recebido durante o
+encerramento do registro da aula. Publicação em preparação.
+Último checkpoint publicado: 12acc7e80669c400f7635df1a0437f01e8939100, etapa 6.57.
+Próximo passo: publicar e iniciar somente 6.59:
+descrever meta.links como lista de opções com url/label/page/active, tipos e
+obrigatoriedade. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -9759,9 +9799,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   com "entendi" em 01/11/2026; publicada em d1a7b18.
   Na 6.57, links de 200 implementado/explicado/lido por PHP Docker:
   object e quatro obrigatórios; first/last string, prev/next string ou null.
+  Entendimento confirmado com "entendi" em 01/11/2026; publicada em 12acc7e.
+  Na 6.58, meta básico implementado/explicado/lido por PHP Docker: sete campos,
+  obrigatoriedade/tipos/limites, per_page const 10 e from/to anuláveis.
   Entendimento confirmado com "entendi" em 01/11/2026; sem validador OpenAPI
-  ou nova suíte. Publicar e iniciar somente 6.58: meta básico com from/to anuláveis,
-  deixando meta.links para depois. Última suíte permanece 66/620 da 6.49.
+  ou nova suíte. Publicar e iniciar somente 6.59: meta.links com url/label/page/active,
+  tipos e obrigatoriedade. Última suíte permanece 66/620 da 6.49.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -9981,4 +10024,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.54 — Nome no OpenAPI | Query opcional, string/1–100/sem default e descrição de normalização/busca; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 2210731; remoto conferido |
 | 01/11/2026 | 6.55 — Schema Produto | Componente object, properties e required; três campos/tipos e preço em centavos; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 9930c33; remoto conferido |
 | 01/11/2026 | 6.56 — Data em 200 | Corpo JSON object/data obrigatório/array até dez/Produto por ref; JSON/leitura/referência local PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em d1a7b18; remoto conferido |
-| 01/11/2026 | 6.57 — Links em 200 | Objeto obrigatório, quatro campos presentes, prev/next string ou null; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.57 — Links em 200 | Objeto obrigatório, quatro campos presentes, prev/next string ou null; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 12acc7e; remoto conferido |
+| 01/11/2026 | 6.58 — Meta básico | Sete campos obrigatórios/tipos/limites, per_page const 10, from/to inteiro ou null; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

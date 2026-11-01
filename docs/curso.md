@@ -492,9 +492,15 @@ d1a7b18. Na 6.57, links obrigatório no corpo 200: object com quatro campos
 obrigatórios, first/last string e prev/next string ou null. PHP Docker leu
 JSON/campos, comparados com contrato/teste existente. Meta será descrito depois;
 sem validador OpenAPI ou nova suíte, última suíte 66/620 da 6.49. Explicação
-apresentada; entendimento da 6.57 confirmado com "entendi" em 01/11/2026.
-Publicação em preparação; publicar e iniciar somente 6.58: meta básico com página/tamanho/total/posições/path e from/to
-anuláveis, deixando meta.links para depois.
+apresentada; entendimento da 6.57 confirmado com "entendi" em 01/11/2026 e
+publicada em 12acc7e. Na 6.58, meta obrigatório com sete campos básicos:
+página/tamanho/total/última/posições/path, tipos e limites; per_page const 10,
+from/to inteiro ou null. PHP Docker leu JSON/campos; conferido contra contrato/
+testes/serviço. Meta.links será posterior. Sem validador OpenAPI ou nova suíte;
+última suíte 66/620 da 6.49. Explicação apresentada; entendimento da 6.58
+confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar e
+iniciar somente 6.59: meta.links com
+url/label/page/active, tipos e obrigatoriedade.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
