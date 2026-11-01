@@ -4,8 +4,21 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.56 — Data da resposta 200 no OpenAPI.
+- Etapa atual: 6.57 — Links da resposta 200 no OpenAPI.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.57: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Schema de 200 em openapi.json agora exige
+  data e links. Links é object com required first/last/prev/next: first/last
+  string e prev/next type [string, null], com descrições de destinos e nome
+  normalizado nas URLs. Presença obrigatória não impede valor null permitido.
+  PHP Docker leu JSON/obrigatórios/tipos/descrição, código 0. Conferido contra
+  contrato e teste existente. Sem validador OpenAPI ou de instâncias,
+  dependências novas, produção alterada, consultas ou nova suíte; última suíte
+  6.49, 66/620. Meta será detalhado depois. Aula 06-57, contrato e registros
+  atualizados; diff e links conferidos. Publicação em preparação.
+  Próximo passo: publicar e iniciar somente 6.58:
+  descrever campos básicos de meta (página, tamanho, total, posições e path),
+  incluindo from/to com possibilidade de null; meta.links fica para depois.
 - Situação da 6.56: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Resposta 200 em openapi.json recebeu
   content/application/json/schema object, required data e properties.data
@@ -16,8 +29,8 @@
   e contrato. Sem validador OpenAPI ou de instâncias, dependências novas,
   produção alterada, consultas ou nova suíte; última suíte 6.49, 66/620.
   Aula 06-56, contrato e registros atualizados; diff e links conferidos.
-  Publicação em preparação. Próximo passo: publicar e iniciar somente 6.57: descrever links na resposta 200,
-  com first/last/prev/next, obrigatoriedade e possibilidade de null.
+  Publicação verificada em d1a7b18d3963c857ec0f9617a683a41bc5539abb; HEAD/origin/main/main
+  remota coincidiram após push em 01/11/2026. Continuidade realizada na 6.57.
 - Situação da 6.55: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Openapi.json recebeu components.schemas.Produto:
   type object, description, required com id/nome/preco_em_centavos e properties
@@ -652,7 +665,8 @@
   6.50 e 6.51 confirmadas/publicadas em 01/11/2026;
   6.52 e 6.53 confirmadas/publicadas em 01/11/2026;
   6.54 e 6.55 confirmadas/publicadas em 01/11/2026;
-  6.56 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.56 confirmada/publicada em 01/11/2026 e 6.57 implementada/explicada/verificada;
+  entendimento da 6.57 confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -787,21 +801,22 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.55 confirmada com "entendi" e publicada em
-9930c338f2ed1764608ff5139587882ba1b26c6c; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.56 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Docs/api/openapi.json recebeu content/application/json na resposta 200, com
-schema object, required data e properties.data array/maxItems 10/items.$ref
-para #/components/schemas/Produto. Lista vazia permitida; corpo descrito só
-parcialmente, links/meta ainda serão detalhados e continuam na API. PHP Docker
-retornou 0: JSON válido, campos do corpo/lista lidos e referência local percorrida
-até Produto object com três obrigatórios. Conferido contra código/contrato;
-fontes oficiais consultadas. Sem validador OpenAPI ou de instâncias, dependências
+Estado mais recente em 01/11/2026: 6.56 confirmada com "entendi" e publicada em
+d1a7b18d3963c857ec0f9617a683a41bc5539abb; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.57 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Docs/api/openapi.json acrescentou links ao required do corpo 200 e a properties:
+object, required first/last/prev/next, first/last string, prev/next type [string,
+null]. Descrições de destinos, ausência de página e nome normalizado nos links.
+Presença obrigatória distinta de aceitar null. PHP Docker retornou 0: JSON
+válido, required data/links, quatro campos obrigatórios e tipos/descrição lidos.
+Conferido contra contrato/teste existente; fontes oficiais consultadas. Meta
+segue para próxima etapa. Sem validador OpenAPI ou de instâncias, dependências
 novas, produção alterada, consultas ou nova suíte; última suíte 6.49, 66/620.
-Aula docs/aulas/06-56-data-resposta-openapi.md, contrato e registros atualizados;
+Aula docs/aulas/06-57-links-resposta-openapi.md, contrato e registros atualizados;
 diff/links conferidos. Publicação em preparação. Próximo passo:
-publicar e iniciar somente 6.57: descrever links
-na resposta 200, com first/last/prev/next, obrigatoriedade e possibilidade de null.
+publicar e iniciar somente 6.58: campos básicos
+de meta (página, tamanho, total, posições e path), incluindo from/to com
+possibilidade de null; meta.links será descrito depois.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -9325,11 +9340,40 @@ Schema array/items consultadas. Git diff --check e links locais conferidos.
 Nenhuma dependência nova ou código de produção alterado. Sem consultas ou
 nova suíte; última suíte executada é 6.49, 66 testes/620 asserções.
 
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+d1a7b18d3963c857ec0f9617a683a41bc5539abb; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.57. Exercício DBeaver segue sem relato.
+
+## Etapa 6.57 — Links da resposta 200 no OpenAPI
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação e
+publicação da 6.56 em d1a7b18d3963c857ec0f9617a683a41bc5539abb.
+Aula docs/aulas/06-57-links-resposta-openapi.md. Schema do corpo de 200 em
+docs/api/openapi.json recebe links em required e em properties. Links é object,
+required lista first/last/prev/next, properties declara first/last como string
+e prev/next com type [string, null]. Descrições informam destinos e preservação
+de nome normalizado nas URLs não nulas. Meta ainda não descrito.
+
+Required exige presença; type lista alternativas de valor. Prev/next continuam
+obrigatórios mesmo quando null indica ausência de página anterior/seguinte.
+Os nomes string/null no schema ficam entre aspas; null no corpo é o valor JSON.
+Não usados nullable ou format; escopo são presença, tipos e descrições.
+Data e componente Produto preservados. Documentação do envelope permanece parcial.
+
+PHP Docker via STDIN/json_decode com JSON_THROW_ON_ERROR, sem boot Laravel:
+código 0, JSON válido; required data/links, links object/required quatro campos,
+first/last string e prev/next string | null, descrição lidos. Comparado com
+contrato e teste permanente de navegação filtrada. Fontes oficiais JSON Schema
+type/null consultadas. Git diff --check e links locais conferidos.
+Sem validador OpenAPI ou validação de instâncias. Nenhuma dependência nova ou
+produção alterada. Sem consultas ou nova suíte; última suíte 6.49, 66/620.
+
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: 9930c338f2ed1764608ff5139587882ba1b26c6c, etapa 6.55.
-Próximo passo: publicar e iniciar somente 6.57:
-descrever links na resposta 200, com first/last/prev/next, obrigatoriedade e
-possibilidade de null. Exercício DBeaver segue sem relato.
+Último checkpoint publicado: d1a7b18d3963c857ec0f9617a683a41bc5539abb, etapa 6.56.
+Próximo passo: publicar e iniciar somente 6.58:
+descrever campos básicos de meta (página, tamanho, total, posições e path),
+incluindo from/to com possibilidade de null; meta.links será descrito depois.
+Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -9712,9 +9756,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   em 01/11/2026; publicada em 9930c33.
   Na 6.56, corpo JSON de 200/data lista/Produto por $ref implementado/explicado
   e lido por PHP Docker, referência local percorrida. Entendimento confirmado
-  com "entendi" em 01/11/2026; sem validador OpenAPI ou nova suíte. Publicar e iniciar
-  somente 6.57: links de 200 com campos obrigatórios e null onde aplicável.
-  Última suíte permanece 66/620 da 6.49.
+  com "entendi" em 01/11/2026; publicada em d1a7b18.
+  Na 6.57, links de 200 implementado/explicado/lido por PHP Docker:
+  object e quatro obrigatórios; first/last string, prev/next string ou null.
+  Entendimento confirmado com "entendi" em 01/11/2026; sem validador OpenAPI
+  ou nova suíte. Publicar e iniciar somente 6.58: meta básico com from/to anuláveis,
+  deixando meta.links para depois. Última suíte permanece 66/620 da 6.49.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -9933,4 +9980,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.53 — Page no OpenAPI | Query opcional, integer/1–1000000/default 1 e descrição lexical; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em b4aa821; remoto conferido |
 | 01/11/2026 | 6.54 — Nome no OpenAPI | Query opcional, string/1–100/sem default e descrição de normalização/busca; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 2210731; remoto conferido |
 | 01/11/2026 | 6.55 — Schema Produto | Componente object, properties e required; três campos/tipos e preço em centavos; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 9930c33; remoto conferido |
-| 01/11/2026 | 6.56 — Data em 200 | Corpo JSON object/data obrigatório/array até dez/Produto por ref; JSON/leitura/referência local PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.56 — Data em 200 | Corpo JSON object/data obrigatório/array até dez/Produto por ref; JSON/leitura/referência local PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em d1a7b18; remoto conferido |
+| 01/11/2026 | 6.57 — Links em 200 | Objeto obrigatório, quatro campos presentes, prev/next string ou null; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

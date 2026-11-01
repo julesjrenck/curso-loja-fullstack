@@ -49,7 +49,8 @@
                 "schema": {
                   "type": "object",
                   "required": [
-                    "data"
+                    "data",
+                    "links"
                   ],
                   "properties": {
                     "data": {
@@ -57,6 +58,40 @@
                       "maxItems": 10,
                       "items": {
                         "$ref": "#/components/schemas/Produto"
+                      }
+                    },
+                    "links": {
+                      "type": "object",
+                      "description": "Links de navegação; URLs preservam o nome normalizado quando informado.",
+                      "required": [
+                        "first",
+                        "last",
+                        "prev",
+                        "next"
+                      ],
+                      "properties": {
+                        "first": {
+                          "type": "string",
+                          "description": "URL da primeira página."
+                        },
+                        "last": {
+                          "type": "string",
+                          "description": "URL da última página."
+                        },
+                        "prev": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "URL da página anterior, ou null quando não houver."
+                        },
+                        "next": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "URL da página seguinte, ou null quando não houver."
+                        }
                       }
                     }
                   }

@@ -566,6 +566,17 @@ dependências novas, produção alterada, consultas ou nova suíte.
 Entendimento da 6.56 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-56](../aulas/06-56-data-resposta-openapi.md).
 
+## Links da resposta 200 no OpenAPI na 6.57
+
+[Openapi.json](openapi.json) agora exige links no corpo 200 e o descreve como
+object com first/last/prev/next obrigatórios. First/last são string; prev/next
+aceitam string ou null, preservando presença mesmo sem destino. Descrições
+registram significado dos destinos e nome normalizado nas URLs. Meta será
+detalhado depois. PHP Docker confirmou JSON/campos; comparado com contrato e
+teste existente. Sem validador OpenAPI ou de instâncias, dependências novas,
+produção alterada, consultas ou nova suíte. Entendimento da 6.57 confirmado
+com "entendi" em 01/11/2026. Explicação na [aula 06-57](../aulas/06-57-links-resposta-openapi.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

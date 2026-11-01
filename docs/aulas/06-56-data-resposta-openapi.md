@@ -3,7 +3,8 @@
 Implementação, explicação e verificação em 01/11/2026 após confirmação da 6.55
 com "entendi" e publicação em 9930c338f2ed1764608ff5139587882ba1b26c6c.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.56
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+d1a7b18d3963c857ec0f9617a683a41bc5539abb, com referências local e remotas coincidentes.
 
 ## Corpo JSON e lista de produtos
 
@@ -92,6 +93,5 @@ consultas ou nova suíte. Última suíte na 6.49: 66 testes/620 asserções.
 ## Continuidade
 
 Contrato, roteiro e progresso atualizados. Entendimento confirmado com "entendi"
-em 01/11/2026; publicação em preparação. Publicar e iniciar
-somente 6.57: descrever links na resposta 200, com first/last/prev/next,
-obrigatoriedade e possibilidade de null.
+em 01/11/2026; publicação verificada em d1a7b18d3963c857ec0f9617a683a41bc5539abb.
+Continuidade na [aula 06-57](06-57-links-resposta-openapi.md).

@@ -487,9 +487,14 @@ resposta 200 recebeu corpo application/json/object/data obrigatório, array
 até dez itens com $ref para Produto. PHP Docker leu campos e percorreu a
 referência local. Descrição parcial; links/meta virão depois. Sem validador
 OpenAPI ou nova suíte; última suíte 66/620 da 6.49. Explicação apresentada;
-entendimento da 6.56 confirmado com "entendi" em 01/11/2026.
-Publicação em preparação; publicar e iniciar somente 6.57:
-links de 200 com first/last/prev/next, obrigatoriedade e possibilidade de null.
+entendimento da 6.56 confirmado com "entendi" em 01/11/2026 e publicada em
+d1a7b18. Na 6.57, links obrigatório no corpo 200: object com quatro campos
+obrigatórios, first/last string e prev/next string ou null. PHP Docker leu
+JSON/campos, comparados com contrato/teste existente. Meta será descrito depois;
+sem validador OpenAPI ou nova suíte, última suíte 66/620 da 6.49. Explicação
+apresentada; entendimento da 6.57 confirmado com "entendi" em 01/11/2026.
+Publicação em preparação; publicar e iniciar somente 6.58: meta básico com página/tamanho/total/posições/path e from/to
+anuláveis, deixando meta.links para depois.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
