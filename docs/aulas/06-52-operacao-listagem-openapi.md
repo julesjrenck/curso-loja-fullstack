@@ -3,7 +3,8 @@
 Implementação, explicação e verificação em 01/11/2026 após confirmação da 6.51
 com "entendi" e publicação em 5bcb4307f03cbf89ba1a52e75e6ca0eebfeaa43f.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.52
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+104f8d6718be4d5a57c9f46344ff77bae51b441a, com referências local e remotas coincidentes.
 
 ## Trecho acrescentado
 
@@ -101,7 +102,5 @@ com 66 testes/620 asserções. Nenhuma dependência ou código de produção alt
 ## Continuidade
 
 Contrato, roteiro e progresso atualizados. Entendimento confirmado com "entendi"
-em 01/11/2026; publicação em preparação. Publicar e iniciar
-somente 6.53: descrever apenas page na query, com opcionalidade, padrão e limites;
-registrar representação decimal canônica na descrição. Nome e schemas de
-resposta serão acrescentados depois.
+em 01/11/2026; publicação verificada em 104f8d6718be4d5a57c9f46344ff77bae51b441a.
+Continuidade na [aula 06-53](06-53-page-openapi.md).

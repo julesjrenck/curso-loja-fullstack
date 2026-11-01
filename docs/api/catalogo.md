@@ -511,11 +511,24 @@ Entendimento da 6.51 confirmado com "entendi" em 01/11/2026. Explicação na
 [Openapi.json](openapi.json) agora declara /api/v1/produtos/get, summary Listar
 produtos ativos, operationId listarProdutos e descrições de respostas 200/422.
 A descrição de sucesso admite página vazia; a de 422 trata query inválida.
-Documento parcial: parâmetros e formatos de corpo ainda serão acrescentados.
+Na 6.52, parâmetros e formatos de corpo ainda não estavam descritos.
 PHP Docker confirmou sintaxe JSON, URL completa e leitura da operação/status;
 sem validador OpenAPI automatizado. Código HTTP preservado, sem dependências,
 consultas ou nova suíte. Entendimento da 6.52 confirmado com "entendi" em
 01/11/2026. Explicação na [aula 06-52](../aulas/06-52-operacao-listagem-openapi.md).
+
+## Page no OpenAPI na 6.53
+
+[Openapi.json](openapi.json) recebeu page na lista parameters da operação:
+in query, required false, schema integer com minimum 1, maximum 1000000 e
+default 1. Descrição registra normalização/decimal sem sinal ou zeros iniciais,
+vazio inválido 422 e página após a última 200 vazia. O schema numérico não
+codifica sozinho a representação lexical; descrição e testes preservam essa regra.
+PHP Docker confirmou sintaxe/leitura dos campos, comparados com Form Request e
+este contrato. Sem validador OpenAPI, dependências novas, produção alterada,
+consultas ou nova suíte. Nome e schemas de resposta serão acrescentados depois.
+Entendimento da 6.53 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-53](../aulas/06-53-page-openapi.md).
 
 ## Evolução
 

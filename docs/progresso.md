@@ -4,8 +4,20 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.52 — Primeira operação no OpenAPI.
+- Etapa atual: 6.53 — Parâmetro page no OpenAPI.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.53: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Openapi.json recebeu parameters com page
+  em query, required false e schema integer/minimum 1/maximum 1000000/default 1.
+  Description registra normalização, decimal positivo sem sinal/zeros iniciais,
+  vazio/inválido 422 e página após a última 200 vazia. Schema numérico não
+  expressa sozinho a regra lexical; default documenta pagina() existente.
+  PHP Docker leu JSON/parâmetro/campos/descrição, código 0. Conferido contra
+  Form Request e contrato; sem validador OpenAPI, dependências novas, produção
+  alterada, consultas ou nova suíte. Última suíte: 6.49, 66/620.
+  Aula 06-53, contrato e registros atualizados; diff e links conferidos.
+  Publicação em preparação. Próximo passo: publicar e iniciar somente 6.54: acrescentar nome na query, opcional,
+  com schema de texto e limites, descrevendo normalização e busca literal.
 - Situação da 6.52: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Openapi.json recebeu paths /api/v1/produtos
   com get, summary Listar produtos ativos, operationId listarProdutos e responses
@@ -15,9 +27,8 @@
   contrato. Sem validador OpenAPI automatizado, novas dependências, alteração de
   produção, consultas ou nova suíte; última suíte permanece 6.49, 66/620.
   Aula 06-52, contrato e registros atualizados; diff e links conferidos.
-  Publicação em preparação. Próximo passo: publicar e iniciar somente 6.53: descrever apenas page na query,
-  com opcionalidade, padrão e limites; registrar a representação decimal
-  canônica na descrição. Nome e schemas de resposta ficam para etapas seguintes.
+  Publicação verificada em 104f8d6718be4d5a57c9f46344ff77bae51b441a; HEAD/origin/main/main
+  remota coincidiram após push em 01/11/2026. Continuidade realizada na 6.53.
 - Situação da 6.51: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Criado docs/api/openapi.json com
   openapi 3.2.1, info/title/version 0.1.0/description, servers local e paths {}.
@@ -602,7 +613,8 @@
   6.46 e 6.47 confirmadas/publicadas em 01/11/2026;
   6.48 e 6.49 confirmadas/publicadas em 01/11/2026;
   6.50 e 6.51 confirmadas/publicadas em 01/11/2026;
-  6.52 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.52 confirmada/publicada em 01/11/2026 e 6.53 implementada/explicada/verificada;
+  entendimento da 6.53 confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -737,21 +749,22 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.51 confirmada com "entendi" e publicada em
-5bcb4307f03cbf89ba1a52e75e6ca0eebfeaa43f; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.52 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Docs/api/openapi.json recebeu /api/v1/produtos/get com summary Listar produtos
-ativos, operationId listarProdutos e responses 200/422 com descrições. Ainda
-sem parâmetros ou schemas/content de resposta. PHP via Docker/STDIN/json_decode
-retornou 0 e confirmou JSON válido, URL completa, resumo, identificador e códigos.
-Método/caminho/status confrontados com fontes locais e especificação oficial.
-Sem validador OpenAPI automatizado, novas dependências, produção alterada,
-consultas ou nova suíte. Última suíte: 6.49, 66/620. Aula
-docs/aulas/06-52-operacao-listagem-openapi.md, contrato e registros atualizados;
-diff/links conferidos. Publicação em preparação. Próximo passo:
-publicar e iniciar somente 6.53: descrever apenas
-page na query, com opcionalidade, padrão e limites; registrar representação
-decimal canônica na descrição. Nome e schemas de resposta serão posteriores.
+Estado mais recente em 01/11/2026: 6.52 confirmada com "entendi" e publicada em
+104f8d6718be4d5a57c9f46344ff77bae51b441a; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.53 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Docs/api/openapi.json recebeu parameters com page/in query/required false e
+schema integer, minimum 1, maximum 1000000, default 1. Description explica
+normalização e representação decimal positiva sem sinal/zeros iniciais,
+vazio/inválido 422 e página após a última 200 vazia. Regra lexical não é
+representada somente pelo schema numérico. Default documenta pagina() existente.
+PHP via Docker/STDIN/json_decode retornou 0: JSON válido, um parâmetro e campos
+esperados lidos. Conferido contra Form Request/contrato e fonte oficial.
+Sem validador OpenAPI, dependências novas, produção alterada, consultas ou nova
+suíte. Última suíte 6.49, 66/620. Aula docs/aulas/06-53-page-openapi.md, contrato
+e registros atualizados; diff/links conferidos. Publicação em preparação.
+Próximo passo: publicar e iniciar somente 6.54:
+acrescentar nome na query, opcional, com schema de texto e limites, descrevendo
+normalização e busca literal. Schemas de resposta serão posteriores.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -9157,12 +9170,41 @@ identificador único. Git diff --check e links locais conferidos.
 Sintaxe e leitura do trecho conferidas; sem validador OpenAPI automatizado ou
 verificação do contrato completo. Nenhuma dependência nova ou código de produção
 alterado. Não executadas consultas ou nova suíte; última suíte é 6.49, 66/620.
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+104f8d6718be4d5a57c9f46344ff77bae51b441a; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.53. Exercício DBeaver segue sem relato.
+
+## Etapa 6.53 — Parâmetro page no OpenAPI
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação e
+publicação da 6.52 em 104f8d6718be4d5a57c9f46344ff77bae51b441a.
+Aula docs/aulas/06-53-page-openapi.md. Em docs/api/openapi.json, operação get
+recebe parameters como lista de um objeto: name page, in query, required false,
+description e schema. Schema: type integer, minimum 1, maximum 1000000, default 1.
+
+Descrição registra comportamento já existente: omitido usa 1; presente após
+normalização deve ser decimal positivo sem sinal/zeros iniciais no intervalo;
+vazio/inválido 422; página após a última 200 com lista vazia. Required false
+permite omissão e não autoriza valor vazio. Default documenta pagina() que já
+usa validated('page', 1). Schema numérico descreve valor/limites; descrição e
+testes existentes preservam restrições de representação como 01/+1/1e3.
+Não acrescentado pattern a um schema integer.
+
+Verificação manual PHP em Docker por STDIN, sem boot Laravel: json_decode com
+JSON_THROW_ON_ERROR, código 0; JSON válido, um parâmetro, page/query, obrigatório
+false, tipo integer, limites 1–1000000, padrão 1 e descrição lidos. Comparados
+com ListarProdutosRequest e contrato atual. Especificação OpenAPI v3.2.1
+consultada para parameter/schema. Git diff --check e links locais conferidos.
+Sem validador OpenAPI automatizado ou validação de requisições por esse comando.
+Nenhuma dependência nova ou código de produção alterado. Sem consultas ou
+nova suíte; última suíte executada é 6.49, 66 testes/620 asserções.
+
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: 5bcb4307f03cbf89ba1a52e75e6ca0eebfeaa43f, etapa 6.51.
-Próximo passo: publicar e iniciar somente 6.53:
-descrever apenas page na query, com opcionalidade, padrão e limites; registrar
-representação decimal canônica na descrição. Nome e schemas de resposta serão
-posteriores. Exercício DBeaver segue sem relato.
+Último checkpoint publicado: 104f8d6718be4d5a57c9f46344ff77bae51b441a, etapa 6.52.
+Próximo passo: publicar e iniciar somente 6.54:
+acrescentar nome na query, opcional, com schema de texto e limites, descrevendo
+normalização e busca literal. Schemas de resposta serão posteriores.
+Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -9533,9 +9575,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Entendimento confirmado com "entendi" em 01/11/2026; publicada em 5bcb430.
   Na 6.52, GET /api/v1/produtos com summary/operationId e respostas descritivas
   200/422 implementado/explicado/lido por PHP Docker. Entendimento confirmado
-  com "entendi" em 01/11/2026; sem validador OpenAPI ou nova suíte. Publicar e iniciar
-  somente 6.53: page na query, opcionalidade/padrão/limites e regra lexical na
-  descrição. Última suíte permanece 66/620 da 6.49.
+  com "entendi" em 01/11/2026; publicada em 104f8d6.
+  Na 6.53, page no OpenAPI implementado/explicado/lido por PHP Docker:
+  query/opcional/integer/limites/padrão e regra lexical em descrição.
+  Entendimento confirmado com "entendi" em 01/11/2026; sem validador OpenAPI
+  ou nova suíte. Publicar e iniciar somente 6.54: nome na query com texto/limites,
+  normalização e busca literal. Última suíte permanece 66/620 da 6.49.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -9750,4 +9795,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.49 — Meta.links filtrados | Duas páginas; quatro entradas, url/page/active, sem labels fixos; classe 52/566 e suíte 66/620 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em ddfbada; remoto conferido |
 | 01/11/2026 | 6.50 — Desenho OpenAPI | Introdução, JSON/3.2.1, versões e escopo da listagem; inspeção de código/contrato/fontes, diff e links; sem documento formal ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 697f841; remoto conferido |
 | 01/11/2026 | 6.51 — Esqueleto OpenAPI | Arquivo JSON com metadados/servidor/paths vazio; PHP Docker confirmou sintaxe/leitura; diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 5bcb430; remoto conferido |
-| 01/11/2026 | 6.52 — Operação GET no OpenAPI | Caminho/get/summary/operationId/respostas 200 e 422; JSON e leitura PHP Docker conferidos; diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.52 — Operação GET no OpenAPI | Caminho/get/summary/operationId/respostas 200 e 422; JSON e leitura PHP Docker conferidos; diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 104f8d6; remoto conferido |
+| 01/11/2026 | 6.53 — Page no OpenAPI | Query opcional, integer/1–1000000/default 1 e descrição lexical; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

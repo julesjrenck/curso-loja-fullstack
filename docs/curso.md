@@ -466,9 +466,13 @@ GET /api/v1/produtos com summary, operationId listarProdutos e descrições de
 respostas 200/422. PHP Docker conferiu sintaxe e leitura; método/caminho/status
 confrontados com contrato/código. Ainda sem parâmetros/schemas ou validador
 OpenAPI; última suíte 66/620 da 6.49. Explicação apresentada; entendimento da
-6.52 confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar
-e iniciar somente 6.53: page na query,
-com opcionalidade, padrão e limites, e representação decimal canônica descrita.
+6.52 confirmado com "entendi" em 01/11/2026 e publicada em 104f8d6. Na 6.53,
+page descrito na query: opcional, inteiro de 1 a 1000000, padrão 1; descrição
+registra normalização, regra lexical, vazio inválido e página após a última.
+PHP Docker leu sintaxe/campos; conferido contra Form Request/contrato. Sem
+validador OpenAPI ou nova suíte; última suíte 66/620 da 6.49. Explicação
+apresentada; entendimento da 6.53 confirmado com "entendi" em 01/11/2026.
+Publicação em preparação; publicar e iniciar somente 6.54: nome na query com schema de texto/limites, normalização e busca literal.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
