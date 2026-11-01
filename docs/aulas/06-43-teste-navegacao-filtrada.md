@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.42
 com "entendi" e publicação em 8eab468af794a8d513e0cc9f1237b562a18f93a6.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.43
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+d56c1857a0ad9845194f998ec4daa691a7c07511, com referências local e remotas coincidentes.
 
 Um método novo em backend/tests/Feature/CatalogoApiTest.php:
 test_mantem_filtro_e_total_ao_seguir_proxima_pagina. O comportamento da API já
@@ -105,6 +106,6 @@ da documentação conferidos.
 ## Continuidade
 
 Roteiro, progresso e cobertura do [contrato atual](../api/catalogo.md) atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
-Depois da confirmação, publicar e iniciar somente 6.44: testes de busca literal
-com caracteres especiais e texto '0', usando DataProvider.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada em
+d56c1857a0ad9845194f998ec4daa691a7c07511, com referências local e remotas coincidentes.
+Continuidade na [aula 06-44](06-44-testes-nomes-literais.md).

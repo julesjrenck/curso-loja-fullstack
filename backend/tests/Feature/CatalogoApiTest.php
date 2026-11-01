@@ -275,6 +275,69 @@ class CatalogoApiTest extends TestCase
         ];
     }
 
+    #[DataProvider('nomesLiterais')]
+    public function test_busca_nome_literal_e_preserva_texto_nos_links(string $nome): void
+    {
+        $correspondente = Produto::factory()->create([
+            'nome' => 'Produto '.$nome.' especial',
+            'status' => 'ativo',
+            'preco_em_centavos' => 4990,
+        ]);
+
+        Produto::factory()->create([
+            'nome' => 'Produto comum',
+            'status' => 'ativo',
+            'preco_em_centavos' => 2990,
+        ]);
+
+        Produto::factory()->inativo()->create([
+            'nome' => 'Produto '.$nome.' inativo',
+            'preco_em_centavos' => 1990,
+        ]);
+
+        $resposta = $this->getJson('/api/v1/produtos?'.http_build_query(['nome' => $nome]));
+        $url = url('/api/v1/produtos').'?'.http_build_query([
+            'nome' => $nome,
+            'page' => 1,
+        ]);
+
+        $resposta
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonPath('data', [
+                [
+                    'id' => $correspondente->id,
+                    'nome' => 'Produto '.$nome.' especial',
+                    'preco_em_centavos' => 4990,
+                ],
+            ])
+            ->assertJsonPath('links', [
+                'first' => $url,
+                'last' => $url,
+                'prev' => null,
+                'next' => null,
+            ])
+            ->assertJsonPath('meta.current_page', 1)
+            ->assertJsonPath('meta.per_page', 10)
+            ->assertJsonPath('meta.total', 1)
+            ->assertJsonPath('meta.last_page', 1)
+            ->assertJsonPath('meta.from', 1)
+            ->assertJsonPath('meta.to', 1);
+    }
+
+    public static function nomesLiterais(): array
+    {
+        return [
+            'porcentagem' => ['%'],
+            'sublinhado' => ['_'],
+            'colchete' => ['['],
+            'apóstrofo' => ["'"],
+            'mais' => ['+'],
+            'e comercial' => ['&'],
+            'zero como texto' => ['0'],
+        ];
+    }
+
     public function test_mantem_filtro_e_total_ao_seguir_proxima_pagina(): void
     {
         $primeiroEmpate = Produto::factory()->create([

@@ -414,6 +414,18 @@ preservada. Não acrescenta medições SQL ou asserções de meta.links.
 Entendimento da 6.43 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-43](../aulas/06-43-teste-navegacao-filtrada.md).
 
+## Cobertura acrescentada na 6.44
+
+Novo método HTTP com DataProvider nomesLiterais executa sete buscas: %, _, [,
+apóstrofo, +, & e string '0'. Cada caso cria um correspondente ativo, um ativo
+sem correspondência e um correspondente inativo. Http_build_query codifica o
+nome na entrada e nos links first/last esperados. Exige único objeto completo,
+total 1, posições, demais metadados e links com nome preservado. Classe 44
+testes/436 asserções e suíte 58 testes/490 asserções passaram; contagens
+preservadas. Aplicação preservada; sem medição SQL ou novas asserções meta.links.
+Entendimento da 6.44 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-44](../aulas/06-44-testes-nomes-literais.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

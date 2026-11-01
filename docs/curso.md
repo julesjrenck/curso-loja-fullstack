@@ -424,8 +424,13 @@ novo teste percorre duas páginas seguindo links.next recebido; exige 12 ativos
 correspondentes entre 20 ativos, desempate por ID na divisão, dados completos,
 total e nome preservados. Classe 37/345 e suíte 51/399 passaram; contagens
 preservadas. Explicação apresentada; entendimento da 6.43 confirmado com
-"entendi" em 01/11/2026. Publicação em preparação; publicar e iniciar somente 6.44: testes de busca literal com caracteres
-especiais e texto '0', usando DataProvider.
+"entendi" em 01/11/2026 e publicada em d56c185. Na 6.44, teste com provider
+confere busca literal por %, _, [, apóstrofo, +, & e string '0', com query
+codificada por http_build_query, único ativo correspondente e texto nos links.
+Classe 44/436 e suíte 58/490 passaram; contagens preservadas. Explicação
+apresentada; entendimento da 6.44 confirmado com "entendi" em 01/11/2026.
+Publicação em preparação; publicar e iniciar somente 6.45: teste de busca sem correspondência, data vazia, total zero e
+links filtrados.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
