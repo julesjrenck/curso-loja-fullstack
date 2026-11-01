@@ -426,6 +426,17 @@ preservadas. Aplicação preservada; sem medição SQL ou novas asserções meta
 Entendimento da 6.44 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-44](../aulas/06-44-testes-nomes-literais.md).
 
+## Cobertura acrescentada na 6.45
+
+Novo teste HTTP cria Caneca ativa e Camiseta inativa; GET nome=camiseta exige
+200/application/json, data [], total 0, current_page 1, per_page 10, last_page 1
+e from/to null. First/last mantêm nome e page=1; prev/next são null. Verifica
+busca sem ativos correspondentes em um banco que contém produtos. Classe 45
+testes/449 asserções e suíte 59 testes/503 asserções passaram; contagens
+preservadas. Aplicação preservada; sem medição SQL ou novas asserções meta.links.
+Entendimento da 6.45 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-45](../aulas/06-45-teste-busca-sem-correspondencia.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

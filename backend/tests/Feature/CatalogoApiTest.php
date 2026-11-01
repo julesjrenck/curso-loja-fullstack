@@ -275,6 +275,40 @@ class CatalogoApiTest extends TestCase
         ];
     }
 
+    public function test_retorna_pagina_vazia_quando_nome_nao_corresponde_a_ativos(): void
+    {
+        Produto::factory()->create([
+            'nome' => 'Caneca',
+            'status' => 'ativo',
+            'preco_em_centavos' => 2990,
+        ]);
+
+        Produto::factory()->inativo()->create([
+            'nome' => 'Camiseta',
+            'preco_em_centavos' => 4990,
+        ]);
+
+        $resposta = $this->getJson('/api/v1/produtos?nome=camiseta');
+        $url = url('/api/v1/produtos').'?nome=camiseta&page=1';
+
+        $resposta
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonPath('data', [])
+            ->assertJsonPath('links', [
+                'first' => $url,
+                'last' => $url,
+                'prev' => null,
+                'next' => null,
+            ])
+            ->assertJsonPath('meta.current_page', 1)
+            ->assertJsonPath('meta.per_page', 10)
+            ->assertJsonPath('meta.total', 0)
+            ->assertJsonPath('meta.last_page', 1)
+            ->assertJsonPath('meta.from', null)
+            ->assertJsonPath('meta.to', null);
+    }
+
     #[DataProvider('nomesLiterais')]
     public function test_busca_nome_literal_e_preserva_texto_nos_links(string $nome): void
     {

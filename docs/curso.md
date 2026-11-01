@@ -428,9 +428,13 @@ preservadas. Explicação apresentada; entendimento da 6.43 confirmado com
 confere busca literal por %, _, [, apóstrofo, +, & e string '0', com query
 codificada por http_build_query, único ativo correspondente e texto nos links.
 Classe 44/436 e suíte 58/490 passaram; contagens preservadas. Explicação
-apresentada; entendimento da 6.44 confirmado com "entendi" em 01/11/2026.
-Publicação em preparação; publicar e iniciar somente 6.45: teste de busca sem correspondência, data vazia, total zero e
-links filtrados.
+apresentada; entendimento da 6.44 confirmado com "entendi" em 01/11/2026 e
+publicada em 2adfac2. Na 6.45, teste com Caneca ativa e Camiseta inativa exige
+busca por camiseta com 200, data [], total 0, last_page 1, posições null e links
+filtrados. Classe 45/449 e suíte 59/503 passaram; contagens preservadas.
+Explicação apresentada; entendimento da 6.45 confirmado com "entendi" em
+01/11/2026. Publicação em preparação; publicar e iniciar somente 6.46: teste de página após a última em busca filtrada,
+preservando total e nome nos links.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

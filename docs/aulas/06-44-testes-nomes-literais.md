@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.43
 com "entendi" e publicação em d56c1857a0ad9845194f998ec4daa691a7c07511.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.44
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+2adfac2afde138762e3549503e376968705b53b0, com referências local e remotas coincidentes.
 
 Conjunto inseparável em backend/tests/Feature/CatalogoApiTest.php: método HTTP,
 atributo DataProvider e provider de sete entradas. A busca já existia; agora
@@ -118,6 +119,6 @@ Não acrescentamos medições SQL ou asserções de meta.links.
 ## Continuidade
 
 Roteiro, progresso e cobertura do [contrato atual](../api/catalogo.md) atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
-Publicar e iniciar somente 6.45: teste permanente de
-busca sem correspondência, com data vazia, total zero e links filtrados.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada em
+2adfac2afde138762e3549503e376968705b53b0, com referências local e remotas coincidentes.
+Continuidade na [aula 06-45](06-45-teste-busca-sem-correspondencia.md).
