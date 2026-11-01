@@ -4,8 +4,21 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.49 — Filtro e estado de navegação em meta.links.
+- Etapa atual: 6.50 — Introdução e desenho do OpenAPI do catálogo.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.50: desenhada, explicada e verificada por inspeção em
+  01/11/2026; entendimento confirmado com "entendi" em 01/11/2026. Aula conceitual e escopo do
+  primeiro documento: GET /api/v1/produtos, page/nome, 200/data/links/meta e
+  422/message/errors. Planejados JSON, OpenAPI 3.2.1, info.version 0.1.0 e
+  servidor local sem repetir prefixo /api/v1. Distintas versões de formato,
+  documento e URL. Implementação nesta etapa: somente aula e registros;
+  nenhum openapi.json criado, nenhuma dependência instalada ou produção alterada.
+  Fontes oficiais consultadas; desenho confrontado com código/contrato/testes;
+  diff e links conferidos. Sem nova execução PHP/SQL ou validação OpenAPI.
+  Última suíte: 6.49, 66 testes/620 asserções. Publicação em preparação.
+  Próximo passo: publicar e iniciar somente 6.51:
+  criar esqueleto de docs/api/openapi.json com openapi/info/servers/paths vazio
+  e conferir sintaxe JSON em Docker.
 - Situação da 6.49: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Teste de navegação filtrada da 6.43
   ampliado nas duas respostas: assertJsonCount(4, 'meta.links') e asserções
@@ -14,10 +27,9 @@
   Fixtures, navegação real por next e aplicação preservadas.
   Sintaxe válida; classe 52 testes/566 asserções e suíte 66 testes/620 asserções
   passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
-  Aula 06-49 e cobertura do contrato atualizadas. Publicação em preparação.
-  Próximo passo: publicar e iniciar
-  somente 6.50: introdução ao OpenAPI e desenho do primeiro documento da
-  listagem do catálogo, antes de escrevê-lo.
+  Aula 06-49 e cobertura do contrato atualizadas. Publicação verificada em
+  ddfbada9fa5aeb9c05f18698f28ecd2e3b1a51ca; HEAD/origin/main/main remota coincidiram após push
+  em 01/11/2026. Continuidade realizada na 6.50.
 - Situação da 6.48: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Novo teste com DataProvider buscasComAcentos
   cria Kit de tenis e Kit de tênis ativos. Quatro buscas: tenis/TENIS retornam
@@ -566,8 +578,8 @@
   6.42 e 6.43 confirmadas/publicadas em 01/11/2026;
   6.44 e 6.45 confirmadas/publicadas em 01/11/2026;
   6.46 e 6.47 confirmadas/publicadas em 01/11/2026;
-  6.48 confirmada/publicada em 01/11/2026 e 6.49 implementada/explicada/verificada;
-  entendimento da 6.49 confirmado com "entendi" em 01/11/2026.
+  6.48 e 6.49 confirmadas/publicadas em 01/11/2026;
+  6.50 desenhada/explicada/verificada por inspeção; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -702,21 +714,21 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.48 confirmada com "entendi" e publicada em
-35c4bacea337f1ee2c07001adbf60a39f2a9a65d; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.49 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-CatalogoApiTest ampliou test_mantem_filtro_e_total_ao_seguir_proxima_pagina
-nas duas respostas. Exige quatro entradas em meta.links; verifica url/page/active
-de anterior, páginas 1/2 e seguinte, com nome preservado nas URLs não nulas.
-Só a opção numérica da página atual fica ativa. Sem fixar labels traduzidos.
-Mesmas fixtures e navegação usando links.next recebido; aplicação preservada.
-Classe 52/566 e suíte 66/620 passaram. Contagens antes/depois: teste 0/0 e normal
-0/1 categorias/produtos. Aula docs/aulas/06-49-teste-meta-links.md e cobertura
-do contrato atualizadas. Publicação em preparação. Próximo passo:
-publicar e iniciar somente 6.50: introdução ao
-OpenAPI e desenho do primeiro documento da listagem do catálogo, antes de escrevê-lo.
-Cobertura meta.links acrescentada para as duas páginas desse cenário filtrado;
-outros cenários permanecem nos diagnósticos até terem cobertura específica.
+Estado mais recente em 01/11/2026: 6.49 confirmada com "entendi" e publicada em
+ddfbada9fa5aeb9c05f18698f28ecd2e3b1a51ca; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.50 desenhada, explicada e verificada por inspeção; entendimento confirmado
+com "entendi" em 01/11/2026. Aula docs/aulas/06-50-desenho-openapi-catalogo.md introduz descrição
+estruturada da API e planeja JSON/OpenAPI 3.2.1/info.version 0.1.0, servidor
+http://127.0.0.1:8002 com caminho completo /api/v1/produtos. Escopo inicial:
+listagem GET com page/nome, sucesso 200/data/links/meta e validação 422/message/errors.
+Documento formal ainda não criado. Somente documentação alterada; sem
+instalações, execução PHP/SQL ou validação OpenAPI. Fontes oficiais consultadas;
+código e contrato confrontados com desenho; diff/links conferidos. Última
+suíte executada na 6.49: 66/620. Publicação em preparação.
+Próximo passo: publicar e iniciar somente 6.51:
+criar esqueleto de docs/api/openapi.json com openapi/info/servers/paths vazio
+e conferir sintaxe JSON em Docker. Acrescentar operação/parâmetros/schemas
+somente nas etapas seguintes; consulta individual será descrita separadamente.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -9035,11 +9047,41 @@ Verificações em Docker, código 0:
   produto, por /tmp/curso-618-contagens.php.
 - Git diff --check e links locais conferidos.
 
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+ddfbada9fa5aeb9c05f18698f28ecd2e3b1a51ca; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.50. Exercício DBeaver segue sem relato.
+
+## Etapa 6.50 — Introdução e desenho do OpenAPI do catálogo
+
+Desenho, explicação e verificação por inspeção em 01/11/2026 após confirmação
+e publicação da 6.49 em ddfbada9fa5aeb9c05f18698f28ecd2e3b1a51ca.
+Aula docs/aulas/06-50-desenho-openapi-catalogo.md. Implementação: somente aula
+e registros de continuidade; nenhum documento OpenAPI gravado nesta etapa.
+
+OpenAPI introduzido como descrição estruturada para ferramentas, relacionada
+ao contrato em português e aos testes de comportamento existentes. Planejados
+JSON, OpenAPI 3.2.1 e docs/api/openapi.json. Distinção: openapi é versão do
+formato, info.version 0.1.0 revisão inicial do documento parcial e /api/v1 é
+versão da API na URL. Servidor local http://127.0.0.1:8002; caminho completo
+/api/v1/produtos. Escopo inicial somente listagem GET: page/nome na query,
+resposta 200 com produtos/links/meta e 422 com message/errors. Individual
+200/404 será descrito em outra etapa. Mapa de campos openapi/info/servers/paths,
+parameters/responses na operação e components.schemas quando necessários.
+
+Fontes oficiais OpenAPI consultadas: introdução e especificação v3.2.1.
+Confrontados routes/api.php, bootstrap/app.php, Form Request, controller,
+serviço, resource, contrato atual e testes. Detalhes existentes preservados no
+desenho: page decimal canônico/limite, normalização de nome, busca literal,
+caixa/acentos, filtro antes do total e páginas vazias. Git diff --check e
+links locais conferidos. Não executados testes PHP, consultas ou validador
+OpenAPI: somente documentação, ainda sem documento formal para validar.
+Última suíte executada: etapa 6.49, 66 testes/620 asserções passaram.
+
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: 35c4bacea337f1ee2c07001adbf60a39f2a9a65d, etapa 6.48.
-Próximo passo: publicar e iniciar somente 6.50:
-introdução ao OpenAPI e desenho do primeiro documento da listagem do catálogo,
-antes de escrevê-lo. Exercício DBeaver segue sem relato.
+Último checkpoint publicado: ddfbada9fa5aeb9c05f18698f28ecd2e3b1a51ca, etapa 6.49.
+Próximo passo: publicar e iniciar somente 6.51:
+criar esqueleto de docs/api/openapi.json com openapi/info/servers/paths vazio
+e conferir sintaxe JSON em Docker. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -9402,8 +9444,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   confirmado com "entendi" em 01/11/2026; publicada em 35c4bac.
   Na 6.49, meta.links das duas páginas implementado/explicado/verificado:
   classe 52/566 e suíte 66/620 passaram; contagens preservadas. Entendimento
-  confirmado com "entendi" em 01/11/2026; publicar e iniciar somente 6.50: introdução
-  ao OpenAPI e desenho do primeiro documento da listagem, antes de escrevê-lo.
+  confirmado com "entendi" em 01/11/2026; publicada em ddfbada.
+  Na 6.50, introdução/desenho OpenAPI explicados e verificados por inspeção,
+  somente documentação; entendimento confirmado com "entendi" em 01/11/2026.
+  Publicar e iniciar somente 6.51: esqueleto openapi.json com openapi/info/servers/paths
+  vazio e sintaxe JSON em Docker. Última suíte permanece 66/620 da 6.49.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -9615,4 +9660,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.46 — Página após a última filtrada | Onze correspondentes; página 3 vazia/total 11/última 2/links filtrados; classe 46/462 e suíte 60/516 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 466053a; remoto conferido |
 | 01/11/2026 | 6.47 — Limite válido do nome | Provider ampliado com 100 letras a/á; retorno e links; classe 48/488 e suíte 62/542 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 716032b; remoto conferido |
 | 01/11/2026 | 6.48 — Acentos e caixa | Quatro casos tenis/TENIS/tênis/TÊNIS, objeto exclusivo e links; classe 52/540 e suíte 66/594 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 35c4bac; remoto conferido |
-| 01/11/2026 | 6.49 — Meta.links filtrados | Duas páginas; quatro entradas, url/page/active, sem labels fixos; classe 52/566 e suíte 66/620 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.49 — Meta.links filtrados | Duas páginas; quatro entradas, url/page/active, sem labels fixos; classe 52/566 e suíte 66/620 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em ddfbada; remoto conferido |
+| 01/11/2026 | 6.50 — Desenho OpenAPI | Introdução, JSON/3.2.1, versões e escopo da listagem; inspeção de código/contrato/fontes, diff e links; sem documento formal ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

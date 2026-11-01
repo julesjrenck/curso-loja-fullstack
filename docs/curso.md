@@ -451,8 +451,13 @@ entendimento da 6.48 confirmado com "entendi" em 01/11/2026 e publicada em
 meta.links nas duas páginas, com url/page/active e filtro preservado, sem
 labels fixos. Classe 52/566 e suíte 66/620 passaram; contagens preservadas.
 Explicação apresentada; entendimento da 6.49 confirmado com "entendi" em
-01/11/2026. Publicação em preparação; publicar e iniciar somente 6.50: introdução ao OpenAPI e desenho do primeiro documento
-da listagem do catálogo, antes de escrevê-lo.
+01/11/2026 e publicada em ddfbada. Na 6.50, introdução e desenho do OpenAPI:
+JSON, versão planejada 3.2.1, identificação/revisão e escopo da listagem com
+page/nome, 200 e 422. Somente documentação; código/contrato/fontes oficiais,
+diff e links conferidos. Documento formal ainda não criado; última suíte é
+66/620 da 6.49. Explicação apresentada; entendimento da 6.50 confirmado com
+"entendi" em 01/11/2026. Publicação em preparação; publicar e iniciar somente 6.51: esqueleto de docs/api/openapi.json com
+openapi/info/servers/paths vazio e conferência de sintaxe JSON em Docker.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

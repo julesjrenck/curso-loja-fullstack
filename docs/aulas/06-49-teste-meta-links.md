@@ -3,7 +3,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.48
 com "entendi" e publicação em 35c4bacea337f1ee2c07001adbf60a39f2a9a65d.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.49
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+ddfbada9fa5aeb9c05f18698f28ecd2e3b1a51ca, com referências local e remotas coincidentes.
 
 ## Objetivo e alteração
 
@@ -85,6 +86,6 @@ DatabaseTransactions desfaz as alterações. SELECTs antes/depois por
 ## Continuidade
 
 Roteiro, progresso e cobertura do [contrato atual](../api/catalogo.md) atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
-Publicar e iniciar somente 6.50: introdução ao OpenAPI
-e desenho do primeiro documento da listagem do catálogo, antes de escrevê-lo.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada em
+ddfbada9fa5aeb9c05f18698f28ecd2e3b1a51ca, com referências local e remotas coincidentes.
+Continuidade na [aula 06-50](06-50-desenho-openapi-catalogo.md).

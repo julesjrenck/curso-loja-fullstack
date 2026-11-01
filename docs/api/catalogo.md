@@ -485,6 +485,18 @@ novas, sem medição SQL; cobertura do cenário de duas páginas.
 Entendimento da 6.49 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-49](../aulas/06-49-teste-meta-links.md).
 
+## Desenho OpenAPI na 6.50
+
+A [aula 06-50](../aulas/06-50-desenho-openapi-catalogo.md) introduz a descrição
+estruturada e planeja o primeiro documento somente para a listagem GET.
+Planejados JSON, OpenAPI 3.2.1, arquivo docs/api/openapi.json, servidor local
+http://127.0.0.1:8002 e caminho /api/v1/produtos. Entradas page/nome e respostas
+200/data/links/meta e 422/message/errors serão descritas gradualmente.
+Documento formal ainda não criado; comportamento HTTP preservado. Etapa
+verificada por inspeção de código/contrato e fontes oficiais, sem nova suíte.
+Entendimento da 6.50 confirmado com "entendi" em 01/11/2026. Consulta individual
+será documentada em etapa posterior.
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com
