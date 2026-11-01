@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.41
 com "entendi" e publicação em 2128dbb861375af85566e0a2b07adcaaa8018d3b.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.42
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+8eab468af794a8d513e0cc9f1237b562a18f93a6, com referências local e remotas coincidentes.
 
 Conjunto inseparável em backend/tests/Feature/CatalogoApiTest.php: teste HTTP
 de nome inválido e provider com seis entradas. As regras já existiam no Form
@@ -98,6 +99,6 @@ cobre somente as entradas inválidas listadas.
 ## Continuidade
 
 Roteiro, progresso e cobertura do [contrato atual](../api/catalogo.md) atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
-Publicar e iniciar somente 6.43: teste permanente da segunda página filtrada e
-navegação por next, conferindo produtos, total filtrado e preservação do nome.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada em
+8eab468af794a8d513e0cc9f1237b562a18f93a6, com referências local e remotas coincidentes.
+Continuidade na [aula 06-43](06-43-teste-navegacao-filtrada.md).

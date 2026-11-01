@@ -419,10 +419,13 @@ da 6.41 confirmado com "entendi" em 01/11/2026 e publicada em 2128dbb. Na 6.42,
 novo teste permanente com seis nomes inválidos exige 422/JSON/message/errors.nome:
 vazio, espaços, arrays e 101 caracteres ASCII/Unicode. Classe 36/321 e suíte
 50/375 passaram, contagens preservadas. Explicação apresentada; entendimento da
-6.42 confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar
-e iniciar somente 6.43:
-teste permanente da segunda página filtrada e navegação por next, com produtos,
-total e nome preservado.
+6.42 confirmado com "entendi" em 01/11/2026 e publicada em 8eab468. Na 6.43,
+novo teste percorre duas páginas seguindo links.next recebido; exige 12 ativos
+correspondentes entre 20 ativos, desempate por ID na divisão, dados completos,
+total e nome preservados. Classe 37/345 e suíte 51/399 passaram; contagens
+preservadas. Explicação apresentada; entendimento da 6.43 confirmado com
+"entendi" em 01/11/2026. Publicação em preparação; publicar e iniciar somente 6.44: testes de busca literal com caracteres
+especiais e texto '0', usando DataProvider.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

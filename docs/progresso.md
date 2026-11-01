@@ -4,8 +4,18 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.42 — Testes permanentes de nomes inválidos.
+- Etapa atual: 6.43 — Teste permanente de navegação filtrada.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.43: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Novo teste cria 12 ativos correspondentes,
+  8 ativos fora do filtro e 1 inativo correspondente. Segue links.next recebido
+  da primeira resposta; exige dados completos, desempate por ID entre páginas,
+  total filtrado 12, dez/dois itens, posições e links com nome nas duas páginas.
+  Sintaxe válida; classe 37 testes/345 asserções e suíte 51 testes/399 asserções
+  passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
+  Aplicação preservada. Aula 06-43 e cobertura do contrato atualizadas.
+  Publicação em preparação. Próximo passo: publicar e iniciar somente 6.44: testes de busca literal com caracteres
+  especiais e texto '0', usando DataProvider.
 - Situação da 6.42: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Novo teste HTTP com provider nomesInvalidos:
   vazio, espaços, array simples/associativo e 101 caracteres ASCII/Unicode.
@@ -14,9 +24,8 @@
   Aplicação preservada. Sintaxe válida; classe 36 testes/321 asserções e suíte
   50 testes/375 asserções passaram. Contagens antes/depois: teste 0/0 e normal
   0/1 categorias/produtos. Aula 06-42 e cobertura do contrato atualizadas.
-  Publicação em preparação. Próximo passo: publicar e iniciar
-  somente 6.43: teste permanente da segunda página filtrada e navegação por next,
-  conferindo produtos, total e preservação do nome.
+  Publicação verificada em 8eab468af794a8d513e0cc9f1237b562a18f93a6; HEAD/origin/main/main
+  remota coincidiram após push em 01/11/2026. Continuidade realizada na 6.43.
 - Situação da 6.41: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Teste de busca recebe query e nomeNosLinks
   pelo DataProvider buscasPorNome: nome simples, espaços externos/caixa e parâmetro
@@ -490,7 +499,8 @@
   entendimento da 6.39 confirmado com "entendi" em 01/11/2026 e publicada.
   6.40 confirmada/publicada em 01/11/2026 e 6.41 implementada/explicada/verificada,
   entendimento da 6.41 confirmado com "entendi" em 01/11/2026 e publicada.
-  6.42 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.42 confirmada/publicada em 01/11/2026 e 6.43 implementada/explicada/verificada;
+  entendimento da 6.43 confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -625,20 +635,20 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.41 confirmada com "entendi" e publicada em
-2128dbb861375af85566e0a2b07adcaaa8018d3b; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.42 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-CatalogoApiTest recebeu test_retorna_422_em_json_para_nome_invalido com provider
-nomesInvalidos: vazio, espaços, arrays simples/associativo, 101 ASCII e 101 Unicode.
-Cada caso exige 422/JSON/message/errors.nome, sem texto fixo. Str_repeat gera os
-limites excedidos; rawurlencode prepara Unicode na query. Sem fixtures novas
-nem alteração na aplicação. Classe 36/321 e suíte 50/375 passaram.
-Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos. Aula
-docs/aulas/06-42-testes-nomes-invalidos.md e cobertura do contrato atualizadas.
-Publicação em preparação. Próximo passo: publicar e iniciar somente 6.43: teste
-permanente da segunda página filtrada e navegação por next, com produtos, total
-filtrado e nome preservado. Limites válidos de comprimento, caracteres especiais,
-meta.links e outros casos seguem nos diagnósticos até terem cobertura específica.
+Estado mais recente em 01/11/2026: 6.42 confirmada com "entendi" e publicada em
+8eab468af794a8d513e0cc9f1237b562a18f93a6; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.43 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+CatalogoApiTest recebeu test_mantem_filtro_e_total_ao_seguir_proxima_pagina:
+12 ativos correspondentes, 8 outros ativos e 1 inativo correspondente. Primeira
+página exige dez itens e usa links.next recebido para buscar os dois restantes.
+Dois nomes iguais cruzam a divisão e exigem desempate por ID; dados completos,
+total 12, posições e links com nome conferidos nas duas respostas.
+Classe 37/345 e suíte 51/399 passaram. Contagens antes/depois: teste 0/0 e normal
+0/1 categorias/produtos. Aplicação preservada. Aula
+docs/aulas/06-43-teste-navegacao-filtrada.md e cobertura do contrato atualizadas.
+Publicação em preparação. Próximo passo: publicar e iniciar somente 6.44: testes de busca literal com caracteres especiais
+e texto '0', usando DataProvider. Limites válidos de comprimento, meta.links e
+outros casos seguem nos diagnósticos até terem cobertura específica.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -8703,11 +8713,47 @@ Verificações em Docker, código 0:
 Os seis cenários de nome inválido passam a ter cobertura permanente. Aceitação
 de 100 caracteres Unicode e demais limites válidos seguem em diagnóstico anterior;
 este teste verifica somente as rejeições listadas. Entendimento da 6.42 confirmado com
-"entendi" em 01/11/2026. Publicação em preparação. Último checkpoint publicado:
-2128dbb861375af85566e0a2b07adcaaa8018d3b, etapa 6.41.
-Próximo passo: publicar e iniciar somente 6.43: teste permanente
-da segunda página filtrada e navegação por next, conferindo produtos, total e
-preservação do nome. Exercício DBeaver segue sem relato.
+"entendi" em 01/11/2026. Publicação verificada em
+8eab468af794a8d513e0cc9f1237b562a18f93a6; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.43. Exercício DBeaver segue sem relato.
+
+## Etapa 6.43 — Teste permanente de navegação filtrada
+
+Implementação, explicação e verificações em 01/11/2026 após confirmação e
+publicação da 6.42 em 8eab468af794a8d513e0cc9f1237b562a18f93a6.
+Aula docs/aulas/06-43-teste-navegacao-filtrada.md. Um método novo em
+CatalogoApiTest: test_mantem_filtro_e_total_ao_seguir_proxima_pagina.
+
+Fixtures: Camiseta 01 a 09 criadas em ordem inversa, duas Camiseta 10,
+Kit de camiseta, oito Canecas ativas e Camiseta 00 inativa. São 12 ativos
+correspondentes entre 20 ativos. Os dois nomes iguais têm IDs gerados e preços
+diferentes; o primeiro fica na posição 10 e o segundo na 11. Array_reverse,
+array_merge e array_map montam os dez objetos esperados da primeira página
+com base nas fixtures, sem consultar a listagem da aplicação.
+
+GET nome=camiseta exige os dez primeiros objetos e usa a URL efetivamente
+recebida em links.next para a segunda requisição. Segunda resposta exige a
+segunda Camiseta 10 e o Kit. Ambas exigem 200/JSON, total 12, per_page 10,
+last_page 2 e links first/last/prev/next com nome preservado; posições 1–10 e
+11–12, páginas 1 e 2. Não mede SQL nem acrescenta asserções de meta.links.
+Aplicação e demais testes preservados. Isolamento pelo setUp e DatabaseTransactions.
+
+Verificações em Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result --compact:
+  37 testes/345 asserções passaram.
+- php artisan test --do-not-cache-result --compact: 51 testes/399 asserções
+  passaram; um teste e 24 asserções a mais que na 6.42.
+- SELECTs antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1
+  produto, por /tmp/curso-618-contagens.php.
+- Git diff --check e links locais conferidos.
+
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
+Último checkpoint publicado: 8eab468af794a8d513e0cc9f1237b562a18f93a6, etapa 6.42.
+Próximo passo: publicar e iniciar somente 6.44:
+testes de busca literal com caracteres especiais e texto '0', usando DataProvider.
+Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -9049,9 +9095,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   contagens preservadas. Entendimento confirmado com "entendi" em 01/11/2026;
   publicada em 2128dbb. Na 6.42, seis nomes inválidos implementados/explicados/
   verificados, classe 36/321 e suíte 50/375 passaram, contagens preservadas.
-  Entendimento confirmado com "entendi" em 01/11/2026; publicar e iniciar
-  somente 6.43: segunda página
-  filtrada e navegação next, com nome e total preservados.
+  Entendimento confirmado com "entendi" em 01/11/2026; publicada em 8eab468.
+  Na 6.43, navegação filtrada por next implementada/explicada/verificada:
+  classe 37/345 e suíte 51/399 passaram; contagens preservadas. Entendimento
+  confirmado com "entendi" em 01/11/2026; publicar e iniciar somente 6.44: testes de
+  busca literal com caracteres especiais e texto '0', usando DataProvider.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -9256,4 +9304,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.39 — Filtro por nome no HTTP/links | Controller integra nome e appends validado; 19 sucessos/6 inválidos, kernel/HTTP real, rollback e suíte 41/288 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: a1ded6b |
 | 01/11/2026 | 6.40 — Teste permanente da busca por nome | Ativos correspondentes/data/ordem/total/links; classe 28/247 e suíte 42/301 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 851adef |
 | 01/11/2026 | 6.41 — Nome normalizado e desconhecidos | Provider de três buscas, links first/last normalizados sem desconhecidos; classe 30/273 e suíte 44/327 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 2128dbb |
-| 01/11/2026 | 6.42 — Nomes inválidos | Seis casos HTTP de 422/JSON/message/errors.nome; classe 36/321 e suíte 50/375 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.42 — Nomes inválidos | Seis casos HTTP de 422/JSON/message/errors.nome; classe 36/321 e suíte 50/375 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 8eab468; remoto conferido |
+| 01/11/2026 | 6.43 — Navegação filtrada | Segue next real; 12 correspondentes, páginas 10/2, empate por ID, total e links; classe 37/345 e suíte 51/399 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

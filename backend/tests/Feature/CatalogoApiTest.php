@@ -275,6 +275,107 @@ class CatalogoApiTest extends TestCase
         ];
     }
 
+    public function test_mantem_filtro_e_total_ao_seguir_proxima_pagina(): void
+    {
+        $primeiroEmpate = Produto::factory()->create([
+            'nome' => 'Camiseta 10',
+            'status' => 'ativo',
+            'preco_em_centavos' => 1000,
+        ]);
+
+        $segundoEmpate = Produto::factory()->create([
+            'nome' => 'Camiseta 10',
+            'status' => 'ativo',
+            'preco_em_centavos' => 2000,
+        ]);
+
+        $iniciais = [];
+        for ($numero = 9; $numero >= 1; $numero--) {
+            $iniciais[] = Produto::factory()->create([
+                'nome' => sprintf('Camiseta %02d', $numero),
+                'status' => 'ativo',
+                'preco_em_centavos' => $numero * 100,
+            ]);
+        }
+
+        $kit = Produto::factory()->create([
+            'nome' => 'Kit de camiseta',
+            'status' => 'ativo',
+            'preco_em_centavos' => 6990,
+        ]);
+
+        for ($numero = 1; $numero <= 8; $numero++) {
+            Produto::factory()->create([
+                'nome' => sprintf('Caneca %02d', $numero),
+                'status' => 'ativo',
+                'preco_em_centavos' => 2990,
+            ]);
+        }
+
+        Produto::factory()->inativo()->create([
+            'nome' => 'Camiseta 00',
+            'preco_em_centavos' => 1990,
+        ]);
+
+        $esperadosPrimeiraPagina = array_map(
+            fn (Produto $produto): array => [
+                'id' => $produto->id,
+                'nome' => $produto->nome,
+                'preco_em_centavos' => $produto->preco_em_centavos,
+            ],
+            array_merge(array_reverse($iniciais), [$primeiroEmpate]),
+        );
+        $url = url('/api/v1/produtos').'?nome=camiseta&page=';
+        $primeira = $this->getJson('/api/v1/produtos?nome=camiseta');
+
+        $primeira
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonPath('data', $esperadosPrimeiraPagina)
+            ->assertJsonPath('links', [
+                'first' => $url.'1',
+                'last' => $url.'2',
+                'prev' => null,
+                'next' => $url.'2',
+            ])
+            ->assertJsonPath('meta.current_page', 1)
+            ->assertJsonPath('meta.per_page', 10)
+            ->assertJsonPath('meta.total', 12)
+            ->assertJsonPath('meta.last_page', 2)
+            ->assertJsonPath('meta.from', 1)
+            ->assertJsonPath('meta.to', 10);
+
+        $segunda = $this->getJson($primeira->json('links.next'));
+
+        $segunda
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonPath('data', [
+                [
+                    'id' => $segundoEmpate->id,
+                    'nome' => 'Camiseta 10',
+                    'preco_em_centavos' => 2000,
+                ],
+                [
+                    'id' => $kit->id,
+                    'nome' => 'Kit de camiseta',
+                    'preco_em_centavos' => 6990,
+                ],
+            ])
+            ->assertJsonPath('links', [
+                'first' => $url.'1',
+                'last' => $url.'2',
+                'prev' => $url.'1',
+                'next' => null,
+            ])
+            ->assertJsonPath('meta.current_page', 2)
+            ->assertJsonPath('meta.per_page', 10)
+            ->assertJsonPath('meta.total', 12)
+            ->assertJsonPath('meta.last_page', 2)
+            ->assertJsonPath('meta.from', 11)
+            ->assertJsonPath('meta.to', 12);
+    }
+
     public function test_retorna_segunda_pagina_com_ativos_e_desempate_por_id(): void
     {
         Produto::factory()->create([

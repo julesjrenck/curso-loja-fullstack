@@ -402,6 +402,18 @@ Aceitação dos limites válidos de comprimento permanece em diagnóstico anteri
 Entendimento da 6.42 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-42](../aulas/06-42-testes-nomes-invalidos.md).
 
+## Cobertura acrescentada na 6.43
+
+Novo teste HTTP segue links.next recebido da primeira página filtrada. Cria
+12 ativos correspondentes entre 20 ativos e um inativo correspondente, exige
+dez/dois objetos completos e confere desempate por ID para dois nomes iguais
+na divisão das páginas. Nas duas respostas: total 12, última página 2, posições
+e links first/last/prev/next com nome preservado. Classe 37 testes/345 asserções
+e suíte 51 testes/399 asserções passaram; contagens preservadas. Aplicação
+preservada. Não acrescenta medições SQL ou asserções de meta.links.
+Entendimento da 6.43 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-43](../aulas/06-43-teste-navegacao-filtrada.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com
