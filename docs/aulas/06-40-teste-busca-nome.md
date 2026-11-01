@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.39
 com "entendi" e publicação em a1ded6b8bd8994a956ac5a52efeb576737af641f.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.40
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+851adef50e2973dcb66d223fe4424f1326a89677, com remoto conferido.
 
 Uma alteração de código em backend/tests/Feature/CatalogoApiTest.php: novo método
 test_filtra_ativos_por_trecho_do_nome_no_json. O fluxo que foi conferido por
@@ -103,7 +104,7 @@ continuam nos diagnósticos anteriores, sem novos testes permanentes deles aqui.
 
 ## Continuidade
 
-Roteiro, progresso e cobertura do [contrato atual](../api/catalogo.md) atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
-Publicar e iniciar somente 6.41: ampliar o teste com DataProvider para nome
-normalizado e parâmetros desconhecidos excluídos dos links.
+Entendimento confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+851adef50e2973dcb66d223fe4424f1326a89677, com HEAD/origin/main/main remota conferidos.
+Continuidade realizada na [aula 6.41](06-41-teste-nome-normalizado.md), ampliando
+o teste com DataProvider para nome normalizado e desconhecidos fora dos links.

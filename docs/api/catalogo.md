@@ -372,10 +372,23 @@ os dois correspondentes em ordem, com IDs gerados e campos/preços completos.
 Links first/last mantêm nome=camiseta&page=1, prev/next null. Metadados exigem
 página 1, tamanho 10, total 2, última 1 e posições 1/2. Classe 28 testes/247
 asserções e suíte 42 testes/301 asserções passaram; contagens preservadas.
-Aplicação preservada, sem alteração do contrato HTTP. Outros cenários do filtro
-continuam nos diagnósticos anteriores, sem novos testes permanentes específicos
-nesta etapa. Entendimento da 6.40 confirmado com "entendi" em 01/11/2026. Explicação na
+Aplicação preservada, sem alteração do contrato HTTP. Na 6.40, outros cenários do
+filtro permaneceram nos diagnósticos; normalização e desconhecidos nos links
+receberam testes permanentes na 6.41. Entendimento da 6.40 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-40](../aulas/06-40-teste-busca-nome.md).
+
+## Cobertura acrescentada na 6.41
+
+Teste de busca usa DataProvider de três pares query/nomeNosLinks: simples,
+espaços externos com CAMISETA, e nome acompanhado de ignorado=valor. As mesmas
+fixtures e expectativas de produtos/total/ordem/metadados são executadas para
+cada par. Http_build_query monta first/last esperados apenas com nome explícito
+do provider e page=1. Isso exige normalização do texto nos links e exclusão de
+parâmetros desconhecidos. Classe 30 testes/273 asserções e suíte 44 testes/327
+asserções passaram; contagens preservadas. Aplicação preservada. Outros casos
+seguem em diagnósticos anteriores, sem novos testes permanentes deles nesta etapa.
+Entendimento da 6.41 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-41](../aulas/06-41-teste-nome-normalizado.md).
 
 ## Evolução
 

@@ -205,7 +205,8 @@ class CatalogoApiTest extends TestCase
         ]);
     }
 
-    public function test_filtra_ativos_por_trecho_do_nome_no_json(): void
+    #[DataProvider('buscasPorNome')]
+    public function test_filtra_ativos_por_trecho_do_nome_no_json(string $query, string $nomeNosLinks): void
     {
         $kit = Produto::factory()->create([
             'nome' => 'Kit de camiseta',
@@ -230,8 +231,11 @@ class CatalogoApiTest extends TestCase
             'preco_em_centavos' => 1990,
         ]);
 
-        $resposta = $this->getJson('/api/v1/produtos?nome=camiseta');
-        $url = url('/api/v1/produtos');
+        $resposta = $this->getJson('/api/v1/produtos?'.$query);
+        $url = url('/api/v1/produtos').'?'.http_build_query([
+            'nome' => $nomeNosLinks,
+            'page' => 1,
+        ]);
 
         $resposta
             ->assertStatus(200)
@@ -249,8 +253,8 @@ class CatalogoApiTest extends TestCase
                 ],
             ])
             ->assertJsonPath('links', [
-                'first' => $url.'?nome=camiseta&page=1',
-                'last' => $url.'?nome=camiseta&page=1',
+                'first' => $url,
+                'last' => $url,
                 'prev' => null,
                 'next' => null,
             ])
@@ -260,6 +264,15 @@ class CatalogoApiTest extends TestCase
             ->assertJsonPath('meta.last_page', 1)
             ->assertJsonPath('meta.from', 1)
             ->assertJsonPath('meta.to', 2);
+    }
+
+    public static function buscasPorNome(): array
+    {
+        return [
+            'nome simples' => ['nome=camiseta', 'camiseta'],
+            'espaços externos e caixa' => ['nome=%20%20CAMISETA%20%20', 'CAMISETA'],
+            'parâmetro desconhecido' => ['nome=camiseta&ignorado=valor', 'camiseta'],
+        ];
     }
 
     public function test_retorna_segunda_pagina_com_ativos_e_desempate_por_id(): void

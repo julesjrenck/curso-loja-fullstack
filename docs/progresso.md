@@ -4,8 +4,19 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.40 — Teste permanente da busca por nome.
+- Etapa atual: 6.41 — Nome normalizado e parâmetros desconhecidos nos testes.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.41: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Teste de busca recebe query e nomeNosLinks
+  pelo DataProvider buscasPorNome: nome simples, espaços externos/caixa e parâmetro
+  desconhecido. Mesmo conjunto de produtos/asserções; links esperados construídos
+  com http_build_query a partir do nome explícito do provider e page=1. Espaços
+  não permanecem nos links e ignorado não é repassado. Aplicação preservada.
+  Sintaxe válida; classe 30 testes/273 asserções e suíte 44 testes/327 asserções
+  passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
+  Aula 06-41 e cobertura do contrato atualizadas. Publicação em preparação.
+  Próximo passo: publicar e iniciar somente 6.42: acrescentar
+  teste permanente de nomes inválidos com DataProvider, exigindo 422/errors.nome.
 - Situação da 6.40: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Novo teste em CatalogoApiTest cria Kit
   de camiseta e Camiseta azul ativos, Caneca ativa e Camiseta antiga inativa.
@@ -14,9 +25,8 @@
   Aplicação preservada. Sintaxe válida; classe 28 testes/247 asserções e suíte
   42 testes/301 asserções passaram. Contagens antes/depois: teste 0/0 e normal
   0/1 categorias/produtos. Aula 06-40 e cobertura do contrato atualizadas.
-  Publicação em preparação. Próximo passo: publicar e iniciar
-  somente 6.41: ampliar o teste com DataProvider para nome normalizado e
-  parâmetros desconhecidos excluídos dos links.
+  Publicação verificada em 851adef50e2973dcb66d223fe4424f1326a89677; HEAD/origin/main/main
+  remota coincidiram após push em 01/11/2026. Continuidade realizada na 6.41.
 - Situação da 6.39: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Index passa pagina()/nome() ao contrato,
   acrescenta safe()->only(['nome']) aos links com appends e devolve resources.
@@ -467,7 +477,8 @@
   entendimento da 6.37 confirmado com "entendi" em 01/11/2026 e publicada.
   6.38 confirmada/publicada em 01/11/2026 e 6.39 implementada/explicada/verificada,
   entendimento da 6.39 confirmado com "entendi" em 01/11/2026 e publicada.
-  6.40 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.40 confirmada/publicada em 01/11/2026 e 6.41 implementada/explicada/verificada,
+  entendimento da 6.41 confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -602,20 +613,20 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.39 confirmada com "entendi" e publicada em
-a1ded6b8bd8994a956ac5a52efeb576737af641f; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.40 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-CatalogoApiTest recebeu test_filtra_ativos_por_trecho_do_nome_no_json. Fixtures:
-Kit de camiseta/Camiseta azul ativos, Caneca ativa e Camiseta antiga inativa.
-Nome=camiseta exige só Camiseta azul e Kit nessa ordem, IDs reais/campos/tipos,
-links first/last com nome, prev/next null, total 2, última 1, posições 1/2.
-Classe 28/247 e suíte 42/301 passaram. Contagens antes/depois: teste 0/0 e
-normal 0/1 categorias/produtos. Aplicação preservada. Aula
-docs/aulas/06-40-teste-busca-nome.md e cobertura do contrato atualizadas.
-Publicação em preparação. Próximo passo: publicar e iniciar somente 6.41: ampliar
-o teste com DataProvider para nome normalizado e desconhecidos excluídos dos links.
-Outros cenários do filtro permanecem nos diagnósticos anteriores até receberem
-cobertura permanente específica.
+Estado mais recente em 01/11/2026: 6.40 confirmada com "entendi" e publicada em
+851adef50e2973dcb66d223fe4424f1326a89677; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.41 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+CatalogoApiTest generaliza o teste de busca com DataProvider buscasPorNome:
+query/nomeNosLinks para nome simples, espaços externos/caixa e desconhecido.
+Cada caso mantém só os dois ativos correspondentes, total 2 e metadados anteriores.
+Http_build_query monta links esperados com nome explícito do provider e page=1,
+sem espaços externos nem parâmetro ignorado. Aplicação preservada.
+Classe 30/273 e suíte 44/327 passaram. Contagens antes/depois: teste 0/0 e
+normal 0/1 categorias/produtos. Aula docs/aulas/06-41-teste-nome-normalizado.md.
+Publicação em preparação. Próximo passo: publicar e iniciar somente 6.42: teste
+permanente de nomes inválidos com DataProvider, exigindo 422/errors.nome.
+Casos restantes de caracteres especiais, páginas filtradas e erros de nome
+seguem nos diagnósticos anteriores até terem cobertura permanente específica.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -8604,11 +8615,48 @@ A busca por nome tem agora esse cenário permanente na suíte. Normalização,
 desconhecidos nos links, símbolos/Unicode, navegação entre páginas filtradas e
 erros de nome permanecem em diagnósticos anteriores, sem novos casos permanentes
 específicos nesta etapa. Não confundir cobertura parcial com todos os cenários.
-Entendimento da 6.40: confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: a1ded6b8bd8994a956ac5a52efeb576737af641f, etapa 6.39.
-Próximo passo: publicar e iniciar somente 6.41: ampliar o teste
-com DataProvider para nome normalizado e desconhecidos excluídos dos links.
-Exercício DBeaver segue sem relato.
+Entendimento da 6.40: confirmado com "entendi" em 01/11/2026.
+Publicação: 851adef50e2973dcb66d223fe4424f1326a89677; HEAD/origin/main/main remota coincidiram
+após push em 01/11/2026. Continuidade realizada na 6.41. DBeaver segue sem relato.
+
+## Etapa 6.41 — Nome normalizado e parâmetros desconhecidos nos testes
+
+Implementação, explicação e verificações em 01/11/2026 após confirmação e
+publicação da 6.40 em 851adef50e2973dcb66d223fe4424f1326a89677.
+Aula docs/aulas/06-41-teste-nome-normalizado.md. Conjunto inseparável em
+CatalogoApiTest: atributo DataProvider('buscasPorNome'), teste recebe string
+query/string nomeNosLinks e provider público estático com três pares.
+
+Casos: nome=camiseta/esperado camiseta; nome=%20%20CAMISETA%20%20/esperado CAMISETA;
+nome=camiseta&ignorado=valor/esperado camiseta. A query entra na requisição, o
+outro argumento define explicitamente o conteúdo dos links. Não calculamos a
+normalização esperada a partir da resposta ou da entrada por trim no teste.
+Http_build_query monta a URL esperada com nome e page=1; first/last devem ser
+iguais a ela, prev/next null. Isso exige nome normalizado e exclui desconhecidos.
+
+As quatro fixtures e todas as asserções anteriores de status/JSON/data/ordem/
+metadados foram mantidas. Provider não acessa banco; cada execução tem seu setUp,
+identidade loja_test/loja_testes e transação. Nenhuma mudança na aplicação.
+
+Verificações em Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result --compact:
+  30 testes/273 asserções passaram.
+- php artisan test --do-not-cache-result --compact: 44 testes/327 asserções
+  passaram; três execuções substituem uma, saldo de duas e 26 asserções novas.
+- SELECTs antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1
+  produto, por /tmp/curso-618-contagens.php. Fixtures desfeitas.
+- Git diff --check e links locais conferidos.
+
+Normalização e exclusão de desconhecidos nos links first/last têm cobertura
+permanente. Meta.links, caracteres especiais, navegação entre páginas filtradas
+e erros de nome seguem nos diagnósticos anteriores, sem novos testes específicos
+permanentes nesta etapa. Entendimento da 6.41: confirmado com "entendi" em 01/11/2026.
+Publicação em preparação. Último checkpoint publicado:
+851adef50e2973dcb66d223fe4424f1326a89677, etapa 6.40.
+Próximo passo: publicar e iniciar somente 6.42, teste permanente
+de nomes inválidos com DataProvider e 422/errors.nome. DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -8945,8 +8993,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   01/11/2026; publicada em a1ded6b. Na 6.40, teste permanente da busca por nome
   implementado/explicado/verificado: classe 28/247 e suíte 42/301 passaram,
   contagens preservadas. Entendimento confirmado com "entendi" em 01/11/2026;
+  publicada em 851adef. Na 6.41, provider de três buscas implementado/explicado/
+  verificado: normalização/desconhecidos, classe 30/273 e suíte 44/327 passaram,
+  contagens preservadas. Entendimento confirmado com "entendi" em 01/11/2026;
   publicar e iniciar somente
-  6.41: DataProvider com normalização e desconhecidos fora dos links.
+  6.42: nomes inválidos com DataProvider, 422/errors.nome.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -9149,4 +9200,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.37 — Filtro literal no serviço Eloquent | Nome opcional/CHARINDEX parametrizado; 18 cenários SQL, rollback e suíte 41/288 passaram; HTTP ainda sem filtro e contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 4d34564 |
 | 01/11/2026 | 6.38 — Nome opcional no contrato/demo | Assinaturas alinhadas e filtro em memória; 15 cenários sem SQL, JSON/binding/leitura pelo contrato e suíte 41/288 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 90cdc35 |
 | 01/11/2026 | 6.39 — Filtro por nome no HTTP/links | Controller integra nome e appends validado; 19 sucessos/6 inválidos, kernel/HTTP real, rollback e suíte 41/288 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: a1ded6b |
-| 01/11/2026 | 6.40 — Teste permanente da busca por nome | Ativos correspondentes/data/ordem/total/links; classe 28/247 e suíte 42/301 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.40 — Teste permanente da busca por nome | Ativos correspondentes/data/ordem/total/links; classe 28/247 e suíte 42/301 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 851adef |
+| 01/11/2026 | 6.41 — Nome normalizado e desconhecidos | Provider de três buscas, links first/last normalizados sem desconhecidos; classe 30/273 e suíte 44/327 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

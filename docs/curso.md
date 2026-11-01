@@ -410,9 +410,14 @@ contagens preservadas. Explicação apresentada; entendimento da 6.39 confirmado
 em 01/11/2026 e publicada em a1ded6b. Na 6.40, novo teste HTTP permanente
 exige só os dois ativos correspondentes ao trecho, data completa/ordem, total 2
 e links com nome. Classe 28/247 e suíte 42/301 passaram; contagens preservadas.
-Explicação apresentada; entendimento da 6.40 confirmado com "entendi" em 01/11/2026.
-Publicação em preparação; publicar e iniciar somente 6.41: ampliar teste com DataProvider para nome normalizado
-e parâmetros desconhecidos excluídos dos links.
+Explicação apresentada; entendimento da 6.40 confirmado com "entendi" em 01/11/2026
+e publicada em 851adef. Na 6.41, teste usa DataProvider com três buscas: simples,
+espaços/caixa e desconhecido. Links esperados com nome explícito, normalizado e
+sem ignorado; produtos/total/metadados anteriores preservados. Classe 30/273 e
+suíte 44/327 passaram, contagens preservadas. Explicação apresentada; entendimento
+da 6.41 confirmado com "entendi" em 01/11/2026. Publicação em preparação;
+publicar e iniciar somente
+6.42: teste permanente de nomes inválidos com DataProvider, exigindo 422/errors.nome.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
