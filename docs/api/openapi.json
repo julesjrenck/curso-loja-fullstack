@@ -28,6 +28,17 @@
               "maximum": 1000000,
               "default": 1
             }
+          },
+          {
+            "name": "nome",
+            "in": "query",
+            "required": false,
+            "description": "Trecho literal do nome do produto. Omitido não aplica filtro por nome. Quando informado, após remover espaços externos, deve ser texto não vazio de até 100 caracteres; espaços internos são preservados e '0' é válido. Vazio, somente espaços, arrays ou texto acima do limite recebem 422. A busca ignora maiúsculas/minúsculas e distingue acentos; %, _ e [ são literais. O filtro é aplicado aos ativos antes de contar e paginar, e o nome normalizado é preservado nos links.",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            }
           }
         ],
         "responses": {

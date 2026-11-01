@@ -3,7 +3,8 @@
 Implementação, explicação e verificação em 01/11/2026 após confirmação da 6.52
 com "entendi" e publicação em 104f8d6718be4d5a57c9f46344ff77bae51b441a.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.53
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+b4aa8214b8be02b542cfc68d3ab96a2e044dc800, com referências local e remotas coincidentes.
 
 ## Alteração e relação com a requisição
 
@@ -85,6 +86,5 @@ suíte; última suíte executada na 6.49: 66 testes/620 asserções.
 ## Continuidade
 
 Contrato, roteiro e progresso atualizados. Entendimento confirmado com "entendi"
-em 01/11/2026; publicação em preparação. Publicar e iniciar
-somente 6.54: acrescentar nome na query, opcional, com schema de texto e limites,
-descrevendo normalização e busca literal. Schemas de resposta serão posteriores.
+em 01/11/2026; publicação verificada em b4aa8214b8be02b542cfc68d3ab96a2e044dc800.
+Continuidade na [aula 06-54](06-54-nome-openapi.md).

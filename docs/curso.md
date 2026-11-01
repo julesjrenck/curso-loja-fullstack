@@ -471,8 +471,14 @@ page descrito na query: opcional, inteiro de 1 a 1000000, padrão 1; descrição
 registra normalização, regra lexical, vazio inválido e página após a última.
 PHP Docker leu sintaxe/campos; conferido contra Form Request/contrato. Sem
 validador OpenAPI ou nova suíte; última suíte 66/620 da 6.49. Explicação
-apresentada; entendimento da 6.53 confirmado com "entendi" em 01/11/2026.
-Publicação em preparação; publicar e iniciar somente 6.54: nome na query com schema de texto/limites, normalização e busca literal.
+apresentada; entendimento da 6.53 confirmado com "entendi" em 01/11/2026 e
+publicada em b4aa821. Na 6.54, nome como segundo parâmetro: query opcional,
+string de 1–100 caracteres, sem default e descrição de normalização/busca
+literal/caixa/acentos/links. PHP Docker leu JSON/campos, comparados com código
+e contrato. Sem validador OpenAPI ou nova suíte; última suíte 66/620 da 6.49.
+Explicação apresentada; entendimento da 6.54 confirmado com "entendi" em
+01/11/2026. Publicação em preparação; publicar e iniciar somente 6.55: components.schemas.Produto com três campos públicos,
+tipos e obrigatoriedade, antes de referenciá-lo nas respostas.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

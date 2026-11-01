@@ -526,9 +526,22 @@ vazio inválido 422 e página após a última 200 vazia. O schema numérico não
 codifica sozinho a representação lexical; descrição e testes preservam essa regra.
 PHP Docker confirmou sintaxe/leitura dos campos, comparados com Form Request e
 este contrato. Sem validador OpenAPI, dependências novas, produção alterada,
-consultas ou nova suíte. Nome e schemas de resposta serão acrescentados depois.
+consultas ou nova suíte. Na 6.53, nome e schemas de resposta ainda não estavam descritos.
 Entendimento da 6.53 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-53](../aulas/06-53-page-openapi.md).
+
+## Nome no OpenAPI na 6.54
+
+[Openapi.json](openapi.json) recebeu nome como segundo parâmetro da query:
+required false, schema string/minLength 1/maxLength 100, sem default.
+Description registra omissão sem filtro, trim externo/espaços internos, '0',
+inválidos 422, busca literal/caixa/acentos, filtro antes do total e nome nos links.
+Schema não executa normalização ou consulta. PHP Docker confirmou sintaxe e
+leitura dos dois parâmetros/campos, comparados com Form Request, serviço,
+controller e contrato. Sem validador OpenAPI, dependências novas, produção
+alterada, consultas ou nova suíte. Schemas de resposta ainda serão descritos.
+Entendimento da 6.54 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-54](../aulas/06-54-nome-openapi.md).
 
 ## Evolução
 
