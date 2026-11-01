@@ -257,11 +257,11 @@ preservadas. Código da aplicação preservado. Entendimento da 6.33 confirmado 
 ## Próxima evolução planejada — etapa 6.34
 
 O filtro por nome está desenhado na [aula 06-34](../aulas/06-34-contrato-filtro-nome.md),
-ainda sem implementação. Planejado: nome opcional como trecho literal de 1 a 100
+com implementação gradual. Planejado: nome opcional como trecho literal de 1 a 100
 caracteres após normalização, filtrar ativos antes de contar/paginar e preservar
 nome nos links. Comparação seguirá a collation atual, ignorando caixa e distinguindo
-acentos. A validação de nome entrou na 6.35; a busca por nome e a preservação nos
-links ainda não estão implementadas. As seções de listagem e consulta individual
+acentos. A validação de nome entrou na 6.35 e o filtro está preparado no serviço
+concreto desde a 6.37; busca HTTP por nome e preservação nos links ainda pendentes. As seções de listagem e consulta individual
 acima descrevem o comportamento executável atual.
 Entendimento da 6.34 confirmado com "entendi" em 01/11/2026. As verificações de collation não
 constituem teste do filtro HTTP futuro.
@@ -287,6 +287,18 @@ ou ser preservado nos links. Nenhuma alteração no formato HTTP nesta etapa.
 Diagnóstico conferiu valores/tipos de 12 válidos, sete rejeições e rollback;
 suíte existente 41 testes/288 asserções passou, contagens preservadas.
 Explicação na [aula 06-36](../aulas/06-36-nome-validado.md). Entendimento da 6.36 confirmado com "entendu" em 01/11/2026.
+
+## Preparação interna na 6.37 — filtro no serviço Eloquent
+
+CatalogoEloquent::paginarProdutos recebe segundo argumento opcional nome=null.
+Se não for null, acrescenta CHARINDEX(?, [nome]) > 0 com binding antes de paginar.
+Filtro ativo, nome/ID, dez por página e campos preservados. Contagem e busca usam
+o mesmo filtro literal; null/omitido mantém a consulta anterior. Dezoito cenários
+SQL transacionais conferidos, incluindo páginas/totais/empate, literais, caixa/
+acentos e '0'. Suíte existente 41 testes/288 asserções passou, rollback e contagens
+conferidos. Contrato/demo/controller ainda não recebem esse argumento: o HTTP
+continua validando nome, sem filtrar a busca nem manter nome nos links.
+Explicação na [aula 06-37](../aulas/06-37-filtro-nome-eloquent.md). Entendimento da 6.37 confirmado com "entendi" em 01/11/2026.
 
 ## Evolução
 

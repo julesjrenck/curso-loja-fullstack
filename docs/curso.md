@@ -390,9 +390,16 @@ da 6.35 confirmado com "entendi" em 01/11/2026 e publicada em 618eb1a. Na 6.36,
 nome(): ?string retorna validated('nome'), texto normalizado ou null quando omitido.
 Diagnóstico de valores/tipos e rejeições passou; suíte existente 41/288 e contagens
 preservadas. Controller ainda não usa nome; filtro não aplicado. Explicação
-apresentada; entendimento da 6.36 confirmado com "entendu" em 01/11/2026.
-Publicação em preparação; publicar e iniciar somente 6.37: preparar filtro literal de nome opcional em
-CatalogoEloquent::paginarProdutos, ainda sem integração HTTP.
+apresentada; entendimento da 6.36 confirmado com "entendu" em 01/11/2026 e
+publicada em 0b9afb8. Na 6.37, Eloquent recebe nome opcional e usa CHARINDEX
+parametrizado antes de paginar. Diagnóstico de 18 cenários SQL conferiu filtro,
+total/páginas/empate, literais, caixa/acentos, null/'0', bindings e rollback;
+suíte existente 41/288 passou, contagens preservadas. Contrato/demo/controller
+preservados, HTTP ainda sem filtro. Explicação apresentada; entendimento da
+6.37 confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar
+e iniciar somente 6.38:
+declarar nome opcional em Catalogo e implementar filtro equivalente na demonstração,
+ainda sem mudar controller.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

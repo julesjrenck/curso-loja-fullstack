@@ -32,10 +32,16 @@ class CatalogoEloquent implements Catalogo
     /**
      * @return LengthAwarePaginator<int, Produto>
      */
-    public function paginarProdutos(int $pagina): LengthAwarePaginator
+    public function paginarProdutos(int $pagina, ?string $nome = null): LengthAwarePaginator
     {
-        return Produto::query()
-            ->where('status', 'ativo')
+        $consulta = Produto::query()
+            ->where('status', 'ativo');
+
+        if ($nome !== null) {
+            $consulta->whereRaw('CHARINDEX(?, [nome]) > 0', [$nome]);
+        }
+
+        return $consulta
             ->orderBy('nome')
             ->orderBy('id')
             ->paginate(10, ['id', 'nome', 'preco_em_centavos'], 'page', $pagina);

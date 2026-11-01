@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.35
 com "entendi" e publicação em 618eb1a55b809e44db0e1cabe0fd21704e8e55a9.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.36
-confirmado com "entendu" em 01/11/2026; publicação em preparação.
+confirmado com "entendu" em 01/11/2026; checkpoint publicado em
+0b9afb840eb276b10bbeca3031f68cc393d4d14a, com remoto conferido.
 
 Uma alteração de código em backend/app/Http/Requests/ListarProdutosRequest.php:
 oferecer um método para obter o nome validado com um tipo de retorno explícito.
@@ -85,7 +86,7 @@ Não é uma rota adicionada à aplicação em execução.
 
 ## Continuidade
 
-Roteiro, progresso e [contrato atual](../api/catalogo.md) atualizados. Entendimento
-confirmado com "entendu" em 01/11/2026; publicação em preparação. Publicar e iniciar
-somente 6.37: preparar filtro literal de nome opcional em
-CatalogoEloquent::paginarProdutos, ainda sem integração HTTP.
+Entendimento confirmado com "entendu" em 01/11/2026; checkpoint publicado em
+0b9afb840eb276b10bbeca3031f68cc393d4d14a, com HEAD/origin/main/main remota conferidos.
+Continuidade realizada na [aula 6.37](06-37-filtro-nome-eloquent.md), preparando
+filtro literal de nome opcional no serviço Eloquent, ainda sem integração HTTP.
