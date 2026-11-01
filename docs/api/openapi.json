@@ -338,6 +338,9 @@
                       "description": "Descrição do erro. Produto inexistente, inativo ou ID fora da faixa de inteiros recebem 'Produto não encontrado.'. Nos erros de roteamento, o texto pode variar."
                     }
                   }
+                },
+                "example": {
+                  "message": "Produto não encontrado."
                 }
               }
             }

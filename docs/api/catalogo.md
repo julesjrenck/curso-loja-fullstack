@@ -720,6 +720,21 @@ da 6.64 segue registrado, original true. Sem produção alterada, SQL ou nova
 suíte Laravel. Entendimento confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-67](../aulas/06-67-exemplo-200-consulta-openapi.md).
 
+## Exemplo 404 individual no OpenAPI na 6.68
+
+[Openapi.json](openapi.json) recebeu example ao lado de schema na resposta
+404/application/json de GET /api/v1/produtos/{id}: message Produto não encontrado.
+Representa caso tratado pelo controller (inexistente/inativo/ID fora da faixa).
+Schema continua exigindo texto sem const/enum, permitindo variação nos erros
+de roteamento. Conferido com controller/testes por leitura, sem captura HTTP.
+
+Mesma imagem/configuração Redocly: lint Docker código 0, incluindo valores do
+novo exemplo contra o schema. Só exemplo de 404 individual acrescentado;
+schemas/outros contratos/configuração preservados. Limite de required false
+da 6.64 segue registrado, original true. Sem produção alterada, SQL ou nova
+suíte Laravel. Entendimento confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-68](../aulas/06-68-exemplo-404-consulta-openapi.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.66 com "entendi" e publicação em a9e7c41fb4fc0a24c8b461e5f891c8773058c2b5.
-Entendimento da 6.67 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.67 confirmado com "entendi" em 01/11/2026; publicação
+verificada em f92bad8709a5a31d64ac42cd1d0384544b521666, referências local e remotas coincidentes.
 
 ## Valores ao lado das regras
 
@@ -67,6 +68,5 @@ Validar o exemplo escrito não comprova conformidade de respostas reais.
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026. Publicar o checkpoint. Próxima etapa, 6.68:
-acrescentar um exemplo permanente de resposta 404 da consulta individual e
-validá-lo em Docker.
+com "entendi" em 01/11/2026; publicação verificada em f92bad8709a5a31d64ac42cd1d0384544b521666.
+Continuidade na [aula 06-68](06-68-exemplo-404-consulta-openapi.md).
