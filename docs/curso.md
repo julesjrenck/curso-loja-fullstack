@@ -437,9 +437,13 @@ Explicação apresentada; entendimento da 6.45 confirmado com "entendi" em
 uma Caneca ativa e uma Camiseta inativa. Busca filtrada na página 3 exige data
 vazia, total 11, última página 2, posições null e links com nome. Classe 46/462
 e suíte 60/516 passaram; contagens preservadas. Explicação apresentada;
-entendimento da 6.46 confirmado com "entendi" em 01/11/2026.
-Publicação em preparação; publicar e iniciar somente 6.47:
-testes de aceitação de nomes com 100 caracteres ASCII/Unicode, usando DataProvider.
+entendimento da 6.46 confirmado com "entendi" em 01/11/2026 e publicada em
+466053a. Na 6.47, provider nomesLiterais recebe 100 letras a e 100 letras á;
+mesmo teste exige único ativo correspondente, total 1 e links com texto.
+Classe 48/488 e suíte 62/542 passaram; contagens preservadas. Explicação
+apresentada; entendimento da 6.47 confirmado com "entendi" em 01/11/2026.
+Publicação em preparação; publicar e iniciar somente 6.48: teste de sensibilidade a acentos na busca por nome, conforme a
+collation SQL Server já estudada.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

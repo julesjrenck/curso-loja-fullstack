@@ -4,8 +4,19 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.46 — Teste permanente de página após a última filtrada.
+- Etapa atual: 6.47 — Aceitação do limite de 100 caracteres no nome.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.47: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Duas entradas acrescentadas ao provider
+  nomesLiterais: str_repeat('a', 100) e str_repeat('á', 100). Mesmo teste HTTP
+  existente exige único ativo correspondente, data completa, total 1 e links
+  preservando texto. Provider agora tem nove casos; aplicação preservada.
+  Sintaxe válida; classe 48 testes/488 asserções e suíte 62 testes/542 asserções
+  passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
+  Aula 06-47 e cobertura do contrato atualizadas. Publicação em preparação.
+  Próximo passo: publicar e iniciar
+  somente 6.48: teste permanente de sensibilidade a acentos na busca por nome,
+  conforme a collation SQL Server já estudada.
 - Situação da 6.46: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Novo teste cria onze Camisetas ativas
   com factory()->count(11), uma Caneca ativa e uma Camiseta inativa.
@@ -14,10 +25,9 @@
   first 1, last 2, prev 2 e next null. Aplicação preservada.
   Sintaxe válida; classe 46 testes/462 asserções e suíte 60 testes/516 asserções
   passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
-  Aula 06-46 e cobertura do contrato atualizadas. Publicação em preparação.
-  Próximo passo: publicar e iniciar
-  somente 6.47: testes de aceitação de nomes com 100 caracteres ASCII/Unicode,
-  usando DataProvider.
+  Aula 06-46 e cobertura do contrato atualizadas. Publicação verificada em
+  466053ab71a1faac095b8d42a53795847afe702b; HEAD/origin/main/main remota coincidiram após push
+  em 01/11/2026. Continuidade realizada na 6.47.
 - Situação da 6.45: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Novo teste cria Caneca ativa e Camiseta
   inativa; GET nome=camiseta exige 200/JSON, data [], total 0, current_page 1,
@@ -533,7 +543,8 @@
   entendimento da 6.41 confirmado com "entendi" em 01/11/2026 e publicada.
   6.42 e 6.43 confirmadas/publicadas em 01/11/2026;
   6.44 e 6.45 confirmadas/publicadas em 01/11/2026;
-  6.46 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.46 confirmada/publicada em 01/11/2026 e 6.47 implementada/explicada/verificada;
+  entendimento da 6.47 confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -668,19 +679,19 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.45 confirmada com "entendi" e publicada em
-be303c9cb3874121e57ec22c866dd33f94accdca; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.46 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-CatalogoApiTest recebeu test_retorna_pagina_apos_ultima_filtrada_sem_perder_total_e_nome.
-Cria onze Camisetas ativas com factory()->count(11), Caneca ativa e Camiseta
-inativa. GET nome=camiseta&page=3 exige 200/JSON, data [], total 11,
-current_page 3, per_page 10, last_page 2, from/to null. Links first/last/prev
-apontam para páginas 1/2/2 com nome; next null. Classe 46/462 e suíte 60/516
-passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
-Aplicação preservada. Aula docs/aulas/06-46-teste-pagina-apos-ultima-filtrada.md
-e cobertura do contrato atualizadas. Publicação em preparação.
-Próximo passo: publicar e iniciar somente 6.47:
-testes de aceitação de nomes com 100 caracteres ASCII/Unicode, usando DataProvider.
+Estado mais recente em 01/11/2026: 6.46 confirmada com "entendi" e publicada em
+466053ab71a1faac095b8d42a53795847afe702b; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.47 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Provider nomesLiterais de CatalogoApiTest recebeu str_repeat('a', 100) e
+str_repeat('á', 100), passando de sete para nove casos. Método existente cria
+um ativo correspondente, um não correspondente e um correspondente inativo;
+exige 200/JSON, único objeto completo, total 1, metadados e links com texto.
+Assim, 100 ASCII/á são aceitos; casos anteriores de 101 continuam rejeitados.
+Classe 48/488 e suíte 62/542 passaram. Contagens antes/depois: teste 0/0 e normal
+0/1 categorias/produtos. Aplicação preservada. Aula
+docs/aulas/06-47-testes-limite-nome.md e cobertura do contrato atualizadas.
+Publicação em preparação. Próximo passo: publicar e iniciar somente 6.48: teste permanente de sensibilidade a acentos
+na busca por nome, conforme a collation SQL Server já estudada.
 Meta.links e outros casos seguem nos diagnósticos até terem cobertura específica.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
@@ -8892,10 +8903,43 @@ Verificações em Docker, código 0:
   produto, por /tmp/curso-618-contagens.php.
 - Git diff --check e links locais conferidos.
 
-Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: be303c9cb3874121e57ec22c866dd33f94accdca, etapa 6.45.
-Próximo passo: publicar e iniciar somente 6.47:
-testes de aceitação de nomes com 100 caracteres ASCII/Unicode, usando DataProvider.
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+466053ab71a1faac095b8d42a53795847afe702b; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.47. Exercício DBeaver segue sem relato.
+
+## Etapa 6.47 — Aceitação do limite de 100 caracteres no nome
+
+Implementação, explicação e verificações em 01/11/2026 após confirmação e
+publicação da 6.46 em 466053ab71a1faac095b8d42a53795847afe702b.
+Aula docs/aulas/06-47-testes-limite-nome.md. Duas linhas acrescentadas ao
+DataProvider nomesLiterais em CatalogoApiTest: str_repeat('a', 100) e
+str_repeat('á', 100). Provider passa de sete para nove execuções do mesmo método.
+
+Cada entrada usa as fixtures e asserções já existentes: ativo com nome
+Produto + texto + especial, ativo Produto comum e correspondente inativo.
+O parâmetro buscado tem 100 caracteres; o nome completo da fixture tem 117,
+dentro dos 150 definidos na migration. Não confundir limite do filtro com
+limite da coluna. Http_build_query codifica entrada/links e o fluxo HTTP
+valida o texto decodificado. Exige único objeto completo, total 1 e links
+com texto preservado. Cem letras á ocupam 200 bytes em UTF-8, mas são cem
+caracteres neste caso. Não representa cobertura de todos os caracteres Unicode.
+Produção e método de teste preservados; sem medição SQL ou novas asserções meta.links.
+
+Verificações em Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result --compact:
+  48 testes/488 asserções passaram.
+- php artisan test --do-not-cache-result --compact: 62 testes/542 asserções
+  passaram; dois casos e 26 asserções a mais que na 6.46.
+- SELECTs antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1
+  produto, por /tmp/curso-618-contagens.php.
+- Git diff --check e links locais conferidos.
+
+Casos de 101 caracteres ASCII/á continuam exigindo 422. Entendimento confirmado com
+"entendi" em 01/11/2026. Publicação em preparação. Último checkpoint publicado:
+466053ab71a1faac095b8d42a53795847afe702b, etapa 6.46. Próximo passo: publicar e iniciar somente 6.48: teste permanente de sensibilidade a
+acentos na busca por nome, conforme a collation SQL Server já estudada.
 Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
@@ -9250,8 +9294,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   confirmado com "entendi" em 01/11/2026; publicada em be303c9.
   Na 6.46, página após a última filtrada implementada/explicada/verificada:
   classe 46/462 e suíte 60/516 passaram; contagens preservadas. Entendimento
-  confirmado com "entendi" em 01/11/2026; publicar e iniciar somente 6.47: aceitação
-  de nomes com 100 caracteres ASCII/Unicode, usando DataProvider.
+  confirmado com "entendi" em 01/11/2026; publicada em 466053a.
+  Na 6.47, duas entradas de 100 caracteres acrescentadas ao provider:
+  classe 48/488 e suíte 62/542 passaram; contagens preservadas. Entendimento
+  confirmado com "entendi" em 01/11/2026; publicar e iniciar somente 6.48: sensibilidade
+  a acentos na busca por nome, conforme a collation SQL Server já estudada.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -9460,4 +9507,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.43 — Navegação filtrada | Segue next real; 12 correspondentes, páginas 10/2, empate por ID, total e links; classe 37/345 e suíte 51/399 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em d56c185; remoto conferido |
 | 01/11/2026 | 6.44 — Nomes literais | Sete casos: %, _, [, apóstrofo, +, & e string 0; único ativo correspondente e links; classe 44/436 e suíte 58/490 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 2adfac2; remoto conferido |
 | 01/11/2026 | 6.45 — Busca sem correspondência | Caneca ativa/Camiseta inativa; 200/data vazia/total zero/posições null/links filtrados; classe 45/449 e suíte 59/503 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em be303c9; remoto conferido |
-| 01/11/2026 | 6.46 — Página após a última filtrada | Onze correspondentes; página 3 vazia/total 11/última 2/links filtrados; classe 46/462 e suíte 60/516 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.46 — Página após a última filtrada | Onze correspondentes; página 3 vazia/total 11/última 2/links filtrados; classe 46/462 e suíte 60/516 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 466053a; remoto conferido |
+| 01/11/2026 | 6.47 — Limite válido do nome | Provider ampliado com 100 letras a/á; retorno e links; classe 48/488 e suíte 62/542 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

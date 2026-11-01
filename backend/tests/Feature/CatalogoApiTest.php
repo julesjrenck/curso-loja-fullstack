@@ -409,6 +409,8 @@ class CatalogoApiTest extends TestCase
             'mais' => ['+'],
             'e comercial' => ['&'],
             'zero como texto' => ['0'],
+            'limite de 100 caracteres ASCII' => [str_repeat('a', 100)],
+            'limite de 100 caracteres Unicode' => [str_repeat('á', 100)],
         ];
     }
 

@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.45
 com "entendi" e publicação em be303c9cb3874121e57ec22c866dd33f94accdca.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.46
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+466053ab71a1faac095b8d42a53795847afe702b, com referências local e remotas coincidentes.
 
 Um método novo em backend/tests/Feature/CatalogoApiTest.php:
 test_retorna_pagina_apos_ultima_filtrada_sem_perder_total_e_nome.
@@ -110,6 +111,6 @@ e links locais da documentação conferidos.
 ## Continuidade
 
 Roteiro, progresso e cobertura do [contrato atual](../api/catalogo.md) atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
-Publicar e iniciar somente 6.47: testes de aceitação de
-nomes com 100 caracteres ASCII/Unicode, usando DataProvider.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada em
+466053ab71a1faac095b8d42a53795847afe702b, com referências local e remotas coincidentes.
+Continuidade na [aula 06-47](06-47-testes-limite-nome.md).

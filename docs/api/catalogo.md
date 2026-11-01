@@ -398,7 +398,8 @@ Unicode. Exige 422/application/json, chave message e erro associado a nome, sem
 fixar tradução. Str_repeat constrói os textos e rawurlencode prepara a query
 Unicode. Sem novas fixtures ou alteração na aplicação. Classe 36 testes/321
 asserções e suíte 50 testes/375 asserções passaram; contagens preservadas.
-Aceitação dos limites válidos de comprimento permanece em diagnóstico anterior.
+Na 6.42, a aceitação dos limites válidos de comprimento permanecia em diagnóstico;
+a cobertura permanente de 100 caracteres foi acrescentada na 6.47.
 Entendimento da 6.42 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-42](../aulas/06-42-testes-nomes-invalidos.md).
 
@@ -447,6 +448,18 @@ vazia não perde o total filtrado. Classe 46 testes/462 asserções e suíte 60
 testes/516 asserções passaram; contagens preservadas. Aplicação preservada;
 sem medição SQL ou novas asserções meta.links. Entendimento da 6.46 confirmado
 com "entendi" em 01/11/2026. Explicação na [aula 06-46](../aulas/06-46-teste-pagina-apos-ultima-filtrada.md).
+
+## Cobertura acrescentada na 6.47
+
+Provider nomesLiterais recebeu duas entradas: str_repeat('a', 100) e
+str_repeat('á', 100). Agora são nove casos do mesmo método HTTP. Os novos
+casos exigem 200, único ativo correspondente, data completa, total 1,
+metadados e links com texto preservado. Complementam as rejeições de 101
+caracteres já cobertas na 6.42. Classe 48 testes/488 asserções e suíte 62
+testes/542 asserções passaram; contagens preservadas. Aplicação preservada;
+sem medição SQL ou novas asserções meta.links. O caso acentuado usa a letra á.
+Entendimento da 6.47 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-47](../aulas/06-47-testes-limite-nome.md).
 
 ## Evolução
 
