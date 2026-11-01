@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.63 com "entendi" e publicação em f8aaa6bfa0110dcf6565cf960dc2c3f8a3e8454f.
-Entendimento da 6.64 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.64 confirmado com "entendi" em 01/11/2026; publicação
+verificada em e1b025b318d6dc34f55e0d2d5b271ce1fa25e6b7, referências local e remotas coincidentes.
 
 ## Caminho e operação
 
@@ -103,6 +104,5 @@ segue sendo a da 6.49: 66 testes e 620 asserções.
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026. Publicar o checkpoint. Próxima etapa, 6.65:
-descrever o corpo 200 da consulta individual, com data objeto referenciado
-a Produto.
+com "entendi" em 01/11/2026; publicação verificada em e1b025b318d6dc34f55e0d2d5b271ce1fa25e6b7.
+Continuidade na [aula 06-65](06-65-corpo-200-consulta-openapi.md).

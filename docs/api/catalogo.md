@@ -673,6 +673,22 @@ conferido manualmente com true conforme a especificação. Listagem e schemas
 preservados. Sem produção alterada, SQL ou nova suíte Laravel. Entendimento
 confirmado com "entendi" em 01/11/2026. Explicação na [aula 06-64](../aulas/06-64-consulta-id-openapi.md).
 
+## Corpo 200 individual no OpenAPI na 6.65
+
+[Openapi.json](openapi.json) recebeu content/application/json/schema object
+na resposta 200 de GET /api/v1/produtos/{id}. Required exige data; properties.data
+aponta por $ref para #/components/schemas/Produto. Reutiliza a representação
+pública da listagem, agora com data objeto. Sem exemplo permanente nessa
+operação. Comparado por leitura com controller/resource/teste de produto ativo.
+
+Mesma imagem/configuração Redocly: lint código 0. Cópias temporárias com
+exemplo: objeto válido código 0, data lista e sem data código 1 pela regra de
+exemplos. Documento preservado após diagnósticos; demais operações/status/
+componentes/configuração intactos. Limite de required false da 6.64 continua
+registrado, original true. Sem produção alterada, SQL ou nova suíte Laravel.
+Entendimento confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-65](../aulas/06-65-corpo-200-consulta-openapi.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

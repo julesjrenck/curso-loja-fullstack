@@ -4,8 +4,26 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.64 — Consulta individual no OpenAPI.
+- Etapa atual: 6.65 — Corpo 200 da consulta individual no OpenAPI.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.65: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Resposta 200 da consulta individual no
+  OpenAPI recebeu content/application/json/schema object, required data e
+  properties.data.$ref para #/components/schemas/Produto. Reutiliza o schema
+  de produto da listagem; data é objeto. Sem exemplo permanente nesta operação.
+  Conferido com ProdutoController::show, ProdutoResource e teste existente por
+  leitura. Mesma configuração Redocly/imagem 2.65.0/digest: documento código 0.
+  Em /tmp/curso-665, cópias com exemplos somente temporários: objeto válido
+  código 0, data lista e corpo sem data código 1/no-invalid-media-type-examples.
+  Documento original preservado após diagnósticos. Apenas content de 200
+  individual acrescentado; demais operações/status/componentes/config intactos.
+  Limite de required false da 6.64 continua registrado, id original true.
+  Sem novas dependências, produção alterada, captura HTTP, SQL ou nova suíte
+  Laravel; última suíte 6.49, 66/620. Aula 06-65, contrato e registros atualizados;
+  diff e links conferidos. Publicação em preparação. Próximo passo:
+  publicar e iniciar somente 6.66: descrever o
+  corpo 404 da consulta individual, com message string e variação do texto
+  nos erros de roteamento.
 - Situação da 6.64: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. OpenAPI recebeu GET /api/v1/produtos/{id},
   summary, operationId consultarProduto, id in path/required true/schema integer
@@ -21,9 +39,9 @@
   Apenas nova operação acrescentada; listagem/componentes/configuração intactos.
   Sem dependências novas, alteração de produção, captura HTTP, SQL ou nova suíte
   Laravel; última suíte 6.49, 66/620. Aula 06-64, contrato e registros atualizados;
-  diff e links conferidos. Publicação em preparação. Próximo passo:
-  publicar e iniciar somente 6.65: descrever o
-  corpo 200 da consulta individual, com data objeto referenciado a Produto.
+  diff e links conferidos. Publicação verificada em e1b025b318d6dc34f55e0d2d5b271ce1fa25e6b7;
+  HEAD/origin/main/main remota coincidiram após push em 01/11/2026.
+  Continuidade realizada na 6.65.
 - Situação da 6.63: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. OpenAPI recebeu example ao lado do
   schema de 422/application/json: message string e errors.nome com uma lista
@@ -770,7 +788,8 @@
   6.61 confirmada/publicada em 01/11/2026;
   6.62 confirmada/publicada em 01/11/2026;
   6.63 confirmada/publicada em 01/11/2026;
-  6.64 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.64 confirmada/publicada em 01/11/2026;
+  6.65 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -905,28 +924,27 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.63 confirmada com "entendi" e publicada em
-f8aaa6bfa0110dcf6565cf960dc2c3f8a3e8454f; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.64 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-OpenAPI 3.2.1 recebeu GET /api/v1/produtos/{id}, summary, operationId
-consultarProduto, parameters com id in path/required true/schema integer
-minimum 1 e descrições de 200/404. Descrição registra decimal positivo sem
-sinal/zeros iniciais e faixa PHP_INT_MAX; schema numérico não cobre sozinho
-forma textual ou limite do backend. Corpos dessa operação ainda não descritos.
-Leitura de rota/controller/Eloquent/testes confirmou ativo 200, inexistente/
-inativo/ID inválido 404. Mesma configuração Redocly e imagem:
+Estado mais recente em 01/11/2026: 6.64 confirmada com "entendi" e publicada em
+e1b025b318d6dc34f55e0d2d5b271ce1fa25e6b7; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.65 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+OpenAPI 3.2.1: 200 da consulta individual recebeu content/application/json/schema
+object/required data/properties.data.$ref para #/components/schemas/Produto.
+Data é um objeto, reutilizando Produto da listagem. Sem exemplo permanente
+nessa operação. Conferido por leitura com show/ProdutoResource/teste existente.
+Mesma configuração Redocly e imagem:
 redocly/cli:2.65.0@sha256:42acee0d7e629a9d0376d8df579dc325e51da727de06a31036bccc02409a7e11.
-Lint Docker sem rede/bind somente leitura passou com código 0. Em /tmp/curso-664,
-cópia sem declaração de id foi rejeitada com código 1/path-parameters-defined.
-Limitação: cópia com required false foi aceita/código 0, contrariando exigência
-OpenAPI para parâmetros path; original conferido manualmente com true.
-Documento preservado após diagnósticos; só nova operação acrescentada, sem
-alterar listagem/componentes/configuração. Sem novas dependências, produção
-alterada, captura HTTP, SQL ou nova suíte Laravel; última suíte 6.49, 66/620.
-Aula docs/aulas/06-64-consulta-id-openapi.md, contrato e registros atualizados;
-diff/links conferidos. Publicação em preparação. Próximo passo:
-publicar e iniciar somente 6.65: descrever o
-corpo 200 da consulta individual, com data objeto referenciado a Produto.
+Lint Docker sem rede/bind somente leitura passou com código 0. Em /tmp/curso-665,
+três cópias receberam exemplos apenas temporários: objeto válido código 0;
+data lista e corpo sem data rejeitados com código 1 pela regra de exemplos.
+Documento preservado após diagnósticos; só content de 200 individual acrescentado.
+Demais operações/status/componentes/configuração intactos. Limite observado
+na 6.64 permanece registrado: ferramenta aceitou required false na cópia,
+embora path exija true; original true conferido e preservado.
+Sem novas dependências, produção alterada, captura HTTP, SQL ou nova suíte
+Laravel; última suíte 6.49, 66/620. Aula docs/aulas/06-65-corpo-200-consulta-openapi.md,
+contrato e registros atualizados; diff/links conferidos. Publicação em preparação. Próximo passo: publicar e iniciar
+somente 6.66: descrever o corpo 404 da consulta individual, com message string
+e variação do texto nos erros de roteamento.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -9700,11 +9718,47 @@ Git diff --check e links locais conferidos. Apenas nova operação acrescentada;
 listagem/componentes/configuração preservados. Lint não executa endpoints nem
 comprova conformidade completa com a especificação ou respostas reais.
 Sem captura HTTP, SQL ou nova suíte Laravel; última suíte 6.49, 66/620.
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+e1b025b318d6dc34f55e0d2d5b271ce1fa25e6b7; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.65. Exercício DBeaver segue sem relato.
+
+## Etapa 6.65 — Corpo 200 da consulta individual no OpenAPI
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação e
+publicação da 6.64 em e1b025b318d6dc34f55e0d2d5b271ce1fa25e6b7.
+Aula docs/aulas/06-65-corpo-200-consulta-openapi.md. Resposta 200 de
+GET /api/v1/produtos/{id} recebeu content/application/json/schema object,
+required data e properties.data.$ref #/components/schemas/Produto. Data aponta
+diretamente para Produto, cujo schema já exige id/nome/preco_em_centavos e
+define seus tipos; reutilização sem duplicação da representação.
+Sem exemplo permanente na operação individual nesta etapa. Comparado por
+leitura com ProdutoController::show, ProdutoResource e teste de produto ativo.
+
+Mesma configuração Redocly/imagem:
+redocly/cli:2.65.0@sha256:42acee0d7e629a9d0376d8df579dc325e51da727de06a31036bccc02409a7e11.
+Mesmo Docker descartável/sem rede/docs/api em leitura/workdir /spec, lint do
+documento retornou 0, sem erros ou avisos.
+
+Três cópias em /tmp/curso-665 receberam example apenas temporário na resposta
+200 individual e foram montadas em /casos somente leitura. Objeto-valido.json
+com data objeto/id 1/nome Camiseta/preço 4990 retornou 0. Data-lista.json
+colocou o mesmo produto em array e retornou 1 por tipo object exigido.
+Sem-data.json recebeu example objeto vazio e retornou 1 por required data.
+Ambas as rejeições pela regra no-invalid-media-type-examples, um erro em cada
+execução. Nenhuma regra ignorada. Cópias fora do Git; documento original
+preservado após diagnósticos. Limite de required false da 6.64 continua
+registrado; original id in path/required true preservado.
+
+Git diff --check e links locais conferidos. Só content de 200 individual
+acrescentado; listagem/outros status/componentes/configuração preservados.
+Validação do documento e exemplos temporários não executa o endpoint nem
+comprova conformidade das respostas reais. Sem novas dependências, produção
+alterada, captura HTTP, SQL ou nova suíte Laravel; última suíte 6.49, 66/620.
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: f8aaa6bfa0110dcf6565cf960dc2c3f8a3e8454f, etapa 6.63.
-Próximo passo: publicar e iniciar somente 6.65:
-descrever o corpo 200 da consulta individual, com data objeto referenciado a
-Produto. Exercício DBeaver segue sem relato.
+Último checkpoint publicado: e1b025b318d6dc34f55e0d2d5b271ce1fa25e6b7, etapa 6.64.
+Próximo passo: publicar e iniciar somente 6.66:
+descrever o corpo 404 da consulta individual, com message string e variação
+do texto nos erros de roteamento. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -10113,8 +10167,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   de 200/404; lint código 0, falta de declaração de id detectada/código 1.
   Required false passou/código 0 na cópia: limite observado da ferramenta;
   original true conferido contra especificação. Entendimento confirmado com
-  "entendi" em 01/11/2026. Publicar e iniciar somente 6.65: corpo 200 individual
-  com data objeto referenciado a Produto.
+  "entendi" em 01/11/2026, publicada em e1b025b. Na 6.65, 200 individual object/
+  data obrigatório/$ref Produto; lint código 0. Exemplos só em cópias temporárias:
+  data objeto aceito/código 0, data lista e sem data rejeitados/código 1.
+  Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.66:
+  corpo 404 com message string e variação do texto nos erros de roteamento.
   Última suíte Laravel permanece 66/620 da 6.49.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
@@ -10342,4 +10399,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.61 — Validação OpenAPI | Redocly 2.65.0/digest, preset spec; documento código 0, dois controles inválidos código 1; diff e links; sem nova suíte Laravel | Confirmado com "entendi" em 01/11/2026 | Publicado em a7e7d42; remoto conferido |
 | 01/11/2026 | 6.62 — Exemplo 200 | Corpo completo ilustrativo, regra de exemplos como erro; Docker código 0, três cópias inválidas código 1; diff e links; sem nova suíte Laravel | Confirmado com "entendi" em 01/11/2026 | Publicado em 57e7f4a; remoto conferido |
 | 01/11/2026 | 6.63 — Exemplo 422 | Message/errors.nome ilustrativos, mesma regra/imagem; Docker código 0, três cópias inválidas código 1; diff e links; sem nova suíte Laravel | Confirmado com "entendi" em 01/11/2026 | Publicado em f8aaa6b; remoto conferido |
-| 01/11/2026 | 6.64 — Consulta individual OpenAPI | GET/id path obrigatório/200/404; lint código 0, id sem declaração código 1; required false aceito em cópia (limitação); diff e links | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.64 — Consulta individual OpenAPI | GET/id path obrigatório/200/404; lint código 0, id sem declaração código 1; required false aceito em cópia (limitação); diff e links | Confirmado com "entendi" em 01/11/2026 | Publicado em e1b025b; remoto conferido |
+| 01/11/2026 | 6.65 — Corpo 200 individual | Object/data obrigatório/$ref Produto; lint código 0, exemplo temporário válido código 0, lista/sem data código 1; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

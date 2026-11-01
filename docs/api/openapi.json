@@ -299,7 +299,22 @@
         ],
         "responses": {
           "200": {
-            "description": "Produto ativo encontrado."
+            "description": "Produto ativo encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Produto"
+                    }
+                  }
+                }
+              }
+            }
           },
           "404": {
             "description": "Produto não encontrado, inativo ou identificador inválido."
