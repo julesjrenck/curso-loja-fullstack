@@ -375,10 +375,15 @@ em 30/10/2026. Checkpoint publicado e verificado em db652dd. Na 6.33, teste
 após a última generalizado com provider de páginas 2/1000000 e anteriores 1/999999.
 Ambas retornam 200/data [], total 1, última 1 e links corretos. Classe da API
 passou; suíte completa 41/288 passou, contagens preservadas. Explicação apresentada;
-entendimento da 6.33 confirmado com "entendi" em 30/10/2026. Publicação em
-preparação; publicar e iniciar
-somente 6.34: definir contrato do filtro por nome e interação com paginação,
-sem implementar o filtro ainda.
+entendimento da 6.33 confirmado com "entendi" em 30/10/2026. Publicação verificada
+em d86aa98. Na 6.34, contrato do filtro nome desenhado: trecho literal opcional
+1..100, vazio/array/excesso com 422, somente ativos, filtrar antes de contar/paginar,
+links preservam nome e comparação segue collation atual. SELECTs confirmaram
+caixa ignorada/acentos distintos e contagens preservadas. Filtro ainda não
+implementado; somente documentação. Explicação apresentada; entendimento da
+6.34 confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar
+e iniciar somente 6.35:
+regras de validação de nome no Form Request, ainda sem aplicar filtro à consulta.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

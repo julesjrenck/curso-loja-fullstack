@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 30/10/2026 após confirmação da 6.32
 com "entendi" e publicação em db652dd14c6470319f15375328f6d10903c863e7.
 HEAD, origin/main e main remota coincidiram após push. Entendimento da 6.33
-confirmado com "entendi" em 30/10/2026; publicação em preparação.
+confirmado com "entendi" em 30/10/2026; checkpoint publicado em
+d86aa98520fdf6a728c629ce6e3a028deaa431eb, com remoto conferido.
 
 Um conjunto inseparável em backend/tests/Feature/CatalogoApiTest.php: generalizar
 o teste após a última página e acrescentar o caso do limite superior válido.
@@ -91,7 +92,7 @@ desfizeram as fixtures. Git diff --check passou. Código da aplicação preserva
 
 ## Continuidade
 
-Roteiro, progresso e cobertura do contrato atualizados. Entendimento confirmado
-com "entendi" em 30/10/2026; publicação em preparação. Publicar e iniciar somente
-6.34: definir o contrato do filtro por nome e sua interação com a paginação,
-sem implementar o filtro ainda.
+Entendimento confirmado com "entendi" em 30/10/2026; checkpoint publicado em
+d86aa98520fdf6a728c629ce6e3a028deaa431eb, com HEAD/origin/main/main remota conferidos.
+Continuidade realizada na [aula 6.34](06-34-contrato-filtro-nome.md), definindo o
+contrato planejado do filtro por nome e sua interação com a paginação.

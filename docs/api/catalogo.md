@@ -245,6 +245,17 @@ coberto permanentemente, assim como o inválido 1000001/422 já coberto na 6.31.
 Classe da API passou; suíte completa 41 testes/288 asserções passou, contagens
 preservadas. Código da aplicação preservado. Entendimento da 6.33 confirmado com "entendi" em 30/10/2026. Explicação na [aula 06-33](../aulas/06-33-limite-paginacao.md).
 
+## Próxima evolução planejada — etapa 6.34
+
+O filtro por nome está desenhado na [aula 06-34](../aulas/06-34-contrato-filtro-nome.md),
+ainda sem implementação. Planejado: nome opcional como trecho literal de 1 a 100
+caracteres após normalização, filtrar ativos antes de contar/paginar e preservar
+nome nos links. Comparação seguirá a collation atual, ignorando caixa e distinguindo
+acentos. A API executável continua conforme as seções de listagem e consulta
+individual acima: nome ainda não é um parâmetro suportado pelo contrato atual.
+Entendimento da 6.34 confirmado com "entendi" em 01/11/2026. As verificações de collation não
+constituem teste do filtro HTTP futuro.
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

@@ -2,10 +2,23 @@
 
 ## Estado atual
 
-- Última atualização: 30/10/2026, referência de data America/Sao_Paulo.
+- Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.33 — Limite superior válido da paginação.
+- Etapa atual: 6.34 — Contrato planejado do filtro por nome.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.34: contrato desenhado, explicado e verificado em 30/10/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Aula 06-34 define nome opcional, trecho
+  literal de 1 a 100 caracteres após normalização; omitido sem filtro, vazio/
+  array/excesso com 422/errors.nome. Comparação segue collation atual: ignora
+  caixa e distingue acentos. Somente ativos; filtrar antes de contar/paginar;
+  total filtrado, ordem nome/ID, dez por página e nome preservado nos links.
+  Filtro ainda não implementado; código da aplicação preservado. SELECTs Docker
+  confirmaram SQL_Latin1_General_CP1_CI_AS nos dois bancos, caixa igual/acentos
+  diferentes e contagens teste 0 categorias/0 produtos, normal 0 categorias/1
+  produto. Diff e links locais conferidos; suíte não repetida para documentação.
+  Publicação em preparação. Próximo passo: publicar e iniciar
+  somente 6.35: regras de validação de nome em ListarProdutosRequest, ainda sem
+  aplicar o filtro à consulta.
 - Situação da 6.33: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado com "entendi" em 30/10/2026. Teste de página além da última passou a
   receber int pagina/paginaAnterior pelo DataProvider paginasAposUltima, com
@@ -14,9 +27,9 @@
   preservada; limite inválido 1000001 segue coberto por 422 no provider anterior.
   Sintaxe válida; suíte completa 41 testes/288 asserções passou. Contagens
   antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1 produto.
-  Aula 06-33 e cobertura do contrato atualizadas. Publicação em preparação.
-  Próximo passo: publicar e iniciar somente 6.34: definir o
-  contrato do filtro por nome e sua relação com a paginação, sem implementar ainda.
+  Aula 06-33 e cobertura do contrato atualizadas. Publicação verificada em
+  d86aa98520fdf6a728c629ce6e3a028deaa431eb; HEAD/origin/main/main remota coincidiram
+  após push em 30/10/2026. Continuidade realizada na 6.34.
 - Situação da 6.32: implementada, explicada e verificada em 30/10/2026;
   entendimento confirmado com "entendi" em 30/10/2026. Novo teste em CatalogoApiTest cria um
   ativo e solicita page=2: exige 200/JSON/data [], total 1, página atual 2,
@@ -374,7 +387,8 @@
   6.30 confirmada/publicada e 6.31 implementada/explicada/verificada em 30/10/2026,
   entendimento da 6.31 confirmado com "entendi" em 30/10/2026 e publicada.
   6.32 confirmada/publicada e 6.33 implementada/explicada/verificada em 30/10/2026,
-  entendimento da 6.33 confirmado com "entendi" em 30/10/2026.
+  entendimento da 6.33 confirmado com "entendi" em 30/10/2026 e publicada.
+  6.34 desenhada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -509,19 +523,20 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 30/10/2026: 6.32 confirmada com "entendi" e publicada em
-db652dd14c6470319f15375328f6d10903c863e7; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.33 implementada, explicada e verificada; entendimento confirmado com "entendi" em 30/10/2026.
-CatalogoApiTest generaliza o cenário após a última com provider paginasAposUltima:
-pares [2, 1] e [1000000, 999999] entram como pagina/paginaAnterior inteiros.
-Cada execução cria um ativo e exige 200/data [], total 1, última 1, página atual
-solicitada, from/to null, links first/last 1, prev indicado e next null.
-Classe da API passou; suíte completa 41/288 passou. Contagens antes/depois:
-teste 0 categorias/0 produtos; normal 0 categorias/1 produto. Aplicação preservada.
-Aula docs/aulas/06-33-limite-paginacao.md e cobertura do contrato atualizadas.
-O limite válido 1000000 tem teste permanente, assim como o inválido 1000001/422.
-Publicação em preparação. Próximo passo: publicar e iniciar somente 6.34: definir
-contrato de filtro por nome e interação com paginação, sem implementar o filtro ainda.
+Estado mais recente em 30/10/2026: 6.33 confirmada com "entendi" e publicada em
+d86aa98520fdf6a728c629ce6e3a028deaa431eb; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.34 desenhada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Aula docs/aulas/06-34-contrato-filtro-nome.md define nome opcional, trecho literal
+1..100 após normalização, omitido sem filtro, vazio/array/excesso com 422/errors.nome.
+Preservar ativos, ordem nome/ID, dez por página e formato; filtrar antes de
+contar/paginar, total dos correspondentes, nome nos links de navegação. Caixa
+ignorada, acentos distintos conforme collation da coluna SQL_Latin1_General_CP1_CI_AS.
+SELECTs no PHP Docker verificaram collation/comparações e contagens: teste
+0 categorias/0 produtos; normal 0 categorias/1 produto. Somente documentação
+alterada; filtro ainda não implementado e suíte não repetida. Último resultado
+6.33: 41 testes/288 asserções passaram. Contrato atual tem link para o planejamento.
+Publicação em preparação. Próximo passo: publicar e iniciar somente 6.35, regras de
+validação de nome no Form Request, ainda sem aplicar o filtro à consulta.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -8213,11 +8228,48 @@ Verificações em Docker, código 0:
 - git diff --check: sem erros.
 
 Código da aplicação preservado; limite válido agora tem cobertura HTTP permanente.
-Entendimento da 6.33: confirmado com "entendi" em 30/10/2026. Publicação em preparação.
-Último checkpoint publicado: db652dd14c6470319f15375328f6d10903c863e7, etapa 6.32.
-Próximo passo: publicar e iniciar somente 6.34, definindo o
-contrato do filtro por nome e interação com paginação, sem implementar ainda.
-Exercício DBeaver segue sem relato.
+Entendimento da 6.33: confirmado com "entendi" em 30/10/2026.
+Publicação: d86aa98520fdf6a728c629ce6e3a028deaa431eb; HEAD/origin/main/main remota coincidiram
+após push em 30/10/2026. Continuidade realizada na 6.34. DBeaver segue sem relato.
+
+## Etapa 6.34 — Contrato planejado do filtro por nome
+
+Desenho, explicação e verificações em 30/10/2026 após confirmação e publicação
+da 6.33 em d86aa98520fdf6a728c629ce6e3a028deaa431eb. Aula docs/aulas/06-34-contrato-filtro-nome.md.
+Somente documentação; filtro ainda não implementado. Contrato atual recebeu
+referência explícita ao planejamento, sem anunciar parâmetro já suportado.
+
+Decisões planejadas: nome opcional na query, trecho literal em qualquer posição,
+1..100 caracteres após normalização do Laravel; omitido não filtra, vazio/array/
+excesso retorna 422/errors.nome. Texto numérico 0 válido; espaços internos
+preservados. Caracteres %, _ e [ literais, não curingas. Valores reservados
+codificados na URL e futura consulta com parâmetros. Sem busca aproximada.
+
+Somente ativos correspondentes; filtro antes de contagem e recorte. Ordem nome/ID,
+dez por página, total filtrado, mesmo formato data/links/meta, 200 vazio e regras
+de page existentes. Links de navegação, inclusive meta.links, devem preservar nome
+validado. Exemplo hipotético: vinte ativos, doze camisetas e oito canecas, mais
+uma camiseta inativa; páginas 1/2/3 da busca camiseta têm 10/2/0 itens, total 12
+em todas e última 2. Não cadastrado nem verificado como HTTP implementado.
+
+Verificações:
+
+- Inspeção do Form Request/serviço/contrato: nome ainda não é aplicado.
+- Diagnóstico temporário /tmp/curso-634-colacao.php em PHP Docker, somente SELECTs,
+  exige identidade esperada e consulta sys.columns para nome. Loja_test/loja_testes
+  e loja/loja_app têm SQL_Latin1_General_CP1_CI_AS; comparações de literais Unicode
+  Camiseta/camiseta iguais e Tênis/Tenis diferentes. Regra de caixa/acentos para
+  o contrato planejado fundamentada também em documentação oficial Microsoft.
+- Contagens observadas: teste 0 categorias/0 produtos; normal 0 categorias/1 produto.
+- Git diff --check e links locais da documentação conferidos.
+- Sem alteração em PHP/serviços/configuração/banco; suíte não repetida. Último
+  resultado da 6.33: 41 testes/288 asserções passaram; não é cobertura do filtro novo.
+
+Entendimento da 6.34: confirmado com "entendi" em 01/11/2026. Publicação em preparação.
+Último checkpoint publicado: d86aa98520fdf6a728c629ce6e3a028deaa431eb, etapa 6.33.
+Próximo passo: publicar e iniciar somente 6.35, acrescentando
+regras de nome em ListarProdutosRequest e verificando entradas, sem aplicar o
+filtro à consulta ainda. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -8534,9 +8586,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   classe 26/221, suíte 40/275 e contagens passaram. Entendimento confirmado
   com "entendi" em 30/10/2026; publicada em db652dd. Na 6.33, teste ampliado
   para page=1000000, suíte 41/288 e contagens passaram. Entendimento confirmado
-  com "entendi" em 30/10/2026;
-  publicar e iniciar somente 6.34: definir contrato do filtro por nome/paginação,
-  sem implementar ainda.
+  com "entendi" em 30/10/2026; publicada em d86aa98. Na 6.34, contrato de nome
+  desenhado/explicado/verificado por inspeção, SELECTs de collation e links/diff;
+  filtro ainda não implementado. Entendimento confirmado com "entendi" em
+  01/11/2026; publicar e iniciar
+  somente 6.35: validação de nome no Form Request, sem aplicar filtro à consulta.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -8732,4 +8786,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 30/10/2026 | 6.30 — Teste permanente de page=0 | GET inválido exige 422/JSON/message/errors.page; classe 15/128 e suíte 29/182 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: d834624 |
 | 30/10/2026 | 6.31 — Páginas inválidas com DataProvider | Onze casos HTTP de 422/JSON/message/errors.page; classe 25/208 e suíte 39/262 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: 3a782ca |
 | 30/10/2026 | 6.32 — Página após a última preserva total | Um ativo/page=2 exige 200/data [], total 1, links/meta; classe 26/221 e suíte 40/275 passaram; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: db652dd |
-| 30/10/2026 | 6.33 — Limite superior válido | Provider de páginas 2/1000000 exige 200/data [], total e links; suíte 41/288 passou; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicação em preparação |
+| 30/10/2026 | 6.33 — Limite superior válido | Provider de páginas 2/1000000 exige 200/data [], total e links; suíte 41/288 passou; contagens preservadas | Confirmado com "entendi" em 30/10/2026 | Publicado e verificado: d86aa98 |
+| 30/10/2026 | 6.34 — Contrato planejado do filtro por nome | Entrada/trecho literal/ativos/total/links definidos; collation e contagens conferidas por SELECT; filtro ainda não implementado | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
