@@ -3,7 +3,8 @@
 Desenho, explicação e verificação por inspeção em 01/11/2026 após confirmação
 da 6.49 com "entendi" e publicação em ddfbada9fa5aeb9c05f18698f28ecd2e3b1a51ca.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.50
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+697f841ff891660d9bd980ade2aceb1d63a869e7, com referências local e remotas coincidentes.
 
 ## O que vamos descrever
 
@@ -85,8 +86,6 @@ A etapa altera somente documentação. Não executamos novamente testes PHP,
 consultas ou validação OpenAPI. A última suíte executada foi a da 6.49:
 66 testes/620 asserções passaram. Ainda não existe documento para validar.
 
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
-Publicar e iniciar
-somente 6.51: criar o esqueleto de docs/api/openapi.json com openapi, info,
-servers e paths vazio; conferir a sintaxe JSON em Docker. Os parâmetros e
-schemas serão acrescentados em etapas posteriores.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada em
+697f841ff891660d9bd980ade2aceb1d63a869e7. Continuidade na
+[aula 06-51](06-51-esqueleto-openapi.md).

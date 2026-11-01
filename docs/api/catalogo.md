@@ -492,10 +492,20 @@ estruturada e planeja o primeiro documento somente para a listagem GET.
 Planejados JSON, OpenAPI 3.2.1, arquivo docs/api/openapi.json, servidor local
 http://127.0.0.1:8002 e caminho /api/v1/produtos. Entradas page/nome e respostas
 200/data/links/meta e 422/message/errors serão descritas gradualmente.
-Documento formal ainda não criado; comportamento HTTP preservado. Etapa
+Na 6.50, documento formal ainda não criado; comportamento HTTP preservado. Etapa
 verificada por inspeção de código/contrato e fontes oficiais, sem nova suíte.
 Entendimento da 6.50 confirmado com "entendi" em 01/11/2026. Consulta individual
 será documentada em etapa posterior.
+
+## Esqueleto OpenAPI na 6.51
+
+Criado [openapi.json](openapi.json) com versão 3.2.1, identificação/revisão 0.1.0,
+servidor local e paths objeto vazio. Documento em construção: nenhuma operação
+está descrita ainda. PHP no Docker confirmou sintaxe JSON e leitura dos
+metadados/paths; não foi executado validador OpenAPI automatizado. Comportamento
+HTTP preservado, sem novas dependências, consultas ou suíte de aplicação.
+Entendimento da 6.51 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-51](../aulas/06-51-esqueleto-openapi.md).
 
 ## Evolução
 

@@ -456,8 +456,13 @@ JSON, versão planejada 3.2.1, identificação/revisão e escopo da listagem com
 page/nome, 200 e 422. Somente documentação; código/contrato/fontes oficiais,
 diff e links conferidos. Documento formal ainda não criado; última suíte é
 66/620 da 6.49. Explicação apresentada; entendimento da 6.50 confirmado com
-"entendi" em 01/11/2026. Publicação em preparação; publicar e iniciar somente 6.51: esqueleto de docs/api/openapi.json com
-openapi/info/servers/paths vazio e conferência de sintaxe JSON em Docker.
+"entendi" em 01/11/2026 e publicada em 697f841. Na 6.51, criado esqueleto de
+docs/api/openapi.json com identificação, servidor local e paths objeto vazio.
+PHP no Docker confirmou sintaxe e leitura dos metadados; nenhum validador
+OpenAPI automatizado ou nova suíte executado. Última suíte é 66/620 da 6.49.
+Explicação apresentada; entendimento da 6.51 confirmado com "entendi" em
+01/11/2026. Publicação em preparação; publicar e iniciar somente 6.52: GET /api/v1/produtos com summary/operationId e descrições
+das respostas 200/422, ainda sem parâmetros ou schemas.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

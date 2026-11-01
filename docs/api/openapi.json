@@ -1,0 +1,15 @@
+{
+  "openapi": "3.2.1",
+  "info": {
+    "title": "API de catálogo da loja",
+    "version": "0.1.0",
+    "description": "Descrição em construção. As operações do catálogo serão acrescentadas gradualmente."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8002",
+      "description": "Ambiente local de desenvolvimento"
+    }
+  ],
+  "paths": {}
+}
