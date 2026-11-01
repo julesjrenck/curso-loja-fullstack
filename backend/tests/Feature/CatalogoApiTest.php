@@ -309,6 +309,46 @@ class CatalogoApiTest extends TestCase
             ->assertJsonPath('meta.to', null);
     }
 
+    public function test_retorna_pagina_apos_ultima_filtrada_sem_perder_total_e_nome(): void
+    {
+        Produto::factory()->count(11)->create([
+            'nome' => 'Camiseta',
+            'status' => 'ativo',
+            'preco_em_centavos' => 4990,
+        ]);
+
+        Produto::factory()->create([
+            'nome' => 'Caneca',
+            'status' => 'ativo',
+            'preco_em_centavos' => 2990,
+        ]);
+
+        Produto::factory()->inativo()->create([
+            'nome' => 'Camiseta antiga',
+            'preco_em_centavos' => 1990,
+        ]);
+
+        $resposta = $this->getJson('/api/v1/produtos?nome=camiseta&page=3');
+        $url = url('/api/v1/produtos').'?nome=camiseta&page=';
+
+        $resposta
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonPath('data', [])
+            ->assertJsonPath('links', [
+                'first' => $url.'1',
+                'last' => $url.'2',
+                'prev' => $url.'2',
+                'next' => null,
+            ])
+            ->assertJsonPath('meta.current_page', 3)
+            ->assertJsonPath('meta.per_page', 10)
+            ->assertJsonPath('meta.total', 11)
+            ->assertJsonPath('meta.last_page', 2)
+            ->assertJsonPath('meta.from', null)
+            ->assertJsonPath('meta.to', null);
+    }
+
     #[DataProvider('nomesLiterais')]
     public function test_busca_nome_literal_e_preserva_texto_nos_links(string $nome): void
     {

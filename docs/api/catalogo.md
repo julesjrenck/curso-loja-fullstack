@@ -437,6 +437,17 @@ preservadas. Aplicação preservada; sem medição SQL ou novas asserções meta
 Entendimento da 6.45 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-45](../aulas/06-45-teste-busca-sem-correspondencia.md).
 
+## Cobertura acrescentada na 6.46
+
+Novo teste cria onze Camisetas ativas com factory()->count(11), Caneca ativa e
+Camiseta inativa. GET nome=camiseta&page=3 exige 200/JSON, data [], total 11,
+current_page 3, per_page 10, last_page 2 e from/to null. First aponta para 1,
+last/prev para 2 e next é null; nome preservado nos links. Confere que a página
+vazia não perde o total filtrado. Classe 46 testes/462 asserções e suíte 60
+testes/516 asserções passaram; contagens preservadas. Aplicação preservada;
+sem medição SQL ou novas asserções meta.links. Entendimento da 6.46 confirmado
+com "entendi" em 01/11/2026. Explicação na [aula 06-46](../aulas/06-46-teste-pagina-apos-ultima-filtrada.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

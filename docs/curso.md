@@ -433,8 +433,13 @@ publicada em 2adfac2. Na 6.45, teste com Caneca ativa e Camiseta inativa exige
 busca por camiseta com 200, data [], total 0, last_page 1, posições null e links
 filtrados. Classe 45/449 e suíte 59/503 passaram; contagens preservadas.
 Explicação apresentada; entendimento da 6.45 confirmado com "entendi" em
-01/11/2026. Publicação em preparação; publicar e iniciar somente 6.46: teste de página após a última em busca filtrada,
-preservando total e nome nos links.
+01/11/2026 e publicada em be303c9. Na 6.46, teste cria onze Camisetas ativas,
+uma Caneca ativa e uma Camiseta inativa. Busca filtrada na página 3 exige data
+vazia, total 11, última página 2, posições null e links com nome. Classe 46/462
+e suíte 60/516 passaram; contagens preservadas. Explicação apresentada;
+entendimento da 6.46 confirmado com "entendi" em 01/11/2026.
+Publicação em preparação; publicar e iniciar somente 6.47:
+testes de aceitação de nomes com 100 caracteres ASCII/Unicode, usando DataProvider.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

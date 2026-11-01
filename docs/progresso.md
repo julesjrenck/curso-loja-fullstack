@@ -4,8 +4,20 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.45 — Teste permanente de busca sem correspondência.
+- Etapa atual: 6.46 — Teste permanente de página após a última filtrada.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.46: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Novo teste cria onze Camisetas ativas
+  com factory()->count(11), uma Caneca ativa e uma Camiseta inativa.
+  GET nome=camiseta&page=3 exige 200/JSON, data [], total 11, current_page 3,
+  per_page 10, last_page 2, from/to null e links com nome preservado:
+  first 1, last 2, prev 2 e next null. Aplicação preservada.
+  Sintaxe válida; classe 46 testes/462 asserções e suíte 60 testes/516 asserções
+  passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
+  Aula 06-46 e cobertura do contrato atualizadas. Publicação em preparação.
+  Próximo passo: publicar e iniciar
+  somente 6.47: testes de aceitação de nomes com 100 caracteres ASCII/Unicode,
+  usando DataProvider.
 - Situação da 6.45: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Novo teste cria Caneca ativa e Camiseta
   inativa; GET nome=camiseta exige 200/JSON, data [], total 0, current_page 1,
@@ -13,8 +25,8 @@
   Aplicação preservada. Sintaxe válida; classe 45 testes/449 asserções e suíte
   59 testes/503 asserções passaram. Contagens antes/depois: teste 0/0 e normal
   0/1 categorias/produtos. Aula 06-45 e cobertura do contrato atualizadas.
-  Publicação em preparação. Próximo passo: publicar e iniciar somente 6.46: teste permanente de página após a
-  última em busca filtrada, preservando total e nome nos links.
+  Publicação verificada em be303c9cb3874121e57ec22c866dd33f94accdca; HEAD/origin/main/main
+  remota coincidiram após push em 01/11/2026. Continuidade realizada na 6.46.
 - Situação da 6.44: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Teste HTTP com DataProvider nomesLiterais:
   %, _, [, apóstrofo, +, & e string '0'. Cada caso cria um correspondente ativo,
@@ -520,8 +532,8 @@
   6.40 confirmada/publicada em 01/11/2026 e 6.41 implementada/explicada/verificada,
   entendimento da 6.41 confirmado com "entendi" em 01/11/2026 e publicada.
   6.42 e 6.43 confirmadas/publicadas em 01/11/2026;
-  6.44 confirmada/publicada em 01/11/2026 e 6.45 implementada/explicada/verificada;
-  entendimento da 6.45 confirmado com "entendi" em 01/11/2026.
+  6.44 e 6.45 confirmadas/publicadas em 01/11/2026;
+  6.46 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -656,20 +668,20 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.44 confirmada com "entendi" e publicada em
-2adfac2afde138762e3549503e376968705b53b0; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.45 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-CatalogoApiTest recebeu test_retorna_pagina_vazia_quando_nome_nao_corresponde_a_ativos.
-Cria Caneca ativa e Camiseta inativa; GET nome=camiseta exige 200/JSON, data [],
-total 0, current_page 1, per_page 10, last_page 1 e from/to null. Links first/last
-mantêm nome e page=1; prev/next null. Classe 45/449 e suíte 59/503 passaram.
-Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos. Aplicação
-preservada. Aula docs/aulas/06-45-teste-busca-sem-correspondencia.md e cobertura
-do contrato atualizadas. Publicação em preparação. Próximo passo:
-publicar e iniciar somente 6.46: teste permanente
-de página após a última em busca filtrada, preservando total e nome nos links.
-Limites válidos de comprimento, meta.links e outros casos seguem nos diagnósticos
-até terem cobertura específica.
+Estado mais recente em 01/11/2026: 6.45 confirmada com "entendi" e publicada em
+be303c9cb3874121e57ec22c866dd33f94accdca; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.46 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+CatalogoApiTest recebeu test_retorna_pagina_apos_ultima_filtrada_sem_perder_total_e_nome.
+Cria onze Camisetas ativas com factory()->count(11), Caneca ativa e Camiseta
+inativa. GET nome=camiseta&page=3 exige 200/JSON, data [], total 11,
+current_page 3, per_page 10, last_page 2, from/to null. Links first/last/prev
+apontam para páginas 1/2/2 com nome; next null. Classe 46/462 e suíte 60/516
+passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
+Aplicação preservada. Aula docs/aulas/06-46-teste-pagina-apos-ultima-filtrada.md
+e cobertura do contrato atualizadas. Publicação em preparação.
+Próximo passo: publicar e iniciar somente 6.47:
+testes de aceitação de nomes com 100 caracteres ASCII/Unicode, usando DataProvider.
+Meta.links e outros casos seguem nos diagnósticos até terem cobertura específica.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -8844,11 +8856,47 @@ Verificações em Docker, código 0:
   produto, por /tmp/curso-618-contagens.php.
 - Git diff --check e links locais conferidos.
 
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+be303c9cb3874121e57ec22c866dd33f94accdca; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.46. Exercício DBeaver segue sem relato.
+
+## Etapa 6.46 — Teste permanente de página após a última filtrada
+
+Implementação, explicação e verificações em 01/11/2026 após confirmação e
+publicação da 6.45 em be303c9cb3874121e57ec22c866dd33f94accdca.
+Aula docs/aulas/06-46-teste-pagina-apos-ultima-filtrada.md. Um método novo em
+CatalogoApiTest: test_retorna_pagina_apos_ultima_filtrada_sem_perder_total_e_nome.
+
+Factory()->count(11)->create gera onze Camisetas ativas com preço 4990 centavos.
+Acrescentadas Caneca ativa a 2990 e Camiseta antiga inativa a 1990. São treze
+produtos, doze ativos e onze correspondentes ativos à busca. GET com
+nome=camiseta&page=3 exige data exatamente [], mas total 11 e last_page 2.
+Asserções: 200/application/json, current_page 3, per_page 10, from/to null,
+links first para 1, last/prev para 2 e next null; todos os links não nulos
+preservam nome. A página pedida não é reduzida à última existente.
+
+Página vazia não implica total zero: total conta o conjunto filtrado em todas
+as páginas. Página válida após a última retorna 200; validação de page continua
+independente da quantidade de resultados. Código de produção e demais testes
+preservados. Sem medição SQL ou novas asserções meta.links. SetUp e
+DatabaseTransactions preservam identidade e isolamento do banco de testes.
+
+Verificações em Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result --compact:
+  46 testes/462 asserções passaram.
+- php artisan test --do-not-cache-result --compact: 60 testes/516 asserções
+  passaram; um teste e 13 asserções a mais que na 6.45.
+- SELECTs antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1
+  produto, por /tmp/curso-618-contagens.php.
+- Git diff --check e links locais conferidos.
+
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: 2adfac2afde138762e3549503e376968705b53b0, etapa 6.44.
-Próximo passo: publicar e iniciar somente 6.46:
-teste permanente de página após a última em busca filtrada, preservando total
-e nome nos links. Exercício DBeaver segue sem relato.
+Último checkpoint publicado: be303c9cb3874121e57ec22c866dd33f94accdca, etapa 6.45.
+Próximo passo: publicar e iniciar somente 6.47:
+testes de aceitação de nomes com 100 caracteres ASCII/Unicode, usando DataProvider.
+Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -9199,8 +9247,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   confirmado com "entendi" em 01/11/2026; publicada em 2adfac2.
   Na 6.45, busca sem correspondência implementada/explicada/verificada:
   classe 45/449 e suíte 59/503 passaram; contagens preservadas. Entendimento
-  confirmado com "entendi" em 01/11/2026; publicar e iniciar somente 6.46: página após
-  a última em busca filtrada, preservando total e nome nos links.
+  confirmado com "entendi" em 01/11/2026; publicada em be303c9.
+  Na 6.46, página após a última filtrada implementada/explicada/verificada:
+  classe 46/462 e suíte 60/516 passaram; contagens preservadas. Entendimento
+  confirmado com "entendi" em 01/11/2026; publicar e iniciar somente 6.47: aceitação
+  de nomes com 100 caracteres ASCII/Unicode, usando DataProvider.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -9408,4 +9459,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.42 — Nomes inválidos | Seis casos HTTP de 422/JSON/message/errors.nome; classe 36/321 e suíte 50/375 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 8eab468; remoto conferido |
 | 01/11/2026 | 6.43 — Navegação filtrada | Segue next real; 12 correspondentes, páginas 10/2, empate por ID, total e links; classe 37/345 e suíte 51/399 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em d56c185; remoto conferido |
 | 01/11/2026 | 6.44 — Nomes literais | Sete casos: %, _, [, apóstrofo, +, & e string 0; único ativo correspondente e links; classe 44/436 e suíte 58/490 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 2adfac2; remoto conferido |
-| 01/11/2026 | 6.45 — Busca sem correspondência | Caneca ativa/Camiseta inativa; 200/data vazia/total zero/posições null/links filtrados; classe 45/449 e suíte 59/503 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.45 — Busca sem correspondência | Caneca ativa/Camiseta inativa; 200/data vazia/total zero/posições null/links filtrados; classe 45/449 e suíte 59/503 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em be303c9; remoto conferido |
+| 01/11/2026 | 6.46 — Página após a última filtrada | Onze correspondentes; página 3 vazia/total 11/última 2/links filtrados; classe 46/462 e suíte 60/516 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

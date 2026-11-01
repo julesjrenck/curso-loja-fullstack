@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.44
 com "entendi" e publicação em 2adfac2afde138762e3549503e376968705b53b0.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.45
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+be303c9cb3874121e57ec22c866dd33f94accdca, com referências local e remotas coincidentes.
 
 Um método novo em backend/tests/Feature/CatalogoApiTest.php:
 test_retorna_pagina_vazia_quando_nome_nao_corresponde_a_ativos.
@@ -108,6 +109,6 @@ e links locais da documentação conferidos.
 ## Continuidade
 
 Roteiro, progresso e cobertura do [contrato atual](../api/catalogo.md) atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
-Publicar e iniciar somente 6.46: teste permanente de
-página após a última em busca filtrada, preservando total e nome nos links.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada em
+be303c9cb3874121e57ec22c866dd33f94accdca, com referências local e remotas coincidentes.
+Continuidade na [aula 06-46](06-46-teste-pagina-apos-ultima-filtrada.md).
