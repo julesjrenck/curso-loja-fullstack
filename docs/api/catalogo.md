@@ -641,6 +641,21 @@ essa coerência automaticamente. Sem captura/validação de respostas reais,
 SQL ou nova suíte Laravel. Entendimento confirmado com "entendi" em 01/11/2026. Explicação
 na [aula 06-62](../aulas/06-62-exemplo-200-openapi.md).
 
+## Exemplo 422 e validação de valores na 6.63
+
+[Openapi.json](openapi.json) recebeu example ao lado do schema de
+422/application/json: message string e errors.nome com uma lista contendo
+uma mensagem. Textos ilustrativos para nome inválido; tradução livre e sem
+exigir erros simultâneos de page/nome. Conferido com Form Request/testes por
+leitura; não é captura HTTP nem alteração da resposta real.
+
+Mesma configuração [redocly.yaml](redocly.yaml) e imagem 2.65.0/digest:
+validação Docker código 0. Três cópias temporárias rejeitadas com código 1
+pela regra de exemplos: errors.nome string, lista vazia e errors vazio.
+Detectados tipo array, minItems 1 e minProperties 1. Schemas e exemplo 200
+preservados. Sem dependências novas, SQL ou nova suíte Laravel. Entendimento
+confirmado com "entendi" em 01/11/2026. Explicação na [aula 06-63](../aulas/06-63-exemplo-422-openapi.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

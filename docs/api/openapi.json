@@ -266,6 +266,14 @@
                       }
                     }
                   }
+                },
+                "example": {
+                  "message": "Os dados enviados são inválidos.",
+                  "errors": {
+                    "nome": [
+                      "Informe um nome válido."
+                    ]
+                  }
                 }
               }
             }

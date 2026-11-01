@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.61 com "entendi" e publicação em a7e7d42bbf9ddd10ec6dcabdaab21c3a944c5623.
-Entendimento da 6.62 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.62 confirmado com "entendi" em 01/11/2026; publicação
+verificada em 57e7f4aca3ff845a62ba7542138571964f6d4bb1, referências local e remotas coincidentes.
 
 ## Schema e exemplo
 
@@ -121,6 +122,5 @@ não executa o endpoint nem comprova conformidade das respostas reais.
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026. Publicar o checkpoint. Próxima etapa, 6.63:
-acrescentar um exemplo de resposta 422 ao OpenAPI e validar seus valores com
-a mesma regra em Docker.
+com "entendi" em 01/11/2026; publicação verificada em 57e7f4aca3ff845a62ba7542138571964f6d4bb1.
+Continuidade na [aula 06-63](06-63-exemplo-422-openapi.md).

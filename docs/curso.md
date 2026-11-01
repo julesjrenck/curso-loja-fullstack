@@ -519,9 +519,14 @@ com Camiseta e paginação; regra no-invalid-media-type-examples como erro,
 allowAdditionalProperties true acompanha schemas abertos. Mesma imagem Docker:
 original código 0; cópias com preço texto/nome ausente/per_page 11 rejeitadas
 com código 1. Dados ilustrativos, coerência de totais/URLs lida separadamente;
+sem captura HTTP, SQL ou nova suíte Laravel. Entendimento confirmado com
+"entendi" em 01/11/2026 e publicada em 57e7f4a. Na 6.63, exemplo 422 com
+message e errors.nome/lista de mensagens ilustrativas; mesma imagem/regra,
+documento código 0. Três cópias inválidas rejeitadas com código 1: mensagem
+sem lista, lista vazia e objeto errors vazio. Schemas/exemplo 200 preservados;
 sem captura HTTP, SQL ou nova suíte Laravel. Explicação apresentada;
-entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.63:
-exemplo de resposta 422 e validação de seus valores com a mesma regra em Docker.
+entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.64:
+GET /api/v1/produtos/{id} no OpenAPI, parâmetro id e descrições de 200/404.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
