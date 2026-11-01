@@ -3,7 +3,8 @@
 Implementação, explicação e verificação em 01/11/2026 após confirmação da 6.50
 com "entendi" e publicação em 697f841ff891660d9bd980ade2aceb1d63a869e7.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.51
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+5bcb4307f03cbf89ba1a52e75e6ca0eebfeaa43f, com referências local e remotas coincidentes.
 
 ## Arquivo criado
 
@@ -89,7 +90,5 @@ a da 6.49, com 66 testes/620 asserções. Git diff --check e links locais confer
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026; publicação em preparação.
-Publicar e iniciar somente 6.52: declarar GET
-/api/v1/produtos com summary, operationId e descrições de respostas 200/422,
-ainda sem parâmetros ou schemas.
+com "entendi" em 01/11/2026; publicação verificada em 5bcb4307f03cbf89ba1a52e75e6ca0eebfeaa43f.
+Continuidade na [aula 06-52](06-52-operacao-listagem-openapi.md).

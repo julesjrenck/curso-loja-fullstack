@@ -500,12 +500,22 @@ será documentada em etapa posterior.
 ## Esqueleto OpenAPI na 6.51
 
 Criado [openapi.json](openapi.json) com versão 3.2.1, identificação/revisão 0.1.0,
-servidor local e paths objeto vazio. Documento em construção: nenhuma operação
-está descrita ainda. PHP no Docker confirmou sintaxe JSON e leitura dos
+servidor local e paths objeto vazio. Na 6.51, nenhuma operação estava descrita ainda. PHP no Docker confirmou sintaxe JSON e leitura dos
 metadados/paths; não foi executado validador OpenAPI automatizado. Comportamento
 HTTP preservado, sem novas dependências, consultas ou suíte de aplicação.
 Entendimento da 6.51 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-51](../aulas/06-51-esqueleto-openapi.md).
+
+## Operação OpenAPI na 6.52
+
+[Openapi.json](openapi.json) agora declara /api/v1/produtos/get, summary Listar
+produtos ativos, operationId listarProdutos e descrições de respostas 200/422.
+A descrição de sucesso admite página vazia; a de 422 trata query inválida.
+Documento parcial: parâmetros e formatos de corpo ainda serão acrescentados.
+PHP Docker confirmou sintaxe JSON, URL completa e leitura da operação/status;
+sem validador OpenAPI automatizado. Código HTTP preservado, sem dependências,
+consultas ou nova suíte. Entendimento da 6.52 confirmado com "entendi" em
+01/11/2026. Explicação na [aula 06-52](../aulas/06-52-operacao-listagem-openapi.md).
 
 ## Evolução
 

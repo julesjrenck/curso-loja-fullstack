@@ -11,5 +11,20 @@
       "description": "Ambiente local de desenvolvimento"
     }
   ],
-  "paths": {}
+  "paths": {
+    "/api/v1/produtos": {
+      "get": {
+        "summary": "Listar produtos ativos",
+        "operationId": "listarProdutos",
+        "responses": {
+          "200": {
+            "description": "Página de produtos ativos correspondentes à busca, incluindo paginação. A lista pode estar vazia."
+          },
+          "422": {
+            "description": "Parâmetros de consulta inválidos."
+          }
+        }
+      }
+    }
+  }
 }

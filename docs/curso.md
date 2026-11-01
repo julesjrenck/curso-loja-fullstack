@@ -461,8 +461,14 @@ docs/api/openapi.json com identificação, servidor local e paths objeto vazio.
 PHP no Docker confirmou sintaxe e leitura dos metadados; nenhum validador
 OpenAPI automatizado ou nova suíte executado. Última suíte é 66/620 da 6.49.
 Explicação apresentada; entendimento da 6.51 confirmado com "entendi" em
-01/11/2026. Publicação em preparação; publicar e iniciar somente 6.52: GET /api/v1/produtos com summary/operationId e descrições
-das respostas 200/422, ainda sem parâmetros ou schemas.
+01/11/2026 e publicada em 5bcb430. Na 6.52, OpenAPI recebeu a operação
+GET /api/v1/produtos com summary, operationId listarProdutos e descrições de
+respostas 200/422. PHP Docker conferiu sintaxe e leitura; método/caminho/status
+confrontados com contrato/código. Ainda sem parâmetros/schemas ou validador
+OpenAPI; última suíte 66/620 da 6.49. Explicação apresentada; entendimento da
+6.52 confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar
+e iniciar somente 6.53: page na query,
+com opcionalidade, padrão e limites, e representação decimal canônica descrita.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
