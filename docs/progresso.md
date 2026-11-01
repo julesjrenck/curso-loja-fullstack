@@ -4,8 +4,21 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.59 — Meta.links no OpenAPI.
+- Etapa atual: 6.60 — Corpo da resposta 422 no OpenAPI.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.60: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Resposta 422 em openapi.json recebeu
+  content/application/json/schema object, required message/errors. Message
+  string; errors object/minProperties 1/additionalProperties array/minItems 1/
+  items string. Dicionário campo -> lista de mensagens; descrição informa
+  page e/ou nome na operação, sem fixar textos ou exigir ambos os campos.
+  PHP Docker leu JSON/obrigatórios/tipos/limites/descrição, código 0. Conferido
+  contra Form Request/contrato/testes. Sem validador OpenAPI ou de instâncias,
+  dependências novas, produção alterada, consultas ou nova suíte; última suíte
+  6.49, 66/620. Aula 06-60, contrato e registros atualizados; diff e links
+  conferidos. Publicação em preparação. Próximo passo: publicar e iniciar somente 6.61: validar o documento
+  OpenAPI em Docker com ferramenta compatível e versão fixada, conferindo
+  estrutura e referências.
 - Situação da 6.59: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Meta em openapi.json agora exige links,
   array com items object e required url/label/page/active. Url string ou null,
@@ -15,9 +28,9 @@
   código 0. Conferido contra contrato/teste existente. Sem validador OpenAPI
   ou de instâncias, dependências novas, produção alterada, consultas ou nova
   suíte; última suíte 6.49, 66/620. Aula 06-59, contrato e registros atualizados;
-  diff e links conferidos. Publicação em preparação. Próximo passo:
-  publicar e iniciar somente 6.60: descrever o
-  corpo JSON de 422 com message e errors por campo, sem fixar mensagens traduzidas.
+  diff e links conferidos. Publicação verificada em
+  4e8f8ed9c29df265ec03e814b2de32ce0a1cdb30; HEAD/origin/main/main remota coincidiram após push
+  em 01/11/2026. Continuidade realizada na 6.60.
 - Situação da 6.58: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026, durante o encerramento do registro. Corpo 200 em openapi.json exige meta,
   object com sete obrigatórios: current_page/per_page/total/last_page/from/to/path.
@@ -690,8 +703,8 @@
   6.52 e 6.53 confirmadas/publicadas em 01/11/2026;
   6.54 e 6.55 confirmadas/publicadas em 01/11/2026;
   6.56 e 6.57 confirmadas/publicadas em 01/11/2026;
-  6.58 confirmada/publicada em 01/11/2026 e 6.59 implementada/explicada/verificada;
-  entendimento da 6.59 confirmado com "entendi" em 01/11/2026.
+  6.58 e 6.59 confirmadas/publicadas em 01/11/2026;
+  6.60 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -826,22 +839,23 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.58 confirmada com "entendi" durante o
-encerramento do registro e publicada em 5b108b2cebbf739bf113710f9ab7d1efd465a552;
-HEAD/origin/main/main remota conferidos após push. Etapa 6.59 implementada,
-explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Docs/api/openapi.json recebeu meta.links obrigatório, array de items object
-com required url/label/page/active. Url string ou null, label string, page
-integer >=1 ou null, active boolean. Sem labels/quantidade de itens fixos.
-Descrições de destinos, tradução e indicação da página numérica atual.
-PHP Docker retornou 0: JSON válido, meta.required com oito campos e schemas
-dos quatro campos dos itens lidos. Conferido contra contrato/teste existente.
+Estado mais recente em 01/11/2026: 6.59 confirmada com "entendi" e publicada em
+4e8f8ed9c29df265ec03e814b2de32ce0a1cdb30; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.60 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Docs/api/openapi.json recebeu content/application/json em 422: object com
+required message/errors, message string e errors object/minProperties 1,
+additionalProperties array/minItems 1/items string. Dicionário de campo para
+lista de mensagens; descrição informa page e/ou nome sem exigir ambos ou
+fixar traduções. Schema do dicionário descreve valores, sem restringir nomes
+de chaves. PHP Docker retornou 0: JSON válido, campos/tipos/limites/descrição lidos.
+Comparado com Form Request/contrato/testes; fonte oficial consultada.
 Sem validador OpenAPI ou de instâncias, dependências novas, produção alterada,
 consultas ou nova suíte; última suíte 6.49, 66/620. Aula
-docs/aulas/06-59-meta-links-openapi.md, contrato e registros atualizados;
+docs/aulas/06-60-resposta-422-openapi.md, contrato e registros atualizados;
 diff/links conferidos. Publicação em preparação. Próximo passo:
-publicar e iniciar somente 6.60: corpo JSON de
-422 com message e errors por campo, sem fixar mensagens traduzidas.
+publicar e iniciar somente 6.61: validar documento
+OpenAPI em Docker com ferramenta compatível e versão fixada, conferindo
+estrutura e referências.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -9449,11 +9463,41 @@ boolean consultada. Git diff --check e links locais conferidos.
 Sem validador OpenAPI ou validação de instâncias. Nenhuma dependência nova ou
 produção alterada. Sem consultas ou nova suíte; última suíte 6.49, 66/620.
 
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+4e8f8ed9c29df265ec03e814b2de32ce0a1cdb30; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.60. Exercício DBeaver segue sem relato.
+
+## Etapa 6.60 — Corpo da resposta 422 no OpenAPI
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação e
+publicação da 6.59 em 4e8f8ed9c29df265ec03e814b2de32ce0a1cdb30.
+Aula docs/aulas/06-60-resposta-422-openapi.md. Resposta 422 em docs/api/openapi.json
+recebe content/application/json/schema type object, required message/errors.
+Message type string e descrição de resumo variável com tradução. Errors type
+object/minProperties 1 e additionalProperties como schema array/minItems 1/
+items string. Descrição informa que nesta operação os campos são page e/ou nome.
+
+Errors é dicionário: nomes de campos são chaves e valores são listas de mensagens.
+Como não há properties/patternProperties dentro de errors, additionalProperties
+aplica o mesmo schema a cada valor; não restringe os nomes das chaves. Não exige
+page e nome simultaneamente: só os campos inválidos aparecem. MinProperties
+conta campos com erro; minItems conta mensagens por campo. Sem textos fixos.
+Resposta 200 e demais trechos preservados.
+
+PHP Docker via STDIN/json_decode com JSON_THROW_ON_ERROR, sem boot Laravel:
+código 0, JSON válido; 422 application/json, corpo object, required message/errors,
+message string, errors object/minProperties 1, valores array/minItems 1/items
+string e descrição lidos. Comparado com Form Request, contrato e testes de
+page/nome inválidos. Fonte oficial JSON Schema object/additionalProperties/
+minProperties consultada. Git diff --check e links locais conferidos.
+Sem validador OpenAPI ou validação de instâncias. Nenhuma dependência nova ou
+produção alterada. Sem consultas ou nova suíte; última suíte 6.49, 66/620.
+
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: 5b108b2cebbf739bf113710f9ab7d1efd465a552, etapa 6.58.
-Próximo passo: publicar e iniciar somente 6.60:
-descrever corpo JSON de 422 com message e errors por campo, sem fixar mensagens
-traduzidas. Exercício DBeaver segue sem relato.
+Último checkpoint publicado: 4e8f8ed9c29df265ec03e814b2de32ce0a1cdb30, etapa 6.59.
+Próximo passo: publicar e iniciar somente 6.61:
+validar documento OpenAPI em Docker com ferramenta compatível e versão fixada,
+conferindo estrutura e referências. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -9845,9 +9889,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Entendimento confirmado com "entendi" em 01/11/2026; publicada em 5b108b2.
   Na 6.59, meta.links implementado/explicado/lido por PHP Docker: lista de
   objetos obrigatórios url/label/page/active, tipos e descrições livres.
-  Entendimento confirmado com "entendi" em 01/11/2026; sem validador OpenAPI
-  ou nova suíte. Publicar e iniciar somente 6.60: 422 JSON/message/errors por campo,
-  sem mensagens traduzidas fixas. Última suíte permanece 66/620 da 6.49.
+  Entendimento confirmado com "entendi" em 01/11/2026; publicada em 4e8f8ed.
+  Na 6.60, 422 JSON/message/errors implementado/explicado/lido por PHP Docker:
+  dicionário campo -> lista de mensagens, sem traduções fixas. Entendimento
+  confirmado com "entendi" em 01/11/2026; sem validador OpenAPI ou nova suíte.
+  Publicar e iniciar somente 6.61: validação OpenAPI em Docker com ferramenta compatível
+  e versão fixada. Última suíte permanece 66/620 da 6.49.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -10069,4 +10116,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.56 — Data em 200 | Corpo JSON object/data obrigatório/array até dez/Produto por ref; JSON/leitura/referência local PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em d1a7b18; remoto conferido |
 | 01/11/2026 | 6.57 — Links em 200 | Objeto obrigatório, quatro campos presentes, prev/next string ou null; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 12acc7e; remoto conferido |
 | 01/11/2026 | 6.58 — Meta básico | Sete campos obrigatórios/tipos/limites, per_page const 10, from/to inteiro ou null; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 5b108b2; remoto conferido |
-| 01/11/2026 | 6.59 — Meta.links | Lista de opções, quatro obrigatórios/tipos e rótulos livres; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.59 — Meta.links | Lista de opções, quatro obrigatórios/tipos e rótulos livres; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 4e8f8ed; remoto conferido |
+| 01/11/2026 | 6.60 — Corpo 422 | JSON object/message/errors obrigatórios; campo -> lista de textos, mínimos um campo/uma mensagem; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

@@ -600,6 +600,18 @@ e teste existente. Sem validador OpenAPI ou de instâncias, dependências novas,
 produção alterada, consultas ou nova suíte. Entendimento da 6.59 confirmado
 com "entendi" em 01/11/2026. Explicação na [aula 06-59](../aulas/06-59-meta-links-openapi.md).
 
+## Corpo 422 no OpenAPI na 6.60
+
+[Openapi.json](openapi.json) recebeu content/application/json em 422: object
+com message/errors obrigatórios, message string e errors object/minProperties 1.
+AdditionalProperties descreve os valores como array/minItems 1/items string:
+dicionário de campo para lista de mensagens. Descrição informa page e/ou nome
+na operação atual; schema não restringe nomes das chaves nem fixa traduções.
+PHP Docker confirmou JSON/campos, comparados com Form Request/contrato/testes.
+Sem validador OpenAPI ou de instâncias, dependências novas, produção alterada,
+consultas ou nova suíte. Entendimento da 6.60 confirmado com "entendi" em
+01/11/2026. Explicação na [aula 06-60](../aulas/06-60-resposta-422-openapi.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

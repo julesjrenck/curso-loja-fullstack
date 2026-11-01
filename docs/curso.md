@@ -503,9 +503,16 @@ meta.links obrigatório, lista de objetos com url/label/page/active obrigatório
 tipos e descrições; label e quantidade da lista livres, active boolean.
 PHP Docker leu JSON/campos, conferidos contra contrato/teste. Sem validador
 OpenAPI ou nova suíte; última suíte 66/620 da 6.49. Explicação apresentada;
-entendimento da 6.59 confirmado com "entendi" em 01/11/2026.
-Publicação em preparação; publicar e iniciar somente 6.60:
-corpo 422 JSON com message/errors por campo, sem mensagens traduzidas fixas.
+entendimento da 6.59 confirmado com "entendi" em 01/11/2026 e publicada em
+4e8f8ed. Na 6.60, corpo 422 application/json/object com message/errors
+obrigatórios; errors é dicionário de campo para listas de textos, com ao menos
+um campo e uma mensagem por campo, sem traduções fixas. PHP Docker leu JSON/
+campos, conferidos contra código/contrato/testes. Sem validador OpenAPI ou nova
+suíte; última suíte 66/620 da 6.49. Explicação apresentada; entendimento
+da 6.60 confirmado com "entendi" em 01/11/2026. Publicação em preparação;
+publicar e iniciar somente 6.61: validar o
+documento OpenAPI em Docker com ferramenta compatível e versão fixada,
+conferindo estrutura e referências.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

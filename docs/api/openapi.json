@@ -195,7 +195,36 @@
             }
           },
           "422": {
-            "description": "Parâmetros de consulta inválidos."
+            "description": "Parâmetros de consulta inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "message",
+                    "errors"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Resumo do erro de validação; o texto pode variar com a tradução."
+                    },
+                    "errors": {
+                      "type": "object",
+                      "minProperties": 1,
+                      "description": "Mensagens agrupadas pelo nome do campo inválido; nesta operação, page e/ou nome.",
+                      "additionalProperties": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

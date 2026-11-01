@@ -4,7 +4,8 @@ Implementação, explicação e verificação em 01/11/2026 após confirmação 
 com "entendi" durante o encerramento do registro e publicação em
 5b108b2cebbf739bf113710f9ab7d1efd465a552. HEAD, origin/main e main remota
 conferidos após push. Entendimento da 6.59 confirmado com "entendi" em
-01/11/2026; publicação em preparação.
+01/11/2026; publicação verificada em 4e8f8ed9c29df265ec03e814b2de32ce0a1cdb30,
+com referências local e remotas coincidentes.
 
 ## Lista de opções
 
@@ -85,6 +86,5 @@ alterada; sem consultas ou nova suíte. Última suíte executada na 6.49:
 ## Continuidade
 
 Contrato, roteiro e progresso atualizados. Entendimento confirmado com "entendi"
-em 01/11/2026; publicação em preparação. Publicar e iniciar
-somente 6.60: descrever corpo JSON de 422 com message e errors por campo,
-sem fixar mensagens traduzidas.
+em 01/11/2026; publicação verificada em 4e8f8ed9c29df265ec03e814b2de32ce0a1cdb30.
+Continuidade na [aula 06-60](06-60-resposta-422-openapi.md).
