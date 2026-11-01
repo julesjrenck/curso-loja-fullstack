@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.64 com "entendi" e publicação em e1b025b318d6dc34f55e0d2d5b271ce1fa25e6b7.
-Entendimento da 6.65 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.65 confirmado com "entendi" em 01/11/2026; publicação
+verificada em 087430c1f2c1c8fe943a95f6fd0239fa527d16cf, referências local e remotas coincidentes.
 
 ## Objeto externo e produto
 
@@ -100,6 +101,5 @@ temporários não comprova conformidade das respostas reais com o contrato.
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026. Publicar o checkpoint. Próxima etapa, 6.66:
-descrever o corpo 404 da consulta individual, com message string e variação
-do texto nos erros de roteamento.
+com "entendi" em 01/11/2026; publicação verificada em 087430c1f2c1c8fe943a95f6fd0239fa527d16cf.
+Continuidade na [aula 06-66](06-66-corpo-404-consulta-openapi.md).

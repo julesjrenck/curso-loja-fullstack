@@ -317,7 +317,23 @@
             }
           },
           "404": {
-            "description": "Produto não encontrado, inativo ou identificador inválido."
+            "description": "Produto não encontrado, inativo ou identificador inválido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Descrição do erro. Produto inexistente, inativo ou ID fora da faixa de inteiros recebem 'Produto não encontrado.'. Nos erros de roteamento, o texto pode variar."
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

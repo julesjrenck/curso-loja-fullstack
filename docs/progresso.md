@@ -4,8 +4,24 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.65 — Corpo 200 da consulta individual no OpenAPI.
+- Etapa atual: 6.66 — Corpo 404 da consulta individual no OpenAPI.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.66: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Resposta 404 da consulta individual no
+  OpenAPI recebeu content/application/json/schema object, required message e
+  message string. Descrição distingue frase do controller e variação no
+  roteamento; sem enum/const ou exemplo permanente. Conferido por leitura com
+  controller/bootstrap/testes existentes. Mesma configuração Redocly/imagem
+  2.65.0/digest: documento código 0. Em /tmp/curso-666, duas cópias com mensagens
+  textuais diferentes passaram/código 0; mensagem numérica e campo ausente
+  rejeitados/código 1 pela regra de exemplos. Exemplos apenas temporários,
+  documento original preservado após diagnósticos. Só content de 404 individual
+  acrescentado; demais contratos/configuração intactos. Limite da 6.64 continua
+  registrado, id original required true. Sem novas dependências, produção
+  alterada, captura HTTP, SQL ou nova suíte Laravel; última suíte 6.49, 66/620.
+  Aula 06-66, contrato e registros atualizados; diff e links conferidos.
+  Publicação em preparação. Próximo passo: publicar e iniciar somente 6.67: acrescentar um exemplo permanente de
+  resposta 200 da consulta individual e validá-lo em Docker.
 - Situação da 6.65: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Resposta 200 da consulta individual no
   OpenAPI recebeu content/application/json/schema object, required data e
@@ -20,10 +36,9 @@
   Limite de required false da 6.64 continua registrado, id original true.
   Sem novas dependências, produção alterada, captura HTTP, SQL ou nova suíte
   Laravel; última suíte 6.49, 66/620. Aula 06-65, contrato e registros atualizados;
-  diff e links conferidos. Publicação em preparação. Próximo passo:
-  publicar e iniciar somente 6.66: descrever o
-  corpo 404 da consulta individual, com message string e variação do texto
-  nos erros de roteamento.
+  diff e links conferidos. Publicação verificada em 087430c1f2c1c8fe943a95f6fd0239fa527d16cf;
+  HEAD/origin/main/main remota coincidiram após push em 01/11/2026.
+  Continuidade realizada na 6.66.
 - Situação da 6.64: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. OpenAPI recebeu GET /api/v1/produtos/{id},
   summary, operationId consultarProduto, id in path/required true/schema integer
@@ -789,7 +804,8 @@
   6.62 confirmada/publicada em 01/11/2026;
   6.63 confirmada/publicada em 01/11/2026;
   6.64 confirmada/publicada em 01/11/2026;
-  6.65 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.65 confirmada/publicada em 01/11/2026;
+  6.66 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -924,27 +940,27 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.64 confirmada com "entendi" e publicada em
-e1b025b318d6dc34f55e0d2d5b271ce1fa25e6b7; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.65 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-OpenAPI 3.2.1: 200 da consulta individual recebeu content/application/json/schema
-object/required data/properties.data.$ref para #/components/schemas/Produto.
-Data é um objeto, reutilizando Produto da listagem. Sem exemplo permanente
-nessa operação. Conferido por leitura com show/ProdutoResource/teste existente.
+Estado mais recente em 01/11/2026: 6.65 confirmada com "entendi" e publicada em
+087430c1f2c1c8fe943a95f6fd0239fa527d16cf; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.66 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+OpenAPI 3.2.1: 404 individual recebeu content/application/json/schema object,
+required message e properties.message string. Descrição registra frase do
+controller (Produto não encontrado.) para inexistente/inativo/fora da faixa
+e texto variável em erros de roteamento. Sem enum/const ou exemplo permanente.
+Leitura de controller/bootstrap/testes existentes conferiu contrato atual.
 Mesma configuração Redocly e imagem:
 redocly/cli:2.65.0@sha256:42acee0d7e629a9d0376d8df579dc325e51da727de06a31036bccc02409a7e11.
-Lint Docker sem rede/bind somente leitura passou com código 0. Em /tmp/curso-665,
-três cópias receberam exemplos apenas temporários: objeto válido código 0;
-data lista e corpo sem data rejeitados com código 1 pela regra de exemplos.
-Documento preservado após diagnósticos; só content de 200 individual acrescentado.
-Demais operações/status/componentes/configuração intactos. Limite observado
-na 6.64 permanece registrado: ferramenta aceitou required false na cópia,
-embora path exija true; original true conferido e preservado.
+Lint Docker sem rede/bind somente leitura passou com código 0. Quatro cópias
+em /tmp/curso-666 receberam exemplos apenas temporários: frase do controller
+e outro texto ilustrativo passaram/código 0; message número e ausente foram
+rejeitados/código 1 pela regra de exemplos. Documento preservado após diagnósticos;
+só content de 404 individual acrescentado, demais contratos/configuração intactos.
+Limite de required false da 6.64 permanece registrado; original true preservado.
 Sem novas dependências, produção alterada, captura HTTP, SQL ou nova suíte
-Laravel; última suíte 6.49, 66/620. Aula docs/aulas/06-65-corpo-200-consulta-openapi.md,
+Laravel; última suíte 6.49, 66/620. Aula docs/aulas/06-66-corpo-404-consulta-openapi.md,
 contrato e registros atualizados; diff/links conferidos. Publicação em preparação. Próximo passo: publicar e iniciar
-somente 6.66: descrever o corpo 404 da consulta individual, com message string
-e variação do texto nos erros de roteamento.
+somente 6.67: acrescentar um exemplo permanente de resposta 200 da consulta
+individual e validá-lo em Docker.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -9754,11 +9770,48 @@ acrescentado; listagem/outros status/componentes/configuração preservados.
 Validação do documento e exemplos temporários não executa o endpoint nem
 comprova conformidade das respostas reais. Sem novas dependências, produção
 alterada, captura HTTP, SQL ou nova suíte Laravel; última suíte 6.49, 66/620.
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+087430c1f2c1c8fe943a95f6fd0239fa527d16cf; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.66. Exercício DBeaver segue sem relato.
+
+## Etapa 6.66 — Corpo 404 da consulta individual no OpenAPI
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação e
+publicação da 6.65 em 087430c1f2c1c8fe943a95f6fd0239fa527d16cf.
+Aula docs/aulas/06-66-corpo-404-consulta-openapi.md. Resposta 404 de
+GET /api/v1/produtos/{id} recebeu content/application/json/schema object,
+required message e properties.message type string. Descrição informa frase
+Produto não encontrado. para produto inexistente, inativo ou ID fora da faixa
+e variação do texto nos erros de roteamento. Sem enum/const para a mensagem,
+sem exemplo permanente; schema permanece aberto a propriedades adicionais.
+Leitura de ProdutoController::show, bootstrap/app.php e testes de inexistente/
+inativo/ID malformado/acima da faixa conferiu o contrato existente.
+
+Mesma configuração Redocly e imagem:
+redocly/cli:2.65.0@sha256:42acee0d7e629a9d0376d8df579dc325e51da727de06a31036bccc02409a7e11.
+Mesmo Docker descartável/sem rede/docs/api em leitura/workdir /spec, lint do
+documento retornou 0, sem erros ou avisos.
+
+Quatro cópias em /tmp/curso-666 receberam example apenas temporário na resposta
+404 individual e foram montadas em /casos somente leitura. Mensagem-controller.json
+com message Produto não encontrado. retornou 0; outra-mensagem.json com texto
+Mensagem ilustrativa de erro de rota. retornou 0. Mensagem-numero.json com
+message 404 retornou 1 por tipo string exigido; sem-message.json com objeto
+vazio retornou 1 por required message. Ambas as rejeições pela regra
+no-invalid-media-type-examples, um erro por execução. Nenhuma regra ignorada;
+cópias fora do Git e documento original preservado após diagnósticos.
+
+Git diff --check e links locais conferidos. Só content de 404 individual
+acrescentado; demais operações/status/componentes/configuração preservados.
+Limite de required false da 6.64 continua registrado; id original true.
+Validação do documento/exemplos não executa endpoints nem comprova respostas
+reais. Sem novas dependências, produção alterada, captura HTTP, SQL ou nova
+suíte Laravel; última suíte 6.49, 66/620.
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: e1b025b318d6dc34f55e0d2d5b271ce1fa25e6b7, etapa 6.64.
-Próximo passo: publicar e iniciar somente 6.66:
-descrever o corpo 404 da consulta individual, com message string e variação
-do texto nos erros de roteamento. Exercício DBeaver segue sem relato.
+Último checkpoint publicado: 087430c1f2c1c8fe943a95f6fd0239fa527d16cf, etapa 6.65.
+Próximo passo: publicar e iniciar somente 6.67:
+acrescentar um exemplo permanente de resposta 200 da consulta individual e
+validá-lo em Docker. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -10170,8 +10223,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   "entendi" em 01/11/2026, publicada em e1b025b. Na 6.65, 200 individual object/
   data obrigatório/$ref Produto; lint código 0. Exemplos só em cópias temporárias:
   data objeto aceito/código 0, data lista e sem data rejeitados/código 1.
-  Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.66:
-  corpo 404 com message string e variação do texto nos erros de roteamento.
+  Entendimento confirmado com "entendi" em 01/11/2026, publicada em 087430c.
+  Na 6.66, 404 individual object/message obrigatório/string, descrição com
+  variação de texto. Lint código 0; duas frases aceitas/código 0, número/ausente
+  rejeitados/código 1 em cópias temporárias. Entendimento confirmado com
+  "entendi" em 01/11/2026. Publicar e iniciar somente 6.67: exemplo permanente de 200 individual
+  e validação em Docker.
   Última suíte Laravel permanece 66/620 da 6.49.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
@@ -10400,4 +10457,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.62 — Exemplo 200 | Corpo completo ilustrativo, regra de exemplos como erro; Docker código 0, três cópias inválidas código 1; diff e links; sem nova suíte Laravel | Confirmado com "entendi" em 01/11/2026 | Publicado em 57e7f4a; remoto conferido |
 | 01/11/2026 | 6.63 — Exemplo 422 | Message/errors.nome ilustrativos, mesma regra/imagem; Docker código 0, três cópias inválidas código 1; diff e links; sem nova suíte Laravel | Confirmado com "entendi" em 01/11/2026 | Publicado em f8aaa6b; remoto conferido |
 | 01/11/2026 | 6.64 — Consulta individual OpenAPI | GET/id path obrigatório/200/404; lint código 0, id sem declaração código 1; required false aceito em cópia (limitação); diff e links | Confirmado com "entendi" em 01/11/2026 | Publicado em e1b025b; remoto conferido |
-| 01/11/2026 | 6.65 — Corpo 200 individual | Object/data obrigatório/$ref Produto; lint código 0, exemplo temporário válido código 0, lista/sem data código 1; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.65 — Corpo 200 individual | Object/data obrigatório/$ref Produto; lint código 0, exemplo temporário válido código 0, lista/sem data código 1; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicado em 087430c; remoto conferido |
+| 01/11/2026 | 6.66 — Corpo 404 individual | Object/message obrigatório/string, texto variável; lint e duas frases código 0, número/ausente código 1 em cópias; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

@@ -538,9 +538,15 @@ referenciado a Produto. Sem exemplo permanente na operação. Lint Docker códig
 exemplos em cópias temporárias: objeto aceito/código 0, lista e sem data
 rejeitados/código 1. Limitação da 6.64 continua registrada; original required
 true preservado. Sem novas dependências, produção alterada, SQL ou nova suíte
-Laravel. Explicação apresentada; entendimento confirmado com "entendi" em
-01/11/2026. Publicar e iniciar somente 6.66: corpo 404 com message string e variação do
-texto nos erros de roteamento.
+Laravel. Entendimento confirmado com "entendi" em 01/11/2026 e publicada em
+087430c. Na 6.66, 404 individual recebeu content/application/json/schema object,
+message obrigatório/string; descrição distingue controller e variação em erros
+de roteamento, sem frase única no schema. Lint código 0; cópias temporárias
+com duas frases aceitas/código 0, message número/ausente rejeitados/código 1.
+Sem exemplo permanente, dependências novas, produção alterada, SQL ou nova
+suíte Laravel. Explicação apresentada; entendimento confirmado com "entendi"
+em 01/11/2026. Publicar e iniciar somente 6.67: exemplo permanente de 200 individual
+validado em Docker.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

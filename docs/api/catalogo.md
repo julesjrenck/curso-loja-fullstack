@@ -689,6 +689,22 @@ registrado, original true. Sem produção alterada, SQL ou nova suíte Laravel.
 Entendimento confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-65](../aulas/06-65-corpo-200-consulta-openapi.md).
 
+## Corpo 404 individual no OpenAPI na 6.66
+
+[Openapi.json](openapi.json) recebeu content/application/json/schema object
+na resposta 404 de GET /api/v1/produtos/{id}, com message obrigatório/string.
+Descrição informa frase do controller para inexistente/inativo/ID fora da faixa
+e texto variável nos erros de roteamento. Sem enum/const para message ou
+exemplo permanente. Conferido com controller/bootstrap/testes por leitura.
+
+Mesma imagem/configuração Redocly: lint código 0. Cópias temporárias com a frase
+do controller e outro texto ilustrativo passaram/código 0; message número e
+ausente foram rejeitados/código 1. Documento preservado após diagnósticos;
+demais contratos/configuração intactos. Limite de required false da 6.64 segue
+registrado, original true. Sem produção alterada, SQL ou nova suíte Laravel.
+Entendimento confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-66](../aulas/06-66-corpo-404-consulta-openapi.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com
