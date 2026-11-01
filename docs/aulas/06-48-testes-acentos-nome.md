@@ -3,7 +3,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.47
 com "entendi" e publicação em 716032b43e3cd2fb2eb0543210c2cf0b961e38bd.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.48
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+35c4bacea337f1ee2c07001adbf60a39f2a9a65d, com referências local e remotas coincidentes.
 
 ## Objetivo e configuração existente
 
@@ -95,6 +96,6 @@ DatabaseTransactions desfaz as alterações. SELECTs antes/depois por
 ## Continuidade
 
 Roteiro, progresso e cobertura do [contrato atual](../api/catalogo.md) atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
-Publicar e iniciar somente 6.49: teste permanente de
-preservação do filtro em meta.links, sem fixar rótulos traduzidos.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada em
+35c4bacea337f1ee2c07001adbf60a39f2a9a65d, com referências local e remotas coincidentes.
+Continuidade na [aula 06-49](06-49-teste-meta-links.md).

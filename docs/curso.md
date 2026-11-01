@@ -446,9 +446,13 @@ publicada em 716032b. Na 6.48, provider de quatro buscas confere distinção de
 acentos e comparação sem diferença de caixa: tenis/TENIS e tênis/TÊNIS.
 Exige objeto exclusivo, total e links com texto preservado. Classe 52/540 e
 suíte 66/594 passaram; contagens preservadas. Explicação apresentada;
-entendimento da 6.48 confirmado com "entendi" em 01/11/2026.
-Publicação em preparação; publicar e iniciar somente 6.49:
-teste de preservação do filtro em meta.links, sem fixar rótulos traduzidos.
+entendimento da 6.48 confirmado com "entendi" em 01/11/2026 e publicada em
+35c4bac. Na 6.49, teste de navegação filtrada ampliado: quatro opções em
+meta.links nas duas páginas, com url/page/active e filtro preservado, sem
+labels fixos. Classe 52/566 e suíte 66/620 passaram; contagens preservadas.
+Explicação apresentada; entendimento da 6.49 confirmado com "entendi" em
+01/11/2026. Publicação em preparação; publicar e iniciar somente 6.50: introdução ao OpenAPI e desenho do primeiro documento
+da listagem do catálogo, antes de escrevê-lo.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

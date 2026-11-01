@@ -538,7 +538,20 @@ class CatalogoApiTest extends TestCase
             ->assertJsonPath('meta.total', 12)
             ->assertJsonPath('meta.last_page', 2)
             ->assertJsonPath('meta.from', 1)
-            ->assertJsonPath('meta.to', 10);
+            ->assertJsonPath('meta.to', 10)
+            ->assertJsonCount(4, 'meta.links')
+            ->assertJsonPath('meta.links.0.url', null)
+            ->assertJsonPath('meta.links.0.page', null)
+            ->assertJsonPath('meta.links.0.active', false)
+            ->assertJsonPath('meta.links.1.url', $url.'1')
+            ->assertJsonPath('meta.links.1.page', 1)
+            ->assertJsonPath('meta.links.1.active', true)
+            ->assertJsonPath('meta.links.2.url', $url.'2')
+            ->assertJsonPath('meta.links.2.page', 2)
+            ->assertJsonPath('meta.links.2.active', false)
+            ->assertJsonPath('meta.links.3.url', $url.'2')
+            ->assertJsonPath('meta.links.3.page', 2)
+            ->assertJsonPath('meta.links.3.active', false);
 
         $segunda = $this->getJson($primeira->json('links.next'));
 
@@ -568,7 +581,20 @@ class CatalogoApiTest extends TestCase
             ->assertJsonPath('meta.total', 12)
             ->assertJsonPath('meta.last_page', 2)
             ->assertJsonPath('meta.from', 11)
-            ->assertJsonPath('meta.to', 12);
+            ->assertJsonPath('meta.to', 12)
+            ->assertJsonCount(4, 'meta.links')
+            ->assertJsonPath('meta.links.0.url', $url.'1')
+            ->assertJsonPath('meta.links.0.page', 1)
+            ->assertJsonPath('meta.links.0.active', false)
+            ->assertJsonPath('meta.links.1.url', $url.'1')
+            ->assertJsonPath('meta.links.1.page', 1)
+            ->assertJsonPath('meta.links.1.active', false)
+            ->assertJsonPath('meta.links.2.url', $url.'2')
+            ->assertJsonPath('meta.links.2.page', 2)
+            ->assertJsonPath('meta.links.2.active', true)
+            ->assertJsonPath('meta.links.3.url', null)
+            ->assertJsonPath('meta.links.3.page', null)
+            ->assertJsonPath('meta.links.3.active', false);
     }
 
     public function test_retorna_segunda_pagina_com_ativos_e_desempate_por_id(): void

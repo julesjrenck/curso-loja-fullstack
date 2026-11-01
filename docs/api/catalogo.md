@@ -473,6 +473,18 @@ contagens preservadas. Sem medição SQL ou novas asserções meta.links.
 Entendimento da 6.48 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-48](../aulas/06-48-testes-acentos-nome.md).
 
+## Cobertura acrescentada na 6.49
+
+Teste de navegação filtrada da 6.43 ampliado nas duas respostas. Exige quatro
+entradas em meta.links e confere url/page/active para anterior, páginas 1/2 e
+seguinte. URLs não nulas preservam nome; somente a opção numérica da página
+atual fica ativa. Não fixa labels traduzidos. Mesmas fixtures e navegação via
+links.next recebido; aplicação preservada. Classe 52 testes/566 asserções e
+suíte 66 testes/620 asserções passaram; contagens preservadas. São 26 asserções
+novas, sem medição SQL; cobertura do cenário de duas páginas.
+Entendimento da 6.49 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-49](../aulas/06-49-teste-meta-links.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

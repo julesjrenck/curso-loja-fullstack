@@ -4,8 +4,20 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.48 — Testes de acentos e caixa na busca por nome.
+- Etapa atual: 6.49 — Filtro e estado de navegação em meta.links.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.49: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Teste de navegação filtrada da 6.43
+  ampliado nas duas respostas: assertJsonCount(4, 'meta.links') e asserções
+  url/page/active para anterior, páginas 1/2 e seguinte. URLs preservam nome;
+  somente o número da página atual fica ativo. Labels não são fixados.
+  Fixtures, navegação real por next e aplicação preservadas.
+  Sintaxe válida; classe 52 testes/566 asserções e suíte 66 testes/620 asserções
+  passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
+  Aula 06-49 e cobertura do contrato atualizadas. Publicação em preparação.
+  Próximo passo: publicar e iniciar
+  somente 6.50: introdução ao OpenAPI e desenho do primeiro documento da
+  listagem do catálogo, antes de escrevê-lo.
 - Situação da 6.48: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Novo teste com DataProvider buscasComAcentos
   cria Kit de tenis e Kit de tênis ativos. Quatro buscas: tenis/TENIS retornam
@@ -14,10 +26,9 @@
   preservando texto, caixa e acento. Aplicação e collation preservadas.
   Sintaxe válida; classe 52 testes/540 asserções e suíte 66 testes/594 asserções
   passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
-  Aula 06-48 e cobertura do contrato atualizadas. Publicação em preparação.
-  Próximo passo: publicar e iniciar
-  somente 6.49: teste permanente de preservação do filtro em meta.links,
-  sem fixar rótulos traduzidos.
+  Aula 06-48 e cobertura do contrato atualizadas. Publicação verificada em
+  35c4bacea337f1ee2c07001adbf60a39f2a9a65d; HEAD/origin/main/main remota coincidiram após push
+  em 01/11/2026. Continuidade realizada na 6.49.
 - Situação da 6.47: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Duas entradas acrescentadas ao provider
   nomesLiterais: str_repeat('a', 100) e str_repeat('á', 100). Mesmo teste HTTP
@@ -555,7 +566,8 @@
   6.42 e 6.43 confirmadas/publicadas em 01/11/2026;
   6.44 e 6.45 confirmadas/publicadas em 01/11/2026;
   6.46 e 6.47 confirmadas/publicadas em 01/11/2026;
-  6.48 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.48 confirmada/publicada em 01/11/2026 e 6.49 implementada/explicada/verificada;
+  entendimento da 6.49 confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -690,20 +702,21 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.47 confirmada com "entendi" e publicada em
-716032b43e3cd2fb2eb0543210c2cf0b961e38bd; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.48 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-CatalogoApiTest recebeu test_distingue_acentos_e_ignora_caixa_na_busca_por_nome
-com provider buscasComAcentos: tenis/TENIS esperam Kit de tenis; tênis/TÊNIS,
-Kit de tênis. Cada execução cria os dois ativos, escolhe a expectativa em mapa
-de models pela chave do provider e exige único objeto completo, total 1,
-metadados e links com texto preservado. Classe 52/540 e suíte 66/594 passaram.
-Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos. Aplicação e
-collation preservadas. Aula docs/aulas/06-48-testes-acentos-nome.md e cobertura
+Estado mais recente em 01/11/2026: 6.48 confirmada com "entendi" e publicada em
+35c4bacea337f1ee2c07001adbf60a39f2a9a65d; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.49 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+CatalogoApiTest ampliou test_mantem_filtro_e_total_ao_seguir_proxima_pagina
+nas duas respostas. Exige quatro entradas em meta.links; verifica url/page/active
+de anterior, páginas 1/2 e seguinte, com nome preservado nas URLs não nulas.
+Só a opção numérica da página atual fica ativa. Sem fixar labels traduzidos.
+Mesmas fixtures e navegação usando links.next recebido; aplicação preservada.
+Classe 52/566 e suíte 66/620 passaram. Contagens antes/depois: teste 0/0 e normal
+0/1 categorias/produtos. Aula docs/aulas/06-49-teste-meta-links.md e cobertura
 do contrato atualizadas. Publicação em preparação. Próximo passo:
-publicar e iniciar somente 6.49: teste permanente
-de preservação do filtro em meta.links, sem fixar rótulos traduzidos.
-Meta.links e outros casos seguem nos diagnósticos até terem cobertura específica.
+publicar e iniciar somente 6.50: introdução ao
+OpenAPI e desenho do primeiro documento da listagem do catálogo, antes de escrevê-lo.
+Cobertura meta.links acrescentada para as duas páginas desse cenário filtrado;
+outros cenários permanecem nos diagnósticos até terem cobertura específica.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -8988,11 +9001,45 @@ Verificações em Docker, código 0:
   produto, por /tmp/curso-618-contagens.php.
 - Git diff --check e links locais conferidos.
 
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+35c4bacea337f1ee2c07001adbf60a39f2a9a65d; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.49. Exercício DBeaver segue sem relato.
+
+## Etapa 6.49 — Filtro e estado de navegação em meta.links
+
+Implementação, explicação e verificações em 01/11/2026 após confirmação e
+publicação da 6.48 em 35c4bacea337f1ee2c07001adbf60a39f2a9a65d.
+Aula docs/aulas/06-49-teste-meta-links.md. Teste permanente da 6.43 ampliado:
+test_mantem_filtro_e_total_ao_seguir_proxima_pagina, em CatalogoApiTest.
+
+Cada resposta exige quatro entradas em meta.links. Caminhos com índices
+0/1/2/3 acessam anterior, página 1, página 2 e seguinte. Primeira resposta:
+anterior com url/page null, página 1 ativa, página 2 inativa e seguinte para 2.
+Segunda: anterior para 1, página 1 inativa, página 2 ativa e seguinte com
+url/page null. Anterior/seguinte sempre active false neste cenário.
+Todas as URLs não nulas preservam nome=camiseta. Labels não são fixados.
+
+São 26 asserções novas, sem novo método de teste ou novas fixtures. Navegação
+continua usando links.next recebido; objetos, ordem, total 12 e posições
+continuam sendo verificados. Produção preservada. Não mede SQL nem cobre todos
+os tamanhos possíveis da janela de paginação; cenário de duas páginas.
+
+Verificações em Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result --compact:
+  52 testes/566 asserções passaram.
+- php artisan test --do-not-cache-result --compact: 66 testes/620 asserções
+  passaram; mesmos testes e 26 asserções a mais que na 6.48.
+- SELECTs antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1
+  produto, por /tmp/curso-618-contagens.php.
+- Git diff --check e links locais conferidos.
+
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: 716032b43e3cd2fb2eb0543210c2cf0b961e38bd, etapa 6.47.
-Próximo passo: publicar e iniciar somente 6.49:
-teste permanente de preservação do filtro em meta.links, sem fixar rótulos traduzidos.
-Exercício DBeaver segue sem relato.
+Último checkpoint publicado: 35c4bacea337f1ee2c07001adbf60a39f2a9a65d, etapa 6.48.
+Próximo passo: publicar e iniciar somente 6.50:
+introdução ao OpenAPI e desenho do primeiro documento da listagem do catálogo,
+antes de escrevê-lo. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -9352,8 +9399,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   confirmado com "entendi" em 01/11/2026; publicada em 716032b.
   Na 6.48, quatro buscas com acentos/caixa implementadas/explicadas/verificadas:
   classe 52/540 e suíte 66/594 passaram; contagens preservadas. Entendimento
-  confirmado com "entendi" em 01/11/2026; publicar e iniciar somente 6.49: preservação
-  do filtro em meta.links, sem fixar rótulos traduzidos.
+  confirmado com "entendi" em 01/11/2026; publicada em 35c4bac.
+  Na 6.49, meta.links das duas páginas implementado/explicado/verificado:
+  classe 52/566 e suíte 66/620 passaram; contagens preservadas. Entendimento
+  confirmado com "entendi" em 01/11/2026; publicar e iniciar somente 6.50: introdução
+  ao OpenAPI e desenho do primeiro documento da listagem, antes de escrevê-lo.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -9564,4 +9614,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.45 — Busca sem correspondência | Caneca ativa/Camiseta inativa; 200/data vazia/total zero/posições null/links filtrados; classe 45/449 e suíte 59/503 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em be303c9; remoto conferido |
 | 01/11/2026 | 6.46 — Página após a última filtrada | Onze correspondentes; página 3 vazia/total 11/última 2/links filtrados; classe 46/462 e suíte 60/516 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 466053a; remoto conferido |
 | 01/11/2026 | 6.47 — Limite válido do nome | Provider ampliado com 100 letras a/á; retorno e links; classe 48/488 e suíte 62/542 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 716032b; remoto conferido |
-| 01/11/2026 | 6.48 — Acentos e caixa | Quatro casos tenis/TENIS/tênis/TÊNIS, objeto exclusivo e links; classe 52/540 e suíte 66/594 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.48 — Acentos e caixa | Quatro casos tenis/TENIS/tênis/TÊNIS, objeto exclusivo e links; classe 52/540 e suíte 66/594 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado em 35c4bac; remoto conferido |
+| 01/11/2026 | 6.49 — Meta.links filtrados | Duas páginas; quatro entradas, url/page/active, sem labels fixos; classe 52/566 e suíte 66/620 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
