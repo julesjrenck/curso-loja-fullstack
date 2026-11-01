@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.40
 com "entendi" e publicação em 851adef50e2973dcb66d223fe4424f1326a89677.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.41
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+2128dbb861375af85566e0a2b07adcaaa8018d3b, com remoto conferido.
 
 Conjunto inseparável em backend/tests/Feature/CatalogoApiTest.php: generalizar
 o teste de busca para receber query e nome esperado nos links, com um provider.
@@ -99,7 +100,7 @@ testes permanentes específicos.
 
 ## Continuidade
 
-Roteiro, progresso e cobertura do [contrato atual](../api/catalogo.md) atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
-Publicar e iniciar somente 6.42: acrescentar teste permanente de nomes inválidos
-com DataProvider, exigindo 422/errors.nome.
+Entendimento confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+2128dbb861375af85566e0a2b07adcaaa8018d3b, com HEAD/origin/main/main remota conferidos.
+Continuidade realizada na [aula 6.42](06-42-testes-nomes-invalidos.md), com testes
+permanentes de nomes inválidos e 422/errors.nome.

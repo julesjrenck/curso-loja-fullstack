@@ -390,6 +390,18 @@ seguem em diagnósticos anteriores, sem novos testes permanentes deles nesta eta
 Entendimento da 6.41 confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-41](../aulas/06-41-teste-nome-normalizado.md).
 
+## Cobertura acrescentada na 6.42
+
+Novo método HTTP com DataProvider nomesInvalidos confere seis rejeições: vazio,
+somente espaços, arrays simples/associativo e textos de 101 caracteres ASCII/
+Unicode. Exige 422/application/json, chave message e erro associado a nome, sem
+fixar tradução. Str_repeat constrói os textos e rawurlencode prepara a query
+Unicode. Sem novas fixtures ou alteração na aplicação. Classe 36 testes/321
+asserções e suíte 50 testes/375 asserções passaram; contagens preservadas.
+Aceitação dos limites válidos de comprimento permanece em diagnóstico anterior.
+Entendimento da 6.42 confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-42](../aulas/06-42-testes-nomes-invalidos.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

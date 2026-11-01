@@ -4,8 +4,19 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.41 — Nome normalizado e parâmetros desconhecidos nos testes.
+- Etapa atual: 6.42 — Testes permanentes de nomes inválidos.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.42: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Novo teste HTTP com provider nomesInvalidos:
+  vazio, espaços, array simples/associativo e 101 caracteres ASCII/Unicode.
+  Exige 422/application/json, chave message e erro associado a nome, sem fixar
+  tradução. Unicode codificado na URL com rawurlencode; sem fixtures novas.
+  Aplicação preservada. Sintaxe válida; classe 36 testes/321 asserções e suíte
+  50 testes/375 asserções passaram. Contagens antes/depois: teste 0/0 e normal
+  0/1 categorias/produtos. Aula 06-42 e cobertura do contrato atualizadas.
+  Publicação em preparação. Próximo passo: publicar e iniciar
+  somente 6.43: teste permanente da segunda página filtrada e navegação por next,
+  conferindo produtos, total e preservação do nome.
 - Situação da 6.41: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Teste de busca recebe query e nomeNosLinks
   pelo DataProvider buscasPorNome: nome simples, espaços externos/caixa e parâmetro
@@ -14,9 +25,9 @@
   não permanecem nos links e ignorado não é repassado. Aplicação preservada.
   Sintaxe válida; classe 30 testes/273 asserções e suíte 44 testes/327 asserções
   passaram. Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos.
-  Aula 06-41 e cobertura do contrato atualizadas. Publicação em preparação.
-  Próximo passo: publicar e iniciar somente 6.42: acrescentar
-  teste permanente de nomes inválidos com DataProvider, exigindo 422/errors.nome.
+  Aula 06-41 e cobertura do contrato atualizadas. Publicação verificada em
+  2128dbb861375af85566e0a2b07adcaaa8018d3b; HEAD/origin/main/main remota coincidiram
+  após push em 01/11/2026. Continuidade realizada na 6.42.
 - Situação da 6.40: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Novo teste em CatalogoApiTest cria Kit
   de camiseta e Camiseta azul ativos, Caneca ativa e Camiseta antiga inativa.
@@ -478,7 +489,8 @@
   6.38 confirmada/publicada em 01/11/2026 e 6.39 implementada/explicada/verificada,
   entendimento da 6.39 confirmado com "entendi" em 01/11/2026 e publicada.
   6.40 confirmada/publicada em 01/11/2026 e 6.41 implementada/explicada/verificada,
-  entendimento da 6.41 confirmado com "entendi" em 01/11/2026.
+  entendimento da 6.41 confirmado com "entendi" em 01/11/2026 e publicada.
+  6.42 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -613,20 +625,20 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.40 confirmada com "entendi" e publicada em
-851adef50e2973dcb66d223fe4424f1326a89677; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.41 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-CatalogoApiTest generaliza o teste de busca com DataProvider buscasPorNome:
-query/nomeNosLinks para nome simples, espaços externos/caixa e desconhecido.
-Cada caso mantém só os dois ativos correspondentes, total 2 e metadados anteriores.
-Http_build_query monta links esperados com nome explícito do provider e page=1,
-sem espaços externos nem parâmetro ignorado. Aplicação preservada.
-Classe 30/273 e suíte 44/327 passaram. Contagens antes/depois: teste 0/0 e
-normal 0/1 categorias/produtos. Aula docs/aulas/06-41-teste-nome-normalizado.md.
-Publicação em preparação. Próximo passo: publicar e iniciar somente 6.42: teste
-permanente de nomes inválidos com DataProvider, exigindo 422/errors.nome.
-Casos restantes de caracteres especiais, páginas filtradas e erros de nome
-seguem nos diagnósticos anteriores até terem cobertura permanente específica.
+Estado mais recente em 01/11/2026: 6.41 confirmada com "entendi" e publicada em
+2128dbb861375af85566e0a2b07adcaaa8018d3b; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.42 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+CatalogoApiTest recebeu test_retorna_422_em_json_para_nome_invalido com provider
+nomesInvalidos: vazio, espaços, arrays simples/associativo, 101 ASCII e 101 Unicode.
+Cada caso exige 422/JSON/message/errors.nome, sem texto fixo. Str_repeat gera os
+limites excedidos; rawurlencode prepara Unicode na query. Sem fixtures novas
+nem alteração na aplicação. Classe 36/321 e suíte 50/375 passaram.
+Contagens antes/depois: teste 0/0 e normal 0/1 categorias/produtos. Aula
+docs/aulas/06-42-testes-nomes-invalidos.md e cobertura do contrato atualizadas.
+Publicação em preparação. Próximo passo: publicar e iniciar somente 6.43: teste
+permanente da segunda página filtrada e navegação por next, com produtos, total
+filtrado e nome preservado. Limites válidos de comprimento, caracteres especiais,
+meta.links e outros casos seguem nos diagnósticos até terem cobertura específica.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -8653,10 +8665,49 @@ Normalização e exclusão de desconhecidos nos links first/last têm cobertura
 permanente. Meta.links, caracteres especiais, navegação entre páginas filtradas
 e erros de nome seguem nos diagnósticos anteriores, sem novos testes específicos
 permanentes nesta etapa. Entendimento da 6.41: confirmado com "entendi" em 01/11/2026.
-Publicação em preparação. Último checkpoint publicado:
-851adef50e2973dcb66d223fe4424f1326a89677, etapa 6.40.
-Próximo passo: publicar e iniciar somente 6.42, teste permanente
-de nomes inválidos com DataProvider e 422/errors.nome. DBeaver segue sem relato.
+Publicação: 2128dbb861375af85566e0a2b07adcaaa8018d3b; HEAD/origin/main/main remota coincidiram
+após push em 01/11/2026. Continuidade realizada na 6.42. DBeaver segue sem relato.
+
+## Etapa 6.42 — Testes permanentes de nomes inválidos
+
+Implementação, explicação e verificações em 01/11/2026 após confirmação e
+publicação da 6.41 em 2128dbb861375af85566e0a2b07adcaaa8018d3b.
+Aula docs/aulas/06-42-testes-nomes-invalidos.md. Conjunto inseparável em
+CatalogoApiTest: método test_retorna_422_em_json_para_nome_invalido(string query),
+atributo DataProvider('nomesInvalidos') e provider público estático com seis casos.
+
+Queries: nome=, nome=%20%20%20, nome[]=camiseta, nome[valor]=camiseta, nome com
+101 letras a e nome com 101 letras á codificadas por rawurlencode. Str_repeat
+constrói os textos sem contagem manual; a validação recebe o valor decodificado.
+Nome omitido continua permitido; todos os casos têm nome explicitamente presente.
+Required rejeita vazio/espaços normalizados, string rejeita arrays e max:100
+rejeita excesso. Nenhum produto precisa ser criado para conferir a resposta inválida.
+
+Asserções preservam o padrão dos testes de page: status 422, cabeçalho JSON,
+chave message e assertJsonValidationErrors(['nome']). Verifica associação ao
+campo, sem fixar tradução ou afirmar que nome é o único erro. Cada execução
+usa setUp/identidade loja_test/loja_testes e DatabaseTransactions. Não mede SQL.
+Regras, controller, serviços e demais testes preservados.
+
+Verificações em Docker, código 0:
+
+- php -l tests/Feature/CatalogoApiTest.php: sintaxe válida.
+- php artisan test --filter=CatalogoApiTest --do-not-cache-result --compact:
+  36 testes/321 asserções passaram.
+- php artisan test --do-not-cache-result --compact: 50 testes/375 asserções
+  passaram; seis casos e 48 asserções a mais que na 6.41.
+- SELECTs antes/depois: teste 0 categorias/0 produtos; normal 0 categorias/1
+  produto, por /tmp/curso-618-contagens.php.
+- Git diff --check e links locais conferidos.
+
+Os seis cenários de nome inválido passam a ter cobertura permanente. Aceitação
+de 100 caracteres Unicode e demais limites válidos seguem em diagnóstico anterior;
+este teste verifica somente as rejeições listadas. Entendimento da 6.42 confirmado com
+"entendi" em 01/11/2026. Publicação em preparação. Último checkpoint publicado:
+2128dbb861375af85566e0a2b07adcaaa8018d3b, etapa 6.41.
+Próximo passo: publicar e iniciar somente 6.43: teste permanente
+da segunda página filtrada e navegação por next, conferindo produtos, total e
+preservação do nome. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -8996,8 +9047,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   publicada em 851adef. Na 6.41, provider de três buscas implementado/explicado/
   verificado: normalização/desconhecidos, classe 30/273 e suíte 44/327 passaram,
   contagens preservadas. Entendimento confirmado com "entendi" em 01/11/2026;
-  publicar e iniciar somente
-  6.42: nomes inválidos com DataProvider, 422/errors.nome.
+  publicada em 2128dbb. Na 6.42, seis nomes inválidos implementados/explicados/
+  verificados, classe 36/321 e suíte 50/375 passaram, contagens preservadas.
+  Entendimento confirmado com "entendi" em 01/11/2026; publicar e iniciar
+  somente 6.43: segunda página
+  filtrada e navegação next, com nome e total preservados.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -9201,4 +9255,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.38 — Nome opcional no contrato/demo | Assinaturas alinhadas e filtro em memória; 15 cenários sem SQL, JSON/binding/leitura pelo contrato e suíte 41/288 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 90cdc35 |
 | 01/11/2026 | 6.39 — Filtro por nome no HTTP/links | Controller integra nome e appends validado; 19 sucessos/6 inválidos, kernel/HTTP real, rollback e suíte 41/288 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: a1ded6b |
 | 01/11/2026 | 6.40 — Teste permanente da busca por nome | Ativos correspondentes/data/ordem/total/links; classe 28/247 e suíte 42/301 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 851adef |
-| 01/11/2026 | 6.41 — Nome normalizado e desconhecidos | Provider de três buscas, links first/last normalizados sem desconhecidos; classe 30/273 e suíte 44/327 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.41 — Nome normalizado e desconhecidos | Provider de três buscas, links first/last normalizados sem desconhecidos; classe 30/273 e suíte 44/327 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicado e verificado: 2128dbb |
+| 01/11/2026 | 6.42 — Nomes inválidos | Seis casos HTTP de 422/JSON/message/errors.nome; classe 36/321 e suíte 50/375 passaram; contagens preservadas | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

@@ -415,9 +415,14 @@ e publicada em 851adef. Na 6.41, teste usa DataProvider com três buscas: simple
 espaços/caixa e desconhecido. Links esperados com nome explícito, normalizado e
 sem ignorado; produtos/total/metadados anteriores preservados. Classe 30/273 e
 suíte 44/327 passaram, contagens preservadas. Explicação apresentada; entendimento
-da 6.41 confirmado com "entendi" em 01/11/2026. Publicação em preparação;
-publicar e iniciar somente
-6.42: teste permanente de nomes inválidos com DataProvider, exigindo 422/errors.nome.
+da 6.41 confirmado com "entendi" em 01/11/2026 e publicada em 2128dbb. Na 6.42,
+novo teste permanente com seis nomes inválidos exige 422/JSON/message/errors.nome:
+vazio, espaços, arrays e 101 caracteres ASCII/Unicode. Classe 36/321 e suíte
+50/375 passaram, contagens preservadas. Explicação apresentada; entendimento da
+6.42 confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar
+e iniciar somente 6.43:
+teste permanente da segunda página filtrada e navegação por next, com produtos,
+total e nome preservado.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

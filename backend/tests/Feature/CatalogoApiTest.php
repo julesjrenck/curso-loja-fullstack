@@ -396,6 +396,30 @@ class CatalogoApiTest extends TestCase
         ];
     }
 
+    #[DataProvider('nomesInvalidos')]
+    public function test_retorna_422_em_json_para_nome_invalido(string $query): void
+    {
+        $resposta = $this->getJson('/api/v1/produtos?'.$query);
+
+        $resposta
+            ->assertStatus(422)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertJsonStructure(['message'])
+            ->assertJsonValidationErrors(['nome']);
+    }
+
+    public static function nomesInvalidos(): array
+    {
+        return [
+            'vazio' => ['nome='],
+            'somente espaços' => ['nome=%20%20%20'],
+            'array simples' => ['nome[]=camiseta'],
+            'array associativo' => ['nome[valor]=camiseta'],
+            'acima do limite ASCII' => ['nome='.str_repeat('a', 101)],
+            'acima do limite Unicode' => ['nome='.rawurlencode(str_repeat('á', 101))],
+        ];
+    }
+
     private function assertPaginaUnica(TestResponse $resposta, array $produtos): void
     {
         $total = count($produtos);
