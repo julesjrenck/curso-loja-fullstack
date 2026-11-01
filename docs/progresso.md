@@ -4,8 +4,23 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.60 — Corpo da resposta 422 no OpenAPI.
+- Etapa atual: 6.61 — Validação OpenAPI em Docker.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.61: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Criado docs/api/redocly.yaml com extends
+  spec. Redocly CLI 2.65.0 executado por imagem Docker fixada também por digest,
+  versão/digest conferidos. Container descartável, sem rede, bind só docs/api
+  em leitura. Lint do openapi.json 3.2.1 passou com código 0. Duas cópias em
+  /tmp falharam como esperado, código 1: info.title removido (struct) e referência
+  a ProdutoInexistente (no-unresolved-refs). Documento do projeto intacto.
+  Validação estrutural/referências confirmada; respostas reais do Laravel não
+  foram validadas contra schemas. Sem dependências Composer/npm no projeto,
+  serviço permanente novo, produção alterada, SQL ou nova suíte Laravel;
+  última suíte 6.49, 66/620. Aula 06-61, contrato e registros atualizados;
+  diff e links conferidos. Publicação em preparação. Próximo passo:
+  publicar e iniciar somente 6.62: acrescentar
+  um exemplo completo de resposta 200 ao OpenAPI e validar seus valores contra
+  o schema em Docker.
 - Situação da 6.60: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Resposta 422 em openapi.json recebeu
   content/application/json/schema object, required message/errors. Message
@@ -16,9 +31,8 @@
   contra Form Request/contrato/testes. Sem validador OpenAPI ou de instâncias,
   dependências novas, produção alterada, consultas ou nova suíte; última suíte
   6.49, 66/620. Aula 06-60, contrato e registros atualizados; diff e links
-  conferidos. Publicação em preparação. Próximo passo: publicar e iniciar somente 6.61: validar o documento
-  OpenAPI em Docker com ferramenta compatível e versão fixada, conferindo
-  estrutura e referências.
+  conferidos. Publicação verificada em 6ace636836a8c4d83eb003f0bcea899ed74b7fb6; HEAD/origin/main/main
+  remota coincidiram após push em 01/11/2026. Continuidade realizada na 6.61.
 - Situação da 6.59: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Meta em openapi.json agora exige links,
   array com items object e required url/label/page/active. Url string ou null,
@@ -703,8 +717,8 @@
   6.52 e 6.53 confirmadas/publicadas em 01/11/2026;
   6.54 e 6.55 confirmadas/publicadas em 01/11/2026;
   6.56 e 6.57 confirmadas/publicadas em 01/11/2026;
-  6.58 e 6.59 confirmadas/publicadas em 01/11/2026;
-  6.60 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.58, 6.59 e 6.60 confirmadas/publicadas em 01/11/2026;
+  6.61 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -839,23 +853,24 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.59 confirmada com "entendi" e publicada em
-4e8f8ed9c29df265ec03e814b2de32ce0a1cdb30; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.60 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Docs/api/openapi.json recebeu content/application/json em 422: object com
-required message/errors, message string e errors object/minProperties 1,
-additionalProperties array/minItems 1/items string. Dicionário de campo para
-lista de mensagens; descrição informa page e/ou nome sem exigir ambos ou
-fixar traduções. Schema do dicionário descreve valores, sem restringir nomes
-de chaves. PHP Docker retornou 0: JSON válido, campos/tipos/limites/descrição lidos.
-Comparado com Form Request/contrato/testes; fonte oficial consultada.
-Sem validador OpenAPI ou de instâncias, dependências novas, produção alterada,
-consultas ou nova suíte; última suíte 6.49, 66/620. Aula
-docs/aulas/06-60-resposta-422-openapi.md, contrato e registros atualizados;
+Estado mais recente em 01/11/2026: 6.60 confirmada com "entendi" e publicada em
+6ace636836a8c4d83eb003f0bcea899ed74b7fb6; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.61 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Criado docs/api/redocly.yaml com extends spec. Imagem fixada:
+redocly/cli:2.65.0@sha256:42acee0d7e629a9d0376d8df579dc325e51da727de06a31036bccc02409a7e11.
+Versão 2.65.0 e digest conferidos; regras estruturais suportam OAS 3.2.
+Docker run descartável/sem rede/bind docs/api somente leitura, lint do documento
+OpenAPI 3.2.1 passou com código 0. Duas cópias controladas em /tmp/curso-661
+falharam com código 1: sem info.title por struct e referência inexistente por
+no-unresolved-refs. Documento do projeto intacto. Sem ignorar regras/erros.
+Validação de estrutura/referências, não de respostas HTTP reais. Sem novas
+dependências Composer/npm ou serviço permanente, produção alterada, SQL ou
+nova suíte Laravel; última suíte 6.49, 66/620. Aula
+docs/aulas/06-61-validacao-openapi.md, contrato e registros atualizados;
 diff/links conferidos. Publicação em preparação. Próximo passo:
-publicar e iniciar somente 6.61: validar documento
-OpenAPI em Docker com ferramenta compatível e versão fixada, conferindo
-estrutura e referências.
+publicar e iniciar somente 6.62: acrescentar um
+exemplo completo de resposta 200 ao OpenAPI e validar seus valores contra o
+schema em Docker.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -9493,11 +9508,43 @@ minProperties consultada. Git diff --check e links locais conferidos.
 Sem validador OpenAPI ou validação de instâncias. Nenhuma dependência nova ou
 produção alterada. Sem consultas ou nova suíte; última suíte 6.49, 66/620.
 
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+6ace636836a8c4d83eb003f0bcea899ed74b7fb6; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.61. Exercício DBeaver segue sem relato.
+
+## Etapa 6.61 — Validação OpenAPI em Docker
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação e
+publicação da 6.60 em 6ace636836a8c4d83eb003f0bcea899ed74b7fb6.
+Aula docs/aulas/06-61-validacao-openapi.md. Criado docs/api/redocly.yaml com
+extends e lista contendo spec. Preset inclui struct, no-unresolved-refs e
+outras regras de conformidade; nenhuma regra ignorada. Fontes oficiais Redocly
+consultadas para instalação Docker, preset e suporte OAS 3.2.
+
+Imagem obtida por docker pull redocly/cli:2.65.0; versão --version retornou
+2.65.0/código 0. RepoDigests conferido; execuções fixadas em
+redocly/cli:2.65.0@sha256:42acee0d7e629a9d0376d8df579dc325e51da727de06a31036bccc02409a7e11.
+Imagem contém CLI/dependências; sem Composer/npm no projeto ou instalação no
+host. Sem serviço persistente/alteração de Compose. Docker run --rm --network
+none monta só docs/api em /spec:ro, workdir /spec e executa lint openapi.json
+--config redocly.yaml. Documento OAS 3.2.1 validou com código 0, sem erros.
+
+Diagnósticos temporários em /tmp/curso-661, cópias criadas por Python a partir
+do JSON atual: sem-titulo.json remove info.title; ref-invalida.json altera
+items.$ref para #/components/schemas/ProdutoInexistente. Rodadas com a mesma
+imagem/configuração e bind extra somente leitura em /casos. Ambas retornaram
+código 1 e um erro esperado: struct para título ausente, no-unresolved-refs
+para referência inexistente. Cópias não versionadas; openapi.json permaneceu
+sem alterações nesta etapa. Não usamos a sugestão de gerar arquivo de ignores.
+
+Git diff --check e links locais conferidos. Validação estrutural/referências
+não comprova correspondência de respostas reais aos schemas. Nenhuma produção
+alterada, consulta SQL ou nova suíte Laravel; última suíte 6.49, 66/620.
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: 4e8f8ed9c29df265ec03e814b2de32ce0a1cdb30, etapa 6.59.
-Próximo passo: publicar e iniciar somente 6.61:
-validar documento OpenAPI em Docker com ferramenta compatível e versão fixada,
-conferindo estrutura e referências. Exercício DBeaver segue sem relato.
+Último checkpoint publicado: 6ace636836a8c4d83eb003f0bcea899ed74b7fb6, etapa 6.60.
+Próximo passo: publicar e iniciar somente 6.62:
+acrescentar um exemplo completo de resposta 200 ao OpenAPI e validar seus
+valores contra o schema em Docker. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
@@ -9893,8 +9940,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Na 6.60, 422 JSON/message/errors implementado/explicado/lido por PHP Docker:
   dicionário campo -> lista de mensagens, sem traduções fixas. Entendimento
   confirmado com "entendi" em 01/11/2026; sem validador OpenAPI ou nova suíte.
-  Publicar e iniciar somente 6.61: validação OpenAPI em Docker com ferramenta compatível
-  e versão fixada. Última suíte permanece 66/620 da 6.49.
+  Publicada em 6ace636. Na 6.61, Redocly CLI 2.65.0/digest e extends spec:
+  documento passou com código 0; cópias sem título/com ref inválida falharam
+  com código 1 esperado. Entendimento confirmado com "entendi" em 01/11/2026. Publicar
+  e iniciar somente 6.62: exemplo completo de 200 e validação de seus valores.
+  Última suíte Laravel permanece 66/620 da 6.49.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -10117,4 +10167,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.57 — Links em 200 | Objeto obrigatório, quatro campos presentes, prev/next string ou null; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 12acc7e; remoto conferido |
 | 01/11/2026 | 6.58 — Meta básico | Sete campos obrigatórios/tipos/limites, per_page const 10, from/to inteiro ou null; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 5b108b2; remoto conferido |
 | 01/11/2026 | 6.59 — Meta.links | Lista de opções, quatro obrigatórios/tipos e rótulos livres; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 4e8f8ed; remoto conferido |
-| 01/11/2026 | 6.60 — Corpo 422 | JSON object/message/errors obrigatórios; campo -> lista de textos, mínimos um campo/uma mensagem; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.60 — Corpo 422 | JSON object/message/errors obrigatórios; campo -> lista de textos, mínimos um campo/uma mensagem; JSON/leitura PHP Docker, diff e links; sem validador OpenAPI ou nova suíte | Confirmado com "entendi" em 01/11/2026 | Publicado em 6ace636; remoto conferido |
+| 01/11/2026 | 6.61 — Validação OpenAPI | Redocly 2.65.0/digest, preset spec; documento código 0, dois controles inválidos código 1; diff e links; sem nova suíte Laravel | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

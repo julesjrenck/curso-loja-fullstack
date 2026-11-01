@@ -3,7 +3,8 @@
 Implementação, explicação e verificação em 01/11/2026 após confirmação da 6.59
 com "entendi" e publicação em 4e8f8ed9c29df265ec03e814b2de32ce0a1cdb30.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.60
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; publicação verificada em
+6ace636836a8c4d83eb003f0bcea899ed74b7fb6, com referências local e remotas coincidentes.
 
 ## Corpo e associação ao campo
 
@@ -95,6 +96,5 @@ alterada; sem consultas ou nova suíte. Última suíte executada na 6.49:
 ## Continuidade
 
 Contrato, roteiro e progresso atualizados. Entendimento confirmado com "entendi"
-em 01/11/2026; publicação em preparação. Publicar e iniciar
-somente 6.61: validar o documento OpenAPI em Docker com ferramenta compatível
-e versão fixada, conferindo estrutura e referências.
+em 01/11/2026; publicação verificada em 6ace636836a8c4d83eb003f0bcea899ed74b7fb6.
+Continuidade na [aula 06-61](06-61-validacao-openapi.md).

@@ -612,6 +612,18 @@ Sem validador OpenAPI ou de instâncias, dependências novas, produção alterad
 consultas ou nova suíte. Entendimento da 6.60 confirmado com "entendi" em
 01/11/2026. Explicação na [aula 06-60](../aulas/06-60-resposta-422-openapi.md).
 
+## Validação OpenAPI na 6.61
+
+Criado [redocly.yaml](redocly.yaml) com extends spec. Documento OpenAPI 3.2.1
+validado em Docker com Redocly CLI 2.65.0, imagem fixada por digest: código 0.
+Container descartável sem rede, docs/api somente leitura. Duas cópias em /tmp
+foram rejeitadas com código 1 esperado: título ausente (struct) e referência
+inexistente (no-unresolved-refs). Documento do projeto preservado. Isso verifica
+estrutura/referências; respostas reais ainda não foram confrontadas com schemas.
+Sem dependências Composer/npm, serviço permanente novo, produção alterada, SQL
+ou nova suíte Laravel. Entendimento confirmado com "entendi" em 01/11/2026. Comandos, digest
+e explicação na [aula 06-61](../aulas/06-61-validacao-openapi.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

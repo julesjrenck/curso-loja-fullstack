@@ -509,10 +509,13 @@ obrigatórios; errors é dicionário de campo para listas de textos, com ao meno
 um campo e uma mensagem por campo, sem traduções fixas. PHP Docker leu JSON/
 campos, conferidos contra código/contrato/testes. Sem validador OpenAPI ou nova
 suíte; última suíte 66/620 da 6.49. Explicação apresentada; entendimento
-da 6.60 confirmado com "entendi" em 01/11/2026. Publicação em preparação;
-publicar e iniciar somente 6.61: validar o
-documento OpenAPI em Docker com ferramenta compatível e versão fixada,
-conferindo estrutura e referências.
+da 6.60 confirmado com "entendi" em 01/11/2026 e publicada em 6ace636.
+Na 6.61, Redocly CLI 2.65.0/imagem por digest e redocly.yaml/extends spec.
+Documento passou em Docker com código 0; duas cópias inválidas rejeitadas com
+código 1 (struct/título e no-unresolved-refs). OpenAPI preservado, sem nova
+suíte Laravel; última suíte 66/620 da 6.49. Explicação apresentada;
+entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.62:
+exemplo completo de resposta 200 e validação de seus valores contra o schema.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
