@@ -278,6 +278,16 @@ Consulta individual preservada, rollback e contagens conferidos. Suíte existent
 41 testes/288 asserções passou; ainda sem teste permanente novo para nome.
 Explicação na [aula 06-35](../aulas/06-35-validacao-nome.md). Entendimento da 6.35 confirmado com "entendi" em 01/11/2026.
 
+## Preparação interna na 6.36 — nome validado
+
+ListarProdutosRequest recebeu nome(): ?string com validated('nome'). Depois da
+validação, retorna texto normalizado ou null quando omitido, preservando '0'.
+Controller ainda não chama esse método; nome válido continua sem filtrar a busca
+ou ser preservado nos links. Nenhuma alteração no formato HTTP nesta etapa.
+Diagnóstico conferiu valores/tipos de 12 válidos, sete rejeições e rollback;
+suíte existente 41 testes/288 asserções passou, contagens preservadas.
+Explicação na [aula 06-36](../aulas/06-36-nome-validado.md). Entendimento da 6.36 confirmado com "entendu" em 01/11/2026.
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

@@ -386,9 +386,13 @@ ListarProdutosRequest recebeu nome com bail/sometimes/required/string/max:100.
 Validação já ativa no HTTP; nome válido ainda não filtra. Diagnóstico conferiu
 12 válidos/7 inválidos, normalização/tipos/Unicode/422 sem SQL e rollback; suíte
 existente 41/288 passou, contagens preservadas. Explicação apresentada; entendimento
-da 6.35 confirmado com "entendi" em 01/11/2026. Publicação em preparação; publicar
-e iniciar somente
-6.36: método nome(): ?string para nome validado ou null, ainda sem filtro na consulta.
+da 6.35 confirmado com "entendi" em 01/11/2026 e publicada em 618eb1a. Na 6.36,
+nome(): ?string retorna validated('nome'), texto normalizado ou null quando omitido.
+Diagnóstico de valores/tipos e rejeições passou; suíte existente 41/288 e contagens
+preservadas. Controller ainda não usa nome; filtro não aplicado. Explicação
+apresentada; entendimento da 6.36 confirmado com "entendu" em 01/11/2026.
+Publicação em preparação; publicar e iniciar somente 6.37: preparar filtro literal de nome opcional em
+CatalogoEloquent::paginarProdutos, ainda sem integração HTTP.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

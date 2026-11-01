@@ -5,7 +5,8 @@
 Implementação, explicação e verificações em 01/11/2026 após confirmação da 6.34
 com "entendi" e publicação em 4bb129121f344e1b4c59a1166346b0315cde3a3a.
 HEAD, origin/main e main remota conferidos após push. Entendimento da 6.35
-confirmado com "entendi" em 01/11/2026; publicação em preparação.
+confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+618eb1a55b809e44db0e1cabe0fd21704e8e55a9, com remoto conferido.
 
 Uma alteração de código em backend/app/Http/Requests/ListarProdutosRequest.php:
 acrescentar as regras de nome ao array devolvido por rules. A busca por nome
@@ -96,7 +97,7 @@ arquivos da aplicação nem disponibilizada no servidor em execução.
 
 ## Continuidade
 
-Roteiro, progresso e contrato atual atualizados. Entendimento confirmado com
-"entendi" em 01/11/2026; publicação em preparação. Publicar e iniciar somente 6.36: método
-nome(): ?string para obter o nome validado ou null quando omitido, ainda sem
-aplicar o filtro à consulta.
+Entendimento confirmado com "entendi" em 01/11/2026; checkpoint publicado em
+618eb1a55b809e44db0e1cabe0fd21704e8e55a9, com HEAD/origin/main/main remota conferidos.
+Continuidade realizada na [aula 6.36](06-36-nome-validado.md), com método
+nome(): ?string para obter o valor validado ou null quando omitido.

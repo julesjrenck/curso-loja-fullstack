@@ -11,6 +11,11 @@ class ListarProdutosRequest extends FormRequest
         return (int) $this->validated('page', 1);
     }
 
+    public function nome(): ?string
+    {
+        return $this->validated('nome');
+    }
+
     public function authorize(): bool
     {
         return true;
