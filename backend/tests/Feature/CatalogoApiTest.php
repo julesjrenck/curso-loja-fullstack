@@ -56,6 +56,13 @@ class CatalogoApiTest extends TestCase
 
     public function test_retorna_produto_ativo_pelo_id_em_json(): void
     {
+        $capturar = getenv('CAPTURAR_CONTRATO_200') === '1';
+        $caminhoCaptura = storage_path('app/private/contratos/consulta-200.json');
+
+        if ($capturar && File::exists($caminhoCaptura)) {
+            $this->assertTrue(File::delete($caminhoCaptura));
+        }
+
         Produto::factory()->create([
             'nome' => 'Caneca',
             'status' => 'ativo',
@@ -80,6 +87,14 @@ class CatalogoApiTest extends TestCase
                     'preco_em_centavos' => 4990,
                 ],
             ]);
+
+        if ($capturar) {
+            $corpo = $resposta->getContent();
+            json_decode($corpo, false, 512, JSON_THROW_ON_ERROR);
+
+            File::ensureDirectoryExists(dirname($caminhoCaptura));
+            $this->assertSame(strlen($corpo), File::put($caminhoCaptura, $corpo));
+        }
     }
 
     public function test_retorna_404_em_json_para_id_inexistente(): void

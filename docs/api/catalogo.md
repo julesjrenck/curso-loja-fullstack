@@ -782,6 +782,21 @@ completa 6.70, 66/620. Sem mudanças no backend/OpenAPI/configuração/dependên
 Cobertura atual: um 404 gerado por teste HTTP interno. Entendimento confirmado
 com "entendi" em 01/11/2026. Explicação na [aula 06-71](../aulas/06-71-validacao-captura-404.md).
 
+## Captura optativa de sucesso na 6.72
+
+CatalogoApiTest ampliou o caso de produto ativo pelo ID com
+CAPTURAR_CONTRATO_200=1 e arquivo privado consulta-200.json, ambos independentes
+do 404. Mantém as factories e GET com $camiseta->id; só grava getContent após
+asserções, conferindo JSON e bytes. Remove captura anterior ao iniciar o caso.
+
+Sem flag 1/6 sem arquivo; primeira opt-in 1/7, segunda 1/8 com substituição.
+IDs capturados 22654/22656 são valores observados, não constantes do contrato.
+Corpo data objeto/Camiseta/preço inteiro 4990. Suíte comum 66/620 passou e
+preservou hashes de ambas as capturas; SELECTs antes/depois loja 0 categorias/
+1 produto e loja_test 0/0. Arquivos ignorados; contrato e script 404 inalterados.
+Captura 200 ainda sem validação contra schema. Entendimento confirmado com
+"entendi" em 01/11/2026. Explicação na [aula 06-72](../aulas/06-72-captura-200-teste-http.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

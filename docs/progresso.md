@@ -4,8 +4,25 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.71 — Validação da captura 404 contra OpenAPI.
+- Etapa atual: 6.72 — Captura optativa da resposta 200 em teste HTTP.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.72: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Apenas o teste de produto ativo por ID
+  em CatalogoApiTest ganhou captura optativa CAPTURAR_CONTRATO_200=1, em
+  storage/app/private/contratos/consulta-200.json. Remove anterior no início;
+  mantém duas factories, GET com $camiseta->id e asserções existentes. Após
+  sucesso, getContent/JSON_THROW_ON_ERROR/ensureDirectoryExists/File::put com
+  conferência de bytes, como no 404. Flags/arquivos independentes.
+  Sem flag: 1/6, sem arquivo 200. Primeira captura: 1/7, ID 22654; segunda:
+  1/8, removeu anterior e gravou ID 22656. IDs observados, não fixados no teste.
+  Corpo data objeto/Camiseta/preço inteiro 4990; captura atual 64 bytes/hash
+  conferidos. Suíte comum 66/620 passou e preservou hashes das duas capturas.
+  SELECTs antes/depois: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes
+  0/0. Capturas ignoradas; diff/links conferidos. Sem dependências, produção,
+  OpenAPI/configuração/script 404 alterados. Captura 200 ainda não comparada
+  ao schema. Aula 06-72, contrato e registros atualizados. Limite da 6.64 registrado.
+  Publicação em preparação. Próximo passo: publicar e iniciar somente 6.73: validar a captura 200 contra o schema
+  correspondente em uma cópia temporária, reaproveitando o fluxo Docker.
 - Situação da 6.71: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Criado scripts/validar-contrato-404.sh:
   Bash controla Docker, remove captura anterior, exige sucesso do teste com
@@ -22,8 +39,8 @@
   loja_testes 0/0. Última suíte completa 6.70: 66/620; não repetida nesta etapa.
   Backend/OpenAPI/configuração/dependências preservados. Aula 06-71, contrato e
   registros atualizados; diff/links/ignore conferidos. Limite da 6.64 registrado.
-  Publicação em preparação. Próximo passo: publicar e iniciar somente 6.72: preparar captura optativa da resposta
-  200 no teste de consulta individual de produto ativo, com ID da factory.
+  Publicação verificada em 6dd65eb7989c4c0547e314c37e3ae76fcd176ade; HEAD/origin/main/main
+  remota coincidiram após push em 01/11/2026. Continuidade realizada na 6.72.
 - Situação da 6.70: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. CatalogoApiTest recebeu File e captura
   optativa no caso 404 de ID inexistente, ativada por CAPTURAR_CONTRATO_404=1.
@@ -890,7 +907,8 @@
   6.68 confirmada/publicada em 01/11/2026;
   6.69 confirmada/publicada em 01/11/2026;
   6.70 confirmada/publicada em 01/11/2026;
-  6.71 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.71 confirmada/publicada em 01/11/2026;
+  6.72 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -1025,30 +1043,28 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.70 confirmada com "entendi" e publicada em
-a2055b62166a5976ac321411ad2332196d007ca6; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.71 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Novo scripts/validar-contrato-404.sh, executado com bash. Set -euo pipefail,
-cd para raiz; PHP Docker remove captura anterior, teste opt-in deve passar;
-mktemp/trap criam/removem pasta única em /tmp. PHP Docker recebe OpenAPI por
-STDIN, preserva objetos/listas e substitui só example de GET /api/v1/produtos/{id}
-404/application/json pelo corpo capturado. Verifica presença de schema,
-captura ausente/vazia/ilegível e JSON inválido. Cópia integral mantém components/
-refs; documento original intacto. CLI Redocly atual, imagem 2.65.0/digest,
-monta somente config/cópia RO, --network none. Bash controla Docker no host;
-PHP/testes/validação rodam em containers. Sem dependências ou serviços novos.
-Bash -n passou. Fluxo normal: teste 1/7, lint 0, processo 0. Duas cópias de
-diagnóstico em /tmp/curso-671: sem-teste.sh troca filtro, saiu 1/No tests found,
-removeu captura anterior e parou antes de preparar/lint; sem-message.sh remove
-message apenas do exemplo temporário, teste 1/7 passou e lint/processo saíram 1
-pela regra de exemplos. Captura original válida: 42 bytes, SHA256
-7d5b3a5bdfea032180e3ee337a2e028e7c492036c9acf6af05e9f6c965317c04.
-Pastas curso-contrato-404.* removidas. SELECTs após: loja/loja_app 0 categorias/
-1 produto, loja_test/loja_testes 0/0. Última suíte completa 6.70, 66/620;
-backend inalterado, sem repetição da suíte nesta etapa. Limite de required false
-na 6.64 permanece registrado; original true. Aula docs/aulas/06-71-validacao-captura-404.md,
-contrato e registros atualizados; diff/links/ignore conferidos. Publicação em preparação. Próximo passo: publicar e iniciar somente 6.72: preparar captura optativa da resposta 200 no teste de
-consulta individual de produto ativo, usando ID produzido pela factory.
+Estado mais recente em 01/11/2026: 6.71 confirmada com "entendi" e publicada em
+6dd65eb7989c4c0547e314c37e3ae76fcd176ade; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.72 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+CatalogoApiTest ampliou só test_retorna_produto_ativo_pelo_id_em_json: getenv
+CAPTURAR_CONTRATO_200 === '1', storage_path app/private/contratos/consulta-200.json,
+exclusão anterior antes das factories, e gravação após asserções existentes.
+Mantém Caneca e Camiseta por factory, GET com $camiseta->id e JSON com esse ID.
+GetContent preserva corpo bruto; json_decode/JSON_THROW_ON_ERROR confere sintaxe;
+File prepara pasta/grava e assertSame confere bytes. Nenhuma dependência nova.
+Sem flag: teste 1/6, sem captura 200. Com flag primeira vez: 1/7, ID 22654;
+segunda: 1/8, ID 22656, substituindo anterior. IDs apenas observados; esperado
+vem da factory. Captura atual data objeto/id 22656/nome Camiseta/preço inteiro
+4990, 64 bytes, SHA256 181b9bdd85196f82207195c0787fc67dec977ade933e106d6495e605a30cb07d.
+Suíte comum 66/620 passou sem flags; hashes 200 e 404 permaneceram iguais.
+SELECTs antes/depois: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes
+0 categorias/0 produtos. Ambas as capturas ignoradas. OpenAPI/configuração/
+produção/script 404 intactos. Captura 200 ainda sem comparação com schema;
+script atual continua validando apenas 404. Limite da 6.64 permanece registrado.
+Aula docs/aulas/06-72-captura-200-teste-http.md, contrato e registros atualizados;
+diff/links/ignore conferidos. Publicação em preparação. Próximo passo:
+publicar e iniciar somente 6.73: validar a captura
+200 contra o schema correspondente em cópia temporária, reaproveitando fluxo Docker.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -10064,18 +10080,54 @@ sem nova suíte completa. Git diff --check, links e ignore da captura conferidos
 Sem dependências/serviços novos, produção ou contrato versionado alterados.
 O fluxo cobre um caso 404 gerado em teste HTTP interno, não todo o catálogo ou
 HTTP pela rede; asserções de negócio continuam. Limite da 6.64 registrado.
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+6dd65eb7989c4c0547e314c37e3ae76fcd176ade; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.72. Exercício DBeaver segue sem relato.
+
+## Etapa 6.72 — Captura optativa da resposta 200 em teste HTTP
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação e
+publicação da 6.71 em 6dd65eb7989c4c0547e314c37e3ae76fcd176ade.
+Aula docs/aulas/06-72-captura-200-teste-http.md. Só o teste de produto ativo
+pelo ID em CatalogoApiTest recebeu captura, com a mesma mecânica da 6.70:
+flag CAPTURAR_CONTRATO_200=1, caminho privado consulta-200.json, exclusão
+anterior conferida antes das factories, getContent após asserções, JSON válido,
+ensureDirectoryExists e assertSame strlen/File::put. Factories/GET/asserções
+de negócio mantidos: cria Caneca e Camiseta, consulta $camiseta->id e compara
+esse ID no corpo. File já importado; nenhuma dependência ou helper novo.
+
+Execuções Docker com --do-not-cache-result e filtro do teste: sem flag 1/6,
+nenhuma captura 200 criada; primeira opt-in 1/7, corpo com ID 22654; segunda
+opt-in 1/8, removeu anterior e gerou corpo com ID 22656. Valores apenas
+observados, sem exigir IDs fixos. PHP Docker conferiu data objeto, ID inteiro
+positivo, nome Camiseta e preco_em_centavos inteiro 4990; captura final 64 bytes,
+SHA256 181b9bdd85196f82207195c0787fc67dec977ade933e106d6495e605a30cb07d.
+Suíte comum sem flags passou 66 testes/620 asserções, código 0; hash 200 igual
+antes/depois e hash 404 igual ao início da etapa:
+7d5b3a5bdfea032180e3ee337a2e028e7c492036c9acf6af05e9f6c965317c04.
+
+SELECTs antes/depois: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes
+0 categorias/0 produtos. Guardas/DatabaseTransactions preservados. Git ignore
+confirmado para ambas as capturas; diff e links locais conferidos.
+Produção/OpenAPI/configuração/script 404 preservados. Corpo 200 obtido de teste
+HTTP interno, ainda sem validação contra schema. Consumir só após execução atual
+bem-sucedida. Limite de required false da 6.64 continua registrado.
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: a2055b62166a5976ac321411ad2332196d007ca6, etapa 6.70.
-Próximo passo: publicar e iniciar somente 6.72:
-preparar captura optativa da resposta 200 no teste de consulta individual de
-produto ativo, com ID da factory. Exercício DBeaver segue sem relato.
+Último checkpoint publicado: 6dd65eb7989c4c0547e314c37e3ae76fcd176ade, etapa 6.71.
+Próximo passo: publicar e iniciar somente 6.73:
+validar a captura 200 contra o schema correspondente em uma cópia temporária,
+reaproveitando o fluxo Docker. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
+- Última suíte completa na 6.72: 66 testes/620 asserções passaram sem flags.
+  Captura 200: sem flag 1/6 sem arquivo, primeira opt-in 1/7 e segunda 1/8;
+  IDs da factory observados 22654/22656. Hashes 200/404 preservados pela suíte.
+  SELECTs antes/depois: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0.
 - Na 6.71, fluxo de captura atual e lint do 404 passou com teste 1/7 e código 0.
   Diagnósticos sem teste e sem message terminaram com código 1 esperado;
   originais/captura/limpeza/contagens conferidos. Sem nova suíte completa.
-- Última suíte completa na 6.70: Docker 66/620 passou sem flag de
+- Na 6.70, suíte completa Docker 66/620 passou sem flag de
   captura; teste focado sem flag 1/6, com marcador e flag 1/8. Captura JSON
   ignorada de 42 bytes e hash preservado pela suíte comum. SELECTs antes/depois:
   loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0.
@@ -10508,8 +10560,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   em a2055b6. Na 6.71, script Bash/Docker conecta captura atual e cópia OpenAPI:
   teste 1/7 e lint 0; sem teste e cópia sem message saíram 1. Originais/hash/
   temporários/SELECTs conferidos. Entendimento confirmado com "entendi" em
-  01/11/2026. Publicar e iniciar somente 6.72: captura 200 de produto ativo com ID da factory.
-  Última suíte Laravel: 66/620 executada na 6.70; anteriormente na 6.49.
+  01/11/2026, publicada em 6dd65eb. Na 6.72, captura optativa 200 com ID da
+  factory: 1/6 sem flag, 1/7 primeira opt-in e 1/8 segunda; suíte 66/620,
+  hashes/SELECTs/ignore conferidos. Entendimento confirmado com "entendi" em
+  01/11/2026. Publicar e iniciar somente 6.73: validar captura 200 em cópia OpenAPI/Docker.
+  Última suíte Laravel: 66/620 executada na 6.72; anteriormente na 6.70.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -10743,4 +10798,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.68 — Exemplo 404 individual | Example permanente com message Produto não encontrado.; schema string variável preservado, lint Docker código 0 com validação dos valores; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicado em cde6351; remoto conferido |
 | 01/11/2026 | 6.69 — Plano de validação de respostas | Plano teste HTTP/captura/cópia/Redocly, isolamento/matriz/ignore por leitura; sem pipeline, captura, Docker, SQL ou suíte executados; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicado em 7cf816f; remoto conferido |
 | 01/11/2026 | 6.70 — Captura 404 em teste HTTP | Flag optativa, limpeza anterior, getContent/JSON/bytes; sem flag 1/6, com marcador/flag 1/8, suíte 66/620, SELECTs/hash/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em a2055b6; remoto conferido |
-| 01/11/2026 | 6.71 — Validar captura 404 | Script Docker/teste/cópia/lint: 1/7 e lint 0; diagnósticos sem teste/sem message código 1; originais/hash/temporários/SELECTs/diff/links/ignore | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.71 — Validar captura 404 | Script Docker/teste/cópia/lint: 1/7 e lint 0; diagnósticos sem teste/sem message código 1; originais/hash/temporários/SELECTs/diff/links/ignore | Confirmado com "entendi" em 01/11/2026 | Publicado em 6dd65eb; remoto conferido |
+| 01/11/2026 | 6.72 — Captura 200 em teste HTTP | Flag/arquivo próprios, ID da factory; 1/6 sem flag, primeira opt-in 1/7, segunda 1/8, suíte 66/620; hashes/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |

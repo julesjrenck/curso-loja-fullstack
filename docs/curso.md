@@ -574,8 +574,14 @@ substitui example do 404 em cópia integral temporária e valida com Redocly fix
 Fluxo passou com teste 1/7/lint 0; cópias sem teste e sem message saíram 1.
 Originais/hash/temporários/SELECTs conferidos. Sem novas dependências ou backend
 alterado; última suíte completa 6.70, 66/620. Explicação apresentada;
-entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.72:
-captura optativa de 200 no teste individual de produto ativo, com ID da factory.
+entendimento confirmado com "entendi" em 01/11/2026 e publicada em 6dd65eb.
+Na 6.72, teste individual de produto ativo ganhou captura optativa 200, com
+flag/arquivo próprios e ID da factory. Sem flag 1/6 e sem arquivo; primeira
+opt-in 1/7, segunda 1/8 com captura substituída. Suíte comum 66/620 passou,
+hashes 200/404 e contagens dos bancos preservados. Produção/OpenAPI/script 404
+inalterados. Captura 200 ainda não comparada ao schema. Explicação apresentada;
+entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.73:
+validar captura 200 contra schema em cópia temporária, reaproveitando fluxo Docker.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

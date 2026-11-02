@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.70 com "entendi" e publicação em a2055b62166a5976ac321411ad2332196d007ca6.
-Entendimento da 6.71 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.71 confirmado com "entendi" em 01/11/2026; publicação
+verificada em 6dd65eb7989c4c0547e314c37e3ae76fcd176ade, referências local e remotas coincidentes.
 
 ## Um comando para o fluxo 404
 
@@ -114,6 +115,5 @@ Asserções de negócio continuam necessárias. A limitação de required false 
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026. Publicar o checkpoint. Próxima etapa, 6.72:
-preparar captura optativa da resposta 200 no teste de consulta individual de
-produto ativo, usando o ID produzido pela factory.
+com "entendi" em 01/11/2026; publicação verificada em 6dd65eb7989c4c0547e314c37e3ae76fcd176ade.
+Continuidade na [aula 06-72](06-72-captura-200-teste-http.md).
