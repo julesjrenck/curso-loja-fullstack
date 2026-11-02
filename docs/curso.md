@@ -568,9 +568,14 @@ em storage privado ignorado, validando bytes. Focado sem flag 1/6 sem arquivo;
 com marcador/flag 1/8; suíte comum 66/620 passou e preservou captura. SELECTs
 antes/depois: loja 0 categorias/1 produto; loja_test 0/0. Sem produção/OpenAPI/
 dependências novos. Captura ainda não comparada ao schema. Explicação apresentada;
-entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.71:
-validar captura 404 contra schema OpenAPI em cópia temporária/Docker, exigindo
-execução atual bem-sucedida do teste.
+entendimento confirmado com "entendi" em 01/11/2026 e publicada em a2055b6.
+Na 6.71, script Bash controla Docker: remove captura antiga, exige teste atual,
+substitui example do 404 em cópia integral temporária e valida com Redocly fixado.
+Fluxo passou com teste 1/7/lint 0; cópias sem teste e sem message saíram 1.
+Originais/hash/temporários/SELECTs conferidos. Sem novas dependências ou backend
+alterado; última suíte completa 6.70, 66/620. Explicação apresentada;
+entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.72:
+captura optativa de 200 no teste individual de produto ativo, com ID da factory.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

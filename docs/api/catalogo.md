@@ -766,6 +766,22 @@ processo atual de teste bem-sucedido. Sem produção/OpenAPI/dependências alter
 Entendimento confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-70](../aulas/06-70-captura-404-teste-http.md).
 
+## Validação da captura 404 na 6.71
+
+O [script validar-contrato-404.sh](../../scripts/validar-contrato-404.sh) remove
+captura anterior, executa o teste opt-in e exige sucesso antes de preparar uma
+cópia temporária integral do OpenAPI. PHP em Docker substitui só example do
+404 individual pelo corpo capturado, mantendo schemas/components/tipos JSON.
+Redocly fixado valida cópia/config montadas RO, sem rede; trap limpa temporários.
+
+Fluxo normal: teste 1/7 e lint 0. Cópias de diagnóstico: filtro sem teste saiu 1
+e parou antes da cópia; example temporário sem message saiu 1 pela regra de
+exemplos. Captura original válida/hash preservado, temporários removidos,
+SELECTs posteriores loja 0 categorias/1 produto e loja_test 0/0. Última suíte
+completa 6.70, 66/620. Sem mudanças no backend/OpenAPI/configuração/dependências.
+Cobertura atual: um 404 gerado por teste HTTP interno. Entendimento confirmado
+com "entendi" em 01/11/2026. Explicação na [aula 06-71](../aulas/06-71-validacao-captura-404.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

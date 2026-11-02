@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.69 com "entendi" e publicação em 7cf816f341084bb7a1d38db68a05ea16725a67bd.
-Entendimento da 6.70 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.70 confirmado com "entendi" em 01/11/2026; publicação
+verificada em a2055b62166a5976ac321411ad2332196d007ca6, referências local e remotas coincidentes.
 
 ## Mudança no teste existente
 
@@ -127,6 +128,5 @@ do validador observada na 6.64 permanece registrada; id path mantém required tr
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026. Publicar o checkpoint. Próxima etapa, 6.71:
-validar a captura 404 contra o schema OpenAPI em uma cópia temporária, com
-Docker, exigindo execução atual bem-sucedida do teste.
+com "entendi" em 01/11/2026; publicação verificada em a2055b62166a5976ac321411ad2332196d007ca6.
+Continuidade na [aula 06-71](06-71-validacao-captura-404.md).

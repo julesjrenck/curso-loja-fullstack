@@ -4,8 +4,26 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.70 — Captura optativa da resposta 404 em teste HTTP.
+- Etapa atual: 6.71 — Validação da captura 404 contra OpenAPI.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.71: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Criado scripts/validar-contrato-404.sh:
+  Bash controla Docker, remove captura anterior, exige sucesso do teste com
+  flag, prepara cópia integral temporária do OpenAPI via PHP em Docker e troca
+  apenas example do 404 individual pelo corpo capturado, preservando schemas/
+  components e tipos JSON. Recusa schema/captura ausentes, vazio/ilegível/JSON
+  inválido. Redocly 2.65.0/digest/config atual lê somente arquivo/config em RO,
+  sem rede. Mktemp/trap removem diretório temporário. Bash -n passou; fluxo
+  normal: teste 1/7 e lint 0. Cópias em /tmp/curso-671: filtro sem teste saiu 1,
+  captura antiga removida e etapas seguintes não executadas; sem message só na
+  cópia do contrato saiu 1/no-invalid-media-type-examples após teste 1/7 passar.
+  Captura original válida, 42 bytes/hash anterior; temporários removidos.
+  SELECTs após verificações: loja/loja_app 0 categorias/1 produto, loja_test/
+  loja_testes 0/0. Última suíte completa 6.70: 66/620; não repetida nesta etapa.
+  Backend/OpenAPI/configuração/dependências preservados. Aula 06-71, contrato e
+  registros atualizados; diff/links/ignore conferidos. Limite da 6.64 registrado.
+  Publicação em preparação. Próximo passo: publicar e iniciar somente 6.72: preparar captura optativa da resposta
+  200 no teste de consulta individual de produto ativo, com ID da factory.
 - Situação da 6.70: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. CatalogoApiTest recebeu File e captura
   optativa no caso 404 de ID inexistente, ativada por CAPTURAR_CONTRATO_404=1.
@@ -22,8 +40,8 @@
   dependência nova ou produção/OpenAPI/configuração alterados. Captura não foi
   comparada ao schema ainda; integração pendente. Limite da 6.64 registrado.
   Aula 06-70, contrato e registros atualizados; diff/links/ignore conferidos.
-  Publicação em preparação. Próximo passo: publicar e iniciar somente 6.71: validar a captura 404 contra o schema
-  OpenAPI em uma cópia temporária, com Docker, exigindo teste bem-sucedido atual.
+  Publicação verificada em a2055b62166a5976ac321411ad2332196d007ca6; HEAD/origin/main/main
+  remota coincidiram após push em 01/11/2026. Continuidade realizada na 6.71.
 - Situação da 6.69: plano documentado, explicado e conferido por leitura em
   01/11/2026; entendimento confirmado com "entendi" em 01/11/2026. Aula 06-69 define teste HTTP
   Laravel -> asserções de status/Content-Type -> captura JSON local ignorada ->
@@ -871,7 +889,8 @@
   6.67 confirmada/publicada em 01/11/2026;
   6.68 confirmada/publicada em 01/11/2026;
   6.69 confirmada/publicada em 01/11/2026;
-  6.70 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+  6.70 confirmada/publicada em 01/11/2026;
+  6.71 implementada/explicada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -1006,32 +1025,30 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.69 confirmada com "entendi" e publicada em
-7cf816f341084bb7a1d38db68a05ea16725a67bd; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.70 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-CatalogoApiTest importa File e amplia apenas o teste 404 de ID inexistente:
-getenv CAPTURAR_CONTRATO_404 === '1' ativa captura. Caminho storage_path
-app/private/contratos/consulta-404.json; remove anterior no início do caso.
-Após assertStatus/Header/ExactJson, getContent fornece corpo bruto, json_decode
-com JSON_THROW_ON_ERROR valida sintaxe, ensureDirectoryExists prepara pasta,
-assertSame strlen/File::put confere bytes. Copia corpo sem reencodificar JSON.
-Captura criada e ignorada pelo Git: 42 bytes, message Produto não encontrado.;
-SHA256 7d5b3a5bdfea032180e3ee337a2e028e7c492036c9acf6af05e9f6c965317c04.
-Sem flag: 1 teste/6 asserções, nenhum arquivo criado. Marcador antigo preparado
-em arquivo antes inexistente; opt-in retornou 1/8 e o substituiu. Suíte normal
-66/620 passou e deixou hash intacto. Primeiro teste avisou cache readonly em
-/app; execuções seguintes com --do-not-cache-result, sem aviso. SELECTs antes/
-depois: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0.
-Guardas de identidade/transações preservadas. Sem chamada pela rede, nova
-dependência, produção/OpenAPI/configuração alterados. Ainda sem comparação do
-corpo capturado com schema; próximo passo integra Redocly/cópia temporária.
-Não consumir captura se o processo de teste falhar: arquivo pode persistir se
-setUp/outro teste falhar. Limite de required false da 6.64 registrado, original true.
-Aula docs/aulas/06-70-captura-404-teste-http.md, contrato e registros atualizados;
-diff/links/ignore conferidos. Publicação em preparação. Próximo passo:
-publicar e iniciar somente 6.71: validar a captura
-404 contra o schema OpenAPI em uma cópia temporária, com Docker, exigindo
-execução atual bem-sucedida do teste.
+Estado mais recente em 01/11/2026: 6.70 confirmada com "entendi" e publicada em
+a2055b62166a5976ac321411ad2332196d007ca6; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.71 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Novo scripts/validar-contrato-404.sh, executado com bash. Set -euo pipefail,
+cd para raiz; PHP Docker remove captura anterior, teste opt-in deve passar;
+mktemp/trap criam/removem pasta única em /tmp. PHP Docker recebe OpenAPI por
+STDIN, preserva objetos/listas e substitui só example de GET /api/v1/produtos/{id}
+404/application/json pelo corpo capturado. Verifica presença de schema,
+captura ausente/vazia/ilegível e JSON inválido. Cópia integral mantém components/
+refs; documento original intacto. CLI Redocly atual, imagem 2.65.0/digest,
+monta somente config/cópia RO, --network none. Bash controla Docker no host;
+PHP/testes/validação rodam em containers. Sem dependências ou serviços novos.
+Bash -n passou. Fluxo normal: teste 1/7, lint 0, processo 0. Duas cópias de
+diagnóstico em /tmp/curso-671: sem-teste.sh troca filtro, saiu 1/No tests found,
+removeu captura anterior e parou antes de preparar/lint; sem-message.sh remove
+message apenas do exemplo temporário, teste 1/7 passou e lint/processo saíram 1
+pela regra de exemplos. Captura original válida: 42 bytes, SHA256
+7d5b3a5bdfea032180e3ee337a2e028e7c492036c9acf6af05e9f6c965317c04.
+Pastas curso-contrato-404.* removidas. SELECTs após: loja/loja_app 0 categorias/
+1 produto, loja_test/loja_testes 0/0. Última suíte completa 6.70, 66/620;
+backend inalterado, sem repetição da suíte nesta etapa. Limite de required false
+na 6.64 permanece registrado; original true. Aula docs/aulas/06-71-validacao-captura-404.md,
+contrato e registros atualizados; diff/links/ignore conferidos. Publicação em preparação. Próximo passo: publicar e iniciar somente 6.72: preparar captura optativa da resposta 200 no teste de
+consulta individual de produto ativo, usando ID produzido pela factory.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -10007,15 +10024,58 @@ Captura é corpo efetivo de TestResponse; não há comparação com schema nesta
 etapa. Consumir somente após processo atual de teste retornar 0; se setUp ou
 outro teste falhar, arquivo anterior pode existir. Nenhuma produção, OpenAPI,
 configuração, dependência ou serviço novo. Limite da 6.64 continua registrado.
+Entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em
+a2055b62166a5976ac321411ad2332196d007ca6; HEAD/origin/main/main remota coincidiram após push.
+Continuidade realizada na 6.71. Exercício DBeaver segue sem relato.
+
+## Etapa 6.71 — Validação da captura 404 contra OpenAPI
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação e
+publicação da 6.70 em a2055b62166a5976ac321411ad2332196d007ca6.
+Aula docs/aulas/06-71-validacao-captura-404.md. Novo scripts/validar-contrato-404.sh,
+Bash para controle Docker no host; PHP/processamento JSON/teste/CLI em containers.
+Set -euo pipefail e comandos diretos interrompem em erro; raiz resolvida pela
+localização do script. PHP inicial remove captura fixa; teste opt-in com
+--do-not-cache-result/filtro correto deve terminar com sucesso antes de prosseguir.
+
+Mktemp cria pasta única, trap EXIT remove apenas essa pasta. PHP Docker recebe
+OpenAPI do host por STDIN, decodifica com false/JSON_THROW_ON_ERROR e mantém
+contexto integral/components. Localiza schema do 404 individual, recusa ausência;
+recusa captura ausente, vazia ou ilegível e decodifica JSON preservando tipos.
+Troca somente example por corpo atual; stdout serializa documento na pasta
+temporária. Redocly fixado por versão/digest, config atual e só dois arquivos
+montados RO em /spec; sem rede. Original OpenAPI/configuração não alterados.
+Fontes oficiais Bash/Redocly consultadas.
+
+Bash -n passou. Execução normal retornou 0: teste 1/7 e lint 0, sem erros.
+Duas cópias em /tmp/curso-671, fora do repositório: ambas ajustaram cd para
+raiz do projeto. Sem-teste.sh alterou filtro para nenhum_caso_671, saiu 1 com
+No tests found; captura anterior removida e etapas de cópia/lint não executadas.
+Sem-message.sh acrescentou unset apenas no example do documento temporário:
+teste 1/7 passou, Redocly apontou required message ausente pela regra
+no-invalid-media-type-examples, lint/processo 1 esperado. Nenhum erro ignorado.
+Captura persistida permaneceu válida, 42 bytes/hash
+7d5b3a5bdfea032180e3ee337a2e028e7c492036c9acf6af05e9f6c965317c04.
+Pastas temporárias de validação removidas após sucesso/falha.
+
+SELECTs posteriores: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes
+0 categorias/0 produtos. Última suíte completa 6.70, 66/620; backend não alterado,
+sem nova suíte completa. Git diff --check, links e ignore da captura conferidos.
+Sem dependências/serviços novos, produção ou contrato versionado alterados.
+O fluxo cobre um caso 404 gerado em teste HTTP interno, não todo o catálogo ou
+HTTP pela rede; asserções de negócio continuam. Limite da 6.64 registrado.
 Entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação.
-Último checkpoint publicado: 7cf816f341084bb7a1d38db68a05ea16725a67bd, etapa 6.69.
-Próximo passo: publicar e iniciar somente 6.71:
-validar a captura 404 contra o schema OpenAPI em uma cópia temporária, com
-Docker, exigindo teste bem-sucedido atual. Exercício DBeaver segue sem relato.
+Último checkpoint publicado: a2055b62166a5976ac321411ad2332196d007ca6, etapa 6.70.
+Próximo passo: publicar e iniciar somente 6.72:
+preparar captura optativa da resposta 200 no teste de consulta individual de
+produto ativo, com ID da factory. Exercício DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
-- Verificação mais recente na 6.70: suíte Docker 66/620 passou sem flag de
+- Na 6.71, fluxo de captura atual e lint do 404 passou com teste 1/7 e código 0.
+  Diagnósticos sem teste e sem message terminaram com código 1 esperado;
+  originais/captura/limpeza/contagens conferidos. Sem nova suíte completa.
+- Última suíte completa na 6.70: Docker 66/620 passou sem flag de
   captura; teste focado sem flag 1/6, com marcador e flag 1/8. Captura JSON
   ignorada de 42 bytes e hash preservado pela suíte comum. SELECTs antes/depois:
   loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0.
@@ -10444,8 +10504,11 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Entendimento confirmado com "entendi" em 01/11/2026, publicada em 7cf816f.
   Na 6.70, captura optativa do corpo 404 implementada: sem flag 1/6 sem arquivo,
   com marcador/flag 1/8, suíte comum 66/620 e arquivo intacto. SELECTs/ignore
-  conferidos. Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar
-  somente 6.71: validar captura 404 contra schema em cópia temporária/Docker.
+  conferidos. Entendimento confirmado com "entendi" em 01/11/2026, publicada
+  em a2055b6. Na 6.71, script Bash/Docker conecta captura atual e cópia OpenAPI:
+  teste 1/7 e lint 0; sem teste e cópia sem message saíram 1. Originais/hash/
+  temporários/SELECTs conferidos. Entendimento confirmado com "entendi" em
+  01/11/2026. Publicar e iniciar somente 6.72: captura 200 de produto ativo com ID da factory.
   Última suíte Laravel: 66/620 executada na 6.70; anteriormente na 6.49.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
@@ -10679,4 +10742,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.67 — Exemplo 200 individual | Example permanente com data objeto/Camiseta/id 1/preço 4990, lint Docker código 0 com validação dos valores; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicado em f92bad8; remoto conferido |
 | 01/11/2026 | 6.68 — Exemplo 404 individual | Example permanente com message Produto não encontrado.; schema string variável preservado, lint Docker código 0 com validação dos valores; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicado em cde6351; remoto conferido |
 | 01/11/2026 | 6.69 — Plano de validação de respostas | Plano teste HTTP/captura/cópia/Redocly, isolamento/matriz/ignore por leitura; sem pipeline, captura, Docker, SQL ou suíte executados; diff e links | Confirmado com "entendi" em 01/11/2026 | Publicado em 7cf816f; remoto conferido |
-| 01/11/2026 | 6.70 — Captura 404 em teste HTTP | Flag optativa, limpeza anterior, getContent/JSON/bytes; sem flag 1/6, com marcador/flag 1/8, suíte 66/620, SELECTs/hash/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
+| 01/11/2026 | 6.70 — Captura 404 em teste HTTP | Flag optativa, limpeza anterior, getContent/JSON/bytes; sem flag 1/6, com marcador/flag 1/8, suíte 66/620, SELECTs/hash/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em a2055b6; remoto conferido |
+| 01/11/2026 | 6.71 — Validar captura 404 | Script Docker/teste/cópia/lint: 1/7 e lint 0; diagnósticos sem teste/sem message código 1; originais/hash/temporários/SELECTs/diff/links/ignore | Confirmado com "entendi" em 01/11/2026 | Publicação em preparação |
