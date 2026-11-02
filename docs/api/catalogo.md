@@ -830,6 +830,23 @@ A captura da listagem ainda não foi comparada ao schema. Entendimento confirmad
 com "entendi" em 01/11/2026. Explicação na [aula 06-74](../aulas/06-74-captura-listagem-200.md).
 A etapa 6.73 foi publicada em 371ec88, com remoto conferido.
 
+## Validação da captura da listagem na 6.75
+
+O comando bash scripts/validar-contrato-produto.sh 200 listagem gera captura
+atual e a compara ao schema de GET /api/v1/produtos em cópia temporária do
+OpenAPI. O segundo argumento escolhe operação; consulta é o padrão e mantém
+comandos individuais anteriores. PHP recebe status/caminho/arquivo e substitui
+somente example, mantendo schemas e referências. Redocly/config/digest/RO/sem
+rede e limpeza temporária anteriores. Backend e contrato versionado intactos.
+
+Listagem200: teste 1/14 e lint/processo 0. Individuais200/404:1/7/lint 0 cada.
+404 listagem saiu 2 antes do Docker. Diagnósticos com data objeto e sem meta só
+no example temporário saíram 1 por array/meta obrigatório; capturas originais
+íntegras e temporários removidos. SELECTs antes/depois: loja 0 categorias/1 produto,
+loja_test 0/0. Última suíte completa 6.74, 66/620. Entendimento confirmado com "entendi" em 01/11/2026.
+A etapa 6.74 foi publicada em 8e19c0c, remoto conferido. Explicação na
+[aula 06-75](../aulas/06-75-validacao-captura-listagem.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

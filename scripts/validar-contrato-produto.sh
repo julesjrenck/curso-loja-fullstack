@@ -4,27 +4,38 @@ set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 
 codigo_http="${1:-404}"
-case "$codigo_http" in
-  200)
+operacao="${2:-consulta}"
+flag_captura="CAPTURAR_CONTRATO_${codigo_http}"
+caminho_api="/api/v1/produtos/{id}"
+
+case "$operacao:$codigo_http" in
+  consulta:200)
     filtro_teste="test_retorna_produto_ativo_pelo_id_em_json"
     ;;
-  404)
+  consulta:404)
     filtro_teste="test_retorna_404_em_json_para_id_inexistente"
     ;;
+  listagem:200)
+    filtro_teste="test_retorna_produto_ativo_em_json"
+    flag_captura="CAPTURAR_CONTRATO_LISTAGEM_200"
+    caminho_api="/api/v1/produtos"
+    ;;
   *)
-    printf 'Uso: bash scripts/validar-contrato-produto.sh [200|404]\n' >&2
+    printf 'Uso: bash scripts/validar-contrato-produto.sh [200|404] [consulta|listagem]\nListagem aceita somente 200.\n' >&2
     exit 2
     ;;
 esac
 
+arquivo_captura="${operacao}-${codigo_http}.json"
+
 docker compose exec -T backend php -r '
-$arquivo = "/app/storage/app/private/contratos/consulta-".$argv[1].".json";
+$arquivo = "/app/storage/app/private/contratos/".$argv[1];
 if (is_file($arquivo) && !unlink($arquivo)) {
     throw new RuntimeException("Não foi possível remover a captura anterior.");
 }
-' "$codigo_http"
+' "$arquivo_captura"
 
-docker compose exec -T -e "CAPTURAR_CONTRATO_${codigo_http}=1" backend php artisan test \
+docker compose exec -T -e "${flag_captura}=1" backend php artisan test \
   --do-not-cache-result \
   --filter="$filtro_teste"
 
@@ -33,13 +44,15 @@ trap 'rm -rf -- "$pasta_temporaria"' EXIT
 
 docker compose exec -T backend php -r '
 $codigoHttp = $argv[1];
+$caminhoApi = $argv[2];
+$nomeCaptura = $argv[3];
 $documento = json_decode(stream_get_contents(STDIN), false, 512, JSON_THROW_ON_ERROR);
-$conteudo = $documento->paths->{"/api/v1/produtos/{id}"}->get->responses->{$codigoHttp}->content->{"application/json"} ?? null;
+$conteudo = $documento->paths->{$caminhoApi}->get->responses->{$codigoHttp}->content->{"application/json"} ?? null;
 if (!is_object($conteudo) || !isset($conteudo->schema)) {
     throw new RuntimeException("Schema JSON da resposta ".$codigoHttp." não encontrado.");
 }
 
-$arquivo = "/app/storage/app/private/contratos/consulta-".$codigoHttp.".json";
+$arquivo = "/app/storage/app/private/contratos/".$nomeCaptura;
 if (!is_file($arquivo)) {
     throw new RuntimeException("Captura da execução atual não encontrada.");
 }
@@ -50,7 +63,7 @@ if ($corpo === false || $corpo === "") {
 
 $conteudo->example = json_decode($corpo, false, 512, JSON_THROW_ON_ERROR);
 echo json_encode($documento, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR).PHP_EOL;
-' "$codigo_http" < docs/api/openapi.json > "$pasta_temporaria/openapi.json"
+' "$codigo_http" "$caminho_api" "$arquivo_captura" < docs/api/openapi.json > "$pasta_temporaria/openapi.json"
 
 docker run --rm --network none \
   --volume "$PWD/docs/api/redocly.yaml:/spec/redocly.yaml:ro" \

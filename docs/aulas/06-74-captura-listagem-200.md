@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.73 com "entendi" e publicação em 371ec884061be2107683da4e1f4afcbe98b36d4a.
-Entendimento da 6.74 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.74 confirmado com "entendi" em 01/11/2026; publicação
+verificada em 8e19c0c18b38e41adb08a0cd62536eb3d8f5f839, referências local e remotas coincidentes.
 
 ## Objetivo e arquivo alterado
 
@@ -123,3 +124,6 @@ A captura da listagem ainda não foi comparada ao schema. Na 6.75, após confirm
 entendimento e publicar a 6.74, conectaremos esta captura à validação em cópia
 temporária do OpenAPI, seguindo o fluxo já estudado. Limite do validador observado
 na 6.64 continua registrado. Exercício DBeaver segue sem relato do aluno.
+
+Continuidade realizada na [aula 06-75](06-75-validacao-captura-listagem.md):
+validação da captura 200 da listagem em cópia temporária do OpenAPI.

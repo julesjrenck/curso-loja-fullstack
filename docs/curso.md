@@ -593,8 +593,15 @@ limpeza anterior e corpo bruto completo após assertPaginaUnica. Focado sem flag
 1/13 sem arquivo; primeira opt-in 1/14 e segunda 1/15; IDs da factory observados.
 Suíte 66/620; hashes das três capturas/SELECTs/ignore conferidos. Produção,
 OpenAPI e scripts intactos. Explicação apresentada; entendimento confirmado
-com "entendi" em 01/11/2026. Publicar e iniciar somente 6.75: comparar a captura 200
-da listagem ao schema em cópia temporária do OpenAPI pelo fluxo Docker.
+com "entendi" em 01/11/2026 e publicada em 8e19c0c. Na 6.75, script recebe
+segundo argumento operação (consulta padrão); 200 listagem escolhe teste/flag/
+arquivo/caminho próprios. PHP seleciona schema com status/caminho recebidos em
+argv; cópia integral troca só example. Listagem 1/14/lint 0, individuais 200/404
+1/7/lint 0; combinação inválida 2 e cópias data objeto/sem meta1 esperados.
+Originais/temporários/SELECTs/ignore conferidos; backend/OpenAPI intactos,
+última suíte 6.74, 66/620. Explicação apresentada; entendimento confirmado
+com "entendi" em 01/11/2026. Publicar e iniciar somente 6.76: preparar captura optativa
+de 422 da listagem em um caso de entrada inválida do teste HTTP.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
