@@ -882,6 +882,27 @@ e validado: individual 200/404 e listagem 200/422. Entendimento confirmado com "
 A etapa 6.76 foi publicada em c6bca3b, remoto conferido. Explicação na
 [aula 06-77](../aulas/06-77-validacao-captura-422.md).
 
+## Comando conjunto dos contratos na 6.78
+
+Com backend/SQL Server ativos, banco de testes configurado e imagem do validador
+disponível, execute na raiz:
+
+```sh
+bash scripts/validar-contratos-catalogo.sh
+```
+
+O [novo script](../../scripts/validar-contratos-catalogo.sh) chama o fluxo comum
+em sequência para consulta 200/404 e listagem 200/422. Para no primeiro erro;
+só anuncia quatro casos validados ao terminar todos com sucesso. Reutiliza
+capturas atuais, schemas e configuração existentes. Não executa a suíte completa.
+Execução real desde /tmp passou: 1/7,1/7,1/14,1/9 e quatro lints 0/processo 0.
+Diagnóstico Bash com segundo caso retornando 23 interrompeu antes das listagens,
+sem mensagem final. Quatro capturas privadas renovadas/ignoradas; temporários
+removidos; contagens dos bancos preservadas. Backend/OpenAPI/scripts anteriores
+intactos; última suíte 6.76, 66/620. Entendimento confirmado com "entendi" em 01/11/2026.
+Etapa 6.77 publicada em 1be7f19, remoto conferido. Explicação na
+[aula 06-78](../aulas/06-78-comando-contratos-catalogo.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

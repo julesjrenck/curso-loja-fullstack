@@ -612,8 +612,14 @@ flag e caminho da listagem, reutilizando captura/cópia integral/Redocly anterio
 422 listagem 1/9/lint 0; regressões individuais 200/404 1/7/lint 0 e listagem 200 1/14/lint 0.
 Combinações inválidas 2; cópias sem errors/page texto 1 esperados. Original,
 temporários e SELECTs conferidos; última suíte 6.76, 66/620. Explicação apresentada;
-entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.78:
-reunir os quatro casos existentes em um comando de verificação do catálogo.
+entendimento confirmado com "entendi" em 01/11/2026 e publicada em 1be7f19.
+Na 6.78, criado validar-contratos-catalogo.sh com quatro chamadas sequenciais ao
+fluxo compartilhado e conclusão somente após sucesso. Desde /tmp, quatro casos
+1/7, 1/7, 1/14, 1/9 e lints 0/processo 0. Simulador falhou no segundo caso 23:
+sem listagens ou conclusão; originais/capturas/temporários/SELECTs conferidos.
+Última suíte 6.76, 66/620. Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026.
+Publicar e iniciar somente 6.79: documentar no README pré-requisitos e
+comandos da suíte Laravel e da verificação de contratos.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

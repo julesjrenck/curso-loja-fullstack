@@ -4,8 +4,25 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.77 — Validação da captura 422 da listagem.
+- Etapa atual: 6.78 — Comando único dos contratos do catálogo.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.78: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Criado scripts/validar-contratos-catalogo.sh:
+  set -euo pipefail, cd para raiz pelo caminho do script, quatro chamadas
+  sequenciais ao fluxo compartilhado (consulta 200/404, listagem 200/422) e printf
+  final somente após sucesso de todas. Sem duplicar captura/validação.
+  Bash -n passou; execução real pelo caminho absoluto a partir de /tmp:
+  testes 1/7, 1/7, 1/14, 1/9 e quatro lints 0; processo 0 com mensagem final.
+  Cópia de diagnóstico /tmp/curso-678 com simulador do script chamado retornou 23
+  na segunda chamada: processo 23, somente consulta 200/404 registradas, sem
+  listagens nem mensagem final. Simulador não usa Docker; originais intactos.
+  Quatro capturas renovadas, JSON/campos/hashes/tamanhos 64/42/586/105 conferidos;
+  temporários removidos, ignore/diff/links conferidos. SELECTs antes/depois:
+  loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0. Backend/OpenAPI/
+  configuração/scripts anteriores/dependências intactos; última suíte 6.76, 66/620.
+  Limite da 6.64 registrado. Publicação em preparação conforme autorização vigente. Próximo passo:
+  publicar e iniciar somente 6.79: documentar no
+  README pré-requisitos e comandos da suíte Laravel e validação de contratos.
 - Situação da 6.77: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Somente validar-contrato-produto.sh
   ganhou case listagem:422, com filtro página inválida@zero, flag própria 422
@@ -23,9 +40,8 @@
   Bash -n separado; ignore/diff/links conferidos. Backend/OpenAPI/configuração/
   atalho 404/dependências intactos. Última suíte 6.76, 66/620; não repetida.
   Cobertura de corpos: um caso de cada resposta individual 200/404/listagem 200/422.
-  Limite da 6.64 registrado. Publicação em preparação conforme autorização vigente. Próximo passo:
-  publicar e iniciar somente 6.78: reunir os quatro
-  casos existentes em um único comando de verificação do catálogo.
+  Limite da 6.64 registrado. Publicação verificada em 1be7f19f91f23aa2b4643b18795940331df176cf;
+  HEAD/origin/main/main remota coincidiram após push. Continuidade realizada na 6.78.
 - Situação da 6.76: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Somente teste de página inválida em
   CatalogoApiTest ganhou captura optativa CAPTURAR_CONTRATO_LISTAGEM_422=1,
@@ -1002,7 +1018,8 @@
   6.74 confirmada/publicada em 01/11/2026;
   6.75 confirmada/publicada em 01/11/2026;
   6.76 confirmada/publicada em 01/11/2026;
-  6.77 implementada/explicada/verificada; entendimento confirmado em 01/11/2026.
+  6.77 confirmada/publicada em 01/11/2026;
+  6.78 implementada/explicada/verificada; entendimento confirmado em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -1137,27 +1154,25 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.76 confirmada com "entendi" e publicada em
-c6bca3b7f142d82966a399073e6eff92661afa12; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.77 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Validar-contrato-produto.sh ganhou case listagem:422, filtro página inválida@zero,
-flag CAPTURAR_CONTRATO_LISTAGEM_422, caminho /api/v1/produtos e mensagem de uso
-atualizada. Fluxo anterior mantido; arquivo listagem-422.json derivado.
-422 listagem 1/9/lint 0; individuais 200/404 1/7/lint 0; listagem 200 1/14/lint 0.
-422 consulta e 404 listagem saíram 2 antes de Docker. Cópias /tmp/curso-677 sem
-errors e com errors.page texto só no example temporário: testes 1/9 passaram,
-lint/processo 1 em cada por errors obrigatório e array exigido. Captura 422
-original íntegra 105 bytes, SHA256
-8dab8e21482477f6b0a6b77d2241166d86848d7322f250fb51665982d8bde6d1.
-Temporários removidos. Execução 422 preservou outros três hashes; regressões
-renovaram depois suas próprias capturas. SELECTs antes/depois: loja/loja_app
-0 categorias/1 produto; loja_test/loja_testes 0/0. Bash -n separado; ignore/
-diff/links conferidos. Backend/OpenAPI/configuração/atalho 404/dependências
-intactos; última suíte 6.76, 66/620, não repetida. Cobertura: um caso de cada
-resposta individual 200/404/listagem 200/422. Limite da 6.64 registrado. Aula
-docs/aulas/06-77-validacao-captura-422.md e registros atualizados. Publicação em preparação conforme autorização vigente. Próximo passo: publicar
-e iniciar somente 6.78: reunir os quatro casos existentes em um único comando
-de verificação do catálogo. Exercício DBeaver continua sem relato.
+Estado mais recente em 01/11/2026: 6.77 confirmada com "entendi" e publicada em
+1be7f19f91f23aa2b4643b18795940331df176cf; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.78 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Novo scripts/validar-contratos-catalogo.sh usa set -euo pipefail, cd para raiz,
+quatro chamadas sequenciais ao script comum: 200/404 consulta e 200/422 listagem.
+Mensagem final só após sucesso de todas. Bash -n passou. Execução real desde
+/tmp com caminho absoluto: testes 1/7, 1/7, 1/14, 1/9, quatro lints 0, processo 0 e
+mensagem final. Quatro capturas renovadas, JSON/campos/hashes/tamanhos 64/42/586/105
+conferidos; ignoradas. Temporários do fluxo removidos. Cópia /tmp/curso-678 com
+simulador do script chamado retorna 23 no segundo caso: processo 23 sem mensagem
+final, somente 200/404 consulta registrados; listagens não iniciadas. Sem Docker
+no simulador, originais intactos. SELECTs antes/depois: loja/loja_app 0 categorias/
+1 produto; loja_test/loja_testes 0/0. Backend/OpenAPI/configuração/scripts anteriores/
+dependências intactos, diff/links conferidos; última suíte 6.76, 66/620, não repetida.
+Limite da 6.64 registrado. Aula docs/aulas/06-78-comando-contratos-catalogo.md,
+catálogo e registros atualizados. Publicação em preparação conforme autorização vigente. Próximo
+passo: publicar e iniciar somente 6.79: documentar
+no README pré-requisitos e comandos da suíte Laravel e validação de contratos.
+Exercício DBeaver continua sem relato. Não iniciado módulo 7.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -10381,14 +10396,49 @@ atalho 404/dependências intactos. Sem nova suíte completa; última 6.76, 66/62
 Corpos capturados cobrem um caso de cada resposta documentada: individuais 200/404
 e listagem 200/422. Não prova todas as possíveis respostas; asserções de negócio
 continuam necessárias. Limite da 6.64 registrado. Explicação apresentada;
-entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação conforme autorização vigente.
-Último checkpoint publicado: c6bca3b7f142d82966a399073e6eff92661afa12, etapa 6.76.
-Próximo passo: publicar e iniciar somente 6.78: reunir os
-quatro casos existentes em um único comando de verificação do catálogo.
+entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em 1be7f19f91f23aa2b4643b18795940331df176cf;
+HEAD/origin/main/main remota coincidiram após push. Continuidade realizada na 6.78.
 Exercício DBeaver continua sem relato do aluno. Módulo 6 continua em andamento.
+
+## Etapa 6.78 — Comando único dos contratos do catálogo
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação da
+6.77 com "entendi" e publicação em 1be7f19f91f23aa2b4643b18795940331df176cf.
+HEAD/origin/main/main remota coincidiram após push; árvore limpa antes da 6.78.
+Aula docs/aulas/06-78-comando-contratos-catalogo.md. Criado somente o código de
+scripts/validar-contratos-catalogo.sh: Bash/set -euo pipefail/cd para raiz,
+chamadas sequenciais ao script compartilhado com 200 consulta, 404 consulta,
+200 listagem, 422 listagem; printf de conclusão após as quatro. Os scripts
+anteriores continuam responsáveis pelos testes/capturas/cópias/Redocly/limpeza.
+
+Bash -n passou. Execução real com caminho absoluto desde /tmp validou a raiz:
+testes 1/7, 1/7, 1/14, 1/9 e quatro lints 0; processo 0 e mensagem final presentes.
+Quatro capturas renovadas, JSON/campos/hashes/tamanhos 64/42/586/105 bytes
+conferidos via PHP Docker. Ignore das quatro e limpeza das pastas temporárias
+conferidos. Diagnóstico /tmp/curso-678: cópia do novo script, script chamado
+substituído por simulador Bash que registra pares e retorna 23 em 404 consulta.
+Processo saiu 23 sem mensagem final; chamadas.txt contém somente 200 consulta
+e 404 consulta, sem listagens. Simulador não usa Docker nem altera originais.
+Confere ordem/interrupção/propagação de falha do novo comando; rejeição real
+de exemplos inválidos já verificada nas 6.75/6.77, não repetida aqui.
+
+SELECTs antes/depois: loja/loja_app 0 categorias/1 produto;
+loja_test/loja_testes 0 categorias/0 produtos. Backend/OpenAPI/configuração,
+scripts anteriores e dependências intactos. Diff/links conferidos. Sem nova
+suíte completa; última 6.76, 66/620. Limite do validador da 6.64 registrado:
+quatro casos não provam todas as possíveis respostas. Explicação apresentada;
+entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação conforme autorização vigente.
+Último checkpoint publicado: 1be7f19f91f23aa2b4643b18795940331df176cf, etapa 6.77.
+Próximo passo: publicar e iniciar somente 6.79:
+documentar no README pré-requisitos e comandos da suíte Laravel e validação
+de contratos. Módulo 6 continua em andamento; exercício DBeaver sem relato.
 
 ## Verificações e limitações do ambiente
 
+- Na 6.78, comando conjunto desde /tmp: testes 1/7, 1/7, 1/14, 1/9 e quatro
+  lints 0; processo 0 com mensagem final. Diagnóstico de falha no segundo caso:
+  processo 23, sem listagens nem conclusão. Capturas/temporários/SELECTs/ignore/
+  diff/links conferidos. Sem nova suíte completa; última 6.76, 66/620.
 - Na 6.77, listagem 422 1/9/lint 0; individuais 200/404 1/7/lint 0 e listagem 200
   1/14/lint 0. Combinações inválidas 2; cópias sem errors/page texto saíram 1.
   Original/temporários/SELECTs/ignore/diff/links conferidos; sem nova suíte.
@@ -10866,8 +10916,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   01/11/2026 e publicada em c6bca3b. Na 6.77, case listagem 422 com filtro zero:
   1/9/lint 0; regressões individuais 200/404 1/7/lint 0 e listagem 200 1/14/lint 0.
   Combinações inválidas 2; cópias sem errors/page texto 1; original/temporários/
-  SELECTs/ignore conferidos. Entendimento confirmado com "entendi" em 01/11/2026. Publicar
-  e iniciar somente 6.78: reunir os quatro casos em um comando de verificação.
+  SELECTs/ignore conferidos. Entendimento confirmado com "entendi" em 01/11/2026
+  e publicada em 1be7f19. Na 6.78, comando conjunto executou os quatro casos:
+  1/7, 1/7, 1/14, 1/9 e lints 0; processo 0 com conclusão. Diagnóstico segundo caso
+  saiu 23, sem listagens/conclusão; capturas/temporários/SELECTs/ignore conferidos.
+  Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.79:
+  documentar no README pré-requisitos e comandos da suíte Laravel e dos contratos.
   Última suíte Laravel: 66/620 executada na 6.76; anteriormente na 6.74.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
@@ -11108,4 +11162,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.74 — Captura da listagem 200 | Flag/arquivo próprios; corpo data/links/meta, ID da factory; sem flag 1/13, primeira captura 1/14, segunda 1/15; suíte 66/620, hashes/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 8e19c0c; remoto conferido |
 | 01/11/2026 | 6.75 — Validar captura da listagem | Segundo argumento operação; listagem 200 1/14/lint 0, individuais 200/404 1/7/lint 0; inválido2, data objeto/sem meta em cópias 1; originais/temporários/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em d3c76b2; remoto conferido |
 | 01/11/2026 | 6.76 — Captura da listagem 422 | Flag própria e condição page=0; sem flag 1/8, primeira opt-in 1/9, conjunto 11/90, negativa 1/8; suíte 66/620, quatro hashes/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em c6bca3b; remoto conferido |
-| 01/11/2026 | 6.77 — Validar captura 422 | Case listagem 422; teste 1/9/lint 0; regressões 200/404/listagem 200; inválidos 2, sem errors/page texto em cópias 1; original/temporários/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Em preparação |
+| 01/11/2026 | 6.77 — Validar captura 422 | Case listagem 422; teste 1/9/lint 0; regressões 200/404/listagem 200; inválidos 2, sem errors/page texto em cópias 1; original/temporários/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 1be7f19; remoto conferido |
+| 01/11/2026 | 6.78 — Comando dos contratos | Script sequencial; real desde /tmp 1/7,1/7,1/14,1/9 e quatro lints 0/processo 0; simulador falha segundo caso 23 sem listagens/conclusão; capturas/temporários/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Em preparação |

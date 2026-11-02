@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.76 com "entendi" e publicação em c6bca3b7f142d82966a399073e6eff92661afa12.
-Entendimento da 6.77 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.77 confirmado com "entendi" em 01/11/2026; publicação
+verificada em 1be7f19f91f23aa2b4643b18795940331df176cf, referências local e remotas coincidentes.
 
 ## Objetivo e alteração
 
@@ -90,6 +91,9 @@ mantém required true. Não iniciamos outro módulo.
 
 Aula anterior registra publicação da 6.76; catálogo em português, roteiro e
 progresso registram esta implementação, explicação e verificação. Entendimento
-confirmado com "entendi" em 01/11/2026; publicação em preparação. Depois de publicar,
+confirmado com "entendi" em 01/11/2026; publicação verificada. Depois de publicar,
 iniciar somente 6.78: reunir os quatro casos já existentes em um único comando
 de verificação do catálogo. Exercício DBeaver segue sem relato do aluno.
+
+Continuidade realizada na [aula 06-78](06-78-comando-contratos-catalogo.md):
+comando único para os quatro casos existentes.
