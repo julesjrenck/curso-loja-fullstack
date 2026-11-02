@@ -587,7 +587,14 @@ case e argv. Fluxo 200 e atalho 404: 1/7/lint 0; argumento inválido 2 e cópia
 com preço texto 1 esperados. Preço inteiro na captura original/temporários/SELECTs
 conferidos; backend e contrato inalterados, última suíte completa 6.72, 66/620.
 Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026.
-Publicar e iniciar somente 6.74: captura optativa de 200 da listagem no teste de produto ativo.
+Publicação verificada em 371ec88. Na 6.74, teste de produto ativo na listagem
+recebeu captura optativa CAPTURAR_CONTRATO_LISTAGEM_200=1, arquivo próprio,
+limpeza anterior e corpo bruto completo após assertPaginaUnica. Focado sem flag
+1/13 sem arquivo; primeira opt-in 1/14 e segunda 1/15; IDs da factory observados.
+Suíte 66/620; hashes das três capturas/SELECTs/ignore conferidos. Produção,
+OpenAPI e scripts intactos. Explicação apresentada; entendimento confirmado
+com "entendi" em 01/11/2026. Publicar e iniciar somente 6.75: comparar a captura 200
+da listagem ao schema em cópia temporária do OpenAPI pelo fluxo Docker.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

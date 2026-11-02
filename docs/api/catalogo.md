@@ -813,6 +813,23 @@ loja_test 0/0. Última suíte completa 6.72, 66/620. Cobertura capturada atual:
 casos individuais 200/404. Entendimento confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-73](../aulas/06-73-validacao-captura-200.md).
 
+## Captura da listagem 200 na 6.74
+
+O teste test_retorna_produto_ativo_em_json aceita agora a flag
+CAPTURAR_CONTRATO_LISTAGEM_200=1. Remove captura anterior no início e, após
+assertPaginaUnica, grava o corpo bruto em
+storage/app/private/contratos/listagem-200.json, validando sintaxe JSON e bytes.
+Arquivo privado ignorado pelo Git, independente dos casos individuais 200/404.
+Captura inclui data em lista, links e meta/meta.links, ID da factory e URLs/rótulos
+reais. Asserções existentes preservadas; produção/OpenAPI/scripts intactos.
+
+Sem flag: 1/13 e arquivo ausente; primeira opt-in 1/14; segunda 1/15 com
+substituição do arquivo. Suíte comum: 66/620; hashes das três capturas preservados.
+SELECTs antes/depois: loja 0 categorias/1 produto; loja_test 0/0.
+A captura da listagem ainda não foi comparada ao schema. Entendimento confirmado
+com "entendi" em 01/11/2026. Explicação na [aula 06-74](../aulas/06-74-captura-listagem-200.md).
+A etapa 6.73 foi publicada em 371ec88, com remoto conferido.
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

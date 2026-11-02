@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.72 com "entendi" e publicação em bd05ce022b0c8af38a8a5fd2573c59757416603b.
-Entendimento da 6.73 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.73 confirmado com "entendi" em 01/11/2026; publicação
+verificada em 371ec884061be2107683da4e1f4afcbe98b36d4a, referências local e remotas coincidentes.
 
 ## Escolher o caso pelo argumento
 
@@ -126,5 +127,6 @@ required true. Asserções de negócio continuam necessárias.
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026; publicar o checkpoint. Próxima etapa, 6.74:
-preparar captura optativa de 200 da listagem no teste HTTP de produto ativo.
+com "entendi" em 01/11/2026 e checkpoint publicado. Continuidade realizada na
+[aula 06-74](06-74-captura-listagem-200.md): captura optativa de 200 da listagem
+no teste HTTP de produto ativo.
