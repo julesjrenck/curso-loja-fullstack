@@ -4,8 +4,22 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.81 — Revisão guiada da listagem válida.
+- Etapa atual: 6.82 — Revisão da consulta individual por ID.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.82: revisão, explicação e verificação em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Nova aula liga rota individual/regex,
+  show/filter_var/min_range/false estrito, interface/binding/busca ativa por ID,
+  retorno ?Produto e escolha Resource 200/JsonResponse 404. Data objeto na consulta;
+  produto inativo resulta null sem excluir registro. Distingue 404 de roteamento
+  e do controller; malformado/fora da faixa apenas por leitura de código/testes.
+  Fontes oficiais PHP consultadas. Contratos 200/404: 1/7 e lint/processo 0 cada;
+  teste de inativo: 1/7, com assertDatabaseHas. Capturas 64/42 bytes, ID observado
+  23046/preço inteiro 4990 e hashes conferidos; ignoradas, temporários removidos.
+  SELECTs após: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0.
+  Diff/links conferidos. Backend/scripts/OpenAPI/configuração/Compose/README/
+  dependências intactos; última suíte 6.76, 66/620, não repetida. Limite da 6.64
+  registrado. Publicação em preparação conforme autorização vigente. Próximo passo: publicar e iniciar somente 6.83: revisar a listagem
+  filtrada por nome e preservação do filtro nos links. Módulo 6 em andamento.
 - Situação da 6.81: revisão, explicação e verificação em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Nova aula liga page=1 validado, controller,
   interface/binding CatalogoEloquent, consulta de ativos/ordem nome e id/paginate 10,
@@ -20,9 +34,8 @@
   temporários removidos, ignore/diff/links conferidos. SELECTs após: loja/loja_app
   0 categorias/1 produto; loja_test/loja_testes 0/0. Backend/scripts/OpenAPI/
   configuração/Compose/README/dependências intactos. Última suíte 6.76, 66/620.
-  Limite da 6.64 registrado. Publicação em preparação conforme autorização vigente. Próximo passo:
-  publicar e iniciar somente 6.82: revisão guiada
-  da consulta individual por ID, ligando produto ativo e resposta 404.
+  Limite da 6.64 registrado. Publicação verificada em 37b194d36e03209c5e27d7378dc3f07fdcee8783;
+  HEAD/origin/main/main remota coincidiram após push. Continuidade realizada na 6.82.
 - Situação da 6.80: revisão, explicação e verificação em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Nova aula liga bootstrap/apiPrefix/rota,
   FormRequest antes de index, page presente/required/integer/min:1, bail para
@@ -1067,7 +1080,8 @@
   6.78 confirmada/publicada em 01/11/2026;
   6.79 confirmada/publicada em 01/11/2026;
   6.80 confirmada/publicada em 01/11/2026;
-  6.81 revisão apresentada/verificada; entendimento confirmado em 01/11/2026.
+  6.81 confirmada/publicada em 01/11/2026;
+  6.82 revisão apresentada/verificada; entendimento confirmado em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -1202,27 +1216,25 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.80 confirmada com "entendi" e publicada em
-93f05de79be9cb298e965bfb7aa11cb317960903; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.81: revisão guiada apresentada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Aula docs/aulas/06-81-revisao-listagem-valida.md liga page=1 validado/controller/
-interface e binding/consulta ativos/ordem/paginate 10/Resource/data-links-meta.
-Appends preserva só nome validado; Resources paginados envolvem produtos e
-metadados. Fontes oficiais consultadas, sem instrumentação SQL nova.
-HTTP real explícito page=1 via /tmp/curso-681-http-page1.php em Docker para
-servidor interno: 200/JSON, 1 item/data-links-meta/current_page 1/per_page 10/total 1/
-last_page 1/prev-next null; leitura do catálogo normal. Comando contrato 200
-listagem 1/14/lint 0; teste existente omite page e usa padrão 1, com factory e
-banco de testes. Não alterada URL do teste. Captura 586 bytes, ID observado 23044,
-preço inteiro 4990, SHA256
-1d1bf2e10663de57d8bf51ce80a41ff699b33b683b138e8571a589b0d4387e1b.
-Temporários/ignore/diff/links conferidos; SELECTs após loja/loja_app 0 categorias/
-1 produto, loja_test/loja_testes 0/0. Backend/scripts/OpenAPI/configuração/Compose/
+Estado mais recente em 01/11/2026: 6.81 confirmada com "entendi" e publicada em
+37b194d36e03209c5e27d7378dc3f07fdcee8783; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.82: revisão guiada apresentada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Aula docs/aulas/06-82-revisao-consulta-individual.md liga rota/regex/show/
+filter_var/min_range/false estrito/interface-binding/busca ativa por ID/?Produto/
+Resource 200 ou JsonResponse 404. Data objeto; inativo recebe 404 e permanece no
+banco durante teste. Distingue roteamento/controller; casos malformados/overflow
+somente por leitura, não reexecutados. Fontes oficiais PHP consultadas.
+Contratos 200/404: 1/7/lint 0 cada; inativo 1/7 com assertDatabaseHas. Capturas 200/404
+renovadas 64/42 bytes, ID observado 23046/preço inteiro 4990, hashes
+728bbdf1947780fb022613ccd549435a6739c2d42bb1bdfca8231efd49d7fdf4 e
+7d5b3a5bdfea032180e3ee337a2e028e7c492036c9acf6af05e9f6c965317c04.
+Temporários/ignore/diff/links conferidos. SELECTs após: loja/loja_app 0 categorias/
+1 produto; loja_test/loja_testes 0/0. Backend/scripts/OpenAPI/configuração/Compose/
 README/dependências intactos; última suíte 6.76, 66/620. Limite da 6.64 registrado.
 Catálogo/roteiro/progresso atualizados; publicação em preparação conforme autorização vigente.
-Próximo passo: publicar e iniciar somente 6.82:
-revisão guiada da consulta individual por ID, produto ativo/resposta 404.
-Módulo 6 em andamento; exercício DBeaver segue sem relato.
+Próximo passo: publicar e iniciar somente 6.83:
+revisar listagem filtrada por nome e preservação do filtro nos links. Módulo 6
+em andamento; exercício DBeaver segue sem relato.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -10564,14 +10576,46 @@ Captura ignorada e temporários removidos; diff/links conferidos. SELECTs após:
 loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0 categorias/0 produtos.
 Backend/scripts/OpenAPI/configuração/Compose/README/dependências intactos.
 Sem nova suíte completa; última 6.76, 66/620. Limite da 6.64 registrado. Explicação
-apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação conforme autorização vigente.
-Último checkpoint publicado: 93f05de79be9cb298e965bfb7aa11cb317960903, etapa 6.80.
-Próximo passo: publicar e iniciar somente 6.82: revisão
-guiada da consulta individual por ID, ligando produto ativo e resposta 404.
-Módulo 6 continua em andamento; exercício DBeaver segue sem relato.
+apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em 37b194d36e03209c5e27d7378dc3f07fdcee8783;
+HEAD/origin/main/main remota coincidiram após push. Continuidade realizada na 6.82.
+Exercício DBeaver continua sem relato do aluno. Módulo 6 continua em andamento.
+
+## Etapa 6.82 — Revisão da consulta individual por ID
+
+Revisão, explicação e verificação em 01/11/2026 após confirmação da 6.81 com
+"entendi" e publicação em 37b194d36e03209c5e27d7378dc3f07fdcee8783.
+HEAD/origin/main/main remota coincidiram após push; árvore limpa antes da 6.82.
+Aula docs/aulas/06-82-revisao-consulta-individual.md. Sem nova implementação
+funcional: rota/regex/show/filter_var/min_range/=== false/interface e binding/
+busca com status ativo e chave/first/?Produto/Resource 200 ou JsonResponse 404.
+Revisa objeto data versus lista paginada, inativo filtrado sem exclusão e
+404 de roteamento versus 404 do controller. Malformado/fora da faixa por leitura
+do código e testes existentes, não executados nesta etapa. Fontes PHP oficiais
+para validação de inteiro/retorno false consultadas.
+
+Reproduzidos contratos 200 consulta e 404 consulta: cada 1 teste/7 asserções e
+lint/processo 0. Teste de inativo focado: 1/7; assertDatabaseHas mantém registro
+inativo durante o cenário e transação desfaz fixture depois. Capturas renovadas,
+conferidas via PHP Docker: 200 data objeto, Camiseta/ID observado 23046/preço
+inteiro 4990, 64 bytes, SHA256
+728bbdf1947780fb022613ccd549435a6739c2d42bb1bdfca8231efd49d7fdf4;
+404 message Produto não encontrado., 42 bytes, SHA256
+7d5b3a5bdfea032180e3ee337a2e028e7c492036c9acf6af05e9f6c965317c04.
+Capturas ignoradas/temporários removidos. SELECTs após: loja/loja_app 0 categorias/
+1 produto; loja_test/loja_testes 0 categorias/0 produtos. Diff/links conferidos;
+backend/scripts/OpenAPI/configuração/Compose/README/dependências intactos.
+Sem nova suíte completa; última 6.76, 66/620. Limite da 6.64 registrado.
+
+Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação conforme autorização vigente. Último checkpoint publicado: 37b194d36e03209c5e27d7378dc3f07fdcee8783, etapa 6.81.
+Próximo passo: publicar e iniciar somente 6.83: revisar
+listagem filtrada por nome e preservação do filtro nos links. Módulo 6 em
+andamento; exercício DBeaver sem relato.
 
 ## Verificações e limitações do ambiente
 
+- Na 6.82, revisão da consulta por ID: contratos 200/404 1/7/lint 0 cada, inativo
+  1/7 com permanência do registro conferida. Capturas/campos/hashes/temporários/
+  ignore/diff/links e SELECTs após conferidos; sem nova suíte completa, última 6.76.
 - Na 6.81, revisão por leitura/fontes oficiais: HTTP real explícito page=1
   200/JSON/data-links-meta, 1 item; contrato 200 listagem 1/14/lint 0 com page omitido.
   Captura/campos/hash/temporários/ignore/diff/links e SELECTs após conferidos.
@@ -11080,8 +11124,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Na 6.81, revisão guiada de page=1/controller/binding/Eloquent/paginador/Resource.
   HTTP real explícito 200/JSON/data-links-meta; contrato 200 1/14/lint 0, com page
   omitido no teste. Captura/hash/temporários/SELECTs após/ignore conferidos.
-  Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.82:
-  revisão guiada da consulta individual por ID, produto ativo/resposta 404.
+  Entendimento confirmado com "entendi" em 01/11/2026 e publicada em 37b194d.
+  Na 6.82, revisão da consulta individual liga validação/busca ativa/?Produto/
+  Resource 200 ou JSON 404; contratos 200/404 1/7/lint 0, inativo 1/7 com registro
+  preservado durante cenário. Capturas/hashes/temporários/SELECTs após/ignore
+  conferidos. Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar
+  somente 6.83: revisar filtro nome e preservação nos links da listagem.
   Última suíte Laravel: 66/620 executada na 6.76; anteriormente na 6.74.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
@@ -11326,4 +11374,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.78 — Comando dos contratos | Script sequencial; real desde /tmp 1/7,1/7,1/14,1/9 e quatro lints 0/processo 0; simulador falha segundo caso 23 sem listagens/conclusão; capturas/temporários/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 592a00a; remoto conferido |
 | 01/11/2026 | 6.79 — Comandos no README | Pré-requisitos, suíte e contratos; três comandos/scripts/pares/imagem/configuração e 108 links locais, demais links/diff; sem nova execução runtime/SQL | Confirmado com "entendi" em 01/11/2026 | Publicado em cbe8ae9; remoto conferido |
 | 01/11/2026 | 6.80 — Revisão de page=0 | Rota/FormRequest/min:1/bail/JSON 422/teste/contrato por leitura/fonte oficial; focado 1/9/lint 0; corpo/hash/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 93f05de; remoto conferido |
-| 01/11/2026 | 6.81 — Revisão da listagem válida | Controller/binding/Eloquent/paginador/Resource por leitura/fontes; HTTP real page=1 200/JSON; contrato 1/14/lint 0 com page omitido; captura/hash/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Em preparação |
+| 01/11/2026 | 6.81 — Revisão da listagem válida | Controller/binding/Eloquent/paginador/Resource por leitura/fontes; HTTP real page=1 200/JSON; contrato 1/14/lint 0 com page omitido; captura/hash/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 37b194d; remoto conferido |
+| 01/11/2026 | 6.82 — Revisão da consulta individual | Rota/validação/busca ativa/?Produto/200-404 por leitura/fonte PHP; contratos 1/7/lint 0 cada e inativo 1/7; capturas/hashes/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Em preparação |

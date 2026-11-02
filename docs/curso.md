@@ -634,8 +634,13 @@ da listagem válida liga FormRequest/controller/binding/consulta/paginador/Resou
 com fontes oficiais. HTTP real explícito page=1: 200/JSON, 1 item/data-links-meta.
 Contrato 200 listagem 1/14/lint 0; teste mantém page omitido/padrão 1 e factory.
 Captura/hash/temporários/SELECTs após/ignore conferidos; sem alteração funcional.
-Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.82:
-revisão guiada da consulta individual por ID, produto ativo/resposta 404.
+Entendimento confirmado com "entendi" em 01/11/2026 e publicada em 37b194d.
+Na 6.82, revisão por ID liga rota/filter_var/busca ativa/retorno ?Produto e
+Resource 200/JSON 404. Fontes PHP consultadas. Contratos 200/404 1/7/lint 0 cada,
+inativo 1/7 com permanência no banco durante cenário. Capturas/hashes/temporários/
+SELECTs após/ignore conferidos; sem alteração funcional ou suíte completa nova.
+Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.83:
+revisar listagem filtrada por nome e preservação do filtro nos links.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

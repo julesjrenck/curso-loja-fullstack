@@ -2,7 +2,8 @@
 
 Revisão, explicação e verificação em 01/11/2026 após confirmação da 6.80 com
 "entendi" e publicação em 93f05de79be9cb298e965bfb7aa11cb317960903.
-Entendimento da 6.81 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.81 confirmado com "entendi" em 01/11/2026; publicação
+verificada em 37b194d36e03209c5e27d7378dc3f07fdcee8783, referências local e remotas coincidentes.
 
 ## Objetivo e caminho
 
@@ -127,6 +128,9 @@ da 6.64 registrado; as verificações acima não provam todas as respostas poss�
 ## Continuidade
 
 Aula anterior registra publicação da 6.80; catálogo/roteiro/progresso atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada.
 Depois de publicar, iniciar somente 6.82: revisão guiada da consulta individual por ID,
 ligando produto ativo e resposta 404. Módulo 6 em andamento; DBeaver sem relato.
+
+Continuidade realizada na [aula 06-82](06-82-revisao-consulta-individual.md):
+revisão da consulta por ID, Produto/null e respostas 200/404.

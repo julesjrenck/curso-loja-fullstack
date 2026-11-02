@@ -946,6 +946,20 @@ removidos; ignore/diff/links e SELECTs após conferidos. Backend/scripts/OpenAPI
 README/dependências intactos; última suíte 6.76, 66/620. Entendimento confirmado
 com "entendi" em 01/11/2026. Etapa 6.80 publicada em 93f05de, remoto conferido.
 
+## Revisão da consulta individual na 6.82
+
+A [aula 06-82](../aulas/06-82-revisao-consulta-individual.md) liga rota/regex,
+filter_var/min_range/false estrito, busca por chave/status ativo, retorno
+?Produto e escolha Resource 200/JSON 404. Data é objeto na consulta individual.
+Inativo e inexistente resultam null; o filtro não exclui produtos. Distingue
+404 do roteamento e 404 do controller, com texto variável no schema.
+
+Contratos 200/404: 1/7/lint 0 cada; teste inativo 1/7 e registro preservado durante
+cenário. Capturas 64/42 bytes/hashes conferidos, temporários removidos e ignore/
+diff/links passaram. SELECTs após: loja 0 categorias/1 produto; loja_test 0/0.
+Backend/scripts/OpenAPI/README/dependências intactos; última suíte 6.76, 66/620.
+Entendimento confirmado com "entendi" em 01/11/2026. Etapa 6.81 publicada em 37b194d, remoto conferido.
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com
