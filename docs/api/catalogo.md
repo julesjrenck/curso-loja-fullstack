@@ -986,8 +986,9 @@ antes/depois: loja 0 categorias/1 produto; loja_test 0/0. Backend/scripts/OpenAP
 README/dependências intactos. Limitação do validador da 6.64 permanece registrada.
 
 Entendimento desta consolidação confirmado com "entendi" em 01/11/2026; módulo 6
-concluído. Publicação da 6.84 em preparação. Etapa 6.83 publicada em af5cfbd, remoto
-conferido. Depois publicar e registrar o resultado, definir próxima etapa com aluno, sem
+concluído. Publicação da 6.84 verificada em a1f7e4010b611a4f8884e02e6bcf700b85b0bbda.
+Etapa 6.83 publicada em af5cfbd, remoto
+conferido. Próximo passo: definir próxima etapa com o aluno, sem
 iniciar outro módulo por conta própria. DBeaver permanece atividade sugerida sem relato.
 
 ## Evolução

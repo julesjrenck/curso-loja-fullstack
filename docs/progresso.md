@@ -20,8 +20,9 @@
   Diff/links conferidos. Backend/scripts/OpenAPI/configuração/Compose/README/
   dependências intactos. Limitação observada na 6.64 preservada; DBeaver segue
   como exercício sugerido sem relato. Módulo 6 concluído com a confirmação desta consolidação em 01/11/2026.
-  Publicação da 6.84 em preparação. Próximo passo: publicar, registrar o resultado
-  e definir com o aluno a próxima etapa. Módulo 7 ainda não iniciado.
+  Publicação da 6.84 verificada em a1f7e4010b611a4f8884e02e6bcf700b85b0bbda;
+  referências local e remotas coincidiram após o push do checkpoint.
+  Próximo passo: definir com o aluno a próxima etapa. Módulo 7 ainda não iniciado.
 - Situação da 6.83: revisão, explicação e verificação em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Nova aula liga normalização/regras de
   nome/getter validado/consulta de ativos com CHARINDEX parametrizado antes da
@@ -1249,8 +1250,10 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.83 confirmada com "entendi" e publicada em
-af5cfbd400a118407798f53595163d6ecb9c763f; HEAD/origin/main/main remota conferidos após push.
+Estado mais recente em 01/11/2026: 6.84 confirmada com "entendi" e publicada em
+a1f7e4010b611a4f8884e02e6bcf700b85b0bbda. HEAD/origin/main/main remota coincidiram após
+o push do checkpoint; este registro é posterior à publicação. Módulos 1 a 6
+concluídos; módulo 7 ainda não iniciado.
 Etapa 6.84: consolidação apresentada/verificada, entendimento confirmado com
 "entendi" em 01/11/2026. Módulo 6 concluído; módulo 7 ainda não iniciado.
 Aula docs/aulas/06-84-consolidacao-modulo-api.md resume API pública de leitura,
@@ -1263,9 +1266,10 @@ JSON/campos/hashes/tamanhos 64/42/586/105 conferidos; temporários removidos,
 capturas e .envs locais ignorados. SELECTs antes/depois: loja/loja_app 0 categorias/
 1 produto; loja_test/loja_testes 0/0. Diff/links conferidos; backend/scripts/
 OpenAPI/configuração/Compose/README/dependências intactos. Última suíte 6.84;
-anterior 6.76. Limitação do validador da6.64 registrada. DBeaver exercício sugerido
-sem relato. Catálogo/roteiro/progresso atualizados. Encerramento do módulo 6 confirmado. Publicação da 6.84 em preparação. Próximo
-passo: publicar, registrar o resultado e definir com o aluno a próxima etapa;
+anterior 6.76. Limitação do validador da 6.64 registrada. DBeaver exercício sugerido
+sem relato. Catálogo/roteiro/progresso atualizados. Encerramento do módulo 6 confirmado.
+Publicação da 6.84 verificada em a1f7e4010b611a4f8884e02e6bcf700b85b0bbda.
+Próximo passo: definir com o aluno a próxima etapa;
 não iniciar outro módulo por conta própria. Nenhuma 6.85 ou módulo 7 iniciado automaticamente.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
@@ -10697,9 +10701,10 @@ limitação do validador/configuração observada na 6.64 mantida (original id p
 required true). HTTP de cadastro/edição/exclusão e autenticação/autorização ficam
 para etapas futuras do roteiro. DBeaver segue como atividade sugerida sem relato.
 Entendimento da 6.84 confirmado com "entendi" em 01/11/2026; módulo 6 concluído.
-Publicação da 6.84 em preparação. Último checkpoint anterior publicado: af5cfbd400a118407798f53595163d6ecb9c763f, etapa 6.83.
-Próximo passo exato: publicar a 6.84, registrar o resultado e definir com o
-aluno a próxima etapa; não iniciar outro módulo por conta própria.
+Último checkpoint publicado: a1f7e4010b611a4f8884e02e6bcf700b85b0bbda, etapa 6.84.
+HEAD/origin/main/main remota coincidiram após o push do checkpoint; publicação
+verificada em 01/11/2026. Este registro é posterior à publicação.
+Próximo passo exato: definir com o aluno a próxima etapa; não iniciar outro módulo por conta própria.
 Nenhuma etapa 6.85 ou módulo 7 iniciada automaticamente.
 
 ## Verificações e limitações do ambiente
@@ -11237,8 +11242,7 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   completa 66/620 e quatro contratos 1/7,1/7,1/14,1/9/lints 0/processo 0 passaram.
   Route:list/capturas/temporários/SELECTs antes-depois/ignore/diff/links conferidos.
   Entendimento desta consolidação confirmado com "entendi" em 01/11/2026;
-  módulo 6 concluído. Publicação da 6.84 em preparação. Depois publicar e registrar
-  o resultado, definir com aluno próxima etapa, sem iniciar
+  módulo 6 concluído. Publicação da 6.84 verificada em a1f7e4010b611a4f8884e02e6bcf700b85b0bbda. Definir com o aluno a próxima etapa, sem iniciar
   outro módulo por conta própria. Última suíte Laravel na 6.84, 66/620; anterior 6.76.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
@@ -11486,4 +11490,13 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.81 — Revisão da listagem válida | Controller/binding/Eloquent/paginador/Resource por leitura/fontes; HTTP real page=1 200/JSON; contrato 1/14/lint 0 com page omitido; captura/hash/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 37b194d; remoto conferido |
 | 01/11/2026 | 6.82 — Revisão da consulta individual | Rota/validação/busca ativa/?Produto/200-404 por leitura/fonte PHP; contratos 1/7/lint 0 cada e inativo 1/7; capturas/hashes/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 50af388; remoto conferido |
 | 01/11/2026 | 6.83 — Revisão do filtro nome | Normalização/regras/CHARINDEX/appends/links.next; 4 testes/89 asserções, 10+2/total 12; quatro hashes preservados/SELECTs após/diff/links; sem captura/Redocly novos | Confirmado com "entendi" em 01/11/2026 | Publicado em af5cfbd; remoto conferido |
-| 01/11/2026 | 6.84 — Consolidação do módulo 6 | Mapa/escopo/limites/pendências; route:list 2; suíte 66/620; contratos 1/7,1/7,1/14,1/9/lints 0; capturas/temporários/SELECTs antes-depois/ignore/diff/links | Confirmado com "entendi" em 01/11/2026; módulo 6 concluído | Em preparação |
+| 01/11/2026 | 6.84 — Consolidação do módulo 6 | Mapa/escopo/limites/pendências; route:list 2; suíte 66/620; contratos 1/7,1/7,1/14,1/9/lints 0; capturas/temporários/SELECTs antes-depois/ignore/diff/links | Confirmado com "entendi" em 01/11/2026; módulo 6 concluído | Publicado em a1f7e40; remoto conferido |
+
+## Registro posterior à publicação da 6.84
+
+Em 01/11/2026, checkpoint a1f7e4010b611a4f8884e02e6bcf700b85b0bbda publicado e conferido:
+HEAD, origin/main e refs/heads/main remoto coincidiram após o push. Este registro
+documenta o resultado em atualização posterior, sem tentar inserir o SHA do
+checkpoint dentro dele mesmo. Módulos 1 a 6 concluídos; próximo passo: definir
+com o aluno a continuidade. Nenhum outro módulo iniciado. Consultar Git para
+o SHA desta atualização documental.

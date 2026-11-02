@@ -653,8 +653,9 @@ API pública de leitura, responsabilidades, quatro respostas, revisão confirmad
 até 6.83, limites e pendências. Route:list 2, suíte completa 66/620 e quatro
 contratos 1/7,1/7,1/14,1/9/lints 0/processo 0 passaram; capturas/temporários/SELECTs
 antes-depois/ignore/diff/links conferidos. Entendimento da consolidação confirmado
-com "entendi" em 01/11/2026; módulo 6 concluído. Publicação da 6.84 em preparação.
-Depois publicar, registrar o resultado e definir com o aluno a próxima etapa;
+com "entendi" em 01/11/2026; módulo 6 concluído.
+Publicação da 6.84 verificada em a1f7e4010b611a4f8884e02e6bcf700b85b0bbda.
+Próximo passo: definir com o aluno a próxima etapa;
 não iniciar outro módulo por conta própria.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

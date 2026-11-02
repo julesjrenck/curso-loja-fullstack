@@ -3,7 +3,8 @@
 Consolidação, explicação e verificação em 01/11/2026 após confirmação da 6.83
 com "entendi" e publicação em af5cfbd400a118407798f53595163d6ecb9c763f.
 Entendimento da 6.84 confirmado com "entendi" em 01/11/2026; módulo 6 concluído.
-Publicação da 6.84 em preparação.
+Publicação da 6.84 verificada em a1f7e4010b611a4f8884e02e6bcf700b85b0bbda; referências
+local e remotas coincidiram após o push do checkpoint. Este registro é posterior.
 Nenhum outro módulo foi iniciado nesta etapa.
 
 ## Entrega atual
@@ -115,10 +116,10 @@ sugerida de acompanhamento.
 | Entendimento das etapas até 6.83 | Confirmado conforme progresso |
 | Entendimento desta consolidação 6.84 | Confirmado com "entendi" em 01/11/2026; módulo 6 concluído |
 | Publicação da 6.83 | Verificada no SHA informado no início |
-| Publicação da 6.84 | Em preparação |
+| Publicação da 6.84 | Verificada em a1f7e4010b611a4f8884e02e6bcf700b85b0bbda |
 | Continuidade do curso | A definir com o aluno após publicar este checkpoint |
 
-Confirmação registrada em 01/11/2026; módulo 6 concluído. Publicar a 6.84 e
-registrar o resultado. A próxima etapa será definida com o aluno; não iniciar outro módulo por conta própria,
+Confirmação e publicação registradas em 01/11/2026; módulo 6 concluído.
+A próxima etapa será definida com o aluno; não iniciar outro módulo por conta própria,
 conforme [AGENTS.md](../../AGENTS.md). Não há etapa 6.85 ou módulo 7 iniciado
 automaticamente por esta consolidação.
