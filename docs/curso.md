@@ -629,8 +629,13 @@ antes de index, min:1/bail, ValidationException/JSON 422, teste e contrato.
 Default para page ausente não corrige entrada inválida. Fonte oficial consultada;
 focado 1/9/lint 0, corpo/hash/temporários/SELECTs após/ignore conferidos, sem
 alteração de backend/scripts/README/OpenAPI. Explicação apresentada; entendimento
-confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.81: revisar GET
-page=1, do controller à paginação e serialização data/links/meta.
+confirmado com "entendi" em 01/11/2026 e publicada em 93f05de. Na 6.81, revisão
+da listagem válida liga FormRequest/controller/binding/consulta/paginador/Resource,
+com fontes oficiais. HTTP real explícito page=1: 200/JSON, 1 item/data-links-meta.
+Contrato 200 listagem 1/14/lint 0; teste mantém page omitido/padrão 1 e factory.
+Captura/hash/temporários/SELECTs após/ignore conferidos; sem alteração funcional.
+Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.82:
+revisão guiada da consulta individual por ID, produto ativo/resposta 404.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -933,6 +933,19 @@ SELECTs após: loja 0 categorias/1 produto; loja_test 0/0. Backend/scripts/OpenA
 configuração/README/dependências intactos; última suíte 6.76, 66/620.
 Entendimento confirmado com "entendi" em 01/11/2026. Etapa 6.79 publicada em cbe8ae9, remoto conferido.
 
+## Revisão da listagem válida na 6.81
+
+A [aula 06-81](../aulas/06-81-revisao-listagem-valida.md) acompanha page=1:
+validação/controller/interface e binding CatalogoEloquent/ativos/ordem/paginação/
+Resource e envelope data-links-meta. Explica os argumentos de paginate, appends
+do nome validado e distinção entre campos do produto e metadados da página.
+HTTP real explícito page=1 retornou 200/JSON, 1 item e data/links/meta. Separadamente,
+o teste de contrato existente omite page e usa padrão 1/factory/loja_test:
+1/14 e lint/processo 0. Captura 586 bytes/hash e campos conferidos; temporários
+removidos; ignore/diff/links e SELECTs após conferidos. Backend/scripts/OpenAPI/
+README/dependências intactos; última suíte 6.76, 66/620. Entendimento confirmado
+com "entendi" em 01/11/2026. Etapa 6.80 publicada em 93f05de, remoto conferido.
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

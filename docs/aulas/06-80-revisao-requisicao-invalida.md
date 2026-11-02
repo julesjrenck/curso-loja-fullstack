@@ -2,7 +2,8 @@
 
 Revisão, explicação e verificação em 01/11/2026 após confirmação da 6.79 com
 "entendi" e publicação em cbe8ae9e8250b4903767f4dc6ef5b7c9cb9b765c.
-Entendimento da 6.80 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.80 confirmado com "entendi" em 01/11/2026; publicação
+verificada em 93f05de79be9cb298e965bfb7aa11cb317960903, referências local e remotas coincidentes.
 
 ## Objetivo
 
@@ -149,6 +150,9 @@ permanece registrado; aprovação deste caso não prova todas as respostas poss�
 
 Aula anterior registra publicação da 6.79; catálogo, roteiro e progresso
 registram esta revisão, explicação e verificação. Entendimento confirmado com
-"entendi" em 01/11/2026; publicação em preparação. Depois de publicar, iniciar
+"entendi" em 01/11/2026; publicação verificada. Depois de publicar, iniciar
 somente 6.81: revisar GET /api/v1/produtos?page=1, do controller à paginação e
 serialização data/links/meta. Módulo 6 continua em andamento; DBeaver sem relato.
+
+Continuidade realizada na [aula 06-81](06-81-revisao-listagem-valida.md):
+revisão de entrada válida, controller, paginação e Resources.
