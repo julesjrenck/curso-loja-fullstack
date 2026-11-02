@@ -4,8 +4,22 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.78 — Comando único dos contratos do catálogo.
+- Etapa atual: 6.79 — Pré-requisitos e comandos no README.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.79: implementada, explicada e verificada documentalmente em
+  01/11/2026; entendimento confirmado com "entendi" em 01/11/2026. README ganhou seção de
+  verificação e link no índice Documentação: pré-requisitos Docker/serviços/
+  dependências/.env.testing/loja_test/loja_testes e tabelas/FK, links às aulas,
+  comando da suíte Laravel com --do-not-cache-result, download Redocly fixado
+  e comando conjunto dos quatro contratos. Explica alcance de cada verificação,
+  capturas privadas, temporários, interrupção e execução dos runtimes em Docker.
+  Conferidos três comandos exatos, scripts/pares, imagem/digest, configuração
+  pública testing/loja_test/loja_testes e 108 links locais do README, além dos
+  demais links/diff. Backend/scripts/OpenAPI/Compose/dependências intactos.
+  Sem novas execuções Docker/PHP/testes/Redocly/SELECTs nesta etapa documental;
+  última suíte 6.76, 66/620, último comando conjunto 6.78 com quatro casos/lints 0.
+  Publicação em preparação conforme autorização vigente. Próximo passo: publicar e iniciar somente 6.80: revisão guiada de GET page=0, ligando
+  validação, resposta 422, teste e contrato. Módulo 6 continua em andamento.
 - Situação da 6.78: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Criado scripts/validar-contratos-catalogo.sh:
   set -euo pipefail, cd para raiz pelo caminho do script, quatro chamadas
@@ -20,9 +34,8 @@
   temporários removidos, ignore/diff/links conferidos. SELECTs antes/depois:
   loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0. Backend/OpenAPI/
   configuração/scripts anteriores/dependências intactos; última suíte 6.76, 66/620.
-  Limite da 6.64 registrado. Publicação em preparação conforme autorização vigente. Próximo passo:
-  publicar e iniciar somente 6.79: documentar no
-  README pré-requisitos e comandos da suíte Laravel e validação de contratos.
+  Limite da 6.64 registrado. Publicação verificada em 592a00a5d5993b7f59b932683d871c3ac860358f;
+  HEAD/origin/main/main remota coincidiram após push. Continuidade realizada na 6.79.
 - Situação da 6.77: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Somente validar-contrato-produto.sh
   ganhou case listagem:422, com filtro página inválida@zero, flag própria 422
@@ -1019,7 +1032,8 @@
   6.75 confirmada/publicada em 01/11/2026;
   6.76 confirmada/publicada em 01/11/2026;
   6.77 confirmada/publicada em 01/11/2026;
-  6.78 implementada/explicada/verificada; entendimento confirmado em 01/11/2026.
+  6.78 confirmada/publicada em 01/11/2026;
+  6.79 implementada/explicada/verificada; entendimento confirmado em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -1154,25 +1168,21 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.77 confirmada com "entendi" e publicada em
-1be7f19f91f23aa2b4643b18795940331df176cf; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.78 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Novo scripts/validar-contratos-catalogo.sh usa set -euo pipefail, cd para raiz,
-quatro chamadas sequenciais ao script comum: 200/404 consulta e 200/422 listagem.
-Mensagem final só após sucesso de todas. Bash -n passou. Execução real desde
-/tmp com caminho absoluto: testes 1/7, 1/7, 1/14, 1/9, quatro lints 0, processo 0 e
-mensagem final. Quatro capturas renovadas, JSON/campos/hashes/tamanhos 64/42/586/105
-conferidos; ignoradas. Temporários do fluxo removidos. Cópia /tmp/curso-678 com
-simulador do script chamado retorna 23 no segundo caso: processo 23 sem mensagem
-final, somente 200/404 consulta registrados; listagens não iniciadas. Sem Docker
-no simulador, originais intactos. SELECTs antes/depois: loja/loja_app 0 categorias/
-1 produto; loja_test/loja_testes 0/0. Backend/OpenAPI/configuração/scripts anteriores/
-dependências intactos, diff/links conferidos; última suíte 6.76, 66/620, não repetida.
-Limite da 6.64 registrado. Aula docs/aulas/06-78-comando-contratos-catalogo.md,
-catálogo e registros atualizados. Publicação em preparação conforme autorização vigente. Próximo
-passo: publicar e iniciar somente 6.79: documentar
-no README pré-requisitos e comandos da suíte Laravel e validação de contratos.
-Exercício DBeaver continua sem relato. Não iniciado módulo 7.
+Estado mais recente em 01/11/2026: 6.78 confirmada com "entendi" e publicada em
+592a00a5d5993b7f59b932683d871c3ac860358f; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.79 implementada, explicada e verificada documentalmente; entendimento confirmado com "entendi" em 01/11/2026. README ganhou seção de verificações e link no índice:
+pré-requisitos de serviços/dev deps/.env.testing/conta/banco/tabelas/FK; comando
+suíte Laravel, download Redocly fixado e comando conjunto dos contratos.
+Links às aulas existentes e explicação do alcance complementar, capturas,
+temporários/interrupção e runtimes em Docker. Três comandos exatos conferidos
+com scripts/configuração pública; 108 links locais do README e demais links/diff
+conferidos. Backend/scripts/OpenAPI/configuração/Compose/dependências intactos.
+Sem execuções Docker/PHP/testes/Redocly/SELECTs nesta etapa documental. Última
+suíte completa 6.76, 66/620; último comando conjunto real 6.78, quatro casos/lints 0.
+Aula docs/aulas/06-79-comandos-verificacao-readme.md, catálogo e registros
+atualizados. Publicação em preparação conforme autorização vigente. Próximo passo: publicar e iniciar somente 6.80: revisão guiada de GET
+/api/v1/produtos?page=0, relacionando validação, resposta 422, teste e contrato.
+Módulo 6 em andamento; exercício DBeaver segue sem relato do aluno.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -10427,14 +10437,45 @@ loja_test/loja_testes 0 categorias/0 produtos. Backend/OpenAPI/configuração,
 scripts anteriores e dependências intactos. Diff/links conferidos. Sem nova
 suíte completa; última 6.76, 66/620. Limite do validador da 6.64 registrado:
 quatro casos não provam todas as possíveis respostas. Explicação apresentada;
-entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação conforme autorização vigente.
-Último checkpoint publicado: 1be7f19f91f23aa2b4643b18795940331df176cf, etapa 6.77.
-Próximo passo: publicar e iniciar somente 6.79:
-documentar no README pré-requisitos e comandos da suíte Laravel e validação
-de contratos. Módulo 6 continua em andamento; exercício DBeaver sem relato.
+entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em 592a00a5d5993b7f59b932683d871c3ac860358f;
+HEAD/origin/main/main remota coincidiram após push. Continuidade realizada na 6.79.
+Exercício DBeaver continua sem relato do aluno. Módulo 6 continua em andamento.
+
+## Etapa 6.79 — Pré-requisitos e comandos no README
+
+Implementação, explicação e verificação documental em 01/11/2026 após confirmação
+com "entendi" da 6.78 e publicação em 592a00a5d5993b7f59b932683d871c3ac860358f.
+HEAD/origin/main/main remota coincidiram após push; árvore limpa antes da 6.79.
+Aula docs/aulas/06-79-comandos-verificacao-readme.md. README ganhou seção
+Verificar o backend e os contratos da API, mais link no índice Documentação.
+Pré-requisitos: Docker/Compose, backend/sqlserver iniciados e banco pronto,
+dependências dev por lockfile/descoberta, .env.testing local com chave própria,
+loja_test/loja_testes e produtos/categorias/FK preparados. Links às aulas
+existentes, sem copiar credenciais. Comandos: suíte Laravel com
+--do-not-cache-result, pull da imagem Redocly 2.65.0/digest do script e comando
+conjunto de contratos. Explica efeitos, alcance complementar, arquivos privados,
+temporários e interrupção no primeiro erro. PHP/Composer/testes/Redocly em Docker.
+
+Verificação estática: três blocos comparados exatamente, imagem/digest e opção
+do teste conferidos no script comum, quatro pares no script conjunto, ambiente/
+banco no phpunit.xml e conta no modelo público. README com 108 links locais para
+arquivos existentes; títulos das âncoras novas conferidos. Demais links/diff
+conferidos. Backend/scripts/OpenAPI/configuração/Compose/dependências intactos;
+nenhuma credencial/arquivo privado incluído. Sem Docker/PHP/testes/Redocly ou
+SELECTs executados nesta etapa documental. Última suíte completa 6.76, 66/620;
+último comando conjunto real 6.78 com quatro casos/lints 0 e processo 0. Registros
+históricos mantidos. Limite da 6.64 segue registrado nas aulas/contrato/progresso.
+
+Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação conforme autorização vigente. Último checkpoint publicado: 592a00a5d5993b7f59b932683d871c3ac860358f, etapa 6.78.
+Próximo passo: publicar e iniciar somente 6.80: revisão
+guiada de GET /api/v1/produtos?page=0, relacionando validação, resposta 422,
+teste e contrato. Módulo 6 continua em andamento; exercício DBeaver sem relato.
 
 ## Verificações e limitações do ambiente
 
+- Na 6.79, verificação documental do README: três comandos exatos, imagem/
+  digest, scripts/pares/configuração e 108 links locais conferidos; demais
+  links/diff passaram. Sem nova execução Docker/PHP/testes/Redocly/SELECTs.
 - Na 6.78, comando conjunto desde /tmp: testes 1/7, 1/7, 1/14, 1/9 e quatro
   lints 0; processo 0 com mensagem final. Diagnóstico de falha no segundo caso:
   processo 23, sem listagens nem conclusão. Capturas/temporários/SELECTs/ignore/
@@ -10920,8 +10961,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   e publicada em 1be7f19. Na 6.78, comando conjunto executou os quatro casos:
   1/7, 1/7, 1/14, 1/9 e lints 0; processo 0 com conclusão. Diagnóstico segundo caso
   saiu 23, sem listagens/conclusão; capturas/temporários/SELECTs/ignore conferidos.
-  Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.79:
-  documentar no README pré-requisitos e comandos da suíte Laravel e dos contratos.
+  Entendimento confirmado com "entendi" em 01/11/2026 e publicada em 592a00a.
+  Na 6.79, README ganhou pré-requisitos e comandos, com alcance complementar;
+  três comandos/scripts/pares/imagem/configuração e 108 links locais conferidos,
+  demais links/diff passaram. Sem novos testes/SQL nesta etapa documental.
+  Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.80:
+  revisão guiada de GET page=0, validação/resposta 422/teste/contrato.
   Última suíte Laravel: 66/620 executada na 6.76; anteriormente na 6.74.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
@@ -11163,4 +11208,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.75 — Validar captura da listagem | Segundo argumento operação; listagem 200 1/14/lint 0, individuais 200/404 1/7/lint 0; inválido2, data objeto/sem meta em cópias 1; originais/temporários/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em d3c76b2; remoto conferido |
 | 01/11/2026 | 6.76 — Captura da listagem 422 | Flag própria e condição page=0; sem flag 1/8, primeira opt-in 1/9, conjunto 11/90, negativa 1/8; suíte 66/620, quatro hashes/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em c6bca3b; remoto conferido |
 | 01/11/2026 | 6.77 — Validar captura 422 | Case listagem 422; teste 1/9/lint 0; regressões 200/404/listagem 200; inválidos 2, sem errors/page texto em cópias 1; original/temporários/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 1be7f19; remoto conferido |
-| 01/11/2026 | 6.78 — Comando dos contratos | Script sequencial; real desde /tmp 1/7,1/7,1/14,1/9 e quatro lints 0/processo 0; simulador falha segundo caso 23 sem listagens/conclusão; capturas/temporários/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Em preparação |
+| 01/11/2026 | 6.78 — Comando dos contratos | Script sequencial; real desde /tmp 1/7,1/7,1/14,1/9 e quatro lints 0/processo 0; simulador falha segundo caso 23 sem listagens/conclusão; capturas/temporários/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 592a00a; remoto conferido |
+| 01/11/2026 | 6.79 — Comandos no README | Pré-requisitos, suíte e contratos; três comandos/scripts/pares/imagem/configuração e 108 links locais, demais links/diff; sem nova execução runtime/SQL | Confirmado com "entendi" em 01/11/2026 | Em preparação |

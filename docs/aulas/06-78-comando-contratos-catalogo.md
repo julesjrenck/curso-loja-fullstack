@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.77 com "entendi" e publicação em 1be7f19f91f23aa2b4643b18795940331df176cf.
-Entendimento da 6.78 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.78 confirmado com "entendi" em 01/11/2026; publicação
+verificada em 592a00a5d5993b7f59b932683d871c3ac860358f, referências local e remotas coincidentes.
 
 ## Objetivo e novo arquivo
 
@@ -96,7 +97,10 @@ Aula anterior registra a publicação da 6.77. Catálogo em português, roteiro 
 progresso registram esta etapa. Limite do validador observado na 6.64 mantido:
 quatro casos aprovados não demonstram todas as possíveis respostas da API.
 
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada.
 Depois de publicar, iniciar somente 6.79: documentar no README os pré-requisitos e os
 comandos da suíte Laravel e da validação de contratos. Não iniciado módulo 7.
 Exercício DBeaver segue sem relato do aluno.
+
+Continuidade realizada na [aula 06-79](06-79-comandos-verificacao-readme.md):
+documentação dos pré-requisitos e comandos no README.

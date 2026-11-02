@@ -903,6 +903,21 @@ intactos; última suíte 6.76, 66/620. Entendimento confirmado com "entendi" em 
 Etapa 6.77 publicada em 1be7f19, remoto conferido. Explicação na
 [aula 06-78](../aulas/06-78-comando-contratos-catalogo.md).
 
+## Orientação de execução no README na 6.79
+
+O [README](../../README.md#verificar-o-backend-e-os-contratos-da-api) agora reúne
+pré-requisitos dos serviços, dependências dev, ambiente/banco/conta/tabelas/FK
+de testes e os comandos da suíte Laravel, download Redocly fixado e validação
+conjunta dos contratos. Explica o alcance complementar, capturas privadas,
+temporários e interrupção no primeiro erro, com links às aulas de preparação.
+Três comandos conferidos com scripts/configuração pública, imagem/digest e
+quatro pares; 108 links locais do README e demais links/diff passaram.
+Etapa documental: sem nova execução Docker/PHP/testes/Redocly/SELECTs. Última
+suíte 6.76, 66/620; comando conjunto real 6.78 aprovado. Backend/scripts/OpenAPI e
+dependências intactos. Entendimento confirmado com "entendi" em 01/11/2026. Etapa 6.78 publicada
+em 592a00a, remoto conferido. Explicação na
+[aula 06-79](../aulas/06-79-comandos-verificacao-readme.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

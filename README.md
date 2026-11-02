@@ -450,6 +450,7 @@ O estado detalhado e atualizado das aulas fica no registro de progresso.
 - [Roteiro dos 23 módulos](docs/curso.md)
 - [Progresso e ponto de retomada](docs/progresso.md)
 - [Instruções para acompanhar o curso](AGENTS.md)
+- [Testes do backend e contratos da API](#verificar-o-backend-e-os-contratos-da-api)
 - [Aula 2.2 — Comando do primeiro container PHP](docs/aulas/02-02-primeiro-container.md)
 - [Aula 2.3 — Primeiro Dockerfile](docs/aulas/02-03-dockerfile.md)
 - [Aula 2.4 — Código PHP dentro da imagem](docs/aulas/02-04-codigo-na-imagem.md)
@@ -776,6 +777,69 @@ docker compose exec -T backend php artisan loja:verificar-banco
 O comando consulta o SQL Server e imprime Banco: loja, Login: loja_app e
 Usuário: loja_app. A [aula 5.9](docs/aulas/05-09-primeira-consulta-laravel.md)
 explica o registro Artisan, a fachada DB, o SQL e o objeto retornado.
+
+## Verificar o backend e os contratos da API
+
+Execute os comandos desta seção na raiz do repositório, com o ambiente já
+preparado nas aulas anteriores:
+
+- Docker e Compose disponíveis; serviços `backend` e `sqlserver` iniciados e
+  SQL Server pronto para conexões. Veja [backend](#backend-laravel) e
+  [SQL Server local](#executar-o-sql-server-local).
+- Dependências de desenvolvimento do backend instaladas pelo lockfile e
+  descoberta dos pacotes concluída, conforme a seção do backend acima.
+- `backend/.env.testing` local preenchido a partir de
+  [`.env.testing.example`](backend/.env.testing.example), com chave própria e
+  acesso exclusivo a `loja_test` pela conta `loja_testes`. A preparação está nas
+  [aulas 5.35](docs/aulas/05-35-aplicar-conta-testes.md) e
+  [5.37](docs/aulas/05-37-ambiente-local-testes.md). Chaves e senhas ficam somente
+  nos arquivos locais ignorados pelo Git.
+- Banco de testes com tabelas e relacionamento preparados: veja
+  [produtos](docs/aulas/05-40-migration-produtos-testes.md),
+  [categorias](docs/aulas/05-60-categorias-banco-testes.md) e
+  [chave estrangeira](docs/aulas/05-67-references-fk-testes.md).
+
+Para executar a suíte Laravel, que cobre os comportamentos de `backend/tests`:
+
+```sh
+docker compose exec -T backend php artisan test --do-not-cache-result
+```
+
+`exec` usa o container existente; `-T` dispensa terminal interativo.
+`--do-not-cache-result` evita escrever o cache de resultados na montagem somente
+leitura de `/app`. O [phpunit.xml](backend/phpunit.xml) seleciona o ambiente
+`testing` e o banco `loja_test`; os testes de integração conferem também a conta
+e usam transações para desfazer seus dados.
+
+Para comparar os corpos capturados aos schemas OpenAPI, disponibilize também
+a imagem fixada do Redocly. Em um ambiente que ainda não a tenha, baixe-a antes:
+
+```sh
+docker pull redocly/cli:2.65.0@sha256:42acee0d7e629a9d0376d8df579dc325e51da727de06a31036bccc02409a7e11
+```
+
+Depois execute:
+
+```sh
+bash scripts/validar-contratos-catalogo.sh
+```
+
+O [script conjunto](scripts/validar-contratos-catalogo.sh) executa quatro casos
+focados em sequência: consulta individual 200/404 e listagem 200/422.
+Cada caso gera uma captura atual após as asserções do teste e a compara ao
+schema correspondente em uma cópia temporária do
+[OpenAPI](docs/api/openapi.json), usando a
+[configuração existente](docs/api/redocly.yaml). O validador roda sem rede;
+o download da imagem é uma preparação separada. A sequência para no primeiro
+erro e só anuncia quatro casos validados quando todos passam.
+
+As capturas ficam em `backend/storage/app/private/contratos/`, ignoradas pelo
+Git; as cópias temporárias do OpenAPI são removidas. A suíte verifica os
+comportamentos implementados; o comando de contratos compara os corpos desses
+quatro casos aos schemas. As duas verificações se complementam.
+PHP, Composer, testes e Redocly executam em Docker; Bash no host coordena os
+comandos. Detalhes do fluxo e de seu alcance na
+[aula 6.78](docs/aulas/06-78-comando-contratos-catalogo.md).
 
 ## Executar a demonstração do laboratório PHP
 

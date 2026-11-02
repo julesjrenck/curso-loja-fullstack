@@ -618,8 +618,14 @@ fluxo compartilhado e conclusão somente após sucesso. Desde /tmp, quatro casos
 1/7, 1/7, 1/14, 1/9 e lints 0/processo 0. Simulador falhou no segundo caso 23:
 sem listagens ou conclusão; originais/capturas/temporários/SELECTs conferidos.
 Última suíte 6.76, 66/620. Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026.
-Publicar e iniciar somente 6.79: documentar no README pré-requisitos e
-comandos da suíte Laravel e da verificação de contratos.
+Publicação verificada em 592a00a. Na 6.79, README recebeu pré-requisitos e comandos
+da suíte Laravel, preparação da imagem Redocly e execução conjunta dos contratos,
+com alcance complementar e links às aulas. Três comandos/imagem/pares/configuração
+e 108 links locais conferidos, demais links/diff passaram. Etapa documental sem
+nova execução runtime/SQL; última suíte 6.76, 66/620, comando conjunto real 6.78.
+Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026.
+Publicar e iniciar somente 6.80: revisão guiada de GET page=0, ligando validação,
+resposta 422, teste e contrato.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
