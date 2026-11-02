@@ -4,8 +4,26 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.75 — Validação da captura 200 da listagem.
+- Etapa atual: 6.76 — Captura optativa da resposta 422 da listagem.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.76: implementada, explicada e verificada em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Somente teste de página inválida em
+  CatalogoApiTest ganhou captura optativa CAPTURAR_CONTRATO_LISTAGEM_422=1,
+  restrita a query exatamente page=0. Arquivo privado listagem-422.json:
+  remove anterior no início do caso escolhido; mantém GET/asserções; após
+  sucesso grava getContent bruto com JSON_THROW_ON_ERROR/pasta/bytes conferidos.
+  Demais entradas do DataProvider não removem nem gravam, mesmo com flag.
+  Filtro @zero conferido por --list-tests, uma entrada, PHPUnit 12.5.39.
+  Sem flag: 1/8 e sem arquivo; primeira captura: 1/9; onze entradas com flag
+  e arquivo anterior: 11/90; negativa com flag: 1/8. Suíte sem flags: 66/620.
+  Hashes das quatro capturas preservados ao fim. Corpo 422 com message texto e
+  errors.page lista de textos, 105 bytes/hash conferidos, frase não fixada no teste.
+  SELECTs antes/depois: loja/loja_app 0 categorias/1 produto;
+  loja_test/loja_testes 0/0. Ignore/diff/links conferidos. Produção/OpenAPI/
+  scripts/dependências intactos. Captura 422 ainda não comparada ao schema;
+  script ainda não aceita 422 listagem. Limite da 6.64 registrado.
+  Publicação em preparação conforme autorização vigente. Próximo passo: publicar e iniciar somente 6.77: comparar captura 422 da listagem ao
+  schema em cópia temporária do OpenAPI pelo fluxo Docker já estudado.
 - Situação da 6.75: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Somente validar-contrato-produto.sh
   ganhou segundo argumento operacao (padrão consulta); case combina operação/status.
@@ -22,9 +40,8 @@
   preservou hashes individuais; regressões individuais renovaram suas capturas.
   Bash -n separado nos scripts; diff/links/ignore conferidos. Backend/OpenAPI/
   configuração/atalho 404/dependências intactos; última suíte 6.74, 66/620.
-  Limite da 6.64 registrado. Publicação em preparação conforme autorização vigente. Próximo passo:
-  publicar e iniciar somente 6.76: preparar captura
-  optativa de 422 da listagem em um caso de entrada inválida no teste HTTP.
+  Limite da 6.64 registrado. Publicação verificada em d3c76b255a91948809c7eac43561f2d840c507ef;
+  HEAD/origin/main/main remota coincidiram após push. Continuidade realizada na 6.76.
 - Situação da 6.74: implementada, explicada e verificada em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Somente test_retorna_produto_ativo_em_json
   ganhou flag CAPTURAR_CONTRATO_LISTAGEM_200=1 e arquivo privado listagem-200.json.
@@ -963,7 +980,8 @@
   6.72 confirmada/publicada em 01/11/2026;
   6.73 confirmada/publicada em 01/11/2026;
   6.74 confirmada/publicada em 01/11/2026;
-  6.75 implementada/explicada/verificada; entendimento confirmado em 01/11/2026.
+  6.75 confirmada/publicada em 01/11/2026;
+  6.76 implementada/explicada/verificada; entendimento confirmado em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -1098,26 +1116,27 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.74 confirmada com "entendi" e publicada em
-8e19c0c18b38e41adb08a0cd62536eb3d8f5f839; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.75 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Validar-contrato-produto.sh aceita segundo argumento consulta/listagem (consulta
-padrão); case operação:status escolhe teste/flag/caminho; arquivo vem dos dois.
-PHP recebe status/caminho/arquivo por argv e escolhe response da operação correta.
-200 listagem passou com teste 1/14 e lint/processo 0; 200 individual e atalho 404
-passaram com 1/7 e lint/processo 0. 404 listagem saiu 2 antes do Docker.
-Cópias /tmp/curso-675 com data objeto e sem meta só no example temporário:
-testes 1/14 passaram e lint/processo 1 em cada, erros array/meta obrigatório.
-Captura original íntegra: ID observado 22914, 586 bytes, SHA256
-cee3d4a19ffc8291017a547fbd64daf493b54a5d18f54d65e200ba0e5bdf2107.
-Temporários limpos. SELECTs antes/depois: loja/loja_app 0 categorias/1 produto;
-loja_test/loja_testes 0/0. Listagem preservou hashes individuais; comandos de
-regressão individuais depois renovaram suas próprias capturas. Bash -n separado,
-diff/links/ignore conferidos. Backend/OpenAPI/configuração/atalho 404/dependências
-intactos; última suíte completa 6.74, 66/620. Limite da 6.64 registrado.
-Aula docs/aulas/06-75-validacao-captura-listagem.md, catálogo e registros atualizados.
-Publicação em preparação conforme autorização vigente. Próximo passo: publicar e iniciar somente 6.76: preparar captura optativa de 422 da
-listagem em um caso de entrada inválida do teste HTTP. DBeaver segue sem relato.
+Estado mais recente em 01/11/2026: 6.75 confirmada com "entendi" e publicada em
+d3c76b255a91948809c7eac43561f2d840c507ef; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.76 implementada, explicada e verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Teste de página inválida em CatalogoApiTest aceita flag
+CAPTURAR_CONTRATO_LISTAGEM_422=1, somente quando $query === 'page=0'.
+Remove captura anterior no caso escolhido; mantém GET/asserções; após sucesso,
+grava corpo bruto em storage/app/private/contratos/listagem-422.json, valida
+sintaxe JSON e bytes. Outras entradas do provider não tocam o arquivo.
+Filtro @zero seleciona uma entrada, conferido por --list-tests, PHPUnit 12.5.39.
+Sem flag 1/8 sem arquivo; primeira captura 1/9; onze entradas com flag e arquivo
+anterior 11/90; negativa com flag 1/8. Suíte completa sem flags 66/620 passou;
+hashes das quatro capturas preservados. Corpo message string/errors.page lista,
+105 bytes, SHA256 8dab8e21482477f6b0a6b77d2241166d86848d7322f250fb51665982d8bde6d1.
+SELECTs antes/depois: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0.
+Ignore/diff/links conferidos. Produção/OpenAPI/scripts/dependências intactos.
+Aula docs/aulas/06-76-captura-listagem-422.md e registros atualizados. Limite da
+6.64 registrado. Captura 422 ainda não comparada ao schema; script ainda não
+aceita 422 listagem. Publicação em preparação conforme autorização vigente. Próximo passo:
+publicar e iniciar somente 6.77: comparar a
+captura 422 da listagem ao schema em cópia temporária do OpenAPI pelo fluxo
+Docker já estudado. Exercício DBeaver continua sem relato do aluno.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -10271,17 +10290,54 @@ diff/links conferidos. Backend/OpenAPI/configuração/atalho 404/dependências
 intactos. Sem nova suíte completa; última 6.74, 66/620. Limite da 6.64 registrado.
 
 Cobertura de corpos capturados inclui um caso de listagem 200 e individuais 200/404;
-ainda falta 422 capturado. Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação conforme autorização vigente. Último checkpoint publicado:
-8e19c0c18b38e41adb08a0cd62536eb3d8f5f839, etapa 6.74. Próximo passo: publicar e iniciar somente 6.76: preparar captura optativa da
-resposta 422 da listagem em um caso de entrada inválida do teste HTTP.
+ainda falta 422 capturado. Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em d3c76b255a91948809c7eac43561f2d840c507ef;
+HEAD/origin/main/main remota coincidiram após push. Continuidade realizada na 6.76.
 Exercício DBeaver continua sem relato do aluno.
+
+## Etapa 6.76 — Captura optativa da resposta 422 da listagem
+
+Implementação, explicação e verificação em 01/11/2026 após confirmação da
+6.75 com "entendi" e publicação em d3c76b255a91948809c7eac43561f2d840c507ef.
+HEAD/origin/main/main remota coincidiram após push; árvore limpa antes da 6.76.
+Aula docs/aulas/06-76-captura-listagem-422.md. Somente método
+CatalogoApiTest::test_retorna_422_em_json_para_pagina_invalida recebeu captura:
+flag CAPTURAR_CONTRATO_LISTAGEM_422=1 e condição adicional $query === 'page=0'.
+Remove anterior somente nesse caso, antes do GET. Mantém asserções de 422/JSON/
+message/errors.page; após sucesso grava getContent bruto, JSON_THROW_ON_ERROR,
+ensureDirectoryExists/File::put com conferência de bytes. Arquivo privado
+storage/app/private/contratos/listagem-422.json. Provider com onze casos mantido;
+entradas diferentes não removem nem sobrescrevem, mesmo com flag.
+
+Fonte oficial PHPUnit para filtro de entrada nomeada consultada. --list-tests
+com filtro método@zero selecionou uma entrada; PHPUnit instalado 12.5.39.
+Caso zero sem flag: 1 teste/8 asserções e arquivo ausente; primeira opt-in: 1/9.
+Conjunto completo com flag e arquivo anterior: 11/90; negativa com flag: 1/8.
+Suíte completa sem flags: 66/620. Hashes das quatro capturas preservados ao fim.
+Corpo original conferido via PHP Docker: message string e errors.page lista
+com mensagem The page field must be at least 1.; 105 bytes, SHA256
+8dab8e21482477f6b0a6b77d2241166d86848d7322f250fb51665982d8bde6d1.
+Frase observada, não fixada como expectativa. SELECTs antes/depois:
+loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0 categorias/0 produtos.
+Identidades/DatabaseTransactions preservados; arquivos fora da transação.
+Ignore/diff/links conferidos. Produção, OpenAPI/configuração/scripts/dependências
+intactos. Nenhum serviço novo. Captura 422 ainda não comparada ao schema;
+script de validação ainda não aceita 422 listagem. Limite da 6.64 registrado.
+
+Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação conforme autorização vigente. Último checkpoint publicado: d3c76b255a91948809c7eac43561f2d840c507ef, etapa 6.75.
+Próximo passo: publicar e iniciar somente 6.77:
+comparar a captura 422 da listagem ao schema em cópia temporária do OpenAPI
+pelo fluxo Docker já estudado. Exercício DBeaver segue sem relato do aluno.
 
 ## Verificações e limitações do ambiente
 
+- Última suíte completa na 6.76: 66 testes/620 asserções passaram sem flags.
+  Captura 422 do caso zero: sem flag 1/8 sem arquivo, primeira opt-in 1/9;
+  onze entradas com flag 11/90; negativa com flag 1/8. Hashes das quatro capturas
+  preservados; SELECTs antes/depois, ignore/diff/links conferidos.
 - Na 6.75, listagem 200 1/14/lint 0; individuais 200/404 1/7/lint 0; combinação
   404 listagem código 2. Cópias data objeto/sem meta saíram 1, testes 1/14 passaram.
   Captura original/temporários/SELECTs/ignore/diff/links conferidos; sem nova suíte.
-- Última suíte completa na 6.74: 66 testes/620 asserções passaram sem flags.
+- Na 6.74, suíte completa: 66 testes/620 asserções passaram sem flags.
   Listagem focada: 1/13 sem flag e sem arquivo; primeira captura 1/14; segunda
   1/15, substituiu anterior. Hashes das três capturas preservados após suíte.
   SELECTs antes/depois: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0.
@@ -10741,9 +10797,13 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Na 6.75, fluxo recebe operação como segundo argumento; listagem 200 1/14/lint 0,
   individuais 200/404 1/7/lint 0. Combinação inválida 2; data objeto/sem meta nas
   cópias saíram 1; original/temporários/SELECTs/ignore conferidos. Entendimento
-  confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.76: preparar
-  captura optativa de 422 da listagem em um caso de entrada inválida do teste HTTP.
-  Última suíte Laravel: 66/620 executada na 6.74; anteriormente na 6.72.
+  confirmado com "entendi" em 01/11/2026 e publicada em d3c76b2.
+  Na 6.76, teste de página inválida captura somente page=0 com flag 422 própria:
+  sem flag 1/8, primeira captura 1/9, conjunto 11/90, negativa 1/8; suíte 66/620 e
+  hashes/SELECTs/ignore conferidos. Entendimento confirmado com "entendi" em 01/11/2026.
+  Publicar e iniciar somente 6.77: comparar captura 422 da listagem ao
+  schema em cópia temporária do OpenAPI pelo fluxo Docker.
+  Última suíte Laravel: 66/620 executada na 6.76; anteriormente na 6.74.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -10981,4 +11041,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.72 — Captura 200 em teste HTTP | Flag/arquivo próprios, ID da factory; 1/6 sem flag, primeira opt-in 1/7, segunda 1/8, suíte 66/620; hashes/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em bd05ce0; remoto conferido |
 | 01/11/2026 | 6.73 — Validar captura 200 | Fluxo comum 200/404 e atalho preservado; ambos 1/7/lint 0, status inválido 2, cópia com preço texto 1; originais/temporários/SELECTs/diff/links/ignore | Confirmado com "entendi" em 01/11/2026 | Publicado em 371ec88; remoto conferido |
 | 01/11/2026 | 6.74 — Captura da listagem 200 | Flag/arquivo próprios; corpo data/links/meta, ID da factory; sem flag 1/13, primeira captura 1/14, segunda 1/15; suíte 66/620, hashes/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 8e19c0c; remoto conferido |
-| 01/11/2026 | 6.75 — Validar captura da listagem | Segundo argumento operação; listagem 200 1/14/lint 0, individuais 200/404 1/7/lint 0; inválido2, data objeto/sem meta em cópias 1; originais/temporários/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Em preparação |
+| 01/11/2026 | 6.75 — Validar captura da listagem | Segundo argumento operação; listagem 200 1/14/lint 0, individuais 200/404 1/7/lint 0; inválido2, data objeto/sem meta em cópias 1; originais/temporários/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em d3c76b2; remoto conferido |
+| 01/11/2026 | 6.76 — Captura da listagem 422 | Flag própria e condição page=0; sem flag 1/8, primeira opt-in 1/9, conjunto 11/90, negativa 1/8; suíte 66/620, quatro hashes/SELECTs/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Em preparação |

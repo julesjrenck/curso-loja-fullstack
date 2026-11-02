@@ -600,8 +600,15 @@ argv; cópia integral troca só example. Listagem 1/14/lint 0, individuais 200/4
 1/7/lint 0; combinação inválida 2 e cópias data objeto/sem meta1 esperados.
 Originais/temporários/SELECTs/ignore conferidos; backend/OpenAPI intactos,
 última suíte 6.74, 66/620. Explicação apresentada; entendimento confirmado
-com "entendi" em 01/11/2026. Publicar e iniciar somente 6.76: preparar captura optativa
-de 422 da listagem em um caso de entrada inválida do teste HTTP.
+com "entendi" em 01/11/2026 e publicada em d3c76b2. Na 6.76, teste de páginas
+inválidas ganhou captura optativa CAPTURAR_CONTRATO_LISTAGEM_422=1 restrita a
+page=0, com limpeza anterior e gravação bruta após asserções. Filtro @zero
+conferido. Sem flag 1/8 sem arquivo, primeira captura 1/9; conjunto com flag
+11/90, negativa 1/8; suíte 66/620. Quatro hashes/SELECTs/ignore conferidos.
+Corpo message/errors.page observado; produção/OpenAPI/scripts intactos.
+Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026.
+Publicar e iniciar somente 6.77: comparar captura 422 da listagem ao schema em cópia
+temporária do OpenAPI pelo fluxo Docker já estudado.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

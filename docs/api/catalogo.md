@@ -847,6 +847,24 @@ loja_test 0/0. Última suíte completa 6.74, 66/620. Entendimento confirmado com
 A etapa 6.74 foi publicada em 8e19c0c, remoto conferido. Explicação na
 [aula 06-75](../aulas/06-75-validacao-captura-listagem.md).
 
+## Captura da resposta 422 da listagem na 6.76
+
+O teste de página inválida em CatalogoApiTest aceita
+CAPTURAR_CONTRATO_LISTAGEM_422=1 e captura somente a query page=0. Remove
+arquivo anterior nesse caso e, após as asserções existentes, grava o corpo
+bruto em storage/app/private/contratos/listagem-422.json com sintaxe JSON e
+bytes conferidos. Demais entradas do DataProvider não removem nem sobrescrevem.
+Arquivo privado ignorado; flags/capturas anteriores independentes.
+
+Corpo observado com message texto e errors.page lista de mensagens; frase
+não fixada no teste. Filtro @zero seleciona uma entrada. Sem flag 1/8 e sem
+arquivo; primeira opt-in 1/9; onze entradas com flag 11/90; negativa 1/8.
+Suíte comum 66/620; hashes das quatro capturas e contagens dos bancos preservados.
+Produção/OpenAPI/scripts intactos. A captura 422 ainda não foi comparada ao
+schema; script ainda não aceita 422 listagem. Entendimento confirmado com "entendi" em 01/11/2026.
+A etapa 6.75 foi publicada em d3c76b2, remoto conferido. Explicação na
+[aula 06-76](../aulas/06-76-captura-listagem-422.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

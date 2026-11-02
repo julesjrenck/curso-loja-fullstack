@@ -738,6 +738,13 @@ class CatalogoApiTest extends TestCase
     #[DataProvider('paginasInvalidas')]
     public function test_retorna_422_em_json_para_pagina_invalida(string $query): void
     {
+        $capturar = getenv('CAPTURAR_CONTRATO_LISTAGEM_422') === '1' && $query === 'page=0';
+        $caminhoCaptura = storage_path('app/private/contratos/listagem-422.json');
+
+        if ($capturar && File::exists($caminhoCaptura)) {
+            $this->assertTrue(File::delete($caminhoCaptura));
+        }
+
         $resposta = $this->getJson('/api/v1/produtos?'.$query);
 
         $resposta
@@ -745,6 +752,14 @@ class CatalogoApiTest extends TestCase
             ->assertHeader('Content-Type', 'application/json')
             ->assertJsonStructure(['message'])
             ->assertJsonValidationErrors(['page']);
+
+        if ($capturar) {
+            $corpo = $resposta->getContent();
+            json_decode($corpo, false, 512, JSON_THROW_ON_ERROR);
+
+            File::ensureDirectoryExists(dirname($caminhoCaptura));
+            $this->assertSame(strlen($corpo), File::put($caminhoCaptura, $corpo));
+        }
     }
 
     public static function paginasInvalidas(): array

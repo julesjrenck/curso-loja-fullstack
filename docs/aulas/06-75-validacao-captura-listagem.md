@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.74 com "entendi" e publicação em 8e19c0c18b38e41adb08a0cd62536eb3d8f5f839.
-Entendimento da 6.75 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.75 confirmado com "entendi" em 01/11/2026; publicação
+verificada em d3c76b255a91948809c7eac43561f2d840c507ef, referências local e remotas coincidentes.
 
 ## Escolher a operação além do status
 
@@ -115,7 +116,7 @@ pois o backend não mudou: última suíte na 6.74, 66 testes/620 asserções.
 
 Aula anterior registra publicação da 6.74. Catálogo em português, roteiro e
 progresso registram implementação, explicação e verificação da 6.75; entendimento
-confirmado com "entendi" em 01/11/2026 e publicação em preparação. O fluxo cobre um caso de listagem
+confirmado com "entendi" em 01/11/2026 e publicação verificada. O fluxo cobre um caso de listagem
 200 e os casos individuais 200/404, sem substituir as asserções de negócio nem
 provar todas as possíveis respostas. A limitação do validador observada na 6.64
 continua registrada; id path original mantém required true.
@@ -123,3 +124,6 @@ continua registrada; id path original mantém required true.
 Após confirmar entendimento e publicar, iniciar somente 6.76: preparar captura
 optativa da resposta 422 da listagem em um caso de entrada inválida do teste HTTP.
 Exercício DBeaver continua sem relato do aluno.
+
+Continuidade realizada na [aula 06-76](06-76-captura-listagem-422.md):
+captura optativa do caso page=0 da listagem.
