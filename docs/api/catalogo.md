@@ -918,6 +918,21 @@ dependências intactos. Entendimento confirmado com "entendi" em 01/11/2026. Eta
 em 592a00a, remoto conferido. Explicação na
 [aula 06-79](../aulas/06-79-comandos-verificacao-readme.md).
 
+## Revisão do caminho inválido na 6.80
+
+A [aula 06-80](../aulas/06-80-revisao-requisicao-invalida.md) acompanha GET
+/api/v1/produtos?page=0: rota de listagem, FormRequest antes de index, min:1
+falha/bail por campo, ValidationException e JSON 422, teste/captura/schema.
+O padrão de pagina() para ausência não corrige page=0. O corpo de index não é
+alcançado, conclusão por leitura local e fluxo documentado; sem instrumentação
+nova. SQL de preparação do teste é distinguido da chamada ao catálogo.
+
+Reprodução focada 422 listagem 1/9 e lint/processo 0; captura 105 bytes/hash e corpo
+message/errors.page conferidos, temporários removidos, ignore/diff/links passaram.
+SELECTs após: loja 0 categorias/1 produto; loja_test 0/0. Backend/scripts/OpenAPI/
+configuração/README/dependências intactos; última suíte 6.76, 66/620.
+Entendimento confirmado com "entendi" em 01/11/2026. Etapa 6.79 publicada em cbe8ae9, remoto conferido.
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

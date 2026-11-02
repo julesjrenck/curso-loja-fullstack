@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação documental em 01/11/2026 após
 confirmação da 6.78 com "entendi" e publicação em 592a00a5d5993b7f59b932683d871c3ac860358f.
-Entendimento da 6.79 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.79 confirmado com "entendi" em 01/11/2026; publicação
+verificada em cbe8ae9e8250b4903767f4dc6ef5b7c9cb9b765c, referências local e remotas coincidentes.
 
 ## Objetivo e arquivo alterado
 
@@ -73,6 +74,9 @@ Os resultados históricos permanecem identificados como tais.
 
 A aula anterior registra publicação da 6.78. Catálogo, roteiro e progresso
 registram implementação, explicação e verificação da 6.79; entendimento confirmado
-com "entendi" em 01/11/2026 e publicação em preparação. Depois de publicar, iniciar
+com "entendi" em 01/11/2026 e publicação verificada. Depois de publicar, iniciar
 somente 6.80: revisão guiada de GET /api/v1/produtos?page=0, relacionando validação,
 resposta 422, teste e contrato. Módulo 6 continua em andamento; DBeaver sem relato.
+
+Continuidade realizada na [aula 06-80](06-80-revisao-requisicao-invalida.md):
+revisão guiada do caminho de page=0 até teste e contrato.

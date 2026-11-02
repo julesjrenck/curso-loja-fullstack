@@ -624,8 +624,13 @@ com alcance complementar e links às aulas. Três comandos/imagem/pares/configur
 e 108 links locais conferidos, demais links/diff passaram. Etapa documental sem
 nova execução runtime/SQL; última suíte 6.76, 66/620, comando conjunto real 6.78.
 Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026.
-Publicar e iniciar somente 6.80: revisão guiada de GET page=0, ligando validação,
-resposta 422, teste e contrato.
+Publicação verificada em cbe8ae9. Na 6.80, revisão guiada liga rota, FormRequest
+antes de index, min:1/bail, ValidationException/JSON 422, teste e contrato.
+Default para page ausente não corrige entrada inválida. Fonte oficial consultada;
+focado 1/9/lint 0, corpo/hash/temporários/SELECTs após/ignore conferidos, sem
+alteração de backend/scripts/README/OpenAPI. Explicação apresentada; entendimento
+confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.81: revisar GET
+page=1, do controller à paginação e serialização data/links/meta.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
