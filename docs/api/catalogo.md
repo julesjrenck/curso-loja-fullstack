@@ -960,6 +960,20 @@ diff/links passaram. SELECTs após: loja 0 categorias/1 produto; loja_test 0/0.
 Backend/scripts/OpenAPI/README/dependências intactos; última suíte 6.76, 66/620.
 Entendimento confirmado com "entendi" em 01/11/2026. Etapa 6.81 publicada em 37b194d, remoto conferido.
 
+## Revisão do filtro por nome na 6.83
+
+A [aula 06-83](../aulas/06-83-revisao-filtro-nome.md) liga normalização de entrada,
+regras/getter validado, CHARINDEX parametrizado nos ativos antes de contar/paginar
+e appends com safe only nome para manter busca na navegação. 4 testes/89 asserções
+passaram: nome simples, espaços externos/caixa, parâmetro desconhecido e seguir
+links.next com 10+2 itens/total filtrado 12 nas duas páginas. Links/meta.links
+conferidos pelo teste. Casos inválidos revistos apenas por leitura.
+
+Sem flags/nova captura/Redocly; hashes das quatro capturas existentes iguais
+antes/depois. SELECTs após: loja 0 categorias/1 produto; loja_test 0/0. Diff/links
+conferidos; backend/scripts/OpenAPI/README/dependências intactos, última suíte 6.76.
+Entendimento confirmado com "entendi" em 01/11/2026. Etapa 6.82 publicada em 50af388, remoto conferido.
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

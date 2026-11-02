@@ -4,8 +4,22 @@
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
 - Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.82 — Revisão da consulta individual por ID.
+- Etapa atual: 6.83 — Revisão do filtro por nome e dos links.
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.83: revisão, explicação e verificação em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Nova aula liga normalização/regras de
+  nome/getter validado/consulta de ativos com CHARINDEX parametrizado antes da
+  contagem e paginação/appends(safe only nome)/navegação pela URL links.next.
+  Fontes oficiais Laravel/SQL Server consultadas. Casos inválidos por leitura,
+  sem nova execução. Dois métodos existentes, um com 3 entradas do provider:
+  4 testes/89 asserções passaram, incluindo espaços externos/caixa/parâmetro
+  desconhecido e navegação 10+2 itens com total filtrado 12 preservado. Links e
+  meta.links conferidos pelo teste. Sem flags; hashes das quatro capturas
+  preservados antes/depois, sem nova captura ou Redocly. SELECTs após:
+  loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0. Diff/links
+  conferidos. Backend/scripts/OpenAPI/configuração/Compose/README/dependências
+  intactos; última suíte 6.76, 66/620. Limite da 6.64 registrado. Publicação em preparação conforme autorização vigente. Próximo passo: publicar e iniciar
+  somente 6.84: consolidar revisão e pendências do módulo 6, sem iniciar outro módulo.
 - Situação da 6.82: revisão, explicação e verificação em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Nova aula liga rota individual/regex,
   show/filter_var/min_range/false estrito, interface/binding/busca ativa por ID,
@@ -18,8 +32,8 @@
   SELECTs após: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0.
   Diff/links conferidos. Backend/scripts/OpenAPI/configuração/Compose/README/
   dependências intactos; última suíte 6.76, 66/620, não repetida. Limite da 6.64
-  registrado. Publicação em preparação conforme autorização vigente. Próximo passo: publicar e iniciar somente 6.83: revisar a listagem
-  filtrada por nome e preservação do filtro nos links. Módulo 6 em andamento.
+  registrado. Publicação verificada em 50af388063efbc3bf253ac3bdbd8bb0010c83b9f;
+  HEAD/origin/main/main remota coincidiram após push. Continuidade realizada na 6.83.
 - Situação da 6.81: revisão, explicação e verificação em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Nova aula liga page=1 validado, controller,
   interface/binding CatalogoEloquent, consulta de ativos/ordem nome e id/paginate 10,
@@ -1081,7 +1095,8 @@
   6.79 confirmada/publicada em 01/11/2026;
   6.80 confirmada/publicada em 01/11/2026;
   6.81 confirmada/publicada em 01/11/2026;
-  6.82 revisão apresentada/verificada; entendimento confirmado em 01/11/2026.
+  6.82 confirmada/publicada em 01/11/2026;
+  6.83 revisão apresentada/verificada; entendimento confirmado em 01/11/2026.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -1216,25 +1231,23 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.81 confirmada com "entendi" e publicada em
-37b194d36e03209c5e27d7378dc3f07fdcee8783; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.82: revisão guiada apresentada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Aula docs/aulas/06-82-revisao-consulta-individual.md liga rota/regex/show/
-filter_var/min_range/false estrito/interface-binding/busca ativa por ID/?Produto/
-Resource 200 ou JsonResponse 404. Data objeto; inativo recebe 404 e permanece no
-banco durante teste. Distingue roteamento/controller; casos malformados/overflow
-somente por leitura, não reexecutados. Fontes oficiais PHP consultadas.
-Contratos 200/404: 1/7/lint 0 cada; inativo 1/7 com assertDatabaseHas. Capturas 200/404
-renovadas 64/42 bytes, ID observado 23046/preço inteiro 4990, hashes
-728bbdf1947780fb022613ccd549435a6739c2d42bb1bdfca8231efd49d7fdf4 e
-7d5b3a5bdfea032180e3ee337a2e028e7c492036c9acf6af05e9f6c965317c04.
-Temporários/ignore/diff/links conferidos. SELECTs após: loja/loja_app 0 categorias/
-1 produto; loja_test/loja_testes 0/0. Backend/scripts/OpenAPI/configuração/Compose/
-README/dependências intactos; última suíte 6.76, 66/620. Limite da 6.64 registrado.
+Estado mais recente em 01/11/2026: 6.82 confirmada com "entendi" e publicada em
+50af388063efbc3bf253ac3bdbd8bb0010c83b9f; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.83: revisão apresentada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
+Aula docs/aulas/06-83-revisao-filtro-nome.md liga normalização/regras/getter/
+controller/CHARINDEX parametrizado antes de contar/paginar e appends com safe
+only nome para preservar busca nos links. Fontes oficiais consultadas; casos
+inválidos apenas por leitura. Dois métodos existentes: 3 casos de provider mais
+navegação pela URL links.next, 4 testes/89 asserções. Primeira página 10 itens,
+segunda 2, total filtrado 12 nas duas; links/meta.links conferidos. Sem flags,
+sem nova captura/Redocly; hashes das quatro capturas iguais antes/depois.
+SELECTs após: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0.
+Diff/links conferidos; backend/scripts/OpenAPI/configuração/Compose/README/
+dependências intactos; última suíte 6.76, 66/620. Limite da 6.64 registrado.
 Catálogo/roteiro/progresso atualizados; publicação em preparação conforme autorização vigente.
-Próximo passo: publicar e iniciar somente 6.83:
-revisar listagem filtrada por nome e preservação do filtro nos links. Módulo 6
-em andamento; exercício DBeaver segue sem relato.
+Próximo passo: publicar e iniciar somente 6.84:
+consolidar revisão e pendências do módulo 6, sem iniciar outro módulo.
+Exercício DBeaver segue sem relato do aluno.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -10606,13 +10619,45 @@ Capturas ignoradas/temporários removidos. SELECTs após: loja/loja_app 0 catego
 backend/scripts/OpenAPI/configuração/Compose/README/dependências intactos.
 Sem nova suíte completa; última 6.76, 66/620. Limite da 6.64 registrado.
 
-Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação conforme autorização vigente. Último checkpoint publicado: 37b194d36e03209c5e27d7378dc3f07fdcee8783, etapa 6.81.
-Próximo passo: publicar e iniciar somente 6.83: revisar
-listagem filtrada por nome e preservação do filtro nos links. Módulo 6 em
-andamento; exercício DBeaver sem relato.
+Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em 50af388063efbc3bf253ac3bdbd8bb0010c83b9f;
+HEAD/origin/main/main remota coincidiram após push. Continuidade realizada na 6.83.
+Exercício DBeaver continua sem relato do aluno. Módulo 6 continua em andamento.
+
+## Etapa 6.83 — Revisão do filtro por nome e dos links
+
+Revisão, explicação e verificação em 01/11/2026 após confirmação da 6.82 com
+"entendi" e publicação em 50af388063efbc3bf253ac3bdbd8bb0010c83b9f.
+HEAD/origin/main/main remota coincidiram após push; árvore limpa antes da 6.83.
+Aula docs/aulas/06-83-revisao-filtro-nome.md. Sem nova implementação funcional:
+normalização padrão/regras de nome/getter validado/controller/consulta de ativos
+com CHARINDEX(?,nome)>0 e binding, filtro antes da contagem/paginação e appends
+com safe()->only(['nome']) para manter a busca nos links. Fontes oficiais
+Laravel para normalização/appends e Microsoft para CHARINDEX consultadas.
+Casos inválidos apenas revistos por leitura; não reexecutados nesta etapa.
+
+Executado filtro de dois métodos existentes (busca por nome e seguir próxima
+página); primeiro usa 3 entradas do DataProvider. Resultado 4 testes/89 asserções,
+código 0. Casos simples/espaços externos e caixa/parâmetro desconhecido aprovados.
+Cenário navega pela URL real de links.next: 10 produtos na primeira, 2 na segunda,
+total filtrado 12 mantido; links/meta.links e desempate por ID conferidos. Nenhuma
+expectativa de ID fixa, factories/DatabaseTransactions preservados.
+
+Sem flags de captura. Hashes das quatro capturas existentes comparados antes e
+depois: iguais; sem nova captura/Redocly. SELECTs após: loja/loja_app 0 categorias/
+1 produto; loja_test/loja_testes 0 categorias/0 produtos. Diff/links conferidos;
+backend/scripts/OpenAPI/configuração/Compose/README/dependências intactos.
+Sem nova suíte completa; última 6.76, 66/620. Limite da 6.64 registrado.
+
+Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação conforme autorização vigente. Último checkpoint publicado: 50af388063efbc3bf253ac3bdbd8bb0010c83b9f, etapa 6.82.
+Próximo passo: publicar e iniciar somente 6.84: consolidar
+revisão e pendências do módulo 6, sem iniciar outro módulo. DBeaver segue sem relato.
 
 ## Verificações e limitações do ambiente
 
+- Na 6.83, revisão de filtro/navegação: 4 testes/89 asserções; provider simples,
+  espaços/caixa/parâmetro desconhecido e seguir links.next 10+2/total 12. Hashes
+  das quatro capturas preservados; SELECTs após/diff/links conferidos. Sem nova
+  captura/Redocly/suíte completa; última 6.76, 66/620.
 - Na 6.82, revisão da consulta por ID: contratos 200/404 1/7/lint 0 cada, inativo
   1/7 com permanência do registro conferida. Capturas/campos/hashes/temporários/
   ignore/diff/links e SELECTs após conferidos; sem nova suíte completa, última 6.76.
@@ -11128,8 +11173,12 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   Na 6.82, revisão da consulta individual liga validação/busca ativa/?Produto/
   Resource 200 ou JSON 404; contratos 200/404 1/7/lint 0, inativo 1/7 com registro
   preservado durante cenário. Capturas/hashes/temporários/SELECTs após/ignore
-  conferidos. Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar
-  somente 6.83: revisar filtro nome e preservação nos links da listagem.
+  conferidos. Entendimento confirmado com "entendi" em 01/11/2026 e publicada
+  em 50af388. Na 6.83, revisão filtro nome/CHARINDEX/appends/links.next: 4 testes/89
+  asserções; nomes normalizados/seleção dos parâmetros e total 12 entre páginas
+  conferidos. Quatro hashes/SELECTs após/diff/links preservados, sem captura nova.
+  Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.84:
+  consolidar revisão e pendências do módulo 6, sem iniciar outro módulo.
   Última suíte Laravel: 66/620 executada na 6.76; anteriormente na 6.74.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
@@ -11375,4 +11424,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.79 — Comandos no README | Pré-requisitos, suíte e contratos; três comandos/scripts/pares/imagem/configuração e 108 links locais, demais links/diff; sem nova execução runtime/SQL | Confirmado com "entendi" em 01/11/2026 | Publicado em cbe8ae9; remoto conferido |
 | 01/11/2026 | 6.80 — Revisão de page=0 | Rota/FormRequest/min:1/bail/JSON 422/teste/contrato por leitura/fonte oficial; focado 1/9/lint 0; corpo/hash/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 93f05de; remoto conferido |
 | 01/11/2026 | 6.81 — Revisão da listagem válida | Controller/binding/Eloquent/paginador/Resource por leitura/fontes; HTTP real page=1 200/JSON; contrato 1/14/lint 0 com page omitido; captura/hash/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 37b194d; remoto conferido |
-| 01/11/2026 | 6.82 — Revisão da consulta individual | Rota/validação/busca ativa/?Produto/200-404 por leitura/fonte PHP; contratos 1/7/lint 0 cada e inativo 1/7; capturas/hashes/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Em preparação |
+| 01/11/2026 | 6.82 — Revisão da consulta individual | Rota/validação/busca ativa/?Produto/200-404 por leitura/fonte PHP; contratos 1/7/lint 0 cada e inativo 1/7; capturas/hashes/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 50af388; remoto conferido |
+| 01/11/2026 | 6.83 — Revisão do filtro nome | Normalização/regras/CHARINDEX/appends/links.next; 4 testes/89 asserções, 10+2/total 12; quatro hashes preservados/SELECTs após/diff/links; sem captura/Redocly novos | Confirmado com "entendi" em 01/11/2026 | Em preparação |

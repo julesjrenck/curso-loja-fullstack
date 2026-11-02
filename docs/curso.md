@@ -639,8 +639,14 @@ Na 6.82, revisão por ID liga rota/filter_var/busca ativa/retorno ?Produto e
 Resource 200/JSON 404. Fontes PHP consultadas. Contratos 200/404 1/7/lint 0 cada,
 inativo 1/7 com permanência no banco durante cenário. Capturas/hashes/temporários/
 SELECTs após/ignore conferidos; sem alteração funcional ou suíte completa nova.
-Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.83:
-revisar listagem filtrada por nome e preservação do filtro nos links.
+Entendimento confirmado com "entendi" em 01/11/2026 e publicada em 50af388.
+Na 6.83, revisão liga normalização/regras/consulta parametrizada com CHARINDEX
+antes de contar/paginar e appends com nome validado. 4 testes/89 asserções:
+nomes simples/espaços/caixa/parâmetro desconhecido e navegação links.next 10+2,
+total filtrado 12 preservado. Quatro hashes/SELECTs após/diff/links conferidos;
+sem captura/Redocly novos ou alteração funcional. Entendimento confirmado com
+"entendi" em 01/11/2026. Publicar e iniciar somente 6.84: consolidar revisão e
+pendências do módulo 6, sem iniciar outro módulo.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

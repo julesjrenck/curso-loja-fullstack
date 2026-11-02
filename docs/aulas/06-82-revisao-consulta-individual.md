@@ -2,7 +2,8 @@
 
 Revisão, explicação e verificação em 01/11/2026 após confirmação da 6.81 com
 "entendi" e publicação em 37b194d36e03209c5e27d7378dc3f07fdcee8783.
-Entendimento da 6.82 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.82 confirmado com "entendi" em 01/11/2026; publicação
+verificada em 50af388063efbc3bf253ac3bdbd8bb0010c83b9f, referências local e remotas coincidentes.
 
 ## Objetivo e caminho principal
 
@@ -142,6 +143,9 @@ Limite do validador da 6.64 continua registrado.
 ## Continuidade
 
 Aula anterior registra publicação da 6.81; catálogo/roteiro/progresso atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada.
 Depois de publicar, iniciar somente 6.83: revisar a listagem filtrada por nome e a
 preservação desse filtro nos links. Módulo 6 em andamento; DBeaver sem relato.
+
+Continuidade realizada na [aula 06-83](06-83-revisao-filtro-nome.md):
+revisão da busca por nome e preservação nos links.
