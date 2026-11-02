@@ -31,7 +31,9 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 Os módulos 1 a 6 estão concluídos. O módulo 6 foi encerrado após confirmação
 da consolidação 6.84 com "entendi" em 01/11/2026. A próxima etapa será definida
 com o aluno; módulos 7 a 23 ainda não iniciados. A tabela descreve o roteiro
-completo, incluindo entregas futuras.
+completo, incluindo entregas futuras. Curso em pausa por pedido do aluno em
+01/11/2026 para continuar outro dia em outro chat. Próximo previsto: 7.1 —
+Autenticação e autorização; aguardar pedido de retomada antes de iniciar.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
 em 21/10/2026. Os registros abaixo descrevem o percurso do módulo 5.
 O módulo 5 confirmou e publicou a descoberta de pacotes da 5.33.
@@ -655,8 +657,9 @@ contratos 1/7,1/7,1/14,1/9/lints 0/processo 0 passaram; capturas/temporários/SE
 antes-depois/ignore/diff/links conferidos. Entendimento da consolidação confirmado
 com "entendi" em 01/11/2026; módulo 6 concluído.
 Publicação da 6.84 verificada em a1f7e4010b611a4f8884e02e6bcf700b85b0bbda.
-Próximo passo: definir com o aluno a próxima etapa;
-não iniciar outro módulo por conta própria.
+Pausa solicitada pelo aluno em 01/11/2026 para continuar em outro chat.
+Próximo passo: aguardar retomada e combinar a 7.1 — Autenticação e autorização;
+módulo 7 ainda não iniciado.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

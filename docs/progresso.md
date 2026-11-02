@@ -3,6 +3,7 @@
 ## Estado atual
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
+- Estado do curso: em pausa por pedido do aluno em 01/11/2026; continuar outro dia em outro chat.
 - Módulo atual: 6 — APIs REST (concluído; próximo módulo ainda não iniciado).
 - Etapa atual: 6.84 — Consolidação do módulo de APIs REST (concluída).
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
@@ -22,7 +23,8 @@
   como exercício sugerido sem relato. Módulo 6 concluído com a confirmação desta consolidação em 01/11/2026.
   Publicação da 6.84 verificada em a1f7e4010b611a4f8884e02e6bcf700b85b0bbda;
   referências local e remotas coincidiram após o push do checkpoint.
-  Próximo passo: definir com o aluno a próxima etapa. Módulo 7 ainda não iniciado.
+  Próximo passo: aguardar pedido de retomada em outro chat e combinar o início
+  da 7.1 — Autenticação e autorização. Módulo 7 ainda não iniciado.
 - Situação da 6.83: revisão, explicação e verificação em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Nova aula liga normalização/regras de
   nome/getter validado/consulta de ativos com CHARINDEX parametrizado antes da
@@ -1250,6 +1252,15 @@
 
 ## Retomada em outro chat
 
+Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
+Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
+6.84, com entendimento e publicação verificados. Próximo previsto: 7.1, módulo 7
+— Autenticação e autorização, ainda não iniciado. Ao receber pedido de retomada,
+ler AGENTS.md, docs/curso.md e este registro, conferir o Git e combinar a próxima
+etapa com o aluno. O pedido de pausa não inicia nem confirma entendimento da 7.1.
+Registro de encerramento anterior à pausa publicado em
+a346d923b93c1dfac8350e234786fea851daa88d; consultar Git para o SHA desta pausa.
+
 Estado mais recente em 01/11/2026: 6.84 confirmada com "entendi" e publicada em
 a1f7e4010b611a4f8884e02e6bcf700b85b0bbda. HEAD/origin/main/main remota coincidiram após
 o push do checkpoint; este registro é posterior à publicação. Módulos 1 a 6
@@ -1269,8 +1280,8 @@ OpenAPI/configuração/Compose/README/dependências intactos. Última suíte 6.8
 anterior 6.76. Limitação do validador da 6.64 registrada. DBeaver exercício sugerido
 sem relato. Catálogo/roteiro/progresso atualizados. Encerramento do módulo 6 confirmado.
 Publicação da 6.84 verificada em a1f7e4010b611a4f8884e02e6bcf700b85b0bbda.
-Próximo passo: definir com o aluno a próxima etapa;
-não iniciar outro módulo por conta própria. Nenhuma 6.85 ou módulo 7 iniciado automaticamente.
+Próximo passo: aguardar pedido de retomada em outro chat e combinar a 7.1;
+não iniciar outro módulo durante a pausa ou por conta própria. Nenhuma 6.85 ou módulo 7 iniciado automaticamente.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -11500,3 +11511,19 @@ documenta o resultado em atualização posterior, sem tentar inserir o SHA do
 checkpoint dentro dele mesmo. Módulos 1 a 6 concluídos; próximo passo: definir
 com o aluno a continuidade. Nenhum outro módulo iniciado. Consultar Git para
 o SHA desta atualização documental.
+
+## Pausa após o módulo 6 — 01/11/2026
+
+Aluno pediu "vamos continuar outro dia em outro chat". Curso em pausa; nenhuma
+nova aula iniciada. Módulo 6 concluído, entendimento da 6.84 confirmado e
+checkpoint a1f7e4010b611a4f8884e02e6bcf700b85b0bbda publicado. Registro posterior
+de encerramento publicado em a346d923b93c1dfac8350e234786fea851daa88d. Últimas
+verificações continuam as da 6.84: 66 testes/620 asserções e quatro contratos
+aprovados. Nenhum teste ou comando Docker executado para registrar esta pausa.
+Próximo passo exato: aguardar pedido de retomada em outro chat, ler os documentos
+e conferir o Git/ambiente, então combinar a 7.1 — Autenticação e autorização.
+Módulo 7 ainda não iniciado; nenhuma confirmação de entendimento atribuída a ele.
+
+| Data | Registro | Estado | Continuidade |
+| --- | --- | --- | --- |
+| 01/11/2026 | Pedido de continuar outro dia em outro chat | Em pausa após a 6.84; módulos 1 a 6 concluídos | Aguardar retomada; combinar 7.1, ainda não iniciada |
