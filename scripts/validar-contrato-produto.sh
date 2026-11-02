@@ -20,8 +20,13 @@ case "$operacao:$codigo_http" in
     flag_captura="CAPTURAR_CONTRATO_LISTAGEM_200"
     caminho_api="/api/v1/produtos"
     ;;
+  listagem:422)
+    filtro_teste="test_retorna_422_em_json_para_pagina_invalida@zero"
+    flag_captura="CAPTURAR_CONTRATO_LISTAGEM_422"
+    caminho_api="/api/v1/produtos"
+    ;;
   *)
-    printf 'Uso: bash scripts/validar-contrato-produto.sh [200|404] [consulta|listagem]\nListagem aceita somente 200.\n' >&2
+    printf 'Uso: bash scripts/validar-contrato-produto.sh [200|404|422] [consulta|listagem]\nConsulta aceita 200/404; listagem aceita 200/422.\n' >&2
     exit 2
     ;;
 esac

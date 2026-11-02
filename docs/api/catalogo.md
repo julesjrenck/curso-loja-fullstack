@@ -865,6 +865,23 @@ schema; script ainda não aceita 422 listagem. Entendimento confirmado com "ente
 A etapa 6.75 foi publicada em d3c76b2, remoto conferido. Explicação na
 [aula 06-76](../aulas/06-76-captura-listagem-422.md).
 
+## Validação da captura 422 na 6.77
+
+O comando bash scripts/validar-contrato-produto.sh 422 listagem escolhe o caso
+zero do teste de página inválida, flag CAPTURAR_CONTRATO_LISTAGEM_422 e caminho
+/api/v1/produtos. Reutiliza limpeza prévia, captura atual obrigatória, cópia
+integral com só example substituído e Redocly/config/digest/RO/sem rede/trap.
+Schema 422 e referências preservados. Contrato versionado e backend intactos.
+
+Teste 1/9 e lint/processo 0; regressões individuais 200/404 1/7/lint 0 e listagem 200
+1/14/lint 0 passaram. Combinações 422 consulta/404 listagem saíram 2 antes de Docker.
+Cópias sem errors e com errors.page texto saíram 1, com erros de campo obrigatório
+e lista exigida. Original íntegro 105 bytes; temporários removidos; SELECTs antes/
+depois preservados. Última suíte 6.76, 66/620. Um caso de cada resposta capturado
+e validado: individual 200/404 e listagem 200/422. Entendimento confirmado com "entendi" em 01/11/2026.
+A etapa 6.76 foi publicada em c6bca3b, remoto conferido. Explicação na
+[aula 06-77](../aulas/06-77-validacao-captura-422.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

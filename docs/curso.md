@@ -607,8 +607,13 @@ conferido. Sem flag 1/8 sem arquivo, primeira captura 1/9; conjunto com flag
 11/90, negativa 1/8; suíte 66/620. Quatro hashes/SELECTs/ignore conferidos.
 Corpo message/errors.page observado; produção/OpenAPI/scripts intactos.
 Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026.
-Publicar e iniciar somente 6.77: comparar captura 422 da listagem ao schema em cópia
-temporária do OpenAPI pelo fluxo Docker já estudado.
+Publicação verificada em c6bca3b. Na 6.77, case listagem:422 escolhe teste@zero,
+flag e caminho da listagem, reutilizando captura/cópia integral/Redocly anteriores.
+422 listagem 1/9/lint 0; regressões individuais 200/404 1/7/lint 0 e listagem 200 1/14/lint 0.
+Combinações inválidas 2; cópias sem errors/page texto 1 esperados. Original,
+temporários e SELECTs conferidos; última suíte 6.76, 66/620. Explicação apresentada;
+entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.78:
+reunir os quatro casos existentes em um comando de verificação do catálogo.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

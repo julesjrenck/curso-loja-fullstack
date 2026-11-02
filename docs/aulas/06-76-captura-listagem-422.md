@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.75 com "entendi" e publicação em d3c76b255a91948809c7eac43561f2d840c507ef.
-Entendimento da 6.76 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.76 confirmado com "entendi" em 01/11/2026; publicação
+verificada em c6bca3b7f142d82966a399073e6eff92661afa12, referências local e remotas coincidentes.
 
 ## Escolher uma entrada do DataProvider
 
@@ -119,10 +120,13 @@ e dependências permanecem como estavam; nenhum serviço novo.
 
 Aula anterior registra a publicação da 6.75. Catálogo em português, roteiro e
 progresso registram implementação, explicação e verificação da 6.76; entendimento
-confirmado com "entendi" em 01/11/2026, publicação em preparação. Esta captura ainda não foi comparada
+confirmado com "entendi" em 01/11/2026, publicação verificada. Esta captura ainda não foi comparada
 ao schema; o script de validação ainda não aceita 422 listagem.
 
 Após confirmar entendimento e publicar, iniciar somente 6.77: conectar a captura
 422 da listagem à comparação com seu schema em cópia temporária do OpenAPI,
 seguindo o fluxo Docker já estudado. Limite do validador da 6.64 continua registrado.
 Exercício DBeaver continua sem relato do aluno.
+
+Continuidade realizada na [aula 06-77](06-77-validacao-captura-422.md):
+comparação da captura 422 ao schema da listagem.
