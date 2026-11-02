@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.67 com "entendi" e publicação em f92bad8709a5a31d64ac42cd1d0384544b521666.
-Entendimento da 6.68 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.68 confirmado com "entendi" em 01/11/2026; publicação
+verificada em cde635101da1d72a2b76f9e12796a6d98cf0d07f, referências local e remotas coincidentes.
 
 ## Um caso concreto de erro
 
@@ -58,6 +59,5 @@ Validar o exemplo escrito não comprova conformidade das respostas reais.
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026. Publicar o checkpoint. Próxima etapa, 6.69:
-planejar a validação de respostas reais do catálogo contra os schemas OpenAPI,
-usando o ambiente de testes isolado.
+com "entendi" em 01/11/2026; publicação verificada em cde635101da1d72a2b76f9e12796a6d98cf0d07f.
+Continuidade na [aula 06-69](06-69-plano-validacao-respostas.md).

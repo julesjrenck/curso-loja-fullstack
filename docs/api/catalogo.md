@@ -735,6 +735,21 @@ da 6.64 segue registrado, original true. Sem produção alterada, SQL ou nova
 suíte Laravel. Entendimento confirmado com "entendi" em 01/11/2026. Explicação na
 [aula 06-68](../aulas/06-68-exemplo-404-consulta-openapi.md).
 
+## Plano de validação de respostas na 6.69
+
+A [aula 06-69](../aulas/06-69-plano-validacao-respostas.md) planeja obter corpos
+produzidos por testes HTTP Laravel, conferir status/Content-Type e validar
+uma cópia temporária do OpenAPI com o corpo em example usando o Redocly atual.
+Requisições desses testes são simuladas internamente, sem acesso pela rede.
+Capturas optativas em pasta local ignorada, ambiente loja_test/loja_testes e
+transações existentes; matriz individual 404/200 e listagem 200/422.
+
+Configuração, isolamento, volumes, ignore e schemas conferidos por leitura.
+Plano documentado e explicado; captura e pipeline ainda não implementados.
+Sem mudanças no OpenAPI/produção, Docker, SQL ou suíte executados nesta etapa.
+Entendimento confirmado com "entendi" em 01/11/2026. Próximo passo: captura optativa de 404
+no teste HTTP de produto inexistente, mantendo o banco isolado.
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

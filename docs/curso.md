@@ -555,9 +555,15 @@ em 404 individual com message Produto não encontrado.; caso do controller,
 schema string sem const/enum preserva variação de texto no roteamento.
 Lint Docker código 0, incluindo valores do exemplo contra o schema; demais
 contratos preservados. Sem captura HTTP, novas dependências, produção alterada,
-SQL ou nova suíte Laravel. Explicação apresentada; entendimento confirmado
-com "entendi" em 01/11/2026. Publicar e iniciar somente 6.69: planejar validação de
-respostas reais contra os schemas OpenAPI no ambiente de testes isolado.
+SQL ou nova suíte Laravel. Entendimento confirmado com "entendi" em 01/11/2026
+e publicada em cde6351. Na 6.69, plano documentado para respostas produzidas
+em testes HTTP Laravel: status/cabeçalho no teste, captura local ignorada,
+cópia temporária do OpenAPI com corpo em example e Redocly existente. Conferidos
+isolamento de testes, volumes, ignore e quatro schemas por leitura; nenhuma
+captura/pipeline implementados ou Docker/SQL/suíte executados. Explicação
+apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar
+somente 6.70: captura optativa de 404 em teste HTTP de produto inexistente,
+usando loja_test e arquivo local ignorado pelo Git.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
