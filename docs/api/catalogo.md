@@ -974,6 +974,22 @@ antes/depois. SELECTs após: loja 0 categorias/1 produto; loja_test 0/0. Diff/li
 conferidos; backend/scripts/OpenAPI/README/dependências intactos, última suíte 6.76.
 Entendimento confirmado com "entendi" em 01/11/2026. Etapa 6.82 publicada em 50af388, remoto conferido.
 
+## Consolidação do módulo 6 na 6.84
+
+A [aula 06-84](../aulas/06-84-consolidacao-modulo-api.md) reúne escopo da API de
+leitura, responsabilidades dos arquivos, quatro respostas, revisões confirmadas,
+verificações renovadas, limites e pendências. Route:list mostrou duas entradas
+GET|HEAD; suíte completa 66/620 e quatro contratos 1/7,1/7,1/14,1/9/lints 0/processo 0
+passaram. Suíte comum preservou hashes; comando conjunto depois renovou capturas.
+JSON/campos/hashes/tamanhos e temporários/ignore/diff/links conferidos; SELECTs
+antes/depois: loja 0 categorias/1 produto; loja_test 0/0. Backend/scripts/OpenAPI/
+README/dependências intactos. Limitação do validador da 6.64 permanece registrada.
+
+Entendimento desta consolidação confirmado com "entendi" em 01/11/2026; módulo 6
+concluído. Publicação da 6.84 em preparação. Etapa 6.83 publicada em af5cfbd, remoto
+conferido. Depois publicar e registrar o resultado, definir próxima etapa com aluno, sem
+iniciar outro módulo por conta própria. DBeaver permanece atividade sugerida sem relato.
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

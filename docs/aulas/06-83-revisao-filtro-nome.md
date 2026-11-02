@@ -2,7 +2,8 @@
 
 Revisão, explicação e verificação em 01/11/2026 após confirmação da 6.82 com
 "entendi" e publicação em 50af388063efbc3bf253ac3bdbd8bb0010c83b9f.
-Entendimento da 6.83 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.83 confirmado com "entendi" em 01/11/2026; publicação
+verificada em af5cfbd400a118407798f53595163d6ecb9c763f, referências local e remotas coincidentes.
 
 ## Objetivo e caminho
 
@@ -131,6 +132,9 @@ validador da 6.64 continua registrado. Contrato do filtro em [OpenAPI](../api/op
 ## Continuidade
 
 Aula anterior registra publicação da 6.82; catálogo/roteiro/progresso atualizados.
-Entendimento confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada.
 Depois de publicar, iniciar somente 6.84: consolidar a revisão e as pendências do módulo 6,
 sem iniciar outro módulo. Exercício DBeaver continua sem relato do aluno.
+
+Continuidade realizada na [aula 06-84](06-84-consolidacao-modulo-api.md):
+consolidação do catálogo de leitura, verificações e pendências.

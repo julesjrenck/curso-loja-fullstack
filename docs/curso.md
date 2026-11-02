@@ -28,7 +28,10 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 ## Módulos
 
-Todos os módulos abaixo são planejados, não funcionalidades já implementadas.
+Os módulos 1 a 6 estão concluídos. O módulo 6 foi encerrado após confirmação
+da consolidação 6.84 com "entendi" em 01/11/2026. A próxima etapa será definida
+com o aluno; módulos 7 a 23 ainda não iniciados. A tabela descreve o roteiro
+completo, incluindo entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
 em 21/10/2026. Os registros abaixo descrevem o percurso do módulo 5.
 O módulo 5 confirmou e publicou a descoberta de pacotes da 5.33.
@@ -645,8 +648,14 @@ antes de contar/paginar e appends com nome validado. 4 testes/89 asserções:
 nomes simples/espaços/caixa/parâmetro desconhecido e navegação links.next 10+2,
 total filtrado 12 preservado. Quatro hashes/SELECTs após/diff/links conferidos;
 sem captura/Redocly novos ou alteração funcional. Entendimento confirmado com
-"entendi" em 01/11/2026. Publicar e iniciar somente 6.84: consolidar revisão e
-pendências do módulo 6, sem iniciar outro módulo.
+"entendi" em 01/11/2026 e publicada em af5cfbd. Na 6.84, consolidação apresentada:
+API pública de leitura, responsabilidades, quatro respostas, revisão confirmada
+até 6.83, limites e pendências. Route:list 2, suíte completa 66/620 e quatro
+contratos 1/7,1/7,1/14,1/9/lints 0/processo 0 passaram; capturas/temporários/SELECTs
+antes-depois/ignore/diff/links conferidos. Entendimento da consolidação confirmado
+com "entendi" em 01/11/2026; módulo 6 concluído. Publicação da 6.84 em preparação.
+Depois publicar, registrar o resultado e definir com o aluno a próxima etapa;
+não iniciar outro módulo por conta própria.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

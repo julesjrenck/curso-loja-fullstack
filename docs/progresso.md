@@ -3,9 +3,25 @@
 ## Estado atual
 
 - Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
-- Módulo atual: 6 — APIs REST.
-- Etapa atual: 6.83 — Revisão do filtro por nome e dos links.
+- Módulo atual: 6 — APIs REST (concluído; próximo módulo ainda não iniciado).
+- Etapa atual: 6.84 — Consolidação do módulo de APIs REST (concluída).
 - Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Situação da 6.84: consolidação, explicação e verificação em 01/11/2026;
+  entendimento confirmado com "entendi" em 01/11/2026. Nova aula consolida API pública de leitura,
+  responsabilidades dos arquivos, quatro respostas documentadas, revisões
+  confirmadas até 6.83, alcance/limites e pendências. Nenhuma implementação nova
+  de aplicação. Route:list conferiu duas entradas GET|HEAD (index/show).
+  Suíte completa renovada: 66 testes/620 asserções, código 0, sem flags, preservou
+  hashes das quatro capturas. Depois, comando conjunto renovou capturas:
+  consulta 200/404 1/7 cada, listagem 200 1/14/listagem 422 1/9, quatro lints 0,
+  processo 0 com conclusão. JSON/campos/hashes/tamanhos 64/42/586/105 conferidos;
+  temporários removidos e capturas/ambientes privados ignorados. SELECTs antes/
+  depois: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0.
+  Diff/links conferidos. Backend/scripts/OpenAPI/configuração/Compose/README/
+  dependências intactos. Limitação observada na 6.64 preservada; DBeaver segue
+  como exercício sugerido sem relato. Módulo 6 concluído com a confirmação desta consolidação em 01/11/2026.
+  Publicação da 6.84 em preparação. Próximo passo: publicar, registrar o resultado
+  e definir com o aluno a próxima etapa. Módulo 7 ainda não iniciado.
 - Situação da 6.83: revisão, explicação e verificação em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Nova aula liga normalização/regras de
   nome/getter validado/consulta de ativos com CHARINDEX parametrizado antes da
@@ -18,8 +34,8 @@
   preservados antes/depois, sem nova captura ou Redocly. SELECTs após:
   loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0. Diff/links
   conferidos. Backend/scripts/OpenAPI/configuração/Compose/README/dependências
-  intactos; última suíte 6.76, 66/620. Limite da 6.64 registrado. Publicação em preparação conforme autorização vigente. Próximo passo: publicar e iniciar
-  somente 6.84: consolidar revisão e pendências do módulo 6, sem iniciar outro módulo.
+  intactos; última suíte 6.76, 66/620. Limite da 6.64 registrado. Publicação verificada em af5cfbd400a118407798f53595163d6ecb9c763f;
+  HEAD/origin/main/main remota coincidiram após push. Continuidade realizada na 6.84.
 - Situação da 6.82: revisão, explicação e verificação em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Nova aula liga rota individual/regex,
   show/filter_var/min_range/false estrito, interface/binding/busca ativa por ID,
@@ -1096,7 +1112,9 @@
   6.80 confirmada/publicada em 01/11/2026;
   6.81 confirmada/publicada em 01/11/2026;
   6.82 confirmada/publicada em 01/11/2026;
-  6.83 revisão apresentada/verificada; entendimento confirmado em 01/11/2026.
+  6.83 confirmada/publicada em 01/11/2026;
+  6.84 consolidação apresentada/verificada; entendimento confirmado com "entendi"
+  em 01/11/2026. Módulos 1 a 6 concluídos; módulo 7 ainda não iniciado.
   Exercício manual DBeaver continua sem relato, como atividade sugerida de acompanhamento.
   Conta de testes criada e verificada na 5.35;
   entendimento confirmado com "entendi" em 19/10/2026, publicado em 04a9a7c.
@@ -1231,23 +1249,24 @@
 
 ## Retomada em outro chat
 
-Estado mais recente em 01/11/2026: 6.82 confirmada com "entendi" e publicada em
-50af388063efbc3bf253ac3bdbd8bb0010c83b9f; HEAD/origin/main/main remota conferidos após push.
-Etapa 6.83: revisão apresentada/verificada; entendimento confirmado com "entendi" em 01/11/2026.
-Aula docs/aulas/06-83-revisao-filtro-nome.md liga normalização/regras/getter/
-controller/CHARINDEX parametrizado antes de contar/paginar e appends com safe
-only nome para preservar busca nos links. Fontes oficiais consultadas; casos
-inválidos apenas por leitura. Dois métodos existentes: 3 casos de provider mais
-navegação pela URL links.next, 4 testes/89 asserções. Primeira página 10 itens,
-segunda 2, total filtrado 12 nas duas; links/meta.links conferidos. Sem flags,
-sem nova captura/Redocly; hashes das quatro capturas iguais antes/depois.
-SELECTs após: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0.
-Diff/links conferidos; backend/scripts/OpenAPI/configuração/Compose/README/
-dependências intactos; última suíte 6.76, 66/620. Limite da 6.64 registrado.
-Catálogo/roteiro/progresso atualizados; publicação em preparação conforme autorização vigente.
-Próximo passo: publicar e iniciar somente 6.84:
-consolidar revisão e pendências do módulo 6, sem iniciar outro módulo.
-Exercício DBeaver segue sem relato do aluno.
+Estado mais recente em 01/11/2026: 6.83 confirmada com "entendi" e publicada em
+af5cfbd400a118407798f53595163d6ecb9c763f; HEAD/origin/main/main remota conferidos após push.
+Etapa 6.84: consolidação apresentada/verificada, entendimento confirmado com
+"entendi" em 01/11/2026. Módulo 6 concluído; módulo 7 ainda não iniciado.
+Aula docs/aulas/06-84-consolidacao-modulo-api.md resume API pública de leitura,
+responsabilidades, quatro respostas, revisões confirmadas até 6.83, limites e
+pendências; sem nova implementação ou avanço de módulo. Route:list duas entradas
+GET|HEAD para index/show. Nova suíte completa 66/620/código 0 sem flags preservou
+hashes das quatro capturas. Comando conjunto depois renovou as quatro: consultas
+200/404 1/7 cada, listagem 200 1/14 e listagem 422 1/9, quatro lints 0/processo 0.
+JSON/campos/hashes/tamanhos 64/42/586/105 conferidos; temporários removidos,
+capturas e .envs locais ignorados. SELECTs antes/depois: loja/loja_app 0 categorias/
+1 produto; loja_test/loja_testes 0/0. Diff/links conferidos; backend/scripts/
+OpenAPI/configuração/Compose/README/dependências intactos. Última suíte 6.84;
+anterior 6.76. Limitação do validador da6.64 registrada. DBeaver exercício sugerido
+sem relato. Catálogo/roteiro/progresso atualizados. Encerramento do módulo 6 confirmado. Publicação da 6.84 em preparação. Próximo
+passo: publicar, registrar o resultado e definir com o aluno a próxima etapa;
+não iniciar outro módulo por conta própria. Nenhuma 6.85 ou módulo 7 iniciado automaticamente.
 
 Registro anterior da pausa (encerrada pelo pedido de retomada em 30/10/2026):
 Estado mais recente, em 23/10/2026: 6.17 confirmada e publicada em
@@ -10648,12 +10667,48 @@ depois: iguais; sem nova captura/Redocly. SELECTs após: loja/loja_app 0 categor
 backend/scripts/OpenAPI/configuração/Compose/README/dependências intactos.
 Sem nova suíte completa; última 6.76, 66/620. Limite da 6.64 registrado.
 
-Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicação em preparação conforme autorização vigente. Último checkpoint publicado: 50af388063efbc3bf253ac3bdbd8bb0010c83b9f, etapa 6.82.
-Próximo passo: publicar e iniciar somente 6.84: consolidar
-revisão e pendências do módulo 6, sem iniciar outro módulo. DBeaver segue sem relato.
+Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicação verificada em af5cfbd400a118407798f53595163d6ecb9c763f;
+HEAD/origin/main/main remota coincidiram após push. Continuidade realizada na 6.84.
+Exercício DBeaver continua sem relato do aluno.
+
+## Etapa 6.84 — Consolidação do módulo de APIs REST
+
+Consolidação, explicação e verificação em 01/11/2026 após confirmação da 6.83 com
+"entendi" e publicação em af5cfbd400a118407798f53595163d6ecb9c763f.
+HEAD/origin/main/main remota coincidiram após push; árvore limpa antes da 6.84.
+Aula docs/aulas/06-84-consolidacao-modulo-api.md. Resume o catálogo público de
+leitura, responsabilidades dos arquivos, quatro respostas documentadas e revisões
+com entendimento confirmado até 6.83. Separa implementação, explicação, compreensão,
+verificação e publicação. Sem implementação funcional nova ou avanço de módulo.
+
+Verificação renovada: route:list mostrou duas entradas GET|HEAD para index/show;
+suíte Laravel completa 66/620/código 0 sem flags, hashes das quatro capturas
+preservados antes/depois. Depois executado comando conjunto: consulta 200/404
+1/7 cada, listagem 200 1/14 e listagem 422 1/9, quatro lints 0 e processo 0 com mensagem
+final. Capturas renovadas, JSON/campos/hashes/tamanhos 64/42/586/105 bytes
+conferidos via PHP Docker. Pastas temporárias removidas; capturas e .envs locais
+ignorados; nenhuma credencial incluída. SELECTs antes/depois: loja/loja_app 0
+categorias/1 produto; loja_test/loja_testes 0 categorias/0 produtos. Diff/links
+conferidos; backend/scripts/OpenAPI/configuração/Compose/README/dependências
+intactos. Esta é a última suíte completa; anterior 6.76.
+
+Limites: quatro corpos comparados não representam todos os corpos possíveis;
+limitação do validador/configuração observada na 6.64 mantida (original id path
+required true). HTTP de cadastro/edição/exclusão e autenticação/autorização ficam
+para etapas futuras do roteiro. DBeaver segue como atividade sugerida sem relato.
+Entendimento da 6.84 confirmado com "entendi" em 01/11/2026; módulo 6 concluído.
+Publicação da 6.84 em preparação. Último checkpoint anterior publicado: af5cfbd400a118407798f53595163d6ecb9c763f, etapa 6.83.
+Próximo passo exato: publicar a 6.84, registrar o resultado e definir com o
+aluno a próxima etapa; não iniciar outro módulo por conta própria.
+Nenhuma etapa 6.85 ou módulo 7 iniciada automaticamente.
 
 ## Verificações e limitações do ambiente
 
+- Última suíte completa na 6.84: 66 testes/620 asserções, código 0, sem flags;
+  hashes das quatro capturas preservados. Comando conjunto depois: 1/7,1/7,
+  1/14,1/9 e quatro lints 0/processo 0; capturas renovadas/JSON/campos/hashes,
+  temporários/ignore/diff/links conferidos. Route:list duas entradas GET|HEAD.
+  SELECTs antes/depois: loja/loja_app 0 categorias/1 produto; loja_test/loja_testes 0/0.
 - Na 6.83, revisão de filtro/navegação: 4 testes/89 asserções; provider simples,
   espaços/caixa/parâmetro desconhecido e seguir links.next 10+2/total 12. Hashes
   das quatro capturas preservados; SELECTs após/diff/links conferidos. Sem nova
@@ -10679,7 +10734,7 @@ revisão e pendências do módulo 6, sem iniciar outro módulo. DBeaver segue se
 - Na 6.77, listagem 422 1/9/lint 0; individuais 200/404 1/7/lint 0 e listagem 200
   1/14/lint 0. Combinações inválidas 2; cópias sem errors/page texto saíram 1.
   Original/temporários/SELECTs/ignore/diff/links conferidos; sem nova suíte.
-- Última suíte completa na 6.76: 66 testes/620 asserções passaram sem flags.
+- Na 6.76, suíte completa: 66 testes/620 asserções passaram sem flags.
   Captura 422 do caso zero: sem flag 1/8 sem arquivo, primeira opt-in 1/9;
   onze entradas com flag 11/90; negativa com flag 1/8. Hashes das quatro capturas
   preservados; SELECTs antes/depois, ignore/diff/links conferidos.
@@ -11177,9 +11232,14 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
   em 50af388. Na 6.83, revisão filtro nome/CHARINDEX/appends/links.next: 4 testes/89
   asserções; nomes normalizados/seleção dos parâmetros e total 12 entre páginas
   conferidos. Quatro hashes/SELECTs após/diff/links preservados, sem captura nova.
-  Entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.84:
-  consolidar revisão e pendências do módulo 6, sem iniciar outro módulo.
-  Última suíte Laravel: 66/620 executada na 6.76; anteriormente na 6.74.
+  Entendimento confirmado com "entendi" em 01/11/2026 e publicada em af5cfbd.
+  Na 6.84, consolidação do catálogo de leitura e dos limites/pendências; suíte
+  completa 66/620 e quatro contratos 1/7,1/7,1/14,1/9/lints 0/processo 0 passaram.
+  Route:list/capturas/temporários/SELECTs antes-depois/ignore/diff/links conferidos.
+  Entendimento desta consolidação confirmado com "entendi" em 01/11/2026;
+  módulo 6 concluído. Publicação da 6.84 em preparação. Depois publicar e registrar
+  o resultado, definir com aluno próxima etapa, sem iniciar
+  outro módulo por conta própria. Última suíte Laravel na 6.84, 66/620; anterior 6.76.
   Exercício manual DBeaver continua sem relato do aluno.
 - Ao retomar em novo clone, preparar `src/vendor` com `mkdir -p` e gerar
   autoload pelo comando do README; pasta vazia ignorada e arquivos do volume
@@ -11425,4 +11485,5 @@ Fonte: [Gerar uma chave SSH](https://docs.github.com/en/authentication/connectin
 | 01/11/2026 | 6.80 — Revisão de page=0 | Rota/FormRequest/min:1/bail/JSON 422/teste/contrato por leitura/fonte oficial; focado 1/9/lint 0; corpo/hash/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 93f05de; remoto conferido |
 | 01/11/2026 | 6.81 — Revisão da listagem válida | Controller/binding/Eloquent/paginador/Resource por leitura/fontes; HTTP real page=1 200/JSON; contrato 1/14/lint 0 com page omitido; captura/hash/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 37b194d; remoto conferido |
 | 01/11/2026 | 6.82 — Revisão da consulta individual | Rota/validação/busca ativa/?Produto/200-404 por leitura/fonte PHP; contratos 1/7/lint 0 cada e inativo 1/7; capturas/hashes/temporários/SELECTs após/ignore/diff/links | Confirmado com "entendi" em 01/11/2026 | Publicado em 50af388; remoto conferido |
-| 01/11/2026 | 6.83 — Revisão do filtro nome | Normalização/regras/CHARINDEX/appends/links.next; 4 testes/89 asserções, 10+2/total 12; quatro hashes preservados/SELECTs após/diff/links; sem captura/Redocly novos | Confirmado com "entendi" em 01/11/2026 | Em preparação |
+| 01/11/2026 | 6.83 — Revisão do filtro nome | Normalização/regras/CHARINDEX/appends/links.next; 4 testes/89 asserções, 10+2/total 12; quatro hashes preservados/SELECTs após/diff/links; sem captura/Redocly novos | Confirmado com "entendi" em 01/11/2026 | Publicado em af5cfbd; remoto conferido |
+| 01/11/2026 | 6.84 — Consolidação do módulo 6 | Mapa/escopo/limites/pendências; route:list 2; suíte 66/620; contratos 1/7,1/7,1/14,1/9/lints 0; capturas/temporários/SELECTs antes-depois/ignore/diff/links | Confirmado com "entendi" em 01/11/2026; módulo 6 concluído | Em preparação |
