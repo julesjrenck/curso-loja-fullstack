@@ -580,8 +580,14 @@ flag/arquivo próprios e ID da factory. Sem flag 1/6 e sem arquivo; primeira
 opt-in 1/7, segunda 1/8 com captura substituída. Suíte comum 66/620 passou,
 hashes 200/404 e contagens dos bancos preservados. Produção/OpenAPI/script 404
 inalterados. Captura 200 ainda não comparada ao schema. Explicação apresentada;
-entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.73:
-validar captura 200 contra schema em cópia temporária, reaproveitando fluxo Docker.
+entendimento confirmado com "entendi" em 01/11/2026 e publicada em bd05ce0.
+Na 6.73, lógica comum em validar-contrato-produto.sh com argumento 200/404;
+atalho 404 anterior preservado. Status escolhe teste/flag/arquivo/schema via
+case e argv. Fluxo 200 e atalho 404: 1/7/lint 0; argumento inválido 2 e cópia
+com preço texto 1 esperados. Preço inteiro na captura original/temporários/SELECTs
+conferidos; backend e contrato inalterados, última suíte completa 6.72, 66/620.
+Explicação apresentada; entendimento confirmado com "entendi" em 01/11/2026.
+Publicar e iniciar somente 6.74: captura optativa de 200 da listagem no teste de produto ativo.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

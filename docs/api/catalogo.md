@@ -797,6 +797,22 @@ preservou hashes de ambas as capturas; SELECTs antes/depois loja 0 categorias/
 Captura 200 ainda sem validação contra schema. Entendimento confirmado com
 "entendi" em 01/11/2026. Explicação na [aula 06-72](../aulas/06-72-captura-200-teste-http.md).
 
+## Validação da captura 200 na 6.73
+
+O [fluxo compartilhado](../../scripts/validar-contrato-produto.sh) recebe 200
+ou 404, seleciona teste, flag, arquivo e schema da consulta individual. Mantém
+captura atual obrigatória e valida cópia temporária integral com Redocly fixado.
+O [atalho 404 anterior](../../scripts/validar-contrato-404.sh) delega ao fluxo
+comum, preservando seu comando. Backend/OpenAPI/configuração intactos.
+
+Fluxo 200 e atalho 404 passaram com teste 1/7/lint 0. Status não suportado saiu
+2 antes de Docker. Cópia temporária com preço string foi rejeitada/código 1
+pelo schema Produto, mantendo preço inteiro na captura original. Temporários
+removidos e SELECTs posteriores conferidos: loja 0 categorias/1 produto,
+loja_test 0/0. Última suíte completa 6.72, 66/620. Cobertura capturada atual:
+casos individuais 200/404. Entendimento confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-73](../aulas/06-73-validacao-captura-200.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

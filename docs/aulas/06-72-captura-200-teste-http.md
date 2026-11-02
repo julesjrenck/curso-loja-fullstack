@@ -2,7 +2,8 @@
 
 Implementação, explicação e verificação em 01/11/2026 após confirmação da
 6.71 com "entendi" e publicação em 6dd65eb7989c4c0547e314c37e3ae76fcd176ade.
-Entendimento da 6.72 confirmado com "entendi" em 01/11/2026; publicação em preparação.
+Entendimento da 6.72 confirmado com "entendi" em 01/11/2026; publicação
+verificada em bd05ce022b0c8af38a8a5fd2573c59757416603b, referências local e remotas coincidentes.
 
 ## Capturar o produto escolhido pelo teste
 
@@ -109,6 +110,5 @@ observada na 6.64 permanece registrada; id path continua required true.
 ## Continuidade
 
 Contrato em português, roteiro e progresso atualizados. Entendimento confirmado
-com "entendi" em 01/11/2026. Publicar o checkpoint. Próxima etapa, 6.73:
-validar a captura 200 contra o schema correspondente em uma cópia temporária,
-reaproveitando o fluxo Docker.
+com "entendi" em 01/11/2026; publicação verificada em bd05ce022b0c8af38a8a5fd2573c59757416603b.
+Continuidade na [aula 06-73](06-73-validacao-captura-200.md).
