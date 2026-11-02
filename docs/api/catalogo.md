@@ -750,6 +750,22 @@ Sem mudanças no OpenAPI/produção, Docker, SQL ou suíte executados nesta etap
 Entendimento confirmado com "entendi" em 01/11/2026. Próximo passo: captura optativa de 404
 no teste HTTP de produto inexistente, mantendo o banco isolado.
 
+## Captura optativa de resposta na 6.70
+
+O teste HTTP de produto inexistente em CatalogoApiTest recebeu captura ativada
+por CAPTURAR_CONTRATO_404=1 no processo. Remove arquivo anterior no início do
+caso; após asserções de status/cabeçalho/JSON, grava getContent em
+backend/storage/app/private/contratos/consulta-404.json, conferindo sintaxe e
+bytes. Captura é local e ignorada, com corpo produzido pela aplicação no teste.
+
+Sem flag: 1/6, nenhum arquivo criado. Com marcador anterior/flag: 1/8 e JSON
+capturado de 42 bytes. Suíte comum 66/620 passou e deixou hash intacto. SELECTs
+antes/depois preservados: loja 0 categorias/1 produto; loja_test 0/0. Captura
+ainda não comparada ao schema; integração será posterior e deverá exigir
+processo atual de teste bem-sucedido. Sem produção/OpenAPI/dependências alterados.
+Entendimento confirmado com "entendi" em 01/11/2026. Explicação na
+[aula 06-70](../aulas/06-70-captura-404-teste-http.md).
+
 ## Evolução
 
 Da 6.2 à 6.11, data continha nomes em strings. Na 6.12, passou a objetos com

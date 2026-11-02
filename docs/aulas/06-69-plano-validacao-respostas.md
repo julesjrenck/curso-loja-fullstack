@@ -3,7 +3,9 @@
 Plano documentado, explicado e conferido por leitura em 01/11/2026, após
 confirmação da 6.68 com "entendi" e publicação em
 cde635101da1d72a2b76f9e12796a6d98cf0d07f. Entendimento da 6.69 confirmado
-com "entendi" em 01/11/2026; publicação em preparação. Captura e integração ainda não implementadas.
+com "entendi" em 01/11/2026; publicação verificada em
+7cf816f341084bb7a1d38db68a05ea16725a67bd, referências local e remotas coincidentes.
+Nesta etapa, captura e integração ainda não estavam implementadas.
 
 ## Da resposta produzida ao contrato
 
@@ -88,7 +90,5 @@ conferidos. Sem capturas, pipeline, nova dependência, mudança de produção,
 execução Docker, consulta SQL ou nova suíte nesta aula. Última suíte executada:
 6.49, 66 testes/620 asserções.
 
-Entendimento confirmado com "entendi" em 01/11/2026; publicar o checkpoint.
-Próxima etapa, 6.70: preparar captura optativa do corpo 404 no teste HTTP de
-produto inexistente, usando loja_test e um arquivo local ignorado pelo Git.
-As etapas de cópia do contrato e validação do corpo capturado serão posteriores.
+Entendimento confirmado com "entendi" em 01/11/2026; publicação verificada em
+7cf816f341084bb7a1d38db68a05ea16725a67bd. Continuidade na [aula 06-70](06-70-captura-404-teste-http.md).

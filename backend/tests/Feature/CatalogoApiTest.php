@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Produto;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
@@ -83,6 +84,13 @@ class CatalogoApiTest extends TestCase
 
     public function test_retorna_404_em_json_para_id_inexistente(): void
     {
+        $capturar = getenv('CAPTURAR_CONTRATO_404') === '1';
+        $caminhoCaptura = storage_path('app/private/contratos/consulta-404.json');
+
+        if ($capturar && File::exists($caminhoCaptura)) {
+            $this->assertTrue(File::delete($caminhoCaptura));
+        }
+
         $resposta = $this->getJson('/api/v1/produtos/1');
 
         $resposta
@@ -91,6 +99,14 @@ class CatalogoApiTest extends TestCase
             ->assertExactJson([
                 'message' => 'Produto não encontrado.',
             ]);
+
+        if ($capturar) {
+            $corpo = $resposta->getContent();
+            json_decode($corpo, false, 512, JSON_THROW_ON_ERROR);
+
+            File::ensureDirectoryExists(dirname($caminhoCaptura));
+            $this->assertSame(strlen($corpo), File::put($caminhoCaptura, $corpo));
+        }
     }
 
     public function test_retorna_404_em_json_para_produto_inativo(): void

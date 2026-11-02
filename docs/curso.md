@@ -561,9 +561,16 @@ em testes HTTP Laravel: status/cabeçalho no teste, captura local ignorada,
 cópia temporária do OpenAPI com corpo em example e Redocly existente. Conferidos
 isolamento de testes, volumes, ignore e quatro schemas por leitura; nenhuma
 captura/pipeline implementados ou Docker/SQL/suíte executados. Explicação
-apresentada; entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar
-somente 6.70: captura optativa de 404 em teste HTTP de produto inexistente,
-usando loja_test e arquivo local ignorado pelo Git.
+apresentada; entendimento confirmado com "entendi" em 01/11/2026 e publicada
+em 7cf816f. Na 6.70, teste de inexistente ganhou captura optativa via flag de
+processo: limpa arquivo anterior, confere resposta e grava corpo bruto JSON
+em storage privado ignorado, validando bytes. Focado sem flag 1/6 sem arquivo;
+com marcador/flag 1/8; suíte comum 66/620 passou e preservou captura. SELECTs
+antes/depois: loja 0 categorias/1 produto; loja_test 0/0. Sem produção/OpenAPI/
+dependências novos. Captura ainda não comparada ao schema. Explicação apresentada;
+entendimento confirmado com "entendi" em 01/11/2026. Publicar e iniciar somente 6.71:
+validar captura 404 contra schema OpenAPI em cópia temporária/Docker, exigindo
+execução atual bem-sucedida do teste.
 Exercício sugerido no DBeaver segue sem relato. Módulos 7 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
