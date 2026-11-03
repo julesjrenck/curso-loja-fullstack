@@ -98,5 +98,5 @@ identificá-la e qual recusou a operação?
 Entendimento confirmado com "entendi" em 03/11/2026. Próximo passo:
 7.2 — leitura do User, da configuração auth e da migration de usuários
 existentes, antes de criar tabelas ou instalar dependências de autenticação.
-Checkpoint preparado para commit e push; conferir o Git e o registro seguinte
-para o resultado da publicação.
+Checkpoint publicado e conferido em 074fcf9415e4d5cba864ca401fce8de6257c6f55;
+HEAD, origin/main e main remota coincidiram após o push. Registro posterior.

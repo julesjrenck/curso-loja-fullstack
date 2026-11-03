@@ -33,8 +33,13 @@ da consolidação 6.84 com "entendi" em 01/11/2026. Curso retomado por pedido do
 aluno em 03/11/2026; módulo 7 iniciado na 7.1 — Autenticação e autorização.
 A introdução distingue identificação, permissão e validação, usando o catálogo
 público existente. Entendimento da 7.1 confirmado com "entendi" em 03/11/2026.
-Próxima etapa, 7.2: leitura do User, config/auth.php e migration de usuários
-existentes, antes de criar tabelas ou instalar dependências de autenticação.
+7.1 publicada em 074fcf9, com remoto conferido. Na 7.2, leitura do User,
+config/auth.php e migration de usuários apresentada: configuração carregada,
+dez verificações do model em memória/zero SQL e status das migrations nos dois
+ambientes conferidos. Sem alteração de aplicação ou criação de tabelas.
+Entendimento da 7.2 confirmado com "entendi" em 03/11/2026; publicação pendente.
+Próxima etapa após publicar o checkpoint:
+7.3: inspecionar o SQL da migration de usuários para SQL Server, sem aplicá-la.
 Módulos 8 a 23 ainda não iniciados. A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
 em 21/10/2026. Os registros abaixo descrevem o percurso do módulo 5.
@@ -663,7 +668,9 @@ Pausa solicitada pelo aluno em 01/11/2026, encerrada pelo pedido de retomada em
 03/11/2026. Na 7.1, introdução à autenticação/autorização documentada e apresentada;
 route:list detalhado conferiu duas rotas públicas em Docker. Sem nova implementação
 de aplicação ou suíte. Entendimento confirmado com "entendi" em 03/11/2026;
-checkpoint preparado para publicação e continuidade na 7.2.
+publicação conferida em 074fcf9. Na 7.2, estrutura existente de autenticação
+apresentada e verificada por diagnóstico em memória e migrate:status;
+entendimento confirmado com "entendi" em 03/11/2026. Publicar checkpoint e seguir à 7.3.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -5,23 +5,33 @@
 - Última atualização: 03/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.1 — Autenticação e autorização: concluída, entendimento
-  confirmado com "entendi" em 03/11/2026; próximo passo 7.2.
+- Etapa atual: 7.2 — Estrutura existente de usuários e autenticação: concluída;
+  entendimento confirmado com "entendi" em 03/11/2026.
+- Situação da 7.2: aula docs/aulas/07-02-estrutura-usuarios-autenticacao.md criada.
+  User/Authenticatable/Fillable/Hidden/casts/traits, configuração guard/provider
+  e três tabelas da migration explicados. Diagnóstico PHP Docker: dez verificações
+  do model em memória passaram, zero SQL, sem persistência; configuração efetiva
+  web/session/users/Eloquent/User e armazenamento de sessão file conferidos.
+  migrate:status normal e testing código 0: users/cache/jobs Pending, três migrations
+  do catálogo Ran. Status não comprova sozinho a existência física de tabelas.
+  Sem aplicação de migrations, instalação de dependências ou nova suíte.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint da 7.2; depois,
+  7.3 — inspecionar SQL da migration de usuários no SQL Server sem aplicar.
 - Situação da 7.1: aula docs/aulas/07-01-autenticacao-e-autorizacao.md preparada;
   distingue identidade/permissão/validação e usa exemplos de cliente/administrador.
   Rotas públicas e authorize(): true existentes explicados por leitura.
   Sem implementação de login, permissões, migrations ou instalação de pacotes.
   Git inicialmente limpo; HEAD/origin/main/main remota conferidos no SHA
-  167ec4fd2a90ad673814d1c2dd60e062ae4fd822, último checkpoint publicado.
+  167ec4fd2a90ad673814d1c2dd60e062ae4fd822, checkpoint publicado anterior à 7.1.
   Docker Compose confirmou php/backend/sqlserver ativos. Route:list em Docker
   mostrou duas rotas GET|HEAD com grupo api, sem middleware de autenticação.
   Restrições iniciais de socket/rede resolvidas com consultas ampliadas.
   Nenhuma suíte nova executada; último resultado completo é o da 6.84, abaixo.
   Entendimento confirmado com "entendi" em 03/11/2026.
-  Publicação da 7.1 pendente; checkpoint preparado para commit e push.
-  Próximo passo exato: publicar e conferir a 7.1; depois iniciar
-  7.2 — leitura do User, config/auth.php e migration de
-  usuários existentes, antes de criar tabelas ou instalar dependências.
+  Publicação da 7.1 conferida em 074fcf9415e4d5cba864ca401fce8de6257c6f55;
+  HEAD/origin/main/main remota iguais após push; último checkpoint publicado.
+  Continuidade realizada na 7.2, conforme estado atual.
 - Situação da 6.84: consolidação, explicação e verificação em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Nova aula consolida API pública de leitura,
   responsabilidades dos arquivos, quatro respostas documentadas, revisões
@@ -1269,7 +1279,9 @@
 Retomada realizada em 03/11/2026: aluno informou a conclusão da 6.84 e pediu
 iniciar a 7.1. Pausa abaixo encerrada. Estado vigente no início deste arquivo;
 registros anteriores preservados como histórico. 7.1 apresentada e entendimento
-confirmado com "entendi" em 03/11/2026; continuidade autorizada na 7.2.
+confirmado com "entendi" em 03/11/2026 e publicação conferida em 074fcf9.
+Continuidade realizada na 7.2, confirmada com "entendi" em 03/11/2026;
+próximo passo: publicar e iniciar a 7.3.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -11572,7 +11584,41 @@ Git diff --check passou; os cinco links locais da nova aula existem.
 Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
 Exercício proposto: distinguir identificação de Ana e recusa da alteração de
 preço; resposta ainda não recebida. DBeaver permanece opcional e sem relato.
-Publicação: pendente; checkpoint concluído, preparado para commit e push.
-Próximo passo exato: publicar e conferir o checkpoint da 7.1. Depois,
-7.2 — ler User, config/auth.php e migration de usuários existentes, antes de
-criar tabelas ou instalar dependências de autenticação.
+Publicação: concluída e conferida em 074fcf9415e4d5cba864ca401fce8de6257c6f55;
+HEAD, origin/main e refs/heads/main remoto iguais após o push. Registro posterior
+à publicação, sem tentar inserir o SHA dentro do próprio checkpoint.
+Continuidade realizada na 7.2.
+
+## Etapa 7.2 — Estrutura existente de usuários e autenticação — 03/11/2026
+
+Iniciada após confirmação da 7.1 com "entendi" e publicação verificada.
+Implementação: nova aula docs/aulas/07-02-estrutura-usuarios-autenticacao.md;
+atualização do roteiro/progresso e registro da publicação anterior na aula 7.1.
+Nenhuma alteração de aplicação, configuração ou dependências.
+
+Explicação apresentada: herança/alias Authenticatable, tabela convencional users,
+Fillable versus validação, Hidden na serialização, casts datetime/hashed,
+HasFactory/Notifiable e comentário de verificação de e-mail. Ligação guard web,
+driver session, provider users/Eloquent/User; armazenamento da sessão em file.
+Guard/provider não são perfis. Configurações de recuperação/confirmação de senha
+identificadas para aprofundamento futuro. Migration up/down, três tabelas e
+campos, índices/null/unique e ausência de declaração de FK em sessions.user_id.
+
+Verificação: diagnóstico PHP no Docker, com bootstrap do console; dez condições
+passaram, incluindo Hash::check positivo/negativo, senha transformada, ocultação
+de password/remember_token no array e conversão de data. Zero SQL e objeto não
+persistido; dados fictícios/senha aleatória temporária, sem saída de senha/hash.
+Configuração carregada conferida. migrate:status normal e --env=testing código 0:
+users/cache/jobs Pending, produtos/categorias/categoria_id Ran, lotes 1/2/3.
+Essa consulta verifica histórico, sem comprovar a existência física das tabelas.
+Sem migration aplicada, alteração de banco, teste de login ou nova suíte;
+último resultado completo continua 6.84 (66/620 e quatro contratos). Fontes
+oficiais Laravel 13 consultadas. Diagnóstico não é teste permanente adicionado.
+Git diff --check passou; links locais das aulas 7.1 (cinco) e 7.2 (quatro)
+conferidos, todos existentes.
+
+Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
+Publicação da 7.2: pendente; checkpoint concluído. Último checkpoint publicado:
+074fcf9415e4d5cba864ca401fce8de6257c6f55 (7.1).
+Próximo passo exato: publicar e conferir o checkpoint da 7.2. Depois,
+7.3 — inspecionar SQL da migration de usuários no SQL Server, sem aplicá-la.
