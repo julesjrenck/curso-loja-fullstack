@@ -5,8 +5,20 @@
 - Última atualização: 03/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.7 — Ocultação de senha e token na serialização: concluída,
+- Etapa atual: 7.8 — Sessão e cookie no fluxo de login: concluída,
   entendimento confirmado com "entendi" em 03/11/2026.
+- Situação da 7.8: aula docs/aulas/07-08-sessao-e-cookie.md criada, com fluxo
+  ilustrativo de login/próxima requisição/logout, Set-Cookie/Cookie, identificador
+  da sessão versus ID de User, sessão de visitante e autorização separada.
+  Configuração no Docker: web/session/users, sessão file, cookie
+  loja-fullstack-session, HttpOnly true, sessão não iniciada. Route:list mostrou
+  /loja com web/MarcarRespostaCurso e duas rotas API com api; kernel HTTP confirmou
+  StartSession no grupo web e somente SubstituteBindings no api atual.
+  Nenhuma rota de login criada, sessão iniciada ou Sanctum instalado. Sem nova
+  suíte; último resultado completo 7.7, 67/635. Mudanças apenas documentais.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.9 — proteção CSRF no fluxo por sessão/cookie, antes de Sanctum.
 - Situação da 7.7: cenário existente em UserPersistenciaTest ampliado; token
   fictício atribuído explicitamente/salvo e conferido após nova consulta.
   toArray mantém nome/e-mail e omite password/remember_token; toJson decodificado
@@ -15,10 +27,9 @@
   loja_test/loja_testes: zero users/tokens/sessions/produtos/categorias e quatro
   migrations nos lotes 1/2/3/4. Sem mudança no model/rota/configuração/dependências.
   Snapshot normal e quatro contratos não repetidos; fonte oficial consultada.
-  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.8 — sessão no servidor e cookie no navegador no fluxo de login,
-  requisição seguinte e logout, antes de instalar Sanctum.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
+  e21e732313d14de2c8e78212ca4c4ee18df44cb9, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.8.
 - Situação da 7.6: cenário existente em UserPersistenciaTest ampliado com import
   Hash, variável de senha fictícia e três asserções após nova consulta ao banco:
   senha diferente do texto original, Hash::check correto true e diferente false.
@@ -28,7 +39,7 @@
   Snapshot normal e quatro contratos não repetidos. Fonte oficial consultada.
   Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
   718f0e3a865ee0d444079afb43a1482c2cda38f8, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.7.
+  Checkpoint anterior à 7.7. Continuidade realizada na 7.7.
 - Situação da 7.5: backend/tests/Feature/UserPersistenciaTest.php criado, um cenário
   com DatabaseTransactions, identidade loja_test/loja_testes antes de DELETE/INSERT,
   create/findOrFail pelo ID gerado, ID inteiro positivo e nome/e-mail conferidos.
@@ -1347,7 +1358,8 @@ Continuidade realizada na 7.5, confirmada com "entendi" em 03/11/2026;
 publicação conferida em 5f0b13b. Continuidade realizada na 7.6, com
 entendimento confirmado com "entendi" em 03/11/2026 e publicação em 718f0e3.
 Continuidade realizada na 7.7, confirmada com "entendi" em 03/11/2026;
-publicar checkpoint e iniciar 7.8.
+publicação conferida em e21e732. Continuidade realizada na 7.8, confirmada com
+"entendi" em 03/11/2026; publicar checkpoint e iniciar 7.9.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -11855,8 +11867,41 @@ Git diff --check passou; dois links locais de cada aula 7.6/7.7 conferidos.
 Arquivos .env locais continuam ignorados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
-Publicação da 7.7: pendente; checkpoint concluído. Último checkpoint publicado:
-718f0e3a865ee0d444079afb43a1482c2cda38f8 (7.6).
-Próximo passo exato: publicar e conferir o checkpoint da 7.7. Depois,
-7.8 — sessão no servidor e cookie no navegador no fluxo login/requisição seguinte/
-logout, antes de instalar Sanctum.
+Publicação da 7.7: concluída e conferida em
+e21e732313d14de2c8e78212ca4c4ee18df44cb9; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.8.
+
+## Etapa 7.8 — Sessão e cookie no fluxo de login — 03/11/2026
+
+Iniciada após confirmação da 7.7 com "entendi" e publicação verificada.
+Implementação: nova aula docs/aulas/07-08-sessao-e-cookie.md e registros;
+alteração somente documental. Nenhuma rota/model/configuração/dependência mudado.
+
+Explicação apresentada: sessão no servidor e cookie no navegador, referência da
+sessão diferente do ID de User, Set-Cookie na resposta/Cookie na próxima requisição,
+regeneração após login e invalidação no logout. Sessão pode existir para visitante;
+cookie sozinho não prova login; autorização continua uma verificação distinta.
+Fluxo ilustrativo em Mermaid; nenhuma rota de login/logout implementada.
+
+Verificação Docker: bootstrap de console/configuração confirmou web/session/users,
+session.driver=file, cookie loja-fullstack-session, HttpOnly true e sessão não
+iniciada. Route:list -vv de loja/API, códigos 0: uma rota web/MarcarRespostaCurso,
+duas rotas api; a listagem mostrou nomes dos grupos. Diagnóstico separado do kernel
+HTTP/getMiddlewareGroups confirmou web com EncryptCookies, AddQueuedCookiesToResponse,
+StartSession, ShareErrorsFromSession, PreventRequestForgery e SubstituteBindings;
+api atual somente SubstituteBindings. Configuração de testes array apresentada por
+leitura de phpunit.xml e modelo .env.testing.example. Sessão file usa arquivos;
+existência da tabela sessions não seleciona o driver database.
+
+Fontes oficiais Laravel/MDN consultadas. Sem requisição HTTP, login ou sessão
+iniciada; sem saída de valores de cookies/conteúdo de sessões. Não executamos
+SQL, nova suíte ou quatro contratos. Última suíte: 7.7, 67/635. Verificação confirma
+configuração/grupos, não autenticação real no navegador. Sanctum ainda não instalado.
+Git diff --check passou; links locais das aulas 7.7 (dois) e 7.8 (seis)
+conferidos. Arquivos .env locais continuam ignorados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
+Publicação da 7.8: pendente; checkpoint concluído. Último checkpoint publicado:
+e21e732313d14de2c8e78212ca4c4ee18df44cb9 (7.7).
+Próximo passo exato: publicar e conferir o checkpoint da 7.8. Depois,
+7.9 — proteção CSRF no fluxo autenticado por sessão/cookie, antes de Sanctum.

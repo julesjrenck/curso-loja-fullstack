@@ -58,8 +58,11 @@ Entendimento da 7.6 confirmado com "entendi" em 03/11/2026; publicada em
 718f0e3, remoto conferido. Na 7.7, mesmo cenário ampliado com token persistido,
 campos visíveis e ocultos em array/JSON. Focado 1/15 e suíte 67/635 passaram;
 rollback e quatro migrations conferidos. Entendimento da 7.7 confirmado com
-"entendi" em 03/11/2026; publicação pendente. Após publicar, 7.8: sessão no servidor e
-cookie no navegador no fluxo login/requisição seguinte/logout, antes de Sanctum.
+"entendi" em 03/11/2026; publicada em e21e732, remoto conferido. Na 7.8, fluxo
+planejado de sessão/cookie apresentado; configuração normal e grupos web/api
+conferidos no Docker, sem login ou sessão iniciada. Entendimento da 7.8 confirmado
+com "entendi" em 03/11/2026; publicação pendente. Após publicar, 7.9: proteção CSRF no fluxo por
+sessão/cookie, antes de instalar Sanctum.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -701,7 +704,9 @@ Publicação conferida em 5f0b13b. Na 7.6, teste de hash persistido apresentado
 e verificado; entendimento confirmado com "entendi" em 03/11/2026.
 Publicação conferida em 718f0e3. Na 7.7, teste da serialização do User apresentado
 e verificado; entendimento confirmado com "entendi" em 03/11/2026.
-Publicar checkpoint e iniciar 7.8.
+Publicação conferida em e21e732. Na 7.8, sessão/cookie explicados e configuração/
+middlewares conferidos; entendimento confirmado com "entendi" em 03/11/2026.
+Publicar checkpoint e iniciar 7.9.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

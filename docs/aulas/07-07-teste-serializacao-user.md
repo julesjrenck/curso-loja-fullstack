@@ -104,5 +104,6 @@ de futuros endpoints será tratada quando esses endpoints forem criados.
 
 Entendimento confirmado com "entendi" em 03/11/2026. Próximo passo após publicar:
 7.8 — entender sessão no servidor e cookie no navegador no fluxo de
-login/requisição seguinte/logout, antes de instalar Sanctum. Checkpoint preparado
-para commit e push; consultar o Git ou registro posterior para conferir a publicação.
+login/requisição seguinte/logout, antes de instalar Sanctum. Checkpoint publicado
+e conferido em e21e732313d14de2c8e78212ca4c4ee18df44cb9;
+HEAD/origin/main/main remota iguais após push. Registro posterior à publicação.
