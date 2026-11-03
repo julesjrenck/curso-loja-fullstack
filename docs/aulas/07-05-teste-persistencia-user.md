@@ -123,5 +123,6 @@ sua ocultação na serialização; também não cobre login ou autorização.
 
 Entendimento confirmado com "entendi" em 03/11/2026. Próximo passo após publicar:
 7.6 — verificar em teste o hash da senha persistida e a comparação com
-Hash::check. Checkpoint preparado para commit e push; consultar o Git ou
-registro posterior para conferir o resultado da publicação.
+Hash::check. Checkpoint publicado e conferido em
+5f0b13b9c426c5c4cb3af9d9868d3c6f60f1b1da; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.

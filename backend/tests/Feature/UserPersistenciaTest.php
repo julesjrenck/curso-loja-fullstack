@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class UserPersistenciaTest extends TestCase
@@ -22,10 +23,12 @@ class UserPersistenciaTest extends TestCase
 
         User::query()->delete();
 
+        $senha = 'senha-ficticia-do-teste';
+
         $usuario = User::query()->create([
             'name' => 'Ana Exemplo',
             'email' => 'ana@example.test',
-            'password' => 'senha-ficticia-do-teste',
+            'password' => $senha,
         ]);
 
         $this->assertIsInt($usuario->getKey());
@@ -35,5 +38,9 @@ class UserPersistenciaTest extends TestCase
 
         $this->assertSame('Ana Exemplo', $consultado->name);
         $this->assertSame('ana@example.test', $consultado->email);
+
+        $this->assertNotSame($senha, $consultado->password);
+        $this->assertTrue(Hash::check($senha, $consultado->password));
+        $this->assertFalse(Hash::check('outra-senha-ficticia', $consultado->password));
     }
 }

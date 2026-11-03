@@ -5,8 +5,18 @@
 - Última atualização: 03/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.5 — Primeiro teste de persistência de User: concluída,
-  entendimento confirmado com "entendi" em 03/11/2026.
+- Etapa atual: 7.6 — Hash da senha persistida: concluída, entendimento
+  confirmado com "entendi" em 03/11/2026.
+- Situação da 7.6: cenário existente em UserPersistenciaTest ampliado com import
+  Hash, variável de senha fictícia e três asserções após nova consulta ao banco:
+  senha diferente do texto original, Hash::check correto true e diferente false.
+  Sintaxe válida; focado 1/9, suíte padrão 67/629, códigos 0. SELECT posterior
+  loja_test/loja_testes: zero users/tokens/sessions/produtos/categorias e quatro
+  migrations nos lotes 1/2/3/4. Nenhum model/configuração/dependência alterado.
+  Snapshot normal e quatro contratos não repetidos. Fonte oficial consultada.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.7 — verificar ocultação de password/remember_token em array/JSON.
 - Situação da 7.5: backend/tests/Feature/UserPersistenciaTest.php criado, um cenário
   com DatabaseTransactions, identidade loja_test/loja_testes antes de DELETE/INSERT,
   create/findOrFail pelo ID gerado, ID inteiro positivo e nome/e-mail conferidos.
@@ -15,9 +25,9 @@
   produtos/categorias, quatro migrations preservadas; identity users chegou a 2,
   pois números consumidos não são recuperados pelo rollback. Estado consultado
   do banco normal coincide com registro anterior. Não testa hash/serialização/login.
-  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.6 — verificar em teste hash da senha persistida e Hash::check.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
+  5f0b13b9c426c5c4cb3af9d9868d3c6f60f1b1da, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.6.
 - Situação da 7.4: aula docs/aulas/07-04-migration-usuarios-testes.md criada.
   Ambiente/identidade/permissões/ausência das tabelas conferidos antes.
   Migration de usuários aplicada com --env=testing --database=sqlsrv e --path
@@ -32,7 +42,7 @@
   Nenhum usuário cadastrado, rota criada ou dependência instalada.
   Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
   65880d06e1c96c1b0273480d59792bd11d384c2a, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.5.
+  Checkpoint anterior à 7.5. Continuidade realizada na 7.5.
 - Situação da 7.3: aula docs/aulas/07-03-sql-migration-usuarios.md criada.
   Inspeção no Docker com migrate --database=sqlsrv --path da migration de usuários
   --pretend --no-interaction --no-ansi terminou 0: oito instruções para três
@@ -1322,7 +1332,8 @@ publicação conferida em 801016c; continuidade realizada na 7.3, confirmada com
 "entendi" em 03/11/2026 e publicada em cab244e. Continuidade realizada na 7.4;
 entendimento confirmado com "entendi" em 03/11/2026 e publicação em 65880d0.
 Continuidade realizada na 7.5, confirmada com "entendi" em 03/11/2026;
-publicar checkpoint e iniciar 7.6.
+publicação conferida em 5f0b13b. Continuidade realizada na 7.6, com
+entendimento confirmado com "entendi" em 03/11/2026. Publicar e iniciar 7.7.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -11771,7 +11782,36 @@ Git diff --check passou; links locais das aulas 7.4 (três) e 7.5 (quatro)
 conferidos. Arquivos .env locais continuam ignorados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
-Publicação da 7.5: pendente; checkpoint concluído. Último checkpoint publicado:
-65880d06e1c96c1b0273480d59792bd11d384c2a (7.4).
-Próximo passo exato: publicar e conferir o checkpoint da 7.5. Depois,
-7.6 — verificar em teste o hash da senha persistida e Hash::check.
+Publicação da 7.5: concluída e conferida em
+5f0b13b9c426c5c4cb3af9d9868d3c6f60f1b1da; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.6.
+
+## Etapa 7.6 — Hash da senha persistida — 03/11/2026
+
+Iniciada após confirmação da 7.5 com "entendi" e publicação verificada.
+Implementação: ampliado o cenário existente em backend/tests/Feature/UserPersistenciaTest.php;
+nova aula docs/aulas/07-06-teste-hash-senha.md e registros. Adicionados import Hash,
+variável $senha fictícia e três asserções sobre a senha lida por findOrFail.
+Nenhum model, dependência, configuração, rota ou migration alterado.
+
+Explicação apresentada: cast hashed existente transforma o texto atribuído;
+assertNotSame sozinho seria insuficiente, Hash::check recebe texto/hash e verifica
+correspondência sem recuperar senha. Senha correta exige true e diferente exige
+false. Mantidos transação, identidade antes da escrita e seis asserções anteriores.
+Não fixamos hash ou prefixo de algoritmo como expectativa; não imprimimos senha/hash.
+
+Verificação Docker: php -l válido; PHPUnit focado 1 teste/9 asserções e suíte
+completa na ordem padrão 67 testes/629 asserções, códigos 0, sem cache de resultados.
+SELECT posterior: loja_test/loja_testes, zero users/tokens/sessions/produtos/
+categorias, quatro registros de migrations nos lotes 1/2/3/4. Sem snapshot normal
+ou quatro contratos repetidos. Documentação oficial Laravel de hashing consultada.
+Última suíte completa: 7.6, 67/629. Ainda não cobre serialização/login/permissões.
+Git diff --check passou; links locais das aulas 7.5 (quatro) e 7.6 (dois)
+conferidos. Arquivos .env locais continuam ignorados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
+Publicação da 7.6: pendente; checkpoint concluído. Último checkpoint publicado:
+5f0b13b9c426c5c4cb3af9d9868d3c6f60f1b1da (7.5).
+Próximo passo exato: publicar e conferir o checkpoint da 7.6. Depois,
+7.7 — verificar em teste ocultação de password/remember_token na conversão para
+array/JSON.

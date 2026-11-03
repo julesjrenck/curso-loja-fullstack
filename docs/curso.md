@@ -50,9 +50,13 @@ publicação conferida em 65880d0. Na 7.5, primeiro teste de persistência de Us
 com DatabaseTransactions criado: identidade antes da escrita, create/findOrFail,
 ID inteiro positivo e nome/e-mail. Focado 1/6 e suíte em ordem inversa 67/626
 passaram; zero usuários após rollback. Contador identity pode avançar.
-Entendimento da 7.5 confirmado com "entendi" em 03/11/2026; publicação pendente.
+Entendimento da 7.5 confirmado com "entendi" em 03/11/2026; publicada em
+5f0b13b, remoto conferido. Na 7.6, mesmo cenário ampliado com três asserções de
+hash persistido/senha correta/diferente. Focado 1/9 e suíte 67/629 passaram;
+rollback e quatro registros de migrations conferidos em loja_test.
+Entendimento da 7.6 confirmado com "entendi" em 03/11/2026; publicação pendente.
 Próxima etapa após publicar:
-7.6: verificar hash da senha persistida e Hash::check em teste.
+7.7: testar ocultação de password/remember_token na conversão para array/JSON.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -690,7 +694,9 @@ Na 7.3, SQL inspecionado sem aplicar a migration; entendimento confirmado com
 somente em loja_test e verificada; entendimento confirmado com "entendi" em
 03/11/2026 e publicada em 65880d0. Na 7.5, teste de persistência de User criado
 e verificado; entendimento confirmado com "entendi" em 03/11/2026.
-Publicar checkpoint e iniciar 7.6.
+Publicação conferida em 5f0b13b. Na 7.6, teste de hash persistido apresentado
+e verificado; entendimento confirmado com "entendi" em 03/11/2026.
+Publicar checkpoint e iniciar 7.7.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
