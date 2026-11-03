@@ -46,8 +46,13 @@ cab244e, remoto conferido. Na 7.4, somente essa migration aplicada em loja_test:
 três tabelas vazias, 17 colunas, índices/PKs e registro único no lote 4 conferidos.
 Reexecução Nothing to migrate; suíte existente 66/620 passou; estado consultado
 de loja preservado. Entendimento da 7.4 confirmado com "entendi" em 03/11/2026;
-publicação pendente. Após publicar, 7.5: primeiro teste de persistência de User
-com DatabaseTransactions.
+publicação conferida em 65880d0. Na 7.5, primeiro teste de persistência de User
+com DatabaseTransactions criado: identidade antes da escrita, create/findOrFail,
+ID inteiro positivo e nome/e-mail. Focado 1/6 e suíte em ordem inversa 67/626
+passaram; zero usuários após rollback. Contador identity pode avançar.
+Entendimento da 7.5 confirmado com "entendi" em 03/11/2026; publicação pendente.
+Próxima etapa após publicar:
+7.6: verificar hash da senha persistida e Hash::check em teste.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -683,7 +688,9 @@ entendimento confirmado com "entendi" em 03/11/2026 e publicação em 801016c.
 Na 7.3, SQL inspecionado sem aplicar a migration; entendimento confirmado com
 "entendi" em 03/11/2026 e publicada em cab244e. Na 7.4, migration aplicada
 somente em loja_test e verificada; entendimento confirmado com "entendi" em
-03/11/2026. Publicar checkpoint e iniciar 7.5.
+03/11/2026 e publicada em 65880d0. Na 7.5, teste de persistência de User criado
+e verificado; entendimento confirmado com "entendi" em 03/11/2026.
+Publicar checkpoint e iniciar 7.6.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

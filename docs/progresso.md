@@ -5,8 +5,19 @@
 - Última atualização: 03/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.4 — Migration de usuários no banco de testes: concluída,
+- Etapa atual: 7.5 — Primeiro teste de persistência de User: concluída,
   entendimento confirmado com "entendi" em 03/11/2026.
+- Situação da 7.5: backend/tests/Feature/UserPersistenciaTest.php criado, um cenário
+  com DatabaseTransactions, identidade loja_test/loja_testes antes de DELETE/INSERT,
+  create/findOrFail pelo ID gerado, ID inteiro positivo e nome/e-mail conferidos.
+  Sintaxe Docker válida; focado 1 teste/6 asserções; suíte em ordem inversa
+  67 testes/626 asserções, código 0. SQL posterior: zero users/tokens/sessions/
+  produtos/categorias, quatro migrations preservadas; identity users chegou a 2,
+  pois números consumidos não são recuperados pelo rollback. Estado consultado
+  do banco normal coincide com registro anterior. Não testa hash/serialização/login.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.6 — verificar em teste hash da senha persistida e Hash::check.
 - Situação da 7.4: aula docs/aulas/07-04-migration-usuarios-testes.md criada.
   Ambiente/identidade/permissões/ausência das tabelas conferidos antes.
   Migration de usuários aplicada com --env=testing --database=sqlsrv e --path
@@ -19,9 +30,9 @@
   Após suíte, zero usuários/tokens/sessões/produtos/categorias em loja_test.
   Banco normal consultado antes/depois: tabelas/histórico/contagens preservados.
   Nenhum usuário cadastrado, rota criada ou dependência instalada.
-  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.5 — primeiro teste de persistência de User com DatabaseTransactions.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
+  65880d06e1c96c1b0273480d59792bd11d384c2a, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.5.
 - Situação da 7.3: aula docs/aulas/07-03-sql-migration-usuarios.md criada.
   Inspeção no Docker com migrate --database=sqlsrv --path da migration de usuários
   --pretend --no-interaction --no-ansi terminou 0: oito instruções para três
@@ -32,7 +43,7 @@
   Pending, catálogo Ran. Sem nova suíte ou comando no banco de testes.
   Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
   cab244eb8221004bf63937750fa81951986d62ca, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.4.
+  Checkpoint anterior à 7.4. Continuidade realizada na 7.4.
 - Situação da 7.2: aula docs/aulas/07-02-estrutura-usuarios-autenticacao.md criada.
   User/Authenticatable/Fillable/Hidden/casts/traits, configuração guard/provider
   e três tabelas da migration explicados. Diagnóstico PHP Docker: dez verificações
@@ -1309,7 +1320,9 @@ confirmado com "entendi" em 03/11/2026 e publicação conferida em 074fcf9.
 Continuidade realizada na 7.2, confirmada com "entendi" em 03/11/2026;
 publicação conferida em 801016c; continuidade realizada na 7.3, confirmada com
 "entendi" em 03/11/2026 e publicada em cab244e. Continuidade realizada na 7.4;
-entendimento confirmado com "entendi" em 03/11/2026. Publicar e iniciar 7.5.
+entendimento confirmado com "entendi" em 03/11/2026 e publicação em 65880d0.
+Continuidade realizada na 7.5, confirmada com "entendi" em 03/11/2026;
+publicar checkpoint e iniciar 7.6.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -11723,8 +11736,42 @@ Git diff --check passou; links locais das aulas 7.3 (dois) e 7.4 (três)
 conferidos. .env, backend/.env e backend/.env.testing continuam ignorados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
-Publicação da 7.4: pendente; checkpoint concluído. Último checkpoint publicado:
-cab244eb8221004bf63937750fa81951986d62ca (7.3).
-Próximo passo exato: publicar e conferir o checkpoint da 7.4. Depois,
-7.5 — primeiro teste de persistência de User em loja_test com DatabaseTransactions,
-sem criar rota de login.
+Publicação da 7.4: concluída e conferida em
+65880d06e1c96c1b0273480d59792bd11d384c2a; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.5.
+
+## Etapa 7.5 — Primeiro teste de persistência de User — 03/11/2026
+
+Iniciada após confirmação da 7.4 com "entendi" e publicação verificada.
+Implementação: somente backend/tests/Feature/UserPersistenciaTest.php como código
+novo, além de docs/aulas/07-05-teste-persistencia-user.md e registros.
+Nenhuma rota, model, dependência, migration ou configuração alterada.
+
+Explicação apresentada: imports/trait/base TestCase, transação e rollback,
+identidade real antes da escrita, DELETE de preparação dentro da transação,
+create com dados fictícios, ID retornado e nova consulta findOrFail. Seis asserções:
+banco/login, tipo/valor positivo do ID e nome/e-mail. Sem factory de usuário nova.
+Senha do cenário é exclusivamente fictícia. Hash/serialização/login ainda não cobertos.
+
+Verificação Docker: PHP 8.4.26/Composer 2.10.3; diagnóstico sem cache confirmou
+testing/.env.testing, loja_test/loja_testes e zero users/tokens/sessions/produtos/
+categorias antes. php -l passou; PHPUnit focado 1/6 e suíte --order-by=reverse
+67/626, códigos 0, sem cache de resultados. SELECT posterior confirmou as mesmas
+contagens zero e quatro registros de migrations. identity users chegou a 2,
+coerente com duas execuções; rollback não recupera os valores consumidos.
+Referências oficiais Laravel/SQL Server consultadas.
+
+loja/loja_app consultado após: mesmas tabelas categorias/migrations/produtos,
+três migrations nos lotes 1/2/3 e um produto/zero categorias. Resumo SHA-256 do
+conjunto coincide com o registro anterior:
+8c61be048457250963c87f8c8c40dd595d57a3c2349070c9cdd0994c1151fa7a.
+Não compara conteúdo integral das linhas. Nenhuma escrita no banco normal;
+quatro contratos não executados novamente. Última suíte completa: 7.5, 67/626.
+Git diff --check passou; links locais das aulas 7.4 (três) e 7.5 (quatro)
+conferidos. Arquivos .env locais continuam ignorados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
+Publicação da 7.5: pendente; checkpoint concluído. Último checkpoint publicado:
+65880d06e1c96c1b0273480d59792bd11d384c2a (7.4).
+Próximo passo exato: publicar e conferir o checkpoint da 7.5. Depois,
+7.6 — verificar em teste o hash da senha persistida e Hash::check.

@@ -115,8 +115,9 @@ ausentes no banco normal, consultado apenas para conferência.
 
 Nenhum código de aplicação, configuração, dependência ou rota foi alterado.
 Criar tabelas não implementa login. Entendimento confirmado com "entendi" em
-03/11/2026; checkpoint preparado para commit e push. Consultar o Git ou registro
-posterior para conferir a publicação.
+03/11/2026; checkpoint publicado e conferido em
+65880d06e1c96c1b0273480d59792bd11d384c2a, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.
 
 Próximo passo, após publicar este checkpoint:
 7.5 — criar o primeiro teste de persistência de User em loja_test usando
