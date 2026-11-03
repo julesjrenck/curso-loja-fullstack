@@ -5,8 +5,20 @@
 - Última atualização: 03/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.8 — Sessão e cookie no fluxo de login: concluída,
+- Etapa atual: 7.9 — Proteção CSRF no fluxo por sessão/cookie: concluída,
   entendimento confirmado com "entendi" em 03/11/2026.
+- Situação da 7.9: aula docs/aulas/07-09-protecao-csrf.md criada. CSRF separado
+  de autenticação/autorização, cookie de sessão versus token CSRF/remember_token,
+  _token/X-CSRF-TOKEN e ramo Sec-Fetch-Site: same-origin do Laravel 13 explicados.
+  Fonte oficial e trechos do middleware instalado conferidos. Diagnóstico Docker
+  fora do modo de testes, Request/Store/ArraySessionHandler: seis casos com
+  status/continuação esperados, código 0 e zero SQL. Sessões somente em memória;
+  nenhum endpoint, login ou tráfego HTTP real. Sem alteração de aplicação.
+  Última suíte completa permanece 7.7, 67/635; não repetida nesta aula documental.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.10 — papel do Sanctum para a futura interface própria por sessão/cookie
+  e integração desse fluxo com a API.
 - Situação da 7.8: aula docs/aulas/07-08-sessao-e-cookie.md criada, com fluxo
   ilustrativo de login/próxima requisição/logout, Set-Cookie/Cookie, identificador
   da sessão versus ID de User, sessão de visitante e autorização separada.
@@ -16,9 +28,9 @@
   StartSession no grupo web e somente SubstituteBindings no api atual.
   Nenhuma rota de login criada, sessão iniciada ou Sanctum instalado. Sem nova
   suíte; último resultado completo 7.7, 67/635. Mudanças apenas documentais.
-  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.9 — proteção CSRF no fluxo por sessão/cookie, antes de Sanctum.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
+  c5008fd56cd102cc5d24ce295d29a25a5f068f6e, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.9.
 - Situação da 7.7: cenário existente em UserPersistenciaTest ampliado; token
   fictício atribuído explicitamente/salvo e conferido após nova consulta.
   toArray mantém nome/e-mail e omite password/remember_token; toJson decodificado
@@ -29,7 +41,7 @@
   Snapshot normal e quatro contratos não repetidos; fonte oficial consultada.
   Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
   e21e732313d14de2c8e78212ca4c4ee18df44cb9, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.8.
+  Checkpoint anterior à 7.8. Continuidade realizada na 7.8.
 - Situação da 7.6: cenário existente em UserPersistenciaTest ampliado com import
   Hash, variável de senha fictícia e três asserções após nova consulta ao banco:
   senha diferente do texto original, Hash::check correto true e diferente false.
@@ -1359,7 +1371,8 @@ publicação conferida em 5f0b13b. Continuidade realizada na 7.6, com
 entendimento confirmado com "entendi" em 03/11/2026 e publicação em 718f0e3.
 Continuidade realizada na 7.7, confirmada com "entendi" em 03/11/2026;
 publicação conferida em e21e732. Continuidade realizada na 7.8, confirmada com
-"entendi" em 03/11/2026; publicar checkpoint e iniciar 7.9.
+"entendi" em 03/11/2026 e publicada em c5008fd. Continuidade realizada na 7.9;
+entendimento confirmado com "entendi" em 03/11/2026. Publicar e iniciar 7.10.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -11901,7 +11914,45 @@ Git diff --check passou; links locais das aulas 7.7 (dois) e 7.8 (seis)
 conferidos. Arquivos .env locais continuam ignorados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
-Publicação da 7.8: pendente; checkpoint concluído. Último checkpoint publicado:
-e21e732313d14de2c8e78212ca4c4ee18df44cb9 (7.7).
-Próximo passo exato: publicar e conferir o checkpoint da 7.8. Depois,
-7.9 — proteção CSRF no fluxo autenticado por sessão/cookie, antes de Sanctum.
+Publicação da 7.8: concluída e conferida em
+c5008fd56cd102cc5d24ce295d29a25a5f068f6e; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.9.
+
+## Etapa 7.9 — Proteção CSRF no fluxo por sessão/cookie — 03/11/2026
+
+Iniciada após confirmação da 7.8 com "entendi" e publicação verificada.
+Implementação: nova aula docs/aulas/07-09-protecao-csrf.md e registros, somente
+documentação. Nenhum middleware/rota/dependência/configuração alterado.
+
+Explicação apresentada: exemplo ilustrativo de operação indesejada com cookies,
+CSRF separado de autenticação/autorização; token CSRF diferente do cookie de
+sessão e de remember_token. Token no corpo _token ou cabeçalho X-CSRF-TOKEN;
+HttpOnly não substitui CSRF. Laravel 13 aceita same-origin no Sec-Fetch-Site,
+senão recorre ao token; não afirmar que qualquer POST sem token recebe 419.
+
+Fonte oficial Laravel 13 consultada e trechos relevantes de PreventRequestForgery
+e alias legado VerifyCsrfToken lidos no Docker. Demonstração sem PHPUnit e com
+runningUnitTests false, evitando dispensa automática no modo de testes. Request
+e Store/ArraySessionHandler criados por caso, sessões iniciadas só em memória.
+Chamado handle diretamente; próxima função marca execução e retorna 200;
+TokenMismatchException renderizada pelo handler do Laravel como 419.
+
+Resultados: GET sem token 200/continua; POST sem token e incorreto 419/interrompe;
+POST com token correto no corpo ou X-CSRF-TOKEN 200/continua; POST same-origin
+sem token 200/continua. Demais casos sem Sec-Fetch-Site. Seis expectativas
+atendidas, código 0, listener SQL contou zero. Nenhum valor de token/cookie
+impresso, sessão persistida em disco/banco ou tráfego de rede; nenhuma operação
+de negócio. Cabeçalhos construídos no diagnóstico, sem testar navegador.
+
+Sem nova suíte, SQL ou quatro contratos; última suíte permanece 7.7, 67/635.
+Diagnóstico isolado não comprova login ou proteção completa de endpoint.
+Bootstrap/rotas atuais preservados e Sanctum ainda não instalado.
+Git diff --check passou; links locais das aulas 7.8 (seis) e 7.9 (dois)
+conferidos. Arquivos .env locais continuam ignorados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
+Publicação da 7.9: pendente; checkpoint concluído. Último checkpoint publicado:
+c5008fd56cd102cc5d24ce295d29a25a5f068f6e (7.8).
+Próximo passo exato: publicar e conferir o checkpoint da 7.9. Depois,
+7.10 — papel do Sanctum na autenticação da futura interface própria por
+sessão/cookie e integração desse fluxo com a API.

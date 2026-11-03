@@ -122,5 +122,6 @@ Fontes: [sessões no Laravel](https://laravel.com/docs/13.x/session),
 
 Entendimento confirmado com "entendi" em 03/11/2026. Próximo passo após publicar:
 7.9 — entender proteção CSRF no fluxo autenticado por sessão/cookie, antes de
-instalar Sanctum. Checkpoint preparado para commit e push; consultar o Git ou
-registro posterior para conferir o resultado da publicação.
+instalar Sanctum. Checkpoint publicado e conferido em
+c5008fd56cd102cc5d24ce295d29a25a5f068f6e; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.
