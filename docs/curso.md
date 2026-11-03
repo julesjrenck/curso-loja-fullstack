@@ -41,10 +41,14 @@ Entendimento da 7.2 confirmado com "entendi" em 03/11/2026; publicada em
 801016c, remoto conferido. Na 7.3, SQL da migration de usuários inspecionado
 com --pretend/--path na conexão sqlsrv: oito instruções, sem aplicação.
 Estado consultado antes/depois preservado; users permanece Pending.
-Entendimento da 7.3 confirmado com "entendi" em 03/11/2026; publicação pendente.
-Próximo passo após publicar:
-7.4: aplicar somente essa migration em loja_test e verificar tabelas/histórico,
-sem cadastrar usuários. Módulos 8 a 23 ainda não iniciados.
+Entendimento da 7.3 confirmado com "entendi" em 03/11/2026; publicada em
+cab244e, remoto conferido. Na 7.4, somente essa migration aplicada em loja_test:
+três tabelas vazias, 17 colunas, índices/PKs e registro único no lote 4 conferidos.
+Reexecução Nothing to migrate; suíte existente 66/620 passou; estado consultado
+de loja preservado. Entendimento da 7.4 confirmado com "entendi" em 03/11/2026;
+publicação pendente. Após publicar, 7.5: primeiro teste de persistência de User
+com DatabaseTransactions.
+Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
 em 21/10/2026. Os registros abaixo descrevem o percurso do módulo 5.
@@ -677,7 +681,9 @@ publicação conferida em 074fcf9. Na 7.2, estrutura existente de autenticação
 apresentada e verificada por diagnóstico em memória e migrate:status;
 entendimento confirmado com "entendi" em 03/11/2026 e publicação em 801016c.
 Na 7.3, SQL inspecionado sem aplicar a migration; entendimento confirmado com
-"entendi" em 03/11/2026. Publicar checkpoint e iniciar 7.4.
+"entendi" em 03/11/2026 e publicada em cab244e. Na 7.4, migration aplicada
+somente em loja_test e verificada; entendimento confirmado com "entendi" em
+03/11/2026. Publicar checkpoint e iniciar 7.5.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

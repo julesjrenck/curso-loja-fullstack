@@ -117,5 +117,6 @@ descreve o uso de --pretend para inspecionar as instruções.
 Entendimento confirmado com "entendi" em 03/11/2026. Próximo passo, após publicar:
 7.4 — aplicar somente a migration de usuários em loja_test e verificar as
 três tabelas e o histórico, sem cadastrar usuários. Aplicação no banco normal
-fica para etapa posterior. Checkpoint preparado para commit e push; consultar
-o Git ou registro posterior para conferir o resultado da publicação.
+fica para etapa posterior. Checkpoint publicado e conferido em
+cab244eb8221004bf63937750fa81951986d62ca; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.

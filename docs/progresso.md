@@ -5,8 +5,23 @@
 - Última atualização: 03/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.3 — SQL da migration de usuários: concluída, entendimento
-  confirmado com "entendi" em 03/11/2026.
+- Etapa atual: 7.4 — Migration de usuários no banco de testes: concluída,
+  entendimento confirmado com "entendi" em 03/11/2026.
+- Situação da 7.4: aula docs/aulas/07-04-migration-usuarios-testes.md criada.
+  Ambiente/identidade/permissões/ausência das tabelas conferidos antes.
+  Migration de usuários aplicada com --env=testing --database=sqlsrv e --path
+  específico: DONE/código 0. loja_test tem users/password_reset_tokens/sessions,
+  vazias; 17 colunas, tipos/tamanhos/null/identity/PKs/índices conferidos.
+  Erro inicial de contagem esperada no diagnóstico (18 em vez de 17) corrigido,
+  conferência repetida com código 0; sem mudança na migration ou correção de banco.
+  Registro único no lote 4; reexecução Nothing to migrate. Status [4] Ran,
+  cache/jobs Pending. Suíte existente renovada: 66 testes/620 asserções, código 0.
+  Após suíte, zero usuários/tokens/sessões/produtos/categorias em loja_test.
+  Banco normal consultado antes/depois: tabelas/histórico/contagens preservados.
+  Nenhum usuário cadastrado, rota criada ou dependência instalada.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.5 — primeiro teste de persistência de User com DatabaseTransactions.
 - Situação da 7.3: aula docs/aulas/07-03-sql-migration-usuarios.md criada.
   Inspeção no Docker com migrate --database=sqlsrv --path da migration de usuários
   --pretend --no-interaction --no-ansi terminou 0: oito instruções para três
@@ -15,10 +30,9 @@
   três migrations/lotes 1/2/3, um produto/zero categorias; resumo SHA-256 igual.
   Tabelas de usuários ausentes antes/depois. Status posterior users/cache/jobs
   Pending, catálogo Ran. Sem nova suíte ou comando no banco de testes.
-  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.4 — aplicar somente a migration de usuários em loja_test e verificar
-  tabelas/histórico, sem cadastrar usuários. Banco normal fica para etapa posterior.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
+  cab244eb8221004bf63937750fa81951986d62ca, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.4.
 - Situação da 7.2: aula docs/aulas/07-02-estrutura-usuarios-autenticacao.md criada.
   User/Authenticatable/Fillable/Hidden/casts/traits, configuração guard/provider
   e três tabelas da migration explicados. Diagnóstico PHP Docker: dez verificações
@@ -29,7 +43,7 @@
   Sem aplicação de migrations, instalação de dependências ou nova suíte.
   Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
   801016c369bcf248069e3ed3542419fa817f3977, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.3.
+  Checkpoint anterior à 7.3. Continuidade realizada na 7.3.
 - Situação da 7.1: aula docs/aulas/07-01-autenticacao-e-autorizacao.md preparada;
   distingue identidade/permissão/validação e usa exemplos de cliente/administrador.
   Rotas públicas e authorize(): true existentes explicados por leitura.
@@ -1294,7 +1308,8 @@ registros anteriores preservados como histórico. 7.1 apresentada e entendimento
 confirmado com "entendi" em 03/11/2026 e publicação conferida em 074fcf9.
 Continuidade realizada na 7.2, confirmada com "entendi" em 03/11/2026;
 publicação conferida em 801016c; continuidade realizada na 7.3, confirmada com
-"entendi" em 03/11/2026. Publicar o checkpoint e iniciar 7.4.
+"entendi" em 03/11/2026 e publicada em cab244e. Continuidade realizada na 7.4;
+entendimento confirmado com "entendi" em 03/11/2026. Publicar e iniciar 7.5.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -11663,8 +11678,53 @@ Git diff --check passou; links locais da aula 7.2 (quatro) e 7.3 (dois)
 conferidos, todos existentes.
 
 Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
-Publicação da 7.3: pendente; checkpoint concluído. Último checkpoint publicado:
-801016c369bcf248069e3ed3542419fa817f3977 (7.2).
-Próximo passo exato: publicar e conferir o checkpoint da 7.3. Depois,
-7.4 — aplicar somente a migration de usuários em loja_test e verificar as três
-tabelas/histórico, sem cadastrar usuários; banco normal em etapa posterior.
+Publicação da 7.3: concluída e conferida em
+cab244eb8221004bf63937750fa81951986d62ca; HEAD/origin/main/main remota iguais após
+push. Registro posterior à publicação. Continuidade realizada na 7.4.
+
+## Etapa 7.4 — Migration de usuários no banco de testes — 03/11/2026
+
+Iniciada após confirmação da 7.3 com "entendi" e publicação verificada.
+Implementação: aplicação do up da migration existente somente em loja_test;
+nova aula docs/aulas/07-04-migration-usuarios-testes.md e atualização dos registros.
+Nenhum código de aplicação, migration, configuração ou dependência alterado.
+
+Explicação apresentada: ambiente/conexão/arquivo, mesmo arquivo e históricos
+independentes por banco, aplicação de up versus --pretend, lote e reexecução,
+estruturas permanentes versus rollback das fixtures dos testes.
+
+Verificação prévia no Docker: sem cache de configuração; .env.testing/testing,
+sqlsrv/loja_test/loja_testes, CREATE TABLE e ALTER dbo = 1/1; três tabelas de
+usuários ausentes, catálogo vazio e histórico nos lotes 1/2/3. Consultas separadas
+no ambiente normal conferiram loja/loja_app para comparação posterior.
+
+Comando migrate --env=testing --database=sqlsrv
+--path=database/migrations/0001_01_01_000000_create_users_table.php
+--no-interaction --no-ansi terminou 0/DONE. Criou users/password_reset_tokens/
+sessions; metadados conferidos: 8/3/6 colunas, tipos/tamanhos/null/identity,
+PKs, unique de email, dois índices de sessions e ausência de FK sessions.user_id.
+Diagnóstico inicial código 1 apenas pela expectativa errada de 18 colunas;
+corrigido para 17 e conferência de colunas repetida código 0. Sem alteração no
+schema após a criação. Registro único de aplicação no lote 4; reexecução retornou
+Nothing to migrate, código 0. Status users [4] Ran; cache/jobs Pending.
+
+Suíte existente executada no Docker com --do-not-cache-result: 66 testes/
+620 asserções, código 0. Não adicionamos teste permanente nem executamos novamente
+os quatro contratos. A suíte ainda não cobre persistência de User ou login.
+SELECT após suíte: loja_test/loja_testes com zero users/tokens/sessions/produtos/
+categorias e quatro registros de migrations, um deles usuários/lote 4.
+
+loja/loja_app consultado antes/depois: somente categorias/migrations/produtos,
+três migrations/lotes 1/2/3, um produto e zero categorias; resumo SHA-256 igual
+8c61be048457250963c87f8c8c40dd595d57a3c2349070c9cdd0994c1151fa7a, sem comparar
+o conteúdo integral das linhas. Nenhuma escrita no banco normal ou usuário
+cadastrado. Estrutura criada permanece no volume SQL Server, não no Git.
+Git diff --check passou; links locais das aulas 7.3 (dois) e 7.4 (três)
+conferidos. .env, backend/.env e backend/.env.testing continuam ignorados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
+Publicação da 7.4: pendente; checkpoint concluído. Último checkpoint publicado:
+cab244eb8221004bf63937750fa81951986d62ca (7.3).
+Próximo passo exato: publicar e conferir o checkpoint da 7.4. Depois,
+7.5 — primeiro teste de persistência de User em loja_test com DatabaseTransactions,
+sem criar rota de login.
