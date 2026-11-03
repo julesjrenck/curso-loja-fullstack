@@ -5,8 +5,20 @@
 - Última atualização: 03/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.2 — Estrutura existente de usuários e autenticação: concluída;
-  entendimento confirmado com "entendi" em 03/11/2026.
+- Etapa atual: 7.3 — SQL da migration de usuários: concluída, entendimento
+  confirmado com "entendi" em 03/11/2026.
+- Situação da 7.3: aula docs/aulas/07-03-sql-migration-usuarios.md criada.
+  Inspeção no Docker com migrate --database=sqlsrv --path da migration de usuários
+  --pretend --no-interaction --no-ansi terminou 0: oito instruções para três
+  tabelas/índices/chaves primárias; sem FK em sessions.user_id. Nenhuma aplicação.
+  Consultas antes/depois em loja/loja_app: mesmas três tabelas do catálogo/histórico,
+  três migrations/lotes 1/2/3, um produto/zero categorias; resumo SHA-256 igual.
+  Tabelas de usuários ausentes antes/depois. Status posterior users/cache/jobs
+  Pending, catálogo Ran. Sem nova suíte ou comando no banco de testes.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.4 — aplicar somente a migration de usuários em loja_test e verificar
+  tabelas/histórico, sem cadastrar usuários. Banco normal fica para etapa posterior.
 - Situação da 7.2: aula docs/aulas/07-02-estrutura-usuarios-autenticacao.md criada.
   User/Authenticatable/Fillable/Hidden/casts/traits, configuração guard/provider
   e três tabelas da migration explicados. Diagnóstico PHP Docker: dez verificações
@@ -15,9 +27,9 @@
   migrate:status normal e testing código 0: users/cache/jobs Pending, três migrations
   do catálogo Ran. Status não comprova sozinho a existência física de tabelas.
   Sem aplicação de migrations, instalação de dependências ou nova suíte.
-  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint da 7.2; depois,
-  7.3 — inspecionar SQL da migration de usuários no SQL Server sem aplicar.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
+  801016c369bcf248069e3ed3542419fa817f3977, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.3.
 - Situação da 7.1: aula docs/aulas/07-01-autenticacao-e-autorizacao.md preparada;
   distingue identidade/permissão/validação e usa exemplos de cliente/administrador.
   Rotas públicas e authorize(): true existentes explicados por leitura.
@@ -30,7 +42,7 @@
   Nenhuma suíte nova executada; último resultado completo é o da 6.84, abaixo.
   Entendimento confirmado com "entendi" em 03/11/2026.
   Publicação da 7.1 conferida em 074fcf9415e4d5cba864ca401fce8de6257c6f55;
-  HEAD/origin/main/main remota iguais após push; último checkpoint publicado.
+  HEAD/origin/main/main remota iguais após push; checkpoint anterior à 7.2.
   Continuidade realizada na 7.2, conforme estado atual.
 - Situação da 6.84: consolidação, explicação e verificação em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Nova aula consolida API pública de leitura,
@@ -1281,7 +1293,8 @@ iniciar a 7.1. Pausa abaixo encerrada. Estado vigente no início deste arquivo;
 registros anteriores preservados como histórico. 7.1 apresentada e entendimento
 confirmado com "entendi" em 03/11/2026 e publicação conferida em 074fcf9.
 Continuidade realizada na 7.2, confirmada com "entendi" em 03/11/2026;
-próximo passo: publicar e iniciar a 7.3.
+publicação conferida em 801016c; continuidade realizada na 7.3, confirmada com
+"entendi" em 03/11/2026. Publicar o checkpoint e iniciar 7.4.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -11618,7 +11631,40 @@ Git diff --check passou; links locais das aulas 7.1 (cinco) e 7.2 (quatro)
 conferidos, todos existentes.
 
 Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
-Publicação da 7.2: pendente; checkpoint concluído. Último checkpoint publicado:
-074fcf9415e4d5cba864ca401fce8de6257c6f55 (7.1).
-Próximo passo exato: publicar e conferir o checkpoint da 7.2. Depois,
-7.3 — inspecionar SQL da migration de usuários no SQL Server, sem aplicá-la.
+Publicação da 7.2: concluída e conferida em
+801016c369bcf248069e3ed3542419fa817f3977; HEAD/origin/main/main remota iguais após
+push. Registro posterior à publicação. Continuidade realizada na 7.3.
+
+## Etapa 7.3 — SQL da migration de usuários — 03/11/2026
+
+Iniciada após confirmação da 7.2 com "entendi" e publicação verificada.
+Implementação: nova aula docs/aulas/07-03-sql-migration-usuarios.md e registros;
+nenhuma alteração de aplicação, migration, configuração ou dependências.
+Explicação apresentada: --database seleciona conexão, --path seleciona arquivo,
+--pretend exibe SQL sem aplicá-lo; tradução das definições PHP para tipos,
+identity, chaves primárias, null/not null e índices. Índice não declara FK.
+
+Verificação no Docker: ajuda do comando e consultas prévias loja/loja_app.
+Tabela migrations existente, migration pendente e três tabelas de usuários
+ausentes conferidos. migrate --database=sqlsrv --path=database/migrations/0001_01_01_000000_create_users_table.php
+--pretend --no-interaction --no-ansi terminou 0: três create table, um unique
+index, dois alter table para PK e dois create index. Nenhuma instrução de cache/jobs.
+Não executamos as instruções geradas nem validamos sua execução real/permissões DDL.
+
+Consultas antes/depois preservaram identidade, tabelas e registros de migrations,
+além de contagens: dbo.categorias/migrations/produtos; três migrations nos lotes
+1/2/3, um produto/zero categorias. Tabelas de usuários ausentes. Mesmo SHA-256 do
+conjunto consultado: 8c61be048457250963c87f8c8c40dd595d57a3c2349070c9cdd0994c1151fa7a.
+Resumo não compara conteúdo integral das linhas. migrate:status posterior código
+0: users/cache/jobs Pending; catálogo Ran. Nenhum comando direcionado a loja_test.
+Sem escrita em banco, cadastro de usuários ou nova suíte. Última suíte completa
+permanece 6.84 (66/620 e quatro contratos). Documentação oficial Laravel consultada.
+Git diff --check passou; links locais da aula 7.2 (quatro) e 7.3 (dois)
+conferidos, todos existentes.
+
+Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
+Publicação da 7.3: pendente; checkpoint concluído. Último checkpoint publicado:
+801016c369bcf248069e3ed3542419fa817f3977 (7.2).
+Próximo passo exato: publicar e conferir o checkpoint da 7.3. Depois,
+7.4 — aplicar somente a migration de usuários em loja_test e verificar as três
+tabelas/histórico, sem cadastrar usuários; banco normal em etapa posterior.

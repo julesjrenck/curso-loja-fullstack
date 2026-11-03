@@ -37,10 +37,15 @@ público existente. Entendimento da 7.1 confirmado com "entendi" em 03/11/2026.
 config/auth.php e migration de usuários apresentada: configuração carregada,
 dez verificações do model em memória/zero SQL e status das migrations nos dois
 ambientes conferidos. Sem alteração de aplicação ou criação de tabelas.
-Entendimento da 7.2 confirmado com "entendi" em 03/11/2026; publicação pendente.
-Próxima etapa após publicar o checkpoint:
-7.3: inspecionar o SQL da migration de usuários para SQL Server, sem aplicá-la.
-Módulos 8 a 23 ainda não iniciados. A tabela inclui entregas futuras.
+Entendimento da 7.2 confirmado com "entendi" em 03/11/2026; publicada em
+801016c, remoto conferido. Na 7.3, SQL da migration de usuários inspecionado
+com --pretend/--path na conexão sqlsrv: oito instruções, sem aplicação.
+Estado consultado antes/depois preservado; users permanece Pending.
+Entendimento da 7.3 confirmado com "entendi" em 03/11/2026; publicação pendente.
+Próximo passo após publicar:
+7.4: aplicar somente essa migration em loja_test e verificar tabelas/histórico,
+sem cadastrar usuários. Módulos 8 a 23 ainda não iniciados.
+A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
 em 21/10/2026. Os registros abaixo descrevem o percurso do módulo 5.
 O módulo 5 confirmou e publicou a descoberta de pacotes da 5.33.
@@ -670,7 +675,9 @@ route:list detalhado conferiu duas rotas públicas em Docker. Sem nova implement
 de aplicação ou suíte. Entendimento confirmado com "entendi" em 03/11/2026;
 publicação conferida em 074fcf9. Na 7.2, estrutura existente de autenticação
 apresentada e verificada por diagnóstico em memória e migrate:status;
-entendimento confirmado com "entendi" em 03/11/2026. Publicar checkpoint e seguir à 7.3.
+entendimento confirmado com "entendi" em 03/11/2026 e publicação em 801016c.
+Na 7.3, SQL inspecionado sem aplicar a migration; entendimento confirmado com
+"entendi" em 03/11/2026. Publicar checkpoint e iniciar 7.4.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

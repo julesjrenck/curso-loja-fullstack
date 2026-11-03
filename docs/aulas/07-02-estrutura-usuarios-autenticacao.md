@@ -160,8 +160,8 @@ não é uma inspeção da existência física de cada tabela.
 Sem instalação de dependências ou mudança de aplicação, configuração, banco
 ou rotas. Não executamos nova suíte; último resultado completo permanece o
 da 6.84 (66 testes/620 asserções e quatro contratos). Entendimento confirmado;
-checkpoint preparado para commit e push. Consultar o Git ou registro posterior
-para conferir a publicação.
+checkpoint publicado em 801016c369bcf248069e3ed3542419fa817f3977, com
+HEAD/origin/main/main remota conferidos iguais após o push. Registro posterior.
 
 Referências oficiais: [autenticação](https://laravel.com/docs/13.x/authentication#introduction),
 [atributos ocultos](https://laravel.com/docs/13.x/eloquent-serialization#hiding-attributes-from-json),
