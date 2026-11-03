@@ -2,11 +2,26 @@
 
 ## Estado atual
 
-- Última atualização: 01/11/2026, referência de data America/Sao_Paulo.
-- Estado do curso: em pausa por pedido do aluno em 01/11/2026; continuar outro dia em outro chat.
-- Módulo atual: 6 — APIs REST (concluído; próximo módulo ainda não iniciado).
-- Etapa atual: 6.84 — Consolidação do módulo de APIs REST (concluída).
-- Retomada solicitada pelo aluno em 30/10/2026; pausa da 6.17 encerrada.
+- Última atualização: 03/11/2026, referência de data America/Sao_Paulo.
+- Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
+- Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
+- Etapa atual: 7.1 — Autenticação e autorização: concluída, entendimento
+  confirmado com "entendi" em 03/11/2026; próximo passo 7.2.
+- Situação da 7.1: aula docs/aulas/07-01-autenticacao-e-autorizacao.md preparada;
+  distingue identidade/permissão/validação e usa exemplos de cliente/administrador.
+  Rotas públicas e authorize(): true existentes explicados por leitura.
+  Sem implementação de login, permissões, migrations ou instalação de pacotes.
+  Git inicialmente limpo; HEAD/origin/main/main remota conferidos no SHA
+  167ec4fd2a90ad673814d1c2dd60e062ae4fd822, último checkpoint publicado.
+  Docker Compose confirmou php/backend/sqlserver ativos. Route:list em Docker
+  mostrou duas rotas GET|HEAD com grupo api, sem middleware de autenticação.
+  Restrições iniciais de socket/rede resolvidas com consultas ampliadas.
+  Nenhuma suíte nova executada; último resultado completo é o da 6.84, abaixo.
+  Entendimento confirmado com "entendi" em 03/11/2026.
+  Publicação da 7.1 pendente; checkpoint preparado para commit e push.
+  Próximo passo exato: publicar e conferir a 7.1; depois iniciar
+  7.2 — leitura do User, config/auth.php e migration de
+  usuários existentes, antes de criar tabelas ou instalar dependências.
 - Situação da 6.84: consolidação, explicação e verificação em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Nova aula consolida API pública de leitura,
   responsabilidades dos arquivos, quatro respostas documentadas, revisões
@@ -23,8 +38,7 @@
   como exercício sugerido sem relato. Módulo 6 concluído com a confirmação desta consolidação em 01/11/2026.
   Publicação da 6.84 verificada em a1f7e4010b611a4f8884e02e6bcf700b85b0bbda;
   referências local e remotas coincidiram após o push do checkpoint.
-  Próximo passo: aguardar pedido de retomada em outro chat e combinar o início
-  da 7.1 — Autenticação e autorização. Módulo 7 ainda não iniciado.
+  Continuidade: retomada solicitada em 03/11/2026; 7.1 iniciada conforme estado atual.
 - Situação da 6.83: revisão, explicação e verificação em 01/11/2026;
   entendimento confirmado com "entendi" em 01/11/2026. Nova aula liga normalização/regras de
   nome/getter validado/consulta de ativos com CHARINDEX parametrizado antes da
@@ -1251,6 +1265,11 @@
 - Etapa 5.92 confirmada com "entendi" em 21/10/2026; módulo 5 concluído.
 
 ## Retomada em outro chat
+
+Retomada realizada em 03/11/2026: aluno informou a conclusão da 6.84 e pediu
+iniciar a 7.1. Pausa abaixo encerrada. Estado vigente no início deste arquivo;
+registros anteriores preservados como histórico. 7.1 apresentada e entendimento
+confirmado com "entendi" em 03/11/2026; continuidade autorizada na 7.2.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -11527,3 +11546,33 @@ Módulo 7 ainda não iniciado; nenhuma confirmação de entendimento atribuída 
 | Data | Registro | Estado | Continuidade |
 | --- | --- | --- | --- |
 | 01/11/2026 | Pedido de continuar outro dia em outro chat | Em pausa após a 6.84; módulos 1 a 6 concluídos | Aguardar retomada; combinar 7.1, ainda não iniciada |
+
+## Etapa 7.1 — Autenticação e autorização — 03/11/2026
+
+Pedido do aluno: retomar após a 6.84 e iniciar a 7.1. Instruções, roteiro,
+estado atual e histórico de encerramento conferidos; Git limpo na retomada.
+HEAD, origin/main e refs/heads/main remoto coincidiram no checkpoint
+167ec4fd2a90ad673814d1c2dd60e062ae4fd822, que registra a pausa anterior.
+
+Implementação: nova aula docs/aulas/07-01-autenticacao-e-autorizacao.md e
+atualização dos registros. Nenhuma alteração de aplicação ou dependências.
+Explicação apresentada: autenticação identifica o usuário; autorização decide
+se pode executar a ação. Exemplos de Ana/administrador são ilustrativos.
+authorize(): true permite passar pela autorização do Form Request, sem login;
+rules valida entradas. Rotas de catálogo continuam públicas.
+
+Verificação: Docker Compose mostrou três serviços ativos; route:list --path=api/v1
+-vv --no-ansi no container backend terminou 0, com duas rotas GET|HEAD e grupo
+api, sem middleware de autenticação. Consultas iniciais ao socket Docker e à
+rede restritas, repetidas com acesso ampliado com sucesso. Código/fontes
+oficiais Laravel 13 consultados. Sem suíte, contrato, login ou SQL executados;
+última suíte completa continua 6.84: 66/620 e quatro contratos aprovados.
+Git diff --check passou; os cinco links locais da nova aula existem.
+
+Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
+Exercício proposto: distinguir identificação de Ana e recusa da alteração de
+preço; resposta ainda não recebida. DBeaver permanece opcional e sem relato.
+Publicação: pendente; checkpoint concluído, preparado para commit e push.
+Próximo passo exato: publicar e conferir o checkpoint da 7.1. Depois,
+7.2 — ler User, config/auth.php e migration de usuários existentes, antes de
+criar tabelas ou instalar dependências de autenticação.
