@@ -31,6 +31,9 @@ class UserPersistenciaTest extends TestCase
             'password' => $senha,
         ]);
 
+        $usuario->remember_token = 'token-ficticio-do-teste';
+        $usuario->save();
+
         $this->assertIsInt($usuario->getKey());
         $this->assertGreaterThan(0, $usuario->getKey());
 
@@ -42,5 +45,18 @@ class UserPersistenciaTest extends TestCase
         $this->assertNotSame($senha, $consultado->password);
         $this->assertTrue(Hash::check($senha, $consultado->password));
         $this->assertFalse(Hash::check('outra-senha-ficticia', $consultado->password));
+
+        $this->assertSame('token-ficticio-do-teste', $consultado->remember_token);
+
+        $dados = $consultado->toArray();
+
+        $this->assertSame('Ana Exemplo', $dados['name']);
+        $this->assertSame('ana@example.test', $dados['email']);
+        $this->assertArrayNotHasKey('password', $dados);
+        $this->assertArrayNotHasKey('remember_token', $dados);
+
+        $dadosJson = json_decode($consultado->toJson(), true, 512, JSON_THROW_ON_ERROR);
+
+        $this->assertSame($dados, $dadosJson);
     }
 }

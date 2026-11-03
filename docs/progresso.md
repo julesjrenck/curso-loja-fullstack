@@ -5,8 +5,20 @@
 - Última atualização: 03/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.6 — Hash da senha persistida: concluída, entendimento
-  confirmado com "entendi" em 03/11/2026.
+- Etapa atual: 7.7 — Ocultação de senha e token na serialização: concluída,
+  entendimento confirmado com "entendi" em 03/11/2026.
+- Situação da 7.7: cenário existente em UserPersistenciaTest ampliado; token
+  fictício atribuído explicitamente/salvo e conferido após nova consulta.
+  toArray mantém nome/e-mail e omite password/remember_token; toJson decodificado
+  com JSON_THROW_ON_ERROR coincide com esse array. Seis asserções adicionadas.
+  Sintaxe válida; focado 1/15 e suíte padrão 67/635, códigos 0. SELECT posterior
+  loja_test/loja_testes: zero users/tokens/sessions/produtos/categorias e quatro
+  migrations nos lotes 1/2/3/4. Sem mudança no model/rota/configuração/dependências.
+  Snapshot normal e quatro contratos não repetidos; fonte oficial consultada.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.8 — sessão no servidor e cookie no navegador no fluxo de login,
+  requisição seguinte e logout, antes de instalar Sanctum.
 - Situação da 7.6: cenário existente em UserPersistenciaTest ampliado com import
   Hash, variável de senha fictícia e três asserções após nova consulta ao banco:
   senha diferente do texto original, Hash::check correto true e diferente false.
@@ -14,9 +26,9 @@
   loja_test/loja_testes: zero users/tokens/sessions/produtos/categorias e quatro
   migrations nos lotes 1/2/3/4. Nenhum model/configuração/dependência alterado.
   Snapshot normal e quatro contratos não repetidos. Fonte oficial consultada.
-  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.7 — verificar ocultação de password/remember_token em array/JSON.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
+  718f0e3a865ee0d444079afb43a1482c2cda38f8, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.7.
 - Situação da 7.5: backend/tests/Feature/UserPersistenciaTest.php criado, um cenário
   com DatabaseTransactions, identidade loja_test/loja_testes antes de DELETE/INSERT,
   create/findOrFail pelo ID gerado, ID inteiro positivo e nome/e-mail conferidos.
@@ -27,7 +39,7 @@
   do banco normal coincide com registro anterior. Não testa hash/serialização/login.
   Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
   5f0b13b9c426c5c4cb3af9d9868d3c6f60f1b1da, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.6.
+  Checkpoint anterior à 7.6. Continuidade realizada na 7.6.
 - Situação da 7.4: aula docs/aulas/07-04-migration-usuarios-testes.md criada.
   Ambiente/identidade/permissões/ausência das tabelas conferidos antes.
   Migration de usuários aplicada com --env=testing --database=sqlsrv e --path
@@ -1333,7 +1345,9 @@ publicação conferida em 801016c; continuidade realizada na 7.3, confirmada com
 entendimento confirmado com "entendi" em 03/11/2026 e publicação em 65880d0.
 Continuidade realizada na 7.5, confirmada com "entendi" em 03/11/2026;
 publicação conferida em 5f0b13b. Continuidade realizada na 7.6, com
-entendimento confirmado com "entendi" em 03/11/2026. Publicar e iniciar 7.7.
+entendimento confirmado com "entendi" em 03/11/2026 e publicação em 718f0e3.
+Continuidade realizada na 7.7, confirmada com "entendi" em 03/11/2026;
+publicar checkpoint e iniciar 7.8.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -11810,8 +11824,39 @@ Git diff --check passou; links locais das aulas 7.5 (quatro) e 7.6 (dois)
 conferidos. Arquivos .env locais continuam ignorados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
-Publicação da 7.6: pendente; checkpoint concluído. Último checkpoint publicado:
-5f0b13b9c426c5c4cb3af9d9868d3c6f60f1b1da (7.5).
-Próximo passo exato: publicar e conferir o checkpoint da 7.6. Depois,
-7.7 — verificar em teste ocultação de password/remember_token na conversão para
-array/JSON.
+Publicação da 7.6: concluída e conferida em
+718f0e3a865ee0d444079afb43a1482c2cda38f8; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.7.
+
+## Etapa 7.7 — Ocultação de senha e token na serialização — 03/11/2026
+
+Iniciada após confirmação da 7.6 com "entendi" e publicação verificada.
+Implementação: cenário existente em backend/tests/Feature/UserPersistenciaTest.php
+ampliado; nova aula docs/aulas/07-07-teste-serializacao-user.md e registros.
+Token fictício atribuído/salvo fora do preenchimento em massa, pois não é Fillable;
+nova consulta exige esse valor presente. Nenhum model/rota/configuração/dependência
+ou migration alterado.
+
+Explicação apresentada: Hidden controla representação padrão, atributos continuam
+no objeto/banco; hashed trata senha armazenada. toArray mantém nome/e-mail e omite
+as chaves password/remember_token. toJson produz string, json_decode true/512/
+JSON_THROW_ON_ERROR converte para array e falha em JSON inválido; assertSame exige
+a mesma representação conferida. Seis asserções novas, nove anteriores mantidas.
+Sem saída de senha/hash/token em diagnósticos; token é exclusivamente fictício.
+
+Verificação Docker: php -l válido; focado 1 teste/15 asserções e suíte completa
+na ordem padrão 67 testes/635 asserções, códigos 0, sem cache de resultados.
+SELECT posterior: loja_test/loja_testes com zero users/tokens/sessions/produtos/
+categorias e quatro registros de migrations/lotes 1/2/3/4. Rollback desfez insert
+e atualização de token. Snapshot normal/quatro contratos não repetidos.
+Documentação oficial de serialização Laravel consultada. Última suíte: 7.7,
+67/635. Não cobre login HTTP, permissões ou contrato de endpoint de usuário.
+Git diff --check passou; dois links locais de cada aula 7.6/7.7 conferidos.
+Arquivos .env locais continuam ignorados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
+Publicação da 7.7: pendente; checkpoint concluído. Último checkpoint publicado:
+718f0e3a865ee0d444079afb43a1482c2cda38f8 (7.6).
+Próximo passo exato: publicar e conferir o checkpoint da 7.7. Depois,
+7.8 — sessão no servidor e cookie no navegador no fluxo login/requisição seguinte/
+logout, antes de instalar Sanctum.

@@ -54,9 +54,12 @@ Entendimento da 7.5 confirmado com "entendi" em 03/11/2026; publicada em
 5f0b13b, remoto conferido. Na 7.6, mesmo cenário ampliado com três asserções de
 hash persistido/senha correta/diferente. Focado 1/9 e suíte 67/629 passaram;
 rollback e quatro registros de migrations conferidos em loja_test.
-Entendimento da 7.6 confirmado com "entendi" em 03/11/2026; publicação pendente.
-Próxima etapa após publicar:
-7.7: testar ocultação de password/remember_token na conversão para array/JSON.
+Entendimento da 7.6 confirmado com "entendi" em 03/11/2026; publicada em
+718f0e3, remoto conferido. Na 7.7, mesmo cenário ampliado com token persistido,
+campos visíveis e ocultos em array/JSON. Focado 1/15 e suíte 67/635 passaram;
+rollback e quatro migrations conferidos. Entendimento da 7.7 confirmado com
+"entendi" em 03/11/2026; publicação pendente. Após publicar, 7.8: sessão no servidor e
+cookie no navegador no fluxo login/requisição seguinte/logout, antes de Sanctum.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -696,7 +699,9 @@ somente em loja_test e verificada; entendimento confirmado com "entendi" em
 e verificado; entendimento confirmado com "entendi" em 03/11/2026.
 Publicação conferida em 5f0b13b. Na 7.6, teste de hash persistido apresentado
 e verificado; entendimento confirmado com "entendi" em 03/11/2026.
-Publicar checkpoint e iniciar 7.7.
+Publicação conferida em 718f0e3. Na 7.7, teste da serialização do User apresentado
+e verificado; entendimento confirmado com "entendi" em 03/11/2026.
+Publicar checkpoint e iniciar 7.8.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -88,5 +88,6 @@ Nenhuma rota, dependência, configuração, migration ou model foi alterado.
 
 Entendimento confirmado com "entendi" em 03/11/2026. Próximo passo após publicar:
 7.7 — verificar em teste a ocultação de password e remember_token na conversão
-do User para array/JSON. Checkpoint preparado para commit e push; consultar o Git
-ou registro posterior para conferir o resultado da publicação.
+do User para array/JSON. Checkpoint publicado e conferido em
+718f0e3a865ee0d444079afb43a1482c2cda38f8; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.
