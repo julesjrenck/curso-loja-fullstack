@@ -105,7 +105,9 @@ snapshot normal e quatro contratos não foram repetidos.
 ## Continuidade
 
 Testes criados, explicados e verificados; entendimento confirmado com "entendi"
-em 04/11/2026; publicação pendente. Após publicar: 7.27 —
+em 04/11/2026; publicação conferida em
+7f3e8edfc055c637d8038ea60c8f2a16e0e7118c, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade na 7.27 —
 criar LoginController::store usando credenciais validadas, guard web, erro
 genérico de credenciais e sucesso 204 após renovar sessão, sem registrar rota.
 Limitação de tentativas terá regra própria antes de disponibilizar login completo.

@@ -3,7 +3,7 @@
 Desenho da etapa 7.16; rota protegida implementada na 7.19, em 04/11/2026.
 Respostas 401 e 200 verificadas por testes HTTP internos do Laravel. Sucesso
 200 verificado na 7.21 com User persistido em loja_test e actingAs/guard web;
-login real e transporte de sessão/cookie pelo navegador ainda não verificados.
+login por HTTP e transporte de sessão/cookie pelo navegador ainda não verificados.
 O [contrato executável do catálogo](catalogo.md) continua separado. O
 [OpenAPI compartilhado](openapi.json) inclui esta operação desde a 7.23, com
 respostas 200/401, schema Usuario e exigência de cookie somente nesta operação.
@@ -102,9 +102,10 @@ Na 7.24, [contrato planejado de POST /api/v1/login](login.md) apresentado:
 email/password, sucesso 204 sem corpo e falhas 422, com CSRF/sessão preservados.
 Na 7.25, LoginRequest criada e verificada em memória, sem autenticar. Rota de
 login ainda não criada ou incluída no OpenAPI. Na 7.26, testes da validação
-passaram: focado 17/94, suíte 88/756. Próxima 7.27: LoginController::store,
-sem registrar rota de login nessa etapa.
-Login e fluxo autenticado completo por sessão/cookie continuam pendentes.
+passaram: focado 17/94, suíte 88/756. Na 7.27, LoginController::store criado e
+verificado diretamente com guard web/loja_test/sessão array: 204 no sucesso,
+422 genérico nas duas falhas e rollback. Próxima 7.28: testes desse controller.
+Rota de login e fluxo completo HTTP/sessão/cookie continuam pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).

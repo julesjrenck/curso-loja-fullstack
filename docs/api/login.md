@@ -1,8 +1,9 @@
 # API de login — contrato planejado
 
 Desenho da etapa 7.24, em 04/11/2026. POST /api/v1/login ainda não existe.
-Exemplos fictícios, sem requisições de login executadas ou usuários criados.
-LoginRequest criada na 7.25: validação conferida em memória, sem rota/controller.
+Exemplos fictícios. LoginRequest criada na 7.25 e LoginController::store na 7.27.
+Controller verificado por chamada direta com guard web, User fictício em
+loja_test/transação/rollback e sessão array. Sem endpoint HTTP de login.
 O [contrato da consulta do usuário](autenticacao.md) já está implementado;
 este documento planeja como estabelecer a identidade por credenciais.
 
@@ -64,8 +65,9 @@ fluxo de sessão; não prometemos Content-Type JSON para uma resposta sem corpo.
 
 A interface poderá então chamar GET /api/v1/usuario e receber o contrato 200
 já documentado. O POST não devolverá senha, hash ou token de API no corpo.
-Regenerar a sessão após login é parte da implementação futura, não uma ação
-realizada pelo desenho deste contrato.
+Na 7.27, diagnóstico do controller confirmou 204 vazio, identidade no guard/
+sessão e ID/token CSRF renovados após credenciais corretas. Não exerceu rota,
+CSRF de requisição ou transporte de cookie no navegador.
 
 ## Entrada inválida: resposta planejada
 
@@ -105,21 +107,26 @@ O cliente observa status/errors; o texto acima é ilustrativo, não uma traduç�
 fixa. Essa falha não estabelece uma nova identidade. O 401 da consulta protegida
 continua significando que aquela requisição não possui autenticação válida.
 Usar 422 para credenciais recusadas neste login é uma decisão do nosso contrato.
+Na 7.27, senha incorreta e e-mail inexistente produziram corpos 422 iguais na
+chamada direta ao controller, com guard visitante e ID/token de sessão preservados.
 
 ## Limites e continuidade
 
 LoginRequest já implementa authorize true e as regras de entrada. Diagnóstico
 da 7.25: 17 casos em memória (três válidos/14 inválidos), normalização, seleção
 de campos via validated e erros 422 renderizados pelo handler; zero SQL.
-Isso não executa login nem verifica credenciais ou CSRF. Sem rota, controller,
-tentativa de autenticação, alteração de sessão ou entrada no OpenAPI de login.
+Esse diagnóstico da 7.25 não executou login ou CSRF. Na 7.27, LoginController
+passou a executar a tentativa pelo guard web com validated, erro genérico ou
+renovação de sessão e 204. Diagnóstico com três casos em loja_test e sessão
+array passou, sem manter usuários ou sessões persistidos. Endpoint continua
+sem rota, limitação de tentativas ou entrada no OpenAPI de login.
 Limitação de tentativas ainda terá
 regra e verificação próprias antes de disponibilizar o fluxo de login completo.
 Na 7.26, LoginRequestTest automatizou três entradas válidas e 14 inválidas,
 normalização/validated e 422 JSON renderizado em memória: focado 17 testes/94
 asserções, suíte completa 88 testes/756 asserções. Não executa login ou CSRF.
-Próximo passo 7.27: criar LoginController::store com dados validados, tentativa
-no guard web, erro genérico e 204 após renovar sessão, sem registrar rota ainda.
+Próximo passo 7.28: testes automatizados do LoginController com sucesso, falhas
+genéricas e renovação da sessão em loja_test/sessão array, sem registrar rota.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

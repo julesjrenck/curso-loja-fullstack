@@ -136,8 +136,11 @@ Sintaxe válida e suíte existente 71/662 passou. Entendimento confirmado com
 LoginRequestTest criado com helper de normalização/FormRequest e provedores
 de três válidos/14 inválidos. Validated exato e 422 JSON renderizado em memória;
 focado 17/94 e suíte 88/756 passaram. Entendimento confirmado com "entendi"
-em 04/11/2026; publicar antes da 7.27 — LoginController::store com dados validados,
-tentativa web e 204/erro genérico, antes de registrar rota.
+em 04/11/2026; publicada em 7f3e8ed, remoto conferido. Na 7.27, LoginController
+criado: validated/attempt web, erro genérico ou sessão renovada/204. Diagnóstico
+de três casos com loja_test/transação/sessão array passou, duas falhas 422 iguais,
+rollback e suíte 88/756 conferidos. Sem rota. Entendimento confirmado com
+"entendi" em 04/11/2026; publicar antes da 7.28 — testes desse controller.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -818,7 +821,10 @@ Publicação conferida em 7ee449a. Na 7.25, LoginRequest criada e explicada,
 17 casos em memória/zero SQL e suíte 71/662 passaram. Entendimento confirmado
 com "entendi" em 04/11/2026 e publicação em ad9f45b. Na 7.26, testes de validação
 criados/explicados, focado 17/94 e suíte 88/756 passaram. Entendimento confirmado
-com "entendi" em 04/11/2026; publicar antes da 7.27 — LoginController::store sem rota.
+com "entendi" em 04/11/2026 e publicação em 7f3e8ed. Na 7.27, LoginController
+criado/explicado, três casos guard web/loja_test/sessão array e suíte 88/756 passaram.
+Entendimento confirmado com "entendi" em 04/11/2026; publicar antes da 7.28 —
+testes do controller, sem rota.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
