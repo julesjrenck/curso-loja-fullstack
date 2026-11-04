@@ -1,17 +1,18 @@
-# API de autenticação — contrato planejado
+# API de autenticação — consulta do próprio usuário
 
-Desenho da etapa 7.16, em 04/11/2026. Este endpoint ainda não foi implementado.
-Os exemplos abaixo são fictícios; não representam respostas HTTP já observadas.
+Desenho da etapa 7.16; rota protegida implementada na 7.19, em 04/11/2026.
+Resposta 401 verificada pelo kernel HTTP Laravel; sucesso 200 ainda planejado
+para o fluxo autenticado, com controller/Resource verificados em memória.
 O [contrato executável do catálogo](catalogo.md) continua separado. O OpenAPI
-atual descreve o catálogo e ainda não inclui esta operação planejada.
+atual descreve o catálogo e ainda não inclui esta operação.
 
 ## Consultar o próprio usuário autenticado
 
-- Método e caminho planejados: GET /api/v1/usuario.
-- URL local planejada: http://127.0.0.1:8002/api/v1/usuario.
+- Método e caminho: GET /api/v1/usuario.
+- URL local no host: http://127.0.0.1:8002/api/v1/usuario.
 - Cabeçalho recomendado: Accept: application/json.
 - Sem corpo, parâmetros de caminho ou query string suportados.
-- Acesso autenticado; proteção futura com auth:sanctum nessa rota.
+- Acesso autenticado; rota protegida com auth:sanctum.
 - Para a interface própria, a identidade virá da sessão autenticada, enviada
   pelo cookie. Esta consulta não faz login.
 - Um ID enviado pelo cliente não selecionará outro usuário. A operação consulta
@@ -49,7 +50,7 @@ integram a resposta. O atributo Hidden do model já oculta senha/token na sua
 serialização, mas a seleção do Resource também controla os demais campos.
 O envelope data segue o padrão de JsonResource usado no catálogo.
 
-## Visitante: resposta planejada
+## Visitante: resposta verificada
 
 Sem autenticação válida, incluindo sessão ausente ou expirada sem outra
 autenticação válida: status 401, Content-Type application/json. Não haverá
@@ -64,16 +65,20 @@ objeto data nem redirecionamento para página HTML de login.
 Message é uma string obrigatória. O texto acima é o padrão do Laravel instalado;
 o cliente deve decidir pelo status 401, sem depender desse texto ou idioma.
 Criar uma sessão de visitante em /sanctum/csrf-cookie não satisfaz a autenticação.
+Na 7.19, diagnóstico pelo kernel HTTP/testing confirmou 401 JSON com Accept
+application/json, text/html e ausente, sem redirecionamento, cookie, Authorization
+ou SQL. Não foi uma requisição de rede nem teste de sessão autenticada.
 
 ## Relação com a implementação futura
 
-StatefulApi prepara sessão para origens reconhecidas. Auth:sanctum exigirá
+StatefulApi prepara sessão para origens reconhecidas. Auth:sanctum exige
 autenticação na rota; o Resource definirá a representação pública do User.
 A UsuarioResource foi criada na 7.17; UsuarioController::show foi criado na
 7.18 e entrega $request->user() ao Resource. Ambos verificados em memória.
-O endpoint continua planejado, sem rota implementada. A próxima, 7.19,
-registrará a rota com auth:sanctum e verificará a resposta 401 ao visitante.
-Login ainda será introduzido em etapa própria.
+A rota foi registrada na 7.19 com auth:sanctum; bootstrap evita destino de
+redirecionamento em api/* e mantém renderização JSON. A próxima, 7.20, criará
+teste automatizado de visitante para preservar 401 JSON nos três casos de Accept.
+Login, fluxo autenticado completo e integração no OpenAPI continuam pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).

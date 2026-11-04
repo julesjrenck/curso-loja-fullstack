@@ -5,8 +5,22 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.18 — Controller da consulta do próprio usuário: concluída,
+- Etapa atual: 7.19 — Rota do usuário protegida pelo Sanctum: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.19: routes/api.php importa UsuarioController e registra GET
+  /usuario com auth:sanctum sob api/v1. Bootstrap acrescenta redirectGuestsTo
+  com null para api/*, evitando busca da rota login antes da renderização JSON.
+  Diagnóstico inicial: Accept JSON 401, HTML gerou 500/login ausente. Corrigido;
+  kernel HTTP/testing com aplicação por caso/sessão array confirmou 401 JSON
+  para Accept JSON/HTML/ausente, sete condições por caso e zero SQL. Sem rede,
+  cookies, Authorization, autenticação simulada ou sessão em disco. Rota e auth
+  reais exercitados; sucesso autenticado ainda não. Catálogo sem auth conferido.
+  Sintaxe válida; suíte existente 67/635, código 0. SQL posterior loja_test/
+  loja_testes: seis tabelas/quatro migrations/dados zero. OpenAPI preservado.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir; depois 7.20 — teste automatizado
+  de visitante GET /api/v1/usuario cobrindo
+  Accept JSON, HTML e ausente, preservando 401 JSON antes de acesso autenticado/login.
 - Situação da 7.18: UsuarioController::show(Request): UsuarioResource criado
   em app/Http/Controllers/Api/V1, retornando Resource de $request->user().
   Diagnóstico Docker/testing com dois usuários fictícios não persistidos e
@@ -15,10 +29,9 @@
   Sem guard/sessão/HTTP real/401 exercitados. Sintaxe válida; suíte 67/635,
   código 0. SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/
   dados zero. Contrato permanece planejado, sem rota ou login implementado.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir; depois 7.19 — registrar
-  GET /api/v1/usuario com auth:sanctum apontando
-  para show e verificar 401 JSON para visitante, preservando catálogo público.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  6523c31f2123a2a396a5e8c5bc41794b6899d4d2, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.19.
 - Situação da 7.17: backend/app/Http/Resources/UsuarioResource.php criada,
   herdando JsonResource com toArray que seleciona id/name/email. Diagnóstico
   Docker/testing com User não persistido e oito atributos fictícios: sete
@@ -29,7 +42,7 @@
   dependência, migration ou ambiente alterado. Contrato segue planejado.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   8cceb303214e66f63cfb3c6ed4a5cf4cecc5733d, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.18.
+  Checkpoint anterior à 7.18. Continuidade realizada na 7.18.
 - Situação da 7.16: docs/api/autenticacao.md e aula correspondente criados.
   Contrato planejado GET /api/v1/usuario sem corpo/ID, acesso autenticado;
   200/data com id inteiro positivo, name/email strings não nulos e 401/message
@@ -1487,7 +1500,9 @@ verificados. Entendimento confirmado com "entendi" em 04/11/2026 e publicação
 em 833c010. Continuidade realizada na 7.17 — UsuarioResource; entendimento
 confirmado com "entendi" em 04/11/2026 e publicação em 8cceb30.
 Continuidade realizada na 7.18 — UsuarioController::show; entendimento confirmado
-com "entendi" em 04/11/2026. Publicar antes da 7.19 — rota com auth:sanctum/401 JSON.
+com "entendi" em 04/11/2026 e publicação em 6523c31. Continuidade realizada na
+7.19 — rota com auth:sanctum/401 JSON e ajuste no bootstrap; entendimento confirmado
+com "entendi" em 04/11/2026. Publicar antes da 7.20 — teste automatizado de visitante.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12411,8 +12426,50 @@ aula 7.17 dois e aula 7.18 três. Rotas, dependências, bootstrap e OpenAPI sem
 diff nesta etapa; arquivos locais .env não incluídos no checkpoint.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.18: pendente; checkpoint concluído. Último checkpoint publicado:
-8cceb303214e66f63cfb3c6ed4a5cf4cecc5733d (7.17).
-Próximo passo exato após publicar e conferir: 7.19 — registrar GET /api/v1/usuario
-com auth:sanctum apontando para UsuarioController::show e verificar 401 JSON
-para visitante, mantendo o catálogo público, antes de implementar login.
+Publicação da 7.18: concluída e conferida em
+6523c31f2123a2a396a5e8c5bc41794b6899d4d2; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.19.
+
+## Etapa 7.19 — Rota do usuário protegida pelo Sanctum — 04/11/2026
+
+Iniciada após confirmação da 7.18 com "entendi" e publicação verificada.
+Implementação: import/rota em routes/api.php e ajuste inseparável no bootstrap,
+nova aula 7.19 e contrato atualizado para rota existente/401 verificado.
+Sem dependências, migrations, ambientes ou login implementado.
+
+Explicação apresentada: prefixo api/v1 configurado no bootstrap, GET/HEAD,
+array controller/ação, middleware auth e guard sanctum; acesso privado antes
+de show versus preparação stateful da sessão. Catálogo público preservado.
+Diagnóstico inicial Accept JSON passou; HTML produziu 500 Route [login] not
+defined antes do renderizador. Corrigido com redirectGuestsTo: ternário retorna
+null em api/* e mantém route('login') nos demais caminhos. shouldRenderJsonWhen
+existente continua escolhendo JSON; etapas de redirecionamento e renderização
+explicadas. Fonte oficial Sanctum consultada.
+
+Diagnóstico final PHP Docker/testing pelo kernel HTTP com nova aplicação por
+caso, driver array somente na instância, sem Origin/Referer/cookie/Authorization.
+Sem simular guard ou resolver. Accept application/json, text/html e ausente:
+sete condições por caso passaram (401, Content-Type JSON, somente message string,
+sem Location, ação correta, auth:sanctum na rota, zero SQL por listener).
+Corpo observado message Unauthenticated.; código 0. Não é tráfego de rede nem
+prova de sucesso por sessão autenticada. Sem arquivos de sessão gravados.
+
+Sintaxe dos dois arquivos válida; route:list -vv mostrou três rotas, usuário
+com Authenticate:sanctum entre Sanctum stateful e bindings. Catálogo sem auth
+conferido no diagnóstico. Suíte existente 67 testes/635 asserções, código 0;
+testes de catálogo continuam sem login. Nenhum teste permanente novo ainda.
+SELECT posterior loja_test/loja_testes: seis tabelas, quatro migrations/lotes
+1/2/3/4 e zero users/password_reset_tokens/sessions/produtos/categorias.
+Última suíte completa: 7.19, 67/635. Auditoria/snapshot normal/quatro contratos
+não repetidos; OpenAPI do catálogo preservado, nova operação ainda não integrada.
+
+Git diff --check passou. Links locais conferidos: contrato um, aula 7.18 três
+e aula 7.19 dois. Diff de dependências/OpenAPI vazio; alterações de aplicação
+restritas a routes/api.php e bootstrap/app.php. Nenhum .env ou log incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.19: pendente; checkpoint concluído. Último checkpoint publicado:
+6523c31f2123a2a396a5e8c5bc41794b6899d4d2 (7.18).
+Próximo passo exato após publicar e conferir: 7.20 — criar teste automatizado
+de visitante para GET /api/v1/usuario cobrindo Accept JSON, HTML e ausente,
+preservando 401 JSON antes de testar acesso autenticado ou implementar login.

@@ -101,8 +101,12 @@ confirmado com "entendi" em 04/11/2026; publicada em 8cceb30, remoto conferido.
 Na 7.18, UsuarioController::show criado: Request::user entregue ao Resource.
 Dois usuários fictícios/resolver em memória, oito condições por caso, zero SQL;
 rota ausente conferida, sintaxe válida e suíte 67/635 passou. Entendimento
-confirmado com "entendi" em 04/11/2026; publicar antes da 7.19 — registrar a
-rota GET /api/v1/usuario com auth:sanctum e verificar 401 JSON para visitante.
+confirmado com "entendi" em 04/11/2026; publicada em 6523c31, remoto conferido.
+Na 7.19, rota GET /api/v1/usuario com auth:sanctum registrada e bootstrap
+ajustado para evitar busca de login em api/*. Kernel confirmou 401 JSON para
+visitante com Accept JSON/HTML/ausente, sem redirect/SQL. Catálogo público,
+sintaxe válida e suíte 67/635 passou. Entendimento confirmado com "entendi" em
+04/11/2026; publicar antes da 7.20 — teste automatizado de visitante/401 JSON.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -764,8 +768,10 @@ entendimento confirmado com "entendi" em 04/11/2026 e publicação em 833c010.
 Na 7.17, UsuarioResource criada, explicada e verificada em memória; suíte 67/635.
 Entendimento confirmado com "entendi" em 04/11/2026 e publicação em 8cceb30.
 Na 7.18, UsuarioController::show criado/explicado/verificado em memória e suíte
-67/635 passou. Entendimento confirmado com "entendi" em 04/11/2026; publicar
-antes da 7.19 — rota com auth:sanctum/401.
+67/635 passou. Entendimento confirmado com "entendi" em 04/11/2026; publicada
+em 6523c31. Na 7.19, rota protegida e bootstrap ajustados; visitante/401 JSON
+conferido nos três casos de Accept, suíte 67/635. Entendimento confirmado com
+"entendi" em 04/11/2026; publicar antes da 7.20 — teste automatizado de visitante.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

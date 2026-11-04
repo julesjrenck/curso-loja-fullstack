@@ -99,7 +99,9 @@ Auditoria, snapshot normal e quatro contratos não foram repetidos.
 ## Continuidade
 
 Controller criado e explicado; rota/login ainda ausentes. Entendimento
-confirmado com "entendi" em 04/11/2026; publicação pendente.
+confirmado com "entendi" em 04/11/2026; publicação conferida em
+6523c31f2123a2a396a5e8c5bc41794b6899d4d2, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.
 Após publicar: 7.19 — registrar GET /api/v1/usuario apontando para
 UsuarioController::show com auth:sanctum e verificar 401 JSON para visitante,
 mantendo o catálogo público, antes de implementar login.
