@@ -109,8 +109,12 @@ sintaxe válida e suíte 67/635 passou. Entendimento confirmado com "entendi" em
 04/11/2026; publicada em 5d6a4d8, remoto conferido. Na 7.20, UsuarioApiTest criado
 com DataProvider para Accept JSON/HTML/ausente: 401, Content-Type, sem Location,
 somente message string. Focado 3/18 e suíte completa 70/653 passaram.
-Entendimento confirmado com "entendi" em 04/11/2026; publicar antes da 7.21 —
-cenário autenticado com actingAs/guard web e User persistido em loja_test.
+Entendimento confirmado com "entendi" em 04/11/2026; publicada em c17ad9e,
+remoto conferido. Na 7.21, UsuarioApiTest ampliado com DatabaseTransactions e
+User persistido após conferir loja_test/loja_testes; actingAs/web e 200/JSON
+exato com id/name/email. Focado 4/26 e suíte 71/661 passaram; dados zero após
+rollback. Entendimento confirmado com "entendi" em 04/11/2026; após publicar:
+7.22 — segundo usuário e query id/email não mudam a identidade autenticada.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -777,8 +781,11 @@ em 6523c31. Na 7.19, rota protegida e bootstrap ajustados; visitante/401 JSON
 conferido nos três casos de Accept, suíte 67/635. Entendimento confirmado com
 "entendi" em 04/11/2026 e publicação em 5d6a4d8. Na 7.20, teste de visitante
 com três entradas criado/explicado: focado 3/18 e suíte 70/653 passaram.
-Entendimento confirmado com "entendi" em 04/11/2026; publicar antes da 7.21 —
-cenário autenticado com actingAs/web.
+Entendimento confirmado com "entendi" em 04/11/2026 e publicação em c17ad9e.
+Na 7.21, cenário autenticado com User em loja_test/actingAs web apresentado:
+focado 4/26, suíte 71/661 e rollback conferidos. Entendimento confirmado com
+"entendi" em 04/11/2026; publicar antes da
+7.22 — parâmetros de outro usuário não mudam a identidade.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -5,8 +5,21 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.20 — Teste do visitante na consulta do usuário: concluída,
+- Etapa atual: 7.21 — Teste da consulta do usuário autenticado: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.21: UsuarioApiTest recebe DatabaseTransactions na classe e novo
+  cenário autenticado. Identidade loja_test/loja_testes exigida antes de escrita;
+  User fictício persistido, ID inteiro positivo e actingAs($usuario, 'web').
+  GetJson pela rota exige 200/Content-Type JSON/data exato com id/name/email.
+  Middleware ativo; preparação da identidade pelo teste não comprova login real,
+  credenciais, transporte de sessão/cookie ou CSRF. Focado 4 testes/26 asserções
+  e suíte 71/661 passaram, códigos 0; sintaxe válida. SQL posterior: seis tabelas,
+  quatro migrations/dados zero em loja_test/loja_testes. Trait envolve também
+  os três casos de visitante. Aplicação/ambientes/dependências/OpenAPI preservados.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir; depois 7.22 — ampliar o cenário
+  com segundo User persistido e query id/email
+  dele, mantendo actingAs no primeiro, para comprovar seleção da própria identidade.
 - Situação da 7.20: tests/Feature/UsuarioApiTest.php criado com DataProvider
   para Accept JSON/HTML/ausente. Get com cabeçalhos explícitos, sem autenticação
   preparada ou middleware desativado. Asserções de 401/Content-Type JSON/sem
@@ -14,11 +27,9 @@
   banco. Sintaxe válida; focado 3 testes/18 asserções e suíte completa 70/653,
   códigos 0. SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/
   dados zero. Aplicação/dependências/ambientes/OpenAPI preservados.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir; depois 7.21 — adicionar
-  cenário autenticado GET /api/v1/usuario com
-  actingAs/guard web e User persistido somente em loja_test, verificando
-  200/campos do contrato, distinguindo preparação do teste de login real.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  c17ad9e3030d2c5060689b767136ed321d1e3e99, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.21.
 - Situação da 7.19: routes/api.php importa UsuarioController e registra GET
   /usuario com auth:sanctum sob api/v1. Bootstrap acrescenta redirectGuestsTo
   com null para api/*, evitando busca da rota login antes da renderização JSON.
@@ -31,7 +42,7 @@
   loja_testes: seis tabelas/quatro migrations/dados zero. OpenAPI preservado.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   5d6a4d8a9e642f08fe0f2b2a44139cb18f343552, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.20.
+  Checkpoint anterior à 7.20. Continuidade realizada na 7.20.
 - Situação da 7.18: UsuarioController::show(Request): UsuarioResource criado
   em app/Http/Controllers/Api/V1, retornando Resource de $request->user().
   Diagnóstico Docker/testing com dois usuários fictícios não persistidos e
@@ -1515,7 +1526,9 @@ com "entendi" em 04/11/2026 e publicação em 6523c31. Continuidade realizada na
 7.19 — rota com auth:sanctum/401 JSON e ajuste no bootstrap; entendimento confirmado
 com "entendi" em 04/11/2026 e publicação em 5d6a4d8. Continuidade realizada na
 7.20 — teste de visitante, focado 3/18 e suíte 70/653; entendimento confirmado
-com "entendi" em 04/11/2026. Publicar antes da 7.21 — cenário autenticado.
+com "entendi" em 04/11/2026 e publicação em c17ad9e. Continuidade realizada na
+7.21 — cenário autenticado, focado 4/26 e suíte 71/661; entendimento confirmado
+com "entendi" em 04/11/2026. Publicar antes da 7.22 — parâmetros de outro usuário.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12515,8 +12528,43 @@ e aula 7.20 dois. Diff confirmou aplicação/configuração/dependências/OpenAP
 preservados; nenhum .env ou log incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.20: pendente; checkpoint concluído. Último checkpoint publicado:
-5d6a4d8a9e642f08fe0f2b2a44139cb18f343552 (7.19).
-Próximo passo exato após publicar e conferir: 7.21 — adicionar cenário
-autenticado GET /api/v1/usuario com actingAs/guard web e User persistido somente
-em loja_test, verificar 200/campos e distinguir preparação de teste de login real.
+Publicação da 7.20: concluída e conferida em
+c17ad9e3030d2c5060689b767136ed321d1e3e99; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.21.
+
+## Etapa 7.21 — Teste da consulta do usuário autenticado — 04/11/2026
+
+Iniciada após confirmação da 7.20 com "entendi" e publicação verificada.
+Implementação: UsuarioApiTest ampliado com imports User/DB/DatabaseTransactions,
+trait na classe e um cenário autenticado; nova aula 7.21, contrato e registros.
+Nenhuma alteração de aplicação, dependência, ambiente, migration ou OpenAPI.
+
+Explicação apresentada: transação/rollback por execução da classe, inclusive
+visitantes; identidade exigida antes de DELETE/INSERT, como UserPersistenciaTest.
+User fictício criado em loja_test, ID inteiro positivo com getKey, senha tratada
+pelo cast existente, ID não fixo. ActingAs($usuario, 'web') prepara a identidade
+e guard padrão para o teste; Sanctum reconhece web. GetJson passa pela rota,
+middleware ativo, controller e Resource. Comparação de JSON exato exclui campos
+extras e usa ID gerado. Preparação de identidade não é login real nem prova
+de credenciais, sessão/cookie no navegador ou CSRF. Fonte oficial consultada.
+
+Sintaxe válida; focado --testdox passou com 4 testes/26 asserções, código 0:
+novo cenário com oito asserções e três visitantes anteriores 3/18. Visitantes
+passaram após autenticado na ordem padrão, com aplicação isolada entre testes.
+Suíte completa: 71 testes/661 asserções, código 0. SELECT posterior confirmou
+loja_test/loja_testes, seis tabelas, quatro migrations/lotes 1/2/3/4 e zero
+users/password_reset_tokens/sessions/produtos/categorias. Rollback conferido;
+IDENTITY pode avançar. Última suíte completa: 7.21, 71/661.
+Auditoria/snapshot normal/quatro contratos não repetidos. Operação ainda fora
+do OpenAPI; login real e fluxo de sessão/cookie continuam pendentes.
+
+Git diff --check passou. Links locais conferidos: contrato um, aula 7.20 dois
+e aula 7.21 dois. Diff confirmou aplicação/configuração/dependências/OpenAPI
+preservados; nenhum .env ou log incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.21: pendente; checkpoint concluído. Último checkpoint publicado:
+c17ad9e3030d2c5060689b767136ed321d1e3e99 (7.20).
+Próximo passo exato após publicar e conferir: 7.22 — ampliar o cenário
+autenticado com segundo User persistido e query id/email dele, mantendo
+actingAs no primeiro, para comprovar que a resposta é da própria identidade.

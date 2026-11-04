@@ -95,7 +95,9 @@ snapshot normal e quatro contratos não foram repetidos.
 ## Continuidade
 
 Teste criado, explicado e verificado; entendimento confirmado com "entendi"
-em 04/11/2026; publicação pendente. Após publicar: 7.21 — adicionar
+em 04/11/2026; publicação conferida em
+c17ad9e3030d2c5060689b767136ed321d1e3e99, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade na 7.21 — adicionar
 cenário autenticado de GET /api/v1/usuario, usando actingAs com guard web e
 User persistido somente em loja_test, conferindo 200 e os campos do contrato;
 distinguir autenticação preparada pelo teste de login real.

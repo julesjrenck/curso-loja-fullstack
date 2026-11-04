@@ -1,8 +1,9 @@
 # API de autenticação — consulta do próprio usuário
 
 Desenho da etapa 7.16; rota protegida implementada na 7.19, em 04/11/2026.
-Resposta 401 verificada pelo kernel HTTP Laravel; sucesso 200 ainda planejado
-para o fluxo autenticado, com controller/Resource verificados em memória.
+Respostas 401 e 200 verificadas por testes HTTP internos do Laravel. Sucesso
+200 verificado na 7.21 com User persistido em loja_test e actingAs/guard web;
+login real e transporte de sessão/cookie pelo navegador ainda não verificados.
 O [contrato executável do catálogo](catalogo.md) continua separado. O OpenAPI
 atual descreve o catálogo e ainda não inclui esta operação.
 
@@ -18,11 +19,12 @@ atual descreve o catálogo e ainda não inclui esta operação.
 - Um ID enviado pelo cliente não selecionará outro usuário. A operação consulta
   exclusivamente o usuário identificado pela autenticação da requisição.
 
-## Sucesso planejado
+## Sucesso verificado com autenticação preparada no teste
 
 Status 200, Content-Type application/json, objeto com somente a chave data.
 Data é um objeto individual com exatamente os três campos obrigatórios abaixo,
 todos não nulos; não é uma lista paginada.
+Exemplo fictício; o teste usa o ID real gerado para o User daquele cenário.
 
 ```json
 {
@@ -70,7 +72,10 @@ application/json, text/html e ausente, sem redirecionamento, cookie, Authorizati
 ou SQL. Não foi uma requisição de rede nem teste de sessão autenticada.
 Na 7.20, UsuarioApiTest automatizou esses três casos: 401, Content-Type JSON,
 sem Location e objeto com somente message string, sem fixar seu texto.
-Resultado focado: 3 testes/18 asserções; suíte completa: 70 testes/653 asserções.
+Resultado focado daquela etapa: 3 testes/18 asserções; suíte completa: 70/653.
+Na 7.21, adicionada transação por execução na classe e cenário autenticado:
+arquivo com 4 testes/26 asserções, suíte completa com 71 testes/661 asserções.
+O cenário prepara guard web por actingAs e exige 200/JSON exato; não executa login.
 
 ## Relação com a implementação futura
 
@@ -80,8 +85,10 @@ A UsuarioResource foi criada na 7.17; UsuarioController::show foi criado na
 7.18 e entrega $request->user() ao Resource. Ambos verificados em memória.
 A rota foi registrada na 7.19 com auth:sanctum; bootstrap evita destino de
 redirecionamento em api/* e mantém renderização JSON. Na 7.20, teste automatizado
-de visitante passou nos três casos de Accept. A próxima, 7.21, adicionará cenário
-de sucesso autenticado, com actingAs/guard web e User persistido em loja_test.
+de visitante passou nos três casos de Accept. Na 7.21, sucesso autenticado
+verificado com actingAs/guard web e User persistido em loja_test, com rollback.
+A próxima, 7.22, verificará que id/email de outro usuário enviados na consulta
+não mudam o usuário identificado pela autenticação.
 Login, fluxo autenticado completo e integração no OpenAPI continuam pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
