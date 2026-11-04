@@ -125,8 +125,13 @@ regra e verificação próprias antes de disponibilizar o fluxo de login complet
 Na 7.26, LoginRequestTest automatizou três entradas válidas e 14 inválidas,
 normalização/validated e 422 JSON renderizado em memória: focado 17 testes/94
 asserções, suíte completa 88 testes/756 asserções. Não executa login ou CSRF.
-Próximo passo 7.28: testes automatizados do LoginController com sucesso, falhas
-genéricas e renovação da sessão em loja_test/sessão array, sem registrar rota.
+Na 7.28, LoginControllerTest automatizou sucesso e duas falhas por chamada direta,
+com guard real/loja_test/transação e sessão array: focado 2 testes/47 asserções,
+suíte completa 90 testes/803 asserções. Sucesso exige 204 vazio, identidade e
+renovação de ID/token; falhas exigem visitante, ID/token preservados e corpos
+422 iguais, sem fixar tradução. Ainda não testa pipeline HTTP/CSRF/cookies.
+Próximo passo 7.29: desenhar limite de tentativas, chave/janela e resposta 429,
+antes de implementar limitador ou registrar rota.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

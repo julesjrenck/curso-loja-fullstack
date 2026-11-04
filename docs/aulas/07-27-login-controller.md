@@ -99,7 +99,9 @@ snapshot normal e quatro contratos não foram repetidos.
 ## Continuidade
 
 Controller criado, explicado e verificado; entendimento confirmado com "entendi"
-em 04/11/2026; publicação pendente. Após publicar: 7.28 —
+em 04/11/2026; publicação conferida em
+10416ad5d8fa44cec71e353551cfae30187e3521, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade na 7.28 —
 testes automatizados do LoginController com sucesso, falhas genéricas e renovação
 da sessão, usando loja_test/transações e sessão array, sem registrar rota.
 Limitação de tentativas terá regra própria antes de disponibilizar login completo.

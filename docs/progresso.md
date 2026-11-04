@@ -5,8 +5,23 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.27 — Tentativa de autenticação no controller: concluída,
+- Etapa atual: 7.28 — Testes da autenticação no controller: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.28: tests/Feature/LoginControllerTest.php criado, dois métodos
+  para sucesso e duas falhas com corpos comparados. SetUp exige loja_test/
+  loja_testes/session array antes de escrita, User/transação/rollback e visitante.
+  Helper cria LoginRequest validada com mesma sessão/Request atual no container,
+  extras remember/id e chamada direta a store, guard real. Sucesso exige 204
+  vazio/sem Location, usuário guard/sessão correto, ID/token renovados e remember
+  token null. Falhas exigem 422 JSON/email/sem Location, visitante/ID/token
+  preservados e corpos iguais sem fixar tradução. Sem HTTP/CSRF/cookies reais.
+  Sintaxe válida; focado 2 testes/47 asserções e suíte 90/803, códigos 0.
+  SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/dados zero.
+  Aplicação/ambientes/dependências/rotas/OpenAPI preservados.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir; depois 7.29 — desenhar limite
+  de tentativas do login com chave, janela
+  e resposta 429, antes de implementar limitador ou registrar rota.
 - Situação da 7.27: LoginController::store(LoginRequest): Response criado,
   usa validated/attempt guard web, ValidationException genérica em email ou
   sessão regenerate/204 vazio. Diagnóstico Docker/testing: aplicação por caso,
@@ -18,10 +33,9 @@
   cookies em navegador ou persistidos. Sintaxe válida; suíte existente 88/756,
   código 0. SQL posterior: seis tabelas/quatro migrations/dados zero em loja_test.
   Sem teste permanente novo; rotas/ambientes/dependências/OpenAPI preservados.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir; depois 7.28 — testes automatizados
-  de sucesso/falhas/renovação da sessão
-  do LoginController em loja_test/transações/sessão array, sem registrar rota.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  10416ad5d8fa44cec71e353551cfae30187e3521, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.28.
 - Situação da 7.26: tests/Feature/LoginRequestTest.php criado, helper privado
   com Request JSON/visitante/Pipeline de normalizadores/FormRequest real,
   provedores três válidos/14 inválidos. Válidos exigem authorize/visitante e
@@ -33,7 +47,7 @@
   tabelas/quatro migrations/dados zero. Aplicação/ambientes/dependências/OpenAPI
   preservados. Entendimento confirmado com "entendi" em 04/11/2026;
   publicação verificada em 7f3e8edfc055c637d8038ea60c8f2a16e0e7118c,
-  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  HEAD/origin/main/main remota iguais. Checkpoint anterior à 7.27.
   Continuidade realizada na 7.27. Limitação de tentativas continua pendente.
 - Situação da 7.25: app/Http/Requests/LoginRequest.php criada, FormRequest com
   authorize true e regras email bail/required/string/email/max:255 e password
@@ -1615,8 +1629,10 @@ entendimento confirmado com "entendi" em 04/11/2026 e publicação em ad9f45b.
 Continuidade realizada na 7.26 — testes da validação, focado 17/94 e suíte 88/756;
 entendimento confirmado com "entendi" em 04/11/2026 e publicação em 7f3e8ed.
 Continuidade realizada na 7.27 — LoginController/três casos/suíte 88-756;
+entendimento confirmado com "entendi" em 04/11/2026 e publicação em 10416ad.
+Continuidade realizada na 7.28 — testes do controller/focado 2-47/suíte 90-803;
 entendimento confirmado com "entendi" em 04/11/2026. Publicar antes da
-7.28 — testes do controller sem rota.
+7.29 — desenho do limite de tentativas.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12891,8 +12907,50 @@ somente LoginController; demais arquivos de aplicação/testes/configuração/Op
 sem diff, nenhum .env ou log incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.27: pendente; checkpoint concluído. Último checkpoint publicado:
-7f3e8edfc055c637d8038ea60c8f2a16e0e7118c (7.26).
-Próximo passo exato após publicar e conferir: 7.28 — testes automatizados
-do LoginController com sucesso, falhas genéricas e renovação da sessão, em
-loja_test/transações/sessão array, sem registrar rota de login nessa etapa.
+Publicação da 7.27: concluída e conferida em
+10416ad5d8fa44cec71e353551cfae30187e3521; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.28.
+
+## Etapa 7.28 — Testes da autenticação no controller — 04/11/2026
+
+Iniciada após confirmação da 7.27 com "entendi" e publicação verificada.
+Implementação: somente LoginControllerTest.php, nova aula 7.28, contratos e
+registros atualizados. Aplicação/rotas/bootstrap/ambientes/dependências/OpenAPI
+preservados; POST login continua sem rota.
+
+Explicação apresentada: imports/DatabaseTransactions, constante fictícia/propriedade
+User, setUp com parent/identidade loja_test/loja_testes/session array antes de
+escrita, limpeza/conta na transação e sessão iniciada/visitante. Helper cria
+LoginRequest JSON com remember/id extras, container/redirector/mesma sessão,
+Request atual e validação explícita. Guard real, sem actingAs/mock. Não executa
+normalizadores HTTP, cobertos separadamente; não simula endpoint ou rota temporária.
+
+Teste de sucesso: assertNoContent/sem Location, assertAuthenticatedAs no web,
+identidade na sessão, ID/token renovados, remember_token null via fresh.
+Teste de falha compara senha incorreta/e-mail inexistente em foreach, ambos
+com formato válido; exige exceção/erro email, handler/TestResponse 422 JSON/sem
+Location, visitante/ID/token preservados. Corpos só message/errors e uma string
+em errors.email; comparação final exige igualdade sem fixar idioma. Continue
+segue ao próximo caso; fail acusa aceitação indevida. Duas chamadas diretas
+nesse método, sem múltiplas requisições HTTP ao kernel. Fonte oficial consultada.
+
+Sintaxe válida; focado --testdox passou com 2 testes/47 asserções, código 0,
+cobrindo três tentativas. Suíte completa 90 testes/803 asserções, código 0,
+soma dos 2/47 aos 88/756 anteriores. SELECT posterior confirmou loja_test/
+loja_testes, seis tabelas, quatro migrations/lotes 1/2/3/4 e zero users/
+password_reset_tokens/sessions/produtos/categorias. Rollback conferido;
+sessões somente em memória, sem valores privados impressos nesta execução.
+Última suíte completa: 7.28, 90/803. Auditoria/snapshot normal/quatro contratos
+não repetidos. HTTP/CSRF/cookies do navegador continuam pendentes de integração.
+
+Git diff --check passou. Links locais conferidos: contrato de login um,
+contrato de consulta três, aulas 7.27/7.28 dois cada. Único arquivo novo de
+código restrito a testes; aplicação/configuração/dependências/OpenAPI sem diff,
+nenhum .env ou log incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.28: pendente; checkpoint concluído. Último checkpoint publicado:
+10416ad5d8fa44cec71e353551cfae30187e3521 (7.27).
+Próximo passo exato após publicar e conferir: 7.29 — desenhar limitação de
+tentativas do login, com chave de contagem, janela e resposta 429, antes de
+implementar limitador ou registrar rota.
