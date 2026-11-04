@@ -41,7 +41,7 @@ class LoginApiTest extends TestCase
         parent::tearDown();
     }
 
-    public function test_login_valido_retorna_204_autentica_e_renova_sessao(): void
+    public function test_login_valido_renova_sessao_e_permite_consultar_usuario(): void
     {
         User::query()->delete();
 
@@ -76,6 +76,38 @@ class LoginApiTest extends TestCase
         $this->assertSame('sessao-do-teste', $sessao->get('marcador_visitante'));
         $this->assertNotSame($idAnterior, $sessao->getId());
         $this->assertNotSame($tokenAnterior, $sessao->token());
+
+        $cookieAutenticado = $resposta->getCookie(config('session.cookie'));
+        $this->assertNotNull($cookieAutenticado);
+        $idAutenticado = $cookieAutenticado->getValue();
+        $chaveIdentidade = Auth::guard('web')->getName();
+
+        $sessao->flush();
+        $this->assertNull($sessao->get($chaveIdentidade));
+        Auth::forgetGuards();
+
+        $consulta = $this->withCookie(config('session.cookie'), $idAutenticado)
+            ->withCredentials()
+            ->getJson('http://127.0.0.1:8002/api/v1/usuario', [
+                'Origin' => 'http://127.0.0.1:8002',
+            ]);
+
+        $consulta
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertHeaderMissing('Location')
+            ->assertExactJson([
+                'data' => [
+                    'id' => $usuario->id,
+                    'name' => 'Ana Exemplo',
+                    'email' => 'ana@example.test',
+                ],
+            ]);
+
+        $this->assertSame($idAutenticado, $consulta->baseRequest->cookies->get(config('session.cookie')));
+        $this->assertSame($idAutenticado, $sessao->getId());
+        $this->assertSame('sessao-do-teste', $sessao->get('marcador_visitante'));
+        $this->assertAuthenticatedAs($usuario, 'web');
     }
 
     public function test_credenciais_recusadas_retornam_mesmo_422_e_preservam_visitante(): void

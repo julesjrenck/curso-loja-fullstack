@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.36 com "entendi". Checkpoint anterior publicado e conferido em
 be62fdf65851bc52d2f2b7c042c9e22a6856882a; HEAD/origin/main/main remota iguais.
-Entendimento da 7.37 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.37 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -94,8 +94,10 @@ snapshot normal e quatro contratos de catálogo.
 
 Cenário implementado, explicado e verificado; entendimento confirmado com "entendi" em 04/11/2026.
 Documentos/contratos atualizados; nenhum código de aplicação, configuração,
-dependência, ambiente, migration, rota ou OpenAPI alterado. Publicação pendente.
+dependência, ambiente, migration, rota ou OpenAPI alterado. Publicação concluída
+e conferida em 10c260cf6b61945d06896d2d32da4b154641d5c2;
+HEAD/origin/main/main remota iguais após push. Registro posterior à publicação.
 Testes sem rede/navegador; testing dispensa validação CSRF da requisição.
-Após publicar: 7.38 — ampliar o cenário de sucesso para consultar
+Continuidade realizada na 7.38 — ampliar o cenário de sucesso para consultar
 GET /api/v1/usuario usando o novo cookie de sessão e guard recriado, conferindo
 somente id/name/email. Fluxo real de CSRF/cookies continua para etapa própria.

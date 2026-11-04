@@ -129,8 +129,12 @@ neste cenário nem comprova CSRF/rede/navegador. Na 7.37, credenciais recusadas
 por HTTP verificadas: senha incorreta/e-mail inexistente com mesmo 422
 genérico/visitante, identidade null, ID/token/marcador preservados e mesmo ID
 nos cookies de entrada/saída após decodificação.
-Focado 5/344; suíte 101/1.383 passou e dados desfeitos. Próxima 7.38:
-GET usuario após login com cookie novo e guard recriado, mantendo id/name/email.
+Focado 5/344; suíte 101/1.383 passou e dados desfeitos. Na 7.38, GET usuario após login passou com cookie obtido da resposta e enviado
+pelos helpers JSON. Atributos da sessão limpos só em memória e guards
+descartados antes do GET: 200/JSON exato data/id/name/email da fixture,
+marcador recarregado, mesmo ID no cookie/sessão e identidade no guard conferidos.
+Focado 5/357; suíte 101/1.396. Próxima 7.39: controle sem cookie após login exige
+401 JSON com memória limpa/guards recriados. Sem transporte ou CSRF real verificados.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).

@@ -195,10 +195,15 @@ incorreta/e-mail inexistente: duas tentativas com formato válido, mesmo 422
 genérico em email, visitante/identidade null e ID/token/marcador preservados,
 mesmo ID nos cookies. Fixture em loja_test/transação e corpos comparados sem fixar
 tradução. Focado 5/344 e suíte 101/1.383 passaram; SQL posterior sem dados.
-Entendimento da 7.37 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próximo após publicar:
-7.38 — ampliar sucesso para consultar GET usuario com cookie novo e guard
-recriado, conferindo somente id/name/email. CSRF real/navegador pendentes.
+Entendimento da 7.37 confirmado com "entendi" em 04/11/2026; publicada em 10c260c,
+remoto conferido. Na 7.38, sucesso ampliado em LoginApiTest: cookie da resposta
+obtido/decifrado pelo helper, atributos da sessão limpos só em memória e guards
+descartados. GET usuario com cookie/withCredentials/Origin reconhecido retorna
+200/JSON exato data/id/name/email; marcador recarregado, mesmo ID no cookie/
+sessão e identidade no guard conferidos. Focado 5/357 e suíte 101/1.396 passaram;
+SQL posterior sem dados. Entendimento da 7.38 confirmado com "entendi" em
+04/11/2026; publicação pendente. Próximo após publicar: 7.39 — controle sem cookie após login,
+memória limpa/guards recriados, exigindo 401 JSON na consulta do usuário.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -909,8 +914,10 @@ Rollback confirmado. Entendimento confirmado com "entendi" em 04/11/2026;
 publicação em be62fdf. Na 7.37, credenciais recusadas por HTTP adicionadas/
 explicadas em LoginApiTest: mesmo 422/sessão visitante preservada; focado 5/344
 e suíte 101/1.383 passaram, rollback conferido. Entendimento confirmado com
-"entendi" em 04/11/2026; publicação pendente antes da 7.38 — GET usuario
-após login com cookie e guard recriado.
+"entendi" em 04/11/2026; publicação em 10c260c. Na 7.38, sucesso ampliado para
+GET usuario com cookie recebido/memória limpa/guards recriados; 200 exato,
+focado 5/357, suíte 101/1.396 e rollback conferidos. Entendimento confirmado
+com "entendi" em 04/11/2026; publicação pendente antes da 7.39 — controle 401 sem cookie após login.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

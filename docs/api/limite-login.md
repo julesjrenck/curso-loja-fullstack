@@ -108,8 +108,11 @@ Focado 4/294; suíte 100/1.333 passou. Cenários de cinco 422/sexto 429 preserva
 Não verifica contagem após sucesso nessa etapa. Na 7.37, testadas senha
 incorreta/e-mail inexistente pela rota no mesmo método, duas tentativas dentro
 do limite: mesmo 422 genérico/visitante e sessão preservados. Focado 5/344;
-suíte 101/1.383 passou. Próxima 7.38: GET usuario após login com cookie novo
-e guard recriado.
+suíte 101/1.383 passou. Na 7.38, cenário de sucesso ampliado para GET usuario com cookie recebido no
+POST, memória da sessão limpa e guards descartados. Consulta protegida retorna
+200/JSON exato; focado 5/357, suíte 101/1.396. Esse GET não passa por
+throttle:login; regra de limite preservada.
+Próxima 7.39: controle sem cookie após login exige 401 JSON.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).

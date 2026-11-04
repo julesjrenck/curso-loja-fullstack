@@ -184,7 +184,13 @@ Helper aceita dados JSON e cookies preparados pelo Laravel. Focado 4/294;
 suíte 100/1.333 passou; SQL posterior sem dados. Na 7.37, adicionados senha
 incorreta/e-mail inexistente no mesmo método: corpos 422 iguais/visitante e
 sessão preservados. Focado 5/344; suíte 101/1.383 passou e SQL posterior sem dados.
-Próxima 7.38: consultar GET usuario após login com cookie novo e guard recriado.
+Na 7.38, sucesso ampliado: cookie obtido da resposta, atributos da sessão em
+memória limpos sem gravar essa limpeza, guards descartados. GET usuario com
+cookie preparado/withCredentials e Origin reconhecido devolve 200/JSON exato
+com data/id/name/email. Mesmo ID no cookie/sessão, marcador recarregado e
+guard autenticado conferidos. Focado 5/357; suíte 101/1.396, SQL posterior vazio.
+Próxima 7.39: controle sem cookie após login deve receber 401 JSON, com estado
+em memória limpo e guards recriados. CSRF real/navegador permanecem pendentes.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)
