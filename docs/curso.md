@@ -160,8 +160,12 @@ Na 7.31, LoginRateLimiterTest passa pelo middleware real com cache array/relógi
 controlado: seis execuções, bloqueio/IP/expiração/headers e consumo por falhas.
 Focado 6/156 e suíte 96/959 passaram. Migration de usuários no ambiente normal
 consultada: Pending, sem aplicação. Entendimento confirmado com "entendi" em
-04/11/2026; publicação pendente. Próximo após publicar: 7.32 — preparar somente essa migration em loja,
-preservando catálogo, antes de registrar rota de login.
+04/11/2026; publicada em 7c55de4, remoto conferido. Na 7.32, somente essa migration
+aplicada em loja com sqlsrv_migracoes, lote 4/Ran, três tabelas vazias e reexecução
+Nothing to migrate. Conteúdo/metadados do catálogo preservados; padrão loja_app/
+sessões file. Suíte existente 96/959 passou em loja_test, vazio após rollback.
+Entendimento da 7.32 confirmado com "entendi" em 04/11/2026; publicação pendente. Próximo após publicar:
+7.33 — registrar POST /api/v1/login com throttle:login e conferir integração inicial.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -853,8 +857,11 @@ publicação em d702086. Na 7.30, limitador registrado/explicado/configuração 
 callback conferidos; suíte 90/803 passou. Entendimento confirmado com "entendi"
 em 04/11/2026 e publicação em 4c5388d. Na 7.31, testes do middleware criados e
 explicados, focado 6/156 e suíte 96/959 passaram. Status normal users Pending;
-entendimento confirmado com "entendi" em 04/11/2026; publicação pendente antes
-da 7.32 — preparar migration em loja antes da rota.
+entendimento confirmado com "entendi" em 04/11/2026; publicação em 7c55de4.
+Na 7.32, migration de usuários aplicada/explicada em loja via sqlsrv_migracoes,
+lote 4, tabelas vazias, reexecução/preservação do catálogo e suíte 96/959 conferidas.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente antes
+da 7.33 — registrar rota de login com throttle:login.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

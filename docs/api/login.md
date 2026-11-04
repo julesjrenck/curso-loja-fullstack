@@ -146,9 +146,12 @@ Na 7.30, configuração e callback do limitador registrado conferidos em memóri
 suíte existente 90/803 passou. Nenhuma rota utiliza throttle:login ainda.
 Na 7.31, testes do middleware passaram com relógio controlado/cache array:
 focado 6/156, suíte 96/959. Não exercitam o endpoint completo ou CSRF.
-Consulta de status da migration de usuários no ambiente normal mostrou Pending;
-essa migration foi aplicada em loja_test durante o curso. Próximo passo 7.32:
-preparar somente essa migration no banco local normal loja antes da rota de login.
+Consulta de status na 7.31 mostrou a migration de usuários Pending em loja.
+Na 7.32, aplicada somente essa migration pela conexão sqlsrv_migracoes:
+três tabelas vazias, lote 4/Ran e reexecução Nothing to migrate. Catálogo
+preservado por comparação de conteúdo/metadados; aplicação continua loja_app
+e sessões file. Suíte existente 96/959 passou em loja_test, vazio após rollback.
+Próxima 7.33: registrar POST /api/v1/login com throttle:login e conferir integração inicial.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

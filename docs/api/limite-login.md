@@ -86,8 +86,10 @@ Conferidos bloqueio do sexto/IP compartilhado entre e-mails, Accept JSON/HTML/
 ausente, cabeçalhos, espera/expiração, outro IP e consumo de limite por falhas
 posteriores. Próxima função ilustrativa, sem controller, SQL de autenticação,
 CSRF ou kernel HTTP. Criar/configurar/testar a regra ainda não a aplica à rota.
-Próxima 7.32: preparar a migration de usuários no banco local normal antes da
-integração HTTP; status consultado na 7.31 continua Pending.
+Na 7.32, migration de usuários aplicada em loja pela conexão sqlsrv_migracoes,
+lote 4/Ran, três tabelas vazias e catálogo preservado. Reexecução sem nova
+aplicação; suíte existente 96/959 passou no banco exclusivo de testes.
+Próxima 7.33: registrar POST /api/v1/login com throttle:login e conferir integração inicial.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).

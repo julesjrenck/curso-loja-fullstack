@@ -109,7 +109,9 @@ Não fizemos snapshot completo do banco normal nem repetimos auditoria/quatro co
 ## Continuidade
 
 Testes criados, explicados e verificados; entendimento da 7.31 confirmado.
-Publicação pendente. Após publicar: 7.32 —
+Publicação concluída e conferida em
+7c55de44e3900817a95ca0bbc351c7dcc24dbe3e; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.32 —
 preparar tabelas de usuários no banco local normal loja, conferindo identidade/
 pendência e aplicando somente a migration de usuários, com verificação do estado
 antes/depois e preservação do catálogo, antes de registrar a rota de login.

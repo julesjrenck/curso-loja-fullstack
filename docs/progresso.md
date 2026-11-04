@@ -5,8 +5,24 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.31 — Testes do middleware de limitação: implementação,
-  explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Etapa atual: 7.32 — Migration de usuários no banco local da aplicação:
+  aplicação, explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Situação da 7.32: somente migration de usuários existente aplicada em loja
+  pela conexão sqlsrv_migracoes/loja_migracoes. Identidades/permissões/ausência
+  de tabelas/histórico conferidos antes. DONE/lote 4/Ran; três tabelas vazias,
+  17 colunas/tipos/tamanhos/null/identity/defaults/índices/FKs conferidos.
+  Reexecução Nothing to migrate, uma entrada no histórico. Conteúdo integral
+  das linhas do catálogo e metadados anteriores/registros anteriores preservados;
+  um produto/zero categorias. Loja_app lê as tabelas, mantém permissões de dados
+  e ausência de DDL; padrão sqlsrv/sessões file preservados. Suíte existente
+  96 testes/959 asserções, código 0. SQL posterior loja_test/loja_testes:
+  seis tabelas/quatro migrations/dados zero. Diagnósticos corrigidos: seleção
+  inicial da conexão da aplicação para DDL e leitura de tamanhos NVARCHAR em bytes;
+  nenhuma alteração de permissões ou da migration foi necessária.
+  Sem código/rota/ambiente/dependência/OpenAPI alterado ou usuário cadastrado.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação da 7.32 pendente.
+  Próximo passo exato após publicar: 7.33 — registrar POST /api/v1/login para LoginController::store
+  com throttle:login e conferir integração inicial ao pipeline HTTP.
 - Situação da 7.31: tests/Feature/LoginRateLimiterTest.php criado, quatro métodos/
   seis execuções com DataProvider Accept JSON/HTML/ausente. Cache array exigido,
   relógio controlado/restaurado. ThrottleRequests real/nome login/Request em
@@ -18,10 +34,9 @@
   quatro migrations/dados zero. Sem alteração de aplicação/configuração/OpenAPI.
   Status da migration de usuários normal consultado: Pending, código 0, sem
   aplicar instruções de criação. Entendimento confirmado com "entendi" em
-  04/11/2026; publicação da 7.31 pendente.
-  Próximo passo exato após publicar: 7.32 — preparar tabelas de usuários
-  em loja, conferir identidade/pendência, aplicar apenas migration de usuários,
-  validar antes/depois preservando catálogo, antes de registrar rota de login.
+  04/11/2026; publicação verificada em
+  7c55de44e3900817a95ca0bbc351c7dcc24dbe3e, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.32.
 - Situação da 7.30: AppServiceProvider::boot registra RateLimiter::for login,
   Limit 5/minuto/by IP e callback JsonResponse/429/message/headers/no-store.
   Register/binding do catálogo preservado. Diagnóstico Docker/testing com
@@ -35,7 +50,7 @@
   novo, dependência/ambiente/rota/bootstrap/OpenAPI alterado.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   4c5388deb7ee7fcd803cf7aa1ff7ad8337655016, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.31.
+  Checkpoint anterior à 7.31. Continuidade realizada na 7.31.
 - Situação da 7.29: docs/api/limite-login.md criado. Planejado limitador login,
   cinco pedidos por IP/60 segundos desde primeiro contado. Sucesso/validação/
   credenciais recusadas que alcancem o contador consomem limite; sucesso não
@@ -1679,8 +1694,11 @@ com "entendi" em 04/11/2026 e publicação em d702086. Continuidade realizada na
 7.30 — registro/configuração/callback, suíte 90/803; entendimento confirmado
 com "entendi" em 04/11/2026 e publicação em 4c5388d. Continuidade realizada na
 7.31 — testes/focado 6-156/suíte 96-959; users normal Pending. Entendimento
-confirmado com "entendi" em 04/11/2026; publicação pendente antes da 7.32 —
-preparar migration de usuários em loja antes de HTTP de login.
+confirmado com "entendi" em 04/11/2026 e publicação em 7c55de4. Continuidade
+realizada na 7.32 — migration de usuários aplicada em loja via sqlsrv_migracoes,
+lote 4/tabelas vazias/reexecução e catálogo preservado/suíte 96-959. Entendimento
+confirmado com "entendi" em 04/11/2026; publicação pendente antes da 7.33 —
+registrar rota POST login com throttle:login.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -13124,8 +13142,79 @@ consulta três, aulas 7.30/7.31 dois cada. Novo código somente no teste;
 aplicação/configuração/dependências/Compose/OpenAPI sem diff. Nenhum .env ou log incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.31: pendente; alterações locais. Último checkpoint publicado:
-4c5388deb7ee7fcd803cf7aa1ff7ad8337655016 (7.30).
-Próximo passo exato após publicar: 7.32 — conferir identidade e
-pendência em loja, aplicar somente migration de usuários e validar tabelas/
-estado antes/depois preservando catálogo, antes de registrar rota de login.
+Publicação da 7.31: concluída e conferida em
+7c55de44e3900817a95ca0bbc351c7dcc24dbe3e; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.32.
+
+## Etapa 7.32 — Migration de usuários no banco local da aplicação — 04/11/2026
+
+Iniciada após confirmação da 7.31 com "entendi" e publicação verificada.
+Aplicação: somente migration existente 0001_01_01_000000_create_users_table.php
+em loja via conexão sqlsrv_migracoes/loja_migracoes. Arquivo PHP preservado;
+nova aula 7.32, contratos e registros atualizados. Estado criado no volume SQL.
+
+Explicação apresentada: históricos separados por banco, sqlsrv_migracoes versus
+sqlsrv/loja_app, opções exec -T/migrate/database/path/no-interaction/no-ansi,
+up com três Schema::create/entrada única no lote 4, tipos/índices/null e finalidade
+das tabelas. Criar sessions não muda SESSION_DRIVER=file; criar tabelas não
+implementa login ou recuperação. Nenhuma conta cadastrada no ambiente normal.
+
+Primeira conferência escolheu sqlsrv/loja_app e encontrou CREATE TABLE/ALTER dbo
+0/0; exigência interrompeu diagnóstico antes de DDL. Processo bootstrap exibiu
+RuntimeException e retornou 0; não foi tratado como sucesso da conferência.
+Seleção corrigida para conexão dedicada existente desde 5.14; diagnósticos
+seguintes capturam Throwable e saem explicitamente 1 em falhas. Nenhuma
+permissão/credencial/configuração alterada.
+
+Conferência anterior corrigida: ambiente local/configuração sem cache/padrão
+sqlsrv/sessão file; loja/loja_migracoes/permissões 1/1, loja/loja_app no padrão.
+Somente categorias/migrations/produtos, três migrations/lotes 1/2/3, um produto/
+zero categorias; novas tabelas/entrada da migration ausentes. Status restrito
+Pending. Snapshot temporário /tmp no container com hashes do conteúdo integral
+das linhas do catálogo ordenadas por id, metadados de colunas/índices/FKs das
+três tabelas antigas e registros anteriores de migrations. Sem dados de linhas
+ou credenciais impressos/versionados.
+
+Comando migrate --database=sqlsrv_migracoes
+--path=database/migrations/0001_01_01_000000_create_users_table.php
+--no-interaction --no-ansi executado no backend Docker: DONE, código 0.
+Histórico [4] Ran, uma nova entrada; catálogo lotes 1/2/3 preservado e cache/jobs
+Pending. Repetição do mesmo comando: Nothing to migrate, código 0.
+
+Diagnóstico posterior inicial saiu 1 por comparar tamanhos NVARCHAR declarados
+com a representação em bytes de Schema::getColumns. Metadados diretos via
+sys.columns normalizados por max_length/2 nos limites finitos confirmaram
+255/100/45; -1 tratado como max. Corrigido somente diagnóstico temporário;
+nenhuma alteração/reversão da migration ou DDL adicional. Referência Microsoft
+consultada; fonte Laravel sobre execução/status também consultada.
+
+Conferências posteriores código 0: users oito colunas, password_reset_tokens
+três, sessions seis, total 17; tipos/tamanhos/null/identity/defaults/índices
+exatos, sem FKs e todas vazias. Users id BIGINT IDENTITY/PK e email único;
+reset email PK, sessions id PK e índices user_id/last_activity. Não há FK em
+sessions.user_id. Leitura via loja_app passou; HAS_PERMS confirmou permissões
+SELECT/INSERT/UPDATE/DELETE em users e CREATE TABLE/ALTER dbo 0/0. Sem testar
+escritas no banco normal.
+
+Conteúdo integral das linhas do catálogo e metadados antigos/registros antigos
+do histórico preservados antes/depois/reexecução/após suíte. Um produto/zero
+categorias; SHA-256 dos metadados antigos permaneceu
+8ded6e0e43dd85b1d8eb830949b818fd332fcaf4c5b9fb5b8dce02c01d7e5104.
+Snapshot local temporário não é backup completo do banco nem arquivo versionado.
+
+Suíte existente em Docker: 96 testes/959 asserções, código 0. Última completa:
+7.32. Nenhum teste novo. SELECT posterior loja_test/loja_testes: seis tabelas,
+quatro migrations/lotes 1/2/3/4 e zero users/tokens/sessions/produtos/categorias.
+Teste continua isolado de loja. Não verificamos login por HTTP ou CSRF nesta
+etapa; rota continua ausente. Auditoria/quatro contratos não repetidos.
+
+Git diff --check passou. Links locais conferidos: consulta três, limite um,
+login dois, aulas 7.31/7.32 dois cada. Backend/Compose/OpenAPI sem diff; somente
+documentação alterada, índice vazio. Nenhum .env, log ou snapshot incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.32: pendente; documentação local. Último checkpoint publicado:
+7c55de44e3900817a95ca0bbc351c7dcc24dbe3e (7.31).
+Próximo passo exato após publicar: 7.33 — registrar somente
+POST /api/v1/login para LoginController::store com throttle:login e conferir
+integração inicial ao pipeline HTTP. Logout/recuperação permanecem para depois.

@@ -108,8 +108,11 @@ verificado diretamente com guard web/loja_test/sessão array: 204 no sucesso,
 focado 2/47 e suíte 90/803. Na 7.29, regra local de cinco pedidos/minuto/IP
 planejada, com 429/Retry-After. Na 7.30, limitador login registrado, configuração/
 callback conferidos em memória e suíte 90/803 passou; sem rota usando-o.
-Na 7.31, testes do middleware passaram: focado 6/156, suíte 96/959. Próxima 7.32:
-preparar tabelas de usuários no banco local normal loja antes de registrar rota.
+Na 7.31, testes do middleware passaram: focado 6/156, suíte 96/959. Na 7.32,
+migration de usuários aplicada em loja com sqlsrv_migracoes, lote 4, três tabelas
+vazias e catálogo preservado. Aplicação continua loja_app/sessões file; suíte
+existente 96/959 passou em loja_test. Próxima 7.33: registrar POST /api/v1/login
+com throttle:login e conferir integração inicial.
 Rota de login e fluxo completo HTTP/sessão/cookie continuam pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
