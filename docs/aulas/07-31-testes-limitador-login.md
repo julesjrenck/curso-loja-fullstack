@@ -69,7 +69,7 @@ as asserções. Não passamos pelo kernel HTTP, CSRF, sessão ou transporte de r
 
 | Cenário | O que as asserções exigem |
 | --- | --- |
-| Sexto pedido, Accept JSON/HTML/ausente | Cinco 204 com restante decrescente; sexto 429 JSON/message, Retry-After 60, limite 5/restante 0/no-store/sem Location; só cinco chamadas posteriores. |
+| Sexto pedido, Accept JSON/HTML/padrão do construtor na execução original | Cinco 204 com restante decrescente; sexto 429 JSON/message, Retry-After 60, limite 5/restante 0/no-store/sem Location; só cinco chamadas posteriores. |
 | Tempo e expiração | 429/espera 60 no início, espera 30 após avanço; em 60 segundos libera com restante 4 e sexta chamada posterior. |
 | Outro IP | IP A esgotado continua bloqueado; IP B pode seguir com restante 4. |
 | Falha posterior | Cinco erros 422 consomem limite; sexto pedido é 429 e não alcança a função que falharia. |
@@ -79,6 +79,11 @@ o e-mail mantendo IP, para preservar contador compartilhado. Apenas message
 string no 429; não fixamos sua tradução. Diretiva no-store é verificada sem
 depender da ordenação textual de Cache-Control.
 Quatro métodos, um deles com três entradas, produzem seis execuções PHPUnit.
+Correção registrada na 7.35: o conjunto rotulado ausente originalmente recebia
+o padrão de Request::create. Agora o helper remove Accept quando null ou define
+a string e confere presença/valor antes do middleware. Ausência real verificada;
+focado passou a 6 testes/236 asserções e suíte completa a 99/1.306. Os números
+6/156 e 96/959 abaixo pertencem à execução original da 7.31.
 Referência: [middleware throttle e limitadores nomeados](https://laravel.com/docs/13.x/routing#rate-limiting).
 
 ## Verificações e preparação do próximo passo

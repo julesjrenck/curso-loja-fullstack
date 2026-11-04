@@ -176,10 +176,16 @@ array/relógio controlado, cinco 422 e sexto 429 por Accept JSON/HTML/ausência
 real, conferindo entrada/sessão/visitante/corpos/headers. Focado 3/267 e suíte
 99/1.226 passaram. Corrigido registro da 7.33: suposta ausência era o Accept
 padrão de Request::create; novo teste remove/confere o cabeçalho. O mesmo
-preparo incorreto no teste isolado da 7.31 ficou pendente para 7.35.
-Entendimento da 7.34 confirmado com "entendi" em 04/11/2026; publicação pendente.
+preparo incorreto no teste isolado da 7.31 foi corrigido na 7.35.
+Entendimento da 7.34 confirmado com "entendi" em 04/11/2026; publicada em 019c99b,
+remoto conferido. Na 7.35, somente helper de LoginRateLimiterTest alterado:
+remove/define Accept após Request::create e confere presença/valor antes do
+middleware. Ausência real coberta; focado 6/236 e suíte 99/1.306 passaram.
+Mesmos cenários, 80 asserções adicionais em 40 chamadas. Aplicação preservada.
+Entendimento da 7.35 confirmado com "entendi" em 04/11/2026; publicação pendente.
 Próximo após publicar:
-7.35 — corrigir somente esse caso Accept ausente em LoginRateLimiterTest.
+7.36 — adicionar somente sucesso de login por HTTP em LoginApiTest,
+com usuário fictício/transação em loja_test, 204/identidade/sessão renovada.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -880,8 +886,11 @@ kernel/testing confirma cinco 422/sexto 429 nos três Accepts; suíte 96/959 pas
 Entendimento confirmado com "entendi" em 04/11/2026; publicação em 54cea24.
 Na 7.34, LoginApiTest criado/explicado, focado 3/267 e suíte 99/1.226 passaram.
 Remove/confere Accept ausente; diagnóstico anterior tinha padrão do construtor.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação em 019c99b.
+Na 7.35, helper do teste isolado corrigido para ausência real de Accept e
+presença/valor conferidos; focado 6/236 e suíte 99/1.306 passaram.
 Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente antes
-da 7.35 — corrigir mesmo preparo no teste isolado.
+da 7.36 — adicionar sucesso por HTTP em LoginApiTest.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

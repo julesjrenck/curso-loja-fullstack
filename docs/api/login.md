@@ -164,8 +164,10 @@ como ausente, mas o construtor preencheu Accept. LoginApiTest agora remove o
 cabeçalho e confere presença/valor antes de cada pedido. Três execuções com
 JSON/HTML/ausência real verificam cinco 422 e sexto 429 por caso, erros exatos,
 headers/visitante/sessão. Focado 3 testes/267 asserções; suíte 99/1.226, códigos 0.
-Não comprova sucesso do login ou CSRF no navegador. Próxima 7.35: corrigir a
-mesma preparação de Accept ausente no teste isolado LoginRateLimiterTest.
+Não comprova sucesso do login ou CSRF no navegador. Na 7.35, mesma preparação
+corrigida no helper de LoginRateLimiterTest: remove/define Accept e confere
+presença/valor antes do middleware. Focado 6/236, suíte 99/1.306 passaram.
+Próxima 7.36: adicionar cenário de sucesso por HTTP em LoginApiTest.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

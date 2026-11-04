@@ -98,7 +98,11 @@ Correção registrada na 7.34: o terceiro caso anterior tinha Accept padrão,
 apesar de apresentado como ausente. Novo LoginApiTest remove o cabeçalho e
 confere presença/valor: JSON/HTML/ausência real, cinco 422 e sexto 429 por caso,
 com contrato/headers/visitante/sessão conferidos. Focado 3/267; suíte 99/1.226.
-Próxima 7.35: corrigir essa preparação de Accept ausente em LoginRateLimiterTest.
+Na 7.35, preparo de Accept ausente corrigido em LoginRateLimiterTest: remove
+cabeçalho no caso null, define nos demais e confere presença/valor antes do
+middleware. Caso ausente da execução original 7.31 tinha o padrão do construtor;
+agora ausência real verificada. Focado 6/236; suíte 99/1.306 passou, sem novo cenário.
+Próxima 7.36: adicionar cenário de sucesso por HTTP em LoginApiTest.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).

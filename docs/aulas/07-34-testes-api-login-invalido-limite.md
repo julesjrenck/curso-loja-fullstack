@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.33 com "entendi". Checkpoint anterior publicado e conferido em
 54cea249b28ebadf13cae6f17b3f8902663319e9; HEAD/origin/main/main remota iguais.
-Entendimento da 7.34 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.34 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -121,8 +121,10 @@ Não repetimos auditoria, snapshot normal ou os quatro contratos de catálogo.
 
 Teste criado, explicado e verificado; entendimento confirmado com "entendi" em 04/11/2026.
 Documentos/contratos atualizados; nenhum arquivo de aplicação/configuração/
-dependência/migration/OpenAPI alterado. Publicação da 7.34 pendente.
-Após publicar: 7.35 — corrigir somente o caso Accept ausente no
+dependência/migration/OpenAPI alterado. Publicação da 7.34 concluída e conferida
+em 019c99ba9793a14d8adbded0ad910fb4754746b1; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.35 —
+corrigir somente o caso Accept ausente no
 helper de LoginRateLimiterTest, removendo o cabeçalho padrão e verificando a
 entrada antes do middleware. Sucesso do login por HTTP e fluxo real de
 CSRF/cookies continuam pendentes para etapas seguintes.

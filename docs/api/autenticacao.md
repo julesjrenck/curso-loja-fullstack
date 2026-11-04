@@ -119,7 +119,10 @@ HTTP e fluxo real de sessão/cookie/CSRF continuam pendentes. Na 7.34, registrad
 que o caso antes apresentado como Accept ausente tinha o padrão do construtor.
 LoginApiTest remove o cabeçalho e confere presença/valor; automatiza cinco 422
 e sexto 429 para JSON/HTML/ausência real. Focado 3/267, suíte 99/1.226 passou.
-Próxima 7.35: corrigir a preparação de Accept ausente no teste isolado do limitador.
+Na 7.35, corrigido o mesmo preparo no teste isolado LoginRateLimiterTest,
+com remoção/definição e asserções de presença/valor de Accept antes do middleware.
+Focado 6/236, suíte 99/1.306 passaram. Próxima 7.36: adicionar cenário de
+sucesso de login por HTTP em LoginApiTest.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).

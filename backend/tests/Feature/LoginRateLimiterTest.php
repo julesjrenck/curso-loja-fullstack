@@ -113,13 +113,18 @@ class LoginRateLimiterTest extends TestCase
     ): TestResponse {
         $servidor = ['REMOTE_ADDR' => $ip, 'CONTENT_TYPE' => 'application/json'];
 
-        if ($accept !== null) {
-            $servidor['HTTP_ACCEPT'] = $accept;
-        }
-
         $request = Request::create('/api/v1/login', 'POST', [], [], [], $servidor,
             json_encode(['email' => $email], JSON_THROW_ON_ERROR),
         );
+
+        if ($accept === null) {
+            $request->headers->remove('Accept');
+        } else {
+            $request->headers->set('Accept', $accept);
+        }
+
+        $this->assertSame($accept !== null, $request->headers->has('Accept'));
+        $this->assertSame($accept, $request->headers->get('Accept'));
 
         try {
             $resposta = $this->app->make(ThrottleRequests::class)->handle(
