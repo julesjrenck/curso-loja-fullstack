@@ -132,8 +132,12 @@ Na 7.25, LoginRequest criada com authorize true e regras bail/required/string/
 email/max:255 e bail/required/string. Diagnóstico 17 casos em memória, três
 válidos/14 inválidos com 422 e zero SQL; normalização/validated conferidos.
 Sintaxe válida e suíte existente 71/662 passou. Entendimento confirmado com
-"entendi" em 04/11/2026; publicar antes da 7.26 — testes da LoginRequest,
-antes de controller/rota.
+"entendi" em 04/11/2026; publicada em ad9f45b, remoto conferido. Na 7.26,
+LoginRequestTest criado com helper de normalização/FormRequest e provedores
+de três válidos/14 inválidos. Validated exato e 422 JSON renderizado em memória;
+focado 17/94 e suíte 88/756 passaram. Entendimento confirmado com "entendi"
+em 04/11/2026; publicar antes da 7.27 — LoginController::store com dados validados,
+tentativa web e 204/erro genérico, antes de registrar rota.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -812,7 +816,9 @@ e publicação em a4cd9bc. Na 7.24, contrato do login/204/422 apresentado e exem
 JSON conferidos; entendimento confirmado com "entendi" em 04/11/2026.
 Publicação conferida em 7ee449a. Na 7.25, LoginRequest criada e explicada,
 17 casos em memória/zero SQL e suíte 71/662 passaram. Entendimento confirmado
-com "entendi" em 04/11/2026; publicar antes da 7.26 — testes da LoginRequest.
+com "entendi" em 04/11/2026 e publicação em ad9f45b. Na 7.26, testes de validação
+criados/explicados, focado 17/94 e suíte 88/756 passaram. Entendimento confirmado
+com "entendi" em 04/11/2026; publicar antes da 7.27 — LoginController::store sem rota.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

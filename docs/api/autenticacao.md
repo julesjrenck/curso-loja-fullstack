@@ -101,8 +101,9 @@ pela configuração; nenhum valor de cookie documentado. Essa descrição não c
 Na 7.24, [contrato planejado de POST /api/v1/login](login.md) apresentado:
 email/password, sucesso 204 sem corpo e falhas 422, com CSRF/sessão preservados.
 Na 7.25, LoginRequest criada e verificada em memória, sem autenticar. Rota de
-login ainda não criada ou incluída no OpenAPI. Próxima 7.26: testes automatizados
-da validação antes de implementar controller/rota.
+login ainda não criada ou incluída no OpenAPI. Na 7.26, testes da validação
+passaram: focado 17/94, suíte 88/756. Próxima 7.27: LoginController::store,
+sem registrar rota de login nessa etapa.
 Login e fluxo autenticado completo por sessão/cookie continuam pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)

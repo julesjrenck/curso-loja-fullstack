@@ -96,7 +96,9 @@ OpenAPI preservado; auditoria/snapshot normal/quatro contratos não repetidos.
 ## Continuidade
 
 LoginRequest criada, explicada e verificada; entendimento confirmado com
-"entendi" em 04/11/2026; publicação pendente. Após publicar: 7.26 —
+"entendi" em 04/11/2026; publicação conferida em
+ad9f45bfb0f30bc2b3375be441517706e9b356bc, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade na 7.26 —
 criar testes automatizados da LoginRequest em memória, cobrindo entradas
 válidas/inválidas, normalização e exclusão de campos extras de validated,
 antes de criar controller ou registrar rota de login.

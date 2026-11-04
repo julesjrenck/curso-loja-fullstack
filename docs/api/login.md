@@ -115,8 +115,11 @@ Isso não executa login nem verifica credenciais ou CSRF. Sem rota, controller,
 tentativa de autenticação, alteração de sessão ou entrada no OpenAPI de login.
 Limitação de tentativas ainda terá
 regra e verificação próprias antes de disponibilizar o fluxo de login completo.
-Próximo passo 7.26: testes automatizados da LoginRequest em memória para
-entradas válidas/inválidas, normalização e seleção de campos antes de controller/rota.
+Na 7.26, LoginRequestTest automatizou três entradas válidas e 14 inválidas,
+normalização/validated e 422 JSON renderizado em memória: focado 17 testes/94
+asserções, suíte completa 88 testes/756 asserções. Não executa login ou CSRF.
+Próximo passo 7.27: criar LoginController::store com dados validados, tentativa
+no guard web, erro genérico e 204 após renovar sessão, sem registrar rota ainda.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)
