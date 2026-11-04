@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.37 com "entendi". Checkpoint anterior publicado e conferido em
 10c260cf6b61945d06896d2d32da4b154641d5c2; HEAD/origin/main/main remota iguais.
-Entendimento da 7.38 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.38 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -99,9 +99,11 @@ Rollback conferido. Sem nova auditoria, snapshot normal ou quatro contratos.
 
 Cenário ampliado, explicado e verificado; entendimento confirmado com "entendi" em 04/11/2026.
 Documentos/contratos atualizados. Nenhum código de aplicação, configuração,
-dependência, ambiente, migration, rota ou OpenAPI alterado. Publicação pendente.
+dependência, ambiente, migration, rota ou OpenAPI alterado. Publicação concluída
+e conferida em 29e7b03927e4b6aee20193085e792270c7b51fe6;
+HEAD/origin/main/main remota iguais após push. Registro posterior à publicação.
 O teste integra POST/GET/cookies/sessão pelo kernel dentro do processo;
 transporte de rede/navegador e validação CSRF real continuam pendentes.
-Após publicar: 7.39 — acrescentar controle sem cookie após o login,
+Continuidade realizada na 7.39 — acrescentar controle sem cookie após o login,
 com estado em memória limpo e guards recriados, exigindo 401 JSON na consulta
 do usuário. Não implementar logout nessa verificação.

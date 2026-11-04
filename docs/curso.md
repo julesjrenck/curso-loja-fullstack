@@ -202,8 +202,14 @@ descartados. GET usuario com cookie/withCredentials/Origin reconhecido retorna
 200/JSON exato data/id/name/email; marcador recarregado, mesmo ID no cookie/
 sessão e identidade no guard conferidos. Focado 5/357 e suíte 101/1.396 passaram;
 SQL posterior sem dados. Entendimento da 7.38 confirmado com "entendi" em
-04/11/2026; publicação pendente. Próximo após publicar: 7.39 — controle sem cookie após login,
-memória limpa/guards recriados, exigindo 401 JSON na consulta do usuário.
+04/11/2026; publicada em 29e7b03, remoto conferido. Na 7.39, mesmo cenário
+recebe controle sem cookie: atributos em memória limpos/guards descartados,
+call GET com cookies explicitamente vazios, mesma origem/IP. Retorna 401 JSON
+somente message/sem Location; Request sem cookies/com sessão, visitante e
+identidade/marcador null conferidos. Focado 5/368 e suíte 101/1.407 passaram;
+SQL posterior sem dados. Entendimento da 7.39 confirmado com "entendi" em
+04/11/2026; publicação pendente. Próximo após publicar: 7.40 — desenhar verificação CSRF fora de
+testing, definindo origem/cookies/cabeçalhos e casos 419/422 antes de pedidos reais.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -917,7 +923,10 @@ e suíte 101/1.383 passaram, rollback conferido. Entendimento confirmado com
 "entendi" em 04/11/2026; publicação em 10c260c. Na 7.38, sucesso ampliado para
 GET usuario com cookie recebido/memória limpa/guards recriados; 200 exato,
 focado 5/357, suíte 101/1.396 e rollback conferidos. Entendimento confirmado
-com "entendi" em 04/11/2026; publicação pendente antes da 7.39 — controle 401 sem cookie após login.
+com "entendi" em 04/11/2026; publicação em 29e7b03. Na 7.39, controle sem cookie
+adicionado/explicado: 401 JSON/sessão visitante, focado 5/368 e suíte 101/1.407,
+rollback conferido. Entendimento confirmado com "entendi" em 04/11/2026;
+publicação pendente antes da 7.40 — desenho da verificação CSRF fora de testing.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

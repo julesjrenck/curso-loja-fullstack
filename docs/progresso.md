@@ -5,8 +5,20 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.38 — Consulta do usuário com cookie recebido no login:
-  implementação, explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Etapa atual: 7.39 — Consulta sem cookie depois do login: implementação,
+  explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Situação da 7.39: somente cenário de sucesso de LoginApiTest ampliado com
+  controle após POST/204 e GET com cookie/200. Flush em memória/forgetGuards;
+  call GET com parâmetros/cookies/arquivos vazios, Accept JSON/Origin/IP iguais.
+  Exige 401 JSON/sem Location, somente message string. Request com cookies
+  vazios e hasSession true; guard web visitante, identidade/marcador null.
+  Não chama logout ou invalidação. Sintaxe válida; focado 5 testes/368
+  asserções e suíte 101/1.407, códigos 0. SQL posterior loja_test/loja_testes:
+  seis tabelas/quatro migrations/dados zero. Aplicação/configuração/ambientes/
+  dependências/rotas/migrations/OpenAPI preservados. Entendimento confirmado
+  com "entendi" em 04/11/2026; publicação pendente. Próximo após publicar: 7.40 — desenhar
+  verificação CSRF fora de testing, origem/cookies/cabeçalhos/casos 419/422,
+  antes de executar pedidos reais. Rede/navegador/validação CSRF real pendentes.
 - Situação da 7.38: somente cenário de sucesso de LoginApiTest ampliado e
   renomeado. Obtém cookie da resposta do POST pelo helper getCookie, exige
   existência e guarda ID decifrado em memória. Flush retira atributos do Store
@@ -18,9 +30,9 @@
   focado 5 testes/357 asserções, suíte 101/1.396, códigos 0. SQL posterior:
   loja_test/loja_testes, seis tabelas/quatro migrations/dados zero. Aplicação/
   configuração/ambientes/dependências/rotas/migrations/OpenAPI preservados.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo exato após publicar: 7.39 — controle sem cookie após login, memória limpa/guards
-  recriados, exigindo 401 JSON na consulta. CSRF real/navegador pendentes.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  29e7b03927e4b6aee20193085e792270c7b51fe6, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.39.
 - Situação da 7.37: somente um método adicionado a LoginApiTest. Fixture em
   loja_test/transação, sessão de visitante/marcador/ID/token/save/cookie já
   estudados. Foreach com senha incorreta/e-mail inexistente, formato válido,
@@ -33,7 +45,7 @@
   ambientes/dependências/rotas/migrations/OpenAPI preservados. Entendimento
   confirmado com "entendi" em 04/11/2026; publicação verificada em
   10c260cf6b61945d06896d2d32da4b154641d5c2, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.38.
+  Checkpoint anterior à 7.38. Continuidade realizada na 7.38.
 - Situação da 7.36: somente LoginApiTest alterado. Imports User/DatabaseTransactions/
   Auth/DB, trait de transação na classe e conferência loja_test/loja_testes no
   setUp antes de DML. Um cenário de sucesso cria fixture fictícia, sessão de
@@ -1804,8 +1816,10 @@ recusadas por HTTP, corpos 422 iguais/sessão visitante preservada, focado 5-344
 suíte 101-1.383 e rollback. Entendimento confirmado com "entendi" em 04/11/2026
 e publicação em 10c260c. Continuidade realizada na 7.38 — GET usuario após
 login com cookie recebido/memória limpa/guards recriados, 200 exato, focado
-5-357/suíte 101-1.396 e rollback. Entendimento confirmado com "entendi" em 04/11/2026;
-publicação pendente antes da 7.39 — controle 401 sem cookie após login.
+5-357/suíte 101-1.396 e rollback. Entendimento confirmado com "entendi" em 04/11/2026
+e publicação em 29e7b03. Continuidade realizada na 7.39 — controle sem cookie
+401 JSON/sessão visitante, focado 5-368/suíte 101-1.407 e rollback. Entendimento confirmado com "entendi" em 04/11/2026;
+publicação pendente antes da 7.40 — desenho da verificação CSRF fora de testing.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -13608,9 +13622,47 @@ sucesso em LoginApiTest; Compose/OpenAPI preservados, índice vazio. Nenhum
 .env, log ou valor de cookie/sessão/token incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.38: pendente; alterações locais. Último checkpoint publicado:
-10c260cf6b61945d06896d2d32da4b154641d5c2 (7.37).
-Próximo passo exato após publicar: 7.39 — acrescentar controle sem
-cookie após login, com atributos em memória limpos e guards recriados,
-exigindo 401 JSON em GET usuario. Não implementar logout nessa verificação.
-Fluxo real de CSRF/cookies, OpenAPI de login e logout permanecem pendentes.
+Publicação da 7.38: concluída e conferida em
+29e7b03927e4b6aee20193085e792270c7b51fe6; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.39.
+
+## Etapa 7.39 — Consulta sem cookie depois do login — 04/11/2026
+
+Iniciada após confirmação da 7.38 com "entendi" e publicação verificada.
+Implementação: somente cenário de sucesso de LoginApiTest, 23 linhas adicionadas,
+sem novo método/import/helper. Nova aula 7.39 e contratos/registros atualizados.
+Nenhuma aplicação/configuração/ambiente/dependência/rota/migration/OpenAPI alterada.
+
+Explicação apresentada: após POST login/204 e GET autenticado/200, flush retira
+atributos em memória sem save, forgetGuards descarta instâncias. Call GET
+recebe explicitamente parâmetros/cookies/arquivos vazios e servidor com
+Accept JSON/Origin reconhecido/mesmo IP. Helper call instalado foi lido:
+encaminha os cookies recebidos diretamente a SymfonyRequest e executa kernel
+handle/terminate. Cookies preparados antes com withCookie/withCredentials
+não entram nessa chamada direta; sua ausência é conferida na Request.
+
+Exige 401 JSON/sem Location, somente message string, cookies->all vazio e
+hasSession true. Guard web visitante, chave de identidade e marcador null.
+Ter sessão preparada não estabelece autenticação. Não chama logout,
+invalidação ou revogação, nem verifica reutilização posterior do cookie
+original. Sem rede/navegador; testing dispensa validação CSRF da requisição.
+
+Sintaxe válida. Focado --testdox: 5 testes/368 asserções, código 0, antes 5/357.
+Suíte completa: 101 testes/1.407 asserções, código 0, antes 101/1.396.
+Mesmo número de testes, 11 asserções adicionais. Última completa: 7.39.
+SELECT posterior loja_test/loja_testes: seis tabelas, quatro migrations/lotes
+1/2/3/4 e zero users/password_reset_tokens/sessions/produtos/categorias.
+Rollback conferido. Auditoria/snapshot normal/quatro contratos não repetidos.
+
+Git diff --check passou. Links locais conferidos: consulta três, limite um,
+login dois, aulas 7.38/7.39 um cada. Diff de backend restrito ao cenário de
+sucesso em LoginApiTest; Compose/OpenAPI preservados, índice vazio. Nenhum
+.env, log ou valor de cookie/sessão/token incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.39: pendente; alterações locais. Último checkpoint publicado:
+29e7b03927e4b6aee20193085e792270c7b51fe6 (7.38).
+Próximo passo exato após publicar: 7.40 — desenhar a verificação de
+CSRF fora de testing, com origem, cookies, cabeçalhos e casos 419/422 antes
+de executar pedidos reais; sem criar usuários no banco normal nessa preparação.
+Validação CSRF real/rede/navegador, OpenAPI de login e logout permanecem pendentes.

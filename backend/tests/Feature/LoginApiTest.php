@@ -108,6 +108,29 @@ class LoginApiTest extends TestCase
         $this->assertSame($idAutenticado, $sessao->getId());
         $this->assertSame('sessao-do-teste', $sessao->get('marcador_visitante'));
         $this->assertAuthenticatedAs($usuario, 'web');
+
+        $sessao->flush();
+        Auth::forgetGuards();
+
+        $semCookie = $this->call('GET', 'http://127.0.0.1:8002/api/v1/usuario', [], [], [], [
+            'HTTP_ACCEPT' => 'application/json',
+            'HTTP_ORIGIN' => 'http://127.0.0.1:8002',
+            'REMOTE_ADDR' => '127.0.0.1',
+        ]);
+
+        $semCookie
+            ->assertStatus(401)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertHeaderMissing('Location');
+
+        $this->assertSame([], $semCookie->baseRequest->cookies->all());
+        $this->assertTrue($semCookie->baseRequest->hasSession());
+        $dadosSemCookie = $semCookie->json();
+        $this->assertSame(['message'], array_keys($dadosSemCookie));
+        $this->assertIsString($dadosSemCookie['message']);
+        $this->assertGuest('web');
+        $this->assertNull($sessao->get($chaveIdentidade));
+        $this->assertNull($sessao->get('marcador_visitante'));
     }
 
     public function test_credenciais_recusadas_retornam_mesmo_422_e_preservam_visitante(): void

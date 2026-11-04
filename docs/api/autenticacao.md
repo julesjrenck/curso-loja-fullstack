@@ -133,8 +133,12 @@ Focado 5/344; suíte 101/1.383 passou e dados desfeitos. Na 7.38, GET usuario ap
 pelos helpers JSON. Atributos da sessão limpos só em memória e guards
 descartados antes do GET: 200/JSON exato data/id/name/email da fixture,
 marcador recarregado, mesmo ID no cookie/sessão e identidade no guard conferidos.
-Focado 5/357; suíte 101/1.396. Próxima 7.39: controle sem cookie após login exige
-401 JSON com memória limpa/guards recriados. Sem transporte ou CSRF real verificados.
+Focado 5/357; suíte 101/1.396. Na 7.39, controle sem cookie após login passou: call com cookies vazios,
+atributos retirados da memória e guards descartados; 401 JSON somente message,
+sem Location. Request sem cookies/hasSession true, visitante e identidade/
+marcador null. Focado 5/368, suíte 101/1.407; rollback conferido. Não é logout.
+Próxima 7.40: desenhar verificação CSRF fora de testing; rede/navegador e
+validação CSRF real continuam pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).

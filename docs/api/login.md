@@ -189,8 +189,13 @@ memória limpos sem gravar essa limpeza, guards descartados. GET usuario com
 cookie preparado/withCredentials e Origin reconhecido devolve 200/JSON exato
 com data/id/name/email. Mesmo ID no cookie/sessão, marcador recarregado e
 guard autenticado conferidos. Focado 5/357; suíte 101/1.396, SQL posterior vazio.
-Próxima 7.39: controle sem cookie após login deve receber 401 JSON, com estado
-em memória limpo e guards recriados. CSRF real/navegador permanecem pendentes.
+Na 7.39, controle sem cookie após login adicionado ao mesmo cenário: call
+com cookies explicitamente vazios, memória limpa/guards descartados. GET
+usuario recebe 401/JSON/message apenas, sem Location; cookies vazios, sessão
+presente, visitante/identidade null/marcador null conferidos. Focado 5/368;
+suíte 101/1.407 passou e SQL posterior vazio. Não executa logout.
+Próxima 7.40: desenhar verificação CSRF fora de testing, com origem/cookies/
+cabeçalhos e casos 419/422, antes de executar pedidos reais.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

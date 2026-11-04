@@ -112,7 +112,11 @@ suíte 101/1.383 passou. Na 7.38, cenário de sucesso ampliado para GET usuario 
 POST, memória da sessão limpa e guards descartados. Consulta protegida retorna
 200/JSON exato; focado 5/357, suíte 101/1.396. Esse GET não passa por
 throttle:login; regra de limite preservada.
-Próxima 7.39: controle sem cookie após login exige 401 JSON.
+Na 7.39, controle sem cookie após login recebeu 401 JSON no GET protegido,
+com memória limpa/guards descartados e cookies explicitamente vazios. Sessão
+presente/visitante, identidade e marcador null conferidos. Focado 5/368;
+suíte 101/1.407 passou. Nenhuma nova tentativa de login ou regra de limite
+alterada. Próxima 7.40: desenhar a verificação CSRF fora de testing.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).
