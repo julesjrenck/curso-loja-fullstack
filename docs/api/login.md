@@ -215,7 +215,8 @@ a preparação de sessão/CSRF continua descrita. Redocly fixado validou documen
 quatro cópias inválidas rejeitadas e duas permissivas aceitas. Nenhuma API
 executada nessa validação. Na 7.43, [contrato de logout](logout.md) desenhado;
 método destroy implementado/verificado diretamente na 7.44, rota pendente.
-Suíte existente 101/1.407 passou; próxima 7.45: teste permanente de logout autenticado.
+Suíte existente 101/1.407 passou. Na 7.45, teste permanente de logout autenticado
+adicionado: focado 3/76, suíte 102/1.436. Próxima 7.46: teste de logout visitante.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

@@ -150,7 +150,9 @@ Redocly validou documento/exemplos e casos controlados. Na 7.43,
 [contrato de logout](logout.md) desenhado: a consulta posterior somente com
 cookies/sem outra autenticação deverá retornar 401. Na 7.44, método destroy
 implementado/verificado diretamente com sessão array; rota/consulta HTTP após
-logout ainda pendentes. Suíte existente 101/1.407 passou.
+logout ainda pendentes. Suíte existente 101/1.407 passou. Na 7.45, teste
+permanente de logout autenticado confirmou recarga visitante no handler array,
+sem GET usuario/HTTP. Focado 3/76 e suíte 102/1.436 passaram.
 Comportamento de navegador/CORS permanece pendente.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)

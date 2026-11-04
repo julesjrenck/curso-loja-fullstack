@@ -5,9 +5,23 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.44 — Logout no controller:
+- Etapa atual: 7.45 — Teste permanente de logout autenticado:
   implementação, explicação e verificações apresentadas; entendimento
   confirmado com "entendi" em 04/11/2026, publicação pendente.
+- Situação da 7.45: somente LoginControllerTest alterado no código, import
+  Illuminate\Http\Request e um cenário novo. Preparação existente de User em
+  loja_test/transação/sessão array preservada. Request POST sem corpo recebe
+  sessão; login do guard web real prepara identidade. Marcador e registro antigo
+  salvos antes de destroy direto. Exige 204 vazio/sem Location, visitante/ID null,
+  chave de login/marcador ausentes, ID/token novos e registro antigo removido.
+  Save/flush/forgetGuards/start recarrega visitante e preserva ID/token novos
+  no mesmo handler array, sem HTTP. Sintaxe válida; focado 3 testes/76 asserções,
+  suíte 102 testes/1.436 asserções, códigos 0. SQL posterior loja_test/loja_testes:
+  seis tabelas/quatro migrations/lotes 1/2/3/4 e cinco tabelas de dados vazias.
+  Aplicação/rotas/bootstrap/Compose/OpenAPI preservados. Próximo após confirmar/
+  publicar: 7.46 — um teste permanente de logout visitante em LoginControllerTest,
+  com sessão array e sem registrar rota. Visitante teve diagnóstico temporário
+  na 7.44; HTTP/CSRF/cookies, GET usuario após logout, navegador/CORS pendentes.
 - Situação da 7.44: somente LoginController alterado na aplicação: import de
   Illuminate\Http\Request e método público destroy(Request): Response com
   logout web, invalidate, regenerateToken e noContent/204. Sintaxe válida.
@@ -22,9 +36,10 @@
   1/2/3/4, cinco tabelas de dados vazias. Primeira comparação estrita de lotes
   falhou por strings do driver; conversão explícita para int validou metadados,
   sem alterações no banco. Rotas/bootstrap/Compose/OpenAPI preservados.
-  Próximo após confirmar/publicar: 7.45 — um cenário permanente de logout
-  autenticado em LoginControllerTest, com transação em loja_test/sessão array,
-  sem registrar rota. HTTP/CSRF/cookies/navegador/CORS e OpenAPI do logout pendentes.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  b206ca50fe0de7433a4ad5d2bfb8173517900ad2, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.45.
+  HTTP/CSRF/cookies/navegador/CORS e OpenAPI do logout pendentes.
 - Situação da 7.43: docs/api/logout.md define POST /api/v1/logout sem corpo
   obrigatório, sessão/cookies/CSRF da interface própria. Sequência planejada:
   logout no guard web, invalidate da sessão e regenerateToken. Sucesso 204 vazio,
@@ -38,7 +53,7 @@
   SQL ou nova suíte. Última 7.39: 101 testes/1.407 asserções.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   86ab952bfd858f2fed5a2d2f47a2bf44b8c93171, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.44.
+  Checkpoint anterior à 7.44. Continuidade realizada na 7.44.
   Navegador/CORS e OpenAPI do logout pendentes.
 - Situação da 7.42: POST /api/v1/login documentado em docs/api/openapi.json,
   corpo JSON obrigatório/schema CredenciaisLogin com email/password strings não
@@ -1914,8 +1929,11 @@ com "entendi" em 04/11/2026; publicação em 86ab952. Continuidade realizada na
 7.44 — método destroy: logout web/invalidação/novo token/204. Diagnóstico direto
 autenticado/visitante com sessão array e transações passou, 13 condições/caso.
 Suíte existente 101/1.407 passou; SQL final sem dados. Entendimento
-confirmado com "entendi" em 04/11/2026; publicação pendente antes da
-7.45 — teste permanente de logout autenticado.
+confirmado com "entendi" em 04/11/2026; publicação em b206ca5. Continuidade
+realizada na 7.45 — teste permanente de logout autenticado: 204 vazio,
+limpeza/renovação/registro antigo removido e recarga visitante na sessão array.
+Focado 3/76, suíte 102/1.436 e SQL final sem dados passaram. Entendimento
+confirmado com "entendi" em 04/11/2026; publicação pendente antes da 7.46 — teste de visitante.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -14047,9 +14065,60 @@ Escopo conferido: somente LoginController e documentos; índice vazio.
 Rotas/bootstrap/Compose/OpenAPI sem diff, rota de logout ainda ausente.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.44: pendente; registros locais. Último checkpoint publicado:
-86ab952bfd858f2fed5a2d2f47a2bf44b8c93171 (7.43).
-Próximo passo exato após confirmar/publicar: 7.45 — adicionar um cenário
-permanente de logout autenticado em LoginControllerTest, com transação em
-loja_test/sessão array, sem registrar rota. Rota/HTTP/CSRF/cookies, navegador/
-CORS e inclusão do logout no OpenAPI permanecem pendentes.
+Publicação da 7.44: concluída e conferida em
+b206ca50fe0de7433a4ad5d2bfb8173517900ad2; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.45.
+Rota/HTTP/CSRF/cookies, navegador/CORS e OpenAPI de logout permanecem pendentes.
+
+
+## Etapa 7.45 — Teste permanente de logout autenticado — 04/11/2026
+
+Iniciada após confirmação da 7.44 com "entendi" e publicação verificada.
+Implementação: somente backend/tests/Feature/LoginControllerTest.php no código,
+import Illuminate\Http\Request e um método público novo. SetUp, testes de store,
+helper e controller preservados. Aula 7.45, contratos/roteiro/progresso e
+registro posterior da publicação da 7.44 atualizados. Rota de logout ausente.
+
+Explicação apresentada: preparação comum exige loja_test/loja_testes e sessão
+array antes de escrever; User fictício e DatabaseTransactions existentes.
+Request::create POST sem corpo/Accept JSON, setLaravelSession e app->instance
+preparam a requisição direta, sem executar rota. Login do guard web real prepara
+autenticação, sem actingAs/mock ou passar por store. Identidade no guard/sessão
+conferida antes da operação. Marcador escrito; ID/token anteriores só em memória,
+token exigido string não vazio. Save/read comprova registro antigo existente.
+
+TestResponse da chamada direta a destroy exige 204/corpo vazio/sem Location.
+Asserções exigem visitante/ID null, ausência real das chaves de login e marcador,
+ID renovado, token string não vazio/diferente e read vazio do registro antigo.
+ArrayNotHasKey verifica retirada do atributo, não somente valor null. Recarga
+save/flush/forgetGuards/start usa o mesmo handler array: guard visitante/ID null,
+chaves ausentes e ID/token novos preservados. Não é nova requisição HTTP ou
+GET usuario. Teste impede depender só da identidade em memória do guard anterior.
+
+Verificação Docker: PHP -l tests/Feature/LoginControllerTest.php passou. PHPUnit
+focado no arquivo passou, 3 testes/76 asserções; suíte completa passou,
+102 testes/1.436 asserções; códigos 0, --colors=never/--do-not-cache-result.
+Um teste e 29 asserções, incluindo preparação comum, a mais que na 7.44.
+Não repetimos diagnóstico temporário, pois o caso permanente agora o cobre.
+
+SELECT posterior exigiu configuração/identidade loja_test/loja_testes e confirmou
+seis tabelas, quatro migrations/lotes 1/2/3/4 (conversão int explícita) e zero
+categorias/produtos/users/password_reset_tokens/sessions. Rollback conferido;
+sessões somente em memória. Nenhum valor real de senha/hash/cookie/token/ID
+impresso ou versionado. Ambientes, dependências, serviços, migrations,
+aplicação, rotas, bootstrap, Compose e OpenAPI preservados. Sem logout HTTP,
+CSRF/cookies, GET usuario após logout, navegador/CORS, auditoria ou snapshot normal.
+
+Git diff --check passou. Links locais válidos: contrato de logout três,
+login quatro, consulta cinco, aulas 7.44/7.45 dois cada. Escopo conferido:
+somente LoginControllerTest e documentos; índice vazio. Aplicação/rotas/
+bootstrap/Compose/OpenAPI sem diff, rota de logout ainda ausente.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.45: pendente; registros locais. Último checkpoint publicado:
+b206ca50fe0de7433a4ad5d2bfb8173517900ad2 (7.44).
+Próximo passo exato após confirmar/publicar: 7.46 — adicionar um cenário
+permanente de logout visitante em LoginControllerTest, com sessão array e sem
+registrar rota. O visitante já teve diagnóstico temporário na 7.44; seu teste
+permanente ainda não existe. Rota/HTTP/CSRF/cookies, navegador/CORS e inclusão
+do logout no OpenAPI continuam pendentes.

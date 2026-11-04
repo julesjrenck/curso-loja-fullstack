@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.43 com "entendi". Checkpoint anterior publicado e conferido em
 86ab952bfd858f2fed5a2d2f47a2bf44b8c93171; HEAD/origin/main/main remota iguais.
-Entendimento da 7.44 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.44 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -104,6 +104,7 @@ Método implementado, explicado e verificado; entendimento confirmado em 04/11/2
 Ambientes, dependências, serviços, migrations, rotas, bootstrap, Compose e OpenAPI
 preservados. Sem HTTP de logout, verificação de CSRF/cookies ou navegador/CORS.
 Auditoria, snapshot do banco normal e contratos HTTP não foram repetidos.
-Publicação da 7.44 pendente. Próxima após confirmar/publicar: 7.45 — adicionar
-um cenário permanente de logout autenticado em LoginControllerTest, com transação
-em loja_test e sessão array, sem registrar rota.
+Publicação da 7.44 concluída e conferida em
+b206ca50fe0de7433a4ad5d2bfb8173517900ad2; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.45 —
+um cenário permanente de logout autenticado, sem registrar rota.

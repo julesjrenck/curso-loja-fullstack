@@ -119,8 +119,13 @@ transações desfeitas/contagens preservadas. Suíte existente 101 testes/1.407
 asserções passou; SELECT posterior confirmou banco de testes sem dados.
 
 Rota, HTTP/CSRF/cookies, navegador/CORS e OpenAPI do logout continuam pendentes.
-Próxima 7.45: adicionar um cenário permanente de logout autenticado em
-LoginControllerTest, com transação em loja_test/sessão array, sem registrar rota.
+Na 7.45, adicionado um teste permanente de logout autenticado em LoginControllerTest:
+prepara identidade pelo guard web real, salva marcador e sessão array, chama
+destroy diretamente e exige 204/sem Location, limpeza/renovação e remoção do
+registro antigo. Após save/flush/forgetGuards/start, continua visitante com
+ID/token novos. Focado 3 testes/76 asserções; suíte 102/1.436, códigos 0.
+SELECT posterior sem dados em loja_test. Não é requisição HTTP.
+Próxima 7.46: teste permanente de logout visitante, sem registrar rota.
 
 Referências: [logout e invalidação de sessão no Laravel](https://laravel.com/docs/13.x/authentication#logging-out),
 [sessão da interface própria com Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication)

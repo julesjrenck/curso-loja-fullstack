@@ -240,9 +240,15 @@ método destroy: logout web, invalidate, regenerateToken e 204 vazio. Diagnósti
 direto autenticado/visitante em loja_test/transações/sessão array passou:
 13 condições por caso, inclusive registro antigo destruído e recarga visitante.
 Suíte existente 101 testes/1.407 asserções passou; SELECT posterior sem dados.
-Entendimento da 7.44 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próximo após confirmar/publicar: 7.45 — um cenário permanente de logout
-autenticado em LoginControllerTest, com transação/sessão array, sem registrar rota.
+Entendimento da 7.44 confirmado com "entendi" em 04/11/2026; publicada em b206ca5,
+remoto conferido. Na 7.45, um teste permanente de logout autenticado adicionado
+a LoginControllerTest: guard real, sessão array salva com marcador, destroy
+direto, 204 vazio, limpeza/renovação e registro antigo removido. Recarga por
+save/flush/forgetGuards/start mantém visitante e ID/token novos. Focado 3/76,
+suíte 102/1.436 e SELECT posterior sem dados passaram.
+Entendimento da 7.45 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Próximo após confirmar/publicar: 7.46 — um cenário permanente de logout
+visitante em LoginControllerTest, com sessão array, sem registrar rota.
 Rota, HTTP/CSRF/cookies, navegador/CORS e OpenAPI de logout pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
@@ -977,8 +983,12 @@ instalado conferidos; sem executar logout. Entendimento confirmado com "entendi"
 em 04/11/2026; publicação em 86ab952. Na 7.44, destroy criado/explicado e verificado
 diretamente nos casos autenticado/visitante com sessão array e transações em
 loja_test; 13 condições por caso passaram. Suíte existente 101/1.407 e SQL final
-sem dados. Entendimento confirmado com "entendi" em 04/11/2026; publicação
-pendente antes da 7.45 — um teste permanente de logout autenticado, sem registrar rota.
+sem dados. Entendimento confirmado com "entendi" em 04/11/2026; publicação em
+b206ca5. Na 7.45, teste permanente de logout autenticado adicionado/explicado,
+com limpeza/renovação/remoção do registro antigo e recarga visitante na sessão
+array. Focado 3/76, suíte 102/1.436 e SELECT final sem dados passaram.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente antes
+da 7.46 — um cenário permanente de logout visitante, sem registrar rota.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
