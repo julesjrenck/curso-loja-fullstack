@@ -150,7 +150,13 @@ incluindo sucesso/falhas, sem reset no sucesso ou extensão no bloqueio. 429 JSO
 com Retry-After/no-store; cache file normal conferido. Nove casos com contador
 Laravel/cache array/relógio controlado e exemplo JSON passaram. Sem aplicação
 de limitador ou nova suíte. Entendimento confirmado com "entendi" em 04/11/2026;
-publicar antes da 7.30 — registrar somente limitador login, antes da rota.
+publicada em d702086, remoto conferido. Na 7.30, AppServiceProvider::boot registra
+login com Limit 5/minuto/IP e callback 429 JSON/headers/no-store. Diagnóstico
+conferiu seis condições de configuração e três respostas com oito condições
+cada, Retry-After ilustrativo 60/37/11 preservado e nenhuma rota usando o limite.
+Sintaxe válida, zero SQL no diagnóstico e suíte 90/803 passou. Entendimento
+confirmado com "entendi" em 04/11/2026; publicar antes da 7.31 — testes pelo
+middleware com cache array/relógio controlado, antes de registrar rota de login.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -837,8 +843,11 @@ Entendimento confirmado com "entendi" em 04/11/2026 e publicação em 10416ad.
 Na 7.28, testes do controller criados/explicados: focado 2/47, suíte 90/803 e
 rollback conferidos. Entendimento confirmado com "entendi" em 04/11/2026 e
 publicação em e6ac54f. Na 7.29, desenho 5/IP/60s/429 apresentado e contador em
-memória verificado. Entendimento confirmado com "entendi" em 04/11/2026;
-publicar antes da 7.30 — registrar limitador.
+memória verificado. Entendimento confirmado com "entendi" em 04/11/2026 e
+publicação em d702086. Na 7.30, limitador registrado/explicado/configuração e
+callback conferidos; suíte 90/803 passou. Entendimento confirmado com "entendi"
+em 04/11/2026; publicar antes da 7.31 —
+testes do middleware de limitação, sem rota.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

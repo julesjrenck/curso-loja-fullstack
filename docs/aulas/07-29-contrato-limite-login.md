@@ -64,7 +64,9 @@ alteração de aplicação/OpenAPI. Última suíte completa: 7.28, 90/803.
 ## Continuidade
 
 Contrato apresentado e verificado; entendimento confirmado com "entendi" em
-04/11/2026; publicação pendente. Após publicar: 7.30 — registrar
+04/11/2026; publicação conferida em
+d70208691d2aba1ebfce471374bebcc5a603cef1, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade na 7.30 — registrar
 somente o limitador nomeado login em AppServiceProvider::boot, com cinco pedidos
 por minuto/IP e resposta 429 JSON/cabeçalhos, verificando sua configuração antes
 de registrar ou proteger a rota de login.

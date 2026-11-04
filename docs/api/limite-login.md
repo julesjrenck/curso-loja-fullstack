@@ -1,7 +1,8 @@
-# Limite de pedidos de login — contrato planejado
+# Limite de pedidos de login — regra registrada, rota pendente
 
 Desenho da etapa 7.29, em 04/11/2026, para o futuro POST /api/v1/login.
-Esta regra ainda não está registrada ou aplicada a uma rota. Complementa o
+Regra registrada em AppServiceProvider::boot na 7.30, ainda sem aplicação a
+uma rota. Complementa o
 [contrato de login](login.md); o controller e seus testes continuam como estavam.
 
 ## Regra escolhida para o ambiente local
@@ -42,7 +43,7 @@ por enviar credenciais corretas enquanto o limite estiver esgotado.
 "Pode seguir" significa somente que o limitador permitiu prosseguir, não que
 as credenciais foram aceitas. O IP B continua com seu próprio contador.
 
-## Resposta 429 planejada
+## Resposta 429 configurada
 
 Status 429 Too Many Requests, Content-Type application/json, sem Location,
 com somente message string. Texto/idioma podem variar; exemplo fictício:
@@ -72,10 +73,15 @@ o cache file atual atende ao laboratório com uma instância. Testes usarão
 cache array isolado. O contador de frequência e o cache de respostas HTTP são
 usos diferentes: no-store não desativa o contador do servidor.
 
-Sem Redis/container/dependência nova nesta etapa. A próxima, 7.30, registrará
-somente o limitador nomeado login em AppServiceProvider::boot, com cinco por
-minuto/IP e resposta JSON/429/cabeçalhos, antes de anexá-lo à futura rota.
+Sem Redis/container/dependência nova nesta etapa. Na 7.30, registrado somente
+o limitador nomeado login em AppServiceProvider::boot, com cinco por minuto/IP
+e callback JSON/429/cabeçalhos. Diagnóstico em memória confirmou configuração,
+chaves por IP e callback para Accept JSON/HTML/ausente, preservando Retry-After
+fornecido (60/37/11), X-RateLimit-Limit/Remaining e no-store. Sem contagem ou
+middleware executado nessa verificação. Cache-Control observado: no-store, private.
 Criar o limitador nomeado sozinho não protege rota alguma.
+Próxima 7.31: testes automatizados pelo middleware ThrottleRequests, com relógio
+controlado/cache array e bloqueio/expiração/IP/429, antes de registrar rota.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).

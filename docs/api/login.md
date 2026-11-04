@@ -117,7 +117,8 @@ por IP em janela de 60 segundos iniciada no primeiro pedido contado. Conta
 sucesso e falhas que alcancem o limitador; e-mails do mesmo IP compartilham
 contador. Sexto pedido bloqueado antes do controller com 429 JSON/message,
 Retry-After em segundos restantes e Cache-Control no-store. Bloqueio não
-prorroga a janela e sucesso não zera a contagem. Regra ainda não aplicada.
+prorroga a janela e sucesso não zera a contagem. Na 7.30, regra registrada pelo
+nome login, com resposta 429 JSON configurada; ainda sem aplicação a rota.
 
 ## Limites e continuidade
 
@@ -129,7 +130,8 @@ passou a executar a tentativa pelo guard web com validated, erro genérico ou
 renovação de sessão e 204. Diagnóstico com três casos em loja_test e sessão
 array passou, sem manter usuários ou sessões persistidos. Endpoint continua
 sem rota, limitador aplicado ou entrada no OpenAPI de login. A regra escolhida
-na 7.29 ainda precisa ser registrada, testada e anexada antes de disponibilizar
+na 7.29 foi registrada na 7.30, mas ainda precisa ser testada pelo middleware
+e anexada à rota antes de disponibilizar
 o fluxo de login completo.
 Na 7.26, LoginRequestTest automatizou três entradas válidas e 14 inválidas,
 normalização/validated e 422 JSON renderizado em memória: focado 17 testes/94
@@ -141,8 +143,10 @@ renovação de ID/token; falhas exigem visitante, ID/token preservados e corpos
 422 iguais, sem fixar tradução. Ainda não testa pipeline HTTP/CSRF/cookies.
 Na 7.29, diagnóstico do contador Laravel com ArrayStore/relógio controlado
 passou em nove casos, sem HTTP ou aplicação do middleware à rota.
-Próximo passo 7.30: registrar somente o limitador nomeado login, cinco por
-minuto/IP e resposta 429 JSON/cabeçalhos, antes de registrar a rota.
+Na 7.30, configuração e callback do limitador registrado conferidos em memória;
+suíte existente 90/803 passou. Nenhuma rota utiliza throttle:login ainda.
+Próximo passo 7.31: testes do middleware de limitação com relógio controlado,
+cache array, bloqueio/expiração/IP/429/cabeçalhos, sem registrar rota.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

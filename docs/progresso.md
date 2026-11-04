@@ -5,8 +5,23 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.29 — Desenho do limite de tentativas de login: concluída,
+- Etapa atual: 7.30 — Registro do limitador nomeado de login: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.30: AppServiceProvider::boot registra RateLimiter::for login,
+  Limit 5/minuto/by IP e callback JsonResponse/429/message/headers/no-store.
+  Register/binding do catálogo preservado. Diagnóstico Docker/testing com
+  CACHE_STORE=array somente no processo: configuração registrada com seis
+  condições conferidas; três callbacks Accept JSON/HTML/ausente com oito condições
+  cada, preservando Retry-After 60/37/11 e X-RateLimit headers ilustrativos.
+  Cache-Control observado no-store, private; sem Location. Não executou hit/
+  middleware; listener SQL zero. Rota login ausente e nenhuma com throttle:login.
+  Sintaxe válida; suíte existente 90/803, código 0. SQL posterior loja_test/
+  loja_testes: seis tabelas/quatro migrations/dados zero. Sem teste permanente
+  novo, dependência/ambiente/rota/bootstrap/OpenAPI alterado.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir; depois 7.31 — testes automatizados
+  pelo middleware ThrottleRequests,
+  cache array/relógio controlado, limite/IP/expiração/429/cabeçalhos, sem rota.
 - Situação da 7.29: docs/api/limite-login.md criado. Planejado limitador login,
   cinco pedidos por IP/60 segundos desde primeiro contado. Sucesso/validação/
   credenciais recusadas que alcancem o contador consomem limite; sucesso não
@@ -18,10 +33,9 @@
   incluindo cinco permitidos/sexto bloqueado/espera 30/IP distinto/expiração.
   Exemplo JSON válido. Sem SQL/arquivo/sessão/HTTP no diagnóstico do contador;
   nenhuma suíte nova, última 7.28, 90/803. Aplicação/OpenAPI preservados.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir; depois 7.30 — registrar só
-  limitador nomeado login em AppServiceProvider,
-  com 5/minuto/IP e 429 JSON/cabeçalhos, verificando antes da rota.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  d70208691d2aba1ebfce471374bebcc5a603cef1, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.30.
 - Situação da 7.28: tests/Feature/LoginControllerTest.php criado, dois métodos
   para sucesso e duas falhas com corpos comparados. SetUp exige loja_test/
   loja_testes/session array antes de escrita, User/transação/rollback e visitante.
@@ -35,7 +49,7 @@
   Aplicação/ambientes/dependências/rotas/OpenAPI preservados.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   e6ac54f1e3b4a9b69815d641c6a340991f43eeb6, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.29.
+  Checkpoint anterior à 7.29. Continuidade realizada na 7.29.
 - Situação da 7.27: LoginController::store(LoginRequest): Response criado,
   usa validated/attempt guard web, ValidationException genérica em email ou
   sessão regenerate/204 vazio. Diagnóstico Docker/testing: aplicação por caso,
@@ -1647,7 +1661,9 @@ entendimento confirmado com "entendi" em 04/11/2026 e publicação em 10416ad.
 Continuidade realizada na 7.28 — testes do controller/focado 2-47/suíte 90-803;
 entendimento confirmado com "entendi" em 04/11/2026 e publicação em e6ac54f.
 Continuidade realizada na 7.29 — desenho 5/IP/60s/429; entendimento confirmado
-com "entendi" em 04/11/2026. Publicar antes da 7.30 — registrar limitador sem rota.
+com "entendi" em 04/11/2026 e publicação em d702086. Continuidade realizada na
+7.30 — registro/configuração/callback, suíte 90/803; entendimento confirmado
+com "entendi" em 04/11/2026. Publicar antes da 7.31 — testes do middleware sem rota.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -13007,8 +13023,49 @@ um, consulta três, aulas 7.28/7.29 dois cada. SHA anterior conferido contra HEA
 backend/Compose/OpenAPI sem diff, nenhum .env ou log incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.29: pendente; checkpoint concluído. Último checkpoint
-publicado: e6ac54f1e3b4a9b69815d641c6a340991f43eeb6 (7.28).
-Próximo passo exato após publicar e conferir: 7.30 — registrar somente
-limitador nomeado login em AppServiceProvider::boot, 5/minuto/IP e resposta
-429 JSON/cabeçalhos, verificando configuração antes de registrar/proteger rota.
+Publicação da 7.29: concluída e conferida em
+d70208691d2aba1ebfce471374bebcc5a603cef1; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.30.
+
+## Etapa 7.30 — Registro do limitador nomeado de login — 04/11/2026
+
+Iniciada após confirmação da 7.29 com "entendi" e publicação verificada.
+Implementação: AppServiceProvider.php com quatro imports e comentário de boot
+substituído por RateLimiter::for('login'); nova aula 7.30, contratos/registros.
+Register/binding do catálogo preservado. Nenhuma rota ou middleware aplicado.
+
+Explicação apresentada: boot versus register, facade e nome associado a closure
+Request→Limit, perMinute(5)/by IP, callback Request/headers→JsonResponse. Corpo
+genérico 429 e cabeçalhos recebidos preservados, no-store acrescentado; parâmetro
+Request interno disponível mas não usado. Nome registrado não protege rota;
+throttle:login será conexão futura. Fonte oficial Laravel consultada.
+
+Diagnóstico PHP Docker/testing com CACHE_STORE=array só no processo, sem editar
+ambientes ou usar cache file normal. Limiter('login') chamável; seis condições
+de configuração: Limit, 5, 60, mesmo IP/e-mails distintos mesma chave, outro IP
+chave diferente, callback. Três chamadas diretas ao callback com Accept JSON/
+HTML/ausente e Retry-After fornecido 60/37/11: oito condições por caso passaram
+(429, Content-Type JSON, somente message string, Retry-After preservado, limite
+5, restante 0, no-store e sem Location). Cache-Control no-store, private.
+Lista de rotas confirmou login ausente e nenhuma com throttle:login. Código 0,
+zero SQL por listener. Sem hit/contadores, sessões/cookies ou middleware executado;
+resposta configurada conferida, não bloqueio de pedidos reais ou cálculo de espera.
+
+Sintaxe válida; suíte existente 90 testes/803 asserções passou, código 0.
+Nenhum teste permanente novo; registro/callback verificados pelo diagnóstico.
+SELECT posterior loja_test/loja_testes: seis tabelas, quatro migrations/lotes
+1/2/3/4 e zero users/password_reset_tokens/sessions/produtos/categorias.
+Última suíte completa: 7.30, 90/803. Sem dependência/ambiente/rota/bootstrap/
+migration/OpenAPI alterado. Auditoria/snapshot normal/quatro contratos não repetidos.
+
+Git diff --check passou. Links locais conferidos: login dois, limite um,
+consulta três, aulas 7.29/7.30 dois cada. Register/binding preservado por comparação;
+única alteração de backend AppServiceProvider, Compose/OpenAPI sem diff.
+Nenhum .env ou log incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.30: pendente; checkpoint concluído. Último checkpoint publicado:
+d70208691d2aba1ebfce471374bebcc5a603cef1 (7.29).
+Próximo passo exato após publicar e conferir: 7.31 — criar testes automatizados
+do limitador pelo middleware ThrottleRequests com cache array/relógio controlado,
+cobrindo limite/IP/expiração/429/cabeçalhos, sem registrar rota de login.
