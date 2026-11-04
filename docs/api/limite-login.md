@@ -80,8 +80,14 @@ chaves por IP e callback para Accept JSON/HTML/ausente, preservando Retry-After
 fornecido (60/37/11), X-RateLimit-Limit/Remaining e no-store. Sem contagem ou
 middleware executado nessa verificação. Cache-Control observado: no-store, private.
 Criar o limitador nomeado sozinho não protege rota alguma.
-Próxima 7.31: testes automatizados pelo middleware ThrottleRequests, com relógio
-controlado/cache array e bloqueio/expiração/IP/429, antes de registrar rota.
+Na 7.31, LoginRateLimiterTest passou pelo middleware real/nome login, com cache
+array e relógio controlado: focado 6 testes/156 asserções, suíte 96/959.
+Conferidos bloqueio do sexto/IP compartilhado entre e-mails, Accept JSON/HTML/
+ausente, cabeçalhos, espera/expiração, outro IP e consumo de limite por falhas
+posteriores. Próxima função ilustrativa, sem controller, SQL de autenticação,
+CSRF ou kernel HTTP. Criar/configurar/testar a regra ainda não a aplica à rota.
+Próxima 7.32: preparar a migration de usuários no banco local normal antes da
+integração HTTP; status consultado na 7.31 continua Pending.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).

@@ -5,8 +5,23 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.30 — Registro do limitador nomeado de login: concluída,
-  entendimento confirmado com "entendi" em 04/11/2026.
+- Etapa atual: 7.31 — Testes do middleware de limitação: implementação,
+  explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Situação da 7.31: tests/Feature/LoginRateLimiterTest.php criado, quatro métodos/
+  seis execuções com DataProvider Accept JSON/HTML/ausente. Cache array exigido,
+  relógio controlado/restaurado. ThrottleRequests real/nome login/Request em
+  memória e próxima função ilustrativa com contador, sem kernel/rota/controller.
+  Cinco permitidos/sexto bloqueado/sem nova chamada; 429 JSON/headers/no-store,
+  mesmo IP entre e-mails, IP distinto, espera 60→30/expiração e falhas posteriores
+  422 consomem limite. Sintaxe válida; focado 6 testes/156 asserções e suíte
+  96/959 passaram, códigos 0. SQL posterior loja_test/loja_testes: seis tabelas,
+  quatro migrations/dados zero. Sem alteração de aplicação/configuração/OpenAPI.
+  Status da migration de usuários normal consultado: Pending, código 0, sem
+  aplicar instruções de criação. Entendimento confirmado com "entendi" em
+  04/11/2026; publicação da 7.31 pendente.
+  Próximo passo exato após publicar: 7.32 — preparar tabelas de usuários
+  em loja, conferir identidade/pendência, aplicar apenas migration de usuários,
+  validar antes/depois preservando catálogo, antes de registrar rota de login.
 - Situação da 7.30: AppServiceProvider::boot registra RateLimiter::for login,
   Limit 5/minuto/by IP e callback JsonResponse/429/message/headers/no-store.
   Register/binding do catálogo preservado. Diagnóstico Docker/testing com
@@ -18,10 +33,9 @@
   Sintaxe válida; suíte existente 90/803, código 0. SQL posterior loja_test/
   loja_testes: seis tabelas/quatro migrations/dados zero. Sem teste permanente
   novo, dependência/ambiente/rota/bootstrap/OpenAPI alterado.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir; depois 7.31 — testes automatizados
-  pelo middleware ThrottleRequests,
-  cache array/relógio controlado, limite/IP/expiração/429/cabeçalhos, sem rota.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  4c5388deb7ee7fcd803cf7aa1ff7ad8337655016, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.31.
 - Situação da 7.29: docs/api/limite-login.md criado. Planejado limitador login,
   cinco pedidos por IP/60 segundos desde primeiro contado. Sucesso/validação/
   credenciais recusadas que alcancem o contador consomem limite; sucesso não
@@ -35,7 +49,7 @@
   nenhuma suíte nova, última 7.28, 90/803. Aplicação/OpenAPI preservados.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   d70208691d2aba1ebfce471374bebcc5a603cef1, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.30.
+  Checkpoint anterior à 7.30. Continuidade realizada na 7.30.
 - Situação da 7.28: tests/Feature/LoginControllerTest.php criado, dois métodos
   para sucesso e duas falhas com corpos comparados. SetUp exige loja_test/
   loja_testes/session array antes de escrita, User/transação/rollback e visitante.
@@ -1663,7 +1677,10 @@ entendimento confirmado com "entendi" em 04/11/2026 e publicação em e6ac54f.
 Continuidade realizada na 7.29 — desenho 5/IP/60s/429; entendimento confirmado
 com "entendi" em 04/11/2026 e publicação em d702086. Continuidade realizada na
 7.30 — registro/configuração/callback, suíte 90/803; entendimento confirmado
-com "entendi" em 04/11/2026. Publicar antes da 7.31 — testes do middleware sem rota.
+com "entendi" em 04/11/2026 e publicação em 4c5388d. Continuidade realizada na
+7.31 — testes/focado 6-156/suíte 96-959; users normal Pending. Entendimento
+confirmado com "entendi" em 04/11/2026; publicação pendente antes da 7.32 —
+preparar migration de usuários em loja antes de HTTP de login.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -13064,8 +13081,51 @@ consulta três, aulas 7.29/7.30 dois cada. Register/binding preservado por compa
 Nenhum .env ou log incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.30: pendente; checkpoint concluído. Último checkpoint publicado:
-d70208691d2aba1ebfce471374bebcc5a603cef1 (7.29).
-Próximo passo exato após publicar e conferir: 7.31 — criar testes automatizados
-do limitador pelo middleware ThrottleRequests com cache array/relógio controlado,
-cobrindo limite/IP/expiração/429/cabeçalhos, sem registrar rota de login.
+Publicação da 7.30: concluída e conferida em
+4c5388deb7ee7fcd803cf7aa1ff7ad8337655016; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.31.
+
+## Etapa 7.31 — Testes do middleware de limitação — 04/11/2026
+
+Iniciada após confirmação da 7.30 com "entendi" e publicação verificada.
+Implementação: somente LoginRateLimiterTest.php, nova aula 7.31, contratos e
+registros atualizados. Aplicação/rotas/bootstrap/dependências/ambientes/OpenAPI
+preservados; POST login continua sem rota.
+
+Explicação apresentada: imports, contador de chamadas, setUp com cache array e
+travelTo/Carbon, tearDown/travelBack/parent. Provedor de três Accepts, argumentos
+nomeados PHP e helper Request JSON/REMOTE_ADDR. Handle do ThrottleRequests real
+recebe nome login e próxima função ilustrativa, que soma contador e retorna 204
+ou lança erro de validação fictício. HttpResponseException fornece resposta do
+callback 429; ValidationException posterior é renderizada pelo handler, ambas
+envolvidas em TestResponse. Sem kernel HTTP, sessão, CSRF, credenciais ou usuário.
+Fontes oficiais Laravel de tempo/limitação consultadas.
+
+Quatro métodos/seis execuções: cinco liberações com remaining decrescente e
+sexto bloqueado para JSON/HTML/sem Accept, mesmo IP com outro e-mail, 429 com
+message string/Retry-After/limit/remaining/no-store/sem Location e apenas cinco
+chamadas posteriores. Tempo controlado confirma espera 60→30, bloqueio não
+prorroga janela, liberação em 60s/remaining 4. Outro IP independente. Cinco
+exceções 422 posteriores consomem limite e sexto não alcança próxima função.
+Não fixa traduções nem depende da ordenação textual do Cache-Control.
+
+Sintaxe válida; focado --testdox passou com 6 testes/156 asserções, código 0.
+Suíte completa 96 testes/959 asserções, código 0, soma dos 6/156 aos 90/803.
+SELECT posterior loja_test/loja_testes: seis tabelas, quatro migrations/lotes
+1/2/3/4 e zero users/password_reset_tokens/sessions/produtos/categorias.
+Última suíte completa: 7.31, 96/959. Arquivo novo sem fixtures/trait de banco.
+Consulta migrate:status --path=database/migrations/0001_01_01_000000_create_users_table.php
+no ambiente normal retornou Pending, código 0. Sem aplicar SQL de criação;
+normal ainda precisa dessa preparação antes de endpoint HTTP de autenticação.
+Auditoria/snapshot normal completo/quatro contratos não repetidos.
+
+Git diff --check passou. Links locais conferidos: login dois, limite um,
+consulta três, aulas 7.30/7.31 dois cada. Novo código somente no teste;
+aplicação/configuração/dependências/Compose/OpenAPI sem diff. Nenhum .env ou log incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.31: pendente; alterações locais. Último checkpoint publicado:
+4c5388deb7ee7fcd803cf7aa1ff7ad8337655016 (7.30).
+Próximo passo exato após publicar: 7.32 — conferir identidade e
+pendência em loja, aplicar somente migration de usuários e validar tabelas/
+estado antes/depois preservando catálogo, antes de registrar rota de login.

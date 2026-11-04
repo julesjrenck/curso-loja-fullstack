@@ -155,8 +155,13 @@ login com Limit 5/minuto/IP e callback 429 JSON/headers/no-store. Diagnóstico
 conferiu seis condições de configuração e três respostas com oito condições
 cada, Retry-After ilustrativo 60/37/11 preservado e nenhuma rota usando o limite.
 Sintaxe válida, zero SQL no diagnóstico e suíte 90/803 passou. Entendimento
-confirmado com "entendi" em 04/11/2026; publicar antes da 7.31 — testes pelo
-middleware com cache array/relógio controlado, antes de registrar rota de login.
+confirmado com "entendi" em 04/11/2026; publicada em 4c5388d, remoto conferido.
+Na 7.31, LoginRateLimiterTest passa pelo middleware real com cache array/relógio
+controlado: seis execuções, bloqueio/IP/expiração/headers e consumo por falhas.
+Focado 6/156 e suíte 96/959 passaram. Migration de usuários no ambiente normal
+consultada: Pending, sem aplicação. Entendimento confirmado com "entendi" em
+04/11/2026; publicação pendente. Próximo após publicar: 7.32 — preparar somente essa migration em loja,
+preservando catálogo, antes de registrar rota de login.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -846,8 +851,10 @@ publicação em e6ac54f. Na 7.29, desenho 5/IP/60s/429 apresentado e contador em
 memória verificado. Entendimento confirmado com "entendi" em 04/11/2026 e
 publicação em d702086. Na 7.30, limitador registrado/explicado/configuração e
 callback conferidos; suíte 90/803 passou. Entendimento confirmado com "entendi"
-em 04/11/2026; publicar antes da 7.31 —
-testes do middleware de limitação, sem rota.
+em 04/11/2026 e publicação em 4c5388d. Na 7.31, testes do middleware criados e
+explicados, focado 6/156 e suíte 96/959 passaram. Status normal users Pending;
+entendimento confirmado com "entendi" em 04/11/2026; publicação pendente antes
+da 7.32 — preparar migration em loja antes da rota.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

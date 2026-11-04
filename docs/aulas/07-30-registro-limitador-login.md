@@ -88,6 +88,8 @@ Auditoria/snapshot normal/quatro contratos não foram repetidos.
 ## Continuidade
 
 Limitador registrado, explicado e verificado; entendimento confirmado com
-"entendi" em 04/11/2026; publicação pendente. Após publicar: 7.31 —
+"entendi" em 04/11/2026; publicação conferida em
+4c5388deb7ee7fcd803cf7aa1ff7ad8337655016, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade na 7.31 —
 testes automatizados do limitador pelo middleware ThrottleRequests com relógio
 controlado/cache array, cobrindo limite/IP/expiração/429/cabeçalhos, sem registrar rota.

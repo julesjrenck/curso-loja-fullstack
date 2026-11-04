@@ -130,9 +130,8 @@ passou a executar a tentativa pelo guard web com validated, erro genérico ou
 renovação de sessão e 204. Diagnóstico com três casos em loja_test e sessão
 array passou, sem manter usuários ou sessões persistidos. Endpoint continua
 sem rota, limitador aplicado ou entrada no OpenAPI de login. A regra escolhida
-na 7.29 foi registrada na 7.30, mas ainda precisa ser testada pelo middleware
-e anexada à rota antes de disponibilizar
-o fluxo de login completo.
+na 7.29 foi registrada na 7.30 e testada pelo middleware na 7.31, mas ainda
+precisa ser anexada à rota antes de disponibilizar o fluxo de login completo.
 Na 7.26, LoginRequestTest automatizou três entradas válidas e 14 inválidas,
 normalização/validated e 422 JSON renderizado em memória: focado 17 testes/94
 asserções, suíte completa 88 testes/756 asserções. Não executa login ou CSRF.
@@ -145,8 +144,11 @@ Na 7.29, diagnóstico do contador Laravel com ArrayStore/relógio controlado
 passou em nove casos, sem HTTP ou aplicação do middleware à rota.
 Na 7.30, configuração e callback do limitador registrado conferidos em memória;
 suíte existente 90/803 passou. Nenhuma rota utiliza throttle:login ainda.
-Próximo passo 7.31: testes do middleware de limitação com relógio controlado,
-cache array, bloqueio/expiração/IP/429/cabeçalhos, sem registrar rota.
+Na 7.31, testes do middleware passaram com relógio controlado/cache array:
+focado 6/156, suíte 96/959. Não exercitam o endpoint completo ou CSRF.
+Consulta de status da migration de usuários no ambiente normal mostrou Pending;
+essa migration foi aplicada em loja_test durante o curso. Próximo passo 7.32:
+preparar somente essa migration no banco local normal loja antes da rota de login.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)
