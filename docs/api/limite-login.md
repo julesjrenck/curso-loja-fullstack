@@ -122,8 +122,11 @@ uma tentativa. Se 429 interferir, preservar contador e aguardar expiração.
 Na 7.41, HTTP local em servidor temporário confirmou 204/419/419/422 com
 CSRF ativo. C alcançou a validação; não houve 429 e não zeramos contadores.
 Coleta de sessões desativada só nesse processo para preservar 54 arquivos
-antigos; configuração habitual preservada. Sem nova suíte. Próxima 7.42:
-incluir POST login no OpenAPI com respostas 204/419/422/429.
+antigos; configuração habitual preservada. Sem nova suíte. Na 7.42, resposta
+429 documentada no OpenAPI com message fechado,
+Retry-After inteiro variável, limite 5/restante 0 e Cache-Control com no-store.
+Exemplos validados com Redocly; cópia com errors extra no 429 rejeitada.
+Próxima 7.43: desenhar contrato de POST logout.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).

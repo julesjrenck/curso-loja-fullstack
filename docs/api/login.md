@@ -150,7 +150,9 @@ passou a executar a tentativa pelo guard web com validated, erro genérico ou
 renovação de sessão e 204. Diagnóstico com três casos em loja_test e sessão
 array passou, sem manter usuários ou sessões persistidos. Na 7.33, endpoint
 registrado com o limitador escolhido na 7.29, registrado na 7.30 e testado
-isoladamente na 7.31. Entrada no OpenAPI e fluxo completo continuam pendentes.
+isoladamente na 7.31. POST login incluído no OpenAPI na 7.42. Integração de
+navegador/CORS e logout
+continuam pendentes.
 Na 7.26, LoginRequestTest automatizou três entradas válidas e 14 inválidas,
 normalização/validated e 422 JSON renderizado em memória: focado 17 testes/94
 asserções, suíte completa 88 testes/756 asserções. Não executa login ou CSRF.
@@ -206,7 +208,12 @@ servidor PHP temporário local: 204/419/419/422, mensagem JSON/sem Location,
 errors email/password no último. Sessão visitante sem identidade; uma sessão
 própria removida, 54 anteriores preservadas, servidor encerrado. Código 0.
 Não verifica políticas de navegador/CORS. Sem nova suíte; última 7.39, 101/1.407.
-Próxima 7.42: adicionar POST login ao OpenAPI, respostas 204/419/422/429.
+Na 7.42, POST login incluído no OpenAPI com requestBody JSON obrigatório,
+CredenciaisLogin e respostas 204 sem content, 419/message mínimo, 422/message/
+errors email/password e 429/message/headers. Security vazio recebe visitantes;
+a preparação de sessão/CSRF continua descrita. Redocly fixado validou documento;
+quatro cópias inválidas rejeitadas e duas permissivas aceitas. Nenhuma API
+executada nessa validação. Próxima 7.43: desenhar contrato de POST logout.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

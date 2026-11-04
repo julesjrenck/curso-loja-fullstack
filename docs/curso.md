@@ -221,10 +221,17 @@ antigas, servidor PHP temporário em porta dinâmica com coleta [0,100] só nele
 Host/Origin 8002 mantidos. Uma sessão própria e auxiliares removidos/servidor
 encerrado; nomes/hashes anteriores preservados, configuração habitual [2,100].
 Sem credenciais, SQL, nova suíte ou alteração persistente de backend.
-Entendimento da 7.41 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próximo após publicar:
-7.42 — integrar POST /api/v1/login ao OpenAPI, email/password e respostas
-204/419/422/429, validando esquemas/exemplos. Navegador/CORS e logout pendentes.
+Entendimento da 7.41 confirmado com "entendi" em 04/11/2026; publicada em 091ba33,
+remoto conferido. Na 7.42, POST login integrado ao OpenAPI com corpo JSON
+email/password, security vazio para visitante e respostas 204/419/422/429.
+Schemas estruturais, exemplos e cabeçalhos do limitador documentados; regras
+completas de normalização/validação explicadas nas descrições. Redocly passou;
+quatro exemplos inválidos rejeitados e dois casos adicionais permitidos aceitos.
+Contratos anteriores preservados; GET usuario mudou somente a descrição.
+Entendimento da 7.42 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Próximo após confirmar/publicar: 7.43 — desenhar o contrato de POST logout,
+com sessão/CSRF, resposta e comportamento para visitante, antes de implementá-lo.
+Navegador/CORS pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -946,8 +953,12 @@ explicado, fontes/código/configuração conferidos; sem pedidos HTTP ou nova
 suíte. Entendimento confirmado com "entendi" em 04/11/2026; publicação em 655a17b.
 Na 7.41, protocolo HTTP 204/419/419/422 executado/explicado, CSRF ativo em servidor
 temporário com coleta desativada só nele; uma sessão própria removida/54
-anteriores preservadas. Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente
-antes da 7.42 — POST login no OpenAPI.
+anteriores preservadas. Entendimento confirmado com "entendi" em 04/11/2026;
+publicação em 091ba33. Na 7.42, POST login/corpo JSON/quatro respostas integrados
+ao OpenAPI, explicados e validados no Docker; quatro exemplos inválidos
+rejeitados/dois permitidos aceitos. Catálogo/schemas anteriores/segurança da
+consulta preservados; descrição da consulta atualizada. Entendimento confirmado
+com "entendi" em 04/11/2026; publicação pendente antes da 7.43 — desenhar o contrato de logout.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

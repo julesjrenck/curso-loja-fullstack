@@ -112,5 +112,8 @@ anteriores preservados. Conferência posterior: 54 sessões e configuração
 habitual [2,100]. Nenhum valor de cookie/token/ID ou resposta bruta foi impresso
 ou versionado. Sem nova suíte, consulta SQL ou alteração de aplicação.
 Detalhes e comandos no [registro da 7.41](../aulas/07-41-verificacao-csrf-http.md).
-Próxima 7.42: integrar POST /api/v1/login ao OpenAPI com respostas 204/419/422/429.
+Na 7.42, POST /api/v1/login integrado ao OpenAPI. Resposta 419 exige message
+string e admite campos adicionais; cabeçalho X-XSRF-TOKEN documentado como
+condicional ao caminho da proteção. Redocly validou estrutura/exemplos, sem
+novos pedidos HTTP. Próxima 7.43: desenhar contrato de POST logout.
 Navegador e CORS continuam pendentes.

@@ -3,7 +3,7 @@
 Execução, explicação e verificações em 04/11/2026, após confirmação da 7.40
 com "entendi". Checkpoint anterior publicado e conferido em
 655a17b6cfa5f76e9c6b6026c47020f8853db84c; HEAD/origin/main/main remota iguais.
-Entendimento da 7.41 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.41 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e adaptação necessária
 
@@ -95,6 +95,8 @@ diff. Não executamos nova suíte, consulta SQL, auditoria ou quatro contratos;
 
 Execução explicada e verificada; entendimento confirmado com "entendi" em 04/11/2026.
 Documentos/contratos atualizados, sem alteração persistente da aplicação.
-Publicação da 7.41 pendente. Após publicar: 7.42 — adicionar
+Publicação da 7.41 concluída e conferida em
+091ba33ce6f69f93a9c1cb0b1b4b182d89a14597; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.42 — adicionar
 POST /api/v1/login ao OpenAPI com email/password e respostas 204/419/422/429,
 validando esquemas e exemplos. Navegador/CORS e logout seguem pendentes.

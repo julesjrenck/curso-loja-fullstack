@@ -5,8 +5,24 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.41 — Verificação de CSRF por HTTP fora de testing:
-  execução, explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Etapa atual: 7.42 — Login no OpenAPI:
+  implementação documental, explicação e verificações apresentadas; entendimento
+  confirmado com "entendi" em 04/11/2026, publicação pendente.
+- Situação da 7.42: POST /api/v1/login documentado em docs/api/openapi.json,
+  corpo JSON obrigatório/schema CredenciaisLogin com email/password strings não
+  vazias e extras permitidos. Normalização e regras completas do Laravel em
+  descrições; schema estrutural não reproduz todas. Security [] admite visitante,
+  sem dispensar preparação de sessão/CSRF. X-XSRF-TOKEN condicional descrito.
+  Respostas: 204 sem content, 419 mínimo message aberto, 422 message/errors
+  fechado/email/password e dois exemplos, 429 somente message/cabeçalhos
+  Retry-After/X-RateLimit-Limit/X-RateLimit-Remaining/Cache-Control. Redocly fixado
+  no Docker validou documento sem avisos; quatro cópias inválidas rejeitadas e
+  duas permitidas aceitas, motivos esperados, cópias removidas. Comparação
+  estruturada preservou catálogo/schemas anteriores/segurança da consulta;
+  GET usuario mudou somente descrição. Sem HTTP/SQL/nova suíte; última 7.39,
+  101 testes/1.407 asserções. Próximo após confirmar/publicar: 7.43 — desenhar
+  contrato de POST logout com sessão/CSRF, resposta e comportamento de visitante,
+  antes de implementação. Navegador/CORS pendentes.
 - Situação da 7.41: diagnóstico temporário PHP/Guzzle no Docker confirmou
   preparação 204 e POSTs sem cabeçalho/inválido/correto 419/419/422. JSON/message
   string/sem Location; errors email/password no último. Sem credenciais.
@@ -17,9 +33,10 @@
   Código 0. Finally encerrou servidor/removeu uma sessão própria e auxiliares;
   nomes/hashes anteriores preservados. Leitura final: 54 sessões/configuração
   habitual [2,100]. Sem SQL/nova suíte; última 7.39, 101/1.407. Backend/Compose/
-  OpenAPI preservados. Entendimento confirmado com "entendi" em 04/11/2026; publicação
-  pendente. Próximo exato após publicar: 7.42 — integrar POST login ao OpenAPI, email/password
-  e respostas 204/419/422/429, validar esquemas/exemplos. Navegador/CORS pendentes.
+  OpenAPI preservados. Entendimento confirmado com "entendi" em 04/11/2026;
+  publicação verificada em 091ba33ce6f69f93a9c1cb0b1b4b182d89a14597,
+  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  Continuidade realizada na 7.42. Navegador/CORS pendentes.
 - Situação da 7.40: docs/api/verificacao-csrf.md criado. Protocolo para Guzzle
   já instalado no Docker/servidor local, Host/Origin 8002, base interna 8000,
   sessão visitante/cookies em memória/JSON {}. Sec-Fetch-Site/_token/X-CSRF-TOKEN
@@ -34,7 +51,7 @@
   ambientes/dependências/serviços/rotas/migrations/OpenAPI preservados.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   655a17b6cfa5f76e9c6b6026c47020f8853db84c, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.41.
+  Checkpoint anterior à 7.41. Continuidade realizada na 7.41.
 - Situação da 7.39: somente cenário de sucesso de LoginApiTest ampliado com
   controle após POST/204 e GET com cookie/200. Flush em memória/forgetGuards;
   call GET com parâmetros/cookies/arquivos vazios, Accept JSON/Origin/IP iguais.
@@ -1852,8 +1869,12 @@ fora de testing desenhado, fontes/código/configuração conferidos, sem HTTP
 executado. Entendimento confirmado com "entendi" em 04/11/2026; publicação em 655a17b. Continuidade realizada na 7.41 — HTTP
 204/419/419/422, CSRF ativo/servidor temporário sem coleta automática, uma
 sessão própria removida/54 anteriores preservadas/configuração habitual intacta.
-Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente
-antes da 7.42 — POST login no OpenAPI.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação em 091ba33.
+Continuidade realizada na 7.42 — POST login no OpenAPI: corpo/schema de entrada,
+respostas 204/419/422/429 e cabeçalhos do limitador, explicados e validados no
+Docker. Quatro exemplos inválidos rejeitados/dois permitidos aceitos. Entendimento
+confirmado com "entendi" em 04/11/2026; publicação pendente antes da 7.43 — desenhar
+contrato de logout, com sessão/CSRF, resposta e comportamento de visitante.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -13799,8 +13820,70 @@ OpenAPI sem diff; índice vazio, somente documentação alterada. Nenhum .env,
 log, valor de cookie/token/ID ou script temporário incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.41: pendente; registros locais. Último checkpoint publicado:
-655a17b6cfa5f76e9c6b6026c47020f8853db84c (7.40).
-Próximo passo exato após publicar: 7.42 — integrar POST /api/v1/login
-a docs/api/openapi.json, corpo email/password e respostas 204/419/422/429,
-validando esquemas e exemplos. Navegador/CORS e logout permanecem pendentes.
+Publicação da 7.41: concluída e conferida em
+091ba33ce6f69f93a9c1cb0b1b4b182d89a14597; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.42.
+Navegador/CORS e logout permanecem pendentes.
+
+
+## Etapa 7.42 — Login no OpenAPI — 04/11/2026
+
+Iniciada após confirmação da 7.41 com "entendi" e publicação verificada.
+Implementação documental: docs/api/openapi.json ganhou POST /api/v1/login,
+operação autenticarUsuario, quatro schemas e atualização da descrição geral.
+GET usuario mudou somente descrição para referenciar login já implementado.
+Aula docs/aulas/07-42-openapi-login.md criada; contratos em português, roteiro,
+progresso e registro posterior da publicação da 7.41 atualizados.
+
+Explicação apresentada: requestBody required exige corpo, application/json
+seleciona representação e $ref aponta para CredenciaisLogin. Required do schema
+exige email/password; string/minLength 1 verifica estrutura. As descrições
+explicam TrimStrings/email válido/máximo 255, senha preservada e recusa de senha
+só com espaços; o schema não reproduz integralmente normalização/validação.
+AdditionalProperties true admite extras descartados de validated, sem tornar
+id/remember opções de autenticação. Exemplo com conta/senha fictícias.
+
+Security [] admite visitante e não remove condições de sessão/CSRF descritas:
+origem reconhecida, preparação por csrf-cookie e cookies. X-XSRF-TOKEN é header
+string condicional; na comparação por token usa cookie URL-decodificado.
+Sec-Fetch-Site same-origin pode permitir antes da comparação no Laravel 13.
+Nenhum valor de cookie/token/sessão documentado. Sem Bearer.
+
+Respostas: 204 sem content; 419 ErroCsrf mínimo message/string e propriedades
+adicionais permitidas; 422 ErroValidacaoLogin fechado em message/errors,
+errors fechado em email/password/listas não vazias de strings, ao menos um
+campo. Dois exemplos: entrada inválida e credenciais recusadas, sem prometer
+tradução fixa ou distinguir existência de conta. 429 ErroLimiteLogin fechado
+em message/string, cabeçalhos obrigatórios Retry-After inteiro >= 0/variável,
+X-RateLimit-Limit const 5, X-RateLimit-Remaining const 0 e Cache-Control com
+no-store descrito. Exemplos não fixam espera em 60 ou ordem de diretivas.
+
+Verificação: imagem Redocly 2.65.0 com digest já fixado, Docker --pull=never/
+--network none/montagem somente leitura e redocly.yaml existente. Documento
+completo passou, código 0/sem avisos. Quatro cópias com exemplos inválidos
+rejeitadas, código 1/no-invalid-media-type-examples: password ausente, email
+numérico, campo desconhecido em errors 422 e campo extra no corpo 429. Duas
+cópias permitidas aceitas, código 0: entrada com id/remember extras e resposta
+419 com campo fictício adicional. Motivos conferidos; seis cópias removidas.
+
+Comparação estruturada com HEAD preservou versões/servidores, catálogo completo,
+schemas anteriores e SessaoCookie/segurança de GET usuario. Só descrição da
+consulta mudou. Nova operação exige security vazio, 204 sem content e não há
+security global. Referências primárias OpenAPI 3.2.1 conferidas para operação,
+requestBody e headers. Validação de exemplos não executa a API nem prova todas
+as regras do FormRequest.
+
+Git diff --check passou. Links locais conferidos: consulta quatro, limite um,
+login três, protocolo CSRF três, aulas 7.41/7.42 um e dois respectivamente.
+Backend/Compose sem diff; índice vazio. Alterações locais apenas na documentação.
+
+Sem PHP/HTTP/SQL, nova suíte Laravel, auditoria ou recaptura de corpos. Última
+suíte permanece 7.39: 101 testes/1.407 asserções. Aplicação, configuração,
+ambientes, dependências, serviços, rotas, migrations e Compose preservados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.42: pendente; registros locais. Último checkpoint publicado:
+091ba33ce6f69f93a9c1cb0b1b4b182d89a14597 (7.41).
+Próximo passo exato após confirmar/publicar: 7.43 — desenhar contrato de
+POST /api/v1/logout, com sessão/CSRF, resposta e comportamento de visitante,
+antes de implementar logout. Navegador/CORS permanecem pendentes.

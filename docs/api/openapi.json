@@ -3,7 +3,7 @@
   "info": {
     "title": "API da loja",
     "version": "0.1.0",
-    "description": "Descrição em construção. Inclui catálogo público e consulta do próprio usuário autenticado."
+    "description": "Descrição em construção. Inclui catálogo público, login por sessão da interface própria e consulta do próprio usuário autenticado."
   },
   "servers": [
     {
@@ -12,11 +12,150 @@
     }
   ],
   "paths": {
+    "/api/v1/login": {
+      "post": {
+        "summary": "Autenticar pela sessão da interface própria",
+        "operationId": "autenticarUsuario",
+        "description": "Recebe visitantes e usa guard web/sessão; não exige identidade previamente autenticada. A interface própria deve enviar Origin ou Referer reconhecido pelo Sanctum e usar o fluxo GET /sanctum/csrf-cookie com seus cookies. Na comparação de token, enviar X-XSRF-TOKEN com o valor URL-decodificado de XSRF-TOKEN e o cookie da mesma sessão. No Laravel 13, Sec-Fetch-Site same-origin pode permitir seguir antes dessa comparação. O campo security vazio dispensa autenticação prévia, mantendo essas condições de sessão/CSRF. Cinco pedidos por IP em janela de 60 segundos iniciada no primeiro contado; pedidos que chegam ao limitador contam, incluindo sucesso e erros posteriores. Sucesso renova ID da sessão e token CSRF; o cookie resultante permite consultar GET /api/v1/usuario. Não emite token Bearer. Exemplos fictícios; ver docs/api/login.md e docs/api/verificacao-csrf.md no repositório.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "X-XSRF-TOKEN",
+            "in": "header",
+            "required": false,
+            "description": "Na comparação CSRF por token, recebe o valor URL-decodificado do cookie XSRF-TOKEN. Condicional ao caminho de proteção: Sec-Fetch-Site same-origin pode permitir o pedido sem essa comparação. Origin/Referer reconhecido e cookies de sessão continuam necessários ao fluxo da interface própria. Nenhum valor real é fornecido como exemplo.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Objeto JSON com as credenciais. Required dos campos exige sua presença; os tipos básicos não executam a normalização ou todas as regras de LoginRequest. Campos extras não são usados para autenticar.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CredenciaisLogin"
+              },
+              "example": {
+                "email": "ana@example.test",
+                "password": "senha-ficticia-do-exemplo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Credenciais aceitas. Sem corpo ou redirecionamento; renova ID da sessão e token CSRF e emite o cookie correspondente. O cliente usa a sessão nas próximas requisições. Não há representação JSON no sucesso."
+          },
+          "419": {
+            "description": "Recusa CSRF antes da tentativa de autenticação. Resposta JSON com message string, sem redirecionamento. Verificada fora de testing com Sec-Fetch-Site ausente e cabeçalho CSRF ausente ou inválido; não significa senha incorreta.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErroCsrf"
+                },
+                "example": {
+                  "message": "CSRF token mismatch."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Entrada inválida ou credenciais recusadas. JSON sem redirecionamento. Senha incorreta e e-mail inexistente produzem o mesmo erro genérico em email; a sessão de visitante permanece sem identidade e preserva ID/token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErroValidacaoLogin"
+                },
+                "examples": {
+                  "entradaInvalida": {
+                    "summary": "Campos de entrada inválidos; texto ilustrativo",
+                    "value": {
+                      "message": "Os dados enviados são inválidos.",
+                      "errors": {
+                        "email": [
+                          "Informe um e-mail válido."
+                        ],
+                        "password": [
+                          "Informe uma senha."
+                        ]
+                      }
+                    }
+                  },
+                  "credenciaisRecusadas": {
+                    "summary": "Mesmo corpo para senha incorreta ou e-mail inexistente",
+                    "value": {
+                      "message": "As credenciais informadas são inválidas.",
+                      "errors": {
+                        "email": [
+                          "As credenciais informadas são inválidas."
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de pedidos desse IP esgotado. JSON sem redirecionamento, antes da validação/controller, inclusive com Accept HTML ou ausente. Não verifica credenciais. Bloqueio não prolonga a janela.",
+            "headers": {
+              "Retry-After": {
+                "description": "Segundos restantes até uma nova tentativa permitida; varia com o tempo decorrido.",
+                "required": true,
+                "schema": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "example": 60
+              },
+              "X-RateLimit-Limit": {
+                "description": "Capacidade da janela para esse IP.",
+                "required": true,
+                "schema": {
+                  "type": "integer",
+                  "const": 5
+                },
+                "example": 5
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Capacidade restante no bloqueio.",
+                "required": true,
+                "schema": {
+                  "type": "integer",
+                  "const": 0
+                },
+                "example": 0
+              },
+              "Cache-Control": {
+                "description": "Inclui a diretiva no-store. Outras diretivas e sua ordem podem variar.",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "example": "no-store, private"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErroLimiteLogin"
+                },
+                "example": {
+                  "message": "Muitas tentativas. Tente novamente em instantes."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/usuario": {
       "get": {
         "summary": "Consultar o próprio usuário autenticado",
         "operationId": "consultarUsuarioAutenticado",
-        "description": "Identidade obtida pela autenticação da requisição. Sem corpo ou parâmetros suportados; id/email enviados na query não selecionam outro usuário. Interface própria usa sessão/cookie com Sanctum. Esta consulta não faz login. Sucesso verificado com actingAs no guard web em testes internos; fluxo de login e transporte de cookie pelo navegador ainda não implementados/verificados.",
+        "description": "Identidade obtida pela autenticação da requisição. Sem corpo ou parâmetros suportados; id/email enviados na query não selecionam outro usuário. Interface própria usa sessão/cookie com Sanctum. Para estabelecer a identidade, use POST /api/v1/login após a preparação de sessão/CSRF. Cookie de visitante sozinho não autentica esta consulta.",
         "security": [
           {
             "SessaoCookie": []
@@ -463,6 +602,90 @@
           "preco_em_centavos": {
             "type": "integer",
             "description": "Preço em centavos; 4990 representa R$ 49,90."
+          }
+        }
+      },
+      "CredenciaisLogin": {
+        "type": "object",
+        "description": "Credenciais recebidas pelo login. As regras de normalização e validação do Laravel estão descritas nos campos. Campos adicionais são ignorados na seleção das credenciais.",
+        "additionalProperties": true,
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Obrigatório. O Laravel remove espaços externos antes de exigir formato de e-mail e limite de 255 caracteres. Essas regras após normalização não são reproduzidas integralmente neste schema estrutural."
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Obrigatória; não pode estar vazia nem conter somente espaços. Espaços externos de uma senha com outros caracteres são preservados. Não há tamanho mínimo de cadastro exigido para tentar login."
+          }
+        }
+      },
+      "ErroValidacaoLogin": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "message",
+          "errors"
+        ],
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Resumo do erro; texto e idioma podem variar."
+          },
+          "errors": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": false,
+            "description": "Erros de entrada em email/password ou erro genérico de credenciais em email. Senha incorreta e e-mail inexistente produzem o mesmo corpo.",
+            "properties": {
+              "email": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "password": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ErroCsrf": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "message"
+        ],
+        "description": "Contrato mínimo verificado para recusa CSRF. Somente message é exigido; o schema não fecha eventuais campos de diagnóstico do ambiente local.",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Mensagem de recusa CSRF; texto e idioma podem variar."
+          }
+        }
+      },
+      "ErroLimiteLogin": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Mensagem genérica de excesso de pedidos; não descreve a validade das credenciais."
           }
         }
       }

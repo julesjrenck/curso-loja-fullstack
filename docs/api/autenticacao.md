@@ -143,7 +143,10 @@ visitante/JSON vazio, mesma origem e cookies, sem Sec-Fetch-Site. Expectativas
 em servidor PHP temporário com coleta de sessões desativada só nele. Visitante
 sem identidade e erros email/password após token correto, sem fornecer
 credenciais. Servidor/sessão própria/auxiliares removidos; 54 sessões anteriores
-preservadas. Código 0, sem nova suíte. Próxima 7.42: POST login no OpenAPI.
+preservadas. Código 0, sem nova suíte. Na 7.42, POST login incluído no OpenAPI.
+Segurança/schema/respostas desta
+consulta preservados; descrição atualizada para referenciar o login já existente.
+Redocly validou documento/exemplos e casos controlados. Próxima 7.43: desenhar logout.
 Comportamento de navegador/CORS permanece pendente.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
