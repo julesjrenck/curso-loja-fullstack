@@ -110,7 +110,9 @@ Auditoria, snapshot do banco normal e quatro contratos não foram repetidos.
 ## Continuidade
 
 UsuarioResource criada e explicada; endpoint ainda planejado e sem rota.
-Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação conferida em
+8cceb303214e66f63cfb3c6ed4a5cf4cecc5733d, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.
 Após publicar, 7.18 — criar somente UsuarioController::show para
 obter o usuário da requisição e devolver UsuarioResource, com diagnóstico em
 memória; registrar a rota protegida em etapa posterior.

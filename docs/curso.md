@@ -97,8 +97,12 @@ PHP Docker; nenhuma rota criada. Entendimento confirmado com "entendi" em
 04/11/2026; publicada em 833c010, remoto conferido. Na 7.17, UsuarioResource
 criada com id/name/email; sete verificações em memória passaram, com envelope
 data e zero SQL. Sintaxe válida e suíte existente 67/635 passou. Entendimento
-confirmado com "entendi" em 04/11/2026; publicar antes da 7.18 — somente
-UsuarioController::show, antes de registrar a rota protegida.
+confirmado com "entendi" em 04/11/2026; publicada em 8cceb30, remoto conferido.
+Na 7.18, UsuarioController::show criado: Request::user entregue ao Resource.
+Dois usuários fictícios/resolver em memória, oito condições por caso, zero SQL;
+rota ausente conferida, sintaxe válida e suíte 67/635 passou. Entendimento
+confirmado com "entendi" em 04/11/2026; publicar antes da 7.19 — registrar a
+rota GET /api/v1/usuario com auth:sanctum e verificar 401 JSON para visitante.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -758,8 +762,10 @@ entendimento confirmado com "entendi" em 04/11/2026 e publicação em 4674279.
 Na 7.16, contrato da consulta do próprio usuário desenhado e exemplos verificados;
 entendimento confirmado com "entendi" em 04/11/2026 e publicação em 833c010.
 Na 7.17, UsuarioResource criada, explicada e verificada em memória; suíte 67/635.
-Entendimento confirmado com "entendi" em 04/11/2026; publicar antes da
-7.18 — somente UsuarioController::show.
+Entendimento confirmado com "entendi" em 04/11/2026 e publicação em 8cceb30.
+Na 7.18, UsuarioController::show criado/explicado/verificado em memória e suíte
+67/635 passou. Entendimento confirmado com "entendi" em 04/11/2026; publicar
+antes da 7.19 — rota com auth:sanctum/401.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

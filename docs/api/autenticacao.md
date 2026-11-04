@@ -69,10 +69,11 @@ Criar uma sessão de visitante em /sanctum/csrf-cookie não satisfaz a autentica
 
 StatefulApi prepara sessão para origens reconhecidas. Auth:sanctum exigirá
 autenticação na rota; o Resource definirá a representação pública do User.
-A UsuarioResource já existe e foi verificada em memória na 7.17. A rota,
-o controller e o login ainda serão introduzidos nas suas próprias etapas.
-A próxima, 7.18, criará somente UsuarioController::show; o endpoint continua
-planejado, sem rota implementada.
+A UsuarioResource foi criada na 7.17; UsuarioController::show foi criado na
+7.18 e entrega $request->user() ao Resource. Ambos verificados em memória.
+O endpoint continua planejado, sem rota implementada. A próxima, 7.19,
+registrará a rota com auth:sanctum e verificará a resposta 401 ao visitante.
+Login ainda será introduzido em etapa própria.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).

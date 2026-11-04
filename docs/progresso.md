@@ -5,8 +5,20 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.17 — Representação pública do usuário: concluída,
+- Etapa atual: 7.18 — Controller da consulta do próprio usuário: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.18: UsuarioController::show(Request): UsuarioResource criado
+  em app/Http/Controllers/Api/V1, retornando Resource de $request->user().
+  Diagnóstico Docker/testing com dois usuários fictícios não persistidos e
+  resolver simulado: oito condições por caso, status 200/JSON/data exato,
+  parâmetros id/email não selecionaram outro usuário, zero SQL e rota ausente.
+  Sem guard/sessão/HTTP real/401 exercitados. Sintaxe válida; suíte 67/635,
+  código 0. SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/
+  dados zero. Contrato permanece planejado, sem rota ou login implementado.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir; depois 7.19 — registrar
+  GET /api/v1/usuario com auth:sanctum apontando
+  para show e verificar 401 JSON para visitante, preservando catálogo público.
 - Situação da 7.17: backend/app/Http/Resources/UsuarioResource.php criada,
   herdando JsonResource com toArray que seleciona id/name/email. Diagnóstico
   Docker/testing com User não persistido e oito atributos fictícios: sete
@@ -15,10 +27,9 @@
   Sintaxe válida; suíte existente 67 testes/635 asserções, código 0. SQL posterior
   loja_test/loja_testes: seis tabelas/quatro migrations/dados zero. Nenhuma rota,
   dependência, migration ou ambiente alterado. Contrato segue planejado.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir; depois 7.18 — criar somente
-  UsuarioController::show, obter usuário da
-  requisição e devolver UsuarioResource; verificar em memória antes da rota.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  8cceb303214e66f63cfb3c6ed4a5cf4cecc5733d, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.18.
 - Situação da 7.16: docs/api/autenticacao.md e aula correspondente criados.
   Contrato planejado GET /api/v1/usuario sem corpo/ID, acesso autenticado;
   200/data com id inteiro positivo, name/email strings não nulos e 401/message
@@ -29,7 +40,7 @@
   Sem nova suíte; último resultado completo 7.15, 67/635. OpenAPI preservado.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   833c010506b8c0b45edd2cb8d959d4aba5d99744, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.17.
+  Checkpoint anterior à 7.17. Continuidade realizada na 7.17.
 - Situação da 7.15: única chamada statefulApi adicionada em bootstrap/app.php.
   Grupo api agora EnsureFrontendRequestsAreStateful/SubstituteBindings; catálogo
   continua público. Origem local reconhecida antes da mudança. Diagnóstico Docker
@@ -1474,7 +1485,9 @@ entendimento confirmado com "entendi" em 04/11/2026 e publicação em 4674279.
 Continuidade realizada na 7.16, contrato planejado apresentado e exemplos
 verificados. Entendimento confirmado com "entendi" em 04/11/2026 e publicação
 em 833c010. Continuidade realizada na 7.17 — UsuarioResource; entendimento
-confirmado com "entendi" em 04/11/2026. Publicar antes da 7.18 — UsuarioController::show.
+confirmado com "entendi" em 04/11/2026 e publicação em 8cceb30.
+Continuidade realizada na 7.18 — UsuarioController::show; entendimento confirmado
+com "entendi" em 04/11/2026. Publicar antes da 7.19 — rota com auth:sanctum/401 JSON.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12360,8 +12373,46 @@ Git diff --check passou. Links locais conferidos: contrato de autenticação um,
 aula 7.16 um e aula 7.17 dois. Arquivos locais .env não incluídos no checkpoint.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.17: pendente; checkpoint concluído. Último checkpoint publicado:
-833c010506b8c0b45edd2cb8d959d4aba5d99744 (7.16).
-Próximo passo exato após publicar e conferir: 7.18 — criar somente
-UsuarioController::show para obter usuário da requisição e devolver
-UsuarioResource, verificando em memória antes de registrar a rota protegida.
+Publicação da 7.17: concluída e conferida em
+8cceb303214e66f63cfb3c6ed4a5cf4cecc5733d; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.18.
+
+## Etapa 7.18 — Controller da consulta do próprio usuário — 04/11/2026
+
+Iniciada após confirmação da 7.17 com "entendi" e publicação verificada.
+Implementação: somente UsuarioController.php na aplicação, nova aula 7.18,
+contrato atualizado quanto à existência do controller e registros. Sem gerador
+Artisan, nova rota/dependência/migration/ambiente ou login implementado.
+
+Explicação apresentada: namespace/imports, herança de Controller, ação pública
+show, injeção de Request e retorno UsuarioResource. $request->user() consulta
+identidade resolvida pela autenticação, sem buscar User por ID enviado.
+Controller entrega model ao Resource; futura rota com auth:sanctum exigirá
+autenticação antes da ação. Sem middleware, user() pode ser null. A ação não
+faz login e sua criação não implementa proteção/401. Fonte oficial consultada.
+
+Diagnóstico PHP Docker/testing: controller chamado diretamente com Request
+construído, dois Users em memória (IDs 42/73) e setUserResolver simulado por
+caso. Query id=999/email de terceiro ignorada para seleção da identidade.
+Oito condições por caso passaram: tipo do Resource, identidade do objeto,
+resolver uma vez, status 200, Content-Type JSON, data exato, atributos/exists
+preservados e zero SQL por listener. Lista de rotas confirmou usuario ausente.
+Código 0; sem guard, autenticação, sessão, HTTP real ou resposta 401 exercitados.
+Valores fictícios de senha/token não impressos. Nenhum dado criado no banco.
+
+php -l válido; suíte existente 67 testes/635 asserções, código 0. Controller
+verificado no diagnóstico, sem teste permanente novo. SELECT posterior confirmou
+loja_test/loja_testes, seis tabelas, quatro migrations/lotes 1/2/3/4 e zero
+users/password_reset_tokens/sessions/produtos/categorias. Última suíte completa:
+7.18, 67/635. Auditoria/snapshot normal/quatro contratos não repetidos.
+
+Git diff --check passou. Links locais conferidos: contrato de autenticação um,
+aula 7.17 dois e aula 7.18 três. Rotas, dependências, bootstrap e OpenAPI sem
+diff nesta etapa; arquivos locais .env não incluídos no checkpoint.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.18: pendente; checkpoint concluído. Último checkpoint publicado:
+8cceb303214e66f63cfb3c6ed4a5cf4cecc5733d (7.17).
+Próximo passo exato após publicar e conferir: 7.19 — registrar GET /api/v1/usuario
+com auth:sanctum apontando para UsuarioController::show e verificar 401 JSON
+para visitante, mantendo o catálogo público, antes de implementar login.
