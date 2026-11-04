@@ -5,8 +5,21 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.12 — Atualização de segurança de symfony/mime: concluída,
+- Etapa atual: 7.13 — Descoberta do Sanctum pelo Laravel: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.13: package:discover em Docker terminou 0; packages.php passou
+  de seis para sete entradas. Novo processo confirmou SanctumServiceProvider
+  nos manifests providers/eager e carregado, rota GET|HEAD sanctum/csrf-cookie
+  nome sanctum.csrf-cookie/ação CsrfCookieController@show/middleware web.
+  Saída do comando ainda listou seis anteriores; arquivo e novo bootstrap
+  conferidos, como 5.33. API continua só SubstituteBindings, catálogo público.
+  Manifests válidos, JSON/lock com hashes preservados; suíte 67/635, código 0.
+  SQL posterior loja_test/loja_testes: seis tabelas, quatro migrations e dados zero.
+  Sem statefulApi, publicação de configuração/migration ou requisição ao novo endpoint.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.14 — primeira requisição HTTP controlada à rota csrf-cookie para
+  observar status e nomes/atributos dos cookies, sem login.
 - Situação da 7.12: somente symfony/mime v8.1.7 → v8.1.10 atualizado no lock/vendor,
   resolvendo o aviso da 7.11. JSON, demais pacotes e manifests preservados.
   Metadados/compatibilidade e simulação conferidos; update restrito com
@@ -14,10 +27,9 @@
   advisories/abandoned/filter vazios. validate/plataforma passaram; suíte 67/635.
   110 pacotes instalados correspondem ao lock. SQL posterior: loja_test/loja_testes,
   seis tabelas, quatro migrations e dados zero. Sem descoberta/migrations/login.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.13 — package:discover, explicar manifests e conferir provider Sanctum
-  e rota /sanctum/csrf-cookie, antes de habilitar statefulApi ou implementar login.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  99a131dcbcd43b504db45f3e279a783065c69a5d, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.13.
 - Situação da 7.11: laravel/sanctum v4.3.3 instalado em Docker; composer.json
   declara ^4.3.3, lock fixa versão/referência. Simulação e execução adicionaram
   somente um pacote, zero atualizações/remoções. Registros dos 109 anteriores
@@ -30,7 +42,7 @@
   nesta etapa de adição somente do Sanctum. Correção oficial na linha 8.1: >=8.1.10.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   0cf2c8278c19db2711cebc7e40830bbde61c965a, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Aviso corrigido na 7.12 conforme estado atual.
+  Checkpoint anterior à 7.12. Aviso corrigido na 7.12 conforme estado atual.
 - Situação da 7.10: aula docs/aulas/07-10-papel-sanctum.md criada. Modo sessão/
   cookie adotado para chamadas do navegador da interface própria; Bearer comparado
   conceitualmente. Fluxo csrf-cookie/login/API, statefulApi versus auth:sanctum,
@@ -1410,7 +1422,9 @@ entendimento confirmado com "entendi" em 03/11/2026 e publicação em f082f80.
 Continuidade realizada na 7.10, confirmada com "entendi" em 04/11/2026;
 publicação conferida em 63c0f1e. Continuidade realizada na 7.11, confirmada com
 "entendi" em 04/11/2026 e publicada em 0cf2c82. Continuidade realizada na 7.12;
-entendimento confirmado com "entendi" em 04/11/2026. Publicar e iniciar 7.13.
+entendimento confirmado com "entendi" em 04/11/2026 e publicação em 99a131d.
+Continuidade realizada na 7.13, confirmada com "entendi" em 04/11/2026;
+publicar checkpoint e iniciar 7.14.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12105,8 +12119,52 @@ Git diff --check passou; links locais das aulas 7.11 (quatro) e 7.12 (dois)
 conferidos. Arquivos .env locais continuam ignorados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.12: pendente; checkpoint concluído. Último checkpoint publicado:
-0cf2c8278c19db2711cebc7e40830bbde61c965a (7.11).
-Próximo passo exato: publicar e conferir o checkpoint da 7.12. Depois,
-7.13 — executar package:discover, explicar manifests e conferir registro de
-SanctumServiceProvider e /sanctum/csrf-cookie, antes de statefulApi/login.
+Publicação da 7.12: concluída e conferida em
+99a131dcbcd43b504db45f3e279a783065c69a5d; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.13.
+
+## Etapa 7.13 — Descoberta do Sanctum pelo Laravel — 04/11/2026
+
+Iniciada após confirmação da 7.12 com "entendi" e publicação verificada.
+Implementação: package:discover executado no Docker, manifests de pacotes/serviços
+reconstruídos e provider ativo em novo bootstrap; nova aula
+docs/aulas/07-13-descoberta-sanctum.md e registros. Versões/JSON/lock preservados;
+sem edição manual de provider/rotas/bootstrap/configuração ou migrations.
+
+Explicação apresentada: autoload encontra classes, provider registra serviços/
+recursos, descoberta lê extra.laravel.providers do pacote. Manifests gerados
+packages.php/services.php, listas providers/eager e bootstrap/providers.php da
+aplicação com AppServiceProvider. Instalação versus descoberta e registro da rota
+pelo código do provider, antes de autenticação da interface própria.
+
+Prévia: v4.3.3, provider declarado e ausente do manifest, seis entradas. Comando
+package:discover --no-interaction --no-ansi terminou 0; saída listou seis pacotes
+anteriores pelo manifest já carregado, como 5.33. Arquivo posterior com sete entradas;
+novo processo confirmou SanctumServiceProvider em services.providers/eager e
+getLoadedProviders true. Trechos relevantes do provider instalado consultados.
+
+Rota: sanctum.csrf-cookie, URI sanctum/csrf-cookie, GET|HEAD, ação
+Laravel\Sanctum\Http\Controllers\CsrfCookieController@show, middleware web.
+Route:list expandiu web com EncryptCookies/AddQueuedCookiesToResponse/StartSession/
+ShareErrorsFromSession/PreventRequestForgery/SubstituteBindings. Duas rotas do
+catálogo continuam públicas com SubstituteBindings; grupo api não ganhou
+EnsureFrontendRequestsAreStateful. statefulApi não habilitado.
+
+php -l nos dois manifests passou; suíte completa 67/635, código 0. JSON/lock
+preservaram hashes. Manifests atualizados: packages.php SHA-256
+761eebb4db68825b3c3f5439eac39f4999451e156f2aabd247e8d208dc5dd3b8;
+services.php bfb4f898a4a5ff5d72a2e49caa8299c1da61d68da641ded795939dcef2b40548.
+SQL posterior loja_test/loja_testes: seis tabelas, quatro migrations/lotes
+1/2/3/4 e zero users/tokens/sessions/produtos/categorias. Nenhuma migration
+aplicada ou requisição ao novo endpoint; sem snapshot normal/auditoria/quatro
+contratos repetidos. Última auditoria 7.12 código 0; última suíte 7.13, 67/635.
+Fonte oficial Laravel de descoberta consultada.
+Git diff --check passou; links locais das aulas 7.12 (dois) e 7.13 (cinco)
+conferidos. Manifests gerados, vendor e arquivos .env locais continuam ignorados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.13: pendente; checkpoint concluído. Último checkpoint publicado:
+99a131dcbcd43b504db45f3e279a783065c69a5d (7.12).
+Próximo passo exato: publicar e conferir o checkpoint da 7.13. Depois,
+7.14 — primeira requisição HTTP controlada a /sanctum/csrf-cookie para observar
+status e nomes/atributos dos cookies, sem login.

@@ -78,8 +78,12 @@ pendente naquela etapa. Entendimento da 7.11 confirmado com "entendi" em 04/11/2
 publicada em 0cf2c82, remoto conferido. Na 7.12, somente symfony/mime atualizado
 8.1.7 → 8.1.10; JSON e outros pacotes preservados. Auditoria 0/sem avisos,
 validação/plataforma e suíte 67/635 passaram. Entendimento da 7.12 confirmado com
-"entendi" em 04/11/2026; publicação pendente. Após publicar, 7.13: package:discover, manifests,
-provider Sanctum e registro de /sanctum/csrf-cookie, antes de statefulApi/login.
+"entendi" em 04/11/2026; publicada em 99a131d, remoto conferido. Na 7.13,
+package:discover executado: sete entradas, provider Sanctum carregado e rota
+GET|HEAD /sanctum/csrf-cookie registrada com web. Manifests válidos, JSON/lock
+preservados e suíte 67/635 passou. Entendimento da 7.13 confirmado com "entendi"
+em 04/11/2026; publicação pendente. Após publicar, 7.14: primeira requisição controlada à rota
+para observar status e nomes/atributos dos cookies, sem login.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -730,7 +734,9 @@ do pacote/configuração atual conferidos; entendimento confirmado com "entendi"
 em 04/11/2026 e publicação em 63c0f1e. Na 7.11, pacote instalado/verificado;
 entendimento confirmado com "entendi" em 04/11/2026 e publicação em 0cf2c82.
 Na 7.12, symfony/mime corrigido e verificado; entendimento confirmado com
-"entendi" em 04/11/2026. Publicar checkpoint e iniciar descoberta do Sanctum na 7.13.
+"entendi" em 04/11/2026 e publicação em 99a131d. Na 7.13, Sanctum descoberto,
+provider/rota conferidos, entendimento confirmado com "entendi" em 04/11/2026.
+Publicar checkpoint e iniciar primeira requisição na 7.14.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

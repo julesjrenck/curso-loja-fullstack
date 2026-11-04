@@ -110,5 +110,6 @@ Entendimento confirmado com "entendi" em 04/11/2026. Próximo passo após public
 7.13 — executar package:discover, explicar os manifests atualizados e conferir
 o registro do SanctumServiceProvider e da rota /sanctum/csrf-cookie, antes de
 habilitar statefulApi ou implementar login. Correção explicada/verificada e
-entendimento confirmado. Checkpoint preparado para commit e push; consultar
-o Git ou registro posterior para conferir a publicação.
+entendimento confirmado. Checkpoint publicado e conferido em
+99a131dcbcd43b504db45f3e279a783065c69a5d; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.
