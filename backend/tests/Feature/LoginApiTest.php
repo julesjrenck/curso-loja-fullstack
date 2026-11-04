@@ -78,6 +78,61 @@ class LoginApiTest extends TestCase
         $this->assertNotSame($tokenAnterior, $sessao->token());
     }
 
+    public function test_credenciais_recusadas_retornam_mesmo_422_e_preservam_visitante(): void
+    {
+        User::query()->delete();
+
+        $usuario = User::query()->create([
+            'name' => 'Ana Exemplo',
+            'email' => 'ana@example.test',
+            'password' => self::SENHA,
+        ]);
+
+        $this->withSession(['marcador_visitante' => 'sessao-do-teste']);
+        $sessao = $this->app['session']->driver();
+        $idAnterior = $sessao->getId();
+        $tokenAnterior = $sessao->token();
+        $sessao->save();
+
+        $this->assertGuest('web');
+        $this->withCookie(config('session.cookie'), $idAnterior);
+        $corpos = [];
+
+        foreach ([
+            [$usuario->email, 'outra-senha-ficticia'],
+            ['ausente@example.test', self::SENHA],
+        ] as [$email, $senha]) {
+            $resposta = $this->pedir('application/json', [
+                'email' => $email,
+                'password' => $senha,
+            ]);
+
+            $resposta
+                ->assertStatus(422)
+                ->assertHeader('Content-Type', 'application/json')
+                ->assertHeaderMissing('Location')
+                ->assertCookie(config('session.cookie'), $idAnterior)
+                ->assertJsonValidationErrors(['email']);
+
+            $dados = $resposta->json();
+            $this->assertSame(['message', 'errors'], array_keys($dados));
+            $this->assertIsString($dados['message']);
+            $this->assertSame(['email'], array_keys($dados['errors']));
+            $this->assertCount(1, $dados['errors']['email']);
+            $this->assertIsString($dados['errors']['email'][0]);
+
+            $this->assertGuest('web');
+            $this->assertNull($sessao->get(Auth::guard('web')->getName()));
+            $this->assertSame($idAnterior, $resposta->baseRequest->cookies->get(config('session.cookie')));
+            $this->assertSame($idAnterior, $sessao->getId());
+            $this->assertSame($tokenAnterior, $sessao->token());
+            $this->assertSame('sessao-do-teste', $sessao->get('marcador_visitante'));
+            $corpos[] = $dados;
+        }
+
+        $this->assertSame($corpos[0], $corpos[1]);
+    }
+
     #[DataProvider('formatosAccept')]
     public function test_entrada_vazia_retorna_422_e_sexto_pedido_retorna_429(?string $accept): void
     {

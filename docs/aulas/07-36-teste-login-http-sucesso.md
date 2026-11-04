@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.35 com "entendi". Checkpoint anterior publicado e conferido em
 1f0f2554b00d3f3a39696ff26475bc4c2dbb132d; HEAD/origin/main/main remota iguais.
-Entendimento da 7.36 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.36 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -120,8 +120,10 @@ auditoria, snapshot normal ou execução dos quatro contratos de catálogo.
 
 Cenário implementado, explicado e verificado; entendimento confirmado com "entendi" em 04/11/2026.
 Documentos/contratos atualizados. Nenhum código de aplicação, configuração,
-dependência, ambiente, migration, rota ou OpenAPI alterado. Publicação pendente.
-Após publicar: 7.37 — adicionar somente cenário de credenciais
+dependência, ambiente, migration, rota ou OpenAPI alterado. Publicação concluída
+e conferida em be62fdf65851bc52d2f2b7c042c9e22a6856882a;
+HEAD/origin/main/main remota iguais após push. Registro posterior à publicação.
+Continuidade realizada na 7.37 — adicionar somente cenário de credenciais
 recusadas por HTTP em LoginApiTest, com senha incorreta/e-mail inexistente,
 422 genérico igual e visitante preservado. Fluxo real de CSRF/cookies continua
 para etapa própria.

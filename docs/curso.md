@@ -189,10 +189,16 @@ somente no sucesso, sessão visitante/cookie de teste. Rota/guard reais: 204,
 identidade/sessão, marcador preservado, ID/token renovados e cookie anterior/
 novo conferidos. Helper aceita dados e cookies preparados pelo Laravel.
 Focado 4/294 e suíte 100/1.333 passaram; SQL posterior sem dados.
-Entendimento da 7.36 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.36 confirmado com "entendi" em 04/11/2026; publicada em be62fdf,
+remoto conferido. Na 7.37, adicionado um método em LoginApiTest para senha
+incorreta/e-mail inexistente: duas tentativas com formato válido, mesmo 422
+genérico em email, visitante/identidade null e ID/token/marcador preservados,
+mesmo ID nos cookies. Fixture em loja_test/transação e corpos comparados sem fixar
+tradução. Focado 5/344 e suíte 101/1.383 passaram; SQL posterior sem dados.
+Entendimento da 7.37 confirmado com "entendi" em 04/11/2026; publicação pendente.
 Próximo após publicar:
-7.37 — adicionar somente credenciais recusadas por HTTP em LoginApiTest,
-senha incorreta/e-mail inexistente com mesmo 422 genérico e visitante preservado.
+7.38 — ampliar sucesso para consultar GET usuario com cookie novo e guard
+recriado, conferindo somente id/name/email. CSRF real/navegador pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -900,7 +906,11 @@ Entendimento confirmado com "entendi" em 04/11/2026; publicação em 1f0f255.
 Na 7.36, sucesso por HTTP adicionado/explicado em LoginApiTest, fixture em
 loja_test/transação e sessão/cookie em memória; focado 4/294 e suíte 100/1.333.
 Rollback confirmado. Entendimento confirmado com "entendi" em 04/11/2026;
-publicação pendente antes da 7.37 — credenciais recusadas por HTTP.
+publicação em be62fdf. Na 7.37, credenciais recusadas por HTTP adicionadas/
+explicadas em LoginApiTest: mesmo 422/sessão visitante preservada; focado 5/344
+e suíte 101/1.383 passaram, rollback conferido. Entendimento confirmado com
+"entendi" em 04/11/2026; publicação pendente antes da 7.38 — GET usuario
+após login com cookie e guard recriado.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

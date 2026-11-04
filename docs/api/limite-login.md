@@ -105,8 +105,11 @@ agora ausência real verificada. Focado 6/236; suíte 99/1.306 passou, sem novo 
 Na 7.36, LoginApiTest recebe cenário de sucesso pela rota, com fixture/transação
 em loja_test, 204, identidade/sessão e renovação de ID/token/cookie conferidos.
 Focado 4/294; suíte 100/1.333 passou. Cenários de cinco 422/sexto 429 preservados.
-Não verifica contagem após sucesso nesta etapa. Próxima 7.37: credenciais
-recusadas por HTTP com 422 genérico e visitante preservado.
+Não verifica contagem após sucesso nessa etapa. Na 7.37, testadas senha
+incorreta/e-mail inexistente pela rota no mesmo método, duas tentativas dentro
+do limite: mesmo 422 genérico/visitante e sessão preservados. Focado 5/344;
+suíte 101/1.383 passou. Próxima 7.38: GET usuario após login com cookie novo
+e guard recriado.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).

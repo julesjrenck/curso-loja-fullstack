@@ -5,8 +5,21 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.36 — Login bem-sucedido pelo kernel HTTP: implementação,
+- Etapa atual: 7.37 — Credenciais recusadas pelo kernel HTTP: implementação,
   explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Situação da 7.37: somente um método adicionado a LoginApiTest. Fixture em
+  loja_test/transação, sessão de visitante/marcador/ID/token/save/cookie já
+  estudados. Foreach com senha incorreta/e-mail inexistente, formato válido,
+  duas requisições dentro do limite. Rota/kernel/guard reais: mesmo 422 JSON,
+  sem Location, somente message/errors email com uma string; corpos comparados
+  sem fixar tradução. Guard visitante/chave de identidade null, ID/token/
+  marcador preservados e mesmo ID nos cookies de entrada/saída. Sintaxe válida; focado
+  5 testes/344 asserções, suíte 101/1.383, códigos 0. SQL posterior loja_test/
+  loja_testes: seis tabelas/quatro migrations/dados zero. Aplicação/configuração/
+  ambientes/dependências/rotas/migrations/OpenAPI preservados. Entendimento
+  confirmado com "entendi" em 04/11/2026; publicação pendente. Próximo após publicar:
+  7.38 — ampliar sucesso para GET /api/v1/usuario com cookie de sessão novo
+  e guard recriado, conferindo somente id/name/email. CSRF real pendente.
 - Situação da 7.36: somente LoginApiTest alterado. Imports User/DatabaseTransactions/
   Auth/DB, trait de transação na classe e conferência loja_test/loja_testes no
   setUp antes de DML. Um cenário de sucesso cria fixture fictícia, sessão de
@@ -20,10 +33,9 @@
   rollback da fixture confirmado. Aplicação/configuração/dependências/rotas/
   ambientes/migrations/OpenAPI preservados. Sem rede/navegador; testing dispensa
   validação CSRF. Entendimento confirmado com "entendi" em 04/11/2026;
-  publicação da 7.36 pendente. Próximo passo exato após publicar:
-  7.37 — adicionar somente credenciais recusadas por
-  HTTP em LoginApiTest, senha incorreta/e-mail inexistente, mesmo 422 genérico
-  e visitante preservado.
+  publicação verificada em be62fdf65851bc52d2f2b7c042c9e22a6856882a,
+  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  Continuidade realizada na 7.37.
 - Situação da 7.35: somente helper pedir de LoginRateLimiterTest alterado.
   Após Request::create, remove Accept quando null ou define string; duas
   asserções conferem presença/valor antes do middleware. Removido preparo
@@ -34,7 +46,7 @@
   Nenhuma aplicação/rota/configuração/ambiente/dependência/migration/OpenAPI
   alterada. Entendimento confirmado com "entendi" em 04/11/2026; publicação
   verificada em 1f0f2554b00d3f3a39696ff26475bc4c2dbb132d,
-  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  HEAD/origin/main/main remota iguais. Checkpoint anterior à 7.36.
   Continuidade realizada na 7.36. CSRF real/cookies pendentes.
 - Situação da 7.34: somente tests/Feature/LoginApiTest.php criado. SetUp exige
   cache/sessão array e fixa relógio; tearDown restaura. Um método/DataProvider
@@ -1773,7 +1785,10 @@ isolado remove/define Accept e confere presença/valor, focado 6-236/suíte
 1f0f255. Continuidade realizada na 7.36 — sucesso por HTTP em LoginApiTest,
 fixture/transação/guard real/sessão e cookies de teste, focado 4-294/suíte
 100-1.333 e rollback confirmado. Entendimento confirmado com "entendi" em
-04/11/2026; publicação pendente antes da 7.37 — credenciais recusadas por HTTP.
+04/11/2026 e publicação em be62fdf. Continuidade realizada na 7.37 — credenciais
+recusadas por HTTP, corpos 422 iguais/sessão visitante preservada, focado 5-344/
+suíte 101-1.383 e rollback. Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente
+antes da 7.38 — GET usuario após login com cookie novo e guard recriado.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -13490,9 +13505,54 @@ Compose/OpenAPI preservados, índice vazio. Nenhum .env, log ou valor de cookie/
 sessão/token incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.36: pendente; alterações locais. Último checkpoint publicado:
-1f0f2554b00d3f3a39696ff26475bc4c2dbb132d (7.35).
-Próximo passo exato após publicar: 7.37 — adicionar somente cenário
-de credenciais recusadas por HTTP em LoginApiTest, senha incorreta/e-mail
-inexistente com mesmo 422 genérico e visitante preservado. Fluxo real de
-CSRF/cookies, OpenAPI de login e logout continuam pendentes.
+Publicação da 7.36: concluída e conferida em
+be62fdf65851bc52d2f2b7c042c9e22a6856882a; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.37.
+
+## Etapa 7.37 — Credenciais recusadas pelo kernel HTTP — 04/11/2026
+
+Iniciada após confirmação da 7.36 com "entendi" e publicação verificada.
+Implementação: somente um método adicionado a tests/Feature/LoginApiTest.php,
+sem mudar imports/helpers/cenários anteriores. Nova aula 7.37 e contratos/
+registros atualizados. Aplicação/configuração/ambientes/dependências/rotas/
+migrations/OpenAPI preservados.
+
+Explicação apresentada: fixture de Ana dentro da transação após setUp exigir
+loja_test/loja_testes, cache/sessão array e relógio. WithSession/marcador,
+ID/token anteriores/save/assertGuest/withCookie preparam visitante. Foreach
+desestrutura dois pares: conta existente/senha incorreta e e-mail inexistente/
+senha fictícia. Duas requisições no mesmo método PHPUnit, dentro do limite
+de cinco. Formato válido permite chegar ao guard/controller reais pela rota;
+erro genérico 422 em email não distingue as causas no corpo.
+
+Cada resposta exige 422/JSON/sem Location, cookie de saída com ID anterior,
+somente message string/errors e apenas email com uma mensagem string.
+AssertGuest e chave de identidade do guard null na sessão. Cookie de entrada
+com ID anterior; ID/token CSRF/marcador preservados. Corpos decodificados
+guardados e comparados com assertSame, sem fixar texto/tradução. Kernel
+renderiza a exceção; não há captura manual ou actingAs. Nenhum ID/token/cookie
+impresso ou versionado. Sem novo helper ou mudança do comportamento de login.
+
+Sintaxe válida. Focado --testdox: 5 testes/344 asserções, código 0; antes 4/294.
+Sucesso, duas falhas no novo método e três execuções de entrada inválida/limite
+passaram. Suíte completa: 101 testes/1.383 asserções, código 0; antes 100/1.333.
+Última completa: 7.37. SELECT posterior loja_test/loja_testes: seis tabelas,
+quatro migrations/lotes 1/2/3/4 e zero users/password_reset_tokens/sessions/
+produtos/categorias. Rollback conferido. Nenhuma conta criada no banco normal.
+Auditoria/snapshot normal/quatro contratos de catálogo não repetidos.
+
+Sem rede/navegador; testing dispensa validação CSRF. Não verifica consulta
+GET usuario após login, transporte ou rejeição CSRF real nesta etapa.
+
+Git diff --check passou. Links locais conferidos: consulta três, limite um,
+login dois, aulas 7.36/7.37 um cada. Diff de backend restrito a um método
+adicionado em LoginApiTest; Compose/OpenAPI preservados, índice vazio.
+Nenhum .env, log ou valor de cookie/sessão/token incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.37: pendente; alterações locais. Último checkpoint publicado:
+be62fdf65851bc52d2f2b7c042c9e22a6856882a (7.36).
+Próximo passo exato após publicar: 7.38 — ampliar o cenário de
+sucesso para consultar GET /api/v1/usuario com cookie de sessão novo e guard
+recriado, conferindo somente id/name/email. Fluxo real de CSRF/cookies,
+OpenAPI de login e logout continuam pendentes.

@@ -95,11 +95,11 @@ O exemplo representa email inválido; outros casos podem apontar password ou amb
 A validação ocorre antes de tentar autenticar. Os valores das credenciais não
 devem ser incluídos no corpo de erro. Textos e idioma das mensagens podem variar.
 
-## Credenciais recusadas: resposta planejada
+## Credenciais recusadas: resposta verificada pelo kernel HTTP
 
 Entrada com formato válido, mas e-mail não cadastrado ou senha incorreta:
 status 422/application/json, no mesmo formato de validação. Ambos os casos
-produzirão o mesmo erro genérico associado a email, sem informar qual credencial
+produzem o mesmo erro genérico associado a email, sem informar qual credencial
 falhou nem revelar se a conta existe. Exemplo:
 
 ```json
@@ -117,6 +117,11 @@ continua significando que aquela requisição não possui autenticação válida
 Usar 422 para credenciais recusadas neste login é uma decisão do nosso contrato.
 Na 7.27, senha incorreta e e-mail inexistente produziram corpos 422 iguais na
 chamada direta ao controller, com guard visitante e ID/token de sessão preservados.
+Na 7.37, LoginApiTest verificou os dois casos pela rota: mesmo corpo 422,
+somente message/errors com erro em email, guard visitante e chave de identidade
+null na sessão. ID/token/marcador preservados; cookies de entrada/saída
+identificam a mesma sessão, conferidos pelo ID após decodificação.
+Transação em loja_test e rollback; sem fixar tradução da mensagem.
 
 ## Limitação de frequência aplicada
 
@@ -176,8 +181,10 @@ presença/valor antes do middleware. Focado 6/236, suíte 99/1.306 passaram.
 Na 7.36, sucesso adicionado em LoginApiTest com transação por execução e
 conferência loja_test/loja_testes antes de DML; fixture somente no sucesso.
 Helper aceita dados JSON e cookies preparados pelo Laravel. Focado 4/294;
-suíte 100/1.333 passou; SQL posterior sem dados. Próxima 7.37: credenciais
-recusadas por HTTP, mesmo 422 genérico e visitante preservado.
+suíte 100/1.333 passou; SQL posterior sem dados. Na 7.37, adicionados senha
+incorreta/e-mail inexistente no mesmo método: corpos 422 iguais/visitante e
+sessão preservados. Focado 5/344; suíte 101/1.383 passou e SQL posterior sem dados.
+Próxima 7.38: consultar GET usuario após login com cookie novo e guard recriado.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

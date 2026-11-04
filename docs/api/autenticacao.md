@@ -125,8 +125,12 @@ Focado 6/236, suíte 99/1.306 passaram. Na 7.36, sucesso pela rota adicionado em
 LoginApiTest: fixture/transação em loja_test, guard real/204, identidade na
 sessão, ID/token renovados e cookie de entrada/saída conferidos. Focado 4/294;
 suíte 100/1.333 passou, dados desfeitos. Não consulta GET usuario após login
-neste cenário nem comprova CSRF/rede/navegador. Próxima 7.37: credenciais
-recusadas por HTTP, 422 genérico igual e visitante preservado.
+neste cenário nem comprova CSRF/rede/navegador. Na 7.37, credenciais recusadas
+por HTTP verificadas: senha incorreta/e-mail inexistente com mesmo 422
+genérico/visitante, identidade null, ID/token/marcador preservados e mesmo ID
+nos cookies de entrada/saída após decodificação.
+Focado 5/344; suíte 101/1.383 passou e dados desfeitos. Próxima 7.38:
+GET usuario após login com cookie novo e guard recriado, mantendo id/name/email.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).
