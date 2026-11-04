@@ -119,7 +119,11 @@ suíte 101/1.407 passou. Nenhuma nova tentativa de login ou regra de limite
 alterada. Na 7.40, protocolo CSRF desenhado, sem execução: casos recusados antes do
 limitador esperam 419; cabeçalho correto com JSON vazio espera 422 e conta
 uma tentativa. Se 429 interferir, preservar contador e aguardar expiração.
-Próxima 7.41: executar protocolo 204/419/419/422 com evidências resumidas.
+Na 7.41, HTTP local em servidor temporário confirmou 204/419/419/422 com
+CSRF ativo. C alcançou a validação; não houve 429 e não zeramos contadores.
+Coleta de sessões desativada só nesse processo para preservar 54 arquivos
+antigos; configuração habitual preservada. Sem nova suíte. Próxima 7.42:
+incluir POST login no OpenAPI com respostas 204/419/422/429.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).

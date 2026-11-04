@@ -214,10 +214,17 @@ reconhecida, Sec-Fetch-Site ausente, cookies de visitante e JSON {}. Preparaçã
 204 e controles 419/419/422 são expectativas, não resultados observados.
 Fontes oficiais/código instalado/configuração carregada conferidos; nenhuma
 requisição HTTP executada. Sem nova suíte; última 7.39, 101/1.407.
-Entendimento da 7.40 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.40 confirmado com "entendi" em 04/11/2026; publicada em 655a17b,
+remoto conferido. Na 7.41, HTTP confirmou 204/419/419/422 com Guzzle no Docker,
+ambiente local/CSRF ativo/console e testing false. Para preservar 54 sessões
+antigas, servidor PHP temporário em porta dinâmica com coleta [0,100] só nele;
+Host/Origin 8002 mantidos. Uma sessão própria e auxiliares removidos/servidor
+encerrado; nomes/hashes anteriores preservados, configuração habitual [2,100].
+Sem credenciais, SQL, nova suíte ou alteração persistente de backend.
+Entendimento da 7.41 confirmado com "entendi" em 04/11/2026; publicação pendente.
 Próximo após publicar:
-7.41 — executar o protocolo, registrar evidências sem valores privados e
-remover somente a sessão própria, preservando arquivos preexistentes.
+7.42 — integrar POST /api/v1/login ao OpenAPI, email/password e respostas
+204/419/422/429, validando esquemas/exemplos. Navegador/CORS e logout pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -936,8 +943,11 @@ adicionado/explicado: 401 JSON/sessão visitante, focado 5/368 e suíte 101/1.40
 rollback conferido. Entendimento confirmado com "entendi" em 04/11/2026;
 publicação em 9b7c8dd. Na 7.40, protocolo CSRF fora de testing desenhado e
 explicado, fontes/código/configuração conferidos; sem pedidos HTTP ou nova
-suíte. Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente
-antes da 7.41 — executar protocolo 204/419/419/422.
+suíte. Entendimento confirmado com "entendi" em 04/11/2026; publicação em 655a17b.
+Na 7.41, protocolo HTTP 204/419/419/422 executado/explicado, CSRF ativo em servidor
+temporário com coleta desativada só nele; uma sessão própria removida/54
+anteriores preservadas. Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente
+antes da 7.42 — POST login no OpenAPI.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

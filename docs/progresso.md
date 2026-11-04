@@ -5,8 +5,21 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.40 — Desenho da verificação CSRF fora de testing:
-  documento, explicação e verificações apresentados; entendimento confirmado em 04/11/2026.
+- Etapa atual: 7.41 — Verificação de CSRF por HTTP fora de testing:
+  execução, explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Situação da 7.41: diagnóstico temporário PHP/Guzzle no Docker confirmou
+  preparação 204 e POSTs sem cabeçalho/inválido/correto 419/419/422. JSON/message
+  string/sem Location; errors email/password no último. Sem credenciais.
+  Adaptação: 54 sessões antigas/coleta normal [2,100]; servidor PHP temporário
+  com coleta [0,100] apenas nele, bootstrap/kernel/rotas/CSRF ativos em local,
+  console/testing false. Porta dinâmica interna; Host/Origin 8002 mantidos.
+  Metadados por pedido conferidos, mesmo ID e sessão sem chave de login.
+  Código 0. Finally encerrou servidor/removeu uma sessão própria e auxiliares;
+  nomes/hashes anteriores preservados. Leitura final: 54 sessões/configuração
+  habitual [2,100]. Sem SQL/nova suíte; última 7.39, 101/1.407. Backend/Compose/
+  OpenAPI preservados. Entendimento confirmado com "entendi" em 04/11/2026; publicação
+  pendente. Próximo exato após publicar: 7.42 — integrar POST login ao OpenAPI, email/password
+  e respostas 204/419/422/429, validar esquemas/exemplos. Navegador/CORS pendentes.
 - Situação da 7.40: docs/api/verificacao-csrf.md criado. Protocolo para Guzzle
   já instalado no Docker/servidor local, Host/Origin 8002, base interna 8000,
   sessão visitante/cookies em memória/JSON {}. Sec-Fetch-Site/_token/X-CSRF-TOKEN
@@ -19,9 +32,9 @@
   Limpeza só da sessão própria e preservação de arquivos/contadores previstas.
   Sem nova suíte/SQL/auditoria/snapshot; última suíte 7.39, 101/1.407. Aplicação/
   ambientes/dependências/serviços/rotas/migrations/OpenAPI preservados.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo exato após publicar: 7.41 — executar protocolo 204/419/419/422 no Docker, registrar só
-  evidências permitidas e limpar somente sessão própria. Navegador/CORS pendentes.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  655a17b6cfa5f76e9c6b6026c47020f8853db84c, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.41.
 - Situação da 7.39: somente cenário de sucesso de LoginApiTest ampliado com
   controle após POST/204 e GET com cookie/200. Flush em memória/forgetGuards;
   call GET com parâmetros/cookies/arquivos vazios, Accept JSON/Origin/IP iguais.
@@ -33,7 +46,7 @@
   dependências/rotas/migrations/OpenAPI preservados. Entendimento confirmado
   com "entendi" em 04/11/2026; publicação verificada em
   9b7c8dd95ff4fc8470d6fe8272b0540c3a5de4eb, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.40.
+  Checkpoint anterior à 7.40. Continuidade realizada na 7.40.
 - Situação da 7.38: somente cenário de sucesso de LoginApiTest ampliado e
   renomeado. Obtém cookie da resposta do POST pelo helper getCookie, exige
   existência e guarda ID decifrado em memória. Flush retira atributos do Store
@@ -1836,8 +1849,11 @@ e publicação em 29e7b03. Continuidade realizada na 7.39 — controle sem cooki
 401 JSON/sessão visitante, focado 5-368/suíte 101-1.407 e rollback. Entendimento confirmado com "entendi" em 04/11/2026
 e publicação em 9b7c8dd. Continuidade realizada na 7.40 — protocolo CSRF
 fora de testing desenhado, fontes/código/configuração conferidos, sem HTTP
-executado. Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente
-antes da 7.41 — executar 204/419/419/422.
+executado. Entendimento confirmado com "entendi" em 04/11/2026; publicação em 655a17b. Continuidade realizada na 7.41 — HTTP
+204/419/419/422, CSRF ativo/servidor temporário sem coleta automática, uma
+sessão própria removida/54 anteriores preservadas/configuração habitual intacta.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente
+antes da 7.42 — POST login no OpenAPI.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -13730,9 +13746,61 @@ OpenAPI sem diff, índice vazio; somente documentação alterada. Nenhum .env,
 log, cookie, token ou sessão incluídos.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.40: pendente; alterações documentais locais. Último checkpoint:
-9b7c8dd95ff4fc8470d6fe8272b0540c3a5de4eb (7.39), publicado e conferido.
-Próximo passo exato após publicar: 7.41 — executar protocolo com
-Guzzle no Docker/servidor local, conferir 204/419/419/422, registrar evidências
-permitidas e limpar somente sessão própria. CSRF real, navegador/CORS,
-OpenAPI de login e logout permanecem pendentes.
+Publicação da 7.40: concluída e conferida em
+655a17b6cfa5f76e9c6b6026c47020f8853db84c; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.41.
+
+
+## Etapa 7.41 — Verificação de CSRF por HTTP fora de testing — 04/11/2026
+
+Iniciada após confirmação da 7.40 com "entendi" e publicação verificada.
+Execução: diagnóstico temporário /tmp/curso-7-41-csrf.php, não versionado,
+nova aula 7.41, protocolo e contratos/registros atualizados. Nenhuma alteração
+persistente de aplicação, configuração, ambiente, dependência, serviço,
+rota, migration ou OpenAPI.
+
+Pré-conferência encontrou 54 sessões antigas, todas além do tempo de vida,
+e loteria normal [2,100]. Fonte instalada de StartSession::collectGarbage e
+FileSessionHandler conferida. Adaptação necessária ao transporte planejado:
+servidor PHP temporário no mesmo container/porta dinâmica local, carregando
+bootstrap/kernel/rotas com ambiente local e coleta [0,100] só nesse processo.
+Não usamos a porta interna 8000 do servidor habitual; Host/Origin 8002 mantidos.
+Coleta desativada preserva os arquivos anteriores; CSRF não foi desativado.
+
+Explicação apresentada: PHP -l por stdin conferiu sintaxe, depois PHP executou
+Guzzle/CookieJar com timeout 10s/http_errors false/sem proxy/redirecionamentos.
+ProcOpen/PHP -S/router temporário e metadados sem dados privados em cada pedido:
+local, console false, testing false, sessão file, CSRF ativo/exceções vazias/
+originOnly e allowSameSite false, origem reconhecida, ausência de Sec-Fetch-Site/
+X-CSRF-TOKEN/_token, presença correta de X-XSRF-TOKEN/cookies e corpo {}.
+
+Quatro respostas reais: GET csrf-cookie 204 vazio/dois cookies; A sem cabeçalho
+419; B inválido 419; C com valor URL-decodificado de XSRF-TOKEN 422/errors email/
+password. Todos os erros JSON/message string/sem Location. Mesmo ID de sessão
+nos três POSTs. Arquivo próprio contém token e nenhuma chave de login.
+Nenhuma credencial enviada. Não houve 429; contador não foi zerado. C alcançou
+validação, sem chamar tentativa de autenticação. Saída só com condições
+booleanas/status/campos permitidos; nenhum valor privado ou resposta bruta.
+
+Finally encerrou servidor, validou identificação da sessão própria via
+cookie/prefixo/ID ausente da lista anterior, removeu uma sessão e os auxiliares
+router/metadados. Comparação de nomes/hashes anteriores exatamente iguais,
+sucesso true/código 0. Leitura final em novo processo confirmou 54 sessões,
+local/file e configuração habitual [2,100]. Nenhum arquivo anterior removido.
+
+Sem nova suíte, consulta SQL, auditoria, snapshot do banco ou quatro contratos.
+Última suíte permanece 7.39: 101 testes/1.407 asserções. Verificação apropriada
+foi HTTP fora de testing/CSRF ativo/preservação e limpeza. Não comprova
+políticas de navegador/CORS ou servidor HTTPS de produção.
+
+Git diff --check passou. Links locais conferidos: consulta quatro, limite um,
+login três, protocolo CSRF três, aulas 7.40/7.41 um cada. Backend/Compose/
+OpenAPI sem diff; índice vazio, somente documentação alterada. Nenhum .env,
+log, valor de cookie/token/ID ou script temporário incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.41: pendente; registros locais. Último checkpoint publicado:
+655a17b6cfa5f76e9c6b6026c47020f8853db84c (7.40).
+Próximo passo exato após publicar: 7.42 — integrar POST /api/v1/login
+a docs/api/openapi.json, corpo email/password e respostas 204/419/422/429,
+validando esquemas e exemplos. Navegador/CORS e logout permanecem pendentes.

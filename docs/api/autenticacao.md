@@ -139,9 +139,12 @@ sem Location. Request sem cookies/hasSession true, visitante e identidade/
 marcador null. Focado 5/368, suíte 101/1.407; rollback conferido. Não é logout.
 Na 7.40, [protocolo CSRF fora de testing](verificacao-csrf.md) desenhado com
 visitante/JSON vazio, mesma origem e cookies, sem Sec-Fetch-Site. Expectativas
-204/419/419/422 ainda não executadas; configuração e fontes conferidas.
-Próxima 7.41: executar protocolo e limpar somente a sessão própria. Navegador/
-CORS e validação CSRF real permanecem pendentes.
+204/419/419/422 verificadas por HTTP na 7.41, com ambiente local/CSRF ativo
+em servidor PHP temporário com coleta de sessões desativada só nele. Visitante
+sem identidade e erros email/password após token correto, sem fornecer
+credenciais. Servidor/sessão própria/auxiliares removidos; 54 sessões anteriores
+preservadas. Código 0, sem nova suíte. Próxima 7.42: POST login no OpenAPI.
+Comportamento de navegador/CORS permanece pendente.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).

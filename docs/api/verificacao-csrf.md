@@ -1,7 +1,7 @@
-# Verificação de CSRF no servidor local — protocolo planejado
+# Verificação de CSRF no servidor local — protocolo executado
 
-Desenho da 7.40, em 04/11/2026. Nenhum pedido deste protocolo foi executado
-nesta etapa. Os resultados abaixo são expectativas, a verificar na 7.41.
+Desenho da 7.40 e execução na 7.41, em 04/11/2026. Os quatro resultados
+204/419/419/422 foram observados por HTTP no Docker, conforme registrado abaixo.
 Complementa o [contrato de login](login.md) e a
 [consulta do usuário](autenticacao.md).
 
@@ -9,11 +9,11 @@ Complementa o [contrato de login](login.md) e a
 
 Verificar a proteção de POST /api/v1/login fora de testing. Os testes anteriores
 passam pelo kernel, mas nesse ambiente a comparação CSRF é dispensada.
-Usaremos o servidor HTTP local ativo e um cliente Guzzle já instalado, no
-Docker, com sessão de visitante. O corpo será sempre o objeto JSON vazio {}.
+Usamos um servidor PHP temporário no mesmo container e Guzzle já instalado,
+com sessão de visitante. O corpo dos três POSTs foi o objeto JSON vazio {}.
 Sem email/password, a validação interrompe antes da tentativa de autenticação.
 
-Serão pedidos HTTP com transporte real dentro do container, como na 7.14.
+Foram pedidos HTTP com transporte real dentro do container, como na 7.14.
 Isso não verifica as políticas de cookies, CORS ou Fetch Metadata de um
 navegador. O cliente de diagnóstico controla seus próprios cabeçalhos.
 
@@ -29,31 +29,39 @@ SubstituteBindings, nessa ordem. Não alteramos configuração ou middleware.
 
 ## Endereço e cabeçalhos constantes
 
-Cliente executado no backend Docker, base URI http://127.0.0.1:8000.
-Host: 127.0.0.1:8002 representa a porta publicada pelo Compose. Todos os pedidos
-usarão Origin: http://127.0.0.1:8002 e Accept: application/json. Os POSTs terão
-Content-Type: application/json. Sem Referer conflitante, Authorization ou credenciais.
+O desenho previa usar a porta interna 8000 do servidor habitual. A conferência
+anterior à execução encontrou 54 sessões antigas e coleta probabilística [2,100].
+Para preservar esses arquivos, executamos um servidor PHP temporário em porta
+local dinâmica, carregando a aplicação com ambiente local/rotas/middlewares.
+Somente nesse processo, session.lottery ficou [0,100]. CSRF continuou ativo;
+metadados de cada pedido confirmaram console false/testing false/sem exceções,
+originOnly false/allowSameSite false. Nenhum arquivo de configuração foi alterado.
 
-O cliente manterá os cookies em memória entre os pedidos. Não seguir
-redirecionamentos, não usar proxy e limitar cada pedido a dez segundos,
-permitindo inspecionar respostas 4xx sem transformá-las em exceções do cliente.
+Host: 127.0.0.1:8002 e Origin: http://127.0.0.1:8002 permaneceram fixos, como no
+desenho. Accept: application/json em todos os pedidos; POSTs com Content-Type:
+application/json. Sem Referer conflitante, Authorization ou credenciais.
+O servidor temporário foi encerrado ao final; o habitual manteve [2,100].
+
+O cliente manteve cookies em memória entre os pedidos, sem proxy ou seguir
+redirecionamentos, com timeout de dez segundos e http_errors false para
+inspecionar respostas 4xx. Não foi usado navegador.
 
 ## Selecionar o caminho de comparação de tokens
 
-Nos três POSTs, Sec-Fetch-Site ficará ausente. Também não enviaremos _token no
+Nos três POSTs, Sec-Fetch-Site ficou ausente. Também não enviamos _token no
 corpo ou X-CSRF-TOKEN, para que somente X-XSRF-TOKEN varie entre os casos.
 O middleware instalado pode aceitar same-origin por Sec-Fetch-Site antes de
 comparar tokens; por isso a simples ausência do token não define todo resultado
-possível no Laravel 13. Não mudaremos essa configuração para o diagnóstico.
+possível no Laravel 13. A configuração de proteção CSRF foi mantida.
 Referência: [proteção CSRF e verificação de origem](https://laravel.com/docs/13.x/csrf#origin-verification).
 
 Origin reconhecido prepara sessão/CSRF pelo Sanctum. Aqui ele permanece igual
 em todos os pedidos, enquanto a informação de token varia. Omitir Origin não
 seria um controle equivalente: poderia retirar a preparação stateful da API.
 
-## Sequência e resultados esperados
+## Sequência e resultados observados na 7.41
 
-| Passo | Pedido | Cookies e cabeçalho CSRF | Expectativa |
+| Passo | Pedido | Cookies e cabeçalho CSRF | Resultado |
 | --- | --- | --- | --- |
 | Preparação | GET /sanctum/csrf-cookie | Sem cookies anteriores do diagnóstico | 204 vazio; recebe XSRF-TOKEN e loja-fullstack-session. |
 | A | POST /api/v1/login com {} | Cookies da preparação; sem X-XSRF-TOKEN | 419 JSON, message string, sem Location. |
@@ -92,6 +100,17 @@ e confirmação de que o arquivo não existia antes. Em finally, remover somente
 esse arquivo e conferir preservação dos arquivos anteriores, como na 7.14.
 Não limpar o diretório de sessões ou cache inteiro.
 
-Na 7.41, verificar novamente configuração, disponibilidade do servidor, cookies
-recebidos e condições do protocolo antes de interpretar os resultados. A
-comparação de tokens e os status 419/419/422 continuam pendentes de execução.
+Na 7.41, foram conferidos os metadados de entrada no servidor em cada pedido,
+a presença/ausência do cabeçalho e o mesmo ID de sessão nos três POSTs. Todos
+os erros vieram em JSON, com message string e sem Location; C contém errors
+com email/password. Não houve 429. Leitura interna do arquivo próprio confirmou
+token presente e nenhuma chave de login. Diagnóstico terminou 0.
+
+O finally encerrou o processo HTTP, removeu sua única sessão e os arquivos
+auxiliares temporários. Comparação de nomes/hashes confirmou todos os arquivos
+anteriores preservados. Conferência posterior: 54 sessões e configuração
+habitual [2,100]. Nenhum valor de cookie/token/ID ou resposta bruta foi impresso
+ou versionado. Sem nova suíte, consulta SQL ou alteração de aplicação.
+Detalhes e comandos no [registro da 7.41](../aulas/07-41-verificacao-csrf-http.md).
+Próxima 7.42: integrar POST /api/v1/login ao OpenAPI com respostas 204/419/422/429.
+Navegador e CORS continuam pendentes.

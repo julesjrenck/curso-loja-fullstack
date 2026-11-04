@@ -3,7 +3,7 @@
 Implementação documental, explicação e verificações em 04/11/2026, após
 confirmação da 7.39 com "entendi". Checkpoint anterior publicado e conferido em
 9b7c8dd95ff4fc8470d6fe8272b0540c3a5de4eb; HEAD/origin/main/main remota iguais.
-Entendimento da 7.40 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.40 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -66,6 +66,9 @@ auditoria, snapshot de dados ou quatro contratos. Última suíte permanece a
 ambientes, serviços, rotas, migrations ou OpenAPI.
 
 Desenho apresentado; entendimento confirmado com "entendi" em 04/11/2026.
-Publicação da 7.40 pendente. Após publicar: 7.41 — executar esse protocolo com Guzzle
+Publicação da 7.40 concluída e conferida em
+655a17b6cfa5f76e9c6b6026c47020f8853db84c; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.41 —
+executar esse protocolo com Guzzle
 no Docker contra o servidor local, conferir 204/419/419/422, registrar somente
 evidências permitidas e remover apenas a sessão criada pelo diagnóstico.

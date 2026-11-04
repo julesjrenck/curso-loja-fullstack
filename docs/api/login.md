@@ -61,7 +61,9 @@ Este contrato não oferece login stateless para qualquer cliente sem sessão.
 Na 7.40, definido o [protocolo de verificação CSRF fora de testing](verificacao-csrf.md):
 origem reconhecida, Sec-Fetch-Site ausente, cookies de visitante e JSON vazio;
 419 esperado sem cabeçalho/com cabeçalho inválido e 422 esperado com o correto.
-Esses resultados ainda não foram observados; execução prevista na 7.41.
+Na 7.41, observados 204/419/419/422 por HTTP no Docker. Servidor temporário
+com CSRF ativo e coleta de sessões desativada só nele para preservar 54 arquivos
+antigos; configuração habitual preservada. Protocolo registra a adaptação.
 
 ## Sucesso verificado pelo kernel HTTP
 
@@ -199,9 +201,12 @@ usuario recebe 401/JSON/message apenas, sem Location; cookies vazios, sessão
 presente, visitante/identidade null/marcador null conferidos. Focado 5/368;
 suíte 101/1.407 passou e SQL posterior vazio. Não executa logout.
 Na 7.40, protocolo documental definido e configuração conferida em leitura.
-Nenhum pedido executado: resultados 204/419/419/422 são expectativas. Próxima
-7.41: executar o protocolo, registrar somente evidências permitidas e limpar
-apenas a sessão própria, preservando arquivos e contadores preexistentes.
+Naquela etapa, nenhum pedido foi executado. Na 7.41, protocolo executado no
+servidor PHP temporário local: 204/419/419/422, mensagem JSON/sem Location,
+errors email/password no último. Sessão visitante sem identidade; uma sessão
+própria removida, 54 anteriores preservadas, servidor encerrado. Código 0.
+Não verifica políticas de navegador/CORS. Sem nova suíte; última 7.39, 101/1.407.
+Próxima 7.42: adicionar POST login ao OpenAPI, respostas 204/419/422/429.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)
