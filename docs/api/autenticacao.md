@@ -19,6 +19,11 @@ atual descreve o catálogo e ainda não inclui esta operação.
 - Um ID enviado pelo cliente não selecionará outro usuário. A operação consulta
   exclusivamente o usuário identificado pela autenticação da requisição.
 
+Na 7.22, o cenário autenticado foi ampliado com dois Users persistidos:
+autenticação de Ana por actingAs/web e query id/email de Bruno. Resposta exata
+continuou de Ana. Parâmetros extras não são seletores de identidade suportados.
+Arquivo focado: 4 testes/27 asserções; suíte: 71 testes/662 asserções.
+
 ## Sucesso verificado com autenticação preparada no teste
 
 Status 200, Content-Type application/json, objeto com somente a chave data.
@@ -87,8 +92,9 @@ A rota foi registrada na 7.19 com auth:sanctum; bootstrap evita destino de
 redirecionamento em api/* e mantém renderização JSON. Na 7.20, teste automatizado
 de visitante passou nos três casos de Accept. Na 7.21, sucesso autenticado
 verificado com actingAs/guard web e User persistido em loja_test, com rollback.
-A próxima, 7.22, verificará que id/email de outro usuário enviados na consulta
-não mudam o usuário identificado pela autenticação.
+Na 7.22, id/email de outro usuário na query não mudaram a identidade retornada.
+A próxima, 7.23, integrará esta operação no OpenAPI com autenticação por cookie
+e respostas 200/401.
 Login, fluxo autenticado completo e integração no OpenAPI continuam pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)

@@ -5,8 +5,18 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.21 — Teste da consulta do usuário autenticado: concluída,
+- Etapa atual: 7.22 — Identidade autenticada e parâmetros do cliente: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.22: mesmo cenário autenticado de UsuarioApiTest renomeado/
+  ampliado. Bruno persistido antes de Ana após exigência loja_test/loja_testes;
+  IDs diferentes conferidos. Http_build_query envia id/email de Bruno, mantendo
+  actingAs Ana/web. Resposta exata continua somente data/id/name/email de Ana.
+  Sintaxe válida; focado 4 testes/27 asserções e suíte 71/662 passaram, códigos 0.
+  SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/dados zero.
+  Rollback dos dois usuários conferido. Aplicação/ambientes/dependências/OpenAPI
+  preservados. Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato após publicar e conferir: 7.23 — integrar GET /api/v1/usuario
+  no OpenAPI existente com autenticação por cookie e respostas 200/401.
 - Situação da 7.21: UsuarioApiTest recebe DatabaseTransactions na classe e novo
   cenário autenticado. Identidade loja_test/loja_testes exigida antes de escrita;
   User fictício persistido, ID inteiro positivo e actingAs($usuario, 'web').
@@ -16,10 +26,9 @@
   e suíte 71/661 passaram, códigos 0; sintaxe válida. SQL posterior: seis tabelas,
   quatro migrations/dados zero em loja_test/loja_testes. Trait envolve também
   os três casos de visitante. Aplicação/ambientes/dependências/OpenAPI preservados.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir; depois 7.22 — ampliar o cenário
-  com segundo User persistido e query id/email
-  dele, mantendo actingAs no primeiro, para comprovar seleção da própria identidade.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  02a4b08278e1ba1ed887d529b05e9d6d9f3381c7, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.22.
 - Situação da 7.20: tests/Feature/UsuarioApiTest.php criado com DataProvider
   para Accept JSON/HTML/ausente. Get com cabeçalhos explícitos, sem autenticação
   preparada ou middleware desativado. Asserções de 401/Content-Type JSON/sem
@@ -29,7 +38,7 @@
   dados zero. Aplicação/dependências/ambientes/OpenAPI preservados.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   c17ad9e3030d2c5060689b767136ed321d1e3e99, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.21.
+  Checkpoint anterior à 7.21. Continuidade realizada na 7.21.
 - Situação da 7.19: routes/api.php importa UsuarioController e registra GET
   /usuario com auth:sanctum sob api/v1. Bootstrap acrescenta redirectGuestsTo
   com null para api/*, evitando busca da rota login antes da renderização JSON.
@@ -1528,7 +1537,9 @@ com "entendi" em 04/11/2026 e publicação em 5d6a4d8. Continuidade realizada na
 7.20 — teste de visitante, focado 3/18 e suíte 70/653; entendimento confirmado
 com "entendi" em 04/11/2026 e publicação em c17ad9e. Continuidade realizada na
 7.21 — cenário autenticado, focado 4/26 e suíte 71/661; entendimento confirmado
-com "entendi" em 04/11/2026. Publicar antes da 7.22 — parâmetros de outro usuário.
+com "entendi" em 04/11/2026 e publicação em 02a4b08. Continuidade realizada na
+7.22 — parâmetros de outro usuário, focado 4/27 e suíte 71/662; entendimento
+confirmado com "entendi" em 04/11/2026. Publicar antes da 7.23 — OpenAPI.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12563,8 +12574,41 @@ e aula 7.21 dois. Diff confirmou aplicação/configuração/dependências/OpenAP
 preservados; nenhum .env ou log incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.21: pendente; checkpoint concluído. Último checkpoint publicado:
-c17ad9e3030d2c5060689b767136ed321d1e3e99 (7.20).
-Próximo passo exato após publicar e conferir: 7.22 — ampliar o cenário
-autenticado com segundo User persistido e query id/email dele, mantendo
-actingAs no primeiro, para comprovar que a resposta é da própria identidade.
+Publicação da 7.21: concluída e conferida em
+02a4b08278e1ba1ed887d529b05e9d6d9f3381c7; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.22.
+
+## Etapa 7.22 — Identidade autenticada e parâmetros do cliente — 04/11/2026
+
+Iniciada após confirmação da 7.21 com "entendi" e publicação verificada.
+Implementação: mesmo cenário de UsuarioApiTest renomeado e ampliado com segundo
+User/query; nova aula 7.22, contrato e registros. Aplicação, ambientes,
+dependências, migrations e OpenAPI preservados.
+
+Explicação apresentada: Bruno criado antes de Ana dentro da transação após
+conferir identidade; comparação de IDs diferentes sem fixar números. Query
+id/email de Bruno montada por http_build_query, codificação de valores e
+concatenação PHP. ActingAs permanece Ana/web; dados enviados não autenticam
+Bruno nem substituem $request->user(). JSON exato de Ana permanece exigido.
+Criar Bruno primeiro também distingue resultado de uma busca incorreta pelo
+primeiro registro. Uma requisição no cenário, sem teste extra ou mudança no
+controller. Cobertura dessa consulta/entradas não é login ou autorização genérica.
+
+Sintaxe válida; focado --testdox passou com 4 testes/27 asserções, código 0.
+Suíte completa 71 testes/662 asserções, código 0; quantidade de cenários mantida,
+uma asserção adicionada. SELECT posterior confirmou loja_test/loja_testes, seis
+tabelas, quatro migrations/lotes 1/2/3/4 e zero users/password_reset_tokens/
+sessions/produtos/categorias. Rollback dos dois usuários conferido; IDENTITY
+pode avançar. Última suíte completa: 7.22, 71/662.
+Sem auditoria/snapshot normal/quatro contratos repetidos. Operação ainda fora
+do OpenAPI; login real e fluxo de sessão/cookie continuam pendentes.
+
+Git diff --check passou. Links locais conferidos: contrato um, aula 7.21 dois
+e aula 7.22 dois. Diff confirmou aplicação/configuração/dependências/OpenAPI
+preservados; nenhum .env ou log incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.22: pendente; checkpoint concluído. Último checkpoint publicado:
+02a4b08278e1ba1ed887d529b05e9d6d9f3381c7 (7.21).
+Próximo passo exato após publicar e conferir: 7.23 — integrar GET /api/v1/usuario
+ao OpenAPI existente, com autenticação por cookie e respostas 200/401.

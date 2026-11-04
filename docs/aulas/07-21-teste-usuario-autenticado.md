@@ -98,7 +98,9 @@ Auditoria, snapshot normal e quatro contratos não foram repetidos.
 ## Continuidade
 
 Cenário autenticado criado, explicado e verificado; entendimento confirmado
-com "entendi" em 04/11/2026; publicação pendente.
+com "entendi" em 04/11/2026; publicação conferida em
+02a4b08278e1ba1ed887d529b05e9d6d9f3381c7, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.
 Após publicar: 7.22 — ampliar esse cenário com um segundo usuário
 persistido e parâmetros id/email dele na consulta, mantendo actingAs no primeiro,
 para comprovar que a resposta continua sendo do próprio usuário autenticado.

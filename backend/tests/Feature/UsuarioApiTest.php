@@ -12,7 +12,7 @@ class UsuarioApiTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public function test_usuario_autenticado_recebe_seus_dados_em_json(): void
+    public function test_usuario_autenticado_recebe_seus_dados_mesmo_com_parametros_de_outro_usuario(): void
     {
         $identidade = DB::selectOne(
             'SELECT DB_NAME() AS banco, SUSER_SNAME() AS login'
@@ -23,6 +23,12 @@ class UsuarioApiTest extends TestCase
 
         User::query()->delete();
 
+        $outroUsuario = User::query()->create([
+            'name' => 'Bruno Exemplo',
+            'email' => 'bruno@example.test',
+            'password' => 'outra-senha-ficticia-do-teste',
+        ]);
+
         $usuario = User::query()->create([
             'name' => 'Ana Exemplo',
             'email' => 'ana@example.test',
@@ -31,8 +37,15 @@ class UsuarioApiTest extends TestCase
 
         $this->assertIsInt($usuario->getKey());
         $this->assertGreaterThan(0, $usuario->getKey());
+        $this->assertNotSame($outroUsuario->getKey(), $usuario->getKey());
 
-        $resposta = $this->actingAs($usuario, 'web')->getJson('/api/v1/usuario');
+        $consulta = http_build_query([
+            'id' => $outroUsuario->id,
+            'email' => $outroUsuario->email,
+        ]);
+
+        $resposta = $this->actingAs($usuario, 'web')
+            ->getJson('/api/v1/usuario?'.$consulta);
 
         $resposta
             ->assertStatus(200)

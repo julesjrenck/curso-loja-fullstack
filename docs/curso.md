@@ -113,8 +113,12 @@ Entendimento confirmado com "entendi" em 04/11/2026; publicada em c17ad9e,
 remoto conferido. Na 7.21, UsuarioApiTest ampliado com DatabaseTransactions e
 User persistido após conferir loja_test/loja_testes; actingAs/web e 200/JSON
 exato com id/name/email. Focado 4/26 e suíte 71/661 passaram; dados zero após
-rollback. Entendimento confirmado com "entendi" em 04/11/2026; após publicar:
-7.22 — segundo usuário e query id/email não mudam a identidade autenticada.
+rollback. Entendimento confirmado com "entendi" em 04/11/2026; publicada em
+02a4b08, remoto conferido. Na 7.22, mesmo cenário ampliado com Bruno persistido
+antes de Ana, IDs diferentes e query id/email de Bruno, mantendo actingAs/Ana.
+Resposta exata de Ana conferida; focado 4/27 e suíte 71/662 passaram, rollback
+conferido. Entendimento confirmado com "entendi" em 04/11/2026; após publicar:
+7.23 — integrar consulta de usuário no OpenAPI com cookie e respostas 200/401.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -784,8 +788,10 @@ com três entradas criado/explicado: focado 3/18 e suíte 70/653 passaram.
 Entendimento confirmado com "entendi" em 04/11/2026 e publicação em c17ad9e.
 Na 7.21, cenário autenticado com User em loja_test/actingAs web apresentado:
 focado 4/26, suíte 71/661 e rollback conferidos. Entendimento confirmado com
-"entendi" em 04/11/2026; publicar antes da
-7.22 — parâmetros de outro usuário não mudam a identidade.
+"entendi" em 04/11/2026 e publicação em 02a4b08. Na 7.22, cenário ampliado com
+segundo usuário/query de terceiro; focado 4/27, suíte 71/662 e rollback conferidos.
+Entendimento confirmado com "entendi" em 04/11/2026; publicar antes da 7.23 —
+integrar consulta no OpenAPI.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
