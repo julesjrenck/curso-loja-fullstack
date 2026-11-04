@@ -82,5 +82,6 @@ contratos. Última suíte completa permanece 7.7: 67 testes/635 asserções.
 Entendimento confirmado com "entendi" em 04/11/2026. Próximo passo após publicar:
 7.11 — conferir compatibilidade e adicionar somente laravel/sanctum pelo Composer
 no Docker, revisando composer.json/lock, sem aplicar migrations ou configurar
-o fluxo de autenticação nessa instalação. Checkpoint preparado para commit e push;
-consultar o Git ou registro posterior para conferir a publicação.
+o fluxo de autenticação nessa instalação. Checkpoint publicado e conferido em
+63c0f1eafb1b33a9e5591aae2d8617aa1890a4c6; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.

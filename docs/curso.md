@@ -69,10 +69,14 @@ zero SQL. Sem alteração de aplicação. Entendimento da 7.9 confirmado com
 do Sanctum apresentado: sessão/cookie para a interface própria, preparação
 stateful versus exigência auth:sanctum e fluxo CSRF/login/API. Diagnóstico
 confirmou pacote ausente de composer.json/lock/vendor e configuração atual.
-Entendimento da 7.10 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próxima etapa após publicar:
-7.11: compatibilidade e instalação somente do pacote via Composer/Docker,
-revisando composer.json/lock, sem aplicar migrations ou configurar o fluxo ainda.
+Entendimento da 7.10 confirmado com "entendi" em 04/11/2026; publicada em
+63c0f1e, remoto conferido. Na 7.11, Sanctum v4.3.3 instalado via Composer/Docker,
+faixa ^4.3.3 e lock; somente um pacote adicionado, 109 anteriores preservados.
+Validação/plataforma/autoload e suíte 67/635 passaram. Descoberta não executada.
+Auditoria identificou aviso preexistente em symfony/mime v8.1.7 (CVE-2026-45070),
+pendente de correção. Entendimento da 7.11 confirmado com "entendi" em 04/11/2026;
+publicação pendente. Após publicar, 7.12: atualização mínima compatível para corrigir esse aviso,
+com auditoria e verificações, antes de descobrir/configurar o Sanctum.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -720,7 +724,9 @@ Publicação conferida em c5008fd. Na 7.9, CSRF e comparação origem/token apre
 e verificados em memória; entendimento confirmado com "entendi" em 03/11/2026.
 Publicação conferida em f082f80. Na 7.10, papel do Sanctum explicado e ausência
 do pacote/configuração atual conferidos; entendimento confirmado com "entendi"
-em 04/11/2026. Publicar checkpoint e iniciar 7.11.
+em 04/11/2026 e publicação em 63c0f1e. Na 7.11, pacote instalado/verificado;
+entendimento confirmado com "entendi" em 04/11/2026. Publicar checkpoint e iniciar
+7.12, manutenção do aviso existente de symfony/mime.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -5,8 +5,22 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.10 — Papel do Sanctum na API da loja: concluída,
+- Etapa atual: 7.11 — Instalação do pacote Sanctum: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.11: laravel/sanctum v4.3.3 instalado em Docker; composer.json
+  declara ^4.3.3, lock fixa versão/referência. Simulação e execução adicionaram
+  somente um pacote, zero atualizações/remoções. Registros dos 109 anteriores
+  preservados; 110 pacotes reais instalados/lock correspondem. Sem scripts/plugins,
+  package:discover, statefulApi ou migrations. Manifests mantiveram hashes.
+  validate --strict/plataforma/autoload passaram; suíte 67/635, código 0.
+  SQL posterior loja_test/loja_testes: seis tabelas, quatro migrations, dados zero.
+  Auditoria antes da instalação retornou 1 por aviso preexistente de symfony/mime
+  v8.1.7, CVE-2026-45070, medium; mesma advertência na instalação. Não corrigido
+  nesta etapa de adição somente do Sanctum. Correção oficial na linha 8.1: >=8.1.10.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.12 — atualizar minimamente symfony/mime de forma compatível para
+  corrigir o aviso, auditar e verificar. Descoberta do Sanctum após essa manutenção.
 - Situação da 7.10: aula docs/aulas/07-10-papel-sanctum.md criada. Modo sessão/
   cookie adotado para chamadas do navegador da interface própria; Bearer comparado
   conceitualmente. Fluxo csrf-cookie/login/API, statefulApi versus auth:sanctum,
@@ -15,11 +29,9 @@
   guard web/session/users e grupo api somente SubstituteBindings, código 0.
   Nenhuma dependência/configuração/rota alterada; sem instalação, SQL ou nova suíte.
   Última suíte completa permanece 7.7, 67/635. Documentação oficial consultada.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.11 — conferir compatibilidade e adicionar somente o pacote Sanctum
-  por Composer no Docker, revisando composer.json/lock, sem aplicar migrations
-  ou configurar o fluxo de autenticação nessa etapa.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  63c0f1eafb1b33a9e5591aae2d8617aa1890a4c6, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.11.
 - Situação da 7.9: aula docs/aulas/07-09-protecao-csrf.md criada. CSRF separado
   de autenticação/autorização, cookie de sessão versus token CSRF/remember_token,
   _token/X-CSRF-TOKEN e ramo Sec-Fetch-Site: same-origin do Laravel 13 explicados.
@@ -30,7 +42,7 @@
   Última suíte completa permanece 7.7, 67/635; não repetida nesta aula documental.
   Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
   f082f8096be91e504f633d892b73d3c5e1299093, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.10.
+  Checkpoint anterior à 7.10. Continuidade realizada na 7.10.
 - Situação da 7.8: aula docs/aulas/07-08-sessao-e-cookie.md criada, com fluxo
   ilustrativo de login/próxima requisição/logout, Set-Cookie/Cookie, identificador
   da sessão versus ID de User, sessão de visitante e autorização separada.
@@ -1386,7 +1398,8 @@ publicação conferida em e21e732. Continuidade realizada na 7.8, confirmada com
 "entendi" em 03/11/2026 e publicada em c5008fd. Continuidade realizada na 7.9;
 entendimento confirmado com "entendi" em 03/11/2026 e publicação em f082f80.
 Continuidade realizada na 7.10, confirmada com "entendi" em 04/11/2026;
-publicar checkpoint e iniciar 7.11.
+publicação conferida em 63c0f1e. Continuidade realizada na 7.11, confirmada com
+"entendi" em 04/11/2026; publicar checkpoint e iniciar 7.12.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -11995,9 +12008,55 @@ Git diff --check passou; links locais das aulas 7.9 (dois) e 7.10 (quatro)
 conferidos. Arquivos .env locais continuam ignorados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.10: pendente; checkpoint concluído. Último checkpoint publicado:
-f082f8096be91e504f633d892b73d3c5e1299093 (7.9).
-Próximo passo exato: publicar e conferir o checkpoint da 7.10. Depois,
-7.11 — conferir compatibilidade e adicionar somente laravel/sanctum por Composer
-no Docker, revisando composer.json/lock, sem aplicar migrations ou configurar
-o fluxo de autenticação nessa instalação.
+Publicação da 7.10: concluída e conferida em
+63c0f1eafb1b33a9e5591aae2d8617aa1890a4c6; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.11.
+
+## Etapa 7.11 — Instalação do pacote Sanctum — 04/11/2026
+
+Iniciada após confirmação da 7.10 com "entendi" em 04/11/2026 e publicação verificada.
+Implementação: composer.json/lock receberam somente laravel/sanctum ^4.3.3/v4.3.3;
+nova aula docs/aulas/07-11-instalacao-sanctum.md e registros. Pacote instalado no
+volume vendor-backend; sem alteração de rota/model/configuração/Compose/migration.
+
+Compatibilidade: PHP 8.4.26, Composer 2.10.3; metadados estáveis v4.3.3 aceitam
+PHP ^8.2, Illuminate ^11|^12|^13 e Symfony Console ^7|^8. Simulação --dry-run resolveu
+um pacote e preservou hashes/Git dos arquivos. Execução por container temporário
+run --rm --no-deps, workdir /instalacao, backend rw nesse caminho e mesmo volume
+vendor-backend. require laravel/sanctum:^4.3.3 --no-scripts --no-plugins
+--no-interaction --no-progress terminou 0: uma adição/zero atualizações/remoções.
+Proprietários de JSON/lock preservados 1000:1000, sem chown.
+
+Explicação apresentada: faixa no JSON versus versão exata no lock, pacote/autoload
+no volume e instalação versus descoberta. Referência fixada:
+fee27a573d1a013af3721d86153a65e0b11927e6. Comparação estruturada com HEAD preservou
+todos os registros dos 109 pacotes anteriores; 110 pacotes reais no lock e
+installed.json. Diagnóstico comparou nomes/versões/referências dos 110, sem divergência.
+Classe Laravel\Sanctum\Sanctum carregou no caminho normal /app. Pacote declara
+SanctumServiceProvider, mas ainda ausente do manifest de pacotes.
+
+validate --strict e check-platform-reqs passaram. Manifests packages.php/services.php
+com hashes anteriores preservados, inclusive após suíte; package:discover não
+executado. Suíte completa em ordem padrão: 67 testes/635 asserções, código 0.
+SELECT posterior em loja_test/loja_testes: seis tabelas, quatro migrations/lotes
+1/2/3/4 e zero users/tokens/sessions/produtos/categorias. Nenhuma tabela de tokens
+pessoais criada. Snapshot normal/quatro contratos não repetidos.
+
+Pendência real identificada pelo Composer: simulação informou aviso; antes da
+instalação, JSON/lock ainda iguais ao checkpoint anterior, audit --locked --format=json
+--no-interaction --no-plugins retornou 1 por symfony/mime v8.1.7, CVE-2026-45070,
+severidade medium. Instalação informou um aviso também. O pacote era preexistente
+e não mudou; não afirmar auditoria aprovada. Fonte oficial Symfony confirma
+correção >=8.1.10 na linha 8.1. Registrada manutenção própria como 7.12 antes da
+descoberta do Sanctum, preservando o escopo autorizado de instalar somente o pacote.
+Fontes oficiais Composer/Laravel/Symfony consultadas.
+Git diff --check passou; links locais das aulas 7.10 (quatro) e 7.11 (três)
+conferidos. Arquivos .env locais continuam ignorados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.11: pendente; checkpoint concluído. Último checkpoint publicado:
+63c0f1eafb1b33a9e5591aae2d8617aa1890a4c6 (7.10).
+Próximo passo exato: publicar e conferir o checkpoint da 7.11. Depois,
+7.12 — verificar e aplicar atualização mínima compatível de symfony/mime para
+corrigir o aviso, repetir auditoria e verificações pertinentes. Descoberta do
+Sanctum ficará após essa manutenção; configuração/login ainda não implementados.
