@@ -164,8 +164,15 @@ consultada: Pending, sem aplicação. Entendimento confirmado com "entendi" em
 aplicada em loja com sqlsrv_migracoes, lote 4/Ran, três tabelas vazias e reexecução
 Nothing to migrate. Conteúdo/metadados do catálogo preservados; padrão loja_app/
 sessões file. Suíte existente 96/959 passou em loja_test, vazio após rollback.
-Entendimento da 7.32 confirmado com "entendi" em 04/11/2026; publicação pendente. Próximo após publicar:
-7.33 — registrar POST /api/v1/login com throttle:login e conferir integração inicial.
+Entendimento da 7.32 confirmado com "entendi" em 04/11/2026; publicada em a79946a,
+remoto conferido. Na 7.33, POST /api/v1/login registrado para LoginController::store
+com throttle:login; somente routes/api.php alterado. Sintaxe/lista de rotas
+conferidas; diagnóstico kernel/testing/origem reconhecida/cache e sessão array:
+cinco 422 e sexto 429 para Accept JSON/HTML/ausente, JSON/sem Location/zero SQL.
+Suíte existente 96/959 passou. Sucesso por HTTP/CSRF real continuam pendentes.
+Entendimento da 7.33 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Próximo após publicar:
+7.34 — criar LoginApiTest para automatizar entrada inválida e limite pelo kernel HTTP.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -860,8 +867,11 @@ explicados, focado 6/156 e suíte 96/959 passaram. Status normal users Pending;
 entendimento confirmado com "entendi" em 04/11/2026; publicação em 7c55de4.
 Na 7.32, migration de usuários aplicada/explicada em loja via sqlsrv_migracoes,
 lote 4, tabelas vazias, reexecução/preservação do catálogo e suíte 96/959 conferidas.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação em a79946a.
+Na 7.33, rota POST login registrada com throttle:login e explicada; diagnóstico
+kernel/testing confirma cinco 422/sexto 429 nos três Accepts; suíte 96/959 passou.
 Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente antes
-da 7.33 — registrar rota de login com throttle:login.
+da 7.34 — automatizar entrada inválida e limite em LoginApiTest.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

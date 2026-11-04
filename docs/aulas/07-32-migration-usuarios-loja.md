@@ -3,7 +3,7 @@
 Aplicação, explicação e verificações em 04/11/2026, após confirmação da 7.31
 com "entendi". Checkpoint anterior publicado e conferido em
 7c55de44e3900817a95ca0bbc351c7dcc24dbe3e; HEAD/origin/main/main remota iguais.
-Entendimento da 7.32 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.32 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e conexão
 
@@ -118,7 +118,9 @@ Não criamos testes permanentes nesta etapa. Auditoria/quatro contratos não rep
 
 Aplicação, explicação e verificações concluídas; entendimento confirmado com
 "entendi" em 04/11/2026. Documentação atualizada; nenhum código, ambiente,
-dependência, permissão, rota ou OpenAPI alterado. Publicação da 7.32 pendente.
-Após publicar: 7.33 — registrar somente POST /api/v1/login para
+dependência, permissão, rota ou OpenAPI alterado. Publicação da 7.32 concluída
+e conferida em a79946a23fcd964e7f41c8a3d79ecfca99c54214;
+HEAD/origin/main/main remota iguais após push. Registro posterior à publicação.
+Continuidade realizada na 7.33 — registrar somente POST /api/v1/login para
 LoginController::store com throttle:login e conferir sua integração inicial
 ao pipeline HTTP, sem avançar recuperação de senha ou logout.

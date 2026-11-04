@@ -1,8 +1,8 @@
-# Limite de pedidos de login — regra registrada, rota pendente
+# Limite de pedidos de login — regra aplicada à rota
 
-Desenho da etapa 7.29, em 04/11/2026, para o futuro POST /api/v1/login.
-Regra registrada em AppServiceProvider::boot na 7.30, ainda sem aplicação a
-uma rota. Complementa o
+Desenho da etapa 7.29, em 04/11/2026, para POST /api/v1/login.
+Regra registrada em AppServiceProvider::boot na 7.30 e aplicada à rota na
+7.33 por throttle:login. Complementa o
 [contrato de login](login.md); o controller e seus testes continuam como estavam.
 
 ## Regra escolhida para o ambiente local
@@ -65,7 +65,7 @@ pelo Laravel. O 429 não comprova senha correta ou incorreta: o controller não
 terá sido executado. Dentro do limite continuam os contratos 204/422 e a
 proteção CSRF existente, sem alteração na consulta GET usuario ou no catálogo.
 
-## Armazenamento e implementação futura
+## Armazenamento e implementação
 
 Conferimos a configuração carregada normal: cache.default file e cache.limiter
 null, que usa o store padrão. O contador precisará durar entre requisições;
@@ -85,11 +85,16 @@ array e relógio controlado: focado 6 testes/156 asserções, suíte 96/959.
 Conferidos bloqueio do sexto/IP compartilhado entre e-mails, Accept JSON/HTML/
 ausente, cabeçalhos, espera/expiração, outro IP e consumo de limite por falhas
 posteriores. Próxima função ilustrativa, sem controller, SQL de autenticação,
-CSRF ou kernel HTTP. Criar/configurar/testar a regra ainda não a aplica à rota.
+CSRF ou kernel HTTP. Naquela etapa, a regra ainda não estava aplicada à rota.
 Na 7.32, migration de usuários aplicada em loja pela conexão sqlsrv_migracoes,
 lote 4/Ran, três tabelas vazias e catálogo preservado. Reexecução sem nova
 aplicação; suíte existente 96/959 passou no banco exclusivo de testes.
-Próxima 7.33: registrar POST /api/v1/login com throttle:login e conferir integração inicial.
+Na 7.33, aplicada à rota POST /api/v1/login. Diagnóstico kernel/testing com
+origem reconhecida, cache/sessão array e relógio fixado: cinco entradas vazias
+resultam em 422; sexta em 429/Retry-After 60/limite 5/restante 0/no-store, para
+Accept JSON/HTML/ausente, sem redirecionamento. Zero SQL após identidade.
+Não comprova fluxo CSRF no navegador ou sucesso por HTTP. Suíte existente 96/959.
+Próxima 7.34: automatizar entrada inválida e limite em LoginApiTest.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).

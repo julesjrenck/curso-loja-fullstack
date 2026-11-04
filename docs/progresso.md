@@ -5,8 +5,25 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.32 — Migration de usuários no banco local da aplicação:
-  aplicação, explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Etapa atual: 7.33 — Rota de login com limite de frequência: implementação,
+  explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Situação da 7.33: routes/api.php com import LoginController e POST /login
+  para store, middleware throttle:login. Prefixo existente gera /api/v1/login;
+  visitante permitido, GET usuario mantém auth:sanctum, catálogo preservado.
+  Sintaxe e lista de quatro rotas API conferidas; login recebe Stateful/
+  ThrottleRequests:login/SubstituteBindings. Diagnóstico kernel HTTP/testing,
+  identidade loja_test/loja_testes, origem reconhecida, cache/sessão array e
+  relógio controlado: três Accepts, cada qual cinco 422 por JSON vazio e sexto
+  429/Retry-After 60/limite 5/restante 0/no-store. Todos JSON/sem Location,
+  sessão presente/guard visitante. Zero SQL após identidade. Sem fixtures,
+  rede/navegador ou teste real de CSRF; testing dispensa a validação CSRF.
+  Sucesso/credenciais recusadas ainda não exercidos pelo endpoint.
+  Suíte existente 96 testes/959 asserções, código 0. SQL posterior:
+  loja_test/loja_testes, seis tabelas/quatro migrations/dados zero.
+  Sem teste permanente novo/dependência/ambiente/migration/OpenAPI alterado.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação da 7.33 pendente.
+  Próximo passo exato após publicar: 7.34 — criar LoginApiTest para automatizar entrada inválida e
+  bloqueio por frequência pelo kernel HTTP, com origem/cache/sessão de testes.
 - Situação da 7.32: somente migration de usuários existente aplicada em loja
   pela conexão sqlsrv_migracoes/loja_migracoes. Identidades/permissões/ausência
   de tabelas/histórico conferidos antes. DONE/lote 4/Ran; três tabelas vazias,
@@ -20,9 +37,9 @@
   inicial da conexão da aplicação para DDL e leitura de tamanhos NVARCHAR em bytes;
   nenhuma alteração de permissões ou da migration foi necessária.
   Sem código/rota/ambiente/dependência/OpenAPI alterado ou usuário cadastrado.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação da 7.32 pendente.
-  Próximo passo exato após publicar: 7.33 — registrar POST /api/v1/login para LoginController::store
-  com throttle:login e conferir integração inicial ao pipeline HTTP.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  a79946a23fcd964e7f41c8a3d79ecfca99c54214, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.33.
 - Situação da 7.31: tests/Feature/LoginRateLimiterTest.php criado, quatro métodos/
   seis execuções com DataProvider Accept JSON/HTML/ausente. Cache array exigido,
   relógio controlado/restaurado. ThrottleRequests real/nome login/Request em
@@ -36,7 +53,7 @@
   aplicar instruções de criação. Entendimento confirmado com "entendi" em
   04/11/2026; publicação verificada em
   7c55de44e3900817a95ca0bbc351c7dcc24dbe3e, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.32.
+  Checkpoint anterior à 7.32. Continuidade realizada na 7.32.
 - Situação da 7.30: AppServiceProvider::boot registra RateLimiter::for login,
   Limit 5/minuto/by IP e callback JsonResponse/429/message/headers/no-store.
   Register/binding do catálogo preservado. Diagnóstico Docker/testing com
@@ -1697,8 +1714,11 @@ com "entendi" em 04/11/2026 e publicação em 4c5388d. Continuidade realizada na
 confirmado com "entendi" em 04/11/2026 e publicação em 7c55de4. Continuidade
 realizada na 7.32 — migration de usuários aplicada em loja via sqlsrv_migracoes,
 lote 4/tabelas vazias/reexecução e catálogo preservado/suíte 96-959. Entendimento
-confirmado com "entendi" em 04/11/2026; publicação pendente antes da 7.33 —
-registrar rota POST login com throttle:login.
+confirmado com "entendi" em 04/11/2026 e publicação em a79946a. Continuidade
+realizada na 7.33 — rota POST login com throttle:login, diagnóstico kernel/18
+pedidos/três Accepts/cinco 422 e sexto 429, suíte 96-959. Entendimento confirmado
+com "entendi" em 04/11/2026; publicação pendente antes da 7.34 — automatizar
+entrada inválida e limite em LoginApiTest.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -13213,8 +13233,62 @@ login dois, aulas 7.31/7.32 dois cada. Backend/Compose/OpenAPI sem diff; somente
 documentação alterada, índice vazio. Nenhum .env, log ou snapshot incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.32: pendente; documentação local. Último checkpoint publicado:
-7c55de44e3900817a95ca0bbc351c7dcc24dbe3e (7.31).
-Próximo passo exato após publicar: 7.33 — registrar somente
-POST /api/v1/login para LoginController::store com throttle:login e conferir
-integração inicial ao pipeline HTTP. Logout/recuperação permanecem para depois.
+Publicação da 7.32: concluída e conferida em
+a79946a23fcd964e7f41c8a3d79ecfca99c54214; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.33.
+
+## Etapa 7.33 — Rota de login com limite de frequência — 04/11/2026
+
+Iniciada após confirmação da 7.32 com "entendi" e publicação verificada.
+Implementação: somente routes/api.php, import LoginController e Route::post
+/login para store com middleware throttle:login. Nova aula 7.33 e contratos/
+registros atualizados. Bootstrap, controller, request, provider, testes,
+dependências, ambientes, migrations e OpenAPI preservados.
+
+Explicação apresentada: import/nome curto, método HTTP/caminho, array classe/
+método e resolução pelo container, prefixo api/v1 existente em bootstrap,
+middleware nomeado login conectando regra ao endpoint. Visitante pode tentar
+login; GET usuario continua exigindo auth:sanctum. Limite antes de validação/
+controller; depois LoginRequest/guard web/sessão conforme contrato estudado.
+StatefulApi prepara sessão/CSRF para origem reconhecida; não desativamos CSRF.
+Fluxo de navegador continua exigindo preparação/cookies/header apropriado.
+Fontes oficiais de routing/Sanctum e middleware instalado consultados.
+
+Sintaxe válida. Route:list --path=api/v1 -vv: quatro rotas, login POST para
+LoginController@store com EnsureFrontendRequestsAreStateful,
+ThrottleRequests:login e SubstituteBindings. Usuario mantém Authenticate:sanctum;
+catálogo preservado. Comando de listagem não fez tentativa de autenticação.
+
+Diagnóstico PHP temporário no Docker, via stdin/--env=testing e CACHE_STORE=array/
+SESSION_DRIVER=array somente no processo. Conferiu ambiente/configuração e
+loja_test/loja_testes antes de pedidos; sem fixtures ou escrita SQL. Kernel
+HTTP real recebe POST /api/v1/login com JSON vazio {}, Origin local 8002
+reconhecido pelo Sanctum e relógio fixado/restaurado com Carbon.
+
+Três Accepts JSON/HTML/ausente, IP independente por caso, seis pedidos por IP
+na janela: cinco 422 e sexto 429 em cada caso, 18 pedidos. 422 exige somente
+message string/errors email/password. 429 exige somente message string,
+Retry-After 60, X-RateLimit-Limit 5/Remaining 0 e no-store. Todos JSON/sem
+Location, sessão presente e guard web visitante. Listener zero SQL após
+conferência da identidade. Diagnóstico código 0. Não usa rede/navegador; testing
+dispensa validação CSRF. Não verifica sucesso/credenciais recusadas por HTTP
+ou transporte real de sessão/cookies. Não altera cache ou sessão normal.
+
+Suíte existente passou com 96 testes/959 asserções, código 0; nenhum teste
+permanente novo. Última completa: 7.33. SELECT posterior loja_test/loja_testes:
+seis tabelas, quatro migrations/lotes 1/2/3/4 e zero users/password_reset_tokens/
+sessions/produtos/categorias. Normal sem migração/usuário alterado nesta etapa;
+snapshot normal, auditoria e quatro contratos de catálogo não repetidos.
+
+Git diff --check passou. Links locais conferidos: consulta três, limite um,
+login dois, aula 7.32 dois e aula 7.33 um. Diff de backend restrito a
+routes/api.php; Compose/OpenAPI preservados, índice vazio. Nenhum .env,
+log, cookie ou diagnóstico temporário incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.33: pendente; alterações locais. Último checkpoint publicado:
+a79946a23fcd964e7f41c8a3d79ecfca99c54214 (7.32).
+Próximo passo exato após publicar: 7.34 — criar somente LoginApiTest
+para automatizar entrada inválida e limite de frequência pelo kernel HTTP,
+com origem reconhecida/cache e sessão em memória. Sucesso por HTTP, fluxo real
+de CSRF/cookies, OpenAPI de login e logout permanecem pendentes.

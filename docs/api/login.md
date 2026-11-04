@@ -1,18 +1,20 @@
-# API de login — contrato planejado
+# API de login — rota registrada
 
-Desenho da etapa 7.24, em 04/11/2026. POST /api/v1/login ainda não existe.
+Desenho da etapa 7.24; rota registrada na 7.33, em 04/11/2026.
 Exemplos fictícios. LoginRequest criada na 7.25 e LoginController::store na 7.27.
 Controller verificado por chamada direta com guard web, User fictício em
-loja_test/transação/rollback e sessão array. Sem endpoint HTTP de login.
+loja_test/transação/rollback e sessão array. POST /api/v1/login agora conecta
+esse controller ao middleware throttle:login. Diagnóstico inicial pelo kernel
+confirma entrada inválida 422 e limite 429; sucesso por HTTP ainda pendente.
 O [contrato da consulta do usuário](autenticacao.md) já está implementado;
-este documento planeja como estabelecer a identidade por credenciais.
+este documento define como estabelecer a identidade por credenciais.
 
-## Requisição planejada
+## Requisição
 
 - Método e caminho: POST /api/v1/login.
-- URL local planejada: http://127.0.0.1:8002/api/v1/login.
+- URL local: http://127.0.0.1:8002/api/v1/login.
 - Accept: application/json; Content-Type: application/json.
-- Recebe visitantes; não exigirá auth:sanctum para tentar autenticar.
+- Recebe visitantes; não exige auth:sanctum para tentar autenticar.
 - Voltado à interface própria, usando sessão e guard web; não emitirá token Bearer.
 - Sem parâmetros suportados no caminho ou query string.
 
@@ -23,7 +25,7 @@ este documento planeja como estabelecer a identidade por credenciais.
 }
 ```
 
-| Campo | Regra de entrada planejada |
+| Campo | Regra de entrada implementada |
 | --- | --- |
 | email | Obrigatório, string, formato de e-mail e até 255 caracteres após normalização. |
 | password | Obrigatório, string não vazia nem composta somente por espaços. |
@@ -69,7 +71,7 @@ Na 7.27, diagnóstico do controller confirmou 204 vazio, identidade no guard/
 sessão e ID/token CSRF renovados após credenciais corretas. Não exerceu rota,
 CSRF de requisição ou transporte de cookie no navegador.
 
-## Entrada inválida: resposta planejada
+## Entrada inválida: resposta verificada pelo kernel
 
 Status 422, Content-Type application/json, objeto com message string e errors,
 um dicionário de nomes de campos para listas não vazias de strings.
@@ -110,7 +112,7 @@ Usar 422 para credenciais recusadas neste login é uma decisão do nosso contrat
 Na 7.27, senha incorreta e e-mail inexistente produziram corpos 422 iguais na
 chamada direta ao controller, com guard visitante e ID/token de sessão preservados.
 
-## Limitação de frequência planejada
+## Limitação de frequência aplicada
 
 Na 7.29, [regra de limite de login](limite-login.md) definida: cinco pedidos
 por IP em janela de 60 segundos iniciada no primeiro pedido contado. Conta
@@ -118,7 +120,8 @@ sucesso e falhas que alcancem o limitador; e-mails do mesmo IP compartilham
 contador. Sexto pedido bloqueado antes do controller com 429 JSON/message,
 Retry-After em segundos restantes e Cache-Control no-store. Bloqueio não
 prorroga a janela e sucesso não zera a contagem. Na 7.30, regra registrada pelo
-nome login, com resposta 429 JSON configurada; ainda sem aplicação a rota.
+nome login, com resposta 429 JSON configurada; na 7.33, aplicada à rota
+por throttle:login antes da validação/controller.
 
 ## Limites e continuidade
 
@@ -128,10 +131,9 @@ de campos via validated e erros 422 renderizados pelo handler; zero SQL.
 Esse diagnóstico da 7.25 não executou login ou CSRF. Na 7.27, LoginController
 passou a executar a tentativa pelo guard web com validated, erro genérico ou
 renovação de sessão e 204. Diagnóstico com três casos em loja_test e sessão
-array passou, sem manter usuários ou sessões persistidos. Endpoint continua
-sem rota, limitador aplicado ou entrada no OpenAPI de login. A regra escolhida
-na 7.29 foi registrada na 7.30 e testada pelo middleware na 7.31, mas ainda
-precisa ser anexada à rota antes de disponibilizar o fluxo de login completo.
+array passou, sem manter usuários ou sessões persistidos. Na 7.33, endpoint
+registrado com o limitador escolhido na 7.29, registrado na 7.30 e testado
+isoladamente na 7.31. Entrada no OpenAPI e fluxo completo continuam pendentes.
 Na 7.26, LoginRequestTest automatizou três entradas válidas e 14 inválidas,
 normalização/validated e 422 JSON renderizado em memória: focado 17 testes/94
 asserções, suíte completa 88 testes/756 asserções. Não executa login ou CSRF.
@@ -151,7 +153,13 @@ Na 7.32, aplicada somente essa migration pela conexão sqlsrv_migracoes:
 três tabelas vazias, lote 4/Ran e reexecução Nothing to migrate. Catálogo
 preservado por comparação de conteúdo/metadados; aplicação continua loja_app
 e sessões file. Suíte existente 96/959 passou em loja_test, vazio após rollback.
-Próxima 7.33: registrar POST /api/v1/login com throttle:login e conferir integração inicial.
+Na 7.33, rota registrada com throttle:login. Diagnóstico kernel/testing, origem
+reconhecida/cache e sessão array/JSON vazio: cinco 422 email/password e sexto
+429 para Accept JSON/HTML/ausente; 429 preserva Retry-After 60/limite 5/restante
+0/no-store. Todos JSON/sem Location/visitante, zero SQL após identidade; 18 pedidos.
+Suíte existente 96/959 passou. Sem rede/navegador; testing dispensa validação
+CSRF. Ainda não exercemos sucesso ou credenciais recusadas pelo endpoint.
+Próxima 7.34: automatizar entrada inválida e limite em LoginApiTest.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

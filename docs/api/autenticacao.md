@@ -111,9 +111,12 @@ callback conferidos em memória e suíte 90/803 passou; sem rota usando-o.
 Na 7.31, testes do middleware passaram: focado 6/156, suíte 96/959. Na 7.32,
 migration de usuários aplicada em loja com sqlsrv_migracoes, lote 4, três tabelas
 vazias e catálogo preservado. Aplicação continua loja_app/sessões file; suíte
-existente 96/959 passou em loja_test. Próxima 7.33: registrar POST /api/v1/login
-com throttle:login e conferir integração inicial.
-Rota de login e fluxo completo HTTP/sessão/cookie continuam pendentes.
+existente 96/959 passou em loja_test. Na 7.33, POST /api/v1/login registrado
+com throttle:login. Diagnóstico kernel/testing confirma cinco entradas vazias
+422 e sexto pedido 429 nos três Accepts, sem SQL após identidade, sessão/cache
+array e origem reconhecida. Suíte existente 96/959 passou. Sucesso do login por
+HTTP e fluxo real de sessão/cookie/CSRF continuam pendentes. Próxima 7.34:
+automatizar entrada inválida e limite em LoginApiTest.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).
