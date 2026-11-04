@@ -5,8 +5,20 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.14 — Primeira requisição ao endpoint CSRF: concluída,
+- Etapa atual: 7.15 — Requisições stateful na API: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.15: única chamada statefulApi adicionada em bootstrap/app.php.
+  Grupo api agora EnsureFrontendRequestsAreStateful/SubstituteBindings; catálogo
+  continua público. Origem local reconhecida antes da mudança. Diagnóstico Docker
+  com aplicação/sessão array por caso: Origin e Referer locais prepararam sessão/
+  token/cookies; sem cabeçalhos ou origem desconhecida não prepararam. Guard web
+  não autenticado em todos, zero SQL por listener; sem arquivos de sessão.
+  Sintaxe válida, rotas conferidas e suíte 67/635, código 0. SQL após: loja_test/
+  loja_testes, seis tabelas/quatro migrations/dados zero. Sem dependências/rotas novas.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.16 — desenhar contrato GET /api/v1/usuario, sucesso e visitante,
+  antes de criar rota ou implementar login.
 - Situação da 7.14: GET real a /sanctum/csrf-cookie via Guzzle/PHP Docker para
   servidor interno 127.0.0.1:8000, Host 127.0.0.1:8002 e Accept JSON. Resposta
   204/zero bytes, cookies XSRF-TOKEN (sem HttpOnly) e loja-fullstack-session
@@ -15,10 +27,9 @@
   com token CSRF e sem indicador login, removido em finally; nomes/hashes dos
   arquivos preexistentes preservados. Código 0. Sem mudança de aplicação.
   Sem SQL/nova suíte/auditoria/quatro contratos; última suíte 7.13, 67/635.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.15 — habilitar statefulApi e conferir reconhecimento das requisições
-  da interface própria na API, antes de implementar login.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  601c10350871d186c2b8a73b24f52586f64de50c, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.15.
 - Situação da 7.13: package:discover em Docker terminou 0; packages.php passou
   de seis para sete entradas. Novo processo confirmou SanctumServiceProvider
   nos manifests providers/eager e carregado, rota GET|HEAD sanctum/csrf-cookie
@@ -30,7 +41,7 @@
   Sem statefulApi, publicação de configuração/migration ou requisição ao novo endpoint.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   cc016c46c1e8057e7db67e4b2cceb06e4a529f1b, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.14.
+  Checkpoint anterior à 7.14. Continuidade realizada na 7.14.
 - Situação da 7.12: somente symfony/mime v8.1.7 → v8.1.10 atualizado no lock/vendor,
   resolvendo o aviso da 7.11. JSON, demais pacotes e manifests preservados.
   Metadados/compatibilidade e simulação conferidos; update restrito com
@@ -1436,7 +1447,8 @@ publicação conferida em 63c0f1e. Continuidade realizada na 7.11, confirmada co
 entendimento confirmado com "entendi" em 04/11/2026 e publicação em 99a131d.
 Continuidade realizada na 7.13, confirmada com "entendi" em 04/11/2026;
 publicação conferida em cc016c4. Continuidade realizada na 7.14, confirmada com
-"entendi" em 04/11/2026; publicar checkpoint e iniciar 7.15.
+"entendi" em 04/11/2026 e publicada em 601c103. Continuidade realizada na 7.15;
+entendimento confirmado com "entendi" em 04/11/2026. Publicar e iniciar 7.16.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12212,8 +12224,46 @@ Git diff --check passou; links locais das aulas 7.13 (cinco) e 7.14 (dois)
 conferidos. Arquivos .env locais continuam ignorados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.14: pendente; checkpoint concluído. Último checkpoint publicado:
-cc016c46c1e8057e7db67e4b2cceb06e4a529f1b (7.13).
-Próximo passo exato: publicar e conferir o checkpoint da 7.14. Depois,
-7.15 — habilitar statefulApi no bootstrap e conferir reconhecimento de requisições
-da interface própria na API, antes de implementar login.
+Publicação da 7.14: concluída e conferida em
+601c10350871d186c2b8a73b24f52586f64de50c; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.15.
+
+## Etapa 7.15 — Requisições stateful na API — 04/11/2026
+
+Iniciada após confirmação da 7.14 com "entendi" e publicação verificada.
+Implementação: comentário substituído por $middleware->statefulApi() no closure
+de bootstrap/app.php; nova aula docs/aulas/07-15-stateful-api.md e registros.
+Nenhuma rota, model, dependência, migration ou arquivo de ambiente alterado.
+
+Explicação apresentada: objeto de configuração Middleware e inclusão de
+EnsureFrontendRequestsAreStateful no grupo api antes de SubstituteBindings;
+reconhecimento por Referer/Origin e sanctum.stateful, com portas. Configuração
+atual já reconhece http://127.0.0.1:8002. Preparar sessão não faz login nem exige
+auth:sanctum; catálogo continua público. URLs/CORS da futura interface ainda serão
+tratados na integração. Trechos relevantes do middleware/config do pacote e
+fonte oficial Sanctum consultados, sem publicar configuração nesta etapa.
+
+Diagnóstico em memória por PHP Docker: nova aplicação por caso, session.driver
+array só na instância e GET construído com Accept JSON. Chamado fromFrontend
+e handle do middleware com próxima função sem consulta ao catálogo. Sem Origin/
+Referer e Origin desconhecida: sem reconhecimento, marcador, sessão ou cookies.
+Origin local e Referer local: reconhecimento/marcador/sessão iniciada/token e
+cookies XSRF-TOKEN/loja-fullstack-session presentes. Guard web false em todos;
+listeners SQL zero nos quatro casos, código 0. Valores privados não impressos,
+sessões somente em memória. Não é uma prova de CORS/comportamento de navegador.
+
+php -l válido; route:list -vv mostrou middleware Sanctum e bindings nas duas
+rotas do catálogo, sem auth:sanctum. Suíte completa 67 testes/635 asserções,
+código 0. SQL posterior loja_test/loja_testes: seis tabelas, quatro migrations/
+lotes 1/2/3/4, zero users/tokens/sessions/produtos/categorias. Não adicionamos
+testes permanentes. Snapshot normal/auditoria/quatro contratos não repetidos;
+última auditoria 7.12 código 0, última suíte 7.15, 67/635.
+Git diff --check passou; dois links locais de cada aula 7.14/7.15 conferidos.
+Arquivos .env locais continuam ignorados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.15: pendente; checkpoint concluído. Último checkpoint publicado:
+601c10350871d186c2b8a73b24f52586f64de50c (7.14).
+Próximo passo exato: publicar e conferir o checkpoint da 7.15. Depois,
+7.16 — desenhar contrato GET /api/v1/usuario para consultar usuário autenticado,
+incluindo sucesso e visitante, antes de criar rota ou implementar login.

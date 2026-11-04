@@ -86,8 +86,12 @@ em 04/11/2026; publicada em cc016c4, remoto conferido. Na 7.14, primeira chamada
 HTTP real a csrf-cookie: 204/corpo vazio e dois cookies com atributos conferidos,
 sem valores expostos. Sessão de visitante com CSRF, sem login; arquivo da demo
 removido e preexistentes preservados. Entendimento da 7.14 confirmado com "entendi"
-em 04/11/2026; publicação pendente. Após publicar, 7.15: habilitar statefulApi e conferir
-reconhecimento das requisições da interface própria na API, antes do login.
+em 04/11/2026; publicada em 601c103, remoto conferido. Na 7.15, statefulApi
+habilitado no bootstrap; origem/Referer locais reconhecidos em diagnóstico com
+sessão array, sem origem/desconhecida sem preparação; todos sem login, zero SQL.
+Rotas com middleware esperado e suíte 67/635 passaram. Entendimento da 7.15
+confirmado com "entendi" em 04/11/2026; publicação pendente. Após publicar, 7.16: contrato da
+consulta GET /api/v1/usuario, sucesso e visitante, antes de criar rota/login.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -742,7 +746,9 @@ Na 7.12, symfony/mime corrigido e verificado; entendimento confirmado com
 provider/rota conferidos, entendimento confirmado com "entendi" em 04/11/2026.
 Publicação conferida em cc016c4. Na 7.14, resposta HTTP/cookies/sessão de visitante
 conferidos; entendimento confirmado com "entendi" em 04/11/2026.
-Publicar checkpoint e iniciar statefulApi na 7.15.
+Publicação conferida em 601c103. Na 7.15, statefulApi habilitado/verificado;
+entendimento confirmado com "entendi" em 04/11/2026. Publicar checkpoint e iniciar
+contrato da consulta de usuário na 7.16.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

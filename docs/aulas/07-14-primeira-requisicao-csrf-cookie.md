@@ -107,5 +107,6 @@ desta etapa foi a resposta HTTP e a sessão de preparação, sem implementar log
 Entendimento confirmado com "entendi" em 04/11/2026. Próximo passo após publicar:
 7.15 — habilitar statefulApi no bootstrap e conferir o reconhecimento das
 requisições da interface própria na API, antes de implementar login.
-Checkpoint preparado para commit e push; consultar o Git ou registro posterior
-para conferir a publicação.
+Checkpoint publicado e conferido em
+601c10350871d186c2b8a73b24f52586f64de50c; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.
