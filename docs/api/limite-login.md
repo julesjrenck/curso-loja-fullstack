@@ -126,7 +126,8 @@ antigos; configuração habitual preservada. Sem nova suíte. Na 7.42, resposta
 429 documentada no OpenAPI com message fechado,
 Retry-After inteiro variável, limite 5/restante 0 e Cache-Control com no-store.
 Exemplos validados com Redocly; cópia com errors extra no 429 rejeitada.
-Próxima 7.43: desenhar contrato de POST logout.
+Na 7.43, contrato de logout desenhado separadamente; não usará throttle:login.
+Logout ainda não implementado.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).

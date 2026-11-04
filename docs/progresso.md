@@ -5,9 +5,23 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.42 — Login no OpenAPI:
-  implementação documental, explicação e verificações apresentadas; entendimento
+- Etapa atual: 7.43 — Contrato de logout por sessão:
+  desenho documental, explicação e verificações apresentadas; entendimento
   confirmado com "entendi" em 04/11/2026, publicação pendente.
+- Situação da 7.43: docs/api/logout.md define POST /api/v1/logout sem corpo
+  obrigatório, sessão/cookies/CSRF da interface própria. Sequência planejada:
+  logout no guard web, invalidate da sessão e regenerateToken. Sucesso 204 vazio,
+  sem Location, também para visitante com sessão/CSRF válidos; não exigirá
+  auth:sanctum. Rejeição CSRF 419 JSON/message antes do controller. Cookies
+  atualizados podem manter sessão visitante; repetir exige dados atuais.
+  GET usuario posterior somente com cookies/sem outra autenticação deverá
+  responder 401. Sem logout global ou Bearer; não usará throttle:login.
+  Fontes oficiais e métodos instalados consultados no Docker por leitura,
+  sem executar PHP ou logout. Aplicação/Compose/OpenAPI preservados; sem HTTP,
+  SQL ou nova suíte. Última 7.39: 101 testes/1.407 asserções. Próximo após
+  confirmar/publicar: 7.44 — somente LoginController::destroy, sem registrar
+  rota, e verificação direta em ambiente de teste isolado. Navegador/CORS e
+  OpenAPI do logout pendentes.
 - Situação da 7.42: POST /api/v1/login documentado em docs/api/openapi.json,
   corpo JSON obrigatório/schema CredenciaisLogin com email/password strings não
   vazias e extras permitidos. Normalização e regras completas do Laravel em
@@ -20,9 +34,10 @@
   duas permitidas aceitas, motivos esperados, cópias removidas. Comparação
   estruturada preservou catálogo/schemas anteriores/segurança da consulta;
   GET usuario mudou somente descrição. Sem HTTP/SQL/nova suíte; última 7.39,
-  101 testes/1.407 asserções. Próximo após confirmar/publicar: 7.43 — desenhar
-  contrato de POST logout com sessão/CSRF, resposta e comportamento de visitante,
-  antes de implementação. Navegador/CORS pendentes.
+  101 testes/1.407 asserções. Entendimento confirmado com "entendi" em 04/11/2026;
+  publicação verificada em 5f2b770ed8fb25ac2f612553d64c730644a0f18e,
+  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  Continuidade realizada na 7.43. Navegador/CORS pendentes.
 - Situação da 7.41: diagnóstico temporário PHP/Guzzle no Docker confirmou
   preparação 204 e POSTs sem cabeçalho/inválido/correto 419/419/422. JSON/message
   string/sem Location; errors email/password no último. Sem credenciais.
@@ -35,7 +50,7 @@
   habitual [2,100]. Sem SQL/nova suíte; última 7.39, 101/1.407. Backend/Compose/
   OpenAPI preservados. Entendimento confirmado com "entendi" em 04/11/2026;
   publicação verificada em 091ba33ce6f69f93a9c1cb0b1b4b182d89a14597,
-  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  HEAD/origin/main/main remota iguais. Checkpoint anterior à 7.42.
   Continuidade realizada na 7.42. Navegador/CORS pendentes.
 - Situação da 7.40: docs/api/verificacao-csrf.md criado. Protocolo para Guzzle
   já instalado no Docker/servidor local, Host/Origin 8002, base interna 8000,
@@ -1873,8 +1888,11 @@ Entendimento confirmado com "entendi" em 04/11/2026; publicação em 091ba33.
 Continuidade realizada na 7.42 — POST login no OpenAPI: corpo/schema de entrada,
 respostas 204/419/422/429 e cabeçalhos do limitador, explicados e validados no
 Docker. Quatro exemplos inválidos rejeitados/dois permitidos aceitos. Entendimento
-confirmado com "entendi" em 04/11/2026; publicação pendente antes da 7.43 — desenhar
-contrato de logout, com sessão/CSRF, resposta e comportamento de visitante.
+confirmado com "entendi" em 04/11/2026; publicação em 5f2b770. Continuidade
+realizada na 7.43 — contrato de logout por sessão: POST/204 vazio também para
+visitante válido, 419 CSRF, logout web/invalidação/novo token e consulta posterior
+401. Fontes/código conferidos, sem executar logout. Entendimento confirmado
+com "entendi" em 04/11/2026; publicação pendente antes da 7.44 — método destroy do controller.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -13882,8 +13900,69 @@ suíte permanece 7.39: 101 testes/1.407 asserções. Aplicação, configuração
 ambientes, dependências, serviços, rotas, migrations e Compose preservados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.42: pendente; registros locais. Último checkpoint publicado:
-091ba33ce6f69f93a9c1cb0b1b4b182d89a14597 (7.41).
-Próximo passo exato após confirmar/publicar: 7.43 — desenhar contrato de
-POST /api/v1/logout, com sessão/CSRF, resposta e comportamento de visitante,
-antes de implementar logout. Navegador/CORS permanecem pendentes.
+Publicação da 7.42: concluída e conferida em
+5f2b770ed8fb25ac2f612553d64c730644a0f18e; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.43.
+Navegador/CORS permanecem pendentes.
+
+
+## Etapa 7.43 — Contrato de logout por sessão — 04/11/2026
+
+Iniciada após confirmação da 7.42 com "entendi" e publicação verificada.
+Desenho documental: docs/api/logout.md e docs/aulas/07-43-contrato-logout.md
+criados. Contratos relacionados/roteiro/progresso e publicação anterior
+atualizados. Nenhuma rota, controller ou OpenAPI de logout implementados.
+
+Explicação apresentada: POST /api/v1/logout altera o estado da sessão, sem
+corpo obrigatório, parâmetros/seletores de identidade ou credenciais. JSON
+vazio permitido com Content-Type JSON; Accept JSON recomendado. Origem
+reconhecida via Origin/Referer, cookies atuais e proteção CSRF da interface
+própria mantidos. No ramo por token, X-XSRF-TOKEN recebe XSRF-TOKEN URL-decodificado;
+Sec-Fetch-Site same-origin pode permitir antes da comparação. Preparação por
+csrf-cookie serve também ao visitante, sem provar autenticação.
+
+Sequência planejada: Auth::guard('web')->logout(), session()->invalidate(),
+session()->regenerateToken(). Logout retira identidade; invalidate limpa
+atributos, destrói registro antigo e gera outro ID; token deve ser criado
+separadamente após a invalidação. Marcador anterior descartado, diferente da
+renovação após login. Cookies de saída podem manter sessão visitante. Escopo
+sessão atual, sem logout de todos os dispositivos ou revogação de tokens API.
+Não implementamos lembrar de mim; logout padrão pode atualizar remember_token
+quando aplicável, conforme código instalado.
+
+Decisão do projeto: aceitar visitante válido com 204 vazio/sem Location,
+assim como autenticado; não exigir auth:sanctum nem reaproveitar throttle:login.
+Repetição com cookies/token atuais aceita; token antigo pode falhar. Rejeição
+CSRF esperada 419 JSON/message string, extras permitidos, sem executar o
+controller. Nenhuma resposta real de logout observada. GET usuario posterior,
+somente com cookies resultantes/sem outra autenticação, deverá retornar 401.
+Limpar só a identidade exibida na tela não encerra autenticação no servidor.
+
+Verificação: referências primárias Laravel 13 de autenticação/logout, Sanctum
+e CSRF consultadas. Fonte instalada lida no Docker por shell/sed/cat:
+SessionGuard::logout, Store::invalidate/migrate/
+regenerateToken, EnsureFrontendRequestsAreStateful e PreventRequestForgery.
+Dependências no volume vendor-backend; tentativa inicial de leitura pelo host
+não encontrou backend/vendor, sem alterar arquivos. Métodos confirmam suporte
+a visitante, separação de responsabilidades e ramos de sessão/CSRF. Rotas,
+bootstrap e controller atuais conferidos: login/consulta/catálogo, sem logout.
+Nenhum PHP da aplicação foi executado, guard autenticado ou sessão iniciada.
+
+Git diff --check passou. Links locais válidos: contrato de logout três,
+aula 7.43 três, consulta cinco, login quatro, limite um, protocolo CSRF três,
+aula 7.42 dois. Escopo conferido: somente documentos alterados, aplicação/
+Compose/OpenAPI sem diff e índice vazio. Rota/controller/OpenAPI ainda sem
+operação de logout.
+
+Sem SQL, HTTP, nova suíte, auditoria ou snapshots. Última suíte permanece
+7.39: 101 testes/1.407 asserções. Aplicação/configuração/ambientes/dependências/
+serviços/rotas/migrations/Compose/OpenAPI preservados. O contrato lista cenários
+futuros, sem apresentá-los como testes executados nesta etapa.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.43: pendente; registros locais. Último checkpoint publicado:
+5f2b770ed8fb25ac2f612553d64c730644a0f18e (7.42).
+Próximo passo exato após confirmar/publicar: 7.44 — adicionar somente
+LoginController::destroy, sem registrar rota, e verificar diretamente
+logout/invalidação/novo token em ambiente de teste isolado. Navegador/CORS,
+verificação HTTP/CSRF de logout e inclusão dele no OpenAPI ficam pendentes.

@@ -146,7 +146,9 @@ credenciais. Servidor/sessão própria/auxiliares removidos; 54 sessões anterio
 preservadas. Código 0, sem nova suíte. Na 7.42, POST login incluído no OpenAPI.
 Segurança/schema/respostas desta
 consulta preservados; descrição atualizada para referenciar o login já existente.
-Redocly validou documento/exemplos e casos controlados. Próxima 7.43: desenhar logout.
+Redocly validou documento/exemplos e casos controlados. Na 7.43,
+[contrato de logout](logout.md) desenhado: a consulta posterior somente com
+cookies/sem outra autenticação deverá retornar 401. Logout ainda não implementado.
 Comportamento de navegador/CORS permanece pendente.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)

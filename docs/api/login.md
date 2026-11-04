@@ -213,7 +213,8 @@ CredenciaisLogin e respostas 204 sem content, 419/message mínimo, 422/message/
 errors email/password e 429/message/headers. Security vazio recebe visitantes;
 a preparação de sessão/CSRF continua descrita. Redocly fixado validou documento;
 quatro cópias inválidas rejeitadas e duas permissivas aceitas. Nenhuma API
-executada nessa validação. Próxima 7.43: desenhar contrato de POST logout.
+executada nessa validação. Na 7.43, [contrato de logout](logout.md) desenhado;
+implementação pendente. Próxima 7.44: somente LoginController::destroy.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

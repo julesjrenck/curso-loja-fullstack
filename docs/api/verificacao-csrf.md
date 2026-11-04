@@ -115,5 +115,6 @@ Detalhes e comandos no [registro da 7.41](../aulas/07-41-verificacao-csrf-http.m
 Na 7.42, POST /api/v1/login integrado ao OpenAPI. Resposta 419 exige message
 string e admite campos adicionais; cabeçalho X-XSRF-TOKEN documentado como
 condicional ao caminho da proteção. Redocly validou estrutura/exemplos, sem
-novos pedidos HTTP. Próxima 7.43: desenhar contrato de POST logout.
+novos pedidos HTTP. Na 7.43, contrato de logout desenhado mantendo CSRF.
+A verificação 7.41 não executou logout; esse controle continua pendente.
 Navegador e CORS continuam pendentes.

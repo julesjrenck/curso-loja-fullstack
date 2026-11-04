@@ -3,7 +3,7 @@
 Implementação documental, explicação e verificações em 04/11/2026, após
 confirmação da 7.41 com "entendi". Checkpoint anterior publicado e conferido em
 091ba33ce6f69f93a9c1cb0b1b4b182d89a14597; HEAD/origin/main/main remota iguais.
-Entendimento da 7.42 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.42 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -123,6 +123,7 @@ OpenAPI atualizado, explicado e verificado; entendimento confirmado em 04/11/202
 Contratos/registros atualizados; aplicação/Compose/ambientes/dependências
 preservados. Sem SQL, HTTP, nova suíte Laravel, auditoria ou recaptura de corpos.
 Última suíte permanece 7.39: 101 testes/1.407 asserções.
-Publicação da 7.42 pendente. Após confirmar/publicar: 7.43 — desenhar o contrato
-de POST /api/v1/logout, com sessão/CSRF, resposta e comportamento para visitante,
-antes de implementar logout. Navegador/CORS seguem pendentes.
+Publicação da 7.42 concluída e conferida em
+5f2b770ed8fb25ac2f612553d64c730644a0f18e; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.43 —
+desenhar contrato de POST logout. Navegador/CORS seguem pendentes.

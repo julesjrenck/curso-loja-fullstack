@@ -228,10 +228,16 @@ Schemas estruturais, exemplos e cabeçalhos do limitador documentados; regras
 completas de normalização/validação explicadas nas descrições. Redocly passou;
 quatro exemplos inválidos rejeitados e dois casos adicionais permitidos aceitos.
 Contratos anteriores preservados; GET usuario mudou somente a descrição.
-Entendimento da 7.42 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próximo após confirmar/publicar: 7.43 — desenhar o contrato de POST logout,
-com sessão/CSRF, resposta e comportamento para visitante, antes de implementá-lo.
-Navegador/CORS pendentes.
+Entendimento da 7.42 confirmado com "entendi" em 04/11/2026; publicada em 5f2b770,
+remoto conferido. Na 7.43, contrato de POST logout desenhado: sem corpo
+obrigatório, sessão/CSRF da interface própria, logout web/invalidação/novo token,
+204 vazio também para visitante válido e 419 se a proteção rejeitar. Consulta
+posterior somente com cookies/sem outra autenticação deverá responder 401.
+Fontes oficiais/código instalado conferidos; nenhum logout executado.
+Entendimento da 7.43 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Próximo após confirmar/publicar: 7.44 — somente LoginController::destroy,
+sem registrar rota, com verificação direta em ambiente de teste isolado.
+Navegador/CORS e OpenAPI de logout pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -958,7 +964,11 @@ publicação em 091ba33. Na 7.42, POST login/corpo JSON/quatro respostas integra
 ao OpenAPI, explicados e validados no Docker; quatro exemplos inválidos
 rejeitados/dois permitidos aceitos. Catálogo/schemas anteriores/segurança da
 consulta preservados; descrição da consulta atualizada. Entendimento confirmado
-com "entendi" em 04/11/2026; publicação pendente antes da 7.43 — desenhar o contrato de logout.
+com "entendi" em 04/11/2026; publicação em 5f2b770. Na 7.43, contrato de logout
+por sessão desenhado/explicado: POST, 204 também para visitante com sessão/CSRF
+válidos, 419 na rejeição e 401 na consulta posterior. Fontes oficiais/código
+instalado conferidos; sem executar logout. Entendimento confirmado com "entendi"
+em 04/11/2026; publicação pendente antes da 7.44 — somente método destroy do controller.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
