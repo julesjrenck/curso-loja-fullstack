@@ -104,7 +104,9 @@ ainda não integrado nele. Auditoria/snapshot normal/quatro contratos não repet
 ## Continuidade
 
 Rota implementada, resposta de visitante conferida e explicação apresentada;
-entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+entendimento confirmado com "entendi" em 04/11/2026; publicação conferida em
+5d6a4d8a9e642f08fe0f2b2a44139cb18f343552, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.
 Após publicar: 7.20 — criar teste automatizado de visitante para
 GET /api/v1/usuario, cobrindo Accept JSON, HTML e ausente para preservar 401 JSON,
 antes de testar acesso autenticado ou implementar login.

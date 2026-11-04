@@ -5,8 +5,20 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.19 — Rota do usuário protegida pelo Sanctum: concluída,
+- Etapa atual: 7.20 — Teste do visitante na consulta do usuário: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.20: tests/Feature/UsuarioApiTest.php criado com DataProvider
+  para Accept JSON/HTML/ausente. Get com cabeçalhos explícitos, sem autenticação
+  preparada ou middleware desativado. Asserções de 401/Content-Type JSON/sem
+  Location e somente message string, sem fixar texto. Sem fixtures ou trait de
+  banco. Sintaxe válida; focado 3 testes/18 asserções e suíte completa 70/653,
+  códigos 0. SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/
+  dados zero. Aplicação/dependências/ambientes/OpenAPI preservados.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir; depois 7.21 — adicionar
+  cenário autenticado GET /api/v1/usuario com
+  actingAs/guard web e User persistido somente em loja_test, verificando
+  200/campos do contrato, distinguindo preparação do teste de login real.
 - Situação da 7.19: routes/api.php importa UsuarioController e registra GET
   /usuario com auth:sanctum sob api/v1. Bootstrap acrescenta redirectGuestsTo
   com null para api/*, evitando busca da rota login antes da renderização JSON.
@@ -17,10 +29,9 @@
   reais exercitados; sucesso autenticado ainda não. Catálogo sem auth conferido.
   Sintaxe válida; suíte existente 67/635, código 0. SQL posterior loja_test/
   loja_testes: seis tabelas/quatro migrations/dados zero. OpenAPI preservado.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir; depois 7.20 — teste automatizado
-  de visitante GET /api/v1/usuario cobrindo
-  Accept JSON, HTML e ausente, preservando 401 JSON antes de acesso autenticado/login.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  5d6a4d8a9e642f08fe0f2b2a44139cb18f343552, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.20.
 - Situação da 7.18: UsuarioController::show(Request): UsuarioResource criado
   em app/Http/Controllers/Api/V1, retornando Resource de $request->user().
   Diagnóstico Docker/testing com dois usuários fictícios não persistidos e
@@ -31,7 +42,7 @@
   dados zero. Contrato permanece planejado, sem rota ou login implementado.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   6523c31f2123a2a396a5e8c5bc41794b6899d4d2, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.19.
+  Checkpoint anterior à 7.19. Continuidade realizada na 7.19.
 - Situação da 7.17: backend/app/Http/Resources/UsuarioResource.php criada,
   herdando JsonResource com toArray que seleciona id/name/email. Diagnóstico
   Docker/testing com User não persistido e oito atributos fictícios: sete
@@ -1502,7 +1513,9 @@ confirmado com "entendi" em 04/11/2026 e publicação em 8cceb30.
 Continuidade realizada na 7.18 — UsuarioController::show; entendimento confirmado
 com "entendi" em 04/11/2026 e publicação em 6523c31. Continuidade realizada na
 7.19 — rota com auth:sanctum/401 JSON e ajuste no bootstrap; entendimento confirmado
-com "entendi" em 04/11/2026. Publicar antes da 7.20 — teste automatizado de visitante.
+com "entendi" em 04/11/2026 e publicação em 5d6a4d8. Continuidade realizada na
+7.20 — teste de visitante, focado 3/18 e suíte 70/653; entendimento confirmado
+com "entendi" em 04/11/2026. Publicar antes da 7.21 — cenário autenticado.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12468,8 +12481,42 @@ e aula 7.19 dois. Diff de dependências/OpenAPI vazio; alterações de aplicaç�
 restritas a routes/api.php e bootstrap/app.php. Nenhum .env ou log incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.19: pendente; checkpoint concluído. Último checkpoint publicado:
-6523c31f2123a2a396a5e8c5bc41794b6899d4d2 (7.18).
-Próximo passo exato após publicar e conferir: 7.20 — criar teste automatizado
-de visitante para GET /api/v1/usuario cobrindo Accept JSON, HTML e ausente,
-preservando 401 JSON antes de testar acesso autenticado ou implementar login.
+Publicação da 7.19: concluída e conferida em
+5d6a4d8a9e642f08fe0f2b2a44139cb18f343552; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.20.
+
+## Etapa 7.20 — Teste do visitante na consulta do usuário — 04/11/2026
+
+Iniciada após confirmação da 7.19 com "entendi" e publicação verificada.
+Implementação: tests/Feature/UsuarioApiTest.php, nova aula 7.20 e contrato/
+registros atualizados. Aplicação, rotas, bootstrap, dependências, migrations,
+ambientes e OpenAPI preservados.
+
+Explicação apresentada: Tests\Feature/TestCase, DataProvider público/estático,
+conjuntos nomeados com um argumento array cada, inclusive [[]] para cabeçalhos
+vazios. Get em vez de getJson preserva Accept HTML/ausente; kernel interno sem
+servidor de rede, sem actingAs/cookies/tokens/resolver ou middleware desativado.
+Asserções de 401, Content-Type application/json, ausência de Location e chaves
+exatas ['message']/tipo string, sem fixar idioma/texto. Sem fixtures/traits de
+banco, pois visitante não precisa de persistência. Zero SQL não foi adicionado
+como asserção; observado no diagnóstico 7.19. Fonte oficial HTTP tests consultada.
+
+Sintaxe válida. Focado com --testdox: três conjuntos passaram, 3 testes/18
+asserções, código 0. Header conta presença/valor separadamente: seis asserções
+por execução. Suíte completa 70 testes/653 asserções, código 0, soma dos três
+novos cenários aos 67/635 anteriores. SELECT posterior confirmou loja_test/
+loja_testes, seis tabelas, quatro migrations/lotes 1/2/3/4 e zero users/
+password_reset_tokens/sessions/produtos/categorias. Última suíte completa:
+7.20, 70/653. Sem auditoria/snapshot normal/quatro contratos repetidos.
+Sucesso autenticado e login real ainda não cobertos; operação fora do OpenAPI.
+
+Git diff --check passou. Links locais conferidos: contrato um, aula 7.19 dois
+e aula 7.20 dois. Diff confirmou aplicação/configuração/dependências/OpenAPI
+preservados; nenhum .env ou log incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.20: pendente; checkpoint concluído. Último checkpoint publicado:
+5d6a4d8a9e642f08fe0f2b2a44139cb18f343552 (7.19).
+Próximo passo exato após publicar e conferir: 7.21 — adicionar cenário
+autenticado GET /api/v1/usuario com actingAs/guard web e User persistido somente
+em loja_test, verificar 200/campos e distinguir preparação de teste de login real.

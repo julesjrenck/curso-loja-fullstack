@@ -106,7 +106,11 @@ Na 7.19, rota GET /api/v1/usuario com auth:sanctum registrada e bootstrap
 ajustado para evitar busca de login em api/*. Kernel confirmou 401 JSON para
 visitante com Accept JSON/HTML/ausente, sem redirect/SQL. Catálogo público,
 sintaxe válida e suíte 67/635 passou. Entendimento confirmado com "entendi" em
-04/11/2026; publicar antes da 7.20 — teste automatizado de visitante/401 JSON.
+04/11/2026; publicada em 5d6a4d8, remoto conferido. Na 7.20, UsuarioApiTest criado
+com DataProvider para Accept JSON/HTML/ausente: 401, Content-Type, sem Location,
+somente message string. Focado 3/18 e suíte completa 70/653 passaram.
+Entendimento confirmado com "entendi" em 04/11/2026; publicar antes da 7.21 —
+cenário autenticado com actingAs/guard web e User persistido em loja_test.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -771,7 +775,10 @@ Na 7.18, UsuarioController::show criado/explicado/verificado em memória e suít
 67/635 passou. Entendimento confirmado com "entendi" em 04/11/2026; publicada
 em 6523c31. Na 7.19, rota protegida e bootstrap ajustados; visitante/401 JSON
 conferido nos três casos de Accept, suíte 67/635. Entendimento confirmado com
-"entendi" em 04/11/2026; publicar antes da 7.20 — teste automatizado de visitante.
+"entendi" em 04/11/2026 e publicação em 5d6a4d8. Na 7.20, teste de visitante
+com três entradas criado/explicado: focado 3/18 e suíte 70/653 passaram.
+Entendimento confirmado com "entendi" em 04/11/2026; publicar antes da 7.21 —
+cenário autenticado com actingAs/web.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

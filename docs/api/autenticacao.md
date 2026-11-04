@@ -68,6 +68,9 @@ Criar uma sessão de visitante em /sanctum/csrf-cookie não satisfaz a autentica
 Na 7.19, diagnóstico pelo kernel HTTP/testing confirmou 401 JSON com Accept
 application/json, text/html e ausente, sem redirecionamento, cookie, Authorization
 ou SQL. Não foi uma requisição de rede nem teste de sessão autenticada.
+Na 7.20, UsuarioApiTest automatizou esses três casos: 401, Content-Type JSON,
+sem Location e objeto com somente message string, sem fixar seu texto.
+Resultado focado: 3 testes/18 asserções; suíte completa: 70 testes/653 asserções.
 
 ## Relação com a implementação futura
 
@@ -76,8 +79,9 @@ autenticação na rota; o Resource definirá a representação pública do User.
 A UsuarioResource foi criada na 7.17; UsuarioController::show foi criado na
 7.18 e entrega $request->user() ao Resource. Ambos verificados em memória.
 A rota foi registrada na 7.19 com auth:sanctum; bootstrap evita destino de
-redirecionamento em api/* e mantém renderização JSON. A próxima, 7.20, criará
-teste automatizado de visitante para preservar 401 JSON nos três casos de Accept.
+redirecionamento em api/* e mantém renderização JSON. Na 7.20, teste automatizado
+de visitante passou nos três casos de Accept. A próxima, 7.21, adicionará cenário
+de sucesso autenticado, com actingAs/guard web e User persistido em loja_test.
 Login, fluxo autenticado completo e integração no OpenAPI continuam pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
