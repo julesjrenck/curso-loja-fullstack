@@ -3,7 +3,7 @@
 Implementação documental, explicação e verificações em 04/11/2026, após
 confirmação da 7.22 com "entendi". Checkpoint anterior publicado e conferido em
 fe91e84fdee4c88aac0f31991f82ffac6b92486e; HEAD/origin/main/main remota iguais.
-Entendimento da 7.23 aguardando confirmação explícita.
+Entendimento da 7.23 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -114,7 +114,9 @@ continua 7.22: 71 testes/662 asserções. Login/cookie real ainda não exercitad
 
 ## Continuidade
 
-OpenAPI atualizado, explicado e verificado; entendimento e publicação da 7.23
-pendentes. Aguardar confirmação explícita. Após confirmar e publicar:
+OpenAPI atualizado, explicado e verificado; entendimento confirmado com
+"entendi" em 04/11/2026. Publicação conferida em
+a4cd9bcbe358a6093cf289e9d5a590b541f0d52b, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade na
 7.24 — desenhar o contrato de POST /api/v1/login, com entrada, sucesso e falha,
 antes de implementar validação ou autenticação por credenciais.

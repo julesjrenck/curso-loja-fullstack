@@ -122,8 +122,13 @@ fe91e84, remoto conferido. Na 7.23, OpenAPI inclui consulta do usuário com
 schema Usuario, respostas 200/401 e SessaoCookie apenas nessa operação.
 Nome do cookie conferido; catálogo preservado. Redocly fixado: documento válido
 código 0 e cópias sem email/com password extra rejeitadas código 1. Sem nova
-suíte Laravel. Entendimento aguardando confirmação; próximo após confirmar/
-publicar: 7.24 — contrato de POST /api/v1/login, antes de implementação.
+suíte Laravel. Entendimento confirmado com "entendi" em 04/11/2026; publicada
+em a4cd9bc, remoto conferido. Na 7.24, contrato planejado do login apresentado:
+email/password, 204 sem corpo/renovação de sessão e 422 por validação ou erro
+genérico de credenciais; CSRF preservado/419 quando rejeitado. Três exemplos
+JSON conferidos em PHP Docker; nenhuma rota/login implementados. Entendimento
+confirmado com "entendi" em 04/11/2026; publicar antes da 7.25 — somente
+LoginRequest com authorize/regras de entrada, antes de controller/rota.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -797,7 +802,10 @@ focado 4/26, suíte 71/661 e rollback conferidos. Entendimento confirmado com
 segundo usuário/query de terceiro; focado 4/27, suíte 71/662 e rollback conferidos.
 Entendimento confirmado com "entendi" em 04/11/2026 e publicação em fe91e84.
 Na 7.23, consulta integrada no OpenAPI com cookie/200/401, lint válido e duas
-cópias inválidas rejeitadas. Aguardar entendimento antes da 7.24 — contrato do login.
+cópias inválidas rejeitadas. Entendimento confirmado com "entendi" em 04/11/2026
+e publicação em a4cd9bc. Na 7.24, contrato do login/204/422 apresentado e exemplos
+JSON conferidos; entendimento confirmado com "entendi" em 04/11/2026.
+Publicar antes da 7.25 — somente LoginRequest.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

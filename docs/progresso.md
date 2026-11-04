@@ -5,8 +5,22 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.23 — Consulta do usuário no OpenAPI: implementação documental,
-  explicação e verificações apresentadas; entendimento aguardando confirmação.
+- Etapa atual: 7.24 — Contrato do login por sessão: concluída,
+  entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.24: docs/api/login.md e aula correspondente criados. Planejado
+  POST /api/v1/login JSON com email/password; validação required/string/email/
+  max:255 e required/string. Normalização de email e senha preservada explicadas.
+  Sucesso 204 vazio, guard web e renovação de ID da sessão; falhas 422/message/
+  errors, mesmo erro genérico em email para conta ausente ou senha incorreta.
+  Sessão/CSRF da interface própria continuam necessários; rejeição CSRF 419.
+  Três exemplos JSON/tipos conferidos em PHP Docker, sem bootstrap/SQL/login.
+  Fontes oficiais e trechos de attempt/normalizadores instalados consultados.
+  Aplicação/OpenAPI preservados; sem nova suíte, última 7.22, 71/662.
+  Limitação de tentativas pendente de regra própria antes de concluir fluxo.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir; depois 7.25 — criar somente
+  LoginRequest, authorize permitindo visitantes
+  e regras email/password, verificando validação antes de controller/rota.
 - Situação da 7.23: OpenAPI recebe GET /api/v1/usuario com 200/data/$ref Usuario
   e 401/message string, exemplos fictícios, required/tipos e additionalProperties
   false nas três novas representações. SessaoCookie apiKey/in cookie/nome local
@@ -16,9 +30,9 @@
   documento código 0; cópias sem email/com password extra rejeitadas código 1,
   removidas. Sem novos corpos capturados, SQL ou suíte Laravel. Última suíte
   7.22, 71/662. Aplicação/ambientes/dependências preservados.
-  Entendimento e publicação da 7.23 pendentes. Próximo passo exato após confirmar
-  e publicar: 7.24 — desenhar contrato POST /api/v1/login com entrada/sucesso/falha,
-  antes de implementar validação ou autenticação por credenciais.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  a4cd9bcbe358a6093cf289e9d5a590b541f0d52b, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.24.
 - Situação da 7.22: mesmo cenário autenticado de UsuarioApiTest renomeado/
   ampliado. Bruno persistido antes de Ana após exigência loja_test/loja_testes;
   IDs diferentes conferidos. Http_build_query envia id/email de Bruno, mantendo
@@ -28,7 +42,7 @@
   Rollback dos dois usuários conferido. Aplicação/ambientes/dependências/OpenAPI
   preservados. Entendimento confirmado com "entendi" em 04/11/2026;
   publicação verificada em fe91e84fdee4c88aac0f31991f82ffac6b92486e,
-  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  HEAD/origin/main/main remota iguais. Checkpoint anterior à 7.23.
   Continuidade realizada na 7.23.
 - Situação da 7.21: UsuarioApiTest recebe DatabaseTransactions na classe e novo
   cenário autenticado. Identidade loja_test/loja_testes exigida antes de escrita;
@@ -1553,8 +1567,10 @@ com "entendi" em 04/11/2026 e publicação em c17ad9e. Continuidade realizada na
 com "entendi" em 04/11/2026 e publicação em 02a4b08. Continuidade realizada na
 7.22 — parâmetros de outro usuário, focado 4/27 e suíte 71/662; entendimento
 confirmado com "entendi" em 04/11/2026 e publicação em fe91e84. Continuidade
-realizada na 7.23 — OpenAPI/cookie/200/401; aguardar entendimento antes da
-7.24 — contrato POST /api/v1/login.
+realizada na 7.23 — OpenAPI/cookie/200/401; entendimento confirmado com "entendi"
+em 04/11/2026 e publicação em a4cd9bc. Continuidade realizada na 7.24 — contrato
+do login; entendimento confirmado com "entendi" em 04/11/2026. Publicar antes
+da 7.25 — somente LoginRequest.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12660,9 +12676,51 @@ Git diff --check passou. Links locais conferidos: contrato dois, aula 7.22 dois
 e aula 7.23 dois. Comparação final confirmou catálogo preservado no OpenAPI e
 diff de backend/Compose vazio; nenhum .env ou log incluído.
 
-Entendimento: aguardando confirmação explícita do aluno.
-Publicação da 7.23: pendente; alterações documentais locais. Último checkpoint
-publicado: fe91e84fdee4c88aac0f31991f82ffac6b92486e (7.22).
-Próximo passo exato após confirmar e publicar: 7.24 — desenhar contrato
-POST /api/v1/login com entrada, sucesso e falha, antes de implementar
-validação ou autenticação por credenciais.
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.23: concluída e conferida em
+a4cd9bcbe358a6093cf289e9d5a590b541f0d52b; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.24.
+
+## Etapa 7.24 — Contrato do login por sessão — 04/11/2026
+
+Iniciada após confirmação da 7.23 com "entendi" e publicação verificada.
+Implementação documental: docs/api/login.md com desenho planejado, nova aula
+7.24 e registros. Sem rota/FormRequest/controller/login implementado, mudança
+de aplicação, dependências, ambientes ou OpenAPI.
+
+Explicação apresentada: POST /api/v1/login, Accept/Content-Type JSON e campos
+email/password; required/string/email/max:255 e required/string, sem regras
+mínimas de cadastro. Normalização remove espaços externos de email e preserva
+password com outros caracteres; vazios/null/arrays/números inválidos. Extras
+não compõem credenciais; remember não suportado nesta versão. Visitantes podem
+tentar login, sem auth:sanctum, mas sessão/CSRF da interface própria necessários.
+Fluxo csrf-cookie/login/usuario, origem reconhecida e X-XSRF-TOKEN; ramo de
+mesma origem do Laravel 13 preservado. CSRF rejeitado produz 419, não erro de senha.
+
+Sucesso planejado 204 sem corpo/redirect, identidade no guard web e ID da sessão
+renovado; cliente consulta GET usuario depois. Entrada inválida 422/JSON/message/
+errors por campo; credenciais recusadas 422 com erro genérico em errors.email,
+igual para senha incorreta/e-mail não cadastrado. Textos ilustrativos, sem ecoar
+credenciais. Contrato do 401 na consulta protegida preservado. Limitação de
+tentativas terá regra própria antes de disponibilizar fluxo completo.
+
+Fontes oficiais Sanctum/autenticação/validação consultadas. Reflexão PHP Docker
+leu SessionGuard::attempt, sem executá-lo. Busca inicial de normalizadores com
+namespace incorreto retornou 255; corrigida para Foundation\Http\Middleware,
+leitura final código 0. Exceções padrão de TrimStrings incluem password;
+ConvertEmptyStringsToNull trata exatamente ''. Sem bootstrap/usuário/sessão/SQL.
+Três blocos JSON do contrato extraídos e decodificados com JSON_THROW_ON_ERROR
+em PHP Docker; campos/tipos/listas de mensagens conferidos, código 0. Verifica
+exemplos documentais, não validação efetiva, autenticação ou resposta HTTP real.
+Sem nova suíte Laravel; último resultado completo permanece 7.22, 71/662.
+
+Git diff --check passou. Links locais conferidos: contrato de consulta três,
+contrato de login um, aulas 7.23/7.24 dois cada. SHA do checkpoint anterior
+conferido contra HEAD; aplicação/Compose/OpenAPI sem diff. Nenhum .env ou log incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.24: pendente; checkpoint concluído. Último checkpoint
+publicado: a4cd9bcbe358a6093cf289e9d5a590b541f0d52b (7.23).
+Próximo passo exato após publicar e conferir: 7.25 — criar somente LoginRequest
+com authorize permitindo visitantes e regras email/password, verificar validação
+antes de criar controller ou registrar rota de login.
