@@ -101,6 +101,8 @@ contratos não foram repetidos.
 ## Continuidade
 
 Testes criados, explicados e verificados; entendimento confirmado com "entendi"
-em 04/11/2026; publicação pendente. Após publicar: 7.29 —
+em 04/11/2026; publicação conferida em
+e6ac54f1e3b4a9b69815d641c6a340991f43eeb6, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade na 7.29 —
 desenhar a limitação de tentativas do login, com chave de contagem, janela e
 resposta 429, antes de implementar o limitador ou registrar a rota.

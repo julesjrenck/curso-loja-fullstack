@@ -110,6 +110,15 @@ Usar 422 para credenciais recusadas neste login é uma decisão do nosso contrat
 Na 7.27, senha incorreta e e-mail inexistente produziram corpos 422 iguais na
 chamada direta ao controller, com guard visitante e ID/token de sessão preservados.
 
+## Limitação de frequência planejada
+
+Na 7.29, [regra de limite de login](limite-login.md) definida: cinco pedidos
+por IP em janela de 60 segundos iniciada no primeiro pedido contado. Conta
+sucesso e falhas que alcancem o limitador; e-mails do mesmo IP compartilham
+contador. Sexto pedido bloqueado antes do controller com 429 JSON/message,
+Retry-After em segundos restantes e Cache-Control no-store. Bloqueio não
+prorroga a janela e sucesso não zera a contagem. Regra ainda não aplicada.
+
 ## Limites e continuidade
 
 LoginRequest já implementa authorize true e as regras de entrada. Diagnóstico
@@ -119,9 +128,9 @@ Esse diagnóstico da 7.25 não executou login ou CSRF. Na 7.27, LoginController
 passou a executar a tentativa pelo guard web com validated, erro genérico ou
 renovação de sessão e 204. Diagnóstico com três casos em loja_test e sessão
 array passou, sem manter usuários ou sessões persistidos. Endpoint continua
-sem rota, limitação de tentativas ou entrada no OpenAPI de login.
-Limitação de tentativas ainda terá
-regra e verificação próprias antes de disponibilizar o fluxo de login completo.
+sem rota, limitador aplicado ou entrada no OpenAPI de login. A regra escolhida
+na 7.29 ainda precisa ser registrada, testada e anexada antes de disponibilizar
+o fluxo de login completo.
 Na 7.26, LoginRequestTest automatizou três entradas válidas e 14 inválidas,
 normalização/validated e 422 JSON renderizado em memória: focado 17 testes/94
 asserções, suíte completa 88 testes/756 asserções. Não executa login ou CSRF.
@@ -130,8 +139,10 @@ com guard real/loja_test/transação e sessão array: focado 2 testes/47 asserç
 suíte completa 90 testes/803 asserções. Sucesso exige 204 vazio, identidade e
 renovação de ID/token; falhas exigem visitante, ID/token preservados e corpos
 422 iguais, sem fixar tradução. Ainda não testa pipeline HTTP/CSRF/cookies.
-Próximo passo 7.29: desenhar limite de tentativas, chave/janela e resposta 429,
-antes de implementar limitador ou registrar rota.
+Na 7.29, diagnóstico do contador Laravel com ArrayStore/relógio controlado
+passou em nove casos, sem HTTP ou aplicação do middleware à rota.
+Próximo passo 7.30: registrar somente o limitador nomeado login, cinco por
+minuto/IP e resposta 429 JSON/cabeçalhos, antes de registrar a rota.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

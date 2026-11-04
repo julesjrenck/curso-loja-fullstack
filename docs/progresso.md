@@ -5,8 +5,23 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.28 — Testes da autenticação no controller: concluída,
+- Etapa atual: 7.29 — Desenho do limite de tentativas de login: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.29: docs/api/limite-login.md criado. Planejado limitador login,
+  cinco pedidos por IP/60 segundos desde primeiro contado. Sucesso/validação/
+  credenciais recusadas que alcancem o contador consomem limite; sucesso não
+  limpa, bloqueio não prolonga. Mesmo IP compartilha contador entre e-mails.
+  429 JSON/message, Retry-After variável e Cache-Control no-store antes do
+  controller. Sem registrar/aplicar limitador ou rota. Configuração normal
+  conferida file/cache.limiter null. Fontes oficiais e trechos instalados lidos.
+  Diagnóstico isolado RateLimiter/ArrayStore/Carbon: nove casos passaram,
+  incluindo cinco permitidos/sexto bloqueado/espera 30/IP distinto/expiração.
+  Exemplo JSON válido. Sem SQL/arquivo/sessão/HTTP no diagnóstico do contador;
+  nenhuma suíte nova, última 7.28, 90/803. Aplicação/OpenAPI preservados.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir; depois 7.30 — registrar só
+  limitador nomeado login em AppServiceProvider,
+  com 5/minuto/IP e 429 JSON/cabeçalhos, verificando antes da rota.
 - Situação da 7.28: tests/Feature/LoginControllerTest.php criado, dois métodos
   para sucesso e duas falhas com corpos comparados. SetUp exige loja_test/
   loja_testes/session array antes de escrita, User/transação/rollback e visitante.
@@ -18,10 +33,9 @@
   Sintaxe válida; focado 2 testes/47 asserções e suíte 90/803, códigos 0.
   SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/dados zero.
   Aplicação/ambientes/dependências/rotas/OpenAPI preservados.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir; depois 7.29 — desenhar limite
-  de tentativas do login com chave, janela
-  e resposta 429, antes de implementar limitador ou registrar rota.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  e6ac54f1e3b4a9b69815d641c6a340991f43eeb6, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.29.
 - Situação da 7.27: LoginController::store(LoginRequest): Response criado,
   usa validated/attempt guard web, ValidationException genérica em email ou
   sessão regenerate/204 vazio. Diagnóstico Docker/testing: aplicação por caso,
@@ -35,7 +49,7 @@
   Sem teste permanente novo; rotas/ambientes/dependências/OpenAPI preservados.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   10416ad5d8fa44cec71e353551cfae30187e3521, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.28.
+  Checkpoint anterior à 7.28. Continuidade realizada na 7.28.
 - Situação da 7.26: tests/Feature/LoginRequestTest.php criado, helper privado
   com Request JSON/visitante/Pipeline de normalizadores/FormRequest real,
   provedores três válidos/14 inválidos. Válidos exigem authorize/visitante e
@@ -1631,8 +1645,9 @@ entendimento confirmado com "entendi" em 04/11/2026 e publicação em 7f3e8ed.
 Continuidade realizada na 7.27 — LoginController/três casos/suíte 88-756;
 entendimento confirmado com "entendi" em 04/11/2026 e publicação em 10416ad.
 Continuidade realizada na 7.28 — testes do controller/focado 2-47/suíte 90-803;
-entendimento confirmado com "entendi" em 04/11/2026. Publicar antes da
-7.29 — desenho do limite de tentativas.
+entendimento confirmado com "entendi" em 04/11/2026 e publicação em e6ac54f.
+Continuidade realizada na 7.29 — desenho 5/IP/60s/429; entendimento confirmado
+com "entendi" em 04/11/2026. Publicar antes da 7.30 — registrar limitador sem rota.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12949,8 +12964,51 @@ código restrito a testes; aplicação/configuração/dependências/OpenAPI sem 
 nenhum .env ou log incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.28: pendente; checkpoint concluído. Último checkpoint publicado:
-10416ad5d8fa44cec71e353551cfae30187e3521 (7.27).
-Próximo passo exato após publicar e conferir: 7.29 — desenhar limitação de
-tentativas do login, com chave de contagem, janela e resposta 429, antes de
-implementar limitador ou registrar rota.
+Publicação da 7.28: concluída e conferida em
+e6ac54f1e3b4a9b69815d641c6a340991f43eeb6; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.29.
+
+## Etapa 7.29 — Desenho do limite de tentativas de login — 04/11/2026
+
+Iniciada após confirmação da 7.28 com "entendi" e publicação verificada.
+Implementação documental: docs/api/limite-login.md, nova aula 7.29, contratos/
+registros atualizados. Nenhum limitador/rota registrado ou código de aplicação/
+ambiente/dependência/OpenAPI alterado.
+
+Explicação apresentada: cinco pedidos por IP reconhecido pelo Laravel, janela
+de 60 segundos desde primeiro contado; sexto bloqueado. Contam pedidos que
+alcancem limitador, incluindo sucesso/entrada inválida/credenciais recusadas.
+Sucesso não zera, bloqueio não conta nem estende expiração. Mesmo IP compartilha
+contador entre e-mails/pessoas; IP diferente independente. Limite de frequência
+local, sem bloqueio permanente de conta. 429 JSON só message, sem Location,
+Retry-After em segundos restantes e Cache-Control no-store, antes do controller.
+Não determina validade de credenciais. Resposta personalizada preservará headers
+do Laravel e JSON para Accept HTML/ausente; ainda não implementada.
+
+Fontes oficiais Laravel/RFC 6585 consultadas. Reflexão PHP Docker leu
+ThrottleRequests::handleRequest/buildException, RateLimiter::tooManyAttempts/
+availableIn: checa antes de hit/next, calcula Retry-After e aceita callback de
+resposta. Configuração normal carregada file/cache.limiter null; sem gravar
+contador no cache normal, sem SQL. Cache do contador distinto do cache HTTP.
+Laboratório atual com uma instância usará file, testes array, sem novo serviço.
+
+Diagnóstico PHP Docker com autoload apenas, RateLimiter/Repository/ArrayStore
+isolados e Carbon com relógio controlado/restaurado em finally. Nove casos
+passaram: IP A cinco permitidos, sexto bloqueado/60s, após 30s bloqueado/30s,
+IP B independente permitido e IP A permitido ao expirar 60s. Hit só após permissão;
+modelo segue leitura do middleware, sem registrar limitador ou executar HTTP.
+Código 0, sem aplicação/SQL/usuário/sessão/arquivo. Exemplo JSON do contrato
+decodificado com JSON_THROW_ON_ERROR e somente message string conferido em
+PHP Docker, código 0. Nenhuma resposta 429 de rota observada nesta etapa.
+Sem suíte Laravel repetida; última completa 7.28, 90 testes/803 asserções.
+
+Git diff --check passou. Links locais conferidos: contrato login dois, limite
+um, consulta três, aulas 7.28/7.29 dois cada. SHA anterior conferido contra HEAD;
+backend/Compose/OpenAPI sem diff, nenhum .env ou log incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.29: pendente; checkpoint concluído. Último checkpoint
+publicado: e6ac54f1e3b4a9b69815d641c6a340991f43eeb6 (7.28).
+Próximo passo exato após publicar e conferir: 7.30 — registrar somente
+limitador nomeado login em AppServiceProvider::boot, 5/minuto/IP e resposta
+429 JSON/cabeçalhos, verificando configuração antes de registrar/proteger rota.

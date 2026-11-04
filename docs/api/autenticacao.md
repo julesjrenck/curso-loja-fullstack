@@ -105,7 +105,9 @@ login ainda não criada ou incluída no OpenAPI. Na 7.26, testes da validação
 passaram: focado 17/94, suíte 88/756. Na 7.27, LoginController::store criado e
 verificado diretamente com guard web/loja_test/sessão array: 204 no sucesso,
 422 genérico nas duas falhas e rollback. Na 7.28, testes desse controller passaram:
-focado 2/47 e suíte 90/803. Próxima 7.29: desenhar limitação de tentativas do login.
+focado 2/47 e suíte 90/803. Na 7.29, regra local de cinco pedidos/minuto/IP
+planejada, com 429/Retry-After. Próxima 7.30: registrar limitador nomeado login,
+sem ainda registrar rota ou aplicar middleware de limitação.
 Rota de login e fluxo completo HTTP/sessão/cookie continuam pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
