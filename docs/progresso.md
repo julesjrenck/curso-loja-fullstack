@@ -5,8 +5,20 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.13 — Descoberta do Sanctum pelo Laravel: concluída,
+- Etapa atual: 7.14 — Primeira requisição ao endpoint CSRF: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.14: GET real a /sanctum/csrf-cookie via Guzzle/PHP Docker para
+  servidor interno 127.0.0.1:8000, Host 127.0.0.1:8002 e Accept JSON. Resposta
+  204/zero bytes, cookies XSRF-TOKEN (sem HttpOnly) e loja-fullstack-session
+  (HttpOnly), ambos Path /, sem Domain/Secure, SameSite lax, Max-Age 7200.
+  Valores privados somente em memória. Arquivo de sessão próprio confirmado
+  com token CSRF e sem indicador login, removido em finally; nomes/hashes dos
+  arquivos preexistentes preservados. Código 0. Sem mudança de aplicação.
+  Sem SQL/nova suíte/auditoria/quatro contratos; última suíte 7.13, 67/635.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.15 — habilitar statefulApi e conferir reconhecimento das requisições
+  da interface própria na API, antes de implementar login.
 - Situação da 7.13: package:discover em Docker terminou 0; packages.php passou
   de seis para sete entradas. Novo processo confirmou SanctumServiceProvider
   nos manifests providers/eager e carregado, rota GET|HEAD sanctum/csrf-cookie
@@ -16,10 +28,9 @@
   Manifests válidos, JSON/lock com hashes preservados; suíte 67/635, código 0.
   SQL posterior loja_test/loja_testes: seis tabelas, quatro migrations e dados zero.
   Sem statefulApi, publicação de configuração/migration ou requisição ao novo endpoint.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.14 — primeira requisição HTTP controlada à rota csrf-cookie para
-  observar status e nomes/atributos dos cookies, sem login.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  cc016c46c1e8057e7db67e4b2cceb06e4a529f1b, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.14.
 - Situação da 7.12: somente symfony/mime v8.1.7 → v8.1.10 atualizado no lock/vendor,
   resolvendo o aviso da 7.11. JSON, demais pacotes e manifests preservados.
   Metadados/compatibilidade e simulação conferidos; update restrito com
@@ -29,7 +40,7 @@
   seis tabelas, quatro migrations e dados zero. Sem descoberta/migrations/login.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   99a131dcbcd43b504db45f3e279a783065c69a5d, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.13.
+  Checkpoint anterior à 7.13. Continuidade realizada na 7.13.
 - Situação da 7.11: laravel/sanctum v4.3.3 instalado em Docker; composer.json
   declara ^4.3.3, lock fixa versão/referência. Simulação e execução adicionaram
   somente um pacote, zero atualizações/remoções. Registros dos 109 anteriores
@@ -1424,7 +1435,8 @@ publicação conferida em 63c0f1e. Continuidade realizada na 7.11, confirmada co
 "entendi" em 04/11/2026 e publicada em 0cf2c82. Continuidade realizada na 7.12;
 entendimento confirmado com "entendi" em 04/11/2026 e publicação em 99a131d.
 Continuidade realizada na 7.13, confirmada com "entendi" em 04/11/2026;
-publicar checkpoint e iniciar 7.14.
+publicação conferida em cc016c4. Continuidade realizada na 7.14, confirmada com
+"entendi" em 04/11/2026; publicar checkpoint e iniciar 7.15.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12163,8 +12175,45 @@ Git diff --check passou; links locais das aulas 7.12 (dois) e 7.13 (cinco)
 conferidos. Manifests gerados, vendor e arquivos .env locais continuam ignorados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.13: pendente; checkpoint concluído. Último checkpoint publicado:
-99a131dcbcd43b504db45f3e279a783065c69a5d (7.12).
-Próximo passo exato: publicar e conferir o checkpoint da 7.13. Depois,
-7.14 — primeira requisição HTTP controlada a /sanctum/csrf-cookie para observar
-status e nomes/atributos dos cookies, sem login.
+Publicação da 7.13: concluída e conferida em
+cc016c46c1e8057e7db67e4b2cceb06e4a529f1b; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.14.
+
+## Etapa 7.14 — Primeira requisição ao endpoint CSRF — 04/11/2026
+
+Iniciada após confirmação da 7.13 com "entendi" e publicação verificada.
+Implementação: demonstração HTTP real, nova aula
+docs/aulas/07-14-primeira-requisicao-csrf-cookie.md e registros; nenhuma rota/
+dependência/configuração/migration alterada. Trecho do controller instalado
+consultado: resposta vazia 204, inclusive para expectsJson.
+
+Prévia de configuração confirmou file/json, nome loja-fullstack-session,
+http_only true, secure null e same_site lax. Diagnóstico por stdin PHP Docker
+com Guzzle existente, URL interna http://127.0.0.1:8000, Host 127.0.0.1:8002,
+Accept application/json, timeout 10, sem redirects/proxy/cookie jar. Requisição
+GET /sanctum/csrf-cookie foi atendida pelo servidor real, não pelo kernel do teste.
+
+Resultado: 204/zero bytes, dois Set-Cookie. XSRF-TOKEN http_only false;
+loja-fullstack-session http_only true. Ambos Path /, Domain ausente, SameSite lax,
+Secure ausente e Max-Age 7200. Saída apenas com nomes/atributos. Explicados
+status sem corpo útil, efeito nos cabeçalhos, papel de cada cookie e limites
+de uma chamada por cliente PHP para avaliar regras de navegador/CORS.
+
+Arquivo próprio de sessão localizado internamente após decodificar o cookie
+com encrypter; identificador validado e exigido ausente da lista anterior.
+JSON interno com token CSRF presente e sem chaves login_. finally removeu somente
+esse arquivo. Comparação de nomes/hashes de arquivos preexistentes passou.
+Nenhum token, cookie, chave ou nome de arquivo privado impresso; processo 0.
+Preparação de sessão de visitante não executou login. Fontes Laravel/MDN consultadas.
+
+Sem comandos SQL, nova suíte, auditoria ou quatro contratos; última suíte
+completa permanece 7.13, 67/635. Não criamos formulário/frontend ou teste permanente.
+Git diff --check passou; links locais das aulas 7.13 (cinco) e 7.14 (dois)
+conferidos. Arquivos .env locais continuam ignorados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.14: pendente; checkpoint concluído. Último checkpoint publicado:
+cc016c46c1e8057e7db67e4b2cceb06e4a529f1b (7.13).
+Próximo passo exato: publicar e conferir o checkpoint da 7.14. Depois,
+7.15 — habilitar statefulApi no bootstrap e conferir reconhecimento de requisições
+da interface própria na API, antes de implementar login.

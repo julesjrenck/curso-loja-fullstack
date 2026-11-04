@@ -82,8 +82,12 @@ validação/plataforma e suíte 67/635 passaram. Entendimento da 7.12 confirmado
 package:discover executado: sete entradas, provider Sanctum carregado e rota
 GET|HEAD /sanctum/csrf-cookie registrada com web. Manifests válidos, JSON/lock
 preservados e suíte 67/635 passou. Entendimento da 7.13 confirmado com "entendi"
-em 04/11/2026; publicação pendente. Após publicar, 7.14: primeira requisição controlada à rota
-para observar status e nomes/atributos dos cookies, sem login.
+em 04/11/2026; publicada em cc016c4, remoto conferido. Na 7.14, primeira chamada
+HTTP real a csrf-cookie: 204/corpo vazio e dois cookies com atributos conferidos,
+sem valores expostos. Sessão de visitante com CSRF, sem login; arquivo da demo
+removido e preexistentes preservados. Entendimento da 7.14 confirmado com "entendi"
+em 04/11/2026; publicação pendente. Após publicar, 7.15: habilitar statefulApi e conferir
+reconhecimento das requisições da interface própria na API, antes do login.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -736,7 +740,9 @@ entendimento confirmado com "entendi" em 04/11/2026 e publicação em 0cf2c82.
 Na 7.12, symfony/mime corrigido e verificado; entendimento confirmado com
 "entendi" em 04/11/2026 e publicação em 99a131d. Na 7.13, Sanctum descoberto,
 provider/rota conferidos, entendimento confirmado com "entendi" em 04/11/2026.
-Publicar checkpoint e iniciar primeira requisição na 7.14.
+Publicação conferida em cc016c4. Na 7.14, resposta HTTP/cookies/sessão de visitante
+conferidos; entendimento confirmado com "entendi" em 04/11/2026.
+Publicar checkpoint e iniciar statefulApi na 7.15.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

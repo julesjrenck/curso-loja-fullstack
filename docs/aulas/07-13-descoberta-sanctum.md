@@ -115,5 +115,6 @@ auditoria continua a 7.12, código 0; não houve atualização de dependências 
 Entendimento confirmado com "entendi" em 04/11/2026. Próximo passo após publicar:
 7.14 — fazer uma primeira requisição HTTP controlada a GET /sanctum/csrf-cookie
 para observar status e nomes/atributos dos cookies, sem fazer login.
-Descoberta explicada/verificada e entendimento confirmado. Checkpoint preparado
-para commit e push; consultar o Git ou registro posterior para conferir a publicação.
+Descoberta explicada/verificada e entendimento confirmado. Checkpoint publicado
+e conferido em cc016c46c1e8057e7db67e4b2cceb06e4a529f1b;
+HEAD/origin/main/main remota iguais após push. Registro posterior à publicação.
