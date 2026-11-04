@@ -5,8 +5,23 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.24 — Contrato do login por sessão: concluída,
+- Etapa atual: 7.25 — Validação da entrada do login: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.25: app/Http/Requests/LoginRequest.php criada, FormRequest com
+  authorize true e regras email bail/required/string/email/max:255 e password
+  bail/required/string. Sem controller/rota/login. Diagnóstico Docker/testing
+  com normalizadores reais, createFrom/validateResolved/validated e handler de
+  exceções em memória: 17 casos (três válidos/14 inválidos), 422/JSON/campos
+  corretos; email normalizado, senha preservada e extras fora de validated.
+  Visitante permitido, zero SQL por listener, sem usuário/sessão/autenticação.
+  Sintaxe válida; suíte existente 71/662, código 0. SQL posterior loja_test/
+  loja_testes: seis tabelas/quatro migrations/dados zero. Sem teste permanente
+  novo; aplicação restante/ambientes/dependências/OpenAPI preservados.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir; depois 7.26 — testes automatizados
+  da LoginRequest em memória para
+  entradas válidas/inválidas, normalização e exclusão de extras de validated,
+  antes de criar controller ou registrar rota de login.
 - Situação da 7.24: docs/api/login.md e aula correspondente criados. Planejado
   POST /api/v1/login JSON com email/password; validação required/string/email/
   max:255 e required/string. Normalização de email e senha preservada explicadas.
@@ -17,10 +32,9 @@
   Fontes oficiais e trechos de attempt/normalizadores instalados consultados.
   Aplicação/OpenAPI preservados; sem nova suíte, última 7.22, 71/662.
   Limitação de tentativas pendente de regra própria antes de concluir fluxo.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir; depois 7.25 — criar somente
-  LoginRequest, authorize permitindo visitantes
-  e regras email/password, verificando validação antes de controller/rota.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  7ee449a061c7797b28384490d2b8b488bdcb0846, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.25.
 - Situação da 7.23: OpenAPI recebe GET /api/v1/usuario com 200/data/$ref Usuario
   e 401/message string, exemplos fictícios, required/tipos e additionalProperties
   false nas três novas representações. SessaoCookie apiKey/in cookie/nome local
@@ -32,7 +46,7 @@
   7.22, 71/662. Aplicação/ambientes/dependências preservados.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   a4cd9bcbe358a6093cf289e9d5a590b541f0d52b, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.24.
+  Checkpoint anterior à 7.24. Continuidade realizada na 7.24.
 - Situação da 7.22: mesmo cenário autenticado de UsuarioApiTest renomeado/
   ampliado. Bruno persistido antes de Ana após exigência loja_test/loja_testes;
   IDs diferentes conferidos. Http_build_query envia id/email de Bruno, mantendo
@@ -1569,8 +1583,10 @@ com "entendi" em 04/11/2026 e publicação em 02a4b08. Continuidade realizada na
 confirmado com "entendi" em 04/11/2026 e publicação em fe91e84. Continuidade
 realizada na 7.23 — OpenAPI/cookie/200/401; entendimento confirmado com "entendi"
 em 04/11/2026 e publicação em a4cd9bc. Continuidade realizada na 7.24 — contrato
-do login; entendimento confirmado com "entendi" em 04/11/2026. Publicar antes
-da 7.25 — somente LoginRequest.
+do login; entendimento confirmado com "entendi" em 04/11/2026 e publicação
+em 7ee449a. Continuidade realizada na 7.25 — LoginRequest/17 casos/71-662;
+entendimento confirmado com "entendi" em 04/11/2026. Publicar antes da 7.26 —
+testes automatizados da validação.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12719,8 +12735,50 @@ contrato de login um, aulas 7.23/7.24 dois cada. SHA do checkpoint anterior
 conferido contra HEAD; aplicação/Compose/OpenAPI sem diff. Nenhum .env ou log incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.24: pendente; checkpoint concluído. Último checkpoint
-publicado: a4cd9bcbe358a6093cf289e9d5a590b541f0d52b (7.23).
-Próximo passo exato após publicar e conferir: 7.25 — criar somente LoginRequest
-com authorize permitindo visitantes e regras email/password, verificar validação
-antes de criar controller ou registrar rota de login.
+Publicação da 7.24: concluída e conferida em
+7ee449a061c7797b28384490d2b8b488bdcb0846; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.25.
+
+## Etapa 7.25 — Validação da entrada do login — 04/11/2026
+
+Iniciada após confirmação da 7.24 com "entendi" e publicação verificada.
+Implementação: somente LoginRequest.php na aplicação, nova aula 7.25,
+contratos/registros atualizados. Sem gerador Artisan, nova dependência,
+controller, rota de login, migration ou alteração de ambiente/OpenAPI.
+
+Explicação apresentada: namespace/import/herança de FormRequest, authorize true
+permite processar visitante e não autentica; rules/retorno array/PHPDoc. Bail
+interrompe regras do mesmo campo, required/string e email/max:255; sem min de
+cadastro, hash, exists ou unique. Validação de formato separada da conferência
+de credenciais. Fonte oficial Laravel consultada.
+
+Diagnóstico PHP Docker/testing com aplicação/listener SQL: Requests POST JSON
+ilustrativos, resolver de visitante, Pipeline com TrimStrings e conversão de
+vazios. LoginRequest createFrom/container/redirector/validateResolved e validated.
+Três casos válidos: comum, normalização/extras, senha curta. Quatorze inválidos:
+três ausências, seis emails (null/array/número/vazio/formato/texto acima do limite)
+e cinco passwords (null/array/número/vazio/espaços). Handler renderizou exceções
+em memória: 422/application/json/message/errors e campos esperados conferidos.
+Email normalizado, password preservado, remember/id fora de validated, sem
+apagar entradas originais. Dezessete casos passaram, código 0, zero SQL.
+Senhas não impressas; nenhum usuário/sessão/autenticação ou HTTP real. Não
+prova CSRF ou resultados do login ainda inexistente. Sem testes permanentes novos.
+
+Sintaxe válida; suíte existente 71 testes/662 asserções, código 0. Novo arquivo
+exercitado pelo diagnóstico. SELECT posterior loja_test/loja_testes: seis tabelas,
+quatro migrations/lotes 1/2/3/4 e zero users/password_reset_tokens/sessions/
+produtos/categorias. Última suíte completa: 7.25, 71/662. Auditoria/snapshot
+normal/quatro contratos não repetidos. Limitação de tentativas continua pendente
+de regra própria antes de concluir login; operação login ainda fora do OpenAPI.
+
+Git diff --check passou. Links locais conferidos: contrato de login um,
+contrato de consulta três, aulas 7.24/7.25 dois cada. Único novo arquivo de
+aplicação LoginRequest; demais arquivos de aplicação/configuração/OpenAPI sem
+diff, nenhum .env ou log incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.25: pendente; checkpoint concluído. Último checkpoint publicado:
+7ee449a061c7797b28384490d2b8b488bdcb0846 (7.24).
+Próximo passo exato após publicar e conferir: 7.26 — criar testes automatizados
+da LoginRequest em memória para entradas válidas/inválidas, normalização e
+exclusão de extras de validated, antes de controller/rota de login.

@@ -2,6 +2,7 @@
 
 Desenho da etapa 7.24, em 04/11/2026. POST /api/v1/login ainda não existe.
 Exemplos fictícios, sem requisições de login executadas ou usuários criados.
+LoginRequest criada na 7.25: validação conferida em memória, sem rota/controller.
 O [contrato da consulta do usuário](autenticacao.md) já está implementado;
 este documento planeja como estabelecer a identidade por credenciais.
 
@@ -28,7 +29,8 @@ este documento planeja como estabelecer a identidade por credenciais.
 
 Ausência, null, array ou número não atendem às regras. Email inválido ou acima
 do limite também falha. As regras Laravel planejadas são required/string/email/
-max:255 para email e required/string para password. Não exigimos senha mínima
+max:255 para email e required/string para password, com bail por campo na
+implementação. Não exigimos senha mínima
 de cadastro para tentar login: a operação confere a senha de uma conta existente.
 
 TrimStrings removerá espaços externos de email. Password está nas exceções
@@ -106,11 +108,15 @@ Usar 422 para credenciais recusadas neste login é uma decisão do nosso contrat
 
 ## Limites e continuidade
 
-Sem rota, LoginRequest, controller, tentativa de autenticação, alteração de
-sessão ou entrada no OpenAPI nesta etapa. Limitação de tentativas ainda terá
+LoginRequest já implementa authorize true e as regras de entrada. Diagnóstico
+da 7.25: 17 casos em memória (três válidos/14 inválidos), normalização, seleção
+de campos via validated e erros 422 renderizados pelo handler; zero SQL.
+Isso não executa login nem verifica credenciais ou CSRF. Sem rota, controller,
+tentativa de autenticação, alteração de sessão ou entrada no OpenAPI de login.
+Limitação de tentativas ainda terá
 regra e verificação próprias antes de disponibilizar o fluxo de login completo.
-Próximo passo 7.25: criar somente LoginRequest com autorização de acesso para
-visitantes e regras email/password, verificando validação antes de controller/rota.
+Próximo passo 7.26: testes automatizados da LoginRequest em memória para
+entradas válidas/inválidas, normalização e seleção de campos antes de controller/rota.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

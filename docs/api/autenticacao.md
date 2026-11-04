@@ -100,8 +100,9 @@ ausente e password extra rejeitadas. Nome local loja-fullstack-session conferido
 pela configuração; nenhum valor de cookie documentado. Essa descrição não cria login.
 Na 7.24, [contrato planejado de POST /api/v1/login](login.md) apresentado:
 email/password, sucesso 204 sem corpo e falhas 422, com CSRF/sessão preservados.
-Rota de login ainda não criada ou incluída no OpenAPI. Próxima 7.25: somente
-LoginRequest para validar a entrada antes de implementar controller/rota.
+Na 7.25, LoginRequest criada e verificada em memória, sem autenticar. Rota de
+login ainda não criada ou incluída no OpenAPI. Próxima 7.26: testes automatizados
+da validação antes de implementar controller/rota.
 Login e fluxo autenticado completo por sessão/cookie continuam pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)

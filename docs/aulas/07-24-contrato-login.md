@@ -73,6 +73,8 @@ OpenAPI e aplicação preservados; não houve POST de login ou teste de cookies.
 ## Continuidade
 
 Contrato apresentado e verificado; entendimento confirmado com "entendi" em
-04/11/2026; publicação pendente. Após publicar: 7.25 — criar somente
+04/11/2026; publicação conferida em
+7ee449a061c7797b28384490d2b8b488bdcb0846, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade na 7.25 — criar somente
 LoginRequest com authorize permitindo visitantes e regras email/password,
 verificando validação antes de criar controller ou registrar rota de login.

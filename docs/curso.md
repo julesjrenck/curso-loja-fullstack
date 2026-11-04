@@ -127,8 +127,13 @@ em a4cd9bc, remoto conferido. Na 7.24, contrato planejado do login apresentado:
 email/password, 204 sem corpo/renovação de sessão e 422 por validação ou erro
 genérico de credenciais; CSRF preservado/419 quando rejeitado. Três exemplos
 JSON conferidos em PHP Docker; nenhuma rota/login implementados. Entendimento
-confirmado com "entendi" em 04/11/2026; publicar antes da 7.25 — somente
-LoginRequest com authorize/regras de entrada, antes de controller/rota.
+confirmado com "entendi" em 04/11/2026; publicada em 7ee449a, remoto conferido.
+Na 7.25, LoginRequest criada com authorize true e regras bail/required/string/
+email/max:255 e bail/required/string. Diagnóstico 17 casos em memória, três
+válidos/14 inválidos com 422 e zero SQL; normalização/validated conferidos.
+Sintaxe válida e suíte existente 71/662 passou. Entendimento confirmado com
+"entendi" em 04/11/2026; publicar antes da 7.26 — testes da LoginRequest,
+antes de controller/rota.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -805,7 +810,9 @@ Na 7.23, consulta integrada no OpenAPI com cookie/200/401, lint válido e duas
 cópias inválidas rejeitadas. Entendimento confirmado com "entendi" em 04/11/2026
 e publicação em a4cd9bc. Na 7.24, contrato do login/204/422 apresentado e exemplos
 JSON conferidos; entendimento confirmado com "entendi" em 04/11/2026.
-Publicar antes da 7.25 — somente LoginRequest.
+Publicação conferida em 7ee449a. Na 7.25, LoginRequest criada e explicada,
+17 casos em memória/zero SQL e suíte 71/662 passaram. Entendimento confirmado
+com "entendi" em 04/11/2026; publicar antes da 7.26 — testes da LoginRequest.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
