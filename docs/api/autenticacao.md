@@ -137,8 +137,11 @@ Focado 5/357; suíte 101/1.396. Na 7.39, controle sem cookie após login passou:
 atributos retirados da memória e guards descartados; 401 JSON somente message,
 sem Location. Request sem cookies/hasSession true, visitante e identidade/
 marcador null. Focado 5/368, suíte 101/1.407; rollback conferido. Não é logout.
-Próxima 7.40: desenhar verificação CSRF fora de testing; rede/navegador e
-validação CSRF real continuam pendentes.
+Na 7.40, [protocolo CSRF fora de testing](verificacao-csrf.md) desenhado com
+visitante/JSON vazio, mesma origem e cookies, sem Sec-Fetch-Site. Expectativas
+204/419/419/422 ainda não executadas; configuração e fontes conferidas.
+Próxima 7.41: executar protocolo e limpar somente a sessão própria. Navegador/
+CORS e validação CSRF real permanecem pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).

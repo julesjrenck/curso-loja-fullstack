@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.38 com "entendi". Checkpoint anterior publicado e conferido em
 29e7b03927e4b6aee20193085e792270c7b51fe6; HEAD/origin/main/main remota iguais.
-Entendimento da 7.39 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.39 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -76,8 +76,10 @@ Rollback conferido. Sem nova auditoria, snapshot normal ou quatro contratos.
 
 Controle implementado, explicado e verificado; entendimento confirmado com "entendi" em 04/11/2026.
 Contratos/registros atualizados. Nenhum código de aplicação, configuração,
-ambiente, dependência, migration, rota ou OpenAPI alterado. Publicação pendente.
+ambiente, dependência, migration, rota ou OpenAPI alterado. Publicação concluída
+e conferida em 9b7c8dd95ff4fc8470d6fe8272b0540c3a5de4eb;
+HEAD/origin/main/main remota iguais após push. Registro posterior à publicação.
 Kernel HTTP sem rede/navegador; validação CSRF real permanece pendente.
-Após publicar: 7.40 — desenhar a verificação de CSRF fora de testing,
+Continuidade realizada na 7.40 — desenhar a verificação de CSRF fora de testing,
 definindo origem, cookies, cabeçalhos e casos 419/422 antes de executar pedidos
 reais. Não criar usuários no banco normal nessa preparação.
