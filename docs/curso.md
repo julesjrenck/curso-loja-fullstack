@@ -74,9 +74,12 @@ Entendimento da 7.10 confirmado com "entendi" em 04/11/2026; publicada em
 faixa ^4.3.3 e lock; somente um pacote adicionado, 109 anteriores preservados.
 Validação/plataforma/autoload e suíte 67/635 passaram. Descoberta não executada.
 Auditoria identificou aviso preexistente em symfony/mime v8.1.7 (CVE-2026-45070),
-pendente de correção. Entendimento da 7.11 confirmado com "entendi" em 04/11/2026;
-publicação pendente. Após publicar, 7.12: atualização mínima compatível para corrigir esse aviso,
-com auditoria e verificações, antes de descobrir/configurar o Sanctum.
+pendente naquela etapa. Entendimento da 7.11 confirmado com "entendi" em 04/11/2026;
+publicada em 0cf2c82, remoto conferido. Na 7.12, somente symfony/mime atualizado
+8.1.7 → 8.1.10; JSON e outros pacotes preservados. Auditoria 0/sem avisos,
+validação/plataforma e suíte 67/635 passaram. Entendimento da 7.12 confirmado com
+"entendi" em 04/11/2026; publicação pendente. Após publicar, 7.13: package:discover, manifests,
+provider Sanctum e registro de /sanctum/csrf-cookie, antes de statefulApi/login.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -725,8 +728,9 @@ e verificados em memória; entendimento confirmado com "entendi" em 03/11/2026.
 Publicação conferida em f082f80. Na 7.10, papel do Sanctum explicado e ausência
 do pacote/configuração atual conferidos; entendimento confirmado com "entendi"
 em 04/11/2026 e publicação em 63c0f1e. Na 7.11, pacote instalado/verificado;
-entendimento confirmado com "entendi" em 04/11/2026. Publicar checkpoint e iniciar
-7.12, manutenção do aviso existente de symfony/mime.
+entendimento confirmado com "entendi" em 04/11/2026 e publicação em 0cf2c82.
+Na 7.12, symfony/mime corrigido e verificado; entendimento confirmado com
+"entendi" em 04/11/2026. Publicar checkpoint e iniciar descoberta do Sanctum na 7.13.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

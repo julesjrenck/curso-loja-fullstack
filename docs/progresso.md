@@ -5,8 +5,19 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.11 — Instalação do pacote Sanctum: concluída,
+- Etapa atual: 7.12 — Atualização de segurança de symfony/mime: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.12: somente symfony/mime v8.1.7 → v8.1.10 atualizado no lock/vendor,
+  resolvendo o aviso da 7.11. JSON, demais pacotes e manifests preservados.
+  Metadados/compatibilidade e simulação conferidos; update restrito com
+  --minimal-changes --no-scripts --no-plugins. Auditoria após aplicação código 0,
+  advisories/abandoned/filter vazios. validate/plataforma passaram; suíte 67/635.
+  110 pacotes instalados correspondem ao lock. SQL posterior: loja_test/loja_testes,
+  seis tabelas, quatro migrations e dados zero. Sem descoberta/migrations/login.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.13 — package:discover, explicar manifests e conferir provider Sanctum
+  e rota /sanctum/csrf-cookie, antes de habilitar statefulApi ou implementar login.
 - Situação da 7.11: laravel/sanctum v4.3.3 instalado em Docker; composer.json
   declara ^4.3.3, lock fixa versão/referência. Simulação e execução adicionaram
   somente um pacote, zero atualizações/remoções. Registros dos 109 anteriores
@@ -17,10 +28,9 @@
   Auditoria antes da instalação retornou 1 por aviso preexistente de symfony/mime
   v8.1.7, CVE-2026-45070, medium; mesma advertência na instalação. Não corrigido
   nesta etapa de adição somente do Sanctum. Correção oficial na linha 8.1: >=8.1.10.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.12 — atualizar minimamente symfony/mime de forma compatível para
-  corrigir o aviso, auditar e verificar. Descoberta do Sanctum após essa manutenção.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  0cf2c8278c19db2711cebc7e40830bbde61c965a, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Aviso corrigido na 7.12 conforme estado atual.
 - Situação da 7.10: aula docs/aulas/07-10-papel-sanctum.md criada. Modo sessão/
   cookie adotado para chamadas do navegador da interface própria; Bearer comparado
   conceitualmente. Fluxo csrf-cookie/login/API, statefulApi versus auth:sanctum,
@@ -31,7 +41,7 @@
   Última suíte completa permanece 7.7, 67/635. Documentação oficial consultada.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   63c0f1eafb1b33a9e5591aae2d8617aa1890a4c6, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.11.
+  Checkpoint anterior à 7.11. Continuidade realizada na 7.11.
 - Situação da 7.9: aula docs/aulas/07-09-protecao-csrf.md criada. CSRF separado
   de autenticação/autorização, cookie de sessão versus token CSRF/remember_token,
   _token/X-CSRF-TOKEN e ramo Sec-Fetch-Site: same-origin do Laravel 13 explicados.
@@ -1399,7 +1409,8 @@ publicação conferida em e21e732. Continuidade realizada na 7.8, confirmada com
 entendimento confirmado com "entendi" em 03/11/2026 e publicação em f082f80.
 Continuidade realizada na 7.10, confirmada com "entendi" em 04/11/2026;
 publicação conferida em 63c0f1e. Continuidade realizada na 7.11, confirmada com
-"entendi" em 04/11/2026; publicar checkpoint e iniciar 7.12.
+"entendi" em 04/11/2026 e publicada em 0cf2c82. Continuidade realizada na 7.12;
+entendimento confirmado com "entendi" em 04/11/2026. Publicar e iniciar 7.13.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12054,9 +12065,48 @@ Git diff --check passou; links locais das aulas 7.10 (quatro) e 7.11 (três)
 conferidos. Arquivos .env locais continuam ignorados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.11: pendente; checkpoint concluído. Último checkpoint publicado:
-63c0f1eafb1b33a9e5591aae2d8617aa1890a4c6 (7.10).
-Próximo passo exato: publicar e conferir o checkpoint da 7.11. Depois,
-7.12 — verificar e aplicar atualização mínima compatível de symfony/mime para
-corrigir o aviso, repetir auditoria e verificações pertinentes. Descoberta do
-Sanctum ficará após essa manutenção; configuração/login ainda não implementados.
+Publicação da 7.11: concluída e conferida em
+0cf2c8278c19db2711cebc7e40830bbde61c965a; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.12.
+
+## Etapa 7.12 — Atualização de segurança de symfony/mime — 04/11/2026
+
+Iniciada após confirmação da 7.11 com "entendi" e publicação verificada.
+Implementação: somente symfony/mime v8.1.7 → v8.1.10 no composer.lock e volume
+vendor-backend; nova aula docs/aulas/07-12-atualizacao-seguranca-mime.md e registros.
+JSON idêntico a HEAD; sem mudança de rota/configuração/serviço/model/migration.
+
+Fonte oficial Symfony consultada para CVE-2026-45070; correção na linha 8.1 em
+8.1.10. Metadados Composer exigem PHP >=8.4.1, atendido por 8.4.26. Simulação
+--dry-run: zero adições/uma atualização/zero remoções, JSON/lock preservados.
+A simulação ainda informou aviso no estado não atualizado. Execução real por
+container temporário/montagens da 7.11: composer update symfony/mime:8.1.10
+--minimal-changes --no-scripts --no-plugins --no-interaction --no-progress terminou
+0, atualizando somente o pacote e regenerando autoload. Restrição temporária
+não foi adicionada ao JSON. Proprietários dos arquivos mantidos 1000:1000.
+
+Explicação apresentada: dependência indireta, diferença entre require/update/install,
+restrição de versão para uma resolução e lock reproduzível. Comparação estruturada
+preservou todos os demais registros/metadados do lock; apenas o bloco de symfony/mime
+mudou, referência 8d1232052c9cdef170ed9608b3147bca4f61ff69. Sanctum segue v4.3.3,
+total 110 pacotes. InstalledVersions/installed.json conferidos contra o lock sem
+divergências de nomes/versões/referências. Manifests packages.php/services.php com
+mesmos hashes, Sanctum ainda ausente do manifest; descoberta não executada.
+
+Após atualização, audit --locked --format=json --no-interaction --no-plugins
+retornou 0 e advisories/abandoned/filter vazios. Aviso da 7.11 resolvido nessa
+consulta; não implica ausência de vulnerabilidades desconhecidas. validate --strict
+e check-platform-reqs passaram. Suíte completa: 67 testes/635 asserções, código 0.
+SELECT posterior loja_test/loja_testes: seis tabelas, quatro migrations/lotes
+1/2/3/4 e zero users/tokens/sessions/produtos/categorias. Sem migrations aplicadas,
+snapshot normal ou quatro contratos repetidos. Última suíte completa: 7.12, 67/635.
+Fontes oficiais Composer/Symfony consultadas.
+Git diff --check passou; links locais das aulas 7.11 (quatro) e 7.12 (dois)
+conferidos. Arquivos .env locais continuam ignorados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.12: pendente; checkpoint concluído. Último checkpoint publicado:
+0cf2c8278c19db2711cebc7e40830bbde61c965a (7.11).
+Próximo passo exato: publicar e conferir o checkpoint da 7.12. Depois,
+7.13 — executar package:discover, explicar manifests e conferir registro de
+SanctumServiceProvider e /sanctum/csrf-cookie, antes de statefulApi/login.

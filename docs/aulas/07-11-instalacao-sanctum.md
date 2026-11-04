@@ -114,6 +114,9 @@ correção na linha 8.1 a partir de 8.1.10 para a falha de validação de nomes 
 parâmetros em cabeçalhos MIME. A correção fica como próximo checkpoint próprio,
 preservando a pequena alteração de instalação combinada nesta aula.
 
+Atualização posterior: o aviso foi corrigido na
+[aula 7.12](07-12-atualizacao-seguranca-mime.md), com auditoria código 0.
+
 Fontes: [Composer require e opções](https://getcomposer.org/doc/03-cli.md#require-r)
 e [Sanctum](https://laravel.com/docs/13.x/sanctum).
 
@@ -123,5 +126,6 @@ Entendimento confirmado com "entendi" em 04/11/2026. Próximo passo após public
 7.12 — verificar e aplicar a atualização mínima compatível de symfony/mime
 para corrigir o aviso existente, repetindo auditoria e verificações pertinentes.
 A descoberta do Sanctum fica após essa manutenção; não foi iniciada nesta aula.
-Instalação explicada/verificada e entendimento confirmado. Checkpoint preparado
-para commit e push; consultar o Git ou registro posterior para conferir a publicação.
+Instalação explicada/verificada e entendimento confirmado. Checkpoint
+publicado em 0cf2c8278c19db2711cebc7e40830bbde61c965a;
+HEAD/origin/main/main remota conferidos iguais após push. Registro posterior.
