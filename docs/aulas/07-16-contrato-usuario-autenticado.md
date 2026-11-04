@@ -66,4 +66,6 @@ Entendimento confirmado com "entendi" em 04/11/2026. Depois de publicar,
 7.17 — criar somente UsuarioResource com id, name e email, verificando a
 representação em memória antes de adicionar controller/rota/login.
 Contrato e explicação apresentados; entendimento confirmado. Checkpoint
-preparado para commit e push; consultar o Git ou registro posterior da publicação.
+publicado e conferido em
+833c010506b8c0b45edd2cb8d959d4aba5d99744; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.

@@ -94,8 +94,11 @@ confirmado com "entendi" em 04/11/2026; publicada em 4674279, remoto conferido.
 Na 7.16, contrato planejado GET /api/v1/usuario documentado: 200/data com
 id/name/email e 401/message para visitante. Exemplos JSON/tipos conferidos em
 PHP Docker; nenhuma rota criada. Entendimento confirmado com "entendi" em
-04/11/2026; publicação pendente. Após publicar,
-7.17 — criar somente UsuarioResource e verificar sua representação em memória.
+04/11/2026; publicada em 833c010, remoto conferido. Na 7.17, UsuarioResource
+criada com id/name/email; sete verificações em memória passaram, com envelope
+data e zero SQL. Sintaxe válida e suíte existente 67/635 passou. Entendimento
+confirmado com "entendi" em 04/11/2026; publicar antes da 7.18 — somente
+UsuarioController::show, antes de registrar a rota protegida.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -753,8 +756,10 @@ conferidos; entendimento confirmado com "entendi" em 04/11/2026.
 Publicação conferida em 601c103. Na 7.15, statefulApi habilitado/verificado;
 entendimento confirmado com "entendi" em 04/11/2026 e publicação em 4674279.
 Na 7.16, contrato da consulta do próprio usuário desenhado e exemplos verificados;
-entendimento confirmado com "entendi" em 04/11/2026. Publicar antes da 7.17,
-que criará somente UsuarioResource.
+entendimento confirmado com "entendi" em 04/11/2026 e publicação em 833c010.
+Na 7.17, UsuarioResource criada, explicada e verificada em memória; suíte 67/635.
+Entendimento confirmado com "entendi" em 04/11/2026; publicar antes da
+7.18 — somente UsuarioController::show.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

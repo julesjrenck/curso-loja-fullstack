@@ -5,8 +5,20 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.16 — Contrato da consulta do usuário autenticado: concluída,
+- Etapa atual: 7.17 — Representação pública do usuário: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.17: backend/app/Http/Resources/UsuarioResource.php criada,
+  herdando JsonResource com toArray que seleciona id/name/email. Diagnóstico
+  Docker/testing com User não persistido e oito atributos fictícios: sete
+  condições passaram, incluindo resposta 200/application/json com data exato,
+  atributos originais preservados e zero SQL. Sem requisição HTTP/autenticação.
+  Sintaxe válida; suíte existente 67 testes/635 asserções, código 0. SQL posterior
+  loja_test/loja_testes: seis tabelas/quatro migrations/dados zero. Nenhuma rota,
+  dependência, migration ou ambiente alterado. Contrato segue planejado.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir; depois 7.18 — criar somente
+  UsuarioController::show, obter usuário da
+  requisição e devolver UsuarioResource; verificar em memória antes da rota.
 - Situação da 7.16: docs/api/autenticacao.md e aula correspondente criados.
   Contrato planejado GET /api/v1/usuario sem corpo/ID, acesso autenticado;
   200/data com id inteiro positivo, name/email strings não nulos e 401/message
@@ -15,10 +27,9 @@
   Dois JSON/tipos conferidos em PHP Docker, código 0; sem bootstrap/SQL/sessão.
   Trechos AuthenticationException/Handler instalados e fontes oficiais consultados.
   Sem nova suíte; último resultado completo 7.15, 67/635. OpenAPI preservado.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir; depois 7.17 — criar somente
-  UsuarioResource com id/name/email e verificar
-  representação em memória, antes de controller/rota/login.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  833c010506b8c0b45edd2cb8d959d4aba5d99744, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.17.
 - Situação da 7.15: única chamada statefulApi adicionada em bootstrap/app.php.
   Grupo api agora EnsureFrontendRequestsAreStateful/SubstituteBindings; catálogo
   continua público. Origem local reconhecida antes da mudança. Diagnóstico Docker
@@ -29,7 +40,7 @@
   loja_testes, seis tabelas/quatro migrations/dados zero. Sem dependências/rotas novas.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   46742792a5ec9f4015f54a2eb55afe6fae53445f, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.16.
+  Checkpoint anterior à 7.16. Continuidade realizada na 7.16.
 - Situação da 7.14: GET real a /sanctum/csrf-cookie via Guzzle/PHP Docker para
   servidor interno 127.0.0.1:8000, Host 127.0.0.1:8002 e Accept JSON. Resposta
   204/zero bytes, cookies XSRF-TOKEN (sem HttpOnly) e loja-fullstack-session
@@ -1461,8 +1472,9 @@ publicação conferida em cc016c4. Continuidade realizada na 7.14, confirmada co
 "entendi" em 04/11/2026 e publicada em 601c103. Continuidade realizada na 7.15;
 entendimento confirmado com "entendi" em 04/11/2026 e publicação em 4674279.
 Continuidade realizada na 7.16, contrato planejado apresentado e exemplos
-verificados. Entendimento confirmado com "entendi" em 04/11/2026; publicar
-antes da 7.17 — somente UsuarioResource.
+verificados. Entendimento confirmado com "entendi" em 04/11/2026 e publicação
+em 833c010. Continuidade realizada na 7.17 — UsuarioResource; entendimento
+confirmado com "entendi" em 04/11/2026. Publicar antes da 7.18 — UsuarioController::show.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12312,8 +12324,44 @@ aula 7.15 dois e aula 7.16 um. Diff confirmou aplicação/Compose/OpenAPI sem
 alterações nesta etapa.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.16: pendente; checkpoint concluído. Último
-checkpoint publicado: 46742792a5ec9f4015f54a2eb55afe6fae53445f (7.15).
-Próximo passo exato após publicar e conferir: 7.17 — criar somente
-UsuarioResource com id/name/email e verificar representação em memória,
-antes de adicionar controller/rota/login.
+Publicação da 7.16: concluída e conferida em
+833c010506b8c0b45edd2cb8d959d4aba5d99744; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.17.
+
+## Etapa 7.17 — Representação pública do usuário — 04/11/2026
+
+Iniciada após confirmação da 7.16 com "entendi" e publicação verificada.
+Implementação: somente UsuarioResource.php na aplicação, nova aula 7.17,
+contrato atualizado quanto à existência do Resource e registros. Sem gerador
+Artisan, nova dependência, rota, controller, migration ou ambiente alterado.
+
+Explicação apresentada: namespace/imports, herança de JsonResource, toArray com
+Request/retorno array/PHPDoc e seleção explícita de id/name/email. Construtor
+herdado recebe User; acesso $this->name encaminhado ao model. Array versus
+JSON/envelope data, seleção de campos versus Hidden, representação versus
+autenticação/validação/persistência. Fonte oficial Laravel Resources consultada.
+
+Diagnóstico PHP Docker/testing: User em memória com setRawAttributes, oito
+atributos fictícios, ID 42 ilustrativo, exists false. Request GET construído
+com Accept JSON, sem executar rota/HTTP. Resolve/toResponse produziram somente
+id/name/email, envelope data, status 200/application/json. Sete condições passaram:
+campos/valores exatos, status, Content-Type, envelope, model não persistido,
+oito atributos originais preservados, zero SQL por listener; código 0.
+Valores fictícios de senha/token não impressos. Sem sessão ou autenticação.
+Esta demonstração não prova resposta 401 nem validação do ID pelo Resource.
+
+php -l válido; suíte existente 67 testes/635 asserções, código 0. Novo Resource
+verificado no diagnóstico, sem teste permanente novo. SELECT posterior confirmou
+loja_test/loja_testes, seis tabelas, quatro migrations/lotes 1/2/3/4 e zero
+users/password_reset_tokens/sessions/produtos/categorias. Última suíte completa:
+7.17, 67/635. Auditoria/snapshot normal/quatro contratos não repetidos.
+
+Git diff --check passou. Links locais conferidos: contrato de autenticação um,
+aula 7.16 um e aula 7.17 dois. Arquivos locais .env não incluídos no checkpoint.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.17: pendente; checkpoint concluído. Último checkpoint publicado:
+833c010506b8c0b45edd2cb8d959d4aba5d99744 (7.16).
+Próximo passo exato após publicar e conferir: 7.18 — criar somente
+UsuarioController::show para obter usuário da requisição e devolver
+UsuarioResource, verificando em memória antes de registrar a rota protegida.
