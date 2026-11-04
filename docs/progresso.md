@@ -5,8 +5,20 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.22 — Identidade autenticada e parâmetros do cliente: concluída,
-  entendimento confirmado com "entendi" em 04/11/2026.
+- Etapa atual: 7.23 — Consulta do usuário no OpenAPI: implementação documental,
+  explicação e verificações apresentadas; entendimento aguardando confirmação.
+- Situação da 7.23: OpenAPI recebe GET /api/v1/usuario com 200/data/$ref Usuario
+  e 401/message string, exemplos fictícios, required/tipos e additionalProperties
+  false nas três novas representações. SessaoCookie apiKey/in cookie/nome local
+  loja-fullstack-session, conferido por PHP Docker; security só nessa operação.
+  Título/descrição abrangem loja; versão/servidores/catálogo/schema Produto
+  preservados por comparação estruturada. Redocly 2.65.0/digest existente:
+  documento código 0; cópias sem email/com password extra rejeitadas código 1,
+  removidas. Sem novos corpos capturados, SQL ou suíte Laravel. Última suíte
+  7.22, 71/662. Aplicação/ambientes/dependências preservados.
+  Entendimento e publicação da 7.23 pendentes. Próximo passo exato após confirmar
+  e publicar: 7.24 — desenhar contrato POST /api/v1/login com entrada/sucesso/falha,
+  antes de implementar validação ou autenticação por credenciais.
 - Situação da 7.22: mesmo cenário autenticado de UsuarioApiTest renomeado/
   ampliado. Bruno persistido antes de Ana após exigência loja_test/loja_testes;
   IDs diferentes conferidos. Http_build_query envia id/email de Bruno, mantendo
@@ -14,9 +26,10 @@
   Sintaxe válida; focado 4 testes/27 asserções e suíte 71/662 passaram, códigos 0.
   SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/dados zero.
   Rollback dos dois usuários conferido. Aplicação/ambientes/dependências/OpenAPI
-  preservados. Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato após publicar e conferir: 7.23 — integrar GET /api/v1/usuario
-  no OpenAPI existente com autenticação por cookie e respostas 200/401.
+  preservados. Entendimento confirmado com "entendi" em 04/11/2026;
+  publicação verificada em fe91e84fdee4c88aac0f31991f82ffac6b92486e,
+  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  Continuidade realizada na 7.23.
 - Situação da 7.21: UsuarioApiTest recebe DatabaseTransactions na classe e novo
   cenário autenticado. Identidade loja_test/loja_testes exigida antes de escrita;
   User fictício persistido, ID inteiro positivo e actingAs($usuario, 'web').
@@ -28,7 +41,7 @@
   os três casos de visitante. Aplicação/ambientes/dependências/OpenAPI preservados.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   02a4b08278e1ba1ed887d529b05e9d6d9f3381c7, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.22.
+  Checkpoint anterior à 7.22. Continuidade realizada na 7.22.
 - Situação da 7.20: tests/Feature/UsuarioApiTest.php criado com DataProvider
   para Accept JSON/HTML/ausente. Get com cabeçalhos explícitos, sem autenticação
   preparada ou middleware desativado. Asserções de 401/Content-Type JSON/sem
@@ -1539,7 +1552,9 @@ com "entendi" em 04/11/2026 e publicação em c17ad9e. Continuidade realizada na
 7.21 — cenário autenticado, focado 4/26 e suíte 71/661; entendimento confirmado
 com "entendi" em 04/11/2026 e publicação em 02a4b08. Continuidade realizada na
 7.22 — parâmetros de outro usuário, focado 4/27 e suíte 71/662; entendimento
-confirmado com "entendi" em 04/11/2026. Publicar antes da 7.23 — OpenAPI.
+confirmado com "entendi" em 04/11/2026 e publicação em fe91e84. Continuidade
+realizada na 7.23 — OpenAPI/cookie/200/401; aguardar entendimento antes da
+7.24 — contrato POST /api/v1/login.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12608,7 +12623,46 @@ e aula 7.22 dois. Diff confirmou aplicação/configuração/dependências/OpenAP
 preservados; nenhum .env ou log incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.22: pendente; checkpoint concluído. Último checkpoint publicado:
-02a4b08278e1ba1ed887d529b05e9d6d9f3381c7 (7.21).
-Próximo passo exato após publicar e conferir: 7.23 — integrar GET /api/v1/usuario
-ao OpenAPI existente, com autenticação por cookie e respostas 200/401.
+Publicação da 7.22: concluída e conferida em
+fe91e84fdee4c88aac0f31991f82ffac6b92486e; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.23.
+
+## Etapa 7.23 — Consulta do usuário no OpenAPI — 04/11/2026
+
+Iniciada após confirmação da 7.22 com "entendi" e publicação verificada.
+Implementação documental: docs/api/openapi.json integra GET /api/v1/usuario;
+nova aula 7.23, contrato e registros. Aplicação/ambientes/dependências preservados.
+
+Explicação apresentada: paths/get/operationId, schema Usuario via $ref em data,
+200/401 com application/json e exemplos fictícios. Required/tipos e ID mínimo 1;
+sem format email ou limites não estabelecidos. AdditionalProperties false no
+Usuario, envelope 200 e corpo 401; sem fixar mensagem/idioma. SecuritySchemes
+descreve SessaoCookie com apiKey/in cookie e nome loja-fullstack-session,
+conferido pela configuração normal em PHP Docker sem cookie/sessão iniciado.
+Nenhum valor privado impresso. Security [{SessaoCookie: []}] só na operação;
+sem security global. Descrição não implementa autenticação nem chaves de API.
+Especificação oficial OpenAPI 3.2.1 consultada para esquemas/exigências.
+
+Título/descrição atualizados para API da loja. Comparação estruturada com HEAD
+preservou operações do catálogo, schema Produto, servers e versão 3.2.1;
+info.version mantida. Redocly CLI 2.65.0/digest da 6.61, container temporário
+sem rede/documentos em leitura/configuração existente. Documento completo
+válido, código 0, sem avisos. Duas cópias completas temporárias com exemplo 200
+alterado: email ausente e password fictício adicional, ambas rejeitadas pela
+regra no-invalid-media-type-examples, código 1. Cópias removidas.
+
+Lint valida descrição/exemplos; não executa HTTP ou autenticação. Nenhum novo
+corpo real capturado/comparado automaticamente ao schema. Sem SQL/suíte Laravel
+nesta etapa documental; último resultado completo permanece 7.22, 71/662.
+Login real e transporte sessão/cookie pelo navegador continuam pendentes.
+
+Git diff --check passou. Links locais conferidos: contrato dois, aula 7.22 dois
+e aula 7.23 dois. Comparação final confirmou catálogo preservado no OpenAPI e
+diff de backend/Compose vazio; nenhum .env ou log incluído.
+
+Entendimento: aguardando confirmação explícita do aluno.
+Publicação da 7.23: pendente; alterações documentais locais. Último checkpoint
+publicado: fe91e84fdee4c88aac0f31991f82ffac6b92486e (7.22).
+Próximo passo exato após confirmar e publicar: 7.24 — desenhar contrato
+POST /api/v1/login com entrada, sucesso e falha, antes de implementar
+validação ou autenticação por credenciais.

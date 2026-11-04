@@ -4,8 +4,9 @@ Desenho da etapa 7.16; rota protegida implementada na 7.19, em 04/11/2026.
 Respostas 401 e 200 verificadas por testes HTTP internos do Laravel. Sucesso
 200 verificado na 7.21 com User persistido em loja_test e actingAs/guard web;
 login real e transporte de sessão/cookie pelo navegador ainda não verificados.
-O [contrato executável do catálogo](catalogo.md) continua separado. O OpenAPI
-atual descreve o catálogo e ainda não inclui esta operação.
+O [contrato executável do catálogo](catalogo.md) continua separado. O
+[OpenAPI compartilhado](openapi.json) inclui esta operação desde a 7.23, com
+respostas 200/401, schema Usuario e exigência de cookie somente nesta operação.
 
 ## Consultar o próprio usuário autenticado
 
@@ -93,9 +94,12 @@ redirecionamento em api/* e mantém renderização JSON. Na 7.20, teste automati
 de visitante passou nos três casos de Accept. Na 7.21, sucesso autenticado
 verificado com actingAs/guard web e User persistido em loja_test, com rollback.
 Na 7.22, id/email de outro usuário na query não mudaram a identidade retornada.
-A próxima, 7.23, integrará esta operação no OpenAPI com autenticação por cookie
-e respostas 200/401.
-Login, fluxo autenticado completo e integração no OpenAPI continuam pendentes.
+Na 7.23, esta operação foi integrada ao OpenAPI com autenticação por cookie e
+respostas 200/401. Redocly fixado validou documento/exemplos; cópias com email
+ausente e password extra rejeitadas. Nome local loja-fullstack-session conferido
+pela configuração; nenhum valor de cookie documentado. Essa descrição não cria login.
+A próxima, 7.24, desenhará o contrato de POST /api/v1/login antes de implementá-lo.
+Login e fluxo autenticado completo por sessão/cookie continuam pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).

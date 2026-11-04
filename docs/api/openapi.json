@@ -1,9 +1,9 @@
 {
   "openapi": "3.2.1",
   "info": {
-    "title": "API de catálogo da loja",
+    "title": "API da loja",
     "version": "0.1.0",
-    "description": "Descrição em construção. As operações do catálogo serão acrescentadas gradualmente."
+    "description": "Descrição em construção. Inclui catálogo público e consulta do próprio usuário autenticado."
   },
   "servers": [
     {
@@ -12,6 +12,69 @@
     }
   ],
   "paths": {
+    "/api/v1/usuario": {
+      "get": {
+        "summary": "Consultar o próprio usuário autenticado",
+        "operationId": "consultarUsuarioAutenticado",
+        "description": "Identidade obtida pela autenticação da requisição. Sem corpo ou parâmetros suportados; id/email enviados na query não selecionam outro usuário. Interface própria usa sessão/cookie com Sanctum. Esta consulta não faz login. Sucesso verificado com actingAs no guard web em testes internos; fluxo de login e transporte de cookie pelo navegador ainda não implementados/verificados.",
+        "security": [
+          {
+            "SessaoCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dados públicos do próprio usuário autenticado. O ID do exemplo é ilustrativo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Usuario"
+                    }
+                  }
+                },
+                "example": {
+                  "data": {
+                    "id": 1,
+                    "name": "Ana Exemplo",
+                    "email": "ana@example.test"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Requisição sem autenticação válida. Resposta JSON, sem redirecionamento para login, inclusive com Accept HTML ou ausente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "message"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de autenticação; texto e idioma podem variar. O cliente deve observar o status 401."
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Unauthenticated."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/produtos": {
       "get": {
         "summary": "Listar produtos ativos",
@@ -350,7 +413,38 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "SessaoCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "loja-fullstack-session",
+        "description": "Cookie da sessão autenticada da interface própria, no ambiente local atual. Nome conferido em session.cookie; ajustar a documentação se a configuração mudar. O navegador gerencia o cookie HttpOnly. A categoria apiKey representa o transporte em cookie no OpenAPI; não criamos chaves de API. Apenas possuir cookie de visitante/CSRF não autentica."
+      }
+    },
     "schemas": {
+      "Usuario": {
+        "type": "object",
+        "description": "Representação pública do próprio usuário autenticado, selecionada por UsuarioResource.",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "email"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "description": "Valor armazenado; não comprova verificação de e-mail."
+          }
+        }
+      },
       "Produto": {
         "type": "object",
         "description": "Representação pública de um produto do catálogo.",

@@ -117,8 +117,13 @@ rollback. Entendimento confirmado com "entendi" em 04/11/2026; publicada em
 02a4b08, remoto conferido. Na 7.22, mesmo cenário ampliado com Bruno persistido
 antes de Ana, IDs diferentes e query id/email de Bruno, mantendo actingAs/Ana.
 Resposta exata de Ana conferida; focado 4/27 e suíte 71/662 passaram, rollback
-conferido. Entendimento confirmado com "entendi" em 04/11/2026; após publicar:
-7.23 — integrar consulta de usuário no OpenAPI com cookie e respostas 200/401.
+conferido. Entendimento confirmado com "entendi" em 04/11/2026; publicada em
+fe91e84, remoto conferido. Na 7.23, OpenAPI inclui consulta do usuário com
+schema Usuario, respostas 200/401 e SessaoCookie apenas nessa operação.
+Nome do cookie conferido; catálogo preservado. Redocly fixado: documento válido
+código 0 e cópias sem email/com password extra rejeitadas código 1. Sem nova
+suíte Laravel. Entendimento aguardando confirmação; próximo após confirmar/
+publicar: 7.24 — contrato de POST /api/v1/login, antes de implementação.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -790,8 +795,9 @@ Na 7.21, cenário autenticado com User em loja_test/actingAs web apresentado:
 focado 4/26, suíte 71/661 e rollback conferidos. Entendimento confirmado com
 "entendi" em 04/11/2026 e publicação em 02a4b08. Na 7.22, cenário ampliado com
 segundo usuário/query de terceiro; focado 4/27, suíte 71/662 e rollback conferidos.
-Entendimento confirmado com "entendi" em 04/11/2026; publicar antes da 7.23 —
-integrar consulta no OpenAPI.
+Entendimento confirmado com "entendi" em 04/11/2026 e publicação em fe91e84.
+Na 7.23, consulta integrada no OpenAPI com cookie/200/401, lint válido e duas
+cópias inválidas rejeitadas. Aguardar entendimento antes da 7.24 — contrato do login.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -95,6 +95,8 @@ OpenAPI preservado; auditoria/snapshot normal/quatro contratos não repetidos.
 ## Continuidade
 
 Teste ampliado, explicado e verificado; entendimento confirmado com "entendi"
-em 04/11/2026; publicação pendente. Após publicar: 7.23 — integrar
+em 04/11/2026; publicação conferida em
+fe91e84fdee4c88aac0f31991f82ffac6b92486e, HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade na 7.23 — integrar
 GET /api/v1/usuario ao OpenAPI existente, documentando autenticação por cookie
 e respostas 200/401. Login real continua para etapa posterior.
