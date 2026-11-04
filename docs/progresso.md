@@ -5,9 +5,26 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.43 — Contrato de logout por sessão:
-  desenho documental, explicação e verificações apresentadas; entendimento
+- Etapa atual: 7.44 — Logout no controller:
+  implementação, explicação e verificações apresentadas; entendimento
   confirmado com "entendi" em 04/11/2026, publicação pendente.
+- Situação da 7.44: somente LoginController alterado na aplicação: import de
+  Illuminate\Http\Request e método público destroy(Request): Response com
+  logout web, invalidate, regenerateToken e noContent/204. Sintaxe válida.
+  Diagnóstico direto PHP Docker/testing criou aplicação por caso, sessão/cache
+  array/bcrypt 4 somente na instância, loja_test/loja_testes exigidos antes de
+  transação/escrita. Autenticado com User fictício/login do guard real e visitante;
+  13 condições por caso passaram, incluindo 204 vazio/sem Location, retirada
+  de identidade/marcador, novo ID/token, destruição do registro antigo e recarga
+  visitante no mesmo handler array. Finally fez rollback/contagens preservadas,
+  código 0. Suíte existente 101 testes/1.407 asserções passou; ainda sem teste
+  permanente de destroy. SQL posterior: seis tabelas/quatro migrations/lotes
+  1/2/3/4, cinco tabelas de dados vazias. Primeira comparação estrita de lotes
+  falhou por strings do driver; conversão explícita para int validou metadados,
+  sem alterações no banco. Rotas/bootstrap/Compose/OpenAPI preservados.
+  Próximo após confirmar/publicar: 7.45 — um cenário permanente de logout
+  autenticado em LoginControllerTest, com transação em loja_test/sessão array,
+  sem registrar rota. HTTP/CSRF/cookies/navegador/CORS e OpenAPI do logout pendentes.
 - Situação da 7.43: docs/api/logout.md define POST /api/v1/logout sem corpo
   obrigatório, sessão/cookies/CSRF da interface própria. Sequência planejada:
   logout no guard web, invalidate da sessão e regenerateToken. Sucesso 204 vazio,
@@ -18,10 +35,11 @@
   responder 401. Sem logout global ou Bearer; não usará throttle:login.
   Fontes oficiais e métodos instalados consultados no Docker por leitura,
   sem executar PHP ou logout. Aplicação/Compose/OpenAPI preservados; sem HTTP,
-  SQL ou nova suíte. Última 7.39: 101 testes/1.407 asserções. Próximo após
-  confirmar/publicar: 7.44 — somente LoginController::destroy, sem registrar
-  rota, e verificação direta em ambiente de teste isolado. Navegador/CORS e
-  OpenAPI do logout pendentes.
+  SQL ou nova suíte. Última 7.39: 101 testes/1.407 asserções.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  86ab952bfd858f2fed5a2d2f47a2bf44b8c93171, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.44.
+  Navegador/CORS e OpenAPI do logout pendentes.
 - Situação da 7.42: POST /api/v1/login documentado em docs/api/openapi.json,
   corpo JSON obrigatório/schema CredenciaisLogin com email/password strings não
   vazias e extras permitidos. Normalização e regras completas do Laravel em
@@ -36,7 +54,7 @@
   GET usuario mudou somente descrição. Sem HTTP/SQL/nova suíte; última 7.39,
   101 testes/1.407 asserções. Entendimento confirmado com "entendi" em 04/11/2026;
   publicação verificada em 5f2b770ed8fb25ac2f612553d64c730644a0f18e,
-  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  HEAD/origin/main/main remota iguais. Checkpoint anterior à 7.43.
   Continuidade realizada na 7.43. Navegador/CORS pendentes.
 - Situação da 7.41: diagnóstico temporário PHP/Guzzle no Docker confirmou
   preparação 204 e POSTs sem cabeçalho/inválido/correto 419/419/422. JSON/message
@@ -1892,7 +1910,12 @@ confirmado com "entendi" em 04/11/2026; publicação em 5f2b770. Continuidade
 realizada na 7.43 — contrato de logout por sessão: POST/204 vazio também para
 visitante válido, 419 CSRF, logout web/invalidação/novo token e consulta posterior
 401. Fontes/código conferidos, sem executar logout. Entendimento confirmado
-com "entendi" em 04/11/2026; publicação pendente antes da 7.44 — método destroy do controller.
+com "entendi" em 04/11/2026; publicação em 86ab952. Continuidade realizada na
+7.44 — método destroy: logout web/invalidação/novo token/204. Diagnóstico direto
+autenticado/visitante com sessão array e transações passou, 13 condições/caso.
+Suíte existente 101/1.407 passou; SQL final sem dados. Entendimento
+confirmado com "entendi" em 04/11/2026; publicação pendente antes da
+7.45 — teste permanente de logout autenticado.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -13960,9 +13983,73 @@ serviços/rotas/migrations/Compose/OpenAPI preservados. O contrato lista cenári
 futuros, sem apresentá-los como testes executados nesta etapa.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.43: pendente; registros locais. Último checkpoint publicado:
-5f2b770ed8fb25ac2f612553d64c730644a0f18e (7.42).
-Próximo passo exato após confirmar/publicar: 7.44 — adicionar somente
-LoginController::destroy, sem registrar rota, e verificar diretamente
-logout/invalidação/novo token em ambiente de teste isolado. Navegador/CORS,
-verificação HTTP/CSRF de logout e inclusão dele no OpenAPI ficam pendentes.
+Publicação da 7.43: concluída e conferida em
+86ab952bfd858f2fed5a2d2f47a2bf44b8c93171; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.44.
+Navegador/CORS, verificação HTTP/CSRF de logout e OpenAPI ficam pendentes.
+
+
+## Etapa 7.44 — Logout no controller — 04/11/2026
+
+Iniciada após confirmação da 7.43 com "entendi" e publicação verificada.
+Implementação: somente backend/app/Http/Controllers/Api/V1/LoginController.php
+alterado na aplicação, import Illuminate\Http\Request e método destroy.
+Store preservado. Aula 7.44/contratos/roteiro/progresso e publicação anterior
+atualizados; rota e OpenAPI de logout ainda não criados.
+
+Explicação apresentada: destroy público recebe Request comum, sem LoginRequest
+ou credenciais. Return Response declara resposta Laravel. Auth::guard('web')->
+logout retira identidade; session()->invalidate limpa atributos/destroi registro
+antigo/gera outro ID; regenerateToken cria token CSRF após limpeza. NoContent
+retorna 204 vazio/sem redirecionamento. Visitante com sessão preparada também
+atendido. O fluxo futuro de middleware ficará responsável por sessão/CSRF.
+
+Verificação: fontes oficiais Laravel 13 e código instalado SessionGuard/Store/
+ArraySessionHandler conferidos. PHP -l do controller e do diagnóstico temporário
+/tmp/curso-7-44-logout.php passou no Docker, códigos 0. Script não versionado,
+enviado por stdin com APP_ENV testing. Configuração sqlsrv/loja_test/loja_testes/
+sem DB_URL e identidade SELECT exigidas antes de transação ou escrita.
+Seis tabelas/quatro migrations/cinco tabelas de dados vazias na entrada.
+
+Cada caso criou aplicação própria, session/cache array e bcrypt 4 somente na
+instância. Autenticado criou User fictício em transação e fez login pelo guard
+web real, sem actingAs/mock ou executar store. Visitante sem identidade. Request
+POST sem corpo recebeu sessão; marcador/ID/token guardados só em memória.
+Save no handler array comprovou que o registro antigo existia antes de destroy.
+
+Treze condições por caso passaram: 204/corpo vazio/sem Location; guard visitante
+com ID null; chave de login e marcador removidos; ID/token renovados; somente
+_token nos atributos; registro antigo destruído; recarga visitante e recarga
+com ID/token novos; rollback/contagens preservados. Recarga após save/flush/
+forgetGuards/start usou mesmo handler array, sem requisição HTTP. Finally desfez
+transação, nível zero/cinco contagens iguais à entrada. Código 0, sucesso true.
+Nenhum valor real de senha/hash/cookie/token/ID impresso ou versionado.
+
+Suíte existente: docker compose exec -T backend php vendor/bin/phpunit
+--colors=never --do-not-cache-result passou, 101 testes/1.407 asserções, código 0.
+Verifica regressões; ainda não há teste permanente de destroy. Diagnóstico
+cobriu os dois casos diretamente. Não executamos rota/logout HTTP/CSRF/cookies,
+GET usuario após logout ou navegador/CORS.
+
+SELECT posterior conferiu loja_test/loja_testes, seis tabelas, quatro migrations
+com lotes 1/2/3/4 e zero categorias/produtos/users/password_reset_tokens/sessions.
+Primeira comparação estrita falhou porque o driver devolveu lotes como strings;
+leitura de metadados confirmou valores e conversão explícita para int resolveu
+o diagnóstico. SELECT final código 0. Nenhuma alteração no banco para corrigir
+a comparação. Sem auditoria, snapshot normal ou recaptura dos contratos HTTP.
+
+Ambientes, dependências, serviços, migrations, rotas, bootstrap, Compose e
+OpenAPI preservados. Apenas controller e documentação alterados.
+
+Git diff --check passou. Links locais conferidos: contrato de logout três,
+login quatro, consulta cinco, limite um, aula 7.43 três e aula 7.44 dois.
+Escopo conferido: somente LoginController e documentos; índice vazio.
+Rotas/bootstrap/Compose/OpenAPI sem diff, rota de logout ainda ausente.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.44: pendente; registros locais. Último checkpoint publicado:
+86ab952bfd858f2fed5a2d2f47a2bf44b8c93171 (7.43).
+Próximo passo exato após confirmar/publicar: 7.45 — adicionar um cenário
+permanente de logout autenticado em LoginControllerTest, com transação em
+loja_test/sessão array, sem registrar rota. Rota/HTTP/CSRF/cookies, navegador/
+CORS e inclusão do logout no OpenAPI permanecem pendentes.

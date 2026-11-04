@@ -1,7 +1,9 @@
-# API de logout — contrato planejado
+# API de logout — método do controller implementado
 
-Desenho da etapa 7.43, em 04/11/2026. Rota e controller ainda não implementados;
-os resultados abaixo são requisitos, não respostas já observadas de logout.
+Desenho da etapa 7.43, em 04/11/2026. LoginController::destroy implementado na
+7.44; rota ainda não registrada. Diagnóstico direto verificou autenticado e
+visitante em loja_test/sessão array. Os resultados HTTP abaixo são requisitos,
+não respostas observadas pela rota de logout.
 O [login](login.md) estabelece a identidade; esta operação encerrará a
 autenticação da sessão atual. A [consulta do usuário](autenticacao.md)
 permitirá verificar o estado após sair.
@@ -45,7 +47,7 @@ Para uma requisição válida da interface própria que passe pela proteção CS
 3. Gerar outro token CSRF para a sessão de visitante resultante.
 4. Retornar 204 No Content, corpo vazio e sem redirecionamento.
 
-Sequência prevista para o controller, ainda não implementada:
+Sequência implementada em LoginController::destroy na 7.44:
 
 ```php
 Auth::guard('web')->logout();
@@ -108,12 +110,17 @@ contrato de encerrar a autenticação no servidor.
 Verificações futuras: sucesso autenticado e visitante; guard sem identidade;
 atributos antigos removidos/ID e token renovados; resposta 204 vazia; transporte
 dos cookies e consulta seguinte 401. O ramo 419 exigirá verificação com CSRF
-ativo, fora dos testes que o ignoram. Nenhum desses cenários de logout foi
-executado nesta etapa documental. Navegador/CORS continuam pendentes.
+ativo, fora dos testes que o ignoram. Na 7.43, nenhum cenário foi executado.
+Na 7.44, destroy verificado diretamente nos casos autenticado/visitante: 204
+vazio/sem Location, guard visitante, identidade/marcador removidos, ID/token
+renovados e registro antigo destruído. Recarga da sessão array manteve visitante;
+não foi uma requisição HTTP. Treze condições por caso passaram, código 0,
+transações desfeitas/contagens preservadas. Suíte existente 101 testes/1.407
+asserções passou; SELECT posterior confirmou banco de testes sem dados.
 
-O OpenAPI ainda não inclui logout. Próxima 7.44: adicionar somente o método
-destroy a LoginController, sem registrar a rota, e verificar diretamente
-logout/invalidação/renovação em ambiente de teste isolado.
+Rota, HTTP/CSRF/cookies, navegador/CORS e OpenAPI do logout continuam pendentes.
+Próxima 7.45: adicionar um cenário permanente de logout autenticado em
+LoginControllerTest, com transação em loja_test/sessão array, sem registrar rota.
 
 Referências: [logout e invalidação de sessão no Laravel](https://laravel.com/docs/13.x/authentication#logging-out),
 [sessão da interface própria com Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication)

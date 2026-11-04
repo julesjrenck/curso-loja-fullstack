@@ -3,7 +3,7 @@
 Desenho, explicação e verificações em 04/11/2026, após confirmação da 7.42
 com "entendi". Checkpoint anterior publicado e conferido em
 5f2b770ed8fb25ac2f612553d64c730644a0f18e; HEAD/origin/main/main remota iguais.
-Entendimento da 7.43 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.43 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -65,7 +65,7 @@ logout observada nesta etapa; verificações futuras estão listadas no contrato
 Contrato apresentado; entendimento confirmado com "entendi" em 04/11/2026.
 Aplicação/Compose/OpenAPI preservados. Sem PHP, SQL, HTTP ou nova suíte Laravel.
 Última suíte permanece 7.39: 101 testes/1.407 asserções.
-Publicação da 7.43 pendente. Próxima após confirmar/publicar: 7.44 — adicionar
-somente LoginController::destroy, sem registrar a rota, e verificar diretamente
-as três operações em ambiente de teste isolado. Navegador/CORS e integração
-do logout ao OpenAPI ficam para etapas posteriores.
+Publicação da 7.43 concluída e conferida em
+86ab952bfd858f2fed5a2d2f47a2bf44b8c93171; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.44 —
+somente LoginController::destroy. Navegador/CORS e OpenAPI ficam pendentes.

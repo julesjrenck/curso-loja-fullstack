@@ -234,10 +234,16 @@ obrigatório, sessão/CSRF da interface própria, logout web/invalidação/novo 
 204 vazio também para visitante válido e 419 se a proteção rejeitar. Consulta
 posterior somente com cookies/sem outra autenticação deverá responder 401.
 Fontes oficiais/código instalado conferidos; nenhum logout executado.
-Entendimento da 7.43 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próximo após confirmar/publicar: 7.44 — somente LoginController::destroy,
-sem registrar rota, com verificação direta em ambiente de teste isolado.
-Navegador/CORS e OpenAPI de logout pendentes.
+Entendimento da 7.43 confirmado com "entendi" em 04/11/2026; publicada em 86ab952,
+remoto conferido. Na 7.44, somente LoginController ganhou import Request e
+método destroy: logout web, invalidate, regenerateToken e 204 vazio. Diagnóstico
+direto autenticado/visitante em loja_test/transações/sessão array passou:
+13 condições por caso, inclusive registro antigo destruído e recarga visitante.
+Suíte existente 101 testes/1.407 asserções passou; SELECT posterior sem dados.
+Entendimento da 7.44 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Próximo após confirmar/publicar: 7.45 — um cenário permanente de logout
+autenticado em LoginControllerTest, com transação/sessão array, sem registrar rota.
+Rota, HTTP/CSRF/cookies, navegador/CORS e OpenAPI de logout pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -968,7 +974,11 @@ com "entendi" em 04/11/2026; publicação em 5f2b770. Na 7.43, contrato de logou
 por sessão desenhado/explicado: POST, 204 também para visitante com sessão/CSRF
 válidos, 419 na rejeição e 401 na consulta posterior. Fontes oficiais/código
 instalado conferidos; sem executar logout. Entendimento confirmado com "entendi"
-em 04/11/2026; publicação pendente antes da 7.44 — somente método destroy do controller.
+em 04/11/2026; publicação em 86ab952. Na 7.44, destroy criado/explicado e verificado
+diretamente nos casos autenticado/visitante com sessão array e transações em
+loja_test; 13 condições por caso passaram. Suíte existente 101/1.407 e SQL final
+sem dados. Entendimento confirmado com "entendi" em 04/11/2026; publicação
+pendente antes da 7.45 — um teste permanente de logout autenticado, sem registrar rota.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

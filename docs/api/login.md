@@ -214,7 +214,8 @@ errors email/password e 429/message/headers. Security vazio recebe visitantes;
 a preparação de sessão/CSRF continua descrita. Redocly fixado validou documento;
 quatro cópias inválidas rejeitadas e duas permissivas aceitas. Nenhuma API
 executada nessa validação. Na 7.43, [contrato de logout](logout.md) desenhado;
-implementação pendente. Próxima 7.44: somente LoginController::destroy.
+método destroy implementado/verificado diretamente na 7.44, rota pendente.
+Suíte existente 101/1.407 passou; próxima 7.45: teste permanente de logout autenticado.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)
