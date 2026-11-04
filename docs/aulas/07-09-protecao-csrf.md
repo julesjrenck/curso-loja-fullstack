@@ -100,5 +100,6 @@ proteção completa de um endpoint ainda inexistente.
 
 Entendimento confirmado com "entendi" em 03/11/2026. Próximo passo após publicar:
 7.10 — entender o papel do Sanctum para autenticar a futura interface própria
-por sessão/cookie e conectar esse fluxo à API. Checkpoint preparado para commit
-e push; consultar o Git ou registro posterior para conferir a publicação.
+por sessão/cookie e conectar esse fluxo à API. Checkpoint publicado e conferido
+em f082f8096be91e504f633d892b73d3c5e1299093;
+HEAD/origin/main/main remota iguais após push. Registro posterior à publicação.

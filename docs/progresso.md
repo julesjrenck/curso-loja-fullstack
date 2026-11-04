@@ -2,11 +2,24 @@
 
 ## Estado atual
 
-- Última atualização: 03/11/2026, referência de data America/Sao_Paulo.
+- Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.9 — Proteção CSRF no fluxo por sessão/cookie: concluída,
-  entendimento confirmado com "entendi" em 03/11/2026.
+- Etapa atual: 7.10 — Papel do Sanctum na API da loja: concluída,
+  entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.10: aula docs/aulas/07-10-papel-sanctum.md criada. Modo sessão/
+  cookie adotado para chamadas do navegador da interface própria; Bearer comparado
+  conceitualmente. Fluxo csrf-cookie/login/API, statefulApi versus auth:sanctum,
+  exigência de autenticação versus autorização explicados. Instalação não cria login.
+  Diagnóstico PHP Docker: pacote ausente de composer.json/lock/InstalledVersions,
+  guard web/session/users e grupo api somente SubstituteBindings, código 0.
+  Nenhuma dependência/configuração/rota alterada; sem instalação, SQL ou nova suíte.
+  Última suíte completa permanece 7.7, 67/635. Documentação oficial consultada.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir o checkpoint; depois
+  7.11 — conferir compatibilidade e adicionar somente o pacote Sanctum
+  por Composer no Docker, revisando composer.json/lock, sem aplicar migrations
+  ou configurar o fluxo de autenticação nessa etapa.
 - Situação da 7.9: aula docs/aulas/07-09-protecao-csrf.md criada. CSRF separado
   de autenticação/autorização, cookie de sessão versus token CSRF/remember_token,
   _token/X-CSRF-TOKEN e ramo Sec-Fetch-Site: same-origin do Laravel 13 explicados.
@@ -15,10 +28,9 @@
   status/continuação esperados, código 0 e zero SQL. Sessões somente em memória;
   nenhum endpoint, login ou tráfego HTTP real. Sem alteração de aplicação.
   Última suíte completa permanece 7.7, 67/635; não repetida nesta aula documental.
-  Entendimento confirmado com "entendi" em 03/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.10 — papel do Sanctum para a futura interface própria por sessão/cookie
-  e integração desse fluxo com a API.
+  Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
+  f082f8096be91e504f633d892b73d3c5e1299093, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.10.
 - Situação da 7.8: aula docs/aulas/07-08-sessao-e-cookie.md criada, com fluxo
   ilustrativo de login/próxima requisição/logout, Set-Cookie/Cookie, identificador
   da sessão versus ID de User, sessão de visitante e autorização separada.
@@ -30,7 +42,7 @@
   suíte; último resultado completo 7.7, 67/635. Mudanças apenas documentais.
   Entendimento confirmado com "entendi" em 03/11/2026; publicação verificada em
   c5008fd56cd102cc5d24ce295d29a25a5f068f6e, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.9.
+  Checkpoint anterior à 7.9. Continuidade realizada na 7.9.
 - Situação da 7.7: cenário existente em UserPersistenciaTest ampliado; token
   fictício atribuído explicitamente/salvo e conferido após nova consulta.
   toArray mantém nome/e-mail e omite password/remember_token; toJson decodificado
@@ -1372,7 +1384,9 @@ entendimento confirmado com "entendi" em 03/11/2026 e publicação em 718f0e3.
 Continuidade realizada na 7.7, confirmada com "entendi" em 03/11/2026;
 publicação conferida em e21e732. Continuidade realizada na 7.8, confirmada com
 "entendi" em 03/11/2026 e publicada em c5008fd. Continuidade realizada na 7.9;
-entendimento confirmado com "entendi" em 03/11/2026. Publicar e iniciar 7.10.
+entendimento confirmado com "entendi" em 03/11/2026 e publicação em f082f80.
+Continuidade realizada na 7.10, confirmada com "entendi" em 04/11/2026;
+publicar checkpoint e iniciar 7.11.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -11951,8 +11965,39 @@ Git diff --check passou; links locais das aulas 7.8 (seis) e 7.9 (dois)
 conferidos. Arquivos .env locais continuam ignorados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 03/11/2026.
-Publicação da 7.9: pendente; checkpoint concluído. Último checkpoint publicado:
-c5008fd56cd102cc5d24ce295d29a25a5f068f6e (7.8).
-Próximo passo exato: publicar e conferir o checkpoint da 7.9. Depois,
-7.10 — papel do Sanctum na autenticação da futura interface própria por
-sessão/cookie e integração desse fluxo com a API.
+Publicação da 7.9: concluída e conferida em
+f082f8096be91e504f633d892b73d3c5e1299093; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.10.
+
+## Etapa 7.10 — Papel do Sanctum na API da loja — 03/11/2026
+
+Iniciada após confirmação da 7.9 com "entendi" e publicação verificada.
+Implementação: nova aula docs/aulas/07-10-papel-sanctum.md e registros, somente
+documentação. Nenhum pacote, configuração, rota, model ou migration alterado.
+
+Explicação apresentada: modos de autenticação sessão/cookie e token Bearer;
+adotado o primeiro para chamadas do navegador da futura interface própria.
+Fluxo de preparação CSRF, login por serviços Laravel e chamadas à API. Endpoint
+csrf-cookie é infraestrutura; APIs de negócio continuam /api/v1. statefulApi
+prepara requisições da interface própria, auth:sanctum exige autenticação na rota;
+autorização permanece separada. URLs/cookies/CORS serão configurados quando usados.
+Instalação não implementa login. Diferença XSRF-TOKEN/X-XSRF-TOKEN e cookie de sessão
+apresentada conceitualmente, sem tráfego real ou emissão de tokens.
+
+Verificação PHP Docker: composer.json/lock lidos com JSON_THROW_ON_ERROR, pacote
+laravel/sanctum ausente em ambos e InstalledVersions::isInstalled false. Bootstrap
+da aplicação/kernel HTTP confirmou guard web/session/users e api somente
+SubstituteBindings, código 0. statefulApi ainda ausente no bootstrap.
+Sem SQL, nova suíte ou quatro contratos; última suíte continua 7.7, 67/635.
+Fonte oficial Laravel Sanctum consultada. Diagnóstico confirma estado anterior
+à instalação, não autenticação funcionando.
+Git diff --check passou; links locais das aulas 7.9 (dois) e 7.10 (quatro)
+conferidos. Arquivos .env locais continuam ignorados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.10: pendente; checkpoint concluído. Último checkpoint publicado:
+f082f8096be91e504f633d892b73d3c5e1299093 (7.9).
+Próximo passo exato: publicar e conferir o checkpoint da 7.10. Depois,
+7.11 — conferir compatibilidade e adicionar somente laravel/sanctum por Composer
+no Docker, revisando composer.json/lock, sem aplicar migrations ou configurar
+o fluxo de autenticação nessa instalação.

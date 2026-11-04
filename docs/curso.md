@@ -65,8 +65,14 @@ com "entendi" em 03/11/2026; publicada em c5008fd, remoto conferido. Na 7.9,
 proteção CSRF apresentada com origem/token no middleware instalado. Diagnóstico
 fora do modo de testes: seis casos em memória, status/continuação conferidos,
 zero SQL. Sem alteração de aplicação. Entendimento da 7.9 confirmado com
-"entendi" em 03/11/2026; publicação pendente. Após publicar, 7.10: papel do Sanctum no fluxo de sessão/cookie
-da futura interface própria e integração com a API.
+"entendi" em 03/11/2026; publicada em f082f80, remoto conferido. Na 7.10, papel
+do Sanctum apresentado: sessão/cookie para a interface própria, preparação
+stateful versus exigência auth:sanctum e fluxo CSRF/login/API. Diagnóstico
+confirmou pacote ausente de composer.json/lock/vendor e configuração atual.
+Entendimento da 7.10 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Próxima etapa após publicar:
+7.11: compatibilidade e instalação somente do pacote via Composer/Docker,
+revisando composer.json/lock, sem aplicar migrations ou configurar o fluxo ainda.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -712,7 +718,9 @@ Publicação conferida em e21e732. Na 7.8, sessão/cookie explicados e configura
 middlewares conferidos; entendimento confirmado com "entendi" em 03/11/2026.
 Publicação conferida em c5008fd. Na 7.9, CSRF e comparação origem/token apresentados
 e verificados em memória; entendimento confirmado com "entendi" em 03/11/2026.
-Publicar checkpoint e iniciar 7.10.
+Publicação conferida em f082f80. Na 7.10, papel do Sanctum explicado e ausência
+do pacote/configuração atual conferidos; entendimento confirmado com "entendi"
+em 04/11/2026. Publicar checkpoint e iniciar 7.11.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
