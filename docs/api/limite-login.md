@@ -102,7 +102,11 @@ Na 7.35, preparo de Accept ausente corrigido em LoginRateLimiterTest: remove
 cabeçalho no caso null, define nos demais e confere presença/valor antes do
 middleware. Caso ausente da execução original 7.31 tinha o padrão do construtor;
 agora ausência real verificada. Focado 6/236; suíte 99/1.306 passou, sem novo cenário.
-Próxima 7.36: adicionar cenário de sucesso por HTTP em LoginApiTest.
+Na 7.36, LoginApiTest recebe cenário de sucesso pela rota, com fixture/transação
+em loja_test, 204, identidade/sessão e renovação de ID/token/cookie conferidos.
+Focado 4/294; suíte 100/1.333 passou. Cenários de cinco 422/sexto 429 preservados.
+Não verifica contagem após sucesso nesta etapa. Próxima 7.37: credenciais
+recusadas por HTTP com 422 genérico e visitante preservado.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).

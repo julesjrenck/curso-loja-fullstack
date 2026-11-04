@@ -5,7 +5,8 @@ Exemplos fictícios. LoginRequest criada na 7.25 e LoginController::store na 7.2
 Controller verificado por chamada direta com guard web, User fictício em
 loja_test/transação/rollback e sessão array. POST /api/v1/login agora conecta
 esse controller ao middleware throttle:login. Diagnóstico inicial pelo kernel
-confirma entrada inválida 422 e limite 429; sucesso por HTTP ainda pendente.
+confirma entrada inválida 422 e limite 429. Na 7.36, sucesso verificado pelo
+kernel HTTP com guard real, fixture/transação em loja_test e sessão array.
 O [contrato da consulta do usuário](autenticacao.md) já está implementado;
 este documento define como estabelecer a identidade por credenciais.
 
@@ -58,10 +59,10 @@ incorreta. O ramo de mesma origem via Sec-Fetch-Site do Laravel 13 já estudado
 continua válido: a ausência isolada do header de token não define todo o resultado.
 Este contrato não oferece login stateless para qualquer cliente sem sessão.
 
-## Sucesso planejado
+## Sucesso verificado pelo kernel HTTP
 
 Credenciais aceitas: 204 No Content, sem corpo, sem objeto data e sem
-redirecionamento HTML. O login estabelecerá a identidade no guard web e renovará
+redirecionamento HTML. O login estabelece a identidade no guard web e renova
 o identificador da sessão. Os cookies correspondentes serão gerenciados pelo
 fluxo de sessão; não prometemos Content-Type JSON para uma resposta sem corpo.
 
@@ -70,6 +71,11 @@ já documentado. O POST não devolverá senha, hash ou token de API no corpo.
 Na 7.27, diagnóstico do controller confirmou 204 vazio, identidade no guard/
 sessão e ID/token CSRF renovados após credenciais corretas. Não exerceu rota,
 CSRF de requisição ou transporte de cookie no navegador.
+Na 7.36, LoginApiTest verificou o sucesso pela rota: 204 vazio, guard web/
+identidade na sessão, marcador de visitante preservado, ID/token renovados,
+cookie de entrada com ID anterior e saída com ID novo. Helper de cookies do
+Laravel prepara a criptografia para o middleware real. Sem actingAs, com
+rollback da fixture em loja_test. Ainda não comprova CSRF/rede/navegador.
 
 ## Entrada inválida: resposta verificada pelo kernel
 
@@ -167,7 +173,11 @@ headers/visitante/sessão. Focado 3 testes/267 asserções; suíte 99/1.226, có
 Não comprova sucesso do login ou CSRF no navegador. Na 7.35, mesma preparação
 corrigida no helper de LoginRateLimiterTest: remove/define Accept e confere
 presença/valor antes do middleware. Focado 6/236, suíte 99/1.306 passaram.
-Próxima 7.36: adicionar cenário de sucesso por HTTP em LoginApiTest.
+Na 7.36, sucesso adicionado em LoginApiTest com transação por execução e
+conferência loja_test/loja_testes antes de DML; fixture somente no sucesso.
+Helper aceita dados JSON e cookies preparados pelo Laravel. Focado 4/294;
+suíte 100/1.333 passou; SQL posterior sem dados. Próxima 7.37: credenciais
+recusadas por HTTP, mesmo 422 genérico e visitante preservado.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

@@ -5,8 +5,25 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.35 — Accept ausente no teste isolado do limitador:
-  correção, explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Etapa atual: 7.36 — Login bem-sucedido pelo kernel HTTP: implementação,
+  explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Situação da 7.36: somente LoginApiTest alterado. Imports User/DatabaseTransactions/
+  Auth/DB, trait de transação na classe e conferência loja_test/loja_testes no
+  setUp antes de DML. Um cenário de sucesso cria fixture fictícia, sessão de
+  visitante/marcador/ID/token anteriores/save e cookie preparado pelos helpers.
+  Helper pedir aceita dados e prepareCookiesForRequest; objeto JSON vazio
+  preservado nos cenários anteriores. Rota/kernel/guard reais, sem actingAs.
+  Exige 204 vazio/sem Location, cookie de entrada com ID anterior/saída com ID
+  atual, identidade no guard/sessão, marcador preservado, ID/token renovados.
+  Sintaxe válida; focado 4 testes/294 asserções, suíte 100/1.333, códigos 0.
+  SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/dados zero;
+  rollback da fixture confirmado. Aplicação/configuração/dependências/rotas/
+  ambientes/migrations/OpenAPI preservados. Sem rede/navegador; testing dispensa
+  validação CSRF. Entendimento confirmado com "entendi" em 04/11/2026;
+  publicação da 7.36 pendente. Próximo passo exato após publicar:
+  7.37 — adicionar somente credenciais recusadas por
+  HTTP em LoginApiTest, senha incorreta/e-mail inexistente, mesmo 422 genérico
+  e visitante preservado.
 - Situação da 7.35: somente helper pedir de LoginRateLimiterTest alterado.
   Após Request::create, remove Accept quando null ou define string; duas
   asserções conferem presença/valor antes do middleware. Removido preparo
@@ -15,10 +32,10 @@
   suíte 99/1.306, códigos 0. Asserções cresceram 80: duas por 40 chamadas.
   SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/dados zero.
   Nenhuma aplicação/rota/configuração/ambiente/dependência/migration/OpenAPI
-  alterada. Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato após publicar: 7.36 — adicionar somente cenário de sucesso de
-  login por HTTP em LoginApiTest, com User fictício em loja_test/transação,
-  resposta 204, identidade e renovação da sessão. CSRF real/cookies pendentes.
+  alterada. Entendimento confirmado com "entendi" em 04/11/2026; publicação
+  verificada em 1f0f2554b00d3f3a39696ff26475bc4c2dbb132d,
+  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  Continuidade realizada na 7.36. CSRF real/cookies pendentes.
 - Situação da 7.34: somente tests/Feature/LoginApiTest.php criado. SetUp exige
   cache/sessão array e fixa relógio; tearDown restaura. Um método/DataProvider
   JSON/HTML/ausência real, cinco 422 e sexto 429 por execução. Helper cria Request
@@ -34,7 +51,7 @@
   dependência/migration/OpenAPI alterada. CSRF real/sucesso por HTTP pendentes.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   019c99ba9793a14d8adbded0ad910fb4754746b1, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.35.
+  Checkpoint anterior à 7.35. Continuidade realizada na 7.35.
 - Situação da 7.33: routes/api.php com import LoginController e POST /login
   para store, middleware throttle:login. Prefixo existente gera /api/v1/login;
   visitante permitido, GET usuario mantém auth:sanctum, catálogo preservado.
@@ -1752,8 +1769,11 @@ Diagnóstico da 7.33 tinha padrão do construtor; mesmo problema no teste isolad
 da 7.31 corrigido na 7.35. Entendimento da 7.34 confirmado com "entendi" em
 04/11/2026 e publicação em 019c99b. Continuidade realizada na 7.35 — helper
 isolado remove/define Accept e confere presença/valor, focado 6-236/suíte
-99-1.306. Entendimento confirmado com "entendi" em 04/11/2026; publicação
-pendente antes da 7.36 — sucesso por HTTP em LoginApiTest.
+99-1.306. Entendimento confirmado com "entendi" em 04/11/2026 e publicação em
+1f0f255. Continuidade realizada na 7.36 — sucesso por HTTP em LoginApiTest,
+fixture/transação/guard real/sessão e cookies de teste, focado 4-294/suíte
+100-1.333 e rollback confirmado. Entendimento confirmado com "entendi" em
+04/11/2026; publicação pendente antes da 7.37 — credenciais recusadas por HTTP.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -13418,10 +13438,61 @@ a LoginRateLimiterTest; Compose/OpenAPI preservados, índice vazio. Nenhum .env,
 log, cookie ou diagnóstico temporário incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.35: pendente; alterações locais. Último checkpoint publicado:
-019c99ba9793a14d8adbded0ad910fb4754746b1 (7.34).
-Próximo passo exato após publicar: 7.36 — adicionar somente cenário
-de sucesso de login por HTTP em LoginApiTest, User fictício em loja_test com
-transação/rollback e asserções de 204, identidade e renovação da sessão.
-Fluxo real de CSRF/cookies, credenciais recusadas por HTTP, OpenAPI de login
-e logout continuam pendentes.
+Publicação da 7.35: concluída e conferida em
+1f0f2554b00d3f3a39696ff26475bc4c2dbb132d; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.36.
+
+## Etapa 7.36 — Login bem-sucedido pelo kernel HTTP — 04/11/2026
+
+Iniciada após confirmação da 7.35 com "entendi" e publicação verificada.
+Implementação: somente tests/Feature/LoginApiTest.php, novo método de sucesso,
+preparação/isolamento e helper compartilhado necessários. Nova aula 7.36 e
+contratos/registros atualizados. Nenhum código de aplicação, configuração,
+dependência, ambiente, migration, rota ou OpenAPI alterado.
+
+Explicação apresentada: imports User/DatabaseTransactions/Auth/DB; trait de
+transação por execução na classe, inclusive casos inválidos antigos; setUp
+confere loja_test/loja_testes antes de DML. Parent já abriu transação nesse
+ponto, sem escrita de usuário. Cache/sessão array e relógio preservados.
+Somente o novo método limpa users/cria fixture fictícia com cast hashed do
+modelo; constante SENHA representa a credencial original enviada no POST.
+
+WithSession prepara marcador fictício e sessão visitante; ID/token anteriores
+guardados em memória, save no handler array, assertGuest e withCookie com ID
+anterior. Helpers não autenticam. Pedir agora aceita array dados opcional;
+json_encode((object) dados, JSON_THROW_ON_ERROR) mantém {} vazio e aceita
+email/password no sucesso. PrepareCookiesForRequest herdado prepara cookies
+definidos por withCookie, com criptografia esperada pelos middlewares reais.
+Sem criptografia própria/actingAs ou middleware removido. Origem/Accept/kernel/
+hasSession/TestResponse mantidos. Fontes oficiais e helpers instalados consultados.
+
+POST real pelo kernel usa LoginRequest/LoginController/guard web/SQL Server.
+Sucesso exige 204 sem corpo/Location; assertCookie verifica cookie de saída
+com ID atual. BaseRequest confirma cookie lido com ID anterior; assertAuthenticatedAs
+verifica identidade da fixture no guard, e chave do guard na sessão tem seu ID.
+Marcador preservado; ID/token CSRF diferentes dos anteriores. Nenhum valor
+de sessão/token/cookie impresso ou versionado. Não consulta GET usuario após
+login neste cenário. Não usa rede/navegador; testing dispensa validação CSRF.
+Integração com criptografia/leitura/emissão de cookie no processo verificada,
+sem comprovar transporte ou rejeição CSRF real no navegador.
+
+Sintaxe válida. Focado --testdox: 4 testes/294 asserções, código 0; antes 3/267.
+Um sucesso e três execuções de entrada inválida/limite passaram. Suíte completa:
+100 testes/1.333 asserções, código 0; antes 99/1.306. Última completa: 7.36.
+SELECT posterior loja_test/loja_testes: seis tabelas, quatro migrations/lotes
+1/2/3/4 e zero users/password_reset_tokens/sessions/produtos/categorias.
+Rollback desfez fixture e escritas; nenhuma conta criada no ambiente normal.
+Auditoria/snapshot normal/quatro contratos de catálogo não repetidos.
+
+Git diff --check passou. Links locais conferidos: consulta três, limite um,
+login dois, aulas 7.35/7.36 um cada. Diff de backend restrito a LoginApiTest;
+Compose/OpenAPI preservados, índice vazio. Nenhum .env, log ou valor de cookie/
+sessão/token incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.36: pendente; alterações locais. Último checkpoint publicado:
+1f0f2554b00d3f3a39696ff26475bc4c2dbb132d (7.35).
+Próximo passo exato após publicar: 7.37 — adicionar somente cenário
+de credenciais recusadas por HTTP em LoginApiTest, senha incorreta/e-mail
+inexistente com mesmo 422 genérico e visitante preservado. Fluxo real de
+CSRF/cookies, OpenAPI de login e logout continuam pendentes.

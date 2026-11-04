@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.34 com "entendi". Checkpoint anterior publicado e conferido em
 019c99ba9793a14d8adbded0ad910fb4754746b1; HEAD/origin/main/main remota iguais.
-Entendimento da 7.35 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.35 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e alteração
 
@@ -69,8 +69,10 @@ categorias. Sem nova auditoria, snapshot normal ou quatro contratos de catálogo
 
 Correção implementada, explicada e verificada; entendimento confirmado com "entendi" em 04/11/2026.
 Documentos atualizados; nenhum código de aplicação, configuração, dependência,
-ambiente, migration ou OpenAPI alterado. Publicação da 7.35 pendente.
-Após publicar: 7.36 — adicionar somente cenário de sucesso de
+ambiente, migration ou OpenAPI alterado. Publicação da 7.35 concluída e
+conferida em 1f0f2554b00d3f3a39696ff26475bc4c2dbb132d;
+HEAD/origin/main/main remota iguais após push. Registro posterior à publicação.
+Continuidade realizada na 7.36 — adicionar somente cenário de sucesso de
 login por HTTP em LoginApiTest, com User fictício em loja_test/transação e
 verificação de 204, identidade e renovação da sessão. Fluxo real de CSRF/cookies
 continua pendente para etapa própria.

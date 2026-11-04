@@ -2,19 +2,33 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Testing\TestResponse;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class LoginApiTest extends TestCase
 {
+    use DatabaseTransactions;
+
+    private const SENHA = 'senha-ficticia-do-teste';
+
     protected function setUp(): void
     {
         parent::setUp();
 
+        $identidade = DB::selectOne(
+            'SELECT DB_NAME() AS banco, SUSER_SNAME() AS login'
+        );
+
+        $this->assertSame('loja_test', $identidade->banco);
+        $this->assertSame('loja_testes', $identidade->login);
         $this->assertSame('array', config('cache.default'));
         $this->assertSame('array', config('session.driver'));
         $this->travelTo(Carbon::create(2026, 11, 4, 12, 0, 0, 'UTC'));
@@ -25,6 +39,43 @@ class LoginApiTest extends TestCase
         $this->travelBack();
 
         parent::tearDown();
+    }
+
+    public function test_login_valido_retorna_204_autentica_e_renova_sessao(): void
+    {
+        User::query()->delete();
+
+        $usuario = User::query()->create([
+            'name' => 'Ana Exemplo',
+            'email' => 'ana@example.test',
+            'password' => self::SENHA,
+        ]);
+
+        $this->withSession(['marcador_visitante' => 'sessao-do-teste']);
+        $sessao = $this->app['session']->driver();
+        $idAnterior = $sessao->getId();
+        $tokenAnterior = $sessao->token();
+        $sessao->save();
+
+        $this->assertGuest('web');
+        $this->withCookie(config('session.cookie'), $idAnterior);
+
+        $resposta = $this->pedir('application/json', [
+            'email' => $usuario->email,
+            'password' => self::SENHA,
+        ]);
+
+        $resposta
+            ->assertNoContent()
+            ->assertHeaderMissing('Location')
+            ->assertCookie(config('session.cookie'), $sessao->getId());
+
+        $this->assertSame($idAnterior, $resposta->baseRequest->cookies->get(config('session.cookie')));
+        $this->assertAuthenticatedAs($usuario, 'web');
+        $this->assertSame($usuario->id, $sessao->get(Auth::guard('web')->getName()));
+        $this->assertSame('sessao-do-teste', $sessao->get('marcador_visitante'));
+        $this->assertNotSame($idAnterior, $sessao->getId());
+        $this->assertNotSame($tokenAnterior, $sessao->token());
     }
 
     #[DataProvider('formatosAccept')]
@@ -72,7 +123,7 @@ class LoginApiTest extends TestCase
         ];
     }
 
-    private function pedir(?string $accept): TestResponse
+    private function pedir(?string $accept, array $dados = []): TestResponse
     {
         $servidor = [
             'REMOTE_ADDR' => '127.0.0.1',
@@ -81,7 +132,8 @@ class LoginApiTest extends TestCase
         ];
 
         $request = Request::create(
-            'http://127.0.0.1:8002/api/v1/login', 'POST', [], [], [], $servidor, '{}',
+            'http://127.0.0.1:8002/api/v1/login', 'POST', [], $this->prepareCookiesForRequest(), [], $servidor,
+            json_encode((object) $dados, JSON_THROW_ON_ERROR),
         );
 
         if ($accept === null) {

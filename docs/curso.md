@@ -182,10 +182,17 @@ remoto conferido. Na 7.35, somente helper de LoginRateLimiterTest alterado:
 remove/define Accept após Request::create e confere presença/valor antes do
 middleware. Ausência real coberta; focado 6/236 e suíte 99/1.306 passaram.
 Mesmos cenários, 80 asserções adicionais em 40 chamadas. Aplicação preservada.
-Entendimento da 7.35 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.35 confirmado com "entendi" em 04/11/2026; publicada em 1f0f255,
+remoto conferido. Na 7.36, sucesso por HTTP adicionado em LoginApiTest: classe
+com DatabaseTransactions/identidade loja_test/loja_testes antes de DML, fixture
+somente no sucesso, sessão visitante/cookie de teste. Rota/guard reais: 204,
+identidade/sessão, marcador preservado, ID/token renovados e cookie anterior/
+novo conferidos. Helper aceita dados e cookies preparados pelo Laravel.
+Focado 4/294 e suíte 100/1.333 passaram; SQL posterior sem dados.
+Entendimento da 7.36 confirmado com "entendi" em 04/11/2026; publicação pendente.
 Próximo após publicar:
-7.36 — adicionar somente sucesso de login por HTTP em LoginApiTest,
-com usuário fictício/transação em loja_test, 204/identidade/sessão renovada.
+7.37 — adicionar somente credenciais recusadas por HTTP em LoginApiTest,
+senha incorreta/e-mail inexistente com mesmo 422 genérico e visitante preservado.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -889,8 +896,11 @@ Remove/confere Accept ausente; diagnóstico anterior tinha padrão do construtor
 Entendimento confirmado com "entendi" em 04/11/2026; publicação em 019c99b.
 Na 7.35, helper do teste isolado corrigido para ausência real de Accept e
 presença/valor conferidos; focado 6/236 e suíte 99/1.306 passaram.
-Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente antes
-da 7.36 — adicionar sucesso por HTTP em LoginApiTest.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação em 1f0f255.
+Na 7.36, sucesso por HTTP adicionado/explicado em LoginApiTest, fixture em
+loja_test/transação e sessão/cookie em memória; focado 4/294 e suíte 100/1.333.
+Rollback confirmado. Entendimento confirmado com "entendi" em 04/11/2026;
+publicação pendente antes da 7.37 — credenciais recusadas por HTTP.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
