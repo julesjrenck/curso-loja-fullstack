@@ -5,8 +5,20 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.15 — Requisições stateful na API: concluída,
+- Etapa atual: 7.16 — Contrato da consulta do usuário autenticado: concluída,
   entendimento confirmado com "entendi" em 04/11/2026.
+- Situação da 7.16: docs/api/autenticacao.md e aula correspondente criados.
+  Contrato planejado GET /api/v1/usuario sem corpo/ID, acesso autenticado;
+  200/data com id inteiro positivo, name/email strings não nulos e 401/message
+  string para visitante, sem data. Exemplos fictícios, endpoint não implementado.
+  Futuro Resource selecionará campos; auth:sanctum exigirá autenticação na rota.
+  Dois JSON/tipos conferidos em PHP Docker, código 0; sem bootstrap/SQL/sessão.
+  Trechos AuthenticationException/Handler instalados e fontes oficiais consultados.
+  Sem nova suíte; último resultado completo 7.15, 67/635. OpenAPI preservado.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
+  Próximo passo exato: publicar e conferir; depois 7.17 — criar somente
+  UsuarioResource com id/name/email e verificar
+  representação em memória, antes de controller/rota/login.
 - Situação da 7.15: única chamada statefulApi adicionada em bootstrap/app.php.
   Grupo api agora EnsureFrontendRequestsAreStateful/SubstituteBindings; catálogo
   continua público. Origem local reconhecida antes da mudança. Diagnóstico Docker
@@ -15,10 +27,9 @@
   não autenticado em todos, zero SQL por listener; sem arquivos de sessão.
   Sintaxe válida, rotas conferidas e suíte 67/635, código 0. SQL após: loja_test/
   loja_testes, seis tabelas/quatro migrations/dados zero. Sem dependências/rotas novas.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente.
-  Próximo passo exato: publicar e conferir o checkpoint; depois
-  7.16 — desenhar contrato GET /api/v1/usuario, sucesso e visitante,
-  antes de criar rota ou implementar login.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  46742792a5ec9f4015f54a2eb55afe6fae53445f, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.16.
 - Situação da 7.14: GET real a /sanctum/csrf-cookie via Guzzle/PHP Docker para
   servidor interno 127.0.0.1:8000, Host 127.0.0.1:8002 e Accept JSON. Resposta
   204/zero bytes, cookies XSRF-TOKEN (sem HttpOnly) e loja-fullstack-session
@@ -29,7 +40,7 @@
   Sem SQL/nova suíte/auditoria/quatro contratos; última suíte 7.13, 67/635.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   601c10350871d186c2b8a73b24f52586f64de50c, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.15.
+  Checkpoint anterior à 7.15. Continuidade realizada na 7.15.
 - Situação da 7.13: package:discover em Docker terminou 0; packages.php passou
   de seis para sete entradas. Novo processo confirmou SanctumServiceProvider
   nos manifests providers/eager e carregado, rota GET|HEAD sanctum/csrf-cookie
@@ -1448,7 +1459,10 @@ entendimento confirmado com "entendi" em 04/11/2026 e publicação em 99a131d.
 Continuidade realizada na 7.13, confirmada com "entendi" em 04/11/2026;
 publicação conferida em cc016c4. Continuidade realizada na 7.14, confirmada com
 "entendi" em 04/11/2026 e publicada em 601c103. Continuidade realizada na 7.15;
-entendimento confirmado com "entendi" em 04/11/2026. Publicar e iniciar 7.16.
+entendimento confirmado com "entendi" em 04/11/2026 e publicação em 4674279.
+Continuidade realizada na 7.16, contrato planejado apresentado e exemplos
+verificados. Entendimento confirmado com "entendi" em 04/11/2026; publicar
+antes da 7.17 — somente UsuarioResource.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -12262,8 +12276,44 @@ Git diff --check passou; dois links locais de cada aula 7.14/7.15 conferidos.
 Arquivos .env locais continuam ignorados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.15: pendente; checkpoint concluído. Último checkpoint publicado:
-601c10350871d186c2b8a73b24f52586f64de50c (7.14).
-Próximo passo exato: publicar e conferir o checkpoint da 7.15. Depois,
-7.16 — desenhar contrato GET /api/v1/usuario para consultar usuário autenticado,
-incluindo sucesso e visitante, antes de criar rota ou implementar login.
+Publicação da 7.15: concluída e conferida em
+46742792a5ec9f4015f54a2eb55afe6fae53445f; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.16.
+
+## Etapa 7.16 — Contrato da consulta do usuário autenticado — 04/11/2026
+
+Iniciada após confirmação da 7.15 com "entendi" e publicação verificada.
+Implementação documental: docs/api/autenticacao.md com contrato planejado e
+docs/aulas/07-16-contrato-usuario-autenticado.md com explicação. Aplicação,
+dependências, ambientes e OpenAPI executável do catálogo preservados.
+
+Explicação apresentada: GET /api/v1/usuario pergunta quem está autenticado,
+sem corpo/ID ou parâmetros suportados. Accept JSON recomendado; identidade
+da autenticação, sessão/cookie para interface própria. Consulta não faz login.
+Sucesso planejado 200/application/json com data objeto contendo somente id
+inteiro positivo e name/email strings, campos obrigatórios não nulos.
+Visitante sem autenticação válida: 401/application/json com message string,
+sem data ou redirecionamento HTML. Texto padrão exemplificado não fixa idioma.
+Hidden do User versus seleção explícita em futuro UsuarioResource explicados.
+StatefulApi prepara sessão, futura proteção auth:sanctum exigirá autenticação.
+
+Documentação oficial Sanctum/Resources consultada. Reflexão em PHP Docker leu
+somente construtor AuthenticationException e Handler::unauthenticated instalados:
+mensagem padrão Unauthenticated. e ramo JSON/message/401. Sem bootstrap,
+requisição ou autenticação executada nessa inspeção, código 0.
+Dois exemplos JSON extraídos do contrato, decodificados com JSON_THROW_ON_ERROR
+e formatos/campos/tipos conferidos no PHP Docker, código 0. Não prova respostas
+do endpoint, que ainda não existe. Sem SQL, sessão/dados, rota, controller,
+Resource ou teste permanente criado. Sem nova suíte nesta etapa documental;
+última suíte completa continua 7.15, 67 testes/635 asserções.
+
+Git diff --check passou. Links locais conferidos: contrato de autenticação um,
+aula 7.15 dois e aula 7.16 um. Diff confirmou aplicação/Compose/OpenAPI sem
+alterações nesta etapa.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.16: pendente; checkpoint concluído. Último
+checkpoint publicado: 46742792a5ec9f4015f54a2eb55afe6fae53445f (7.15).
+Próximo passo exato após publicar e conferir: 7.17 — criar somente
+UsuarioResource com id/name/email e verificar representação em memória,
+antes de adicionar controller/rota/login.

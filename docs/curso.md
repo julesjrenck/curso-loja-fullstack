@@ -90,8 +90,12 @@ em 04/11/2026; publicada em 601c103, remoto conferido. Na 7.15, statefulApi
 habilitado no bootstrap; origem/Referer locais reconhecidos em diagnóstico com
 sessão array, sem origem/desconhecida sem preparação; todos sem login, zero SQL.
 Rotas com middleware esperado e suíte 67/635 passaram. Entendimento da 7.15
-confirmado com "entendi" em 04/11/2026; publicação pendente. Após publicar, 7.16: contrato da
-consulta GET /api/v1/usuario, sucesso e visitante, antes de criar rota/login.
+confirmado com "entendi" em 04/11/2026; publicada em 4674279, remoto conferido.
+Na 7.16, contrato planejado GET /api/v1/usuario documentado: 200/data com
+id/name/email e 401/message para visitante. Exemplos JSON/tipos conferidos em
+PHP Docker; nenhuma rota criada. Entendimento confirmado com "entendi" em
+04/11/2026; publicação pendente. Após publicar,
+7.17 — criar somente UsuarioResource e verificar sua representação em memória.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -747,8 +751,10 @@ provider/rota conferidos, entendimento confirmado com "entendi" em 04/11/2026.
 Publicação conferida em cc016c4. Na 7.14, resposta HTTP/cookies/sessão de visitante
 conferidos; entendimento confirmado com "entendi" em 04/11/2026.
 Publicação conferida em 601c103. Na 7.15, statefulApi habilitado/verificado;
-entendimento confirmado com "entendi" em 04/11/2026. Publicar checkpoint e iniciar
-contrato da consulta de usuário na 7.16.
+entendimento confirmado com "entendi" em 04/11/2026 e publicação em 4674279.
+Na 7.16, contrato da consulta do próprio usuário desenhado e exemplos verificados;
+entendimento confirmado com "entendi" em 04/11/2026. Publicar antes da 7.17,
+que criará somente UsuarioResource.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

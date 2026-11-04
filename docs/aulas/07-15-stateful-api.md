@@ -100,5 +100,6 @@ Entendimento confirmado com "entendi" em 04/11/2026. Próximo passo após public
 7.16 — desenhar o contrato de GET /api/v1/usuario para consultar o usuário
 autenticado, incluindo sucesso e resposta ao visitante, antes de criar a rota
 ou implementar login. Alteração explicada/verificada e entendimento confirmado.
-Checkpoint preparado para commit e push; consultar o Git ou registro posterior
-para conferir a publicação.
+Checkpoint publicado e conferido em
+46742792a5ec9f4015f54a2eb55afe6fae53445f; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação.
