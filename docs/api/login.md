@@ -155,11 +155,17 @@ preservado por comparação de conteúdo/metadados; aplicação continua loja_ap
 e sessões file. Suíte existente 96/959 passou em loja_test, vazio após rollback.
 Na 7.33, rota registrada com throttle:login. Diagnóstico kernel/testing, origem
 reconhecida/cache e sessão array/JSON vazio: cinco 422 email/password e sexto
-429 para Accept JSON/HTML/ausente; 429 preserva Retry-After 60/limite 5/restante
+429 para Accept JSON/HTML/padrão do construtor; 429 preserva Retry-After 60/limite 5/restante
 0/no-store. Todos JSON/sem Location/visitante, zero SQL após identidade; 18 pedidos.
 Suíte existente 96/959 passou. Sem rede/navegador; testing dispensa validação
 CSRF. Ainda não exercemos sucesso ou credenciais recusadas pelo endpoint.
-Próxima 7.34: automatizar entrada inválida e limite em LoginApiTest.
+Correção registrada na 7.34: o diagnóstico anterior apresentou o terceiro caso
+como ausente, mas o construtor preencheu Accept. LoginApiTest agora remove o
+cabeçalho e confere presença/valor antes de cada pedido. Três execuções com
+JSON/HTML/ausência real verificam cinco 422 e sexto 429 por caso, erros exatos,
+headers/visitante/sessão. Focado 3 testes/267 asserções; suíte 99/1.226, códigos 0.
+Não comprova sucesso do login ou CSRF no navegador. Próxima 7.35: corrigir a
+mesma preparação de Accept ausente no teste isolado LoginRateLimiterTest.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

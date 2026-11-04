@@ -5,15 +5,31 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.33 — Rota de login com limite de frequência: implementação,
-  explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Etapa atual: 7.34 — Testes de entrada inválida e limite pela rota de login:
+  implementação, explicação e verificações apresentadas; entendimento confirmado em 04/11/2026.
+- Situação da 7.34: somente tests/Feature/LoginApiTest.php criado. SetUp exige
+  cache/sessão array e fixa relógio; tearDown restaura. Um método/DataProvider
+  JSON/HTML/ausência real, cinco 422 e sexto 429 por execução. Helper cria Request
+  com JSON vazio/origem reconhecida/IP, remove ou define Accept e confere
+  presença/valor; kernel handle/terminate reais, sessão presente e TestResponse.
+  Corpos/campos/JSON/sem Location/visitante e 429/Retry-After 60/limite 5/restante
+  0/no-store exigidos. Sem fixture, actingAs ou trait de banco. Sintaxe válida;
+  focado 3 testes/267 asserções e suíte 99/1.226, códigos 0. SQL posterior:
+  loja_test/loja_testes, seis tabelas/quatro migrations/dados zero.
+  Correção de evidência: terceiro diagnóstico da 7.33 usava Accept padrão do
+  construtor; não era ausência real. Mesmo preparo identificado no helper do
+  teste isolado da 7.31, correção ainda pendente. Nenhuma aplicação/configuração/
+  dependência/migration/OpenAPI alterada. CSRF real/sucesso por HTTP pendentes.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação da 7.34 pendente.
+  Próximo passo exato após publicar: 7.35 — corrigir somente preparo de Accept ausente em
+  LoginRateLimiterTest, removendo padrão e conferindo entrada antes do middleware.
 - Situação da 7.33: routes/api.php com import LoginController e POST /login
   para store, middleware throttle:login. Prefixo existente gera /api/v1/login;
   visitante permitido, GET usuario mantém auth:sanctum, catálogo preservado.
   Sintaxe e lista de quatro rotas API conferidas; login recebe Stateful/
   ThrottleRequests:login/SubstituteBindings. Diagnóstico kernel HTTP/testing,
   identidade loja_test/loja_testes, origem reconhecida, cache/sessão array e
-  relógio controlado: três Accepts, cada qual cinco 422 por JSON vazio e sexto
+  relógio controlado: Accept JSON/HTML/padrão, cada qual cinco 422 por JSON vazio e sexto
   429/Retry-After 60/limite 5/restante 0/no-store. Todos JSON/sem Location,
   sessão presente/guard visitante. Zero SQL após identidade. Sem fixtures,
   rede/navegador ou teste real de CSRF; testing dispensa a validação CSRF.
@@ -21,9 +37,10 @@
   Suíte existente 96 testes/959 asserções, código 0. SQL posterior:
   loja_test/loja_testes, seis tabelas/quatro migrations/dados zero.
   Sem teste permanente novo/dependência/ambiente/migration/OpenAPI alterado.
-  Entendimento confirmado com "entendi" em 04/11/2026; publicação da 7.33 pendente.
-  Próximo passo exato após publicar: 7.34 — criar LoginApiTest para automatizar entrada inválida e
-  bloqueio por frequência pelo kernel HTTP, com origem/cache/sessão de testes.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  54cea249b28ebadf13cae6f17b3f8902663319e9, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.34, que corrigiu
+  o registro do terceiro caso: apresentado como ausente, tinha Accept padrão.
 - Situação da 7.32: somente migration de usuários existente aplicada em loja
   pela conexão sqlsrv_migracoes/loja_migracoes. Identidades/permissões/ausência
   de tabelas/histórico conferidos antes. DONE/lote 4/Ran; três tabelas vazias,
@@ -39,7 +56,7 @@
   Sem código/rota/ambiente/dependência/OpenAPI alterado ou usuário cadastrado.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   a79946a23fcd964e7f41c8a3d79ecfca99c54214, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.33.
+  Checkpoint anterior à 7.33. Continuidade realizada na 7.33.
 - Situação da 7.31: tests/Feature/LoginRateLimiterTest.php criado, quatro métodos/
   seis execuções com DataProvider Accept JSON/HTML/ausente. Cache array exigido,
   relógio controlado/restaurado. ThrottleRequests real/nome login/Request em
@@ -1717,8 +1734,11 @@ lote 4/tabelas vazias/reexecução e catálogo preservado/suíte 96-959. Entendi
 confirmado com "entendi" em 04/11/2026 e publicação em a79946a. Continuidade
 realizada na 7.33 — rota POST login com throttle:login, diagnóstico kernel/18
 pedidos/três Accepts/cinco 422 e sexto 429, suíte 96-959. Entendimento confirmado
-com "entendi" em 04/11/2026; publicação pendente antes da 7.34 — automatizar
-entrada inválida e limite em LoginApiTest.
+com "entendi" em 04/11/2026 e publicação em 54cea24. Continuidade realizada na
+7.34 — LoginApiTest/focado 3-267/suíte 99-1.226; Accept ausente removido/conferido.
+Diagnóstico da 7.33 tinha padrão do construtor; mesmo problema no teste isolado
+da 7.31 aguarda correção. Entendimento confirmado com "entendi" em 04/11/2026;
+publicação pendente antes da 7.35 — corrigir somente esse preparo no LoginRateLimiterTest.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -13265,7 +13285,7 @@ loja_test/loja_testes antes de pedidos; sem fixtures ou escrita SQL. Kernel
 HTTP real recebe POST /api/v1/login com JSON vazio {}, Origin local 8002
 reconhecido pelo Sanctum e relógio fixado/restaurado com Carbon.
 
-Três Accepts JSON/HTML/ausente, IP independente por caso, seis pedidos por IP
+Três Accepts JSON/HTML/padrão do construtor, IP independente por caso, seis pedidos por IP
 na janela: cinco 422 e sexto 429 em cada caso, 18 pedidos. 422 exige somente
 message string/errors email/password. 429 exige somente message string,
 Retry-After 60, X-RateLimit-Limit 5/Remaining 0 e no-store. Todos JSON/sem
@@ -13273,6 +13293,10 @@ Location, sessão presente e guard web visitante. Listener zero SQL após
 conferência da identidade. Diagnóstico código 0. Não usa rede/navegador; testing
 dispensa validação CSRF. Não verifica sucesso/credenciais recusadas por HTTP
 ou transporte real de sessão/cookies. Não altera cache ou sessão normal.
+
+Correção registrada na 7.34: terceiro caso apresentado como Accept ausente
+recebeu o padrão de Request::create; ausência real não foi comprovada no
+diagnóstico da 7.33. O novo LoginApiTest remove/confere esse cabeçalho.
 
 Suíte existente passou com 96 testes/959 asserções, código 0; nenhum teste
 permanente novo. Última completa: 7.33. SELECT posterior loja_test/loja_testes:
@@ -13286,9 +13310,66 @@ routes/api.php; Compose/OpenAPI preservados, índice vazio. Nenhum .env,
 log, cookie ou diagnóstico temporário incluído.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.33: pendente; alterações locais. Último checkpoint publicado:
-a79946a23fcd964e7f41c8a3d79ecfca99c54214 (7.32).
-Próximo passo exato após publicar: 7.34 — criar somente LoginApiTest
-para automatizar entrada inválida e limite de frequência pelo kernel HTTP,
-com origem reconhecida/cache e sessão em memória. Sucesso por HTTP, fluxo real
-de CSRF/cookies, OpenAPI de login e logout permanecem pendentes.
+Publicação da 7.33: concluída e conferida em
+54cea249b28ebadf13cae6f17b3f8902663319e9; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.34.
+
+## Etapa 7.34 — Testes de entrada inválida e limite pela rota de login — 04/11/2026
+
+Iniciada após confirmação da 7.33 com "entendi" e publicação verificada.
+Implementação: somente tests/Feature/LoginApiTest.php, nova aula 7.34 e contratos/
+registros atualizados. Aplicação/rotas/bootstrap/provider/request/controller/
+ambientes/dependências/migrations/OpenAPI preservados.
+
+Explicação apresentada: imports Kernel/Request/Carbon/TestResponse/DataProvider/
+TestCase, setUp com cache/sessão array e travelTo, tearDown/travelBack/parent,
+um método com três entradas, cinco pedidos inválidos seguidos do sexto barrado.
+Helper cria Request POST/URL completa/JSON vazio/origem local reconhecida/IP;
+campos parameters/cookies/files vazios. Kernel handle/terminate reais e
+TestResponse envolvendo resposta e request. Sem fixtures, actingAs ou trait
+de banco. Referências oficiais de testes HTTP/tempo consultadas.
+
+Correção de evidência: diagnóstico temporário com autoload apenas mostrou
+Request::create sem HTTP_ACCEPT produz has=true/Accept padrão text/html,
+application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8; até HTTP_ACCEPT null deixa
+has=true/valor null. O terceiro diagnóstico da 7.33 tinha esse padrão, embora
+apresentado como ausência. Registros da 7.33 corrigidos. No novo helper,
+headers remove Accept quando null ou set quando string; asserções conferem
+presença e valor antes de cada pedido. Mesmo preparo incorreto identificado
+em LoginRateLimiterTest da 7.31; correção pendente para 7.35. Não alterado outro
+arquivo de teste nesta etapa. Cobertura da rota com ausência real já passou.
+
+DataProvider JSON/HTML/ausente: três execuções PHPUnit, seis pedidos em cada,
+total 18. Cada execução tem aplicação/cache isolados e relógio fixado/restaurado.
+Primeiros cinco: 422/JSON/sem Location, somente message string/errors e erros
+exatamente email/password por assertJsonValidationErrors e chaves, guard web
+visitante. Sexto: 429/JSON/sem Location, somente message string, Retry-After 60,
+limite 5/restante 0 e no-store, visitante. HasSession exigido após cada pedido,
+comprovando preparação de sessão no fluxo da origem reconhecida.
+Sem texto/tradução fixos; capacidade e consumo por validação ligados à rota.
+
+Sintaxe válida. Focado --testdox passou: 3 testes/267 asserções, código 0.
+Suíte completa passou: 99 testes/1.226 asserções, código 0, soma dos 3/267 aos
+96/959 anteriores. Última completa: 7.34. SELECT posterior loja_test/loja_testes:
+seis tabelas, quatro migrations/lotes 1/2/3/4, zero users/password_reset_tokens/
+sessions/produtos/categorias. Não repetimos contador de consultas SQL no novo
+teste; diagnóstico de ausência apenas autoload, sem bootstrap/conexão SQL.
+Auditoria/snapshot normal/quatro contratos de catálogo não repetidos.
+
+Testes passam pelo kernel sem rede/navegador; testing dispensa validação CSRF.
+Não comprovam sucesso do login/credenciais recusadas por HTTP ou transporte
+real de cookies/tokens. Nenhuma sessão file/cache file normal alterados por
+esses testes; configurações de testes exigem armazenamento em memória.
+
+Git diff --check passou. Links locais conferidos: consulta três, limite um,
+login dois, aulas 7.33/7.34 um cada. Arquivos já versionados de backend/Compose/
+OpenAPI sem diff; novo código somente LoginApiTest. Índice vazio. Nenhum .env,
+log, cookie ou diagnóstico temporário incluído.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.34: pendente; alterações locais. Último checkpoint publicado:
+54cea249b28ebadf13cae6f17b3f8902663319e9 (7.33).
+Próximo passo exato após publicar: 7.35 — corrigir somente o caso
+Accept ausente no helper de LoginRateLimiterTest, removendo o cabeçalho padrão
+e conferindo entrada antes do middleware. Depois, retomar sucesso de login
+por HTTP; CSRF real/cookies/OpenAPI de login/logout continuam pendentes.

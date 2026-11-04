@@ -113,10 +113,13 @@ migration de usuários aplicada em loja com sqlsrv_migracoes, lote 4, três tabe
 vazias e catálogo preservado. Aplicação continua loja_app/sessões file; suíte
 existente 96/959 passou em loja_test. Na 7.33, POST /api/v1/login registrado
 com throttle:login. Diagnóstico kernel/testing confirma cinco entradas vazias
-422 e sexto pedido 429 nos três Accepts, sem SQL após identidade, sessão/cache
+422 e sexto pedido 429 com Accept JSON/HTML/padrão, sem SQL após identidade, sessão/cache
 array e origem reconhecida. Suíte existente 96/959 passou. Sucesso do login por
-HTTP e fluxo real de sessão/cookie/CSRF continuam pendentes. Próxima 7.34:
-automatizar entrada inválida e limite em LoginApiTest.
+HTTP e fluxo real de sessão/cookie/CSRF continuam pendentes. Na 7.34, registrado
+que o caso antes apresentado como Accept ausente tinha o padrão do construtor.
+LoginApiTest remove o cabeçalho e confere presença/valor; automatiza cinco 422
+e sexto 429 para JSON/HTML/ausência real. Focado 3/267, suíte 99/1.226 passou.
+Próxima 7.35: corrigir a preparação de Accept ausente no teste isolado do limitador.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).

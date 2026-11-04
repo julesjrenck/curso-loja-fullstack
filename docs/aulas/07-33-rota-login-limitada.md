@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.32 com "entendi". Checkpoint anterior publicado e conferido em
 a79946a23fcd964e7f41c8a3d79ecfca99c54214; HEAD/origin/main/main remota iguais.
-Entendimento da 7.33 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.33 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e único arquivo de aplicação
 
@@ -71,7 +71,7 @@ array e identidade loja_test/loja_testes antes dos pedidos. Sem fixtures ou
 escritas SQL. Kernel HTTP real, rota real e JSON vazio {}; Origin local
 http://127.0.0.1:8002 reconhecido pelo Sanctum; relógio Carbon fixado/restaurado.
 
-Para cada Accept (application/json, text/html, ausente), usamos IP próprio e
+Para cada Accept (application/json, text/html e padrão do construtor), usamos IP próprio e
 enviamos seis pedidos na mesma janela. Resultado por caso:
 
 ```text
@@ -87,6 +87,11 @@ transporte de rede ou navegador. O ambiente testing dispensa validação CSRF;
 este diagnóstico não comprova o fluxo real de token/cookies do navegador.
 Também não verificamos credenciais válidas ou recusadas pelo endpoint nesta etapa.
 
+Correção registrada na 7.34: o terceiro caso foi apresentado como Accept ausente,
+mas Request::create adicionou seu valor padrão. O diagnóstico da 7.33 não
+comprovou ausência real. LoginApiTest da 7.34 remove explicitamente o cabeçalho,
+confere presença/valor e verifica o comportamento com ausência real.
+
 ```sh
 docker compose exec -T backend php vendor/bin/phpunit --colors=never --do-not-cache-result
 ```
@@ -101,7 +106,9 @@ Não repetimos auditoria, snapshot normal ou quatro contratos de catálogo.
 Implementação, explicação e verificações concluídas; entendimento confirmado com
 "entendi" em 04/11/2026. Contratos/registros atualizados. Apenas routes/api.php
 alterado no backend; nenhuma dependência, configuração, migration ou OpenAPI.
-Publicação da 7.33 pendente. Após publicar: 7.34 — criar somente
+Publicação da 7.33 concluída e conferida em
+54cea249b28ebadf13cae6f17b3f8902663319e9; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.34 — criar somente
 LoginApiTest para automatizar entrada inválida e bloqueio por frequência no
 kernel HTTP, usando cache/sessão em memória e origem reconhecida. Sucesso de
 login por HTTP e fluxo real de CSRF/cookies continuam pendentes.

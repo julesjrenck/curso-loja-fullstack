@@ -168,11 +168,18 @@ Entendimento da 7.32 confirmado com "entendi" em 04/11/2026; publicada em a79946
 remoto conferido. Na 7.33, POST /api/v1/login registrado para LoginController::store
 com throttle:login; somente routes/api.php alterado. Sintaxe/lista de rotas
 conferidas; diagnóstico kernel/testing/origem reconhecida/cache e sessão array:
-cinco 422 e sexto 429 para Accept JSON/HTML/ausente, JSON/sem Location/zero SQL.
+cinco 422 e sexto 429 para Accept JSON/HTML/padrão do construtor, JSON/sem Location/zero SQL.
 Suíte existente 96/959 passou. Sucesso por HTTP/CSRF real continuam pendentes.
-Entendimento da 7.33 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.33 confirmado com "entendi" em 04/11/2026; publicada em 54cea24,
+remoto conferido. Na 7.34, LoginApiTest criado: kernel HTTP real/cache e sessão
+array/relógio controlado, cinco 422 e sexto 429 por Accept JSON/HTML/ausência
+real, conferindo entrada/sessão/visitante/corpos/headers. Focado 3/267 e suíte
+99/1.226 passaram. Corrigido registro da 7.33: suposta ausência era o Accept
+padrão de Request::create; novo teste remove/confere o cabeçalho. O mesmo
+preparo incorreto no teste isolado da 7.31 ficou pendente para 7.35.
+Entendimento da 7.34 confirmado com "entendi" em 04/11/2026; publicação pendente.
 Próximo após publicar:
-7.34 — criar LoginApiTest para automatizar entrada inválida e limite pelo kernel HTTP.
+7.35 — corrigir somente esse caso Accept ausente em LoginRateLimiterTest.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -870,8 +877,11 @@ lote 4, tabelas vazias, reexecução/preservação do catálogo e suíte 96/959 
 Entendimento confirmado com "entendi" em 04/11/2026; publicação em a79946a.
 Na 7.33, rota POST login registrada com throttle:login e explicada; diagnóstico
 kernel/testing confirma cinco 422/sexto 429 nos três Accepts; suíte 96/959 passou.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação em 54cea24.
+Na 7.34, LoginApiTest criado/explicado, focado 3/267 e suíte 99/1.226 passaram.
+Remove/confere Accept ausente; diagnóstico anterior tinha padrão do construtor.
 Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente antes
-da 7.34 — automatizar entrada inválida e limite em LoginApiTest.
+da 7.35 — corrigir mesmo preparo no teste isolado.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

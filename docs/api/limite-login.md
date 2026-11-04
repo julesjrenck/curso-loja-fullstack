@@ -92,9 +92,13 @@ aplicação; suíte existente 96/959 passou no banco exclusivo de testes.
 Na 7.33, aplicada à rota POST /api/v1/login. Diagnóstico kernel/testing com
 origem reconhecida, cache/sessão array e relógio fixado: cinco entradas vazias
 resultam em 422; sexta em 429/Retry-After 60/limite 5/restante 0/no-store, para
-Accept JSON/HTML/ausente, sem redirecionamento. Zero SQL após identidade.
+Accept JSON/HTML/padrão do construtor, sem redirecionamento. Zero SQL após identidade.
 Não comprova fluxo CSRF no navegador ou sucesso por HTTP. Suíte existente 96/959.
-Próxima 7.34: automatizar entrada inválida e limite em LoginApiTest.
+Correção registrada na 7.34: o terceiro caso anterior tinha Accept padrão,
+apesar de apresentado como ausente. Novo LoginApiTest remove o cabeçalho e
+confere presença/valor: JSON/HTML/ausência real, cinco 422 e sexto 429 por caso,
+com contrato/headers/visitante/sessão conferidos. Focado 3/267; suíte 99/1.226.
+Próxima 7.35: corrigir essa preparação de Accept ausente em LoginRateLimiterTest.
 
 Referências: [limitadores e respostas personalizadas no Laravel](https://laravel.com/docs/13.x/routing#rate-limiting)
 e [HTTP 429/Retry-After, RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html#section-4).
