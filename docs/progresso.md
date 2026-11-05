@@ -5,9 +5,28 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.66 — Execução interativa do seeder de usuário:
-  execução interativa relatada pelo aluno e persistência conferida em
-  05/11/2026; entendimento confirmado com "entendi" e publicação pendente.
+- Etapa atual: 7.67 — Formulário de login no laboratório:
+  implementação, explicação e verificações apresentadas em 05/11/2026;
+  entendimento confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Situação da 7.67: somente src/laboratorio-sessao.html alterado na aplicação.
+  Form POST/action login/labels/campos email e password sem valor padrão de
+  senha; Entrar disabled até preparação 204. Listener submit/preventDefault,
+  lerTokenCsrf, POST com cookies/JSON/email/password e X-XSRF-TOKEN.
+  Status 204/422/419/429/outros/catch/finally; senha limpa do campo e botão
+  reabilitado em todos os caminhos. Sem trim da senha, sem corpo de resposta
+  exibido ou armazenamento próprio de credenciais. Consulta reconhece 200
+  autenticado e mantém 401 visitante. Preparação/logout preservados.
+  Node --check e oito cenários com DOM/Fetch simulados passaram: 204,422,419,
+  429,500,rede,cookie ausente/inválido; payload preserva espaços da senha
+  fictícia, ausência/cookie inválido não envia login, consulta simulada 200
+  reconhecida. Sem rede/senha real; auxiliares próprios removidos.
+  HTML estático 200/corpo igual/sete controles passaram; códigos 0.
+  Sem navegador/login real/API/SQL/nova suíte; última 7.58, 107/1.586.
+  Aula docs/aulas/07-67-formulario-login-laboratorio.md criada.
+  Próximo após confirmar/publicar: 7.68 — navegador, preparar CSRF/login com
+  conta fictícia/consultar usuário/logout/consultar novamente; acompanhar
+  204/204/200/204/401, CORS e cookies sem senha/payload/valores privados.
+  Resultados reais pendentes; módulos 8 a 23 não iniciados.
 - Situação da 7.66: docs/aulas/07-66-execucao-seeder-usuario-laboratorio.md criado.
   Só documentação alterada. PHP no Docker confirmou local/sqlsrv/destino loja/
   classe disponível. SELECT real confirmou banco loja/login e usuário loja_app;
@@ -27,9 +46,9 @@
   como bcrypt. Duas SELECTs adicionais, escrita bloqueada, código 0; saída só
   booleanos/contagem, sem senha ou hash expostos. Nenhum texto de senha usado
   pelo assistente ou login executado. Registro e hash não provam autenticação.
-  Próximo passo exato: receber confirmação de entendimento, concluir/publicar
-  7.66; próxima 7.67 — formulário de login no laboratório, reutilizando CSRF e
-  POST email/password, sem senha versionada. Módulos 8 a 23 não iniciados.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  35669327d3cef8b7dc56136d4d78e2267329b3c2, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.67.
 - Situação da 7.65: criado backend/database/seeders/UsuarioLaboratorioSeeder.php,
   único arquivo de aplicação alterado. Separado do DatabaseSeeder padrão.
   Exige local/sqlsrv/destino loja/comando sem --no-interaction antes de consultar
@@ -47,7 +66,7 @@
   Aula docs/aulas/07-65-seeder-usuario-laboratorio.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   16e4c8331093db423f8363ef17e837da4d6a3f5a, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.66; execução
+  Checkpoint anterior à 7.66. Continuidade iniciada na 7.66; execução
   interativa e resultado aguardando relato do aluno.
 - Situação da 7.64: docs/aulas/07-64-logout-visitante-no-navegador.md criado.
   Só documentação alterada. Serviços php/backend/sqlserver ativos e CORS
@@ -2412,9 +2431,14 @@ Orientação interativa enviada ao aluno, senha oculta/exclusiva e relato só
 da mensagem final. Aluno informou criação da conta e DONE; duas SELECTs
 posteriores confirmaram alvo/identidade SQL/conta/nome/e-mail fictícios e hash
 bcrypt, sem escrita ou valor de hash/senha exposto, código 0. Login não executado.
-Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente. Próximo confirmar/
-publicar 7.66 e iniciar 7.67 — formulário de login no laboratório com CSRF/
-email/password, sem senha versionada.
+Entendimento confirmado com "entendi" em 05/11/2026; publicada em 3566932,
+remoto conferido. Continuidade na 7.67: formulário method POST/action/campos,
+submit/preventDefault, POST cookies/CSRF/JSON email/password; senha limpa no
+finally. Consulta 200/401 reconhecidas. Sintaxe/oito cenários simulados e
+HTML/sete controles passaram; auxiliares removidos, sem login real/API/SQL.
+Entendimento da 7.67 confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
+confirmar/publicar: 7.68 — navegador, preparar/login/consulta/logout/consulta,
+acompanhar 204/204/200/204/401 e CORS/cookies sem dados privados.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -15708,8 +15732,68 @@ senha escolhida com o hash nem executa login; criar User não autentica sessão.
 Nenhum cadastro adicional, alteração de senha ou reexecução do seeder pelo
 assistente. Sem nova suíte; última permanece 7.58, 107 testes/1.586 asserções.
 Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
-Publicação da 7.66: pendente; último checkpoint publicado 16e4c83 (7.65).
-Próximo passo exato: receber confirmação de entendimento, concluir/publicar
-7.66; próxima 7.67 — acrescentar formulário de login ao laboratório, reutilizar
-CSRF e enviar email/password por POST, sem senha versionada. Módulos 8 a 23
-não iniciados.
+Publicação da 7.66: concluída e conferida em 05/11/2026:
+35669327d3cef8b7dc56136d4d78e2267329b3c2; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.67.
+
+
+## Etapa 7.67 — Formulário de login no laboratório — 05/11/2026
+
+Iniciada após confirmação da 7.66 com "entendi" e publicação conferida em
+35669327d3cef8b7dc56136d4d78e2267329b3c2. Conta fictícia já persistida e hash
+bcrypt conferido na etapa anterior; senha privada não conhecida pelo assistente.
+
+Implementação: somente src/laboratorio-sessao.html alterado na aplicação.
+Form formulario-login/method post/action API login; labels/input email/
+password, required, maxlength email 255, autocomplete username/current-password.
+Placeholder e-mail fictício, senha sem value/default. Entrar submit disabled,
+liberado na preparação 204, resultado próprio. Listener submit async cancela
+envio nativo com preventDefault, lê valores atuais e token CSRF pelo helper.
+POST login/credentials include/Accept JSON/Content-Type JSON/X-XSRF-TOKEN,
+JSON.stringify com somente email/password; sem trim da senha.
+
+Status 204 login aceito, 422 dados inválidos/credenciais recusadas genérico,
+419 CSRF, 429 limite, outros inesperados. Catch genérico; finally esvazia
+campo senha e reabilita botão, inclusive falhas locais/HTTP/rede. Corpo da
+resposta não lido, sem dados pessoais/erros brutos/senha exibidos ou logs/
+armazenamento próprio de credenciais. Consulta usuário ganhou ramo 200
+autenticado, mantendo 401 visitante. Preparação/logout preservados.
+Backend/rotas/controllers/LoginRequest/config/ambientes/testes/seeder/
+dependências/serviços/Compose/OpenAPI intactos.
+
+Explicação apresentada: form/labels/tipos/required/autocomplete; método/corpo
+POST, submit/preventDefault sem navegação; value/JSON com chaves do contrato;
+normalização e validação real permanecem no backend; helper lê cookie atual
+para cada POST; leitura do status não exige JSON de 204. Limpeza do campo não
+é medição de eliminação de todos os dados da memória/ferramentas do navegador.
+Fontes primárias MDN submit e Laravel/Sanctum, contrato e rota existentes lidos.
+
+Verificação: script/atributos iniciais de elementos extraídos como texto para
+diretório próprio /tmp. Node --check seguido de vm.Script com DOM/eventos
+mínimos e Fetch simulado na imagem Redocly 2.65.0/digest já fixado. Oito cenários
+passaram: 204,422,419,429,500,rede,cookie ausente,cookie malcodificado.
+Conferiram gating após preparação, preventDefault, senha fictícia limpa no
+finally, botão reabilitado, quantidade de pedidos e mensagens. Pedidos enviados
+exigiram URL/método/credentials/headers/CSRF e JSON só email/password, preservando
+espaços externos da senha fictícia. Ausência/cookie inválido sem pedido de login.
+Consulta simulada 200 reconhecida no cenário 204. Código 0, saída só booleanos;
+sem rede ou senha real. Docker pull never/network none/ro; auxiliares removidos.
+
+GET estático via PHP no serviço php: 200/corpo igual/sete controles passaram,
+código 0; form method/action, inputs, senha sem padrão, botão disabled e
+botões anteriores mantidos. Sem pedido da API, login real, SQL ou navegador
+pelo assistente. Simulação não prova validação nativa/autocomplete/CORS/cookies
+reais/aceitação da senha/sessão autenticada. Sem nova suíte/auditoria/snapshot;
+última suíte Laravel permanece 7.58, 107 testes/1.586 asserções.
+Aula 7.67/publicação anterior/roteiro/progresso e continuidade atualizados.
+Git diff --check passou; seis links locais válidos, 11 IDs únicos/labels
+associados/um script próprio/senha sem padrão. Somente cinco arquivos previstos
+alterados, índice vazio; backend/seeder/Compose/OpenAPI preservados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
+Publicação da 7.67: pendente; último checkpoint publicado 3566932 (7.66).
+Próximo passo exato após confirmar/publicar: 7.68 — no Chrome/Edge preparar
+CSRF, login com conta fictícia/senha escolhida no terminal, consultar usuário,
+logout e consultar novamente; observar 204/204/200/204/401, CORS e cookies,
+sem copiar senha/payload/valores de cookies/dados privados. Resultados reais
+ainda pendentes; módulos 8 a 23 não iniciados.

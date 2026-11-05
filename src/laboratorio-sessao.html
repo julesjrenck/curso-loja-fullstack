@@ -11,6 +11,19 @@
     <button id="preparar" type="button">Solicitar cookie CSRF</button>
     <p id="resultado" role="status">Aguardando o clique.</p>
 
+    <form id="formulario-login" method="post" action="http://127.0.0.1:8002/api/v1/login">
+        <p>
+            <label for="email-login">E-mail</label>
+            <input id="email-login" name="email" type="email" maxlength="255" autocomplete="username" placeholder="aluno@example.test" required>
+        </p>
+        <p>
+            <label for="senha-login">Senha</label>
+            <input id="senha-login" name="password" type="password" autocomplete="current-password" required>
+        </p>
+        <button id="entrar" type="submit" disabled>Entrar</button>
+    </form>
+    <p id="resultado-login" role="status">Aguardando a preparação.</p>
+
     <p>Depois da preparação, consulte a autenticação da sessão.</p>
     <button id="consultar-usuario" type="button" disabled>Consultar usuário</button>
     <p id="resultado-usuario" role="status">Aguardando a preparação.</p>
@@ -22,6 +35,11 @@
     <script>
         const botao = document.querySelector('#preparar');
         const resultado = document.querySelector('#resultado');
+        const formularioLogin = document.querySelector('#formulario-login');
+        const campoEmail = document.querySelector('#email-login');
+        const campoSenha = document.querySelector('#senha-login');
+        const botaoLogin = document.querySelector('#entrar');
+        const resultadoLogin = document.querySelector('#resultado-login');
         const botaoUsuario = document.querySelector('#consultar-usuario');
         const resultadoUsuario = document.querySelector('#resultado-usuario');
         const botaoLogout = document.querySelector('#encerrar-sessao');
@@ -49,6 +67,8 @@
 
                 if (resposta.status === 204) {
                     resultado.textContent = 'Resposta recebida: HTTP 204 (sem corpo).';
+                    botaoLogin.disabled = false;
+                    resultadoLogin.textContent = 'Pronto para entrar.';
                     botaoUsuario.disabled = false;
                     resultadoUsuario.textContent = 'Pronto para consultar.';
                     botaoLogout.disabled = false;
@@ -63,6 +83,52 @@
             }
         });
 
+        formularioLogin.addEventListener('submit', async (evento) => {
+            evento.preventDefault();
+            botaoLogin.disabled = true;
+            resultadoLogin.textContent = 'Enviando login...';
+
+            try {
+                const token = lerTokenCsrf();
+
+                if (!token) {
+                    resultadoLogin.textContent = 'Cookie CSRF ausente. Solicite o cookie CSRF novamente.';
+                    return;
+                }
+
+                const resposta = await fetch('http://127.0.0.1:8002/api/v1/login', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-XSRF-TOKEN': token,
+                    },
+                    body: JSON.stringify({
+                        email: campoEmail.value,
+                        password: campoSenha.value,
+                    }),
+                });
+
+                if (resposta.status === 204) {
+                    resultadoLogin.textContent = 'Resposta recebida: HTTP 204 (login aceito).';
+                } else if (resposta.status === 422) {
+                    resultadoLogin.textContent = 'Resposta recebida: HTTP 422 (dados inválidos ou credenciais recusadas).';
+                } else if (resposta.status === 419) {
+                    resultadoLogin.textContent = 'Resposta recebida: HTTP 419 (recusa de CSRF).';
+                } else if (resposta.status === 429) {
+                    resultadoLogin.textContent = 'Resposta recebida: HTTP 429 (limite de tentativas).';
+                } else {
+                    resultadoLogin.textContent = `Resposta inesperada: HTTP ${resposta.status}.`;
+                }
+            } catch {
+                resultadoLogin.textContent = 'Não foi possível concluir o login. Confira a preparação e a rede no navegador.';
+            } finally {
+                campoSenha.value = '';
+                botaoLogin.disabled = false;
+            }
+        });
+
         botaoUsuario.addEventListener('click', async () => {
             botaoUsuario.disabled = true;
             resultadoUsuario.textContent = 'Consultando a API...';
@@ -74,7 +140,9 @@
                     headers: { Accept: 'application/json' },
                 });
 
-                if (resposta.status === 401) {
+                if (resposta.status === 200) {
+                    resultadoUsuario.textContent = 'Resposta recebida: HTTP 200 (usuário autenticado).';
+                } else if (resposta.status === 401) {
                     resultadoUsuario.textContent = 'Resposta recebida: HTTP 401 (sem autenticação).';
                 } else {
                     resultadoUsuario.textContent = `Resposta inesperada: HTTP ${resposta.status}.`;

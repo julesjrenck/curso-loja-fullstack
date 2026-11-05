@@ -3,7 +3,8 @@
 Preparação e orientação em 05/11/2026, após confirmação da 7.65 com "entendi".
 Aluno relatou criação da conta e DONE; persistência conferida por metadados.
 Entendimento da 7.66 confirmado com "entendi" em 05/11/2026.
-Publicação pendente. Checkpoint anterior publicado e conferido em
+Publicação conferida em 35669327d3cef8b7dc56136d4d78e2267329b3c2,
+HEAD/origin/main/main remota iguais. Checkpoint anterior publicado e conferido em
 16e4c8331093db423f8363ef17e837da4d6a3f5a, HEAD/origin/main/main remota iguais;
 registro posterior à publicação.
 
@@ -102,8 +103,6 @@ documentos previstos alterados, índice vazio. Seeder/aplicação/página preser
 
 ## Continuidade
 
-Cadastro concluído por relato e persistência/metadados conferidos. Próximo
-passo exato: receber confirmação explícita de entendimento e concluir/publicar
-7.66. Próxima 7.67: acrescentar formulário de login ao laboratório, reutilizar
-CSRF e enviar email/password por POST, sem senha versionada. Não iniciada
-antes dessa confirmação; módulos 8 a 23 não iniciados.
+Cadastro e entendimento confirmados; publicação da 7.66 concluída.
+Continuidade na [7.67 — formulário de login](07-67-formulario-login-laboratorio.md).
+Módulos 8 a 23 não iniciados.

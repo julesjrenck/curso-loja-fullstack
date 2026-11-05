@@ -382,9 +382,15 @@ código 0. Orientação interativa enviada, senha oculta e relato só da mensage
 final. Aluno informou criação da conta e DONE. Duas SELECTs posteriores
 confirmaram alvo/identidade SQL/conta/nome/e-mail fictícios e hash bcrypt, sem
 escrita ou exposição de senha/hash, código 0. Registro não significa login,
-ainda não executado. Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próximo confirmar/publicar 7.66 e iniciar 7.67 — formulário de login no
-laboratório, CSRF/POST email/password, sem senha versionada. Só docs.
+ainda não executado nessa etapa. Entendimento confirmado com "entendi" em
+05/11/2026; publicada em 3566932, remoto conferido. Na 7.67, formulário de login
+adicionado ao laboratório: submit/preventDefault, campos/JSON email/password,
+cookies/token CSRF, status 204/422/419/429/catch/finally limpa senha. Consulta
+agora reconhece 200 e mantém 401. Sintaxe/oito cenários simulados passaram;
+HTML/sete controles passaram; auxiliares removidos, sem login real/API/SQL ou
+nova suíte. Entendimento da 7.67 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Próxima após confirmar/publicar: 7.68 — navegador, preparar/login/consulta/
+logout/consulta, 204/204/200/204/401 e CORS/cookies sem dados privados.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1204,8 +1210,12 @@ Entendimento confirmado com "entendi" em 05/11/2026; publicação em 16e4c83.
 Na 7.66, destino e ausência inicial do e-mail fictício conferidos por duas
 SELECTs sem escrita; orientação interativa enviada. Aluno relatou criação
 e DONE; duas leituras posteriores confirmaram conta fictícia/hash bcrypt,
-sem senha/hash expostos. Login não executado. Entendimento confirmado com
-"entendi" em 05/11/2026; publicação pendente. Próxima 7.67 — formulário de login com CSRF/POST no laboratório.
+sem senha/hash expostos. Login não executado nessa etapa. Entendimento
+confirmado com "entendi" em 05/11/2026; publicação em 3566932. Na 7.67, formulário
+login/CSRF/POST implementado e consulta 200 reconhecida; sintaxe/oito cenários
+simulados e HTML/sete controles passaram, sem login real/API/nova suíte.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.68 — ciclo no navegador
+preparar/login/consulta/logout/consulta, sem copiar dados privados.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
