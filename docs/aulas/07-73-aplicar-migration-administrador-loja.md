@@ -5,7 +5,8 @@ Aplicação, explicação e verificações em 05/11/2026, após confirmação da
 Checkpoint anterior publicado e conferido em
 5061427387d61506a462c5a4e18715cc80405054; HEAD/origin/main/main remota iguais.
 Entendimento da 7.73 confirmado com "entendi" em 05/11/2026; publicação
-pendente. Migration aplicada persistentemente em loja.
+conferida em 8a5356ad4e5041fa1594e451fc6d078f420c682f, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação. Migration aplicada persistentemente em loja.
 
 ## Objetivo e conexão
 
@@ -94,7 +95,7 @@ não foram alterados. Não repetimos a suíte que usa loja_test: a última é a 
 verificações atuais foram a aplicação restrita e as leituras reais em loja.
 Nenhum pedido da API ou alteração em loja_test pelo assistente nesta aula.
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-7.74 — acrescentar somente
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.74](07-74-cast-boolean-administrador.md): acrescentar somente
 o cast boolean de is_admin ao User e verificar leitura em PHP, mantendo
 Fillable e UsuarioResource. Módulos 8 a 23 não iniciados.

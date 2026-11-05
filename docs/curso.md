@@ -412,8 +412,12 @@ migrations. Loja não usada na 7.72. Entendimento confirmado com "entendu" em
 migration is_admin em loja por sqlsrv_migracoes/path restrito: DONE/[5] Ran.
 Bit/not null/default zero, um usuário false/cinco migrations; app lê coluna
 sem ganhar ALTER. Oito controles passaram, sem nova suíte. Entendimento
-confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
-publicar: 7.74 — cast boolean is_admin no User.
+confirmado com "entendi" em 05/11/2026; publicação em 8a5356a, remoto conferido.
+Na 7.74, cast boolean is_admin acrescentado ao User; sintaxe e 12 controles
+em memória passaram. Fillable/Resource mantidos; cast não cria padrão.
+Suíte atual 108/1.606 passou; sem SQL em loja. Entendimento confirmado com
+"entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
+7.75 — Gate acessar-administracao, antes de rota administrativa.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1257,8 +1261,11 @@ loja não usada na 7.72. Entendimento confirmado com "entendu" em 05/11/2026;
 publicação em 5061427. Na 7.73, is_admin aplicada em loja por conexão dedicada/
 path restrito, DONE/[5] Ran, oito controles passaram: default false, conta
 sem privilégio, histórico e leitura pela app. Sem nova suíte. Entendimento
-confirmado com "entendi" em 05/11/2026; publicação pendente antes da
-7.74 — cast boolean is_admin no User.
+confirmado com "entendi" em 05/11/2026; publicação em 8a5356a. Na 7.74,
+cast boolean is_admin no User, sintaxe/12 controles em memória passaram,
+Fillable/Resource mantidos e suíte atual 108/1.606 passou. Sem SQL em loja.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+Próxima após publicar: 7.75 — Gate acessar-administracao, sem rota nova.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

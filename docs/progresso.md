@@ -5,10 +5,23 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.73 — Aplicar o indicador de administrador em loja:
-  aplicação, explicação e verificações apresentadas em 05/11/2026;
+- Etapa atual: 7.74 — Cast boolean do indicador de administrador:
+  implementação, explicação e verificações apresentadas em 05/11/2026;
   entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
-  Migration aplicada persistentemente em loja.
+- Situação da 7.74: única linha de aplicação acrescentada em User::casts:
+  is_admin => boolean. Casts datetime/hashed anteriores preservados;
+  Fillable name/email/password e UsuarioResource id/name/email mantidos.
+  PHP -l passou. Diagnóstico em memória/autoload sem bootstrap/SQL:
+  12 controles passaram, sete entradas 0/1/'0'/'1'/false/true/null com
+  valor bruto preservado; casts/Fillable/fill sem indicador; User novo não
+  ganha padrão; Resource sem is_admin mesmo com indicador bruto em memória.
+  Cast converte leitura, não cria padrão ou autoriza ação; null permanece
+  null em memória e default/NOT NULL continuam no banco. Sem conta promovida,
+  migração ou SQL em loja. Suíte atual: 108 testes/1.606 asserções, código 0.
+  Aula docs/aulas/07-74-cast-boolean-administrador.md criada.
+  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
+  7.75 — definir Gate acessar-administracao com is_admin e verificar decisões
+  cliente/admin/visitante em memória, antes de criar rota administrativa.
 - Situação da 7.73: somente documentação alterada. Aplicado apenas arquivo
   2026_11_05_120000_add_is_admin_to_users_table.php em loja por sqlsrv_migracoes/
   loja_migracoes, com --path e sem interação. Pré-leituras: local/sem cache/
@@ -21,9 +34,9 @@
   Saída somente booleanos/contagens; sem dados privados/promoção/login/API.
   Sem uso de loja_test ou nova suíte; última 7.72, 108 testes/1.606 asserções.
   Aula docs/aulas/07-73-aplicar-migration-administrador-loja.md criada.
-  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-  7.74 — acrescentar somente cast boolean is_admin ao User e verificar leitura
-  PHP, mantendo Fillable/UsuarioResource; Gate/Policy continuam pendentes.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  8a5356ad4e5041fa1594e451fc6d078f420c682f, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.74.
 - Situação da 7.72: criado somente
   backend/tests/Feature/UsuarioAdministradorMigrationTest.php na aplicação.
   DatabaseTransactions e guardas testing/sqlsrv/loja_test/loja_testes/users
@@ -39,7 +52,7 @@
   preservados. Aula docs/aulas/07-72-teste-migration-administrador.md criada.
   Entendimento confirmado com "entendu" em 05/11/2026; publicação verificada:
   5061427387d61506a462c5a4e18715cc80405054, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.73.
+  Checkpoint anterior à 7.73. Continuidade iniciada na 7.73.
 - Situação da 7.71: criado somente
   backend/database/migrations/2026_11_05_120000_add_is_admin_to_users_table.php
   na aplicação. Up Schema::table users/boolean is_admin/default false, sem
@@ -2551,7 +2564,10 @@ Na 7.73, migration aplicada em loja por sqlsrv_migracoes/path restrito:
 DONE, [5] Ran; bit/not null/default zero, um usuário false e cinco migrations,
 app lê coluna sem ganhar ALTER. Oito controles passaram. Sem nova suíte.
 Entendimento da 7.73 confirmado com "entendi" em 05/11/2026; publicação
-pendente. Próxima após publicar: 7.74 — cast boolean is_admin no User.
+em 8a5356a, remoto conferido. Na 7.74, cast boolean is_admin no User;
+sintaxe/12 controles em memória e suíte 108/1.606 passaram. Sem SQL em loja.
+Entendimento da 7.74 confirmado com "entendi" em 05/11/2026; publicação
+pendente. Próxima após publicar: 7.75 — Gate acessar-administracao, sem rota nova.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -16215,7 +16231,57 @@ Model, configuração, ambientes, contratos e Compose preservados no filesystem.
 
 Entendimento: confirmado com "entendi" em 05/11/2026 sobre a migration
 aplicada em loja e a aplicação manter sua conexão sem permissão de alterar tabelas.
-Publicação da 7.73: pendente; último checkpoint publicado 5061427 (7.72).
-Próximo passo exato após publicar: 7.74 — acrescentar somente
-cast boolean de is_admin ao User e verificar leitura PHP, mantendo Fillable
-e UsuarioResource. Módulos 8 a 23 não iniciados.
+Publicação da 7.73: concluída e conferida em 05/11/2026:
+8a5356ad4e5041fa1594e451fc6d078f420c682f; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.74.
+Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.74 — Cast boolean do indicador de administrador — 05/11/2026
+
+Iniciada após confirmação da 7.73 com "entendi" e publicação conferida em
+8a5356ad4e5041fa1594e451fc6d078f420c682f. Git add de quatro documentos, commit
+e push explicados antes de executar; remoto verificado.
+
+Implementação: única linha de aplicação acrescentada em backend/app/Models/User.php,
+método casts: is_admin => boolean. Datetime/hashed anteriores e Fillable
+name/email/password preservados. Aula 07-74-cast-boolean-administrador.md
+criada; aula anterior/roteiro/progresso atualizados. Sem mudança em migration,
+teste, Resource, rotas, contratos, dependências, ambientes ou Compose.
+
+Explicação: casts retorna mapa atributo/conversão. Leitura de is_admin 0/'0'
+como false e 1/'1' como true. Cast converte representação; não promove conta,
+não grava a leitura no banco nem concede permissão. Não inclui atributo em Fillable.
+Default false/NOT NULL são do banco; User novo sem carregar atributo não
+recebe padrão PHP automático e null em memória permanece null. Resource
+mantém seleção explícita id/name/email. Fonte primária Laravel 13
+eloquent-mutators/attribute-casting consultada, incluindo limite de null.
+
+Verificação: php -l no Docker passou. Diagnóstico PHP pela entrada padrão
+carregou só autoload, sem bootstrap/configuração/conexão SQL. User real com
+setRawAttributes simulando atributos carregados; nenhum método desse
+diagnóstico acrescentado à aplicação. Doze controles passaram, código 0:
+sete entradas 0/1/'0'/'1'/false/true/null com leitura e valor bruto preservados;
+casts anteriores; Fillable; fill aceita nome fictício mas não is_admin;
+User novo sem padrão automático; UsuarioResource mantém objeto id/name/email
+apesar do indicador em memória. Request fictícia/toArray, sem HTTP ou rota.
+Saída somente booleanos, sem senha/hash/dados privados. Sem auxiliar persistido.
+
+Suíte executada em Docker com artisan test --compact --do-not-cache-result
+--colors=never: 108 testes/1.606 asserções passaram, código 0. Banco de testes
+configurado loja_test; não se trata do resultado antigo da 7.72.
+Nenhum teste permanente novo, SQL em loja, migration, promoção ou login.
+A verificação em memória não comprova leitura de conta real ou mudança de
+permissão; autorização por Gate/Policy permanece pendente.
+
+Git diff --check passou; 7 links locais válidos nos quatro documentos.
+Somente uma linha no User e quatro documentos previstos alterados, índice vazio;
+migration, teste, Fillable, Resource, contratos e Compose preservados.
+
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre cast fornecer
+booleano PHP e regra de autorização decidir se permite a ação.
+Publicação da 7.74: pendente; último checkpoint publicado 8a5356a (7.73).
+Próximo passo exato após publicar: 7.75 — definir Gate
+acessar-administracao consultando is_admin e verificar decisões para cliente,
+administrador e visitante em memória, antes de criar rota administrativa.
+Módulos 8 a 23 não iniciados.
