@@ -422,9 +422,12 @@ memória passaram sem SQL/PDO; sintaxe e suíte atual 108/1.606 passaram.
 Entendimento confirmado com "entendi" em 05/11/2026; publicação em 3f2c4fa,
 remoto conferido. Na 7.76, quatro testes permanentes do Gate, objetos em
 memória/SQL bloqueado: focado 4/12 e suíte atual 112/1.618 passaram.
-Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próxima após publicar: 7.77 — contrato GET /api/v1/administracao,
-auth:sanctum/Gate e 200/401/403, antes de controller/rota.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação em 077cc62,
+remoto conferido. Na 7.77, contrato GET /api/v1/administracao com auth:sanctum
+antes de can:acessar-administracao; 200 data.mensagem, 401/403 somente message.
+Somente documentação, sem operação implementada/HTTP/OpenAPI. Entendimento
+confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
+publicar: 7.78 — AdministracaoController::show/JSON 200, sem rota.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1277,9 +1280,11 @@ sintaxe/sete controles em memória/suíte atual 108/1.606 passaram.
 Sem SQL em loja ou rota nova; entendimento confirmado com "entendi" em
 05/11/2026; publicação em 3f2c4fa. Na 7.76, quatro testes permanentes do Gate
 com SQL bloqueado: focado 4/12, suíte atual 112/1.618 passaram.
-Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próxima após publicar: 7.77 — contrato GET /api/v1/administracao,
-auth:sanctum/Gate e 200/401/403, antes de implementação.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação em 077cc62.
+Na 7.77, contrato GET /api/v1/administracao: auth:sanctum/can, 200 mensagem
+fixa e erros 401/403 somente message. Apenas documentação; entendimento
+confirmado com "entendi" em 05/11/2026; publicação pendente antes da
+7.78 — AdministracaoController::show/JSON 200, sem rota.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

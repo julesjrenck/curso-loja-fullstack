@@ -5,9 +5,21 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.76 — Testes permanentes do Gate de administração:
-  implementação, explicação e verificações apresentadas em 05/11/2026;
-  entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+- Etapa atual: 7.77 — Contrato da consulta administrativa:
+  desenho apresentado; entendimento confirmado com "entendi" em
+  05/11/2026; publicação pendente.
+- Situação da 7.77: somente documentação alterada. Criado
+  docs/api/administracao.md: GET /api/v1/administracao, sessão/cookies,
+  auth:sanctum antes de can:acessar-administracao, sem corpo/parâmetros.
+  Planejados 200 JSON data.mensagem fixa de boas-vindas, visitante 401 e
+  cliente sem permissão 403 com somente message string; sem redirecionamento.
+  Privilégio vem do User identificado no servidor, não de campos do pedido.
+  Rota/controller/OpenAPI ainda sem esta operação; status são desenho,
+  não observação HTTP. Sem PHP/API/SQL/nova suíte; última 7.76, 112/1.618.
+  Aula docs/aulas/07-77-contrato-consulta-administracao.md criada.
+  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
+  7.78 — criar somente AdministracaoController::show com JSON 200 do contrato
+  e verificar chamada direta em memória, ainda sem rota.
 - Situação da 7.76: criado somente
   backend/tests/Feature/AdministracaoGateTest.php na aplicação. Quatro cenários
   com Gate real/forUser/allows: cliente false, administrador true, visitante
@@ -18,9 +30,9 @@
   1.618 asserções passaram, códigos 0. Provider/User/rotas/contratos mantidos;
   não comprova proteção HTTP ou login administrativo. Aula
   docs/aulas/07-76-testes-gate-administracao.md criada.
-  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-  7.77 — desenhar contrato GET /api/v1/administracao com auth:sanctum/Gate,
-  200/401/403, antes de implementar controller ou rota.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  077cc6270931f3d069611cc1978608865beaf144, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.77.
 - Situação da 7.75: somente AppServiceProvider alterado na aplicação.
   Imports User/Gate e Gate::define acessar-administracao no boot, callback
   User/bool com is_admin === true. Binding Catalogo e limitador login mantidos.
@@ -33,7 +45,7 @@
   docs/aulas/07-75-gate-acesso-administracao.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   3f2c4fa7c6f69ae1b79e500f29b2da57f368e919, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.76.
+  Checkpoint anterior à 7.76. Continuidade iniciada na 7.76.
 - Situação da 7.74: única linha de aplicação acrescentada em User::casts:
   is_admin => boolean. Casts datetime/hashed anteriores preservados;
   Fillable name/email/password e UsuarioResource id/name/email mantidos.
@@ -2599,8 +2611,11 @@ passaram, sem SQL/PDO; suíte atual 108/1.606 passou. Entendimento da 7.75
 confirmado com "entendi" em 05/11/2026; publicação em 3f2c4fa, remoto conferido.
 Na 7.76, quatro testes permanentes do Gate com Laravel real/SQL bloqueado:
 focado 4/12 e suíte atual 112/1.618 passaram. Entendimento da 7.76 confirmado
-com "entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
-7.77 — contrato GET /api/v1/administracao, auth:sanctum/Gate e 200/401/403.
+com "entendi" em 05/11/2026; publicação em 077cc62, remoto conferido.
+Na 7.77, contrato GET /api/v1/administracao, auth:sanctum e can:acessar-administracao e 200 data.mensagem/401/403 somente message. Só documentação;
+sem operação implementada/OpenAPI/HTTP. Entendimento da 7.77 confirmado com
+"entendi" em 05/11/2026; publicação pendente. Próxima após publicar: 7.78 —
+AdministracaoController::show com JSON 200, verificação direta, sem rota.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -16412,8 +16427,56 @@ Somente novo teste com quatro cenários e quatro documentos previstos alterados,
 
 Entendimento: confirmado com "entendi" em 05/11/2026 sobre testes
 detectarem mudanças indevidas nas permissões do Gate.
-Publicação da 7.76: pendente; último checkpoint publicado 3f2c4fa (7.75).
-Próximo passo exato após publicar: 7.77 — desenhar contrato
-GET /api/v1/administracao, com auth:sanctum/Gate acessar-administracao e
-respostas 200/401/403, antes de criar controller ou rota.
+Publicação da 7.76: concluída e conferida em 05/11/2026:
+077cc6270931f3d069611cc1978608865beaf144; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.77.
+Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.77 — Contrato da consulta administrativa — 05/11/2026
+
+Iniciada após confirmação da 7.76 com "entendi" e publicação conferida em
+077cc6270931f3d069611cc1978608865beaf144. Git add de teste e quatro documentos,
+commit e push explicados antes de executar; remoto verificado.
+
+Implementação: somente documentação. Criado docs/api/administracao.md e aula
+07-77-contrato-consulta-administracao.md; aula anterior/roteiro/progresso
+atualizados. Nenhum controller, rota, teste ou operação no OpenAPI acrescentado.
+
+Contrato planejado: GET /api/v1/administracao, Accept JSON, sessão/cookies da
+interface própria, sem corpo/parâmetros suportados. Consulta de entrada da
+área administrativa, sem escrita, identificação pessoal ou lista de contas.
+Auth:sanctum primeiro recusa visitante com 401; can:acessar-administracao
+consulta o Gate e recusa cliente autenticado sem permissão com 403.
+Permitido: 200 JSON exato data/mensagem "Bem-vindo à administração da loja.".
+Erros: somente message string/sem data/sem redirecionamento HTML, textos
+ilustrativos; cliente decide pelo status, sem depender do idioma.
+Indicador vem do User identificado no servidor, não de campos do pedido.
+
+Explicação: true/false de allows não é status HTTP. Autenticação primeiro
+distingue visitante 401 de cliente autenticado sem permissão 403. Gate
+existente será exigido por middleware; o caminho e seu nome são distintos.
+Bootstrap já configura JSON em api/*; efeitos serão conferidos na integração.
+Sucesso desta consulta não concede todas as futuras operações administrativas.
+Envelope data/mensagem fixa evita serializar dados de conta desnecessários.
+
+Verificação: leitura de routes/api.php, bootstrap/app.php, AppServiceProvider
+e contratos existentes. Gate definido, rota administrativa ausente; busca
+não encontrou operação no OpenAPI. Arquivos de aplicação preservados.
+Fonte primária Laravel 13 authorization/via-middleware consultada: middleware
+can e recusa 403. Nenhuma chamada HTTP/SQL ou comando PHP, sem nova suíte;
+última execução permanece 7.76: 112 testes/1.618 asserções.
+Documento não comprova proteção HTTP nem resposta 200/401/403 real.
+
+Git diff --check passou; 11 links locais válidos nos cinco documentos;
+4 exemplos JSON válidos. Somente cinco documentos previstos alterados,
+índice vazio; backend, testes, OpenAPI, configuração e Compose preservados.
+Validação documental não verifica contrato por HTTP ou execução da rota.
+
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre visitante
+receber 401 e cliente autenticado sem permissão receber 403 no contrato planejado.
+Publicação da 7.77: pendente; último checkpoint publicado 077cc62 (7.76).
+Próximo passo exato após publicar: 7.78 — criar somente
+AdministracaoController::show com resposta JSON 200 do contrato, verificar
+chamada direta em memória, ainda sem registrar rota.
 Módulos 8 a 23 não iniciados.

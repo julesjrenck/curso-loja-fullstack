@@ -4,7 +4,9 @@ Implementação, explicação e verificações em 05/11/2026, após confirmaçã
 [7.75](07-75-gate-acesso-administracao.md) com "entendi".
 Checkpoint anterior publicado e conferido em
 3f2c4fa7c6f69ae1b79e500f29b2da57f368e919; HEAD/origin/main/main remota iguais.
-Entendimento da 7.76 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.76 confirmado com "entendi" em 05/11/2026; publicação
+conferida em 077cc6270931f3d069611cc1978608865beaf144, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação.
 
 ## Objetivo e arquivo
 
@@ -93,8 +95,8 @@ As decisões do Gate estão automatizadas. Isso não demonstra proteção de uma
 rota, resposta HTTP 401/403 ou sessão administrativa. Essas integrações ainda
 serão estudadas, depois da confirmação de entendimento.
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-7.77 — desenhar o contrato
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.77](07-77-contrato-consulta-administracao.md): desenhar o contrato
 de GET /api/v1/administracao, com auth:sanctum e Gate acessar-administracao,
 respostas 200/401/403, antes de criar controller ou rota. Módulos 8 a 23
 não iniciados.
