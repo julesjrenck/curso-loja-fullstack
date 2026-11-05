@@ -5,9 +5,26 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.70 — Planejamento do indicador de administrador:
-  desenho apresentado; entendimento confirmado com "entendi" em
-  05/11/2026; publicação pendente.
+- Etapa atual: 7.71 — Migration do indicador de administrador:
+  implementação, explicação e verificações apresentadas em 05/11/2026;
+  entendimento confirmado com "entendi" em 05/11/2026; publicação pendente;
+  migration ainda não aplicada.
+- Situação da 7.71: criado somente
+  backend/database/migrations/2026_11_05_120000_add_is_admin_to_users_table.php
+  na aplicação. Up Schema::table users/boolean is_admin/default false, sem
+  nullable; down dropColumn is_admin. PHP -l passou. Compilação isolada
+  pelo Laravel instalado/SqlServerConnection sem credenciais, abertura PDO
+  bloqueada, Schema ligado ao builder e Connection::pretend up/down.
+  Sete controles passaram: uma instrução por direção; up bit/not null/default
+  zero; down remove restrição do padrão e somente a coluna; bindings vazios;
+  zero aberturas PDO; simulação encerrada. Código 0, sem auxiliar persistido.
+  Nenhum SQL enviado ou banco alterado; sintaxe/compilação não comprovam
+  execução, valores existentes ou rollback real. Cast/Fillable/rotas/contratos/
+  contas preservados. Sem nova suíte; última 7.58, 107 testes/1.586 asserções.
+  Aula docs/aulas/07-71-migration-indicador-administrador.md criada.
+  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
+  7.72 — verificar migration em loja_test, com usuários fictícios, padrão em
+  existentes/novos e reversão, antes de planejar aplicação em loja.
 - Situação da 7.70: somente documentação alterada. Planejado users.is_admin
   booleano obrigatório/padrão false; contas novas e existentes sem promoção
   automática. Cast boolean futuro no User; atributo fora do Fillable;
@@ -18,9 +35,9 @@
   Resource, seeder e factory conferidos. Sem PHP/API/SQL/nova suíte; última
   7.58, 107 testes/1.586 asserções. Aula
   docs/aulas/07-70-planejamento-indicador-administrador.md criada.
-  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-  7.71 — criar somente migration de is_admin/default false/down remove coluna
-  e examinar SQL gerado para SQL Server sem aplicá-la no banco normal.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  dd9c3911fd9d8965c90541d651e80a0a3b920a22, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.71.
 - Situação da 7.69: somente documentação alterada. Identidade autenticada não
   concede permissão administrativa. Exemplo de futura operação: visitante 401,
   cliente autenticado sem permissão 403, administrador autorizado prossegue
@@ -32,7 +49,7 @@
   107 testes/1.586 asserções. Aula 07-69-autorizacao-apos-login.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   82b13cf6c6e196d7e873fed5ba2c338b957bd0c8, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.70.
+  Checkpoint anterior à 7.70. Continuidade iniciada na 7.70.
 - Situação da 7.68: somente documentação alterada. Exercício no Chrome/Edge:
   preparar CSRF, entrar com conta fictícia e senha privada, consultar usuário,
   encerrar sessão e consultar novamente. Esperados 204/204/200/204/401,
@@ -2491,8 +2508,11 @@ Entendimento da 7.69 confirmado com "entendi" em 05/11/2026; publicação
 em 82b13cf, remoto conferido. Na 7.70, planejado is_admin/default false/
 cast boolean, atributo fora do Fillable, atribuição administrativa controlada.
 Somente documentação; entendimento confirmado com "entendi" em 05/11/2026,
-publicação pendente. Próxima após publicar: 7.71 — criar migration e examinar
-SQL gerado para SQL Server, sem aplicá-la no banco normal.
+publicação em dd9c391, remoto conferido. Na 7.71, migration is_admin/default
+false/down dropColumn criada; sintaxe e sete controles de compilação isolada
+passaram, sem PDO/SQL/banco alterado. Entendimento da 7.71 confirmado com
+"entendi" em 05/11/2026; publicação pendente. Próxima após publicar: 7.72 —
+verificar padrão e reversão em loja_test com usuários fictícios antes de loja.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -15995,8 +16015,57 @@ backend, seeder, factory, Compose e contratos preservados.
 
 Entendimento: confirmado com "entendi" em 05/11/2026 sobre is_admin,
 padrão false e atribuição controlada no servidor.
-Publicação da 7.70: pendente; último checkpoint publicado 82b13cf (7.69).
-Próximo passo exato após publicar: 7.71 — criar somente migration que adiciona
-is_admin a users/default false e down que remove coluna, examinar SQL gerado
-para SQL Server sem aplicá-la. Não migrar banco normal na 7.71.
+Publicação da 7.70: concluída e conferida em 05/11/2026:
+dd9c3911fd9d8965c90541d651e80a0a3b920a22; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.71.
+Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.71 — Migration do indicador de administrador — 05/11/2026
+
+Iniciada após confirmação da 7.70 com "entendi" e publicação conferida em
+dd9c3911fd9d8965c90541d651e80a0a3b920a22. Git add de quatro caminhos explícitos,
+commit e push explicados antes de executar; remoto verificado.
+
+Implementação: único arquivo de aplicação criado,
+backend/database/migrations/2026_11_05_120000_add_is_admin_to_users_table.php.
+Imports Migration/Blueprint/Schema, classe anônima, up/down void. Up altera
+users com boolean is_admin/default false, sem nullable. Down remove somente
+is_admin. Aula 07-71-migration-indicador-administrador.md criada; aula
+anterior/roteiro/progresso atualizados.
+
+Explicação apresentada: Schema::table altera tabela existente, sem recriar
+users ou editar migration antiga; Blueprint descreve a coluna. Padrão false
+para inserção que omitir atributo, not null recusa NULL explícito. SQL Server
+compila boolean como bit e false como '0'. Down compila remoção da restrição
+do padrão associada a users.is_admin antes de remover coluna. Reversão de
+estrutura não recupera valores removidos. A coluna ainda não foi aplicada;
+cast/Fillable/autorização terão etapas próprias, nenhuma conta promovida.
+
+Verificação: php -l no Docker passou, código 0. Programa PHP pela entrada
+padrão carregou autoload/migration, sem bootstrap/config/credenciais da
+aplicação. SqlServerConnection isolada com abertura PDO bloqueada por exceção,
+Schema ligado ao builder dessa conexão, up/down dentro de Connection::pretend.
+Sete controles passaram, código 0: uma instrução/lote por direção; up exato
+alter table "users" add "is_admin" bit not null default '0'; down contém
+remoção da restrição do padrão da coluna; drop column sem drop table; bindings
+vazios; zero aberturas PDO; simulação encerrada. Nenhum auxiliar persistido.
+
+Nenhum SQL enviado, schema/conta consultado, migration/rollback real ou banco
+alterado. Compilação não comprova aceitação do DDL, preenchimento de registros
+existentes, permissões de migration ou reversão real. Serviços php/backend/
+sqlserver ativos; PHP 8.4.26/Composer 2.10.3 conferidos no Docker. Fonte primária
+Laravel 13 migrations e trechos do compilador instalado consultados.
+Sem dependências novas ou nova suíte; última 7.58, 107 testes/1.586 asserções.
+
+Git diff --check passou; 10 links locais válidos nos quatro documentos.
+Somente migration e quatro documentos previstos alterados, índice vazio.
+Model, cast, seeder/factory, rotas, contratos, dependências e Compose preservados.
+
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre criar o arquivo
+e aplicar a alteração ao banco serem ações distintas.
+Publicação da 7.71: pendente; último checkpoint publicado dd9c391 (7.70).
+Próximo passo exato após publicar: 7.72 — verificar migration
+em loja_test com usuários fictícios, padrão em contas existentes/novas e
+reversão, antes de planejar aplicação em loja. Banco normal preservado.
 Módulos 8 a 23 não iniciados.

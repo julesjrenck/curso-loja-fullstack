@@ -5,7 +5,8 @@ Desenho apresentado em 05/11/2026, após confirmação da
 Checkpoint anterior publicado e conferido em
 82b13cf6c6e196d7e873fed5ba2c338b957bd0c8; HEAD/origin/main/main remota iguais.
 Entendimento da 7.70 confirmado com "entendi" em 05/11/2026; publicação
-pendente. Somente documentação alterada.
+conferida em dd9c3911fd9d8965c90541d651e80a0a3b920a22, HEAD/origin/main/main remota iguais.
+Registro atualizado após a publicação. Somente documentação alterada.
 
 ## Representação mínima
 
@@ -85,8 +86,8 @@ is_admin; não consultamos o schema do banco nesta etapa. Nenhum arquivo de
 aplicação, migration ou cast foi alterado. Nenhum comando PHP, API, SQL ou
 nova suíte executado. Última suíte permanece 7.58: 107 testes/1.586 asserções.
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-7.71 — criar
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.71](07-71-migration-indicador-administrador.md): criar
 somente a migration que adiciona is_admin a users, com padrão false e reversão
 que remove a coluna, examinar o SQL gerado para SQL Server sem aplicá-la.
 Não executar migrations no banco normal nesta próxima etapa. Módulos 8 a 23
