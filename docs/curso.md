@@ -419,8 +419,12 @@ Suíte atual 108/1.606 passou; sem SQL em loja. Entendimento confirmado com
 "entendi" em 05/11/2026; publicação em a488fba, remoto conferido. Na 7.75,
 Gate acessar-administracao no boot/is_admin === true, sete controles em
 memória passaram sem SQL/PDO; sintaxe e suíte atual 108/1.606 passaram.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação em 3f2c4fa,
+remoto conferido. Na 7.76, quatro testes permanentes do Gate, objetos em
+memória/SQL bloqueado: focado 4/12 e suíte atual 112/1.618 passaram.
 Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próxima após publicar: 7.76 — testes do Gate, sem rota nova.
+Próxima após publicar: 7.77 — contrato GET /api/v1/administracao,
+auth:sanctum/Gate e 200/401/403, antes de controller/rota.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1271,7 +1275,11 @@ Entendimento confirmado com "entendi" em 05/11/2026; publicação em a488fba.
 Na 7.75, Gate acessar-administracao/is_admin === true registrado no boot;
 sintaxe/sete controles em memória/suíte atual 108/1.606 passaram.
 Sem SQL em loja ou rota nova; entendimento confirmado com "entendi" em
-05/11/2026; publicação pendente antes da 7.76 — testes permanentes do Gate.
+05/11/2026; publicação em 3f2c4fa. Na 7.76, quatro testes permanentes do Gate
+com SQL bloqueado: focado 4/12, suíte atual 112/1.618 passaram.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+Próxima após publicar: 7.77 — contrato GET /api/v1/administracao,
+auth:sanctum/Gate e 200/401/403, antes de implementação.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

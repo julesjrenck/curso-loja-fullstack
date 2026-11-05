@@ -5,9 +5,22 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.75 — Gate de acesso à administração:
+- Etapa atual: 7.76 — Testes permanentes do Gate de administração:
   implementação, explicação e verificações apresentadas em 05/11/2026;
   entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+- Situação da 7.76: criado somente
+  backend/tests/Feature/AdministracaoGateTest.php na aplicação. Quatro cenários
+  com Gate real/forUser/allows: cliente false, administrador true, visitante
+  false, User sem indicador false. SetUp inicializa Laravel, exige testing/
+  Gate registrado e bloqueia SQL na conexão padrão durante avaliação.
+  Objetos apenas em memória; sem redefinir Gate ou persistir usuários.
+  PHP -l passou; focado 4 testes/12 asserções, suíte atual 112 testes/
+  1.618 asserções passaram, códigos 0. Provider/User/rotas/contratos mantidos;
+  não comprova proteção HTTP ou login administrativo. Aula
+  docs/aulas/07-76-testes-gate-administracao.md criada.
+  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
+  7.77 — desenhar contrato GET /api/v1/administracao com auth:sanctum/Gate,
+  200/401/403, antes de implementar controller ou rota.
 - Situação da 7.75: somente AppServiceProvider alterado na aplicação.
   Imports User/Gate e Gate::define acessar-administracao no boot, callback
   User/bool com is_admin === true. Binding Catalogo e limitador login mantidos.
@@ -18,9 +31,9 @@
   Sem rota/controller novo, resposta HTTP 403, promoção, login, API ou SQL
   em loja. Registrar Gate não protege rota automaticamente. Aula
   docs/aulas/07-75-gate-acesso-administracao.md criada.
-  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-  7.76 — automatizar testes do Gate para cliente/admin/visitante/indicador
-  ausente, sem rota nova.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  3f2c4fa7c6f69ae1b79e500f29b2da57f368e919, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.76.
 - Situação da 7.74: única linha de aplicação acrescentada em User::casts:
   is_admin => boolean. Casts datetime/hashed anteriores preservados;
   Fillable name/email/password e UsuarioResource id/name/email mantidos.
@@ -34,7 +47,7 @@
   Aula docs/aulas/07-74-cast-boolean-administrador.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   a488fbaa02068250e0a393134a24d579c068d738, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.75.
+  Checkpoint anterior à 7.75. Continuidade iniciada na 7.75.
 - Situação da 7.73: somente documentação alterada. Aplicado apenas arquivo
   2026_11_05_120000_add_is_admin_to_users_table.php em loja por sqlsrv_migracoes/
   loja_migracoes, com --path e sem interação. Pré-leituras: local/sem cache/
@@ -2583,8 +2596,11 @@ Entendimento da 7.74 confirmado com "entendi" em 05/11/2026; publicação
 em a488fba, remoto conferido. Na 7.75, Gate acessar-administracao no boot,
 is_admin === true. Sintaxe/sete controles de registro e decisão em memória
 passaram, sem SQL/PDO; suíte atual 108/1.606 passou. Entendimento da 7.75
-confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próxima após publicar: 7.76 — testes permanentes do Gate, sem rota nova.
+confirmado com "entendi" em 05/11/2026; publicação em 3f2c4fa, remoto conferido.
+Na 7.76, quatro testes permanentes do Gate com Laravel real/SQL bloqueado:
+focado 4/12 e suíte atual 112/1.618 passaram. Entendimento da 7.76 confirmado
+com "entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
+7.77 — contrato GET /api/v1/administracao, auth:sanctum/Gate e 200/401/403.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -16348,7 +16364,56 @@ comparados ao HEAD e preservados; model, rotas, contratos e Compose intactos.
 
 Entendimento: confirmado com "entendi" em 05/11/2026 sobre definir a regra
 e aplicá-la a uma operação serem passos distintos.
-Publicação da 7.75: pendente; último checkpoint publicado a488fba (7.74).
-Próximo passo exato após publicar: 7.76 — automatizar testes
-do Gate acessar-administracao para cliente/administrador/visitante/indicador
-ausente, sem criar rota administrativa. Módulos 8 a 23 não iniciados.
+Publicação da 7.75: concluída e conferida em 05/11/2026:
+3f2c4fa7c6f69ae1b79e500f29b2da57f368e919; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.76.
+Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.76 — Testes permanentes do Gate de administração — 05/11/2026
+
+Iniciada após confirmação da 7.75 com "entendi" e publicação conferida em
+3f2c4fa7c6f69ae1b79e500f29b2da57f368e919. Git add do provider e quatro documentos,
+commit e push explicados antes de executar; remoto verificado.
+
+Implementação: único arquivo de aplicação criado,
+backend/tests/Feature/AdministracaoGateTest.php. Aula
+07-76-testes-gate-administracao.md criada; aula anterior/roteiro/progresso
+atualizados. Gate/provider/User/cast/migration/rotas/controllers/Resource/
+contratos/ambientes/dependências/Compose preservados.
+
+Explicação: teste em Feature estende Tests\TestCase para inicializar Laravel
+e avaliar serviços/provider reais. SetUp chama parent::setUp, exige ambiente
+testing e Gate registrado. BeforeExecuting lança LogicException se avaliação
+tentar SQL pela conexão padrão. User em memória com atributos brutos zero/
+um para cliente/admin; visitante forUser(null), User novo para indicador
+ausente. Sem create/save/DatabaseTransactions ou persistência de usuários.
+Gate não é redefinido no teste; forUser escolhe contexto sem login, allows
+retorna decisão, assertFalse/True exigem booleano esperado (não status HTTP).
+Duas asserções comuns e uma decisão por cenário, total 12.
+
+Verificação: PHP -l passou, código 0. Focado no novo arquivo com artisan test
+--compact --do-not-cache-result --colors=never: 4 testes/12 asserções passaram,
+código 0. Suíte completa com mesmas opções: 112 testes/1.618 asserções passaram,
+código 0. O bloqueio de SQL é da aplicação de cada novo teste; demais testes
+de integração continuam executando em loja_test conforme configuração existente.
+Não houve login, promoção, senha/hash de conta real ou chamada de API nos
+novos cenários. Sem SQL em loja pelo assistente.
+Fonte primária Laravel 13 testing/creating-tests consultada.
+
+Cobertura: cliente recusado, administrador permitido, visitante recusado,
+indicador ausente recusado. Gate ausente falha na preparação; recusar todos
+falha no administrador, permitir cliente falha na recusa correspondente.
+Não comprova sessão autenticada, rota protegida ou resposta HTTP 401/403.
+
+Git diff --check passou; 11 links locais válidos nos quatro documentos.
+Somente novo teste com quatro cenários e quatro documentos previstos alterados,
+índice vazio; Gate não redefinido no teste e arquivos da aplicação preservados.
+
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre testes
+detectarem mudanças indevidas nas permissões do Gate.
+Publicação da 7.76: pendente; último checkpoint publicado 3f2c4fa (7.75).
+Próximo passo exato após publicar: 7.77 — desenhar contrato
+GET /api/v1/administracao, com auth:sanctum/Gate acessar-administracao e
+respostas 200/401/403, antes de criar controller ou rota.
+Módulos 8 a 23 não iniciados.

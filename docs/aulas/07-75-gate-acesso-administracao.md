@@ -4,7 +4,9 @@ Implementação, explicação e verificações em 05/11/2026, após confirmaçã
 [7.74](07-74-cast-boolean-administrador.md) com "entendi".
 Checkpoint anterior publicado e conferido em
 a488fbaa02068250e0a393134a24d579c068d738; HEAD/origin/main/main remota iguais.
-Entendimento da 7.75 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.75 confirmado com "entendi" em 05/11/2026; publicação
+conferida em 3f2c4fa7c6f69ae1b79e500f29b2da57f368e919, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação.
 
 ## Objetivo e arquivo
 
@@ -97,7 +99,7 @@ processo executado, sem alterar ambientes ou a configuração da aplicação.
 Sintaxe passou. Suíte atual: 108 testes/1.606 asserções passaram, código 0,
 após a alteração do provider. Não acrescentamos testes permanentes nesta aula.
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-7.76 — automatizar os
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.76](07-76-testes-gate-administracao.md): automatizar os
 testes do Gate acessar-administracao para cliente, administrador, visitante
 e indicador ausente, sem criar rota administrativa. Módulos 8 a 23 não iniciados.
