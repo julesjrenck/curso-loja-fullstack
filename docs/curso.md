@@ -363,9 +363,15 @@ extração/URL-decodificação; POST com cookies/JSON/X-XSRF-TOKEN. Ausência im
 envio; status 204/419/outros/catch/finally tratados. Sintaxe JS e sete controles
 isolados/fictícios passaram; HTML 200/seis controles passaram. Auxiliares
 removidos, sem listener/DOM/navegador/API ou nova suíte. Entendimento da 7.63
-confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após confirmar/publicar:
-7.64 — logout visitante no navegador, preflight/POST/status/CORS e presença
-de cookies/cabeçalho CSRF sem valores.
+confirmado com "entendi" em 05/11/2026; publicada em d2feb0f, remoto conferido.
+Na 7.64, roteiro preparado para logout visitante no Chrome/Edge: preparação,
+OPTIONS/preflight e POST separados, status/CORS e presença de token/cookies
+sem valores. Serviços ativos/CORS existente conferido, sem alterar aplicação,
+chamar API ou repetir suíte pelo assistente. Aluno relatou sucesso geral
+("deu certo, pode avançar") e confirmou entendimento com "Sim, entendi" em
+05/11/2026, sem campos individuais. Publicação pendente. Próxima após publicar:
+7.65 — seeder de conta fictícia para laboratório de login, senha oculta/
+preservação de conta existente; sem execução ainda.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1175,8 +1181,11 @@ sucesso geral em 05/11/2026 e confirmou entendimento com "Sim, entendi".
 Publicação em b05cd9f. Na 7.63, logout no laboratório com helper CSRF e POST
 cookies/JSON/header implementado; sintaxe/sete controles fictícios da função
 e HTML/seis controles passaram, sem navegador/API/nova suíte. Entendimento
-confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.64 — preflight/POST
-logout visitante acompanhado no navegador.
+confirmado com "entendi" em 05/11/2026; publicação em d2feb0f. Na 7.64, roteiro
+de preflight/POST logout visitante preparado, sem alterar aplicação/API/suíte.
+Aluno relatou sucesso geral e confirmou entendimento com "Sim, entendi"
+em 05/11/2026; publicação pendente. Próxima após publicar: 7.65 — seeder da
+conta fictícia para login, senha oculta e conta existente preservada.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

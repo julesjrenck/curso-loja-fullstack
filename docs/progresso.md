@@ -5,9 +5,29 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.63 — Logout com token CSRF no laboratório:
-  implementação, explicação e verificações apresentadas em 05/11/2026;
-  entendimento confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Etapa atual: 7.64 — Logout visitante e preflight no navegador:
+  execução relatada como bem-sucedida ("deu certo, pode avançar") e
+  entendimento confirmado com "Sim, entendi" em 05/11/2026. Campos individuais
+  não fornecidos; publicação pendente.
+- Situação da 7.64: docs/aulas/07-64-logout-visitante-no-navegador.md criado.
+  Só documentação alterada. Serviços php/backend/sqlserver ativos e CORS
+  existente conferido (origem 8001/credenciais true/métodos e headers/max_age 0),
+  sem chamada à API. Página mantida conforme 7.63.
+  Exercício: recarregar laboratório em sessão privativa sem login, Rede/All,
+  preparar CSRF e executar Encerrar sessão uma vez. Observar OPTIONS/preflight
+  e POST separados, status/CORS, X-XSRF-TOKEN presente no POST e nomes dos
+  cookies enviados/bloqueios. Esperados 204 em ambos, origem 8001/credenciais
+  true; preflight sem cookies, POST com cookies e token eram expectativas.
+  Aluno relatou sucesso geral; assistente não observou navegador nem recebeu
+  campos individuais de status/CORS/presença de token ou cookies.
+  Não copiar valores/tokens/IDs/headers completos/HAR. OPTIONS 204 não executa
+  logout; 419 legível é recusa CSRF, e falha de leitura exige diagnóstico.
+  Sem nova suíte ou repetição dos controles da 7.63; última 7.58, 107/1.586.
+  Entendimento confirmado com "Sim, entendi" sobre a distinção entre 204 do
+  preflight e 204 do POST. Não preencher campos individuais não informados.
+  Próximo após publicar: 7.65 — criar seeder específico da conta fictícia para
+  o laboratório de login, com senha oculta e preservação de conta existente,
+  sem executá-lo ainda. Módulos 8 a 23 não iniciados.
 - Situação da 7.63: somente src/laboratorio-sessao.html alterado na aplicação.
   Novo botão Encerrar sessão/resultado próprios, disabled até preparação 204.
   lerTokenCsrf separa cookies acessíveis, limpa espaços, encontra XSRF-TOKEN
@@ -21,9 +41,10 @@
   php retornou 200/corpo igual; seis controles passaram. Códigos 0; auxiliares
   próprios removidos. Sem clique/API/logout/nova suíte; última 7.58, 107/1.586.
   Aula docs/aulas/07-63-logout-no-laboratorio.md criada.
-  Próximo após confirmar/publicar: 7.64 — executar logout visitante no Chrome/
-  Edge após preparação, observar OPTIONS/preflight e POST, status/CORS e
-  presença de cookies/cabeçalho CSRF sem valores. Módulos 8 a 23 não iniciados.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  d2feb0ffb144d5513c543ee0e958fe49cc18e194, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.64, aguardando
+  execução acompanhada no navegador.
 - Situação da 7.62: docs/aulas/07-62-verificacao-visitante-no-navegador.md criado.
   Sem alteração na aplicação ou página. Serviços php/backend/sqlserver ativos,
   conferidos sem pedido à API. Roteiro: recarregar página na sessão privativa
@@ -39,7 +60,7 @@
   Entendimento confirmado com "Sim, entendi" em 05/11/2026 sobre envio de cookies
   de visitante ainda não satisfazer autenticação. Publicação verificada:
   b05cd9fb40b0fa4ea06ac854496476f4ffadeabd, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.63.
+  Checkpoint anterior à 7.63. Continuidade realizada na 7.63.
 - Situação da 7.61: src/laboratorio-sessao.html ganhou Consultar usuário e
   resultado próprios. Botão começa disabled; preparação 204 o libera. Novo
   listener async faz GET 8002/api/v1/usuario com credentials include/Accept JSON.
@@ -2331,9 +2352,15 @@ POST com cookies/JSON/X-XSRF-TOKEN URL-decodificado. Ausência impede envio;
 204/419/outros/catch/finally tratados. Função isolada/sete controles fictícios
 e sintaxe JS passaram; HTML 200/seis controles passaram, auxiliares removidos.
 Sem listener/DOM/navegador/API ou nova suíte. Entendimento da 7.63 confirmado
-com "entendi" em 05/11/2026; publicação pendente. Próxima após confirmar/publicar: 7.64 —
-logout visitante no navegador, preflight/POST/status/CORS e presença de cookies/
-cabeçalho CSRF sem valores.
+com "entendi" em 05/11/2026; publicada em d2feb0f, remoto conferido.
+Continuidade iniciada na 7.64: roteiro do logout visitante/preflight e POST
+separados, status/CORS e presença de token/cookies sem valores. Serviços ativos/
+CORS existente conferido, sem chamada à API, alteração de aplicação ou nova
+suíte pelo assistente. Aluno relatou "deu certo, pode avançar" e confirmou
+entendimento com "Sim, entendi" em 05/11/2026. Sucesso geral, sem campos
+individuais; publicação pendente. Próxima após publicar: 7.65 — seeder da
+conta fictícia para laboratório de login, senha oculta/conta existente preservada,
+sem execução ainda.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -15451,8 +15478,61 @@ Git diff --check passou; sete links locais válidos, seis IDs HTML únicos e
 um script próprio; somente cinco arquivos previstos alterados, índice vazio.
 
 Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
-Publicação da 7.63: pendente; último checkpoint publicado b05cd9f (7.62).
-Próximo passo exato após confirmar/publicar: 7.64 — executar logout visitante
-no Chrome/Edge após preparação e observar OPTIONS/preflight e POST, status/
-CORS e presença de cookies/cabeçalho CSRF sem copiar valores. Módulos 8 a 23
-não iniciados.
+Publicação da 7.63: concluída e conferida em 05/11/2026:
+d2feb0ffb144d5513c543ee0e958fe49cc18e194; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade iniciada na 7.64,
+aguardando execução acompanhada no navegador.
+
+
+## Etapa 7.64 — Logout visitante e preflight no navegador — 05/11/2026
+
+Iniciada após confirmação da 7.63 com "entendi" e publicação conferida em
+d2feb0ffb144d5513c543ee0e958fe49cc18e194. Implementação documental:
+docs/aulas/07-64-logout-visitante-no-navegador.md, publicação anterior,
+roteiro/progresso e continuidade atualizados. Aplicação e página preservadas.
+Chrome/Edge escolhido anteriormente; sem ferramenta de controle do navegador.
+
+Exercício preparado: recarregar laboratório na sessão privativa, sem login;
+abrir Rede/All antes dos cliques; preparar CSRF, aguardar 204/liberação, filtrar
+logout e executar Encerrar sessão uma vez. Observar OPTIONS e POST separados.
+Request-Method/Request-Headers no OPTIONS anunciam POST/content-type/
+x-xsrf-token; no POST, conferir presença do cabeçalho X-XSRF-TOKEN sem valor e
+nomes dos cookies enviados/bloqueios. Referências primárias MDN CORS e Chrome
+DevTools consultadas. Se OPTIONS não aparecer, relatar sem presumir causa;
+filtros/cache afetam observação, max_age atual 0.
+
+Explicação/expectativas: 204 no preflight permite negociação, não executa
+logout. POST esperado 204 legível/sem corpo, origem 8001 e credenciais true
+nos dois; Allow-Methods/Allow-Headers do OPTIONS devem permitir método e
+headers solicitados. Preflight sem cookies de sessão, POST com cookies/token.
+Mensagem 419 legível é recusa CSRF; cookie ausente pode interromper antes do
+fetch; falha genérica precisa de dados antes de atribuir causa. Não alterar
+configurações, editar cookies desconhecidos ou repetir para forçar esperado.
+Renovação interna de ID/token é sustentada pelo contrato/testes anteriores,
+sem afirmar medição criptográfica a partir de status/nomes/cabeçalhos.
+
+Relato solicitado: mensagens de preparação/logout, OPTIONS apareceu?/status/
+Allow-Origin/Allow-Credentials, POST/status/CORS, X-XSRF-TOKEN presente e
+nomes dos cookies enviados/bloqueios. Sem valores/tokens/IDs/headers completos/
+HAR/capturas com valores. Nenhum resultado observado nesta etapa.
+
+Preparação técnica: Docker Compose confirmou php/backend/sqlserver ativos;
+config/cors.php existente conferido (origem 8001/credenciais true/métodos e
+headers permitidos/max_age 0). Nenhuma chamada da API, sessão iniciada ou
+logout pelo assistente. Sem nova suíte/dependência/serviço/auditoria/snapshot
+ou repetição de sintaxe/controles/entrega já aprovados. Última suíte Laravel
+permanece 7.58: 107 testes/1.586 asserções.
+
+Git diff --check passou; sete links locais válidos, somente quatro documentos
+previstos alterados e índice vazio. Aplicação/página/configurações preservadas.
+
+Retorno posterior do aluno em 05/11/2026: "deu certo, pode avançar".
+Execução no navegador: relatada como bem-sucedida pelo aluno, sem observação
+independente do assistente. Status/CORS/token/cookies individuais não fornecidos;
+não converter expectativas em medições.
+Entendimento: confirmado com "Sim, entendi" em resposta à pergunta explícita
+sobre 204 do OPTIONS negociar CORS e 204 do POST responder ao logout válido.
+Publicação da 7.64: pendente; último checkpoint publicado d2feb0f (7.63).
+Próximo passo exato após publicar: 7.65 — criar UsuarioLaboratorioSeeder
+específico, senha oculta e preservação de conta existente; implementar/conferir
+sem cadastrar a conta ainda. Módulos 8 a 23 não iniciados.

@@ -5,7 +5,8 @@ sucesso da 7.62 e confirmação explícita com "Sim, entendi". Campos individuai
 da execução anterior não fornecidos; não foram inventados. Checkpoint anterior
 publicado e conferido em b05cd9fb40b0fa4ea06ac854496476f4ffadeabd,
 HEAD/origin/main/main remota iguais. Entendimento da 7.63 confirmado com
-"entendi" em 05/11/2026; publicação pendente.
+"entendi" em 05/11/2026; publicação conferida em
+d2feb0ffb144d5513c543ee0e958fe49cc18e194, HEAD/origin/main/main remota iguais.
 
 ## Objetivo e arquivo
 
@@ -130,7 +131,7 @@ um script próprio. Somente os cinco arquivos previstos alterados, índice vazio
 
 ## Continuidade
 
-Após confirmar entendimento e publicar, próxima 7.64: executar logout visitante
-no Chrome/Edge, após preparação, e acompanhar preflight OPTIONS e POST,
-status/CORS e presença de cookies/cabeçalho CSRF sem copiar valores.
-Não houve observação desses pedidos nesta etapa; módulos 8 a 23 não iniciados.
+Publicação da 7.63 concluída. Continuidade iniciada na
+[7.64 — logout visitante no navegador](07-64-logout-visitante-no-navegador.md).
+Execução acompanhada e resultados aguardando relato do aluno; módulos 8 a 23
+não iniciados.
