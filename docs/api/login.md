@@ -219,7 +219,8 @@ Suíte existente 101/1.407 passou. Na 7.45, teste permanente de logout autentica
 adicionado: focado 3/76, suíte 102/1.436. Na 7.46, teste permanente de logout
 visitante passou: focado 4/104, suíte 103/1.464. Na 7.47, rota de logout registrada;
 visitante 204 vazio nos três Accept pelo kernel/testing. Suíte 103/1.464 passou;
-próxima 7.48: teste permanente dessa rota para visitante.
+na 7.48, LogoutApiTest permanente passou nos três Accept: focado 3/57, suíte
+106/1.521. Próxima 7.49: logout autenticado pela rota.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

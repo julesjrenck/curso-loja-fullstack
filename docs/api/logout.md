@@ -140,8 +140,14 @@ visitante/ID null/chave de login ausente, token presente e cookies de sessão/
 CSRF emitidos. Treze condições/caso passaram; nenhuma SQL após a consulta de
 identidade em loja_test. Sessão/cache array. CSRF ignorado nesse ambiente.
 Suíte existente 103/1.464 passou; SELECT posterior sem dados de teste.
-Próxima 7.48: LogoutApiTest com visitante nos três Accept, conferindo presença/
-valor do cabeçalho e 204 vazio/sem Location.
+Na 7.48, LogoutApiTest preserva visitante com Accept JSON/HTML/realmente ausente,
+removido explicitamente no último e conferido por presença/valor. Request sem
+corpo/cookies, origem reconhecida; kernel HTTP retorna 204 vazio/sem Location,
+emite cookies de sessão/CSRF e mantém visitante/ID null/chave de login ausente.
+Sessão/cache array, sem User ou escrita no banco. Focado 3/57 e suíte 106/1.521
+passaram; SQL posterior sem dados. CSRF ativo e navegador não exercitados.
+Próxima 7.49: cenário autenticado pela rota em LogoutApiTest, com User fictício/
+transação, guard web real e sessão/cookie de entrada, conferindo 204 e limpeza.
 
 Referências: [logout e invalidação de sessão no Laravel](https://laravel.com/docs/13.x/authentication#logging-out),
 [sessão da interface própria com Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication)

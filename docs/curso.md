@@ -259,11 +259,18 @@ com origem reconhecida e sessão/cache array: visitante 204 vazio/sem Location
 nos Accept JSON, HTML e realmente ausente. Cookies de sessão/CSRF emitidos,
 guard visitante; zero SQL após identidade. Treze condições/caso passaram.
 Suíte existente 103/1.464 passou; SELECT posterior sem dados. CSRF não exercitado.
-Entendimento da 7.47 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próximo após confirmar/publicar: 7.48 — LogoutApiTest com visitante nos três
-Accept, conferindo presença/valor do cabeçalho e 204 vazio/sem Location.
-Logout autenticado pela rota, GET usuario após logout, CSRF ativo/cookies no
-navegador, CORS e OpenAPI de logout pendentes.
+Entendimento da 7.47 confirmado com "entendi" em 04/11/2026; publicada em e6c30c6,
+remoto conferido. Na 7.48, criado LogoutApiTest: DataProvider executa visitante
+nos três Accept, com cabeçalho ausente removido e presença/valor conferidos.
+Request sem corpo/cookies, Origin reconhecido; kernel/rota/controller retornam
+204 vazio/sem Location, cookies emitidos e visitante sem identidade. Sessão/cache
+array e identidade de banco de testes exigidos. Focado 3/57, suíte 106/1.521 e
+SELECT posterior sem dados passaram. Não exerce CSRF ativo ou navegador.
+Entendimento da 7.48 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Próximo após confirmar/publicar: 7.49 — cenário autenticado pela rota em
+LogoutApiTest, com User fictício/transação, guard web real e sessão/cookie de
+entrada; conferir 204 e limpeza. GET usuario após logout, CSRF ativo/cookies
+no navegador, CORS e OpenAPI de logout pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1009,8 +1016,12 @@ suíte 103/1.464 e SQL final sem dados passaram. Entendimento confirmado com
 a destroy e middleware conferido, sem auth:sanctum/throttle:login. Visitante
 204 vazio/sem Location nos três Accept pelo kernel/testing, sessão/cache array,
 sem exercer CSRF. Suíte existente 103/1.464 e SQL posterior sem dados passaram.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação em e6c30c6.
+Na 7.48, LogoutApiTest criado/explicado: visitante 204 vazio/sem Location nos
+três Accept, presença/valor conferidos, sessão/cookies emitidos e ausência de
+identidade. Focado 3/57, suíte 106/1.521 e SQL posterior sem dados passaram.
 Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente antes
-da 7.48 — LogoutApiTest com cenário visitante nos três Accept.
+da 7.49 — logout autenticado pela rota com transação/sessão/cookie de entrada.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

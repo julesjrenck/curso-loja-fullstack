@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.46 com "entendi". Checkpoint anterior publicado e conferido em
 fc3c8e99191e4d01dce6fe9e16125923e0f7cc13; HEAD/origin/main/main remota iguais.
-Entendimento da 7.47 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.47 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -95,6 +95,7 @@ Rota implementada, explicada e verificada; entendimento confirmado em 04/11/2026
 Ambientes, dependências, serviços, migrations, controller, bootstrap, Compose
 e OpenAPI preservados. Sem auditoria/snapshot normal, logout autenticado pela
 rota, GET usuario após logout, CSRF ativo de logout ou navegador/CORS.
-Publicação da 7.47 pendente. Próxima após confirmar/publicar: 7.48 — criar
-LogoutApiTest com cenário visitante nos três casos de Accept, sessão/cache array,
-preservando 204 vazio/sem Location e conferindo o cabeçalho realmente ausente.
+Publicação da 7.47 concluída e conferida em
+e6c30c69e682eed035e1a64e2633151d4d4d9f94; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.48 —
+LogoutApiTest com visitante nos três Accept.
