@@ -435,8 +435,11 @@ registrada e render API de AccessDeniedHttpException padronizado para
 message/403 após encontrar campos de debug fora do contrato. Kernel:
 24 controles/4 cenários passaram (401/403/200/debug), dois fora API; sintaxe/
 listagem de middlewares e suíte atual 112/1.618 passaram. Entendimento confirmado
-com "entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
-7.80 — testes HTTP permanentes, incluindo contrato 403 com debug.
+com "entendi" em 05/11/2026; publicação em fb95185, remoto conferido. Na 7.80,
+testes HTTP permanentes 401/403/200 com cliente debug true/false, em memória/
+SQL bloqueado: focado 4/35, suíte atual 116/1.653 passaram. Entendimento
+confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
+publicar: 7.81 — OpenAPI da consulta administrativa e validação.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1298,8 +1301,11 @@ Entendimento confirmado com "entendi" em 05/11/2026; publicação em e853f90.
 Na 7.79, rota auth:sanctum/can e render API de recusa de autorização
 message/403: kernel 24 controles/4 cenários, dois fora API, sintaxe e suíte
 atual 112/1.618 passaram. Sem login real ou SQL em loja. Entendimento confirmado
-com "entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
-7.80 — testes HTTP permanentes 401/403/200 e 403 com debug ligado.
+com "entendi" em 05/11/2026; publicação em fb95185. Na 7.80, testes HTTP
+401/403/200 e debug true/false: focado 4/35 e suíte atual 116/1.653 passaram,
+sem conta persistida/SQL nos novos casos. Entendimento confirmado com "entendi"
+em 05/11/2026; publicação pendente antes da 7.81 — integrar operação
+administrativa ao OpenAPI e validar.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

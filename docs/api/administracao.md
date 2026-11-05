@@ -5,6 +5,9 @@ Desenho da etapa 7.77, em 05/11/2026. Na 7.78,
 foi criado e sua resposta verificada diretamente. Na 7.79, rota registrada
 com auth:sanctum/can:acessar-administracao; kernel HTTP confirmou 401/403/200
 com identidades preparadas em memória, sem login por credenciais ou SQL.
+Na 7.80, [AdministracaoApiTest](../../backend/tests/Feature/AdministracaoApiTest.php)
+automatizou os resultados com getJson/actingAs e cliente com debug true/false:
+quatro testes/35 asserções passaram; suíte atual 116 testes/1.653 asserções.
 OpenAPI ainda sem esta operação. Transporte de sessão pelo navegador e
 login administrativo com conta persistida não foram verificados.
 
@@ -100,8 +103,12 @@ mesmo 403. Todos JSON, sem Location, sem SQL ou conexão PDO aberta. A recusa
 403 inicialmente trazia detalhes de depuração; o callback de renderização
 em bootstrap/app.php passou a entregar somente message para essa exceção
 em api/*. Fora da API, dois controles confirmaram o tratamento padrão.
-Suíte atual: 112 testes/1.618 asserções passaram.
+Na 7.80, os testes HTTP permanentes exigem 401/403/200, Content-Type JSON,
+ausência de Location, zero SQL/PDO não aberto e corpos do contrato. Erros
+com somente message string; sucesso exato. Cliente é executado com debug
+ligado/desligado por DataProvider. Focado: 4 testes/35 asserções; suíte atual:
+116 testes/1.653 asserções passaram, códigos 0.
 
 Não houve login administrativo real, promoção ou uso de conta persistida.
-OpenAPI segue sem esta operação. Próxima etapa: automatizar os testes HTTP
-desses resultados e do formato de recusa com depuração ligada.
+OpenAPI segue sem esta operação. Próxima etapa: incluir operação, segurança,
+respostas e exemplos no documento OpenAPI e validar.

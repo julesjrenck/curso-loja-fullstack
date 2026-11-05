@@ -4,7 +4,9 @@ Implementação, explicação e verificações em 05/11/2026, após confirmaçã
 [7.78](07-78-controller-administracao.md) com "entendi".
 Checkpoint anterior publicado e conferido em
 e853f90a5f1158ad0497ff011c23827f4806f434; HEAD/origin/main/main remota iguais.
-Entendimento da 7.79 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.79 confirmado com "entendi" em 05/11/2026; publicação
+conferida em fb951855677cd07bdf8c49fb3f5862355929788b, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação.
 
 ## Rota e middlewares
 
@@ -120,8 +122,8 @@ permanentes nesta etapa; a verificação da rota foi pelo diagnóstico focado.
 a mensagem genérica do 403. OpenAPI continua sem a operação, para etapa própria.
 User/Gate/controller, banco normal e contas não foram alterados.
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-7.80 — criar testes HTTP
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.80](07-80-testes-http-administracao.md): criar testes HTTP
 permanentes da consulta administrativa, cobrindo 401/403/200 e formato JSON
 do 403 com depuração ligada, usando usuários em memória e SQL bloqueado.
 Módulos 8 a 23 não iniciados.

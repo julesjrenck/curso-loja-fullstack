@@ -5,9 +5,21 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.79 — Rota administrativa protegida:
+- Etapa atual: 7.80 — Testes HTTP da administração:
   implementação, explicação e verificações apresentadas em 05/11/2026;
   entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+- Situação da 7.80: criado somente AdministracaoApiTest.php na aplicação.
+  GetJson atravessa rota/middlewares reais; actingAs/web prepara cliente/admin
+  em memória. Visitante 401; cliente 403 com debug true/false por DataProvider;
+  administrador 200 com JSON exato. Erros somente message string, sem fixar
+  idioma. Helper verifica status/Content-Type/sem Location/zero SQL/PDO Closure.
+  PHP -l passou; focado 4 testes/35 asserções; suíte atual 116 testes/
+  1.653 asserções passaram, códigos 0. Sem login real, persistência/promoção,
+  rede/navegador ou SQL em loja. Rota/Gate/controller/render mantidos. Aula
+  docs/aulas/07-80-testes-http-administracao.md criada.
+  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
+  7.81 — integrar GET /api/v1/administracao ao OpenAPI com cookie/200/401/403/
+  exemplos e validar com o Redocly fixado.
 - Situação da 7.79: routes/api.php registra GET /administracao para
   AdministracaoController::show com auth:sanctum/can:acessar-administracao.
   Kernel confirmou 401/403/200 com usuários em memória; diagnóstico revelou
@@ -20,9 +32,9 @@
   de tratamento padrão passaram. Suíte atual 112 testes/1.618 asserções passou.
   Sem login real/promoção/contas persistidas/rede ou navegador; OpenAPI pendente.
   Aula docs/aulas/07-79-rota-administracao-protegida.md criada.
-  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-  7.80 — criar testes HTTP permanentes 401/403/200, incluindo JSON do 403 com
-  debug ligado, usuários em memória e SQL bloqueado.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  fb951855677cd07bdf8c49fb3f5862355929788b, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.80.
 - Situação da 7.78: criado somente AdministracaoController.php na aplicação,
   namespace Api/V1, extends Controller, show(): JsonResponse com
   response()->json/data/mensagem fixa do contrato. PHP -l passou.
@@ -35,7 +47,7 @@
   docs/aulas/07-78-controller-administracao.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   e853f90a5f1158ad0497ff011c23827f4806f434, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.79.
+  Checkpoint anterior à 7.79. Continuidade iniciada na 7.79.
 - Situação da 7.77: somente documentação alterada. Criado
   docs/api/administracao.md: GET /api/v1/administracao, sessão/cookies,
   auth:sanctum antes de can:acessar-administracao, sem corpo/parâmetros.
@@ -2650,8 +2662,11 @@ Na 7.79, rota auth:sanctum/can e render API de AccessDeniedHttpException para
 message/403, necessário para evitar campos de debug fora do contrato.
 Kernel: 24 controles/4 cenários passaram (401/403/200/debug), mais dois fora
 API; suíte atual 112/1.618 passou. Entendimento da 7.79 confirmado com
-"entendi" em 05/11/2026; publicação pendente. Próxima após publicar: 7.80 —
-testes HTTP permanentes da consulta, incluindo 403 com debug ligado.
+"entendi" em 05/11/2026; publicação em fb95185, remoto conferido. Na 7.80,
+testes HTTP permanentes 401/403/200 e debug true/false, usuários em memória/
+SQL bloqueado: focado 4/35, suíte atual 116/1.653 passaram. Entendimento
+da 7.80 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Próxima após publicar: 7.81 — OpenAPI da consulta administrativa e validação.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -16631,8 +16646,61 @@ OpenAPI/ambientes/Compose preservados.
 
 Entendimento: confirmado com "entendi" em 05/11/2026 sobre os middlewares
 interromperem a requisição antes do controller com 401 ou 403 conforme o caso.
-Publicação da 7.79: pendente; último checkpoint publicado e853f90 (7.78).
-Próximo passo exato após publicar: 7.80 — criar testes HTTP
-permanentes da consulta administrativa para 401/403/200 e corpo JSON do 403
-com depuração ligada, usando usuários em memória e SQL bloqueado.
+Publicação da 7.79: concluída e conferida em 05/11/2026:
+fb951855677cd07bdf8c49fb3f5862355929788b; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.80.
+Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.80 — Testes HTTP da administração — 05/11/2026
+
+Iniciada após confirmação da 7.79 com "entendi" e publicação conferida em
+fb951855677cd07bdf8c49fb3f5862355929788b. Git add dos dois arquivos PHP e cinco
+documentos, commit e push explicados antes de executar; remoto verificado.
+
+Implementação: único arquivo de aplicação criado,
+backend/tests/Feature/AdministracaoApiTest.php. Aula
+07-80-testes-http-administracao.md criada; contrato/continuidade anterior/
+roteiro/progresso atualizados. Rota/bootstrap/Gate/User/controller/Resource/
+migration/ambientes/dependências/Compose preservados; OpenAPI ainda pendente.
+
+Explicação: Tests\TestCase inicializa Laravel; getJson faz pedido interno
+pelo kernel com Accept JSON. SetUp exige testing, configura debug true
+somente na aplicação do cenário e bloqueia SQL padrão com contador/exceção.
+Cliente/admin usam User em memória, ID fictício/indicador bruto 0/1;
+actingAs(web) prepara o guard, sem login por senha ou persistência.
+Visitante sem usuário recebe 401; administrador 200 JSON exato do contrato.
+Teste de cliente 403 usa DataProvider modosDepuracao (true/false), totalizando
+quatro execuções a partir de três métodos de cenário.
+
+Erros exigem somente message string (array_keys exato), sem fixar frase/idioma;
+assim campos de trace/debug fazem o teste falhar. ConferirResposta recebe
+TestResponse/status e confere status, Content-Type JSON, ausência de Location,
+zero tentativas SQL e PDO ainda Closure. Corpo específico fica no cenário.
+Preparação em memória não promove conta real nem transporta cookies.
+
+Verificação: php -l passou, código 0. Focado com artisan test --compact
+--do-not-cache-result --colors=never no arquivo novo: 4 testes/35 asserções
+passaram, código 0. Suíte completa atual com mesmas opções: 116 testes/
+1.653 asserções passaram, código 0. Os novos cenários não executam SQL;
+os testes de integração existentes continuam configurados para loja_test.
+Nenhuma chamada de rede/navegador, login real, senha/hash privado ou SQL em
+loja pelo assistente. Fonte primária Laravel 13 http-tests consultada.
+
+Cobertura automatizada: autenticação antes da autorização, cliente recusado
+com corpo genérico independente de debug, administrador autorizado com JSON
+de sucesso, formato JSON e ausência de redirecionamento. Não comprova login
+por credenciais, conta administrativa persistida ou transporte de sessão.
+
+Git diff --check passou; 12 links locais válidos nos cinco documentos e
+três exemplos JSON do contrato válidos. Somente novo teste e cinco documentos
+previstos alterados, índice vazio; rota/Gate não redefinidos nos testes,
+backend de execução/OpenAPI/ambientes/Compose preservados.
+
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre os testes
+protegerem as decisões de acesso e o formato das respostas.
+Publicação da 7.80: pendente; último checkpoint publicado fb95185 (7.79).
+Próximo passo exato após publicar: 7.81 — incluir
+GET /api/v1/administracao no OpenAPI, segurança por cookie, respostas
+200/401/403 e exemplos, validando com o Redocly fixado.
 Módulos 8 a 23 não iniciados.
