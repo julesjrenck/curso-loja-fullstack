@@ -5,9 +5,22 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.74 — Cast boolean do indicador de administrador:
+- Etapa atual: 7.75 — Gate de acesso à administração:
   implementação, explicação e verificações apresentadas em 05/11/2026;
   entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+- Situação da 7.75: somente AppServiceProvider alterado na aplicação.
+  Imports User/Gate e Gate::define acessar-administracao no boot, callback
+  User/bool com is_admin === true. Binding Catalogo e limitador login mantidos.
+  Diagnóstico Laravel/testing com objetos em memória e SQL bloqueado:
+  sete controles passaram, Gate registrado, cliente false/admin true/visitante
+  false/User sem indicador false, zero SQL/PDO não aberto. PHP -l passou.
+  Suíte atual: 108 testes/1.606 asserções passaram, código 0.
+  Sem rota/controller novo, resposta HTTP 403, promoção, login, API ou SQL
+  em loja. Registrar Gate não protege rota automaticamente. Aula
+  docs/aulas/07-75-gate-acesso-administracao.md criada.
+  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
+  7.76 — automatizar testes do Gate para cliente/admin/visitante/indicador
+  ausente, sem rota nova.
 - Situação da 7.74: única linha de aplicação acrescentada em User::casts:
   is_admin => boolean. Casts datetime/hashed anteriores preservados;
   Fillable name/email/password e UsuarioResource id/name/email mantidos.
@@ -19,9 +32,9 @@
   null em memória e default/NOT NULL continuam no banco. Sem conta promovida,
   migração ou SQL em loja. Suíte atual: 108 testes/1.606 asserções, código 0.
   Aula docs/aulas/07-74-cast-boolean-administrador.md criada.
-  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-  7.75 — definir Gate acessar-administracao com is_admin e verificar decisões
-  cliente/admin/visitante em memória, antes de criar rota administrativa.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  a488fbaa02068250e0a393134a24d579c068d738, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.75.
 - Situação da 7.73: somente documentação alterada. Aplicado apenas arquivo
   2026_11_05_120000_add_is_admin_to_users_table.php em loja por sqlsrv_migracoes/
   loja_migracoes, com --path e sem interação. Pré-leituras: local/sem cache/
@@ -36,7 +49,7 @@
   Aula docs/aulas/07-73-aplicar-migration-administrador-loja.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   8a5356ad4e5041fa1594e451fc6d078f420c682f, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.74.
+  Checkpoint anterior à 7.74. Continuidade iniciada na 7.74.
 - Situação da 7.72: criado somente
   backend/tests/Feature/UsuarioAdministradorMigrationTest.php na aplicação.
   DatabaseTransactions e guardas testing/sqlsrv/loja_test/loja_testes/users
@@ -2567,7 +2580,11 @@ Entendimento da 7.73 confirmado com "entendi" em 05/11/2026; publicação
 em 8a5356a, remoto conferido. Na 7.74, cast boolean is_admin no User;
 sintaxe/12 controles em memória e suíte 108/1.606 passaram. Sem SQL em loja.
 Entendimento da 7.74 confirmado com "entendi" em 05/11/2026; publicação
-pendente. Próxima após publicar: 7.75 — Gate acessar-administracao, sem rota nova.
+em a488fba, remoto conferido. Na 7.75, Gate acessar-administracao no boot,
+is_admin === true. Sintaxe/sete controles de registro e decisão em memória
+passaram, sem SQL/PDO; suíte atual 108/1.606 passou. Entendimento da 7.75
+confirmado com "entendi" em 05/11/2026; publicação pendente.
+Próxima após publicar: 7.76 — testes permanentes do Gate, sem rota nova.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -16280,8 +16297,58 @@ migration, teste, Fillable, Resource, contratos e Compose preservados.
 
 Entendimento: confirmado com "entendi" em 05/11/2026 sobre cast fornecer
 booleano PHP e regra de autorização decidir se permite a ação.
-Publicação da 7.74: pendente; último checkpoint publicado 8a5356a (7.73).
-Próximo passo exato após publicar: 7.75 — definir Gate
-acessar-administracao consultando is_admin e verificar decisões para cliente,
-administrador e visitante em memória, antes de criar rota administrativa.
+Publicação da 7.74: concluída e conferida em 05/11/2026:
+a488fbaa02068250e0a393134a24d579c068d738; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.75.
 Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.75 — Gate de acesso à administração — 05/11/2026
+
+Iniciada após confirmação da 7.74 com "entendi" e publicação conferida em
+a488fbaa02068250e0a393134a24d579c068d738. Git add de User e quatro documentos,
+commit e push explicados antes de executar; remoto verificado.
+
+Implementação: somente backend/app/Providers/AppServiceProvider.php alterado
+na aplicação. Imports App\Models\User e Gate; boot define acessar-administracao
+com callback User $user, retorno bool e comparação is_admin === true.
+Binding Catalogo e RateLimiter login existentes mantidos. Aula
+07-75-gate-acesso-administracao.md criada; aula anterior/roteiro/progresso
+atualizados. User/cast/Fillable, Resource, migration, testes, rotas,
+contratos, ambientes, dependências e Compose preservados.
+
+Explicação: Gate registra uma decisão nomeada; string não é caminho HTTP.
+Provider já listado em bootstrap/providers.php, boot registra a regra.
+Cast fornece booleano e comparação estrita permite somente true; false/
+indicador ausente não passam. User não anulável faz visitante ser recusado.
+Registrar Gate não protege rotas automaticamente: consulta/exigência será
+integrada a uma operação em etapa própria. Sem resposta HTTP 403 nesta aula.
+
+Verificação: php -l no Docker passou. Diagnóstico Laravel real em testing,
+sem cache, sqlsrv/loja_test configurados. Conexão com beforeExecuting que
+bloqueia qualquer SQL; User cliente bruto 0/admin 1 e User sem indicador,
+apenas em memória. Gate::forUser escolhe contexto sem login, allows retorna
+booleano; forUser(null) representa visitante. Sete controles passaram:
+Gate registrado no boot, cliente false, administrador true, visitante false,
+User sem indicador false, zero SQL tentado e PDO não aberto. Código 0;
+saída só booleanos. Sem conta promovida ou senha/hash/dados privados.
+Diagnóstico pela entrada padrão, sem auxiliar persistido.
+
+Suíte atual via Docker/artisan test --compact --do-not-cache-result
+--colors=never: 108 testes/1.606 asserções passaram, código 0.
+Não criados testes permanentes nesta etapa. Sem SQL em loja ou chamada API.
+Verificação em memória não comprova autenticação administrativa real,
+persistência do indicador, transporte de sessão ou proteção HTTP da operação.
+Fonte primária Laravel 13 authorization/writing-gates/guest-users consultada.
+
+Git diff --check passou; 9 links locais válidos nos quatro documentos.
+Somente dois imports/definição do Gate no provider e quatro documentos
+previstos alterados, índice vazio. Binding Catalogo e limitador login
+comparados ao HEAD e preservados; model, rotas, contratos e Compose intactos.
+
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre definir a regra
+e aplicá-la a uma operação serem passos distintos.
+Publicação da 7.75: pendente; último checkpoint publicado a488fba (7.74).
+Próximo passo exato após publicar: 7.76 — automatizar testes
+do Gate acessar-administracao para cliente/administrador/visitante/indicador
+ausente, sem criar rota administrativa. Módulos 8 a 23 não iniciados.

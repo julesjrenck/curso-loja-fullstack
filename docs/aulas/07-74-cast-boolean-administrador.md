@@ -4,7 +4,9 @@ Implementação e explicação em 05/11/2026, após confirmação da
 [7.73](07-73-aplicar-migration-administrador-loja.md) com "entendi".
 Checkpoint anterior publicado e conferido em
 8a5356ad4e5041fa1594e451fc6d078f420c682f; HEAD/origin/main/main remota iguais.
-Entendimento da 7.74 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.74 confirmado com "entendi" em 05/11/2026; publicação
+conferida em a488fbaa02068250e0a393134a24d579c068d738, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação.
 
 ## Objetivo e alteração
 
@@ -91,8 +93,8 @@ novo, migração ou SQL em loja nesta aula. Diagnóstico pela entrada padrão, s
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-7.75 — definir o Gate
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.75](07-75-gate-acesso-administracao.md): definir o Gate
 acessar-administracao, consultando is_admin, e verificar decisões para cliente,
 administrador e visitante em memória, antes de criar uma rota administrativa.
 Módulos 8 a 23 não iniciados.

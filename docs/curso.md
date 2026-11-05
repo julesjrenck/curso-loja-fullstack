@@ -416,8 +416,11 @@ confirmado com "entendi" em 05/11/2026; publicação em 8a5356a, remoto conferid
 Na 7.74, cast boolean is_admin acrescentado ao User; sintaxe e 12 controles
 em memória passaram. Fillable/Resource mantidos; cast não cria padrão.
 Suíte atual 108/1.606 passou; sem SQL em loja. Entendimento confirmado com
-"entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
-7.75 — Gate acessar-administracao, antes de rota administrativa.
+"entendi" em 05/11/2026; publicação em a488fba, remoto conferido. Na 7.75,
+Gate acessar-administracao no boot/is_admin === true, sete controles em
+memória passaram sem SQL/PDO; sintaxe e suíte atual 108/1.606 passaram.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+Próxima após publicar: 7.76 — testes do Gate, sem rota nova.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1264,8 +1267,11 @@ sem privilégio, histórico e leitura pela app. Sem nova suíte. Entendimento
 confirmado com "entendi" em 05/11/2026; publicação em 8a5356a. Na 7.74,
 cast boolean is_admin no User, sintaxe/12 controles em memória passaram,
 Fillable/Resource mantidos e suíte atual 108/1.606 passou. Sem SQL em loja.
-Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próxima após publicar: 7.75 — Gate acessar-administracao, sem rota nova.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação em a488fba.
+Na 7.75, Gate acessar-administracao/is_admin === true registrado no boot;
+sintaxe/sete controles em memória/suíte atual 108/1.606 passaram.
+Sem SQL em loja ou rota nova; entendimento confirmado com "entendi" em
+05/11/2026; publicação pendente antes da 7.76 — testes permanentes do Gate.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
