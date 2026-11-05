@@ -5,10 +5,24 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.60 — Verificação acompanhada do CSRF no navegador:
-  roteiro explicado e execução relatada como bem-sucedida pelo aluno em
-  05/11/2026: "deu certo, vamos adiante". Campos individuais não informados;
-  entendimento confirmado com "Sim, entendi" em 05/11/2026. Publicação pendente.
+- Etapa atual: 7.61 — Consulta do usuário no laboratório:
+  implementação, explicação e verificações apresentadas em 05/11/2026;
+  entendimento confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Situação da 7.61: src/laboratorio-sessao.html ganhou Consultar usuário e
+  resultado próprios. Botão começa disabled; preparação 204 o libera. Novo
+  listener async faz GET 8002/api/v1/usuario com credentials include/Accept JSON.
+  Visitante deve receber 401 legível; outros status são inesperados, catch para
+  falha de rede/leitura e finally reabilita botão. Corpo não lido/exibido, sem
+  dados pessoais. Rota auth:sanctum já existente; nenhuma alteração backend.
+  GET estático no PHP retornou 200/corpo igual; seis controles passaram.
+  Sintaxe JS no Node da imagem Redocly fixada passou, código 0/sem rede ou
+  execução do código. Auxiliares próprios removidos. Sem clique/navegador/
+  consulta real da API/nova suíte; última 7.58, 107/1.586.
+  Aula docs/aulas/07-61-consulta-visitante-no-laboratorio.md criada.
+  Próximo após confirmar/publicar: 7.62 — recarregar laboratório na sessão
+  privativa, preparar CSRF, consultar usuário uma vez e acompanhar mensagem,
+  GET/401, CORS e presença dos cookies enviados sem copiar valores. 401 sozinho
+  não comprova transporte de cookies. Módulos 8 a 23 não iniciados.
 - Situação da 7.60: docs/aulas/07-60-verificacao-navegador-csrf.md criado.
   Aluno escolheu Chrome ou Edge em resposta à pergunta sobre navegador.
   Sem ferramenta de controle do navegador nesta sessão; acompanhamento por
@@ -23,15 +37,16 @@
   Roteiro: janela privativa sem sessão prévia da loja; painel Rede antes do
   clique, um GET csrf-cookie e inspeção dos cabeçalhos; Aplicativo/Cookies para
   presença e atributos. Esperados 204 legível, Allow-Origin 8001/credenciais true
-  e dois cookies, ainda sem execução confirmada. Não copiar valores/HAR/headers
-  completos. Se houver cookies prévios, relatar antes de clicar sem apagar
+  e dois cookies como expectativas, sem campos individuais confirmados. Não
+  copiar valores/HAR/headers completos. Se houver cookies prévios, relatar antes de clicar sem apagar
   dados desconhecidos. Última suíte 7.58, 107/1.586; sem nova suíte.
   Retorno do aluno recebido: "deu certo, vamos adiante". Execução bem-sucedida
   por relato, sem atribuir valores esperados a campos não fornecidos.
   Reforçada a distinção entre leitura do status, armazenamento dos cookies e
   autenticação. Entendimento confirmado com "Sim, entendi" em 05/11/2026.
-  Próximo após publicar: 7.61 — acrescentar consulta GET /api/v1/usuario ao
-  laboratório para observar 401 de visitante, sem login.
+  Publicação verificada: aa6a2ad9009f421452d7c8050efcf51a724eff83,
+  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  Continuidade realizada na 7.61.
 - Situação da 7.59: criado src/laboratorio-sessao.html, único arquivo de aplicação
   alterado. Serviço PHP existente em 8001 entrega a página; botão dispara GET
   absoluto para 8002/sanctum/csrf-cookie com Fetch/credentials include/Accept JSON.
@@ -46,7 +61,7 @@
   Aula docs/aulas/07-59-pagina-laboratorio-sessao.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   8232454a83047165c8e9746cdbc56de207548cd4, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.60, aguardando execução
+  Checkpoint anterior à 7.60. Continuidade iniciada na 7.60, aguardando execução
   acompanhada no navegador; módulos 8 a 23 não iniciados.
 - Situação da 7.58: criado backend/config/sanctum.php, único arquivo de aplicação
   alterado. Declara apenas stateful: padrão do pacote mais 127.0.0.1:8001,
@@ -2264,9 +2279,15 @@ ativos. Sem ferramenta de controle do navegador. Aluno relatou em 05/11/2026:
 "deu certo, vamos adiante". Sucesso geral por relato; valores individuais de
 status/CORS/atributos não fornecidos, sem validação independente.
 Entendimento sobre leitura do status, armazenamento de cookies e ausência de
-login confirmado com "Sim, entendi" em 05/11/2026. Publicação pendente.
-Próximo após publicar: 7.61 — consulta GET usuario no laboratório, visitante/401,
-sem login.
+login confirmado com "Sim, entendi" em 05/11/2026; publicada em aa6a2ad,
+remoto conferido. Continuidade na 7.61: página ganhou botão Consultar usuário,
+liberado após preparação 204. GET usuario com credentials include/Accept JSON,
+401 esperado de visitante, demais status inesperados/catch/finally; sem ler
+corpo ou exibir dados pessoais. HTML servido 200/seis controles passaram;
+sintaxe JS na imagem fixada passou/auxiliares removidos. Sem clique/API/nova
+suíte. Entendimento da 7.61 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Próxima após confirmar/publicar: 7.62 — execução acompanhada no navegador,
+GET/401, CORS e presença dos cookies enviados sem valores.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -15235,6 +15256,54 @@ O pedido de continuar foi recebido; não registrado como confirmação de entend
 Entendimento da 7.60: confirmado pelo aluno com "Sim, entendi" em 05/11/2026,
 em resposta à confirmação solicitada. Sucesso da execução segue por relato
 geral; campos individuais não fornecidos e não inventados.
-Publicação da 7.60: pendente; último checkpoint publicado 8232454 (7.59).
-Próximo passo exato após publicar: 7.61 — acrescentar consulta GET /api/v1/usuario
-ao laboratório para observar 401 de visitante, sem login. Módulos 8 a 23 não iniciados.
+Publicação da 7.60: concluída e conferida em 05/11/2026:
+aa6a2ad9009f421452d7c8050efcf51a724eff83; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.61.
+
+
+## Etapa 7.61 — Consulta do usuário no laboratório — 05/11/2026
+
+Iniciada após relato geral de sucesso da 7.60 ("deu certo, vamos adiante") e
+confirmação explícita de entendimento ("Sim, entendi") em 05/11/2026.
+7.60 publicada e conferida em aa6a2ad9009f421452d7c8050efcf51a724eff83.
+Campos individuais de status/cabeçalhos/cookies da 7.60 não fornecidos;
+alcance do relato preservado, sem transformar expectativas em medições.
+
+Implementação: somente src/laboratorio-sessao.html alterado na aplicação.
+Novo botão consultar-usuario/resultado-usuario/role status; começa disabled.
+No ramo 204 da preparação, libera botão e mostra Pronto para consultar.
+Novos seletores e listener async; Fetch GET /api/v1/usuario/credentials include/
+Accept JSON. Enquanto espera, desabilita e mostra Consultando a API.
+401 mostra resposta recebida/sem autenticação; demais status inesperados;
+catch genérico para rede/leitura e finally reabilita. Não lê corpo ou dados
+de usuário, cookies/tokens/IDs/erros brutos não exibidos. Botão de CSRF mantido.
+
+Explicação apresentada: ordem da página organiza exercício; proteção real
+continua em auth:sanctum na rota existente. Preparar cookies de visitante não
+autentica. GET consulta identidade, sem corpo/ID/email/senha/Authorization ou
+token CSRF. Fetch não rejeita apenas por HTTP 401, por isso checamos status.
+Fonte primária MDN/Fetch consultada e contrato/rota existentes lidos. 401 legível
+é esperado para visitante; sozinho não prova que cookie foi enviado.
+
+Verificação de entrega: PHP no serviço php fez GET estático na porta interna
+8000, 200/corpo igual ao arquivo. Seis controles passaram/código 0: status,
+igualdade, botão CSRF mantido, novo botão presente/desabilitado, resultado e
+endpoint presentes. Script extraído como texto para diretório próprio /tmp;
+node --check na imagem Redocly 2.65.0/digest já fixado passou, código 0.
+Docker pull never/network none/ro/entrypoint node; sem executar JS/DOM/Fetch.
+Auxiliares próprios removidos. Nenhum navegador/clique/consulta real da API.
+
+Sem nova suíte/dependência/serviço/auditoria/snapshot; última suíte permanece
+7.58, 107 testes/1.586 asserções. Backend/rotas/controllers/bootstrap/config/
+ambientes/testes/Compose/OpenAPI preservados. Aula 7.61, publicação anterior,
+roteiro/progresso e continuidade atualizados. 401 no novo botão ainda é
+expectativa, sem resultado de navegador nesta etapa. Git diff --check passou;
+seis links locais válidos, quatro IDs HTML únicos/um script próprio,
+somente cinco arquivos previstos alterados e índice vazio.
+
+Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
+Publicação da 7.61: pendente; último checkpoint publicado aa6a2ad (7.60).
+Próximo passo exato após confirmar/publicar: 7.62 — recarregar laboratório na
+sessão privativa, preparar CSRF e executar Consultar usuário uma vez; acompanhar
+mensagem, GET/401, CORS e presença dos cookies enviados sem copiar valores.
+Verificação acompanhada pendente; módulos 8 a 23 não iniciados.

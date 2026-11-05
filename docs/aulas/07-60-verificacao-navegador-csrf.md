@@ -5,7 +5,8 @@ Roteiro preparado e explicado em 05/11/2026, após confirmação da 7.59 com
 relatou "deu certo, vamos adiante": execução bem-sucedida por relato, sem
 campos individuais informados. Entendimento confirmado com "Sim, entendi"
 em 05/11/2026, em resposta à confirmação solicitada.
-Publicação da 7.60 pendente; checkpoint 7.59 publicado e conferido em
+Publicação da 7.60 conferida em aa6a2ad9009f421452d7c8050efcf51a724eff83,
+HEAD/origin/main/main remota iguais. Checkpoint 7.59 publicado e conferido em
 8232454a83047165c8e9746cdbc56de207548cd4, HEAD/origin/main/main remota iguais.
 
 ## Objetivo
@@ -121,6 +122,6 @@ Relato geral de sucesso recebido em 05/11/2026. Reforçada a distinção entre
 leitura do status, armazenamento dos cookies e autenticação. Solicitada
 confirmação explícita de entendimento, conforme o ritmo do AGENTS.md; pedido
 de continuar não foi registrado como confirmação de entendimento.
-Aluno confirmou entendimento com "Sim, entendi" em 05/11/2026. Publicação ainda
-pendente. Próxima após publicar: 7.61 — acrescentar consulta GET /api/v1/usuario
-ao laboratório para observar 401 de visitante, sem login.
+Aluno confirmou entendimento com "Sim, entendi" em 05/11/2026. Publicação
+concluída. Continuidade na [7.61 — consulta de visitante no laboratório](07-61-consulta-visitante-no-laboratorio.md),
+sem login.
