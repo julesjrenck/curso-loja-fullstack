@@ -375,9 +375,16 @@ interativo, e-mail fictício existente preservado, senha oculta/fallback false/
 8 a 72 bytes, create/cast hashed. Sintaxe/autoload/cinco recusas e comando real
 sem interação conferidos sem SQL/PDO aberto ou prompt. Nenhuma conta criada;
 caminho de cadastro ainda não verificado. Sem nova suíte. Entendimento da 7.65
-confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após confirmar/publicar:
-7.66 — conferir destino e execução interativa orientada no terminal, relato
-só da mensagem final sem senha/hash.
+confirmado com "entendi" em 05/11/2026; publicada em 16e4c83, remoto conferido.
+Na 7.66, destino local/sqlsrv/loja e identidade SQL loja/loja_app/loja_app
+conferidos; e-mail fictício ausente nessa leitura. Duas SELECTs, sem escrita,
+código 0. Orientação interativa enviada, senha oculta e relato só da mensagem
+final. Aluno informou criação da conta e DONE. Duas SELECTs posteriores
+confirmaram alvo/identidade SQL/conta/nome/e-mail fictícios e hash bcrypt, sem
+escrita ou exposição de senha/hash, código 0. Registro não significa login,
+ainda não executado. Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+Próximo confirmar/publicar 7.66 e iniciar 7.67 — formulário de login no
+laboratório, CSRF/POST email/password, sem senha versionada. Só docs.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1193,8 +1200,12 @@ Aluno relatou sucesso geral e confirmou entendimento com "Sim, entendi"
 em 05/11/2026; publicação em 8e8de99. Na 7.65, seeder específico da conta
 fictícia criado, senha oculta e conta existente preservada; sintaxe/autoload/
 recusas conferidos sem SQL ou conta criada. Caminho de criação ainda pendente.
-Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.66 — execução
-interativa orientada no terminal, sem compartilhar senha/hash.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação em 16e4c83.
+Na 7.66, destino e ausência inicial do e-mail fictício conferidos por duas
+SELECTs sem escrita; orientação interativa enviada. Aluno relatou criação
+e DONE; duas leituras posteriores confirmaram conta fictícia/hash bcrypt,
+sem senha/hash expostos. Login não executado. Entendimento confirmado com
+"entendi" em 05/11/2026; publicação pendente. Próxima 7.67 — formulário de login com CSRF/POST no laboratório.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

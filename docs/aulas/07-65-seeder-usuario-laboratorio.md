@@ -4,7 +4,8 @@ Implementação, explicação e verificações em 05/11/2026, após relato geral
 sucesso da 7.64 e confirmação explícita com "Sim, entendi". Campos individuais
 do navegador não fornecidos. Checkpoint anterior publicado e conferido em
 8e8de99ac636c48d624d08fed3838cc94e6bf002, HEAD/origin/main/main remota iguais.
-Entendimento da 7.65 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.65 confirmado com "entendi" em 05/11/2026; publicação conferida
+em 16e4c8331093db423f8363ef17e837da4d6a3f5a, HEAD/origin/main/main remota iguais.
 
 ## Objetivo e arquivo
 
@@ -124,15 +125,7 @@ previstos alterados e índice vazio. Única alteração na aplicação: novo see
 
 ## Continuidade
 
-Após confirmar entendimento e publicar, próxima 7.66: conferir o destino local
-loja e orientar a execução interativa específica no terminal do aluno:
-
-```sh
-docker compose exec backend php artisan db:seed --class=UsuarioLaboratorioSeeder --no-ansi
-```
-
-Esse comando de cadastro ainda não foi executado. Não usar -T ou --no-interaction:
-o terminal interativo permite entrada oculta. O aluno definirá uma senha
-exclusiva no terminal; o relato deve conter apenas a mensagem final, sem senha
-ou hash. Analisar se criou ou preservou uma conta antes do laboratório de login.
+Publicação da 7.65 concluída. Continuidade iniciada na
+[7.66 — execução interativa](07-66-execucao-seeder-usuario-laboratorio.md).
+Orientação no terminal do aluno; execução e resultado aguardando relato.
 Módulos 8 a 23 não iniciados.
