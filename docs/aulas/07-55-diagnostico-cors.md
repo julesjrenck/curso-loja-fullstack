@@ -3,7 +3,8 @@
 Leitura e explicação em 05/11/2026, após confirmação da 7.54 com "entendi".
 Checkpoint 7.54 publicado e conferido em
 750d6baa826daa0280e6c3b877b99debac3abbeb: HEAD, origin/main e main remota iguais.
-Entendimento da 7.55 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.55 confirmado com "entendi" em 05/11/2026; publicação conferida
+em 7a0712226d12b9e553f4937755cc33e6589ac4b1, HEAD/origin/main/main remota iguais.
 
 ## Objetivo
 
@@ -130,7 +131,7 @@ foram conferidos; índice vazio e somente documentação modificada.
 
 ## Continuidade
 
-Após confirmar entendimento e publicar, próxima 7.56: verificar em memória o
-preflight OPTIONS de POST logout com origem ilustrativa, sem cookies/SQL e sem
-alterar configuração. Registrar os cabeçalhos e os limites dessa verificação.
-Integração completa no navegador permanece pendente, dentro do módulo 7.
+Publicação da 7.55 concluída. Continuidade na
+[7.56 — preflight do logout em memória](07-56-preflight-logout-em-memoria.md),
+sem cookies/SQL e sem alterar configuração. Integração completa no navegador
+permanece pendente, dentro do módulo 7.

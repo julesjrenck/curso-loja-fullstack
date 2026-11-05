@@ -5,9 +5,25 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.55 — Diagnóstico da configuração de CORS:
-  leitura, explicação e verificação em memória apresentadas em 05/11/2026;
-  entendimento confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Etapa atual: 7.56 — Preflight do logout em memória:
+  execução, explicação e verificação apresentadas em 05/11/2026; entendimento
+  confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Situação da 7.56: aula docs/aulas/07-56-preflight-logout-em-memoria.md criada.
+  PHP no Docker/local executou HandleCors isolado, com configuração efetiva
+  igual aos padrões do framework. Request OPTIONS para /api/v1/logout, host
+  8002, Origin ilustrativa 8001, método pretendido POST e headers content-type/
+  x-xsrf-token; sem cookies/corpo. Resultado 204 vazio, Allow-Origin *,
+  Allow-Methods POST, Allow-Headers refletidos, Allow-Credentials ausente,
+  Max-Age 0 e Vary Request-Method/Request-Headers. Continuação não chamada;
+  função de barreira impediria rotas/sessão. Sem sessão anexada, Set-Cookie,
+  cookies de resposta ou SQL; configuração preservada. Todos os 14 controles
+  true/código 0. Sem kernel HTTP completo/rede/navegador/logout efetivo/nova
+  suíte; última 7.51, 107/1.586. Backend/Compose/OpenAPI preservados.
+  Explicados entrada/saída, retorno antes do roteamento e limites: 204 de
+  OPTIONS não executa POST nem basta para compartilhar resposta com cookies.
+  Próximo após confirmar/publicar: 7.57 — definir origem de laboratório, criar
+  backend/config/cors.php para permitir essa origem com credenciais e repetir
+  preflight. Sanctum stateful e integração no navegador ficam para etapas seguintes.
 - Situação da 7.55: aula docs/aulas/07-55-diagnostico-cors.md criada. PHP no
   Docker/local/sem cache confirmou ausência de config/cors.php local e valores
   efetivos iguais aos padrões do framework: paths api/* e sanctum/csrf-cookie,
@@ -21,9 +37,9 @@
   têm responsabilidades distintas. Configuração atual insuficiente para
   compartilhar respostas com cookies entre origens: conclusão de leitura,
   sem erro observado no navegador. Backend/Compose/OpenAPI preservados.
-  Próximo após confirmar/publicar: 7.56 — verificar em memória o preflight
-  OPTIONS de POST logout com origem ilustrativa, sem cookies/SQL e sem alterar
-  configuração. Registrar cabeçalhos e limites; integração no navegador pendente.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  7a0712226d12b9e553f4937755cc33e6589ac4b1, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.56.
 - Situação da 7.54: POST /api/v1/logout incluído em docs/api/openapi.json,
   operação encerrarSessao. RequestBody required false/objeto JSON/exemplo {},
   extras permitidos e ignorados pelo controller; não são seletores de identidade.
@@ -39,7 +55,7 @@
   rotas/testes/bootstrap/ambientes/dependências/Compose preservados.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   750d6baa826daa0280e6c3b877b99debac3abbeb, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.55.
+  Checkpoint anterior à 7.55. Continuidade realizada na 7.55.
 - Situação da 7.53: diagnóstico temporário PHP/Guzzle no Docker executou
   preparação 204 e POST logout sem header/inválido/correto 419/419/204. Ambiente
   local/console false/testing false/CSRF ativo/coleta [0,100] só no servidor
@@ -2140,9 +2156,15 @@ Continuidade na 7.55: leitura CORS efetivo/padrões do framework, HandleCors glo
 paths api/* e csrf-cookie, origens * e credenciais false. Seleção de caminhos e
 Sanctum conferidos em memória; código 0, sem HTTP/sessão/SQL ou nova suíte.
 Origem/credenciais/preflight e responsabilidades explicados. Entendimento da
-7.55 confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após confirmar/publicar:
-7.56 — preflight OPTIONS de POST logout em memória, sem cookies/SQL nem alteração
-de configuração; cabeçalhos e limites da verificação. Navegador pendente.
+7.55 confirmado com "entendi" em 05/11/2026; publicação em 7a07122, remoto conferido.
+Continuidade na 7.56: HandleCors isolado/preflight OPTIONS do logout, origem
+ilustrativa 8001/método POST/headers content-type e x-xsrf-token. Resposta 204
+vazia, origem *, credenciais ausentes, método/headers refletidos, Max-Age 0 e
+Vary método/headers. Continuação não chamada/sem sessão/cookies/SQL; 14 controles
+true/código 0/configuração preservada. Sem rede/navegador ou nova suíte.
+Entendimento da 7.56 confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
+confirmar/publicar: 7.57 — definir origem de laboratório e configurar CORS com
+credenciais, repetindo preflight. Sanctum/navegador nas etapas seguintes.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -14845,8 +14867,54 @@ Backend/Compose/OpenAPI preservados. Git diff --check passou; 26 links locais
 dos oito documentos alterados válidos, índice vazio, somente documentação.
 
 Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
-Publicação da 7.55: pendente; último checkpoint publicado 750d6ba (7.54).
-Próximo passo exato após confirmar/publicar: 7.56 — verificar em memória o
-preflight OPTIONS de POST logout com origem ilustrativa, sem cookies/SQL nem
-alterar configuração; registrar cabeçalhos e limites. Navegador permanece
-pendente; módulos 8 a 23 não iniciados.
+Publicação da 7.55: concluída e conferida em 05/11/2026:
+7a0712226d12b9e553f4937755cc33e6589ac4b1; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.56.
+
+
+## Etapa 7.56 — Preflight do logout em memória — 05/11/2026
+
+Iniciada após confirmação da 7.55 com "entendi" e publicação verificada em
+7a0712226d12b9e553f4937755cc33e6589ac4b1. Implementação documental: aula
+docs/aulas/07-56-preflight-logout-em-memoria.md e atualização da continuidade
+anterior/roteiro/progresso. Nenhuma configuração ou código de aplicação alterados.
+
+Explicação apresentada: OPTIONS consulta método/headers do futuro pedido.
+Origin 8001 ilustrativa/host backend 8002; POST é a intenção, não a execução.
+Content-type e x-xsrf-token são nomes anunciados, sem token ou JSON real.
+Request::create monta objeto; make resolve middleware; handle executa HandleCors.
+Closure de continuação marca flag e lança exceção se chamada, impedindo qualquer
+roteamento/sessão posterior. Resposta antecipada explicada com código instalado
+de HandleCors/Fruitcake CorsService. Fontes primárias MDN consultadas.
+
+Verificação PHP pela entrada padrão de Docker Compose exec -T backend php,
+bootstrap do console/ambiente local. Exigiu configuração cors igual aos padrões
+antes e preservada depois. Request OPTIONS /api/v1/logout/Origin ilustrativa
+http://127.0.0.1:8001, Access-Control-Request-Method POST e Request-Headers
+content-type,x-xsrf-token. Sem cookies, corpo, identidade ou kernel HTTP completo.
+
+Resultado: 204 vazio, Access-Control-Allow-Origin *, Allow-Methods POST,
+Allow-Headers content-type,x-xsrf-token, Allow-Credentials ausente/null e
+Max-Age 0. Vary com Request-Method e Request-Headers. Métodos/headers com *
+refletem os solicitados na biblioteca instalada; não comprovam existência de
+rota. Continuação não chamada. Request sem sessão anexada; resposta sem
+Set-Cookie/cookies, listener QueryExecuted contou zero. Todos os 14 controles
+true, código 0. Saída limitada a valores públicos e booleanos.
+
+204 é a resposta da negociação; nenhum logout foi executado. Ausência de
+Allow-Credentials e origem * não satisfazem compartilhamento com credenciais.
+Conclusão baseada em cabeçalhos observados/protocolo, sem navegador. Middleware
+isolado não comprova cadeia completa ou aplicação das políticas pelo navegador.
+
+Sem rede HTTP, sessão iniciada, SQL, novas dependências/serviços, alteração de
+ambiente/vendor, suíte, auditoria ou snapshot. Última suíte permanece 7.51:
+107 testes/1.586 asserções. Backend/Compose/OpenAPI preservados.
+Git diff --check passou; três links locais dos quatro documentos alterados
+válidos, índice vazio, somente documentação.
+
+Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
+Publicação da 7.56: pendente; último checkpoint publicado 7a07122 (7.55).
+Próximo passo exato após confirmar/publicar: 7.57 — definir uma origem de
+laboratório, criar backend/config/cors.php para permitir essa origem com
+credenciais e repetir o preflight. Sanctum stateful e integração no navegador
+ficam para etapas seguintes do módulo 7; módulos 8 a 23 não iniciados.

@@ -312,10 +312,15 @@ leitura CORS no Docker confirmou padrões do framework: origens * e credenciais
 false, HandleCors global e caminhos de API/csrf-cookie. Seleção de caminhos e
 reconhecimento Sanctum conferidos em memória, código 0; sem HTTP/sessão/SQL ou
 nova suíte. Origem, credenciais, preflight e responsabilidades explicados.
-Entendimento da 7.55 confirmado com "entendi" em 05/11/2026; publicação pendente. Próximo após
-confirmar/publicar: 7.56 — preflight OPTIONS de POST logout em memória, sem
-cookies/SQL e sem alterar configuração; registrar cabeçalhos e limites.
-Integração no navegador permanece pendente.
+Entendimento da 7.55 confirmado com "entendi" em 05/11/2026; publicada em
+7a07122, remoto conferido. Na 7.56, HandleCors isolado respondeu ao preflight
+OPTIONS de POST logout: 204 vazio, origem *, credenciais ausentes, método/headers
+refletidos, Max-Age 0 e Vary método/headers. Continuação não chamada; sem sessão,
+cookies, SQL ou alteração de configuração. 14 controles true/código 0; sem
+rede/navegador ou nova suíte. Entrada/saída e limites explicados. Entendimento
+da 7.56 confirmado com "entendi" em 05/11/2026; publicação pendente. Próximo após confirmar/
+publicar: 7.57 — definir origem de laboratório, configurar CORS com credenciais
+e repetir preflight. Sanctum/navegador nas etapas seguintes do módulo 7.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1094,8 +1099,12 @@ nova suíte. Entendimento confirmado com "entendi" em 05/11/2026; publicação
 verificada em 750d6ba. Na 7.55, CORS efetivo/padrões e HandleCors global conferidos
 em memória; origens *, credenciais false. Origem/credenciais/preflight e papéis
 de CORS/Sanctum/CSRF/auth explicados. Sem HTTP/sessão/SQL ou nova suíte.
-Entendimento da 7.55 confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.56 —
-verificação do preflight OPTIONS em memória, sem cookies/SQL ou alterar configuração.
+Entendimento da 7.55 confirmado com "entendi" em 05/11/2026; publicação em
+7a07122. Na 7.56, preflight em HandleCors isolado retornou 204 vazio/origem */
+credenciais ausentes/método e headers refletidos/Max-Age 0/Vary. Sem continuação,
+sessão, cookies, SQL, rede/navegador ou nova suíte; 14 controles true/código 0,
+configuração preservada. Limites explicados. Entendimento confirmado com "entendi"
+em 05/11/2026 e publicação pendente antes da 7.57 — origem de laboratório/CORS com credenciais.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
