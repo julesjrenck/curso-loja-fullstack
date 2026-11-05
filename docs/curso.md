@@ -324,9 +324,16 @@ credenciais true, mantendo sete opções anteriores. Preflights 8001/8003:
 204 vazio/Allow-Origin fixo 8001/credenciais true. Controle 8003 diverge da origem
 permitida. 30 controles passaram, sem sessão/cookies/SQL no diagnóstico. Suíte
 no Docker passou: 107 testes/1.586 asserções. Sanctum ainda não reconhece 8001.
-Entendimento da 7.57 confirmado com "entendi" em 05/11/2026; publicação pendente. Próximo após
-confirmar/publicar: 7.58 — reconhecimento stateful de 8001 no Sanctum, preservando
-8002 e verificando seleção em memória. Navegador nas etapas seguintes do módulo 7.
+Entendimento da 7.57 confirmado com "entendi" em 05/11/2026; publicada em
+1425d8a, remoto conferido. Na 7.58, criado config/sanctum.php declarando stateful:
+padrões mais 8001/helper preserva 8002/env mantém prioridade se definido.
+Demais opções do pacote/CORS intactos. Cinco seleções em memória conferidas:
+Origins 8001/8002 true, 8003 false, sem headers false, Referer 8001 true.
+Sem sessão/cookies/SQL no diagnóstico, código 0. Suíte 107 testes/1.586
+asserções passou. Entendimento da 7.58 confirmado com "entendi" em 05/11/2026;
+publicação pendente. Próximo após confirmar/publicar: 7.59 — página mínima em 8001 para
+GET csrf-cookie/Fetch credentials include, sem login; navegador acompanhado
+nas etapas seguintes do módulo 7.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1113,8 +1120,12 @@ configuração preservada. Limites explicados. Entendimento confirmado com "ente
 em 05/11/2026; publicação em c49fa83. Na 7.57, config/cors.php criado com origem
 8001/credenciais true; preflights permitido/controle passaram, sem sessão/SQL.
 Suíte 107 testes/1.586 asserções passou. Sanctum ainda não reconhece 8001.
-Entendimento da 7.57 confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.58 —
-reconhecimento stateful de 8001 e preservação de 8002, verificados em memória.
+Entendimento da 7.57 confirmado com "entendi" em 05/11/2026; publicação em
+1425d8a. Na 7.58, config/sanctum.php criado: stateful padrão mais 8001,
+8002/demais opções/CORS preservados. Cinco seleções em memória passaram sem
+sessão/cookies/SQL; suíte 107 testes/1.586 asserções passou. Entendimento da 7.58
+confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.59 — página mínima de
+laboratório para GET csrf-cookie com Fetch credentials include, sem login.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

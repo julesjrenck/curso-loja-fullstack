@@ -3,7 +3,8 @@
 Implementação, explicação e verificações em 05/11/2026, após confirmação da
 7.56 com "entendi". Checkpoint anterior publicado e conferido em
 c49fa8349f0a830ee4e1bf7feaa56862bfd2701c: HEAD/origin/main/main remota iguais.
-Entendimento da 7.57 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.57 confirmado com "entendi" em 05/11/2026; publicação conferida
+em 1425d8a482a87c9020d01c627110134c75a8d2f3, HEAD/origin/main/main remota iguais.
 
 ## Objetivo e arquivo alterado
 
@@ -118,7 +119,7 @@ ao arquivo criado. Somente os cinco arquivos previstos alterados, índice vazio.
 
 ## Continuidade
 
-Após confirmar entendimento e publicar, próxima 7.58: configurar o reconhecimento
-stateful da origem de laboratório 8001 no Sanctum, preservando o reconhecimento
-de 8002, e verificar a seleção em memória. Integração no navegador nas etapas
-seguintes do módulo 7; módulos 8 a 23 não iniciados.
+Publicação da 7.57 concluída. Continuidade na
+[7.58 — origem do laboratório no Sanctum](07-58-origem-stateful-sanctum.md).
+Integração no navegador nas etapas seguintes do módulo 7; módulos 8 a 23 não
+iniciados.
