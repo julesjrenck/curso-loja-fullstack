@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laboratório de sessão</title>
+</head>
+<body>
+    <h1>Laboratório de sessão</h1>
+    <p>Solicite a preparação do CSRF na API local.</p>
+    <button id="preparar" type="button">Solicitar cookie CSRF</button>
+    <p id="resultado" role="status">Aguardando o clique.</p>
+
+    <script>
+        const botao = document.querySelector('#preparar');
+        const resultado = document.querySelector('#resultado');
+
+        botao.addEventListener('click', async () => {
+            botao.disabled = true;
+            resultado.textContent = 'Solicitando à API...';
+
+            try {
+                const resposta = await fetch('http://127.0.0.1:8002/sanctum/csrf-cookie', {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: { Accept: 'application/json' },
+                });
+
+                if (resposta.status === 204) {
+                    resultado.textContent = 'Resposta recebida: HTTP 204 (sem corpo).';
+                } else {
+                    resultado.textContent = `Resposta inesperada: HTTP ${resposta.status}.`;
+                }
+            } catch {
+                resultado.textContent = 'Não foi possível ler a resposta da API. Confira a rede e o console do navegador.';
+            } finally {
+                botao.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -331,9 +331,15 @@ Demais opções do pacote/CORS intactos. Cinco seleções em memória conferidas
 Origins 8001/8002 true, 8003 false, sem headers false, Referer 8001 true.
 Sem sessão/cookies/SQL no diagnóstico, código 0. Suíte 107 testes/1.586
 asserções passou. Entendimento da 7.58 confirmado com "entendi" em 05/11/2026;
-publicação pendente. Próximo após confirmar/publicar: 7.59 — página mínima em 8001 para
-GET csrf-cookie/Fetch credentials include, sem login; navegador acompanhado
-nas etapas seguintes do módulo 7.
+publicada em 3563303, remoto conferido. Na 7.59, criada página HTML/JS mínima
+em src/laboratorio-sessao.html, entregue pelo PHP existente em 8001. Botão
+prepara GET csrf-cookie em 8002 com Fetch credentials include/Accept JSON,
+sem login; async/await/status/catch/finally explicados. GET estático 200/HTML/
+corpo igual e cinco controles passaram; sintaxe JS no Node da imagem Redocly
+fixada passou/cópia temporária removida. Sem clique/navegador/pedido à API ou
+nova suíte. Entendimento da 7.59 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Próximo após confirmar/publicar: 7.60 — janela privativa, botão uma vez,
+status/CORS e presença/atributos dos cookies sem valores, sem login.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1124,8 +1130,12 @@ Entendimento da 7.57 confirmado com "entendi" em 05/11/2026; publicação em
 1425d8a. Na 7.58, config/sanctum.php criado: stateful padrão mais 8001,
 8002/demais opções/CORS preservados. Cinco seleções em memória passaram sem
 sessão/cookies/SQL; suíte 107 testes/1.586 asserções passou. Entendimento da 7.58
-confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.59 — página mínima de
-laboratório para GET csrf-cookie com Fetch credentials include, sem login.
+confirmado com "entendi" em 05/11/2026; publicação em 3563303. Na 7.59,
+página HTML/JS de laboratório criada em src, servida em 8001, botão GET
+csrf-cookie em 8002/Fetch credentials include. Entrega 200/HTML e sintaxe JS
+verificadas; sem clique/navegador/API ou nova suíte. Entendimento da 7.59
+confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.60 — verificação
+acompanhada em janela privativa, status/CORS e cookies sem copiar valores.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

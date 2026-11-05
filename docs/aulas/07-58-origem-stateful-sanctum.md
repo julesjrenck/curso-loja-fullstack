@@ -3,7 +3,8 @@
 Implementação, explicação e verificações em 05/11/2026, após confirmação da
 7.57 com "entendi". Checkpoint anterior publicado e conferido em
 1425d8a482a87c9020d01c627110134c75a8d2f3: HEAD/origin/main/main remota iguais.
-Entendimento da 7.58 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.58 confirmado com "entendi" em 05/11/2026; publicação conferida
+em 35633036f506078470e9d2e4ca5c804f5d99cf26, HEAD/origin/main/main remota iguais.
 
 ## Objetivo e arquivo alterado
 
@@ -117,7 +118,7 @@ ao arquivo criado. Somente os cinco arquivos previstos alterados, índice vazio.
 
 ## Continuidade
 
-Após confirmar entendimento e publicar, próxima 7.59: preparar uma página mínima
-de laboratório em 8001 para GET /sanctum/csrf-cookie com Fetch e
-credentials: 'include', sem login. Verificação no navegador acompanhada nas
+Publicação da 7.58 concluída. Continuidade na
+[7.59 — página de laboratório](07-59-pagina-laboratorio-sessao.md), com Fetch
+credentials include e sem login. Verificação no navegador acompanhada nas
 etapas seguintes do módulo 7; módulos 8 a 23 não iniciados.

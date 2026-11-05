@@ -5,9 +5,24 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.58 — Origem do laboratório no Sanctum:
+- Etapa atual: 7.59 — Página de laboratório para preparar o CSRF:
   implementação, explicação e verificações apresentadas em 05/11/2026;
   entendimento confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Situação da 7.59: criado src/laboratorio-sessao.html, único arquivo de aplicação
+  alterado. Serviço PHP existente em 8001 entrega a página; botão dispara GET
+  absoluto para 8002/sanctum/csrf-cookie com Fetch/credentials include/Accept JSON.
+  Async/await, estado do botão, status 204 sem leitura JSON, status inesperado,
+  catch genérico e finally explicados. Sem login ou exposição de cookies/tokens.
+  GET estático no serviço php retornou 200/text/html UTF-8/corpo igual ao arquivo;
+  cinco controles passaram/código 0. Script extraído temporariamente passou em
+  node --check na imagem Redocly já fixada, sem rede/download/execução; código 0,
+  cópia própria removida. Nenhum clique/navegador/pedido à API executado.
+  204 e aceitação de cookies ainda são expectativas. Sem nova suíte; última
+  7.58, 107 testes/1.586 asserções. Backend/configurações/Compose preservados.
+  Aula docs/aulas/07-59-pagina-laboratorio-sessao.md criada.
+  Próximo após confirmar/publicar: 7.60 — abrir página em janela privativa,
+  executar botão uma vez e acompanhar status, CORS e presença/atributos dos
+  cookies sem copiar valores. Sem login; módulos 8 a 23 não iniciados.
 - Situação da 7.58: criado backend/config/sanctum.php, único arquivo de aplicação
   alterado. Declara apenas stateful: padrão do pacote mais 127.0.0.1:8001,
   preservando helper currentApplicationUrlWithPort para 8002 e sobrescrita
@@ -22,9 +37,9 @@
   de testes: 107 testes/1.586 asserções, código 0. Nenhum teste novo.
   Aula docs/aulas/07-58-origem-stateful-sanctum.md criada. Rotas/controllers/
   bootstrap/testes/ambientes/dependências/serviços/Compose/OpenAPI preservados.
-  Próximo após confirmar/publicar: 7.59 — preparar página mínima de laboratório
-  em 8001 para GET /sanctum/csrf-cookie com Fetch credentials include, sem login.
-  Navegador acompanhado nas etapas seguintes; módulos 8 a 23 não iniciados.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  35633036f506078470e9d2e4ca5c804f5d99cf26, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.59.
 - Situação da 7.57: criado backend/config/cors.php, único arquivo de aplicação
   alterado. Origem local de laboratório http://127.0.0.1:8001 e credenciais true;
   demais sete opções preservam padrões do framework. PHP -l sem erros.
@@ -42,7 +57,7 @@
   controllers/testes/ambientes/dependências/serviços/Compose/OpenAPI preservados.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   1425d8a482a87c9020d01c627110134c75a8d2f3, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.58.
+  Checkpoint anterior à 7.58. Continuidade realizada na 7.58.
 - Situação da 7.56: aula docs/aulas/07-56-preflight-logout-em-memoria.md criada.
   PHP no Docker/local executou HandleCors isolado, com configuração efetiva
   igual aos padrões do framework. Request OPTIONS para /api/v1/logout, host
@@ -2210,9 +2225,15 @@ Continuidade na 7.58: config/sanctum.php criado com stateful padrão mais 8001,
 Cinco seleções em memória conferidas: Origins 8001/8002 true, 8003 false,
 sem headers false, Referer 8001 true. Sem sessão/cookies/SQL; código 0.
 Suíte 107 testes/1.586 asserções passou. Entendimento da 7.58 confirmado
-com "entendi" em 05/11/2026; publicação pendente. Próxima após confirmar/publicar: 7.59 —
-página mínima em 8001 para GET csrf-cookie/Fetch credentials include, sem login.
-Verificação no navegador acompanhada nas etapas seguintes.
+com "entendi" em 05/11/2026; publicada em 3563303, remoto conferido.
+Continuidade na 7.59: src/laboratorio-sessao.html criado, botão para GET
+csrf-cookie em 8002/Fetch credentials include/Accept JSON. Página estática
+servida pelo PHP existente em 8001; GET interno retornou 200/HTML/corpo igual,
+cinco controles passaram. Sintaxe JS no Node da imagem Redocly fixada passou;
+cópia temporária removida. Sem clique/navegador/pedido à API ou nova suíte.
+Entendimento da 7.59 confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
+confirmar/publicar: 7.60 — janela privativa/botão uma vez, status/CORS e presença/
+atributos de cookies sem valores; sem login.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -15069,8 +15090,61 @@ Git diff --check passou; seis links locais válidos, código PHP da aula igual
 ao arquivo, somente cinco arquivos previstos alterados, índice vazio.
 
 Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
-Publicação da 7.58: pendente; último checkpoint publicado 1425d8a (7.57).
-Próximo passo exato após confirmar/publicar: 7.59 — preparar página mínima de
-laboratório na origem 8001 para GET /sanctum/csrf-cookie com Fetch e credentials
-include, sem login. Verificação no navegador acompanhada nas etapas seguintes
-do módulo 7; módulos 8 a 23 não iniciados.
+Publicação da 7.58: concluída e conferida em 05/11/2026:
+35633036f506078470e9d2e4ca5c804f5d99cf26; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.59.
+
+
+## Etapa 7.59 — Página de laboratório para preparar o CSRF — 05/11/2026
+
+Iniciada após confirmação da 7.58 com "entendi" e publicação verificada em
+35633036f506078470e9d2e4ca5c804f5d99cf26. Implementação: criado
+src/laboratorio-sessao.html, único arquivo de aplicação alterado. HTML/JS sem
+dependências, entregue pelo serviço PHP existente em 8001; API em 8002.
+Sem interface da loja/React, formulário de login ou chamada automática.
+Aula 7.59, publicação anterior, roteiro/progresso e continuidade atualizados.
+
+Explicação apresentada: HTML idioma/charset/viewport/botão/parágrafo status.
+Script depois dos elementos, querySelector por id, const e addEventListener
+para clique. Callback async usa await para aguardar Response sem bloquear o
+navegador; disabled impede cliques repetidos durante a tentativa e textContent
+altera mensagem sem interpretar HTML. Fetch GET absoluto /sanctum/csrf-cookie,
+credentials include e Accept application/json. Padrão same-origin não cobre
+8001/8002; include permite envio/recebimento de cookies sob suas regras e CORS.
+Origin/Referer administrados pelo navegador; GET/Accept não exigem preflight
+por si só. Fontes primárias MDN/Fetch e Laravel/Sanctum consultadas.
+
+Código prevê 204 sem decodificar JSON, outro status HTTP mostrado como
+inesperado, catch para falha de rede/leitura CORS e finally para reabilitar
+botão. Fetch não rejeita apenas por status 4xx/5xx; conferência explícita.
+Sem exibir/registrar cookies, tokens, senhas, IDs ou erros brutos. Mostrar 204
+não comprova aceitação de cookies; presença/atributos serão observados à parte.
+
+Verificação de entrega: PHP no serviço php fez GET ao arquivo estático na
+porta interna 8000. Resposta 200/Content-Type text/html; charset=UTF-8,
+corpo igual ao arquivo montado em /app; botão e URL do endpoint presentes.
+Cinco controles passaram, código 0. Compose/serviços existentes conferidos:
+src montado ro e porta publicada em 8001, php/backend/sqlserver ativos.
+Nenhum novo serviço ou dependência instalado.
+
+Único script extraído como texto com Python para diretório próprio em /tmp.
+Node --check na imagem Redocly 2.65.0/digest já fixado passou, código 0.
+Docker --pull=never/--network none/montagem ro/entrypoint node; nenhuma rede,
+download ou execução do JS/DOM/Fetch. Arquivo e diretório temporários removidos.
+Uso do runtime da ferramenta de validação, sem ambiente Node da aplicação.
+
+Sem clique ou navegador, sem chamada à API, sessão iniciada ou SQL nesta etapa.
+Não houve nova suíte Laravel; última permanece 7.58: 107 testes/1.586 asserções.
+204, cookies e comportamento do navegador seguem como expectativas.
+Backend/configurações/bootstrap/rotas/controllers/testes/ambientes/dependências/
+serviços/Compose/OpenAPI preservados. Somente página e documentação alteradas.
+Git diff --check passou; cinco links locais válidos, IDs HTML únicos/esperados,
+um script próprio, cinco arquivos previstos alterados e índice vazio.
+
+Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
+Publicação da 7.59: pendente; último checkpoint publicado 3563303 (7.58).
+Próximo passo exato após confirmar/publicar: 7.60 — abrir laboratório em janela
+privativa em http://127.0.0.1:8001/laboratorio-sessao.html, executar botão uma vez
+e acompanhar status, cabeçalhos CORS e presença/atributos de cookies sem copiar
+valores; sem login. Verificação acompanhada no navegador pendente, módulos
+8 a 23 não iniciados.
