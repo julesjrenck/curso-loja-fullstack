@@ -228,7 +228,10 @@ retornou 401 JSON/sem Location, somente message string: focado 4/108, suíte
 JSON/sem identidade/marcador: focado 4/122, suíte 107/1.586. Na 7.52,
 [protocolo CSRF do logout](verificacao-csrf-logout.md) desenhado, fontes/configuração
 conferidas. Na 7.53, preparação 204/controles 419/419/204 observados por HTTP,
-CSRF ativo/sem SQL/sessões anteriores preservadas. Próxima 7.54: OpenAPI de logout.
+CSRF ativo/sem SQL/sessões anteriores preservadas. Na 7.54, em 05/11/2026,
+logout integrado ao OpenAPI, com corpo opcional/204/419; operação de login
+preservada integralmente. Redocly validou documento/casos controlados.
+Próxima 7.55: diagnosticar CORS efetivo.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

@@ -3,7 +3,7 @@
 Execução, explicação e verificações em 04/11/2026, após confirmação da 7.52
 com "entendi". Checkpoint anterior publicado e conferido em
 2d67af17863a580cb3686cffd0f580d002a722f0; HEAD/origin/main/main remota iguais.
-Entendimento da 7.53 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.53 confirmado com "entendi" em 05/11/2026.
 
 ## Objetivo e arquivos
 
@@ -90,7 +90,7 @@ vazio; backend/Compose/OpenAPI preservados.
 
 Protocolo executado, explicado e verificado; entendimento confirmado em 05/11/2026.
 Registros e contratos atualizados; backend/Compose/OpenAPI preservados.
-Publicação da 7.53 pendente. Próxima após confirmar/publicar: 7.54 — integrar
-POST /api/v1/logout ao OpenAPI, entrada sem corpo obrigatório, sessão/CSRF,
-respostas 204 sem content e 419 JSON, validando documento/esquemas/exemplos.
-Navegador/CORS seguem pendentes.
+Publicação da 7.53 concluída e conferida em 05/11/2026:
+5e89f0afead3d2df806e7b16f10cd8ef3ee9698f; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.54 —
+POST logout no OpenAPI. Navegador/CORS seguem pendentes.

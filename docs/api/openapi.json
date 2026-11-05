@@ -3,7 +3,7 @@
   "info": {
     "title": "API da loja",
     "version": "0.1.0",
-    "description": "Descrição em construção. Inclui catálogo público, login por sessão da interface própria e consulta do próprio usuário autenticado."
+    "description": "Descrição em construção. Inclui catálogo público, login e logout por sessão da interface própria e consulta do próprio usuário autenticado."
   },
   "servers": [
     {
@@ -144,6 +144,56 @@
                 },
                 "example": {
                   "message": "Muitas tentativas. Tente novamente em instantes."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/logout": {
+      "post": {
+        "summary": "Encerrar a autenticação da sessão atual",
+        "operationId": "encerrarSessao",
+        "description": "Operação da interface própria com guard web/sessão. Atende autenticados e visitantes; não exige identidade autenticada previamente. Origin ou Referer reconhecido pelo Sanctum e cookies atuais mantêm o fluxo de sessão/CSRF. A preparação pode usar GET /sanctum/csrf-cookie. Na comparação por token, X-XSRF-TOKEN recebe o valor URL-decodificado de XSRF-TOKEN da mesma sessão; Sec-Fetch-Site same-origin pode permitir antes dessa comparação no Laravel 13. Security vazio não dispensa essas condições. Não há corpo obrigatório nem campos suportados para selecionar usuário; um objeto JSON vazio é permitido e campos adicionais são ignorados. Encerra a autenticação atual, invalida os dados anteriores e renova ID/token CSRF, mantendo sessão visitante. Não aplica o limitador de login, não oferece logout de todos os dispositivos nem revogação de tokens de API. Após sucesso, GET /api/v1/usuario somente com os cookies resultantes e sem outra autenticação válida retorna 401. Exemplos ilustrativos; ver docs/api/logout.md e docs/api/verificacao-csrf-logout.md no repositório.",
+        "security": [],
+        "parameters": [
+          {
+            "name": "X-XSRF-TOKEN",
+            "in": "header",
+            "required": false,
+            "description": "Na comparação CSRF por token, recebe o valor URL-decodificado do cookie XSRF-TOKEN. Condicional ao caminho de proteção: Sec-Fetch-Site same-origin pode permitir o pedido sem essa comparação. Origin/Referer reconhecido e cookies de sessão continuam necessários ao fluxo da interface própria. Nenhum valor real é fornecido como exemplo.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Corpo opcional. O objeto JSON vazio é permitido; nenhum campo é usado pelo controller para escolher identidade ou alterar opções de logout. Campos extras são ignorados. Requisição sem corpo também é aceita.",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "example": {}
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Logout concluído ou visitante já sem identidade. Corpo vazio, sem JSON ou redirecionamento. Invalida a sessão anterior, gera outro ID/token CSRF e emite cookies da sessão visitante. A consulta protegida GET /api/v1/usuario passa a responder 401 quando feita somente com esses cookies e sem outra autenticação válida."
+          },
+          "419": {
+            "description": "Recusa CSRF antes de executar o controller. JSON com message string, sem redirecionamento. Verificada por HTTP fora de testing com sessão visitante, Sec-Fetch-Site ausente e X-XSRF-TOKEN ausente ou inválido; os controles preservaram ID/token da sessão original. Essa resposta não confirma execução de logout.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErroCsrf"
+                },
+                "example": {
+                  "message": "CSRF token mismatch."
                 }
               }
             }

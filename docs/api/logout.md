@@ -11,7 +11,7 @@ O [login](login.md) estabelece a identidade; esta operação encerrará a
 autenticação da sessão atual. A [consulta do usuário](autenticacao.md)
 permitirá verificar o estado após sair.
 
-## Requisição planejada
+## Requisição
 
 - Método e caminho: POST /api/v1/logout.
 - URL local: http://127.0.0.1:8002/api/v1/logout.
@@ -179,8 +179,12 @@ Na 7.53, protocolo executado: preparação 204 e POSTs sem header/inválido/corr
 419/419/204, fora de testing/CSRF ativo. A/B preservaram ID/token; C renovou ambos,
 destruiu registro inicial e manteve visitante, com cookies atualizados. Zero SQL
 nos pedidos; servidor encerrado/uma sessão própria restante e auxiliares removidos,
-54 arquivos anteriores preservados. Código 0, sem nova suíte. Próxima 7.54:
-incluir POST logout no OpenAPI com entrada sem corpo obrigatório e respostas 204/419.
+54 arquivos anteriores preservados. Código 0, sem nova suíte. Na 7.54, em
+05/11/2026, POST logout incluído no OpenAPI: requestBody opcional/objeto JSON,
+security vazio/condições de sessão e CSRF descritas, respostas 204 sem content
+e 419 com ErroCsrf existente. Campos extras no corpo são ignorados. Redocly
+validou documento; duas cópias inválidas rejeitadas e duas permitidas aceitas.
+Nenhuma API executada nessa validação. Próxima 7.55: diagnosticar CORS efetivo.
 
 Referências: [logout e invalidação de sessão no Laravel](https://laravel.com/docs/13.x/authentication#logging-out),
 [sessão da interface própria com Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication)

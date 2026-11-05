@@ -5,9 +5,25 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.53 — Verificação de CSRF do logout por HTTP:
-  execução, explicação e verificações apresentadas; entendimento
+- Etapa atual: 7.54 — Logout no OpenAPI:
+  implementação documental, explicação e verificações apresentadas; entendimento
   confirmado com "entendi" em 05/11/2026, publicação pendente.
+- Situação da 7.54: POST /api/v1/logout incluído em docs/api/openapi.json,
+  operação encerrarSessao. RequestBody required false/objeto JSON/exemplo {},
+  extras permitidos e ignorados pelo controller; não são seletores de identidade.
+  Security [] admite visitante; sessão/cookies/CSRF descritos, X-XSRF-TOKEN
+  condicional string. Respostas somente 204 sem content e 419 JSON/ErroCsrf
+  existente, message string obrigatório/diagnósticos extras permitidos.
+  Descrição geral atualizada; demais operações/componentes/versões/servidores
+  preservados integralmente. Redocly fixado no Docker validou sem avisos.
+  Duas cópias inválidas (419 sem message/message numérico) rejeitadas, códigos 1;
+  duas permitidas (diagnóstico extra/corpo com id/email fictícios) aceitas,
+  códigos 0. Motivos conferidos/cópias removidas. Comparação estrutural passou.
+  Sem HTTP/SQL/nova suíte; última 7.51, 107 testes/1.586 asserções. Aplicação/
+  rotas/testes/bootstrap/ambientes/dependências/Compose preservados.
+  Próximo após confirmar/publicar: 7.55 — diagnosticar CORS efetivo do Laravel e
+  explicar Origin/credenciais/preflight, sem alterar configuração. Tema previsto
+  no módulo 7; navegador/CORS permanecem pendentes.
 - Situação da 7.53: diagnóstico temporário PHP/Guzzle no Docker executou
   preparação 204 e POST logout sem header/inválido/correto 419/419/204. Ambiente
   local/console false/testing false/CSRF ativo/coleta [0,100] só no servidor
@@ -21,9 +37,10 @@
   Leitura final em novo processo: local/file/coleta habitual [2,100], 54 sessões,
   auxiliares ausentes. Sem nova suíte/consulta SQL/auditoria/snapshot; última
   7.51, 107 testes/1.586 asserções. Backend/Compose/OpenAPI preservados.
-  Próximo após confirmar/publicar: 7.54 — integrar POST logout ao OpenAPI, entrada
-  sem corpo obrigatório, sessão/CSRF, respostas 204 sem content/419 JSON e validar
-  documento/esquemas/exemplos. Navegador/CORS continuam pendentes.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada em
+  5e89f0afead3d2df806e7b16f10cd8ef3ee9698f, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.54.
+  Navegador/CORS continuam pendentes.
 - Situação da 7.52: docs/api/verificacao-csrf-logout.md criado, sem execução HTTP.
   Guzzle/servidor PHP temporário no Docker/local, visitante/cookies em memória,
   Host/Origin 8002 e somente X-XSRF-TOKEN variando. Sec-Fetch-Site/_token/
@@ -39,7 +56,7 @@
   última 7.51, 107 testes/1.586 asserções. Aplicação/rotas/testes/bootstrap/Compose/
   OpenAPI preservados. Entendimento confirmado com "entendi" em 04/11/2026;
   publicação verificada em 2d67af17863a580cb3686cffd0f580d002a722f0,
-  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  HEAD/origin/main/main remota iguais. Checkpoint anterior à 7.53.
   Continuidade realizada na 7.53. Navegador/CORS e OpenAPI de logout pendentes.
 - Situação da 7.51: somente cenário autenticado de LogoutApiTest ampliado e
   renomeado para mencionar cookies novo/antigo. Registro antigo exigido ausente
@@ -2098,7 +2115,11 @@ Continuidade realizada na 7.53 — HTTP local/CSRF ativo 204/419/419/204, A/B
 preservaram sessão, C renovou ID/token/manteve visitante. Zero SQL nos pedidos;
 servidor/sessão própria restante/auxiliares removidos, 54 anteriores preservadas,
 configuração habitual intacta. Código 0, sem nova suíte. Entendimento confirmado
-com "entendi" em 05/11/2026; publicação pendente antes da 7.54 — POST logout no OpenAPI.
+com "entendi" em 05/11/2026; publicação em 5e89f0a. Continuidade realizada na 7.54 —
+POST logout no OpenAPI, corpo opcional/security vazio/204 sem content/419 com
+ErroCsrf existente. Redocly e quatro casos controlados conferidos/cópias removidas,
+demais operações/componentes preservados. Sem HTTP/SQL/nova suíte. Entendimento
+confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.55 — diagnóstico CORS efetivo.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -14699,8 +14720,63 @@ consulta seis, protocolo de login quatro, protocolo de logout três, aulas
 vazio; backend/Compose/OpenAPI preservados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
-Publicação da 7.53: pendente; registros locais. Último checkpoint publicado:
-2d67af17863a580cb3686cffd0f580d002a722f0 (7.52).
-Próximo passo exato após confirmar/publicar: 7.54 — integrar POST /api/v1/logout
-ao OpenAPI, entrada sem corpo obrigatório, sessão/CSRF, respostas 204 sem content
-e 419 JSON, validando documento/esquemas/exemplos. Navegador/CORS pendentes.
+Publicação da 7.53: concluída e conferida em 05/11/2026:
+5e89f0afead3d2df806e7b16f10cd8ef3ee9698f; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.54.
+Navegador/CORS pendentes.
+
+
+## Etapa 7.54 — Logout no OpenAPI — 05/11/2026
+
+Iniciada após confirmação da 7.53 com "entendi" em 05/11/2026 e publicação
+verificada. Execução HTTP da 7.53 permanece registrada em 04/11/2026.
+Implementação documental: docs/api/openapi.json ganhou POST /api/v1/logout,
+operação encerrarSessao e atualização da descrição geral. Aula 7.54/contratos/
+protocolo/roteiro/progresso e publicação anterior atualizados. Aplicação/rotas/
+controller/testes/bootstrap/ambientes/dependências/serviços/migrations/Compose
+preservados.
+
+Explicação apresentada: requestBody required false permite ausência de corpo;
+quando houver JSON, schema inline object/additionalProperties true e exemplo {}.
+Nenhum campo suportado para escolher identidade/opções; extras ignorados pelo
+controller. Security [] permite visitante sem autenticação prévia, mantendo
+condições de sessão/cookies/Origin ou Referer reconhecido/CSRF nas descrições.
+X-XSRF-TOKEN string/required false/valor URL-decodificado, condicional ao ramo
+de token; Sec-Fetch-Site same-origin pode permitir antes da comparação.
+SessaoCookie e segurança da consulta GET usuario preservados.
+
+Respostas somente 204 e 419: 204 sem content/corpo vazio/sem redirecionamento,
+invalidação/renovação e cookies de visitante. Consulta posterior só com cookies,
+sem outra autenticação válida, retorna 401; não colocamos 401 no logout.
+419 reutiliza ErroCsrf por $ref, message string exigido e campos adicionais
+permitidos. Exemplo ilustrativo, texto/idioma variáveis. Descrição registra
+controle visitante fora de testing e preservação da sessão nas recusas.
+Nenhum schema ou operação anterior alterado.
+
+Verificação: Redocly 2.65.0/digest já fixado, Docker --pull=never/--network none/
+montagem somente leitura/configuração existente. Documento completo passou,
+código 0/sem avisos. Quatro cópias completas alteraram só exemplos da operação:
+419 sem message e com message numérico rejeitadas, código 1/
+no-invalid-media-type-examples/motivos esperados; diagnóstico fictício extra no
+419 e id/email fictícios extras no corpo aceitos, códigos 0. Cópias/configuração
+temporárias removidas. Comparação estruturada com HEAD confirmou caminhos
+anteriores/componentes/versões/servidores iguais, sem security global, logout
+com security vazio/corpo opcional/204 sem content/419 compartilhado. Fontes
+primárias OpenAPI 3.2.1 consultadas para requestBody/security/respostas.
+
+Validação de exemplos verifica o documento, sem executar API ou simular
+requisição sem corpo. Essa condição é descrita pelo required false e já tem
+verificação funcional anterior. Sem SQL, HTTP ou nova suíte Laravel; última
+7.51, 107 testes/1.586 asserções. Nenhuma dependência instalada/atualizada,
+serviço criado, auditoria ou snapshot repetido.
+
+Git diff --check passou. Links locais válidos: logout quatro, login cinco,
+consulta seis, protocolo de logout três, aulas 7.53/7.54 dois cada. Escopo
+conferido: somente documentação/OpenAPI; índice vazio. Backend/Compose preservados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
+Publicação da 7.54: pendente; registros locais. Último checkpoint publicado:
+5e89f0afead3d2df806e7b16f10cd8ef3ee9698f (7.53).
+Próximo passo exato após confirmar/publicar: 7.55 — diagnosticar configuração
+efetiva de CORS do Laravel e explicar Origin/credenciais/preflight, sem alterar
+configuração. Tema previsto no módulo 7; navegador/CORS continuam pendentes.

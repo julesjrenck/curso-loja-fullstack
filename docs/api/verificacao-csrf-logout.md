@@ -117,9 +117,11 @@ coleta habitual [2,100] e auxiliares ausentes. Código 0/sucesso true. Detalhes
 no [registro da 7.53](../aulas/07-53-verificacao-csrf-logout-http.md).
 Sem nova suíte/consulta SQL/auditoria/snapshot; última 7.51, 107 testes/1.586
 asserções. Não verifica navegador/CORS; nenhum valor privado impresso/versionado.
-Entendimento da 7.53 confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próxima 7.54 após confirmar/publicar: integrar POST logout ao OpenAPI, entrada
-sem corpo obrigatório/respostas 204 e 419, validando documento/esquemas/exemplos.
+Entendimento da 7.53 confirmado com "entendi" em 05/11/2026; publicação verificada
+em 5e89f0afead3d2df806e7b16f10cd8ef3ee9698f. Na 7.54, em 05/11/2026, logout
+integrado ao OpenAPI, corpo opcional e respostas 204 sem content/419 com ErroCsrf.
+Redocly validou documento e casos controlados, sem repetir HTTP. Próxima 7.55:
+diagnosticar CORS efetivo antes de alterar configuração. Navegador pendente.
 
 Referências: [CSRF e verificação de origem](https://laravel.com/docs/13.x/csrf#origin-verification),
 [cookies e cabeçalho CSRF no Sanctum](https://laravel.com/docs/13.x/sanctum#authenticating)
