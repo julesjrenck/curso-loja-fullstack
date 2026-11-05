@@ -5,9 +5,25 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.81 — Administração no OpenAPI:
-  implementação documental, explicação e verificações apresentadas em
-  05/11/2026; entendimento confirmado com "entendi"; publicação pendente.
+- Etapa atual: 7.82 — Consulta administrativa no laboratório:
+  implementação, explicação e verificações apresentadas em 05/11/2026;
+  entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+  Execução real no navegador pendente.
+- Situação da 7.82: somente src/laboratorio-sessao.html alterado na aplicação.
+  Novo botão Consultar administração/resultado role status, disabled até
+  preparação 204; listener GET API 8002/credentials include/Accept JSON,
+  status 200/401/403/outros/catch/finally, sem ler corpo ou valores privados.
+  Node --check passou; seis cenários DOM/Fetch simulados passaram (200/401/
+  403/500/rede/preparação não 204), código 0. HTTP estático 200/corpo igual/
+  botão disabled/role status conferidos (quatro controles), código 0.
+  Código anterior preservado por comparação; 13 IDs únicos/labels válidos;
+  auxiliares próprios removidos. Sem navegador/API real/SQL/login/promoção.
+  Última suíte permanece 7.80, 116 testes/1.653 asserções, não repetida.
+  Aula docs/aulas/07-82-consulta-administracao-laboratorio.md criada.
+  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
+  7.83 — navegador, preparar/administração visitante 401/login laboratório/
+  usuário 200/administração cliente 403/logout/administração 401. Observar
+  mensagens/CORS/cookies sem valores privados e sem promover contas.
 - Situação da 7.81: incluída GET /api/v1/administracao, operationId
   consultarAdministracao, em docs/api/openapi.json, com SessaoCookie e Gate;
   200 objeto data/mensagem fixa com const, 401/403 somente message string,
@@ -19,9 +35,9 @@
   message numérico); auxiliares próprios removidos. Somente documentação,
   sem API/SQL/PHP/nova suíte; última 7.80, 116 testes/1.653 asserções.
   Aula docs/aulas/07-81-openapi-administracao.md criada.
-  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-  7.82 — adicionar Consultar administração ao laboratório, GET/credentials
-  include e tratamento 200/401/403, sem criar ou promover contas.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  d5f1140887ece72392ae57e0e1b8fd7f7f0aed71, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.82.
 - Situação da 7.80: criado somente AdministracaoApiTest.php na aplicação.
   GetJson atravessa rota/middlewares reais; actingAs/web prepara cliente/admin
   em memória. Visitante 401; cliente 403 com debug true/false por DataProvider;
@@ -33,7 +49,7 @@
   docs/aulas/07-80-testes-http-administracao.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   22982d0fd516d2418c9f32c66932422278623fbd, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.81.
+  Checkpoint anterior à 7.81. Continuidade iniciada na 7.81.
 - Situação da 7.79: routes/api.php registra GET /administracao para
   AdministracaoController::show com auth:sanctum/can:acessar-administracao.
   Kernel confirmou 401/403/200 com usuários em memória; diagnóstico revelou
@@ -2683,8 +2699,12 @@ da 7.80 confirmado com "entendi" em 05/11/2026; publicação em 22982d0,
 remoto conferido. Na 7.81, operação administrativa/SessaoCookie/200/401/403
 incluída no OpenAPI. Redocly válido; cinco cópias inválidas rejeitadas;
 comparação estruturada passou, auxiliares removidos. Entendimento da 7.81
-confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
-publicar: 7.82 — Consultar administração no laboratório, sem promover contas.
+confirmado com "entendi" em 05/11/2026; publicação em d5f1140, remoto conferido.
+Na 7.82, botão administrativo GET/cookies/status 200/401/403 no laboratório;
+sintaxe/seis cenários simulados e HTML/quatro controles passaram. Auxiliares
+removidos; sem API real/SQL/conta promovida. Entendimento da 7.82 confirmado
+com "entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
+7.83 — navegador, visitante 401/cliente 403/logout e consulta 401.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -16771,7 +16791,66 @@ testes, ambientes, Redocly config e Compose preservados.
 
 Entendimento: confirmado com "entendi" em 05/11/2026 sobre validar
 documento/exemplos e testar o comportamento HTTP serem verificações distintas.
-Publicação da 7.81: pendente; último checkpoint publicado 22982d0 (7.80).
-Próximo passo exato após publicar: 7.82 — adicionar botão
-Consultar administração no laboratório, GET/credentials include e tratamento
-200/401/403, sem criar ou promover contas. Módulos 8 a 23 não iniciados.
+Publicação da 7.81: concluída e conferida em 05/11/2026:
+d5f1140887ece72392ae57e0e1b8fd7f7f0aed71; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.82.
+Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.82 — Consulta administrativa no laboratório — 05/11/2026
+
+Iniciada após confirmação da 7.81 com "entendi" e publicação conferida em
+d5f1140887ece72392ae57e0e1b8fd7f7f0aed71. Git add de seis documentos, commit e push
+explicados antes de executar; remoto verificado.
+
+Implementação: somente src/laboratorio-sessao.html alterado na aplicação.
+Botão consultar-administracao/type button/disabled, resultado próprio com
+role status; duas referências querySelector e liberação no preparo 204.
+Listener click async desabilita botão, mostra consulta, GET absoluto à API
+8002/api/v1/administracao com credentials include/Accept JSON, sem corpo.
+Status 200 permitido, 401 sem autenticação, 403 sem permissão, outros
+inesperados; catch genérico e finally reabilita. Corpo não lido/exibido.
+Aula 07-82-consulta-administracao-laboratorio.md criada; contrato,
+continuidade anterior/roteiro/progresso atualizados.
+
+Explicação: include permite cookies conforme navegador, não cria login
+ou privilégio. GET consulta decisão do backend. Estado disabled organiza
+sequência do laboratório e não substitui middleware. 403 legível é recusa
+de permissão; falha de rede/leitura não recebe status inventado.
+Nenhuma conta criada/promovida ou senha/valor privado acrescentado à página.
+Controles e fluxo anteriores preservados.
+
+Verificação: script real/atributos extraídos como texto para /tmp próprio.
+Node --check na imagem Redocly 2.65.0/digest já fixado passou, código 0.
+Vm.Script com DOM mínimo/Fetch simulado: seis cenários passaram (200,401,
+403,500,rede,preparação 500). Conferiram estado inicial/liberação após 204,
+mensagem pronta, botão bloqueado durante Promise, URL/método/credentials/
+Accept exatos, nenhuma leitura do corpo, mensagens corretas/finally e
+preparação sem 204 mantendo novo botão bloqueado. Código 0, sem rede.
+Docker pull never/network none/montagem ro; nenhuma instalação.
+
+GET somente do HTML pelo PHP do serviço php em 8000 interno: HTTP 200,
+corpo igual, botão disabled e resultado role status; quatro controles
+passaram, código 0. Não chamou API ou criou sessão. Comparação com HEAD,
+retirando somente novos trechos, confirmou código anterior intacto.
+Treze IDs únicos/labels associados/um script; três auxiliares e diretório
+próprios removidos. Fonte primária MDN Request.credentials consultada.
+
+Não houve navegador controlado, cookies reais, CORS observado, API, SQL,
+login ou autorização real da sessão do aluno nesta aula. Simulação não
+reproduz DOM completo/cookie jar; exercício de navegador pertence à 7.83.
+Sem nova suíte Laravel; última 7.80, 116 testes/1.653 asserções. Backend,
+rotas/Gate, OpenAPI, ambientes, dependências e Compose preservados.
+
+Git diff --check passou; 13 links locais válidos nos cinco documentos.
+Somente HTML e cinco documentos previstos alterados, índice vazio; auxiliares
+ausentes e backend/OpenAPI/ambientes/Compose preservados.
+
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre o botão
+consultar a decisão do servidor e diferenciar 401 de 403.
+Publicação da 7.82: pendente; último checkpoint publicado d5f1140 (7.81).
+Próximo passo exato após publicar: 7.83 — Chrome/Edge,
+preparar CSRF/consultar administração visitante (401 esperado), login da
+conta de laboratório/consultar usuário (200)/administração (403), logout/
+administração (401). Receber mensagens/status e observações CORS/cookies
+sem copiar valores privados ou promover contas. Módulos 8 a 23 não iniciados.

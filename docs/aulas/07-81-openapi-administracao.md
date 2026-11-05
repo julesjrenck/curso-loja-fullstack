@@ -4,7 +4,9 @@ Implementação documental, explicação e verificações em 05/11/2026, após
 confirmação da [7.80](07-80-testes-http-administracao.md) com "entendi".
 Checkpoint anterior publicado e conferido em
 22982d0fd516d2418c9f32c66932422278623fbd; HEAD/origin/main/main remota iguais.
-Entendimento da 7.81 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.81 confirmado com "entendi" em 05/11/2026; publicação
+conferida em d5f1140887ece72392ae57e0e1b8fd7f7f0aed71, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação.
 
 ## Objetivo e arquivo
 
@@ -110,8 +112,8 @@ ambientes, dependências, Compose e configuração Redocly preservados.
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-7.82 — adicionar Consultar
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.82](07-82-consulta-administracao-laboratorio.md): adicionar Consultar
 administração ao laboratório de sessão, com GET/credentials include e
 tratamento de 200/401/403, sem criar ou promover contas.
 Módulos 8 a 23 não iniciados.

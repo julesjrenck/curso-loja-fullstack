@@ -28,6 +28,10 @@
     <button id="consultar-usuario" type="button" disabled>Consultar usuário</button>
     <p id="resultado-usuario" role="status">Aguardando a preparação.</p>
 
+    <p>Consulte também a permissão de acesso à administração.</p>
+    <button id="consultar-administracao" type="button" disabled>Consultar administração</button>
+    <p id="resultado-administracao" role="status">Aguardando a preparação.</p>
+
     <p>O logout também pode encerrar uma sessão visitante.</p>
     <button id="encerrar-sessao" type="button" disabled>Encerrar sessão</button>
     <p id="resultado-logout" role="status">Aguardando a preparação.</p>
@@ -42,6 +46,8 @@
         const resultadoLogin = document.querySelector('#resultado-login');
         const botaoUsuario = document.querySelector('#consultar-usuario');
         const resultadoUsuario = document.querySelector('#resultado-usuario');
+        const botaoAdministracao = document.querySelector('#consultar-administracao');
+        const resultadoAdministracao = document.querySelector('#resultado-administracao');
         const botaoLogout = document.querySelector('#encerrar-sessao');
         const resultadoLogout = document.querySelector('#resultado-logout');
 
@@ -71,6 +77,8 @@
                     resultadoLogin.textContent = 'Pronto para entrar.';
                     botaoUsuario.disabled = false;
                     resultadoUsuario.textContent = 'Pronto para consultar.';
+                    botaoAdministracao.disabled = false;
+                    resultadoAdministracao.textContent = 'Pronto para consultar a administração.';
                     botaoLogout.disabled = false;
                     resultadoLogout.textContent = 'Pronto para encerrar.';
                 } else {
@@ -151,6 +159,33 @@
                 resultadoUsuario.textContent = 'Não foi possível ler a resposta da API. Confira a rede e o console do navegador.';
             } finally {
                 botaoUsuario.disabled = false;
+            }
+        });
+
+        botaoAdministracao.addEventListener('click', async () => {
+            botaoAdministracao.disabled = true;
+            resultadoAdministracao.textContent = 'Consultando a administração...';
+
+            try {
+                const resposta = await fetch('http://127.0.0.1:8002/api/v1/administracao', {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: { Accept: 'application/json' },
+                });
+
+                if (resposta.status === 200) {
+                    resultadoAdministracao.textContent = 'Resposta recebida: HTTP 200 (acesso administrativo permitido).';
+                } else if (resposta.status === 401) {
+                    resultadoAdministracao.textContent = 'Resposta recebida: HTTP 401 (sem autenticação).';
+                } else if (resposta.status === 403) {
+                    resultadoAdministracao.textContent = 'Resposta recebida: HTTP 403 (sem permissão administrativa).';
+                } else {
+                    resultadoAdministracao.textContent = `Resposta inesperada: HTTP ${resposta.status}.`;
+                }
+            } catch {
+                resultadoAdministracao.textContent = 'Não foi possível consultar a administração. Confira a rede no navegador.';
+            } finally {
+                botaoAdministracao.disabled = false;
             }
         });
 

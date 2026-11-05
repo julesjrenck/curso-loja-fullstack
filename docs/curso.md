@@ -442,8 +442,12 @@ confirmado com "entendi" em 05/11/2026; publicação em 22982d0, remoto conferid
 Na 7.81, operação administrativa/SessaoCookie/200/401/403 no OpenAPI:
 Redocly válido, cinco cópias inválidas rejeitadas, comparação estruturada
 passou e auxiliares removidos. Somente documentação; entendimento confirmado
-com "entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
-7.82 — Consultar administração no laboratório, sem promover contas.
+com "entendi" em 05/11/2026; publicação em d5f1140, remoto conferido. Na 7.82,
+botão Consultar administração/GET/cookies/status 200/401/403 acrescentado ao
+laboratório. Sintaxe/seis cenários simulados e HTML/quatro controles passaram;
+fluxo anterior preservado, auxiliares removidos. Entendimento confirmado com
+"entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
+7.83 — navegador, visitante 401/cliente 403/logout e consulta 401.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1310,9 +1314,12 @@ com "entendi" em 05/11/2026; publicação em fb95185. Na 7.80, testes HTTP
 sem conta persistida/SQL nos novos casos. Entendimento confirmado com "entendi"
 em 05/11/2026; publicação em 22982d0. Na 7.81, administração integrada ao
 OpenAPI/cookie/200/401/403: lint válido/cinco cópias inválidas rejeitadas,
-comparação estruturada e limpeza passaram. Somente documentação; entendimento
-confirmado com "entendi" em 05/11/2026; publicação pendente antes da
-7.82 — botão de consulta administrativa no laboratório.
+comparação estruturada e limpeza passaram. Entendimento confirmado com
+"entendi" em 05/11/2026; publicação em d5f1140. Na 7.82, botão administrativo
+no laboratório/GET/cookies/status: sintaxe/seis cenários simulados e HTML/
+quatro controles passaram. Sem API real/SQL/promoção; entendimento confirmado
+com "entendi" em 05/11/2026; publicação pendente antes da 7.83 — navegador,
+visitante 401/cliente 403/logout e consulta 401.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

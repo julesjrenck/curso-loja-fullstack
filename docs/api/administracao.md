@@ -10,8 +10,11 @@ automatizou os resultados com getJson/actingAs e cliente com debug true/false:
 quatro testes/35 asserções passaram; suíte atual 116 testes/1.653 asserções.
 Na 7.81, operação integrada ao [OpenAPI](openapi.json), com cookie de sessão,
 respostas 200/401/403, schemas e exemplos validados pelo Redocly fixado.
-Transporte de sessão pelo navegador e login administrativo com conta
-persistida não foram verificados.
+Na 7.82, o [laboratório](../../src/laboratorio-sessao.html) ganhou Consultar
+administração, com GET/cookies e mensagens locais 200/401/403. Sintaxe,
+simulação e entrega do HTML verificadas; execução real desse botão pendente.
+Transporte de sessão nessa consulta pelo navegador e login administrativo com
+conta persistida não foram verificados.
 
 ## Consultar a entrada da administração
 
@@ -114,5 +117,7 @@ ligado/desligado por DataProvider. Focado: 4 testes/35 asserções; suíte atual
 Não houve login administrativo real, promoção ou uso de conta persistida.
 Na 7.81, OpenAPI atualizado/validado, incluindo cinco rejeições deliberadas
 de exemplos inválidos em cópias próprias, removidas depois. Isso verifica
-a descrição, sem executar a API. Próxima etapa: adicionar consulta de
-administração ao laboratório, sem criar ou promover contas.
+a descrição, sem executar a API. Na 7.82, botão de consulta acrescentado ao
+laboratório e verificado com DOM/Fetch simulados; nenhuma conta promovida.
+Próxima etapa: acompanhar visitante/cliente/logout no navegador, sem copiar
+valores privados de sessão ou credenciais.
