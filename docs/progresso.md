@@ -5,9 +5,23 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.77 — Contrato da consulta administrativa:
-  desenho apresentado; entendimento confirmado com "entendi" em
-  05/11/2026; publicação pendente.
+- Etapa atual: 7.78 — Controller da consulta administrativa:
+  implementação, explicação e verificações apresentadas em 05/11/2026;
+  entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+  Ainda sem rota.
+- Situação da 7.78: criado somente AdministracaoController.php na aplicação,
+  namespace Api/V1, extends Controller, show(): JsonResponse com
+  response()->json/data/mensagem fixa do contrato. PHP -l passou.
+  Chamada direta via container Laravel/testing com SQL bloqueado:
+  sete controles passaram (classe/status 200/Content-Type JSON/corpo exato/
+  sem Location/zero SQL/PDO não aberto), código 0. Não percorre middlewares,
+  sem autenticação ou Gate avaliados nessa chamada. Contrato atualizado
+  distingue controller criado de rota/proteção HTTP pendentes. Sem API/SQL
+  real/nova suíte; última 7.76, 112 testes/1.618 asserções. Aula
+  docs/aulas/07-78-controller-administracao.md criada.
+  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
+  7.79 — registrar GET /api/v1/administracao com auth:sanctum/can e verificar
+  pelo kernel HTTP 401/403/200 com usuários em memória.
 - Situação da 7.77: somente documentação alterada. Criado
   docs/api/administracao.md: GET /api/v1/administracao, sessão/cookies,
   auth:sanctum antes de can:acessar-administracao, sem corpo/parâmetros.
@@ -17,9 +31,9 @@
   Rota/controller/OpenAPI ainda sem esta operação; status são desenho,
   não observação HTTP. Sem PHP/API/SQL/nova suíte; última 7.76, 112/1.618.
   Aula docs/aulas/07-77-contrato-consulta-administracao.md criada.
-  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-  7.78 — criar somente AdministracaoController::show com JSON 200 do contrato
-  e verificar chamada direta em memória, ainda sem rota.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  fb1147977c033aefaf3e7173d446f7be4450a5af, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.78.
 - Situação da 7.76: criado somente
   backend/tests/Feature/AdministracaoGateTest.php na aplicação. Quatro cenários
   com Gate real/forUser/allows: cliente false, administrador true, visitante
@@ -32,7 +46,7 @@
   docs/aulas/07-76-testes-gate-administracao.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   077cc6270931f3d069611cc1978608865beaf144, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.77.
+  Checkpoint anterior à 7.77. Continuidade iniciada na 7.77.
 - Situação da 7.75: somente AppServiceProvider alterado na aplicação.
   Imports User/Gate e Gate::define acessar-administracao no boot, callback
   User/bool com is_admin === true. Binding Catalogo e limitador login mantidos.
@@ -2613,9 +2627,12 @@ Na 7.76, quatro testes permanentes do Gate com Laravel real/SQL bloqueado:
 focado 4/12 e suíte atual 112/1.618 passaram. Entendimento da 7.76 confirmado
 com "entendi" em 05/11/2026; publicação em 077cc62, remoto conferido.
 Na 7.77, contrato GET /api/v1/administracao, auth:sanctum e can:acessar-administracao e 200 data.mensagem/401/403 somente message. Só documentação;
-sem operação implementada/OpenAPI/HTTP. Entendimento da 7.77 confirmado com
-"entendi" em 05/11/2026; publicação pendente. Próxima após publicar: 7.78 —
-AdministracaoController::show com JSON 200, verificação direta, sem rota.
+sem operação implementada/OpenAPI/HTTP na 7.77. Entendimento confirmado com
+"entendi" em 05/11/2026; publicação em fb11479, remoto conferido. Na 7.78,
+AdministracaoController::show/JSON 200 criado e verificado diretamente:
+sintaxe/sete controles passaram sem SQL/PDO. Sem rota; entendimento da 7.78
+confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
+publicar: 7.79 — rota auth:sanctum/can e 401/403/200 pelo kernel em memória.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -16475,8 +16492,58 @@ Validação documental não verifica contrato por HTTP ou execução da rota.
 
 Entendimento: confirmado com "entendi" em 05/11/2026 sobre visitante
 receber 401 e cliente autenticado sem permissão receber 403 no contrato planejado.
-Publicação da 7.77: pendente; último checkpoint publicado 077cc62 (7.76).
-Próximo passo exato após publicar: 7.78 — criar somente
-AdministracaoController::show com resposta JSON 200 do contrato, verificar
-chamada direta em memória, ainda sem registrar rota.
+Publicação da 7.77: concluída e conferida em 05/11/2026:
+fb1147977c033aefaf3e7173d446f7be4450a5af; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.78.
+Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.78 — Controller da consulta administrativa — 05/11/2026
+
+Iniciada após confirmação da 7.77 com "entendi" e publicação conferida em
+fb1147977c033aefaf3e7173d446f7be4450a5af. Git add de cinco documentos, commit e push
+explicados antes de executar; remoto verificado.
+
+Implementação: único arquivo de aplicação criado,
+backend/app/Http/Controllers/Api/V1/AdministracaoController.php.
+Namespace Api/V1, imports Controller/JsonResponse, classe extends Controller,
+método público show sem parâmetros/retorno JsonResponse.
+Response()->json recebe array data/mensagem fixa "Bem-vindo à administração
+da loja.". Contrato docs/api/administracao.md atualizado para informar
+controller criado/rota pendente. Aula 07-78-controller-administracao.md criada;
+aula anterior/roteiro/progresso atualizados.
+
+Explicação: namespace acompanha diretório, imports nomeiam classe-base/tipo.
+Array associativo representa envelope/objeto interno. Helper constrói JSON
+com Content-Type apropriado e status padrão 200. Mensagem fixa não exige
+entrada ou serialização de User. Container make resolve controller; chamada
+direta de show não atravessa autenticação/Gate nem produz requisição de rede.
+A futura rota exigirá auth:sanctum e can:acessar-administracao.
+
+Verificação: php -l no Docker passou, código 0. Diagnóstico Laravel/testing
+sem cache, sqlsrv/loja_test configurados, bloqueio beforeExecuting. Resolveu
+controller pelo container e chamou show diretamente. Sete controles passaram:
+classe JsonResponse; status 200; Content-Type application/json; JSON
+decodificado igual ao contrato; sem Location; zero tentativas SQL; PDO não
+aberto. Código 0, saída só booleanos. Nenhum auxiliar persistido, senha/hash/
+dados privados ou usuário utilizado na chamada. Fonte primária Laravel 13
+responses/json-responses consultada.
+
+Sem requisição HTTP, rota, migração ou promoção. Gate, User, rotas, testes,
+OpenAPI, ambientes, dependências e Compose preservados. A classe isolada
+ainda não altera o pipeline existente; verificação focada realizada, sem
+teste permanente novo ou repetição da suíte. Última suíte é a da 7.76:
+112 testes/1.618 asserções, não um resultado novo.
+Respostas 401/403 e proteção HTTP continuam pendentes.
+
+Git diff --check passou; 10 links locais válidos nos cinco documentos.
+Somente novo controller e cinco documentos previstos alterados, índice vazio.
+Rota administrativa ainda ausente; Gate, User, testes, OpenAPI e Compose preservados.
+
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre o método
+montar a resposta de sucesso e os middlewares controlarem quem poderá recebê-la.
+Publicação da 7.78: pendente; último checkpoint publicado fb11479 (7.77).
+Próximo passo exato após publicar: 7.79 — registrar somente
+GET /api/v1/administracao com auth:sanctum/can:acessar-administracao e verificar
+pelo kernel HTTP 401/403/200 com usuários em memória.
 Módulos 8 a 23 não iniciados.

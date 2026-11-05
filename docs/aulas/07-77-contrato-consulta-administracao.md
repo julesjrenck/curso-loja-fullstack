@@ -5,7 +5,8 @@ Desenho apresentado em 05/11/2026, após entendimento da
 Checkpoint anterior publicado e conferido em
 077cc6270931f3d069611cc1978608865beaf144; HEAD/origin/main/main remota iguais.
 Entendimento da 7.77 confirmado com "entendi" em 05/11/2026; publicação
-pendente. Somente documentação alterada.
+conferida em fb1147977c033aefaf3e7173d446f7be4450a5af, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação. Somente documentação alterada na 7.77.
 
 ## Objetivo e arquivo
 
@@ -67,7 +68,7 @@ comando PHP, teste novo ou alteração na aplicação nesta etapa. A última
 suíte continua sendo a da 7.76: 112 testes/1.618 asserções; não foi repetida.
 O desenho não comprova uma resposta HTTP 200/401/403 real.
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-7.78 — criar somente
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.78](07-78-controller-administracao.md): criar somente
 AdministracaoController::show com resposta JSON 200 do contrato e verificá-lo
 por chamada direta em memória, ainda sem rota. Módulos 8 a 23 não iniciados.

@@ -1,8 +1,11 @@
-# API de administração — contrato planejado
+# API de administração — controller criado, rota pendente
 
-Desenho da etapa 7.77, em 05/11/2026. Operação ainda não implementada nem
-incluída no OpenAPI. Os status e exemplos abaixo são o comportamento planejado;
-não são resultados de uma chamada executada nesta etapa.
+Desenho da etapa 7.77, em 05/11/2026. Na 7.78,
+[AdministracaoController::show](../../backend/app/Http/Controllers/Api/V1/AdministracaoController.php)
+foi criado e sua resposta 200 verificada por chamada direta em memória.
+Rota e inclusão no OpenAPI continuam pendentes. Não houve requisição HTTP
+ou verificação de autenticação/autorização dessa operação; 401/403 continuam
+planejados. A verificação do controller não demonstra proteção de acesso.
 
 ## Consultar a entrada da administração
 
@@ -35,7 +38,7 @@ ainda precisa ser implementada e verificada por HTTP.
 Fontes: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [autorização por middleware](https://laravel.com/docs/13.x/authorization#via-middleware).
 
-## Administrador: sucesso planejado
+## Sucesso do controller: verificado por chamada direta
 
 Status 200, Content-Type application/json. Objeto com somente data, cujo
 objeto contém somente mensagem, uma string obrigatória com o texto abaixo:
@@ -89,8 +92,9 @@ para api/*; a futura rota deverá manter esse comportamento.
 
 ## Escopo desta etapa
 
-Contrato textual definido, sem controller, rota, requisição HTTP, alteração
-de Gate, teste novo ou conta administrativa. O OpenAPI compartilhado continua
-com as operações já implementadas; inclusão desta operação será feita em
-etapa própria. Próxima etapa: criar somente AdministracaoController::show
-com a resposta 200 descrita, ainda sem registrar a rota.
+Na 7.77 foi definido o contrato textual. Na 7.78 foi criado somente o
+controller; sintaxe e sete controles da resposta direta passaram, sem SQL
+ou conexão PDO aberta. Ainda sem rota, resposta HTTP observada, alteração
+de Gate, teste novo ou conta administrativa. O OpenAPI permanece sem esta
+operação. Próxima etapa: registrar a rota com auth:sanctum/can e conferir
+401/403/200 pelo kernel HTTP com usuários em memória.
