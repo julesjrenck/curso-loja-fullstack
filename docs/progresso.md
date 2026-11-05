@@ -5,19 +5,32 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.84 — Seeder do administrador de laboratório:
-  arquivo preparado e verificado; entendimento confirmado em 05/11/2026.
+- Etapa atual: 7.85 — Criação do administrador de laboratório:
+  criação relatada e entendimento confirmado pelo aluno em 05/11/2026.
+- Situação da 7.85: somente documentação. Roteiro para o aluno executar
+  docker compose exec backend php artisan db:seed com a classe
+  AdministradorLaboratorioSeeder e --no-ansi, mantendo terminal interativo.
+  Escolher senha oculta exclusiva de 8 a 72 bytes, sem enviá-la ao assistente.
+  Serviços backend/php/sqlserver ativos. Nenhum seeder ou SQL executado pelo
+  assistente nesta etapa. Aluno relatou "Conta administrativa de laboratório
+  criada: admin@example.test." e finalização DONE. Criação registrada por
+  relato; login e acesso administrativo no navegador ainda não verificados.
+  Aula docs/aulas/07-85-criacao-administrador-laboratorio.md criada.
+  Entendimento confirmado com "entendi": criação da conta não autentica
+  automaticamente a sessão. Próximo passo exato: publicar a 7.85 e iniciar
+  a 7.86, verificação do acesso administrativo no navegador.
 - Situação da 7.84: criado AdministradorLaboratorioSeeder.php, sem execução
   de criação. Exige local/sqlsrv/loja/comando interativo; preserva identidade
   existente, pede senha oculta de 8 a 72 bytes, atribui is_admin diretamente
   em User e salva admin@example.test. Cliente e Fillable mantidos.
   PHP -l passou. Diagnóstico com SQL/Command simulados: 11 cenários e
-  28 verificações passaram, sem conexão SQL real. Conta ainda não criada.
+  28 verificações passaram, sem conexão SQL real. Conta não criada na 7.84;
+  criação relatada pelo aluno na 7.85.
   Aula docs/aulas/07-84-seeder-administrador-laboratorio.md criada.
   Entendimento confirmado com "entendi" sobre atribuição direta de is_admin
-  e manutenção do campo fora do Fillable. Próximo passo exato: publicar
-  checkpoint e iniciar a 7.85, execução interativa pelo aluno e relato
-  somente da mensagem final.
+  e manutenção do campo fora do Fillable. Publicação da 7.84 conferida:
+  5edfcefabc383534fa239e30bcd61312b0086ffc, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.85.
 - Situação da 7.83: somente documentação alterada. Roteiro no Chrome/Edge:
   preparar CSRF/administração visitante/login laboratório/usuário/administração
   cliente/logout/administração final. Esperados 204/401/204/200/403/204/401,
@@ -32,7 +45,7 @@
   Entendimento confirmado com "entendi" sobre autenticação/permissão e
   ausência de autenticação após logout. Publicação da 7.83 conferida:
   0e89de3c6f7efd82416f1d3a77d5566087c38d01, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.84.
+  Checkpoint anterior à 7.84. Continuidade iniciada na 7.84.
 - Situação da 7.82: somente src/laboratorio-sessao.html alterado na aplicação.
   Novo botão Consultar administração/resultado role status, disabled até
   preparação 204; listener GET API 8002/credentials include/Accept JSON,
@@ -2734,8 +2747,10 @@ Sucesso geral relatado pelo aluno; status individuais/CORS/cookies não
 transcritos. Entendimento confirmado com "entendi" em 05/11/2026.
 7.83 publicada em 0e89de3, remoto conferido. Na 7.84, seeder administrativo
 preparado; sintaxe e 11 cenários/28 verificações isoladas passaram.
-Sem criação real de conta; entendimento confirmado com "entendi" em
-05/11/2026. Próximo passo: publicar a 7.84 e iniciar a execução na 7.85.
+Sem criação real de conta na 7.84; entendimento confirmado com "entendi" em
+05/11/2026; publicação em 5edfcef, remoto conferido. Na 7.85, aluno relatou
+criação de admin@example.test e DONE; entendimento confirmado com "entendi"
+em 05/11/2026. Acesso no navegador ainda não verificado; próxima etapa 7.86.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -16980,7 +16995,54 @@ alterados, índice vazio. Arquivos anteriores de aplicação, testes, página,
 OpenAPI, Compose e seeders existentes sem alterações no diff.
 Entendimento da 7.84 confirmado com "entendi" em 05/11/2026 sobre atribuição
 direta de is_admin no seeder e manutenção do campo fora do Fillable.
-Publicação da 7.84 pendente; último checkpoint publicado 0e89de3 (7.83).
-Próximo passo exato: publicar este checkpoint e iniciar a 7.85,
-execução interativa pelo aluno com senha oculta exclusiva e
-relato somente da mensagem final. Módulos 8 a 23 não iniciados.
+Publicação da 7.84 concluída e conferida em 05/11/2026:
+5edfcefabc383534fa239e30bcd61312b0086ffc; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade iniciada na 7.85,
+execução interativa pelo aluno com senha oculta exclusiva e relato somente
+da mensagem final. Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.85 — Criação do administrador de laboratório — 05/11/2026
+
+Iniciada após confirmação da 7.84 com "entendi" e publicação conferida em
+5edfcefabc383534fa239e30bcd61312b0086ffc. Comandos Git explicados antes da
+execução; HEAD/origin/main/main remota iguais após push.
+
+Implementação: somente documentação. Criada a aula
+docs/aulas/07-85-criacao-administrador-laboratorio.md. Código da aplicação
+mantido conforme a 7.84. Roteiro para execução pelo aluno na raiz do projeto:
+docker compose exec backend php artisan db:seed
+--class=AdministradorLaboratorioSeeder --no-ansi.
+Explicados execução dentro do container, classe única, terminal interativo
+sem -T e saída sem cores. Senha oculta exclusiva de 8 a 72 bytes, escolhida
+pelo aluno e não enviada ao assistente. Receber somente mensagem final.
+
+Saída de criação prevista para admin@example.test; se identidade já existir,
+seeder preserva sem pedir senha nem alterar permissão. Mensagem de preservação
+não confirma perfil administrativo. Parar em eventual erro e informar somente
+a mensagem, sem senha/hash/SQL/stack trace. Criação não equivale a login ou
+acesso administrativo no navegador. Cliente permanece separado.
+
+Verificação: Docker Compose confirmou backend/php/sqlserver ativos. Nenhum
+seeder, SQL, criação, promoção, pedido API ou login pelo assistente nesta
+etapa. Último diagnóstico na 7.84, 11 cenários/28 verificações simuladas;
+última suíte completa na 7.80, 116 testes/1.653 asserções; não repetidos.
+
+Git diff --check passou; 13 links locais válidos nos cinco documentos da
+7.85. Somente esses documentos alterados, índice vazio; backend, página,
+Compose e OpenAPI sem alterações no diff desta etapa.
+
+Execução pelo aluno e resultado: recebida a mensagem "Conta administrativa
+de laboratório criada: admin@example.test." seguida de
+Database\\Seeders\\AdministradorLaboratorioSeeder e DONE. Pelo fluxo do
+seeder, essa mensagem ocorre depois do save do User com is_admin true e
+password pelo cast hashed. Registro baseado no relato do terminal do aluno;
+sem consulta independente do banco pelo assistente. Senha e hash não enviados.
+Explicação: criação prepara a identidade/permissão no banco; não autentica
+o navegador. Login e decisão do Gate no navegador continuam pendentes.
+Entendimento da 7.85: confirmado com "entendi" em 05/11/2026 sobre a diferença
+entre criação da conta com permissão e autenticação da sessão.
+Publicação da 7.85: pendente; último checkpoint publicado 5edfcef (7.84).
+Próximo passo exato: publicar a 7.85 e iniciar a 7.86, verificação do acesso
+administrativo no navegador. Esse acesso ainda não foi verificado.
+Módulos 8 a 23 não iniciados.

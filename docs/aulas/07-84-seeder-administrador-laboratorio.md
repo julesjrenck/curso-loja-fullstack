@@ -4,7 +4,8 @@ Preparação e verificações em 05/11/2026, após a
 [7.83](07-83-autorizacao-no-navegador.md) confirmada com "entendi" e publicada
 em 0e89de3c6f7efd82416f1d3a77d5566087c38d01. SHA de HEAD, origin/main e main
 remota conferidos. Entendimento da 7.84 confirmado com "entendi" em
-05/11/2026; publicação pendente.
+05/11/2026; publicação conferida em 5edfcefabc383534fa239e30bcd61312b0086ffc,
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
 
 ## Objetivo
 
@@ -91,8 +92,8 @@ promovida nesta etapa. Sem nova suíte completa: última execução na 7.80,
 
 Entendimento da 7.84 confirmado com "entendi" em 05/11/2026 sobre a atribuição
 direta de is_admin no seeder e manutenção do campo fora do Fillable.
-Próximo passo: publicar este checkpoint e iniciar a 7.85: executar o seeder
-no terminal do aluno, com senha
+Continuidade iniciada na [7.85](07-85-criacao-administrador-laboratorio.md):
+executar o seeder no terminal do aluno, com senha
 oculta escolhida por ele, e receber somente a mensagem final. A senha não deve
 ser enviada ao assistente. Verificação do acesso administrativo no navegador
 virá depois da criação confirmada. Módulos 8 a 23 não iniciados.

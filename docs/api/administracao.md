@@ -130,3 +130,9 @@ Na [7.84](../aulas/07-84-seeder-administrador-laboratorio.md), preparado seeder
 local para admin@example.test, com senha oculta e permissão atribuída pelo
 código do terminal; conta existente preservada. Arquivo verificado com
 cenários isolados, sem criação persistida. Contrato HTTP mantido.
+Na [7.85](../aulas/07-85-criacao-administrador-laboratorio.md), apresentado
+roteiro de execução interativa desse seeder pelo aluno. Recebido relato de
+"Conta administrativa de laboratório criada: admin@example.test." e DONE.
+Sem consulta independente do banco pelo assistente; entendimento confirmado
+com "entendi" em 05/11/2026.
+Login e acesso administrativo no navegador ainda não verificados.
