@@ -3,7 +3,9 @@
 Roteiro preparado e explicado em 05/11/2026, após confirmação da 7.63 com
 "entendi". Aluno relatou "deu certo, pode avançar" e confirmou entendimento
 com "Sim, entendi" em 05/11/2026. Sucesso geral por relato, sem campos
-individuais fornecidos ou observação independente. Publicação pendente. Checkpoint anterior publicado e
+individuais fornecidos ou observação independente. Publicação conferida em
+8e8de99ac636c48d624d08fed3838cc94e6bf002, HEAD/origin/main/main remota iguais.
+Checkpoint anterior publicado e
 conferido em d2feb0ffb144d5513c543ee0e958fe49cc18e194,
 HEAD/origin/main/main remota iguais; registro posterior à publicação.
 
@@ -119,6 +121,6 @@ preservadas. Isso verifica os registros, sem substituir o navegador.
 
 Sucesso geral relatado e entendimento confirmado com "Sim, entendi" em
 05/11/2026 sobre preflight e POST. Campos individuais não fornecidos.
-Próxima após publicar: 7.65 — preparar UsuarioLaboratorioSeeder, conta fictícia
-com senha oculta/preservação de conta existente, sem cadastro executado ainda.
-Módulos 8 a 23 não iniciados.
+Publicação da 7.64 concluída. Continuidade na
+[7.65 — seeder da conta fictícia](07-65-seeder-usuario-laboratorio.md), sem
+cadastro executado ainda. Módulos 8 a 23 não iniciados.

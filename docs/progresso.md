@@ -5,10 +5,28 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.64 — Logout visitante e preflight no navegador:
-  execução relatada como bem-sucedida ("deu certo, pode avançar") e
-  entendimento confirmado com "Sim, entendi" em 05/11/2026. Campos individuais
-  não fornecidos; publicação pendente.
+- Etapa atual: 7.65 — Preparação da conta fictícia para login:
+  implementação, explicação e verificações apresentadas em 05/11/2026;
+  entendimento confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Situação da 7.65: criado backend/database/seeders/UsuarioLaboratorioSeeder.php,
+  único arquivo de aplicação alterado. Separado do DatabaseSeeder padrão.
+  Exige local/sqlsrv/destino loja/comando sem --no-interaction antes de consultar
+  usuários. E-mail fictício aluno@example.test; conta existente é preservada,
+  sem pedir senha. Caso nova, secret com fallback false/8 a 72 bytes, create
+  nome/e-mail fictícios/password; cast hashed do User existente gera hash.
+  Sem senha literal/argumento/.env ou exposição de hash/dados privados.
+  PHP -l e autoload passaram. Cinco recusas conferidas em memória com SQL
+  bloqueado antes da execução/PDO não aberto/prompt não chamado; zero tentativas,
+  configuração/ambiente restaurados, código 0. Comando Artisan real sem interação
+  também recusou, zero SQL/PDO não aberto, diagnóstico código 0.
+  Caminho de consulta/criação/prompt/persistência não executado ou verificado
+  nesta etapa; nenhuma conta criada e nenhuma senha usada. Sem nova suíte;
+  última 7.58, 107/1.586. Página/DatabaseSeeder/model/factory/config/Compose intactos.
+  Aula docs/aulas/07-65-seeder-usuario-laboratorio.md criada.
+  Próximo após confirmar/publicar: 7.66 — conferir destino local loja e orientar
+  execução interativa específica do seeder no terminal do aluno; senha exclusiva
+  digitada oculta, relato só da mensagem final, sem senha/hash. Módulos 8 a 23
+  não iniciados.
 - Situação da 7.64: docs/aulas/07-64-logout-visitante-no-navegador.md criado.
   Só documentação alterada. Serviços php/backend/sqlserver ativos e CORS
   existente conferido (origem 8001/credenciais true/métodos e headers/max_age 0),
@@ -25,9 +43,9 @@
   Sem nova suíte ou repetição dos controles da 7.63; última 7.58, 107/1.586.
   Entendimento confirmado com "Sim, entendi" sobre a distinção entre 204 do
   preflight e 204 do POST. Não preencher campos individuais não informados.
-  Próximo após publicar: 7.65 — criar seeder específico da conta fictícia para
-  o laboratório de login, com senha oculta e preservação de conta existente,
-  sem executá-lo ainda. Módulos 8 a 23 não iniciados.
+  Publicação verificada: 8e8de99ac636c48d624d08fed3838cc94e6bf002,
+  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  Continuidade realizada na 7.65.
 - Situação da 7.63: somente src/laboratorio-sessao.html alterado na aplicação.
   Novo botão Encerrar sessão/resultado próprios, disabled até preparação 204.
   lerTokenCsrf separa cookies acessíveis, limpa espaços, encontra XSRF-TOKEN
@@ -43,7 +61,7 @@
   Aula docs/aulas/07-63-logout-no-laboratorio.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   d2feb0ffb144d5513c543ee0e958fe49cc18e194, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.64, aguardando
+  Checkpoint anterior à 7.64. Continuidade iniciada na 7.64, aguardando
   execução acompanhada no navegador.
 - Situação da 7.62: docs/aulas/07-62-verificacao-visitante-no-navegador.md criado.
   Sem alteração na aplicação ou página. Serviços php/backend/sqlserver ativos,
@@ -2358,9 +2376,15 @@ separados, status/CORS e presença de token/cookies sem valores. Serviços ativo
 CORS existente conferido, sem chamada à API, alteração de aplicação ou nova
 suíte pelo assistente. Aluno relatou "deu certo, pode avançar" e confirmou
 entendimento com "Sim, entendi" em 05/11/2026. Sucesso geral, sem campos
-individuais; publicação pendente. Próxima após publicar: 7.65 — seeder da
-conta fictícia para laboratório de login, senha oculta/conta existente preservada,
-sem execução ainda.
+individuais; publicada em 8e8de99, remoto conferido. Continuidade na 7.65:
+UsuarioLaboratorioSeeder criado, local/sqlsrv/loja/comando interativo, preserva
+e-mail fictício existente; senha oculta/fallback false/8 a 72 bytes e create
+com cast hashed existente. Sem execução do caminho de cadastro ou conta criada.
+Sintaxe/autoload/cinco recusas e comando real sem interação conferidos; zero
+tentativas SQL/PDO não aberto, configuração restaurada. Sem nova suíte.
+Entendimento da 7.65 confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
+confirmar/publicar: 7.66 — conferir destino e execução interativa orientada
+no terminal, relato só da mensagem final sem senha/hash.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -15532,7 +15556,68 @@ independente do assistente. Status/CORS/token/cookies individuais não fornecido
 não converter expectativas em medições.
 Entendimento: confirmado com "Sim, entendi" em resposta à pergunta explícita
 sobre 204 do OPTIONS negociar CORS e 204 do POST responder ao logout válido.
-Publicação da 7.64: pendente; último checkpoint publicado d2feb0f (7.63).
-Próximo passo exato após publicar: 7.65 — criar UsuarioLaboratorioSeeder
-específico, senha oculta e preservação de conta existente; implementar/conferir
-sem cadastrar a conta ainda. Módulos 8 a 23 não iniciados.
+Publicação da 7.64: concluída e conferida em 05/11/2026:
+8e8de99ac636c48d624d08fed3838cc94e6bf002; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.65.
+
+
+## Etapa 7.65 — Preparação da conta fictícia para login — 05/11/2026
+
+Iniciada após relato geral de sucesso da 7.64 ("deu certo, pode avançar") e
+confirmação explícita de entendimento ("Sim, entendi") em 05/11/2026.
+7.64 publicada e conferida em 8e8de99ac636c48d624d08fed3838cc94e6bf002.
+Campos individuais do navegador não fornecidos; alcance preservado.
+
+Implementação: criado backend/database/seeders/UsuarioLaboratorioSeeder.php,
+único arquivo de aplicação alterado. Não registrado no DatabaseSeeder, que
+continua com ProdutoSeeder. Run exige local, conexão padrão sqlsrv e destino
+configurado resolvido loja; comando associado sem --no-interaction. Guardas
+antes de User::exists. E-mail fictício aluno@example.test; se existir, informa
+preservação e retorna antes de pedir senha ou alterar dados.
+
+Para conta nova, secret com fallback false recebe senha exclusiva oculta;
+exige string de 8 a 72 bytes, falha antes do insert se inválida. Create recebe
+nome Aluno do laboratório/email/password. Cast hashed existente no User faz
+hash; senha padrão de factory não usada. Info mostra só mensagem/e-mail
+fictício. Sem senha literal, argumento ou .env, sem imprimir senha/hash.
+Criar registro não faz login. Fontes primárias Laravel 13/Artisan/Seeding,
+manual PHP/bcrypt e código instalado conferidos. Root Docker/PHP 8.4 e
+dependências existentes preservados; nenhuma instalação.
+
+Explicação apresentada: namespace/PSR-4/Seeder/run; configuração versus consulta
+real do banco (getDatabaseName não é SELECT DB_NAME); existência preserva
+conta; entrada oculta/fallback false; strlen mede bytes e teto atende bcrypt
+configurado; create/cast hashed já estudado na 7.6. Não muda LoginRequest ou
+política geral de autenticação. Conta ainda não cadastrada; não consultamos
+users para afirmar ausência do e-mail no banco normal.
+
+Verificação PHP no Docker: -l passou; classe autoload true. Diagnóstico
+temporário exerceu cinco recusas: ambiente testing, conexão diferente,
+banco loja_test, comando ausente e comando sem interação. Mensagens esperadas,
+nenhum prompt e PDO ainda Closure exigidos. BeforeExecuting bloquearia SQL;
+contador zero. Configuração/ambiente originais restaurados em finally e
+comparados. Cinco casos true, código 0, driver lido como bcrypt. Sem valores
+sensíveis na saída; mudanças somente em memória.
+
+Diagnóstico adicional usou Kernel::call do db:seed real, classe explícita/
+--no-interaction/--no-ansi, com SQL ativamente bloqueado. Recusa de terminal
+interativo ocorreu antes de User::exists/prompt/create. Três controles true:
+recusa esperada, zero tentativas SQL e PDO não aberto. Código 0 do diagnóstico.
+Não foi executado o caminho de criação, preservação por consulta, validação
+de senha digitada, prompt oculto real ou persistência do hash.
+
+Nenhuma conta criada, senha fornecida, SQL, navegador ou HTTP da aplicação.
+Sem nova suíte/auditoria/snapshot; última 7.58, 107 testes/1.586 asserções.
+Página/rotas/controllers/bootstrap/config/ambientes/DatabaseSeeder/model/factory/
+testes/dependências/serviços/migrations/Compose/OpenAPI preservados.
+Aula 7.65, publicação anterior, roteiro/progresso e continuidade atualizados.
+Git diff --check passou; oito links locais válidos, somente cinco arquivos
+previstos alterados e índice vazio. Única alteração de aplicação: novo seeder.
+
+Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
+Publicação da 7.65: pendente; último checkpoint publicado 8e8de99 (7.64).
+Próximo passo exato após confirmar/publicar: 7.66 — conferir destino local loja
+e orientar execução interativa específica de UsuarioLaboratorioSeeder no
+terminal do aluno. Senha exclusiva escolhida no campo oculto; relato somente
+da mensagem final sem senha/hash. Analisar criação ou preservação antes do
+laboratório de login. Módulos 8 a 23 não iniciados.

@@ -369,9 +369,15 @@ OPTIONS/preflight e POST separados, status/CORS e presença de token/cookies
 sem valores. Serviços ativos/CORS existente conferido, sem alterar aplicação,
 chamar API ou repetir suíte pelo assistente. Aluno relatou sucesso geral
 ("deu certo, pode avançar") e confirmou entendimento com "Sim, entendi" em
-05/11/2026, sem campos individuais. Publicação pendente. Próxima após publicar:
-7.65 — seeder de conta fictícia para laboratório de login, senha oculta/
-preservação de conta existente; sem execução ainda.
+05/11/2026, sem campos individuais; publicada em 8e8de99, remoto conferido.
+Na 7.65, UsuarioLaboratorioSeeder específico criado, local/sqlsrv/loja/comando
+interativo, e-mail fictício existente preservado, senha oculta/fallback false/
+8 a 72 bytes, create/cast hashed. Sintaxe/autoload/cinco recusas e comando real
+sem interação conferidos sem SQL/PDO aberto ou prompt. Nenhuma conta criada;
+caminho de cadastro ainda não verificado. Sem nova suíte. Entendimento da 7.65
+confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após confirmar/publicar:
+7.66 — conferir destino e execução interativa orientada no terminal, relato
+só da mensagem final sem senha/hash.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1184,8 +1190,11 @@ e HTML/seis controles passaram, sem navegador/API/nova suíte. Entendimento
 confirmado com "entendi" em 05/11/2026; publicação em d2feb0f. Na 7.64, roteiro
 de preflight/POST logout visitante preparado, sem alterar aplicação/API/suíte.
 Aluno relatou sucesso geral e confirmou entendimento com "Sim, entendi"
-em 05/11/2026; publicação pendente. Próxima após publicar: 7.65 — seeder da
-conta fictícia para login, senha oculta e conta existente preservada.
+em 05/11/2026; publicação em 8e8de99. Na 7.65, seeder específico da conta
+fictícia criado, senha oculta e conta existente preservada; sintaxe/autoload/
+recusas conferidos sem SQL ou conta criada. Caminho de criação ainda pendente.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.66 — execução
+interativa orientada no terminal, sem compartilhar senha/hash.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
