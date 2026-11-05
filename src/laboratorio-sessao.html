@@ -15,11 +15,26 @@
     <button id="consultar-usuario" type="button" disabled>Consultar usuário</button>
     <p id="resultado-usuario" role="status">Aguardando a preparação.</p>
 
+    <p>O logout também pode encerrar uma sessão visitante.</p>
+    <button id="encerrar-sessao" type="button" disabled>Encerrar sessão</button>
+    <p id="resultado-logout" role="status">Aguardando a preparação.</p>
+
     <script>
         const botao = document.querySelector('#preparar');
         const resultado = document.querySelector('#resultado');
         const botaoUsuario = document.querySelector('#consultar-usuario');
         const resultadoUsuario = document.querySelector('#resultado-usuario');
+        const botaoLogout = document.querySelector('#encerrar-sessao');
+        const resultadoLogout = document.querySelector('#resultado-logout');
+
+        function lerTokenCsrf() {
+            const prefixo = 'XSRF-TOKEN=';
+            const cookie = document.cookie.split(';')
+                .map((item) => item.trim())
+                .find((item) => item.startsWith(prefixo));
+
+            return cookie ? decodeURIComponent(cookie.slice(prefixo.length)) : null;
+        }
 
         botao.addEventListener('click', async () => {
             botao.disabled = true;
@@ -36,6 +51,8 @@
                     resultado.textContent = 'Resposta recebida: HTTP 204 (sem corpo).';
                     botaoUsuario.disabled = false;
                     resultadoUsuario.textContent = 'Pronto para consultar.';
+                    botaoLogout.disabled = false;
+                    resultadoLogout.textContent = 'Pronto para encerrar.';
                 } else {
                     resultado.textContent = `Resposta inesperada: HTTP ${resposta.status}.`;
                 }
@@ -66,6 +83,43 @@
                 resultadoUsuario.textContent = 'Não foi possível ler a resposta da API. Confira a rede e o console do navegador.';
             } finally {
                 botaoUsuario.disabled = false;
+            }
+        });
+
+        botaoLogout.addEventListener('click', async () => {
+            botaoLogout.disabled = true;
+            resultadoLogout.textContent = 'Encerrando a sessão...';
+
+            try {
+                const token = lerTokenCsrf();
+
+                if (!token) {
+                    resultadoLogout.textContent = 'Cookie CSRF ausente. Solicite o cookie CSRF novamente.';
+                    return;
+                }
+
+                const resposta = await fetch('http://127.0.0.1:8002/api/v1/logout', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-XSRF-TOKEN': token,
+                    },
+                    body: JSON.stringify({}),
+                });
+
+                if (resposta.status === 204) {
+                    resultadoLogout.textContent = 'Resposta recebida: HTTP 204 (sessão encerrada).';
+                } else if (resposta.status === 419) {
+                    resultadoLogout.textContent = 'Resposta recebida: HTTP 419 (recusa de CSRF).';
+                } else {
+                    resultadoLogout.textContent = `Resposta inesperada: HTTP ${resposta.status}.`;
+                }
+            } catch {
+                resultadoLogout.textContent = 'Não foi possível concluir o logout. Confira a preparação e a rede no navegador.';
+            } finally {
+                botaoLogout.disabled = false;
             }
         });
     </script>

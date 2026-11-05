@@ -357,8 +357,15 @@ Cookies da requisição usuario para envio/bloqueio. Armazenamento não comprova
 envio, nem cookie enviado comprova autenticação. Serviços ativos, sem pedido
 à API ou nova suíte pelo assistente. Aluno relatou sucesso geral ("deu certo,
 podemos continuar") em 05/11/2026, sem campos individuais. Entendimento
-confirmado com "Sim, entendi"; publicação pendente. Próxima após publicar:
-7.63 — logout no laboratório, cookie CSRF decodificado e POST com token/cookies.
+confirmado com "Sim, entendi"; publicada em b05cd9f, remoto conferido.
+Na 7.63, página ganhou logout e helper lerTokenCsrf: cookie exato, limpeza/
+extração/URL-decodificação; POST com cookies/JSON/X-XSRF-TOKEN. Ausência impede
+envio; status 204/419/outros/catch/finally tratados. Sintaxe JS e sete controles
+isolados/fictícios passaram; HTML 200/seis controles passaram. Auxiliares
+removidos, sem listener/DOM/navegador/API ou nova suíte. Entendimento da 7.63
+confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após confirmar/publicar:
+7.64 — logout visitante no navegador, preflight/POST/status/CORS e presença
+de cookies/cabeçalho CSRF sem valores.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1165,7 +1172,11 @@ publicação conferida em 23c6c07. Na 7.62, roteiro de execução no Chrome/Edge
 preparado para GET/401 legível, CORS e Cookies da requisição usuario. Sem
 alterar aplicação, chamar API ou repetir suíte pelo assistente. Aluno relatou
 sucesso geral em 05/11/2026 e confirmou entendimento com "Sim, entendi".
-Publicação pendente; próxima após publicar 7.63 — logout/token CSRF no laboratório.
+Publicação em b05cd9f. Na 7.63, logout no laboratório com helper CSRF e POST
+cookies/JSON/header implementado; sintaxe/sete controles fictícios da função
+e HTML/seis controles passaram, sem navegador/API/nova suíte. Entendimento
+confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.64 — preflight/POST
+logout visitante acompanhado no navegador.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

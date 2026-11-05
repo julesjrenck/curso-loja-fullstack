@@ -3,7 +3,9 @@
 Roteiro preparado e explicado em 05/11/2026, após confirmação da 7.61 com
 "entendi". Aluno relatou "deu certo, podemos continuar" e confirmou entendimento
 com "Sim, entendi" em 05/11/2026. Sucesso geral por relato, sem resultados
-individuais fornecidos ou observação independente. Publicação pendente. Checkpoint anterior publicado e
+individuais fornecidos ou observação independente. Publicação conferida em
+b05cd9fb40b0fa4ea06ac854496476f4ffadeabd, HEAD/origin/main/main remota iguais.
+Checkpoint anterior publicado e
 conferido em 23c6c07884ce932ac7533aa1522de3f9c31d0b1c,
 HEAD/origin/main/main remota iguais; registro posterior à publicação.
 
@@ -113,6 +115,6 @@ preservadas. Isso verifica o registro, sem substituir o exercício no navegador.
 Sucesso geral relatado em 05/11/2026; campos individuais não fornecidos.
 Entendimento confirmado com "Sim, entendi" em resposta à pergunta explícita
 sobre cookies de visitante e ausência de autenticação.
-Próxima após publicar: 7.63 — acrescentar logout ao laboratório, ler e
-decodificar o cookie XSRF-TOKEN, enviar X-XSRF-TOKEN no POST com cookies/JSON.
-Módulos 8 a 23 não iniciados.
+Publicação da 7.62 concluída. Continuidade na
+[7.63 — logout no laboratório](07-63-logout-no-laboratorio.md), com cookie
+CSRF URL-decodificado e POST. Módulos 8 a 23 não iniciados.

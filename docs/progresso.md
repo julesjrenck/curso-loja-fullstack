@@ -5,10 +5,25 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.62 — Visitante com cookies no navegador:
-  execução relatada como bem-sucedida ("deu certo, podemos continuar") e
-  entendimento confirmado com "Sim, entendi" em 05/11/2026. Resultados individuais
-  não fornecidos; publicação pendente.
+- Etapa atual: 7.63 — Logout com token CSRF no laboratório:
+  implementação, explicação e verificações apresentadas em 05/11/2026;
+  entendimento confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Situação da 7.63: somente src/laboratorio-sessao.html alterado na aplicação.
+  Novo botão Encerrar sessão/resultado próprios, disabled até preparação 204.
+  lerTokenCsrf separa cookies acessíveis, limpa espaços, encontra XSRF-TOKEN
+  exato, retira prefixo e URL-decodifica; ausência retorna null. Cookie de
+  sessão HttpOnly não lido. Listener bloqueia tentativa sem token, envia
+  POST logout/credentials include/Accept JSON/Content-Type JSON/X-XSRF-TOKEN/
+  corpo {}, trata 204/419/outros/catch/finally sem exibir valores ou corpo.
+  Botões anteriores preservados; backend/configurações/Compose/OpenAPI intactos.
+  Node --check e sete controles da função real com cookies fictícios passaram;
+  sem execução do listener/DOM/Fetch ou cookies reais. HTTP estático no serviço
+  php retornou 200/corpo igual; seis controles passaram. Códigos 0; auxiliares
+  próprios removidos. Sem clique/API/logout/nova suíte; última 7.58, 107/1.586.
+  Aula docs/aulas/07-63-logout-no-laboratorio.md criada.
+  Próximo após confirmar/publicar: 7.64 — executar logout visitante no Chrome/
+  Edge após preparação, observar OPTIONS/preflight e POST, status/CORS e
+  presença de cookies/cabeçalho CSRF sem valores. Módulos 8 a 23 não iniciados.
 - Situação da 7.62: docs/aulas/07-62-verificacao-visitante-no-navegador.md criado.
   Sem alteração na aplicação ou página. Serviços php/backend/sqlserver ativos,
   conferidos sem pedido à API. Roteiro: recarregar página na sessão privativa
@@ -22,10 +37,9 @@
   mensagens/status/cabeçalhos/presença/bloqueios individualmente. Não preencher
   campos não informados. Sem nova suíte; última 7.58, 107/1.586.
   Entendimento confirmado com "Sim, entendi" em 05/11/2026 sobre envio de cookies
-  de visitante ainda não satisfazer autenticação. Publicação pendente.
-  Próximo após publicar: 7.63 — acrescentar logout ao laboratório, lendo
-  XSRF-TOKEN/decodificando e enviando X-XSRF-TOKEN no POST com cookies e JSON.
-  Módulos 8 a 23 não iniciados.
+  de visitante ainda não satisfazer autenticação. Publicação verificada:
+  b05cd9fb40b0fa4ea06ac854496476f4ffadeabd, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.63.
 - Situação da 7.61: src/laboratorio-sessao.html ganhou Consultar usuário e
   resultado próprios. Botão começa disabled; preparação 204 o libera. Novo
   listener async faz GET 8002/api/v1/usuario com credentials include/Accept JSON.
@@ -39,7 +53,7 @@
   Aula docs/aulas/07-61-consulta-visitante-no-laboratorio.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   23c6c07884ce932ac7533aa1522de3f9c31d0b1c, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.62; execução
+  Checkpoint anterior à 7.62. Continuidade iniciada na 7.62; execução
   acompanhada no navegador pendente.
 - Situação da 7.60: docs/aulas/07-60-verificacao-navegador-csrf.md criado.
   Aluno escolheu Chrome ou Edge em resposta à pergunta sobre navegador.
@@ -2311,9 +2325,15 @@ enviados e possíveis bloqueios sem valores. Serviços existentes ativos, sem
 pedido à API ou nova suíte pelo assistente. Aluno relatou em 05/11/2026
 "deu certo, podemos continuar"; sucesso geral sem campos individuais.
 Entendimento confirmado com "Sim, entendi" em resposta à pergunta sobre
-cookies de visitante não satisfazerem autenticação. Publicação pendente.
-Próxima após publicar: 7.63 — logout no laboratório, XSRF-TOKEN decodificado/
-X-XSRF-TOKEN e POST com cookies/JSON.
+cookies de visitante não satisfazerem autenticação; publicada em b05cd9f,
+remoto conferido. Continuidade na 7.63: botão Encerrar sessão e lerTokenCsrf,
+POST com cookies/JSON/X-XSRF-TOKEN URL-decodificado. Ausência impede envio;
+204/419/outros/catch/finally tratados. Função isolada/sete controles fictícios
+e sintaxe JS passaram; HTML 200/seis controles passaram, auxiliares removidos.
+Sem listener/DOM/navegador/API ou nova suíte. Entendimento da 7.63 confirmado
+com "entendi" em 05/11/2026; publicação pendente. Próxima após confirmar/publicar: 7.64 —
+logout visitante no navegador, preflight/POST/status/CORS e presença de cookies/
+cabeçalho CSRF sem valores.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -15379,7 +15399,60 @@ independente do assistente. Campos de mensagem/status/cabeçalhos/cookies
 enviados/bloqueios não fornecidos individualmente; não atribuir valores esperados.
 Entendimento: confirmado com "Sim, entendi" em resposta à pergunta explícita
 sobre envio de cookies de visitante ainda resultar em ausência de autenticação.
-Publicação da 7.62: pendente; último checkpoint publicado 23c6c07 (7.61).
-Próximo passo exato após publicar: 7.63 — acrescentar logout ao laboratório,
-ler XSRF-TOKEN e decodificar, enviar X-XSRF-TOKEN em POST /api/v1/logout com
-cookies/JSON. Módulos 8 a 23 não iniciados.
+Publicação da 7.62: concluída e conferida em 05/11/2026:
+b05cd9fb40b0fa4ea06ac854496476f4ffadeabd; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.63.
+
+
+## Etapa 7.63 — Logout com token CSRF no laboratório — 05/11/2026
+
+Iniciada após relato geral de sucesso da 7.62 ("deu certo, podemos continuar")
+e confirmação explícita de entendimento ("Sim, entendi") em 05/11/2026.
+7.62 publicada e conferida em b05cd9fb40b0fa4ea06ac854496476f4ffadeabd.
+Campos individuais da execução anterior não fornecidos; alcance preservado.
+
+Implementação: somente src/laboratorio-sessao.html alterado na aplicação.
+Novo botão encerrar-sessao/resultado-logout/seletores; disabled até preparação
+204. lerTokenCsrf usa document.cookie/split/map trim/find startsWith prefixo
+exato, slice só do prefixo, decodeURIComponent ou null quando ausente.
+Listener async desabilita botão, exige token não vazio antes de Fetch.
+POST /api/v1/logout, credentials include, Accept JSON/Content-Type JSON e
+X-XSRF-TOKEN; corpo JSON.stringify({}). 204 informa sessão encerrada, 419
+recusa CSRF, outros status inesperados; catch genérico/finally reabilita.
+Não mostra token/cookie/erro bruto/corpo/dados pessoais; botões anteriores
+preservados. Não lê cookie de sessão HttpOnly nem seleciona usuário no corpo.
+
+Explicação apresentada: separar texto de cookies, limpar espaços, localizar
+nome exato, preservar iguais do valor e URL-decodificar sem decifrar/validar
+criptografia. Cookies não isolam portas; mesmo host/Path e condições de acesso
+do laboratório permitem leitura do XSRF. POST altera estado; JSON vazio não
+seleciona identidade; cookie e header CSRF são peças distintas. Browser faz
+preflight do POST JSON/header adicional conforme cache; código não envia OPTIONS.
+Visitante pode sair com sessão/CSRF válidos; sucesso 204 sem JSON, renovação
+conforme contrato. Fontes primárias MDN, Laravel 13/Sanctum, RFC 6265 e
+contrato/controller existentes conferidos.
+
+Verificação: script extraído como texto para diretório próprio /tmp.
+Node --check seguido de diagnóstico isolado da função real via vm.Script,
+na imagem Redocly 2.65.0/digest já fixado, pull never/network none/montagem ro.
+Sete controles fictícios passaram: ausência, prefixos parecidos recusados,
+URL-decodificação, separador sem espaço, igual preservado, valor vazio,
+codificação inválida com URIError. Código 0, saída só booleanos; nenhum cookie
+real ou execução do listener/DOM/Fetch. Auxiliares próprios removidos.
+
+GET estático via PHP no serviço php: 200/corpo igual/seis controles passaram,
+código 0; botões anteriores mantidos, logout presente/desabilitado, resultado/
+endpoint presentes. Sem chamada à API, sessão iniciada, SQL ou logout real.
+Sem nova suíte Laravel; última 7.58, 107 testes/1.586 asserções.
+Backend/rotas/controllers/bootstrap/config/ambientes/testes/dependências/serviços/
+Compose/OpenAPI preservados. Aula 7.63/publicação anterior/roteiro/progresso e
+continuidade atualizados. Preflight/POST/cookies no navegador ainda pendentes.
+Git diff --check passou; sete links locais válidos, seis IDs HTML únicos e
+um script próprio; somente cinco arquivos previstos alterados, índice vazio.
+
+Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
+Publicação da 7.63: pendente; último checkpoint publicado b05cd9f (7.62).
+Próximo passo exato após confirmar/publicar: 7.64 — executar logout visitante
+no Chrome/Edge após preparação e observar OPTIONS/preflight e POST, status/
+CORS e presença de cookies/cabeçalho CSRF sem copiar valores. Módulos 8 a 23
+não iniciados.
