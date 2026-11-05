@@ -394,7 +394,11 @@ preparar/login/consulta/logout/consulta, com 204/204/200/204/401 esperados e
 CORS/cookies sem dados privados. Relato parcial: login 204, consulta autenticada
 200 e logout 204; depois aluno relatou sucesso geral, sem campos individuais
 adicionais. Entendimento confirmado com "sim" em 05/11/2026; publicação
-pendente. Próxima após publicar: 7.69 — autorização, 401/403 e Gate/Policy.
+em b0c0930, remoto conferido. Na 7.69, introdução à autorização após login,
+401/403 e Gate/Policy. Código atual conferido; nenhuma regra administrativa
+criada. Entendimento confirmado com "entendi" em 05/11/2026; publicação
+pendente. Próxima após publicar: 7.70 — desenhar representação mínima
+cliente/administrador antes de migration ou mudança de banco.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1223,8 +1227,11 @@ remoto conferido. Na 7.68, roteiro do ciclo no navegador
 preparar/login/consulta/logout/consulta, sem copiar dados privados.
 Relatados login 204/consulta 200/logout 204 e depois sucesso geral, sem
 campos individuais adicionais. Entendimento confirmado com "sim" em
-05/11/2026; publicação pendente antes da 7.69 — autorização, 401/403 e
-Gate/Policy, sem implementar essas regras ainda.
+05/11/2026; publicação em b0c0930, remoto conferido. Na 7.69, autorização
+após login, 401/403 e Gate/Policy apresentados; sem implementar regras.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+Próxima após publicar: 7.70 — representação mínima cliente/admin
+antes de migration ou mudança de banco.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

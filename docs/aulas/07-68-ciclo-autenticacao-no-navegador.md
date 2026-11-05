@@ -1,7 +1,9 @@
 # Aula 7.68 — Ciclo de autenticação no navegador
 
 Roteiro apresentado em 05/11/2026. Execução bem-sucedida por relato geral;
-entendimento confirmado com "sim" em 05/11/2026; publicação pendente.
+entendimento confirmado com "sim" em 05/11/2026; publicação conferida em
+b0c0930b1a0e3e6924a6c9370e2f12080bc71220, HEAD/origin/main/main remota iguais.
+Registro atualizado após a publicação.
 Iniciada após confirmação da [7.67](07-67-formulario-login-laboratorio.md)
 com "entendi" e publicação conferida em
 9d61d39a573de7551b658e3baf5a1e86ecb6a8fb: HEAD/origin/main/main remota iguais.
@@ -114,7 +116,7 @@ requisição; a consulta após logout deve retornar 401 por ausência de
 autenticação. Entendimento confirmado com "sim" em 05/11/2026, após pergunta
 explícita sobre essa diferença. Confirmação de entendimento não acrescenta
 campos individuais ao relato de execução.
-Publicação da 7.68 pendente. Próxima após publicar: 7.69 — autorização,
-401/403 e Gate/Policy; login não concede permissão administrativa.
+Continuidade iniciada na [7.69](07-69-autorizacao-apos-login.md):
+autorização, 401/403 e Gate/Policy; login não concede permissão administrativa.
 Introdução sem implementar papel, migration, política ou rota.
 Módulos 8 a 23 não iniciados.

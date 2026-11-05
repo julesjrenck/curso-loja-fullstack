@@ -5,9 +5,22 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.68 — Ciclo de autenticação no navegador:
-  execução bem-sucedida por relato geral; entendimento confirmado com "sim"
-  em 05/11/2026; publicação pendente.
+- Etapa atual: 7.69 — Autorização após o login:
+  introdução apresentada; entendimento confirmado com "entendi" em
+  05/11/2026; publicação pendente.
+- Situação da 7.69: somente documentação alterada. Identidade autenticada não
+  concede permissão administrativa. Exemplo de futura operação: visitante 401,
+  cliente autenticado sem permissão 403, administrador autorizado prossegue
+  sujeito às demais validações. Regra aplicada no servidor; ocultar botão não
+  protege a API. Introdução a Gate e Policy, sem criar regras/rotas/papel.
+  Leitura de routes/api.php, UsuarioController, User, migration e Form Request
+  confirma autenticação de /usuario, catálogo público e ausência de regra
+  administrativa atual. Sem API/SQL/comandos PHP/nova suíte; última 7.58,
+  107 testes/1.586 asserções. Aula 07-69-autorizacao-apos-login.md criada.
+  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
+  7.70 — desenhar a representação mínima cliente/administrador no User,
+  padrão sem privilégio e atribuição controlada pelo servidor,
+  antes de migration ou mudança de banco.
 - Situação da 7.68: somente documentação alterada. Exercício no Chrome/Edge:
   preparar CSRF, entrar com conta fictícia e senha privada, consultar usuário,
   encerrar sessão e consultar novamente. Esperados 204/204/200/204/401,
@@ -23,9 +36,9 @@
   individuais adicionais ou mensagem de erro. Não atribuir valores não relatados.
   Aula docs/aulas/07-68-ciclo-autenticacao-no-navegador.md criada.
   Entendimento confirmado com "sim" em 05/11/2026 sobre consulta autenticada
-  200 e consulta após logout 401. Publicação pendente. Próxima após publicar:
-  7.69 — autorização: login não concede permissão administrativa; 401/403,
-  regra de acesso no servidor e introdução a Gate/Policy, sem implementar ainda.
+  200 e consulta após logout 401. Publicação verificada:
+  b0c0930b1a0e3e6924a6c9370e2f12080bc71220, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.69.
 - Situação da 7.67: somente src/laboratorio-sessao.html alterado na aplicação.
   Form POST/action login/labels/campos email e password sem valor padrão de
   senha; Entrar disabled até preparação 204. Listener submit/preventDefault,
@@ -43,7 +56,7 @@
   Aula docs/aulas/07-67-formulario-login-laboratorio.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   9d61d39a573de7551b658e3baf5a1e86ecb6a8fb, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.68; sucesso geral
+  Checkpoint anterior à 7.68. Continuidade iniciada na 7.68; sucesso geral
   relatado, entendimento confirmado na 7.68. Módulos 8 a 23 não iniciados.
 - Situação da 7.66: docs/aulas/07-66-execucao-seeder-usuario-laboratorio.md criado.
   Só documentação alterada. PHP no Docker confirmou local/sqlsrv/destino loja/
@@ -2459,8 +2472,12 @@ Entendimento da 7.67 confirmado com "entendi" em 05/11/2026; publicação em
 preparar/login/consulta/logout/consulta; esperados 204/204/200/204/401 e
 CORS/cookies sem dados privados. Relatados login 204/consulta 200/logout 204;
 depois aluno informou sucesso geral, sem campos individuais adicionais.
-Entendimento confirmado com "sim" em 05/11/2026; publicação pendente.
-Próxima após publicar: 7.69 — autorização, 401/403 e Gate/Policy.
+Entendimento confirmado com "sim" em 05/11/2026; publicação em b0c0930,
+remoto conferido. Continuidade na 7.69: autorização após login, 401/403 e
+Gate/Policy. Somente documentação; sem regra administrativa implementada.
+Entendimento da 7.69 confirmado com "entendi" em 05/11/2026; publicação
+pendente. Próxima após publicar: 7.70 — desenhar representação mínima de
+cliente/administrador, antes de migration ou mudança de banco.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -15873,8 +15890,51 @@ Sem nova execução pelo assistente; git diff --check passou nesta atualização
 Entendimento: confirmado com "sim" em 05/11/2026, em resposta à pergunta
 sobre consulta autenticada 200 após login e consulta 401 após logout. Isso
 confirma entendimento, sem acrescentar campos individuais ao relato de execução.
-Publicação da 7.68: pendente; último checkpoint publicado 9d61d39 (7.67).
-Próximo passo exato após publicar: 7.69 — autorização: login não concede
-permissão administrativa, diferença 401/403 e introdução a Gate/Policy.
-Sem criar papel, migration, política ou rota nesta introdução.
+Publicação da 7.68: concluída e conferida em 05/11/2026:
+b0c0930b1a0e3e6924a6c9370e2f12080bc71220; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.69.
 Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.69 — Autorização após o login — 05/11/2026
+
+Iniciada após confirmação da 7.68 com "sim" e publicação conferida em
+b0c0930b1a0e3e6924a6c9370e2f12080bc71220. Git add de quatro caminhos explícitos,
+commit e push explicados antes de executar. HEAD/origin/main/main remota iguais.
+
+Implementação: somente documentação. Criado
+docs/aulas/07-69-autorizacao-apos-login.md; aula anterior/roteiro/progresso
+atualizados. Nenhuma regra de autorização implementada nesta introdução.
+
+Explicação apresentada: autenticação identifica a requisição; autorização
+decide se pode executar a ação. Consulta própria 200 não concede administração.
+Numa futura operação administrativa, autenticação antes da permissão e demais
+requisitos atendidos: visitante 401, cliente sem permissão 403, administrador
+autorizado prossegue sujeito às demais validações. Ocultar botão não protege
+a API. Gate define uma decisão; Policy agrupa decisões de um recurso.
+Fonte primária Laravel 13 authorization consultada: introdução e conversão
+de AuthorizationException para 403.
+
+Verificação: leitura de routes/api.php, UsuarioController, ProdutoController,
+User, migration inicial e ListarProdutosRequest; busca em app/routes/migrations/
+tests sem Gate/Policy/atributo administrativo implementado. /usuario usa
+auth:sanctum; catálogo GET público; authorize true da listagem permite essa
+requisição e não concede administração. Sem endpoint de alteração de preço
+para testar. Conferência estática não comprova 403 real ou banco atualizado.
+Sem API/SQL/comando PHP/nova suíte; última 7.58, 107 testes/1.586 asserções.
+
+Exercício apresentado: Ana autenticada consulta seu usuário, mas recebe 403
+numa futura ação administrativa. Identificar que a recusa seria de
+autorização, sem concluir que a sessão deixou de funcionar.
+
+Git diff --check passou; 13 links locais válidos nos quatro documentos.
+Somente quatro arquivos de documentação alterados, índice vazio; aplicação,
+backend, seeder, Compose e contratos preservados.
+
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre autenticação
+e recusa 403 por falta de permissão.
+Publicação da 7.69: pendente; último checkpoint publicado b0c0930 (7.68).
+Próximo passo exato após publicar: 7.70 — desenhar representação mínima
+cliente/administrador no User,
+padrão sem privilégio e atribuição controlada pelo servidor, antes de criar
+migration ou aplicar mudanças ao banco. Módulos 8 a 23 não iniciados.
