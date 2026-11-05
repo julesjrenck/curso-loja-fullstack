@@ -5,7 +5,9 @@ Roteiro apresentado em 05/11/2026, após entendimento da
 Checkpoint anterior publicado e conferido em
 5edfcefabc383534fa239e30bcd61312b0086ffc; HEAD/origin/main/main remota iguais.
 Aluno relatou criação concluída em 05/11/2026; entendimento da 7.85 confirmado
-com "entendi" na mesma data. Publicação pendente.
+com "entendi" na mesma data. Publicação conferida em
+a8bf8d8fb14fe47865736f6af7aa448ee34ebb17; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação.
 
 ## Objetivo
 
@@ -76,6 +78,7 @@ Nenhuma suíte repetida: último diagnóstico do seeder na 7.84, 11 cenários/
 
 Entendimento confirmado com "entendi" em 05/11/2026 sobre a diferença entre
 criação da conta com permissão e autenticação da sessão.
-Próximo passo exato: publicar a 7.85 e iniciar a 7.86 para verificar o acesso
-administrativo no navegador. Essa verificação permanece pendente.
+Continuidade iniciada na [7.86](07-86-acesso-administrativo-no-navegador.md)
+para verificar o acesso administrativo no navegador. Essa verificação permanece
+pendente até o relato do aluno.
 Módulos 8 a 23 não iniciados.

@@ -136,3 +136,9 @@ roteiro de execução interativa desse seeder pelo aluno. Recebido relato de
 Sem consulta independente do banco pelo assistente; entendimento confirmado
 com "entendi" em 05/11/2026.
 Login e acesso administrativo no navegador ainda não verificados.
+
+Na [7.86](../aulas/07-86-acesso-administrativo-no-navegador.md), roteiro de
+visitante/login administrativo/consulta permitida/logout apresentado ao
+aluno. Recebido relato geral de sucesso, sem mensagens/status individuais
+transcritos; entendimento confirmado com "entendi". Sem observação direta do
+navegador pelo assistente. Contrato e aplicação mantidos.

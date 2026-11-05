@@ -456,8 +456,11 @@ sintaxe e 11 cenários/28 verificações isoladas passaram. Sem criação real
 de conta; entendimento confirmado com "entendi" em 05/11/2026 e publicação
 em 5edfcef, remoto conferido. Na 7.85, roteiro de execução interativa do
 seeder apresentado; aluno relatou criação de admin@example.test e DONE.
-Entendimento confirmado com "entendi" em 05/11/2026; acesso no navegador
-ainda não verificado.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação em a8bf8d8,
+remoto conferido. Na 7.86, roteiro do administrador no navegador apresentado:
+204/401/204/200/200/204/401 esperados. Aluno relatou sucesso geral, sem
+status individuais transcritos; entendimento confirmado com "entendi"
+em 05/11/2026.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1337,8 +1340,12 @@ Na 7.84, AdministradorLaboratorioSeeder preparado e verificado: sintaxe e
 Entendimento confirmado com "entendi" em 05/11/2026; publicação em 5edfcef.
 Na 7.85, roteiro de execução interativa apresentado, com senha oculta e
 relato somente da mensagem final. Aluno relatou criação de admin@example.test
-e DONE; entendimento confirmado com "entendi" em 05/11/2026. Próximo passo:
-publicar a 7.85 e verificar o acesso administrativo no navegador na 7.86.
+e DONE; entendimento confirmado com "entendi" em 05/11/2026;
+publicação da 7.85 conferida em a8bf8d8. Na 7.86, roteiro do administrador
+no navegador: 204/401/204/200/200/204/401 esperados. Sucesso geral relatado
+pelo aluno, sem status individuais transcritos; entendimento confirmado com
+"entendi" em 05/11/2026. Próximo passo: publicar a 7.86 e iniciar Policies
+na 7.87.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

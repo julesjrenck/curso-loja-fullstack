@@ -5,8 +5,22 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.85 — Criação do administrador de laboratório:
-  criação relatada e entendimento confirmado pelo aluno em 05/11/2026.
+- Etapa atual: 7.86 — Acesso administrativo no navegador:
+  sucesso geral relatado e entendimento confirmado em 05/11/2026.
+- Situação da 7.86: somente documentação. Roteiro Chrome/Edge, sessão privativa
+  sem login ativo, laboratório 8001, conta admin@example.test/senha da 7.85
+  somente no formulário. Preparar CSRF/administração visitante/login/usuário/
+  administração/logout/administração; esperados 204/401/204/200/200/204/401,
+  sem contar OPTIONS. Pedir somente mensagens/status, sem dados privados;
+  parar em divergência. Serviços backend/php/sqlserver ativos; página/rota/
+  Gate conferidos. Sem controle do navegador, API ou SQL pelo assistente.
+  Aula docs/aulas/07-86-acesso-administrativo-no-navegador.md criada.
+  Aluno informou "deu tudo certo, pode avançar", sem transcrever mensagens/
+  status individuais. Sucesso registrado pelo relato geral, sem observação
+  direta pelo assistente. Entendimento confirmado com "entendi" sobre o
+  acesso permitido após login e a ausência de autenticação após logout,
+  sem remover a permissão da conta. Próximo passo exato: publicar a 7.86
+  e iniciar a 7.87, primeira Policy de produto.
 - Situação da 7.85: somente documentação. Roteiro para o aluno executar
   docker compose exec backend php artisan db:seed com a classe
   AdministradorLaboratorioSeeder e --no-ansi, mantendo terminal interativo.
@@ -17,8 +31,9 @@
   relato; login e acesso administrativo no navegador ainda não verificados.
   Aula docs/aulas/07-85-criacao-administrador-laboratorio.md criada.
   Entendimento confirmado com "entendi": criação da conta não autentica
-  automaticamente a sessão. Próximo passo exato: publicar a 7.85 e iniciar
-  a 7.86, verificação do acesso administrativo no navegador.
+  automaticamente a sessão. Publicação da 7.85 conferida:
+  a8bf8d8fb14fe47865736f6af7aa448ee34ebb17, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.86.
 - Situação da 7.84: criado AdministradorLaboratorioSeeder.php, sem execução
   de criação. Exige local/sqlsrv/loja/comando interativo; preserva identidade
   existente, pede senha oculta de 8 a 72 bytes, atribui is_admin diretamente
@@ -30,7 +45,7 @@
   Entendimento confirmado com "entendi" sobre atribuição direta de is_admin
   e manutenção do campo fora do Fillable. Publicação da 7.84 conferida:
   5edfcefabc383534fa239e30bcd61312b0086ffc, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.85.
+  Checkpoint anterior à 7.85. Continuidade iniciada na 7.85.
 - Situação da 7.83: somente documentação alterada. Roteiro no Chrome/Edge:
   preparar CSRF/administração visitante/login laboratório/usuário/administração
   cliente/logout/administração final. Esperados 204/401/204/200/403/204/401,
@@ -2750,7 +2765,11 @@ preparado; sintaxe e 11 cenários/28 verificações isoladas passaram.
 Sem criação real de conta na 7.84; entendimento confirmado com "entendi" em
 05/11/2026; publicação em 5edfcef, remoto conferido. Na 7.85, aluno relatou
 criação de admin@example.test e DONE; entendimento confirmado com "entendi"
-em 05/11/2026. Acesso no navegador ainda não verificado; próxima etapa 7.86.
+em 05/11/2026; publicação em a8bf8d8, remoto conferido. Na 7.86, roteiro do
+administrador no navegador: 204/401/204/200/200/204/401 esperados.
+Sucesso geral relatado pelo aluno, sem status individuais transcritos;
+entendimento confirmado com "entendi" em 05/11/2026. Próximo passo:
+publicar a 7.86 e iniciar a 7.87, primeira Policy de produto.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -17042,7 +17061,58 @@ Explicação: criação prepara a identidade/permissão no banco; não autentica
 o navegador. Login e decisão do Gate no navegador continuam pendentes.
 Entendimento da 7.85: confirmado com "entendi" em 05/11/2026 sobre a diferença
 entre criação da conta com permissão e autenticação da sessão.
-Publicação da 7.85: pendente; último checkpoint publicado 5edfcef (7.84).
-Próximo passo exato: publicar a 7.85 e iniciar a 7.86, verificação do acesso
-administrativo no navegador. Esse acesso ainda não foi verificado.
+Publicação da 7.85: concluída e conferida em 05/11/2026:
+a8bf8d8fb14fe47865736f6af7aa448ee34ebb17; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade iniciada na 7.86, verificação
+do acesso administrativo no navegador. Esse acesso ainda não foi verificado.
+Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.86 — Acesso administrativo no navegador — 05/11/2026
+
+Iniciada após confirmação da 7.85 com "entendi" e publicação conferida em
+a8bf8d8fb14fe47865736f6af7aa448ee34ebb17. Comandos Git explicados antes da
+execução; HEAD/origin/main/main remota iguais após push.
+
+Implementação: somente documentação. Criada a aula
+docs/aulas/07-86-acesso-administrativo-no-navegador.md; página/aplicação
+mantidas. Roteiro no Chrome/Edge, sessão privativa sem login ativo, URL
+127.0.0.1:8001/laboratorio-sessao.html; F12/Rede/Todos, sem filtros.
+Sete ações: preparação CSRF/administração visitante/login admin@example.test/
+usuário/administração/logout/administração. Esperados
+204/401/204/200/200/204/401, sem contar OPTIONS. Anotar cada mensagem antes
+de sobrescrever resultado. E-mail preenchido com identidade administrativa,
+sem confundir o placeholder do cliente; senha da 7.85 somente no formulário.
+Relato só mensagens/status, sem senha/payload/valores de cookies/tokens/
+cabeçalhos completos. Parar na primeira divergência, sem repetir login ou
+recriar conta. Não atribuir status a falha genérica de rede.
+
+Explicação apresentada: autenticação identifica o usuário da sessão; Gate
+usa is_admin do User no backend para permitir administração com 200. Login
+não envia a permissão. Logout deve ser seguido de consulta recusada com 401.
+Todos os valores são esperados até o relato; nenhuma observação inventada.
+
+Verificação: página, rota auth:sanctum/can e Gate lidos; serviços backend/
+php/sqlserver ativos. Nenhum pedido API, SQL, login ou alteração de conta
+pelo assistente. Sem ferramenta para controlar ou observar navegador nesta
+sessão. Última suíte completa na 7.80, 116 testes/1.653 asserções; último
+diagnóstico do seeder na 7.84, 11 cenários/28 verificações simuladas;
+nenhum repetido nesta etapa.
+
+Git diff --check passou; 13 links locais válidos nos cinco documentos da
+7.86. Somente esses documentos alterados, índice vazio; backend, página,
+Compose e OpenAPI sem alterações no diff desta etapa.
+
+Resultado do navegador: aluno informou "deu tudo certo, pode avançar" em
+05/11/2026. Relato geral de sucesso, sem mensagens/status individuais
+transcritos; nenhuma observação direta do navegador pelo assistente.
+Explicação retomada: 200 administrativo após login reúne sessão autenticada
+e permissão aceita pelo Gate; 401 após logout demonstra ausência de
+autenticação, sem remover o perfil administrativo da conta no banco.
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre autenticação,
+permissão e logout sem perda do perfil administrativo. Confirmação recebida
+após o pedido anterior de avanço.
+Publicação da 7.86: pendente; último checkpoint publicado a8bf8d8 (7.85).
+Próximo passo exato: publicar a 7.86 e iniciar a 7.87, primeira Policy de
+produto. Policies ainda pendentes no módulo 7.
 Módulos 8 a 23 não iniciados.
