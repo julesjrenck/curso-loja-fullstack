@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.50 com "entendi". Checkpoint anterior publicado e conferido em
 592581d627d43f5f88923b4f12e16a17ddb685a0; HEAD/origin/main/main remota iguais.
-Entendimento da 7.51 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.51 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -86,8 +86,7 @@ Cenário ampliado, explicado e verificado; entendimento confirmado em 04/11/2026
 Aplicação, rotas, controller, bootstrap, ambientes, dependências, serviços,
 migrations, Compose e OpenAPI preservados. Sem auditoria/snapshot normal ou
 diagnóstico temporário repetidos. CSRF ativo/navegador/CORS pendentes.
-Publicação da 7.51 pendente. Próxima após confirmar/publicar: 7.52 — desenhar
-protocolo HTTP de CSRF do logout fora de testing: visitante, origem reconhecida,
-cookies em memória, controles sem header/inválido/correto esperados 419/419/204,
-com preservação e limpeza das sessões. Não executar esse protocolo antes de
-apresentá-lo e aguardar entendimento. OpenAPI de logout permanece pendente.
+Publicação da 7.51 concluída e conferida em
+d0e2be7d9a1010f86f2975cae1d0e7589cc4bf07; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.52 —
+desenhar protocolo HTTP de CSRF do logout. OpenAPI permanece pendente.

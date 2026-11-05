@@ -284,11 +284,17 @@ antigo ausente antes do reenvio, memória limpa/guards descartados, GET usuario
 com cookie/Origin reconhecido. 401 JSON/sem Location/somente message string,
 Request com ID anterior/sem Authorization/com sessão, visitante/ID null/chaves
 ausentes. Focado 4/122, suíte 107/1.586 e SQL final sem dados/rollback passaram.
-Entendimento da 7.51 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próximo após confirmar/publicar: 7.52 — desenhar protocolo HTTP de CSRF do logout
-fora de testing, com visitante/origem reconhecida/cookies em memória, controles
-esperados 419/419/204 e preservação/limpeza das sessões. CSRF ativo/navegador/
-CORS e OpenAPI de logout pendentes.
+Entendimento da 7.51 confirmado com "entendi" em 04/11/2026; publicada em d0e2be7,
+remoto conferido. Na 7.52, protocolo CSRF do logout desenhado: Guzzle/servidor PHP
+temporário no Docker, visitante/origem reconhecida/cookies em memória e somente
+X-XSRF-TOKEN variando. Preparação 204/controles 419/419/204 são expectativas,
+não observações. Leitura local/file/json/coleta [2,100]/54 arquivos/Guzzle/CSRF
+sem exceções e fontes oficiais/código instalado conferidos. Coleta desativada
+só no servidor temporário e limpeza de IDs próprios antes/depois do logout
+planejadas. Sem HTTP/sessão nova/SQL/nova suíte; última 7.51, 107/1.586.
+Entendimento da 7.52 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Próximo após confirmar/publicar: 7.53 — executar somente o protocolo e registrar
+respostas/metadados/preservação/limpeza. Navegador/CORS e OpenAPI pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1050,8 +1056,12 @@ sem dados passaram. Entendimento confirmado com "entendi" em 04/11/2026;
 publicação em 592581d. Na 7.51, controle com ID anterior ao logout/registro
 antigo ausente antes do reenvio e memória limpa: 401 JSON/sem identidade/marcador.
 Focado 4/122, suíte 107/1.586 e SQL final sem dados passaram. Entendimento
-confirmado com "entendi" em 04/11/2026; publicação pendente antes da 7.52 —
-desenhar protocolo CSRF de logout fora de testing.
+confirmado com "entendi" em 04/11/2026; publicação em d0e2be7. Na 7.52,
+protocolo CSRF de logout desenhado/explicado: visitante/Guzzle/servidor temporário,
+origem reconhecida/cookies/header variável, controles esperados 419/419/204,
+preservação/limpeza acompanhando IDs próprios. Fontes/código/configuração
+conferidos; sem HTTP/sessão nova/SQL/nova suíte. Entendimento confirmado com
+"entendi" em 04/11/2026; publicação pendente antes da 7.53 — executar protocolo.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

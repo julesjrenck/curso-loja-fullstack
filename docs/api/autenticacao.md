@@ -169,7 +169,9 @@ ID/token da sessão visitante preservados, sem Authorization/identidade/marcador
 Focado 4/108, suíte 107/1.572 passaram. Na 7.51, cookie anterior ao logout
 reenviado após limpar memória/guards: 401 JSON/sem Location/message string,
 Request recebeu ID anterior/sem Authorization, guard visitante/chaves ausentes.
-Focado 4/122 e suíte 107/1.586 passaram.
+Focado 4/122 e suíte 107/1.586 passaram. Na 7.52,
+[protocolo CSRF de logout](verificacao-csrf-logout.md) desenhado, sem HTTP,
+sessão nova ou consulta SQL. Próxima 7.53 executará o protocolo após confirmação.
 Comportamento de navegador/CORS permanece pendente.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)

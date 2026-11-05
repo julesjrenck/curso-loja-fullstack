@@ -5,9 +5,25 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.51 — Consulta com cookie anterior ao logout:
-  implementação, explicação e verificações apresentadas; entendimento
+- Etapa atual: 7.52 — Desenho da verificação CSRF do logout:
+  desenho documental, explicação e verificações apresentadas; entendimento
   confirmado com "entendi" em 04/11/2026, publicação pendente.
+- Situação da 7.52: docs/api/verificacao-csrf-logout.md criado, sem execução HTTP.
+  Guzzle/servidor PHP temporário no Docker/local, visitante/cookies em memória,
+  Host/Origin 8002 e somente X-XSRF-TOKEN variando. Sec-Fetch-Site/_token/
+  X-CSRF-TOKEN ausentes. Preparação 204 e controles sem header/inválido/correto
+  419/419/204 são expectativas, não resultados observados. Coleta [0,100] só no
+  futuro servidor temporário; preservar nomes/hashes anteriores e limpar conjunto
+  de IDs próprios antes/depois do logout em finally. Fontes oficiais/código
+  instalado conferidos. Leitura PHP de configuração: local/console true/testing
+  false, sem cache de configuração, file/json/cache file, cookie conhecido,
+  Guzzle/origem reconhecida, CSRF sem exceções/originOnly e allowSameSite false.
+  Rota destroy com Stateful/SubstituteBindings; 54 arquivos/coleta normal [2,100].
+  Código 0; nenhuma sessão iniciada, servidor novo, HTTP ou SQL. Sem nova suíte;
+  última 7.51, 107 testes/1.586 asserções. Aplicação/rotas/testes/bootstrap/Compose/
+  OpenAPI preservados. Próximo após confirmar/publicar: 7.53 — executar somente
+  protocolo e registrar respostas/metadados/preservação/limpeza. Navegador/CORS
+  e OpenAPI de logout continuam pendentes.
 - Situação da 7.51: somente cenário autenticado de LogoutApiTest ampliado e
   renomeado para mencionar cookies novo/antigo. Registro antigo exigido ausente
   antes do reenvio; flush/forgetGuards, withCookie com ID anterior/withCredentials/
@@ -18,10 +34,10 @@
   asserções, suíte 107 testes/1.586 asserções, códigos 0; 14 asserções a mais,
   sem novo teste. SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/
   lotes 1/2/3/4 e dados zero/rollback conferido. Aplicação/rotas/controller/bootstrap/
-  Compose/OpenAPI preservados. Próximo após confirmar/publicar: 7.52 — desenhar
-  protocolo HTTP de CSRF do logout fora de testing, visitante/origem reconhecida/
-  cookies em memória, controles esperados 419/419/204 e preservação/limpeza das
-  sessões. CSRF ativo/navegador/CORS e OpenAPI de logout continuam pendentes.
+  Compose/OpenAPI preservados. Entendimento confirmado com "entendi" em 04/11/2026;
+  publicação verificada em d0e2be7d9a1010f86f2975cae1d0e7589cc4bf07,
+  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  Continuidade realizada na 7.52. CSRF ativo/navegador/CORS e OpenAPI pendentes.
 - Situação da 7.50: somente cenário autenticado de LogoutApiTest ampliado e
   renomeado para incluir consulta/401. TestResponse do logout guardada, cookie
   extraído/conferido com ID visitante do Store, token guardado só em memória.
@@ -35,7 +51,7 @@
   rollback conferido. Aplicação/rotas/controller/bootstrap/Compose/OpenAPI
   preservados. Entendimento confirmado com "entendi" em 04/11/2026; publicação
   verificada em 592581d627d43f5f88923b4f12e16a17ddb685a0,
-  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  HEAD/origin/main/main remota iguais. Checkpoint anterior à 7.51.
   Continuidade realizada na 7.51. CSRF ativo/cookies no navegador, CORS e
   OpenAPI de logout continuam pendentes.
 - Situação da 7.49: somente LogoutApiTest alterado no código, imports User/
@@ -2055,8 +2071,13 @@ confirmado com "entendi" em 04/11/2026; publicação em 592581d. Continuidade
 realizada na 7.51 — GET usuario com ID anterior ao logout/registro antigo ausente
 antes do reenvio e memória limpa: 401 JSON/sem identidade/marcador. Focado 4/122,
 suíte 107/1.586 e SQL final sem dados passaram. Entendimento confirmado com
-"entendi" em 04/11/2026; publicação pendente antes da 7.52 — desenhar protocolo
-CSRF de logout fora de testing.
+"entendi" em 04/11/2026; publicação em d0e2be7. Continuidade realizada na 7.52 —
+protocolo CSRF de logout desenhado/explicado: servidor temporário/Guzzle/visitante,
+origem reconhecida/cookies/header variável e controles esperados 419/419/204.
+Coleta desativada só no servidor temporário/preservação/limpeza de IDs próprios
+planejadas. Fontes/código/configuração conferidos, sem HTTP/sessão nova/SQL/nova
+suíte. Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente
+antes da 7.53 — executar somente o protocolo.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -14540,10 +14561,68 @@ e documentos; índice vazio. Aplicação/rotas/controller/bootstrap/Compose/Open
 sem diff, OpenAPI ainda sem logout.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.51: pendente; registros locais. Último checkpoint publicado:
-592581d627d43f5f88923b4f12e16a17ddb685a0 (7.50).
-Próximo passo exato após confirmar/publicar: 7.52 — desenhar protocolo HTTP de
-CSRF do logout fora de testing, com visitante/origem reconhecida/cookies em
-memória, controles sem header/inválido/correto esperados 419/419/204 e preservação/
-limpeza das sessões. Apresentar protocolo e aguardar entendimento antes de
-executá-lo. CSRF ativo/navegador/CORS e OpenAPI de logout seguem pendentes.
+Publicação da 7.51: concluída e conferida em
+d0e2be7d9a1010f86f2975cae1d0e7589cc4bf07; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.52.
+CSRF ativo/navegador/CORS e OpenAPI de logout seguem pendentes.
+
+
+## Etapa 7.52 — Desenho da verificação CSRF do logout — 04/11/2026
+
+Iniciada após confirmação da 7.51 com "entendi" e publicação verificada.
+Desenho documental: docs/api/verificacao-csrf-logout.md e aula 7.52 criados;
+contratos/roteiro/progresso/protocolo de login e publicação anterior atualizados.
+Nenhuma alteração em aplicação/configuração/ambientes/dependências/serviços/
+rotas/migrations/testes/bootstrap/Compose/OpenAPI.
+
+Explicação apresentada: verificar POST logout por HTTP com Guzzle já instalado,
+CookieJar em memória e servidor PHP temporário no Docker/local. Visitante com
+sessão basta para o controle CSRF, sem User/credenciais/SQL. Host/Origin 8002,
+Accept JSON, POST {}. Manter Sec-Fetch-Site/_token/X-CSRF-TOKEN ausentes e variar
+somente X-XSRF-TOKEN. Preparação GET csrf-cookie esperada 204; A sem cabeçalho
+419; B inválido 419; C correto/URL-decodificado de XSRF-TOKEN 204. São expectativas,
+nenhum desses resultados de logout com CSRF ativo observado nesta etapa.
+
+A/B devem preservar ID/token, C renovar ID/token/remover registro original/
+manter visitante. Erros 419 JSON/message string/sem Location, objeto aberto;
+sucesso 204 vazio/cookies atualizados/sem Location. Cliente controla cabeçalhos;
+não prova navegador/CORS. Origin reconhecido mantém sessão/CSRF; ausência de
+Sec-Fetch-Site seleciona comparação por token. Não alterar proteção para passar.
+
+Fontes primárias Laravel 13 de CSRF, Sanctum e logout consultadas. Fonte instalada
+PreventRequestForgery::handle/runningUnitTests/hasValidOrigin/tokensMatch/
+getTokenFromRequest, Store::invalidate/migrate e reconhecimento Sanctum lidos
+no Docker. Diagnóstico PHP somente de leitura carregou bootstrap console local:
+console true/testing false, configuração sem cache, sessão file/json, cache file,
+cookie loja-fullstack-session, Guzzle disponível e origem reconhecida. Classe
+ValidateCsrfToken/originOnly false/allowSameSite false/exceções vazias. Rota
+LoginController::destroy com EnsureFrontendRequestsAreStateful/SubstituteBindings,
+sem auth:sanctum/throttle:login. Código 0/sucesso true, metadados permitidos.
+Request criada só para reconhecer origem/localizar rota, sem kernel handle.
+
+Leitura contou 54 arquivos de sessão e loteria normal [2,100]. Protocolo prevê
+recontagem/nomes/hashes iniciais em memória, servidor temporário/porta dinâmica
+com coleta [0,100] só nele, sem mudar configuração persistente/CSRF. Metadados
+HTTP deverão confirmar console false/testing false/CSRF ativo a cada pedido.
+Conjunto próprio acompanha IDs dos cookies/Store antes/depois do logout; validar
+formato e ausência na lista anterior antes de atribuir arquivos ao diagnóstico.
+Finally deve encerrar servidor/remover somente arquivos próprios remanescentes
+e auxiliares; confirmar nomes/hashes anteriores preservados e configuração
+habitual depois. Nenhuma limpeza global de sessões/cache ou contadores.
+
+Nenhum servidor novo, pedido HTTP, sessão nova ou consulta SQL nesta etapa.
+Sem nova suíte, auditoria ou snapshot. Última suíte permanece 7.51: 107 testes/
+1.586 asserções. Valores reais de cookies/tokens/IDs/chaves/respostas brutas
+não impressos/versionados. Arquivos antigos apenas contados, sem imprimir nomes.
+
+Git diff --check passou. Links locais válidos: logout quatro, login cinco,
+consulta seis, protocolo de login quatro, protocolo de logout dois, aulas
+7.51/7.52 dois e três respectivamente. Somente documentos alterados, índice
+vazio; backend/Compose/OpenAPI preservados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.52: pendente; registros locais. Último checkpoint publicado:
+d0e2be7d9a1010f86f2975cae1d0e7589cc4bf07 (7.51).
+Próximo passo exato após confirmar/publicar: 7.53 — executar somente protocolo
+HTTP de CSRF do logout e registrar respostas/metadados/preservação/limpeza.
+Navegador/CORS e OpenAPI de logout continuam pendentes.

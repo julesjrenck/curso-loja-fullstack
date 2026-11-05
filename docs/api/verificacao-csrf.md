@@ -116,5 +116,7 @@ Na 7.42, POST /api/v1/login integrado ao OpenAPI. Resposta 419 exige message
 string e admite campos adicionais; cabeçalho X-XSRF-TOKEN documentado como
 condicional ao caminho da proteção. Redocly validou estrutura/exemplos, sem
 novos pedidos HTTP. Na 7.43, contrato de logout desenhado mantendo CSRF.
-A verificação 7.41 não executou logout; esse controle continua pendente.
+A verificação 7.41 não executou logout. Na 7.52, seu
+[protocolo separado](verificacao-csrf-logout.md) foi desenhado: preparação 204 e
+controles 419/419/204 ainda não observados. Execução prevista na 7.53.
 Navegador e CORS continuam pendentes.

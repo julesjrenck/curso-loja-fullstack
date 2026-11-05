@@ -225,8 +225,9 @@ cookie de entrada, preparando identidade pelo guard web: focado 4/91, suíte
 107/1.555. Na 7.50, consulta usuario após logout usando cookie da resposta
 retornou 401 JSON/sem Location, somente message string: focado 4/108, suíte
 107/1.572. Na 7.51, consulta com cookie anterior ao logout também retornou 401
-JSON/sem identidade/marcador: focado 4/122, suíte 107/1.586. Próxima 7.52:
-desenhar verificação CSRF do logout fora de testing.
+JSON/sem identidade/marcador: focado 4/122, suíte 107/1.586. Na 7.52,
+[protocolo CSRF do logout](verificacao-csrf-logout.md) desenhado, fontes/configuração
+conferidas; controles 419/419/204 ainda não executados. Próxima 7.53: executá-lo.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

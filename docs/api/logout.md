@@ -167,9 +167,14 @@ Exige 401 JSON/sem Location/somente message string, ID anterior recebido na
 Request, sem Authorization/com sessão e guard visitante/ID null/chaves ausentes.
 Não fixa ID/token de sessão visitante nem rejeição criptográfica do cookie.
 Focado 4/122 e suíte 107/1.586 passaram; SQL posterior sem dados/rollback confirmado.
-Próxima 7.52: desenhar protocolo de CSRF do logout fora de testing, com visitante/
-origem reconhecida/cookies em memória e controles esperados 419/419/204,
-preservando sessões anteriores e limpando somente as próprias.
+Na 7.52, [protocolo de CSRF do logout](verificacao-csrf-logout.md) desenhado:
+visitante/origem reconhecida/cookies em memória, Sec-Fetch-Site ausente e somente
+X-XSRF-TOKEN variando. Preparação 204 e controles 419/419/204 são expectativas,
+ainda não observadas. Servidor temporário/coleta desativada só nele e limpeza
+que acompanha os IDs próprios antes/depois do logout. Fonte/configuração lidas:
+local/file/json, origem reconhecida/CSRF sem exceções, 54 arquivos/coleta [2,100].
+Sem HTTP, SQL, sessão nova ou nova suíte; última 7.51, 107/1.586.
+Próxima 7.53: executar somente o protocolo após confirmação/publicação da 7.52.
 
 Referências: [logout e invalidação de sessão no Laravel](https://laravel.com/docs/13.x/authentication#logging-out),
 [sessão da interface própria com Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication)
