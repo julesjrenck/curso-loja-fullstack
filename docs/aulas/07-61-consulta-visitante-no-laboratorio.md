@@ -5,7 +5,8 @@ Implementação, explicação e verificações em 05/11/2026, após confirmaçã
 status/cabeçalhos/atributos individuais não foram fornecidos. Checkpoint 7.60
 publicado e conferido em aa6a2ad9009f421452d7c8050efcf51a724eff83,
 HEAD/origin/main/main remota iguais; registro posterior à publicação.
-Entendimento da 7.61 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.61 confirmado com "entendi" em 05/11/2026; publicação conferida
+em 23c6c07884ce932ac7533aa1522de3f9c31d0b1c, HEAD/origin/main/main remota iguais.
 
 ## Objetivo e arquivo
 
@@ -100,8 +101,7 @@ um script próprio. Somente os cinco arquivos previstos alterados, índice vazio
 
 ## Continuidade
 
-Após confirmar entendimento e publicar, próxima 7.62: recarregar o laboratório
-na sessão privativa, preparar CSRF e executar Consultar usuário uma vez.
-Acompanhar mensagem, GET/401, CORS e presença dos cookies enviados, sem copiar
-valores, para distinguir transporte de cookies e identidade autenticada.
-Verificação acompanhada no navegador pendente; módulos 8 a 23 não iniciados.
+Publicação da 7.61 concluída. Continuidade iniciada na
+[7.62 — visitante com cookies no navegador](07-62-verificacao-visitante-no-navegador.md).
+Execução acompanhada e resultados aguardando relato do aluno; módulos 8 a 23
+não iniciados.

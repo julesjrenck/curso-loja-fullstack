@@ -350,9 +350,15 @@ conferido. Na 7.61, página ganhou Consultar usuário, disabled até preparaçã
 204. Novo GET usuario/credentials include/Accept JSON, 401 esperado, demais
 status inesperados/catch/finally, sem ler corpo ou dados pessoais. HTML 200/
 seis controles e sintaxe JS passaram; auxiliares removidos. Sem clique/API/
-nova suíte. Entendimento da 7.61 confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próxima após confirmar/publicar: 7.62 — navegador, GET/401/CORS e presença
-dos cookies enviados sem valores; 401 sozinho não comprova transporte.
+nova suíte. Entendimento da 7.61 confirmado com "entendi" em 05/11/2026;
+publicada em 23c6c07, remoto conferido. Na 7.62, roteiro preparado para
+preparação/consulta no Chrome/Edge: 204 e GET/401 legível esperados, CORS e
+Cookies da requisição usuario para envio/bloqueio. Armazenamento não comprova
+envio, nem cookie enviado comprova autenticação. Serviços ativos, sem pedido
+à API ou nova suíte pelo assistente. Aluno relatou sucesso geral ("deu certo,
+podemos continuar") em 05/11/2026, sem campos individuais. Entendimento
+confirmado com "Sim, entendi"; publicação pendente. Próxima após publicar:
+7.63 — logout no laboratório, cookie CSRF decodificado e POST com token/cookies.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1155,7 +1161,11 @@ Entendimento confirmado com "Sim, entendi" em 05/11/2026; publicação em aa6a2a
 Na 7.61, botão Consultar usuário adicionado, liberado por preparação 204;
 GET com cookies/401 esperado, sem corpo exibido. HTML e sintaxe JS verificados;
 sem clique/API/nova suíte. Entendimento confirmado com "entendi" em 05/11/2026;
-publicação pendente antes da 7.62 — execução acompanhada no navegador e cookies enviados.
+publicação conferida em 23c6c07. Na 7.62, roteiro de execução no Chrome/Edge
+preparado para GET/401 legível, CORS e Cookies da requisição usuario. Sem
+alterar aplicação, chamar API ou repetir suíte pelo assistente. Aluno relatou
+sucesso geral em 05/11/2026 e confirmou entendimento com "Sim, entendi".
+Publicação pendente; próxima após publicar 7.63 — logout/token CSRF no laboratório.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
