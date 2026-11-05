@@ -1,8 +1,9 @@
 # Aula 7.59 — Página de laboratório para preparar o CSRF
 
 Implementação, explicação e verificações em 05/11/2026, após confirmação da
-7.58 com "entendi". Entendimento da 7.59 confirmado com "entendi" em 05/11/2026; publicação
-pendente. Checkpoint anterior publicado em
+7.58 com "entendi". Entendimento da 7.59 confirmado com "entendi" em 05/11/2026.
+Publicação conferida em 8232454a83047165c8e9746cdbc56de207548cd4, com
+HEAD/origin/main/main remota iguais. Checkpoint anterior publicado em
 35633036f506078470e9d2e4ca5c804f5d99cf26; HEAD/origin/main/main remota iguais.
 
 ## Objetivo e arquivo
@@ -110,8 +111,7 @@ alterados, índice vazio.
 
 ## Continuidade
 
-Após confirmar entendimento e publicar, próxima 7.60: abrir o laboratório em
-uma janela privativa na origem 8001, executar o botão uma vez e acompanhar
-status, cabeçalhos CORS e presença/atributos dos cookies, sem copiar valores.
-Sem login; navegador e cookies ainda aguardam essa verificação acompanhada.
-Módulos 8 a 23 não iniciados.
+Publicação da 7.59 concluída. Continuidade iniciada na
+[7.60 — verificação acompanhada no navegador](07-60-verificacao-navegador-csrf.md).
+Aluno informou Chrome ou Edge; execução e resultados aguardando seu relato.
+Sem login; módulos 8 a 23 não iniciados.

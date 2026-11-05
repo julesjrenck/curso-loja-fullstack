@@ -337,9 +337,16 @@ prepara GET csrf-cookie em 8002 com Fetch credentials include/Accept JSON,
 sem login; async/await/status/catch/finally explicados. GET estático 200/HTML/
 corpo igual e cinco controles passaram; sintaxe JS no Node da imagem Redocly
 fixada passou/cópia temporária removida. Sem clique/navegador/pedido à API ou
-nova suíte. Entendimento da 7.59 confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próximo após confirmar/publicar: 7.60 — janela privativa, botão uma vez,
-status/CORS e presença/atributos dos cookies sem valores, sem login.
+nova suíte. Entendimento da 7.59 confirmado com "entendi" em 05/11/2026;
+publicada em 8232454, remoto conferido. Na 7.60, aluno informou Chrome ou Edge.
+Roteiro preparado: janela privativa sem sessão da loja, Rede/cabeçalhos e
+Aplicativo/Cookies; um clique, sem login ou cópia de valores. Metadados esperados
+lidos no Docker/serviços ativos; código 0. Sem ferramenta de controle de
+navegador. Em 05/11/2026, aluno relatou "deu certo, vamos adiante": sucesso
+geral por relato, sem valores individuais de status/cabeçalhos/atributos.
+Distinção entre leitura do status, cookies e autenticação reforçada. Entendimento
+confirmado com "Sim, entendi" em 05/11/2026; publicação pendente. Próxima após
+publicar: 7.61 — consulta GET usuario no laboratório, visitante/401, sem login.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1134,8 +1141,12 @@ confirmado com "entendi" em 05/11/2026; publicação em 3563303. Na 7.59,
 página HTML/JS de laboratório criada em src, servida em 8001, botão GET
 csrf-cookie em 8002/Fetch credentials include. Entrega 200/HTML e sintaxe JS
 verificadas; sem clique/navegador/API ou nova suíte. Entendimento da 7.59
-confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.60 — verificação
-acompanhada em janela privativa, status/CORS e cookies sem copiar valores.
+confirmado com "entendi" em 05/11/2026; publicação em 8232454. Na 7.60,
+roteiro de verificação no Chrome/Edge preparado, sem alteração de aplicação.
+Metadados esperados conferidos sem sessão/pedido à API. Aluno relatou sucesso
+geral em 05/11/2026 ("deu certo, vamos adiante"), sem valores individuais.
+Entendimento confirmado com "Sim, entendi" em 05/11/2026; publicação pendente.
+Próxima após publicar: 7.61 — consulta GET usuario no laboratório, visitante/401.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -5,9 +5,33 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.59 — Página de laboratório para preparar o CSRF:
-  implementação, explicação e verificações apresentadas em 05/11/2026;
-  entendimento confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Etapa atual: 7.60 — Verificação acompanhada do CSRF no navegador:
+  roteiro explicado e execução relatada como bem-sucedida pelo aluno em
+  05/11/2026: "deu certo, vamos adiante". Campos individuais não informados;
+  entendimento confirmado com "Sim, entendi" em 05/11/2026. Publicação pendente.
+- Situação da 7.60: docs/aulas/07-60-verificacao-navegador-csrf.md criado.
+  Aluno escolheu Chrome ou Edge em resposta à pergunta sobre navegador.
+  Sem ferramenta de controle do navegador nesta sessão; acompanhamento por
+  roteiro e relato. Aluno informou sucesso geral; assistente não observou
+  navegador nem recebeu status/cabeçalhos/atributos individualmente. Registrar
+  somente esse alcance. Só documentação alterada nesta atualização.
+  Preparação: PHP no Docker/local/sem cache leu somente metadados públicos:
+  cookie loja-fullstack-session/HttpOnly true/SameSite lax/Path /, domínio sem
+  sobrescrita; CORS origem 8001/credenciais true. Código 0, sem sessão iniciada
+  ou pedido à API. StartSession/PreventRequestForgery conferidos para expectativas;
+  XSRF-TOKEN usa HttpOnly false. Serviços php/backend/sqlserver ativos.
+  Roteiro: janela privativa sem sessão prévia da loja; painel Rede antes do
+  clique, um GET csrf-cookie e inspeção dos cabeçalhos; Aplicativo/Cookies para
+  presença e atributos. Esperados 204 legível, Allow-Origin 8001/credenciais true
+  e dois cookies, ainda sem execução confirmada. Não copiar valores/HAR/headers
+  completos. Se houver cookies prévios, relatar antes de clicar sem apagar
+  dados desconhecidos. Última suíte 7.58, 107/1.586; sem nova suíte.
+  Retorno do aluno recebido: "deu certo, vamos adiante". Execução bem-sucedida
+  por relato, sem atribuir valores esperados a campos não fornecidos.
+  Reforçada a distinção entre leitura do status, armazenamento dos cookies e
+  autenticação. Entendimento confirmado com "Sim, entendi" em 05/11/2026.
+  Próximo após publicar: 7.61 — acrescentar consulta GET /api/v1/usuario ao
+  laboratório para observar 401 de visitante, sem login.
 - Situação da 7.59: criado src/laboratorio-sessao.html, único arquivo de aplicação
   alterado. Serviço PHP existente em 8001 entrega a página; botão dispara GET
   absoluto para 8002/sanctum/csrf-cookie com Fetch/credentials include/Accept JSON.
@@ -20,9 +44,10 @@
   204 e aceitação de cookies ainda são expectativas. Sem nova suíte; última
   7.58, 107 testes/1.586 asserções. Backend/configurações/Compose preservados.
   Aula docs/aulas/07-59-pagina-laboratorio-sessao.md criada.
-  Próximo após confirmar/publicar: 7.60 — abrir página em janela privativa,
-  executar botão uma vez e acompanhar status, CORS e presença/atributos dos
-  cookies sem copiar valores. Sem login; módulos 8 a 23 não iniciados.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  8232454a83047165c8e9746cdbc56de207548cd4, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.60, aguardando execução
+  acompanhada no navegador; módulos 8 a 23 não iniciados.
 - Situação da 7.58: criado backend/config/sanctum.php, único arquivo de aplicação
   alterado. Declara apenas stateful: padrão do pacote mais 127.0.0.1:8001,
   preservando helper currentApplicationUrlWithPort para 8002 e sobrescrita
@@ -39,7 +64,7 @@
   bootstrap/testes/ambientes/dependências/serviços/Compose/OpenAPI preservados.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   35633036f506078470e9d2e4ca5c804f5d99cf26, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.59.
+  Checkpoint anterior à 7.59. Continuidade realizada na 7.59.
 - Situação da 7.57: criado backend/config/cors.php, único arquivo de aplicação
   alterado. Origem local de laboratório http://127.0.0.1:8001 e credenciais true;
   demais sete opções preservam padrões do framework. PHP -l sem erros.
@@ -2231,9 +2256,17 @@ csrf-cookie em 8002/Fetch credentials include/Accept JSON. Página estática
 servida pelo PHP existente em 8001; GET interno retornou 200/HTML/corpo igual,
 cinco controles passaram. Sintaxe JS no Node da imagem Redocly fixada passou;
 cópia temporária removida. Sem clique/navegador/pedido à API ou nova suíte.
-Entendimento da 7.59 confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
-confirmar/publicar: 7.60 — janela privativa/botão uma vez, status/CORS e presença/
-atributos de cookies sem valores; sem login.
+Entendimento da 7.59 confirmado com "entendi" em 05/11/2026; publicada em
+8232454, remoto conferido. Continuidade iniciada na 7.60: aluno informou Chrome
+ou Edge; roteiro preparado para janela privativa/Rede/cabeçalhos/Aplicativo e
+cookies. Metadados esperados lidos sem sessão/pedido à API, código 0; serviços
+ativos. Sem ferramenta de controle do navegador. Aluno relatou em 05/11/2026:
+"deu certo, vamos adiante". Sucesso geral por relato; valores individuais de
+status/CORS/atributos não fornecidos, sem validação independente.
+Entendimento sobre leitura do status, armazenamento de cookies e ausência de
+login confirmado com "Sim, entendi" em 05/11/2026. Publicação pendente.
+Próximo após publicar: 7.61 — consulta GET usuario no laboratório, visitante/401,
+sem login.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -15142,9 +15175,66 @@ Git diff --check passou; cinco links locais válidos, IDs HTML únicos/esperados
 um script próprio, cinco arquivos previstos alterados e índice vazio.
 
 Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
-Publicação da 7.59: pendente; último checkpoint publicado 3563303 (7.58).
-Próximo passo exato após confirmar/publicar: 7.60 — abrir laboratório em janela
-privativa em http://127.0.0.1:8001/laboratorio-sessao.html, executar botão uma vez
-e acompanhar status, cabeçalhos CORS e presença/atributos de cookies sem copiar
-valores; sem login. Verificação acompanhada no navegador pendente, módulos
-8 a 23 não iniciados.
+Publicação da 7.59: concluída e conferida em 05/11/2026:
+8232454a83047165c8e9746cdbc56de207548cd4; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade iniciada na 7.60,
+aguardando execução no navegador.
+
+
+## Etapa 7.60 — Verificação acompanhada do CSRF no navegador — 05/11/2026
+
+Iniciada após confirmação da 7.59 com "entendi" e publicação verificada em
+8232454a83047165c8e9746cdbc56de207548cd4. Aluno respondeu à pergunta sobre
+navegador: "Chrome ou Edge". Essa resposta informa o navegador; não confirma
+execução ou entendimento da 7.60. Sem ferramenta de controle do navegador
+nesta sessão. Nenhum navegador local encontrado na inspeção inicial.
+Acompanhamento por roteiro e relato do aluno; nenhuma dependência instalada.
+
+Implementação documental: docs/aulas/07-60-verificacao-navegador-csrf.md,
+publicação anterior, roteiro/progresso e continuidade atualizados. Nenhuma
+alteração na aplicação ou página. Exercício sem login: janela privativa sem
+sessão da loja, URL exata 127.0.0.1:8001/laboratorio-sessao.html, Rede antes do
+clique, botão uma vez, GET csrf-cookie em 8002/cabeçalhos e Aplicativo/Cookies.
+Conferir cookies prévios antes do clique; se houver, relatar sem apagar dados
+desconhecidos. Referências primárias Chrome DevTools e MDN consultadas.
+
+Explicação/expectativas apresentadas: 204 mostrado pelo JS comprova leitura
+do status, cookies armazenados são observação distinta, Set-Cookie sozinho
+indica emissão. Preparação visitante não comprova autenticação ou operação
+protegida por CSRF. Esperados GET/204, Origin e Allow-Origin 8001,
+Allow-Credentials true, corpo vazio; cookies loja-fullstack-session e
+XSRF-TOKEN/Path / e SameSite Lax. HttpOnly sim na sessão/não no XSRF;
+HttpOnly limita acesso pelo JS, navegador continua administrando o cookie.
+Esperados ainda sem execução ou resultado observado no navegador.
+
+Preparação técnica: leitura PHP no Docker, bootstrap de console/local/sem
+cache, somente campos públicos de sessão/CORS. Nome loja-fullstack-session,
+http_only true/same_site lax/path /, domínio sem sobrescrita, credenciais true/
+origem 8001. Código 0. StartSession e PreventRequestForgery instalados lidos
+para atributos de emissão; XSRF-TOKEN HttpOnly false. Serviços php/backend/
+sqlserver ativos. Sem sessão iniciada, pedido à API ou clique pelo assistente.
+Sem nova suíte/auditoria/snapshot; última 7.58: 107 testes/1.586 asserções.
+
+Relato solicitado: mensagem na página, método/status, Origin, Allow-Origin,
+Allow-Credentials e presença/HttpOnly/SameSite/Path dos dois cookies.
+Sem cookies/tokens/IDs/valores/headers completos/HAR/capturas com valores.
+Se falhar, começar com mensagem e método/status; não alterar configurações
+para forçar o esperado antes de analisar.
+
+Git diff --check passou; quatro links locais válidos, somente quatro
+documentos previstos alterados, índice vazio; aplicação/página preservadas.
+
+Retorno posterior do aluno em 05/11/2026: "deu certo, vamos adiante".
+Execução no navegador: relatada como bem-sucedida pelo aluno. Mensagem/status,
+cabeçalhos e atributos não foram informados individualmente; não preencher
+esses campos com os valores esperados. Sem observação independente do assistente.
+Explicação reforçada: leitura do status pelo JavaScript e armazenamento de
+cookies são evidências distintas; preparar sessão não confirma autenticação.
+Confirmação explícita de entendimento solicitada separadamente, conforme AGENTS.md.
+O pedido de continuar foi recebido; não registrado como confirmação de entendimento.
+Entendimento da 7.60: confirmado pelo aluno com "Sim, entendi" em 05/11/2026,
+em resposta à confirmação solicitada. Sucesso da execução segue por relato
+geral; campos individuais não fornecidos e não inventados.
+Publicação da 7.60: pendente; último checkpoint publicado 8232454 (7.59).
+Próximo passo exato após publicar: 7.61 — acrescentar consulta GET /api/v1/usuario
+ao laboratório para observar 401 de visitante, sem login. Módulos 8 a 23 não iniciados.
