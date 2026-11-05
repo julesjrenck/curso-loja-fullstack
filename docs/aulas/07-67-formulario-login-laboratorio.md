@@ -5,7 +5,9 @@ Implementação, explicação e verificações em 05/11/2026, após confirmaçã
 anteriormente, sem senha compartilhada. Checkpoint 7.66 publicado e conferido
 em 35669327d3cef8b7dc56136d4d78e2267329b3c2,
 HEAD/origin/main/main remota iguais. Entendimento da 7.67 confirmado com
-"entendi" em 05/11/2026; publicação pendente.
+"entendi" em 05/11/2026; publicação conferida em
+9d61d39a573de7551b658e3baf5a1e86ecb6a8fb, HEAD/origin/main/main remota iguais.
+Registro atualizado após a publicação.
 
 ## Objetivo e arquivo
 
@@ -134,7 +136,8 @@ previstos alterados e índice vazio; backend/seeder/Compose/OpenAPI preservados.
 
 ## Continuidade
 
-Após confirmar entendimento e publicar, próxima 7.68: no Chrome/Edge, preparar
+Continuidade iniciada na [7.68](07-68-ciclo-autenticacao-no-navegador.md):
+no Chrome/Edge, preparar
 CSRF, preencher e-mail fictício e senha escolhida no terminal, enviar login uma
 vez, consultar usuário, sair e consultar novamente. Acompanhar a sequência
 204/204/200/204/401, CORS e cookies sem copiar senha/payload/valores de cookies

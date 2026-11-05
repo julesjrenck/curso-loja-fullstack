@@ -388,9 +388,13 @@ adicionado ao laboratório: submit/preventDefault, campos/JSON email/password,
 cookies/token CSRF, status 204/422/419/429/catch/finally limpa senha. Consulta
 agora reconhece 200 e mantém 401. Sintaxe/oito cenários simulados passaram;
 HTML/sete controles passaram; auxiliares removidos, sem login real/API/SQL ou
-nova suíte. Entendimento da 7.67 confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próxima após confirmar/publicar: 7.68 — navegador, preparar/login/consulta/
-logout/consulta, 204/204/200/204/401 e CORS/cookies sem dados privados.
+nova suíte. Entendimento da 7.67 confirmado com "entendi" em 05/11/2026;
+publicação em 9d61d39, remoto conferido. Na 7.68, roteiro de navegador
+preparar/login/consulta/logout/consulta, com 204/204/200/204/401 esperados e
+CORS/cookies sem dados privados. Relato parcial: login 204, consulta autenticada
+200 e logout 204; depois aluno relatou sucesso geral, sem campos individuais
+adicionais. Entendimento confirmado com "sim" em 05/11/2026; publicação
+pendente. Próxima após publicar: 7.69 — autorização, 401/403 e Gate/Policy.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1214,8 +1218,13 @@ sem senha/hash expostos. Login não executado nessa etapa. Entendimento
 confirmado com "entendi" em 05/11/2026; publicação em 3566932. Na 7.67, formulário
 login/CSRF/POST implementado e consulta 200 reconhecida; sintaxe/oito cenários
 simulados e HTML/sete controles passaram, sem login real/API/nova suíte.
-Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.68 — ciclo no navegador
+Entendimento confirmado com "entendi" em 05/11/2026; publicação em 9d61d39,
+remoto conferido. Na 7.68, roteiro do ciclo no navegador
 preparar/login/consulta/logout/consulta, sem copiar dados privados.
+Relatados login 204/consulta 200/logout 204 e depois sucesso geral, sem
+campos individuais adicionais. Entendimento confirmado com "sim" em
+05/11/2026; publicação pendente antes da 7.69 — autorização, 401/403 e
+Gate/Policy, sem implementar essas regras ainda.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

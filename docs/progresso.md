@@ -5,9 +5,27 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.67 — Formulário de login no laboratório:
-  implementação, explicação e verificações apresentadas em 05/11/2026;
-  entendimento confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Etapa atual: 7.68 — Ciclo de autenticação no navegador:
+  execução bem-sucedida por relato geral; entendimento confirmado com "sim"
+  em 05/11/2026; publicação pendente.
+- Situação da 7.68: somente documentação alterada. Exercício no Chrome/Edge:
+  preparar CSRF, entrar com conta fictícia e senha privada, consultar usuário,
+  encerrar sessão e consultar novamente. Esperados 204/204/200/204/401,
+  separados dos OPTIONS; conferir CORS e nomes dos cookies enviados.
+  Serviços php/backend/sqlserver ativos; nenhuma chamada à API ou SQL pelo
+  assistente nesta etapa. Sem ferramenta para observar/controlar o navegador.
+  Aluno relatou login 204, consulta autenticada 200 e logout 204.
+  Ainda não informou status da preparação, consulta após logout ou observações
+  individuais de CORS/cookies/token. Trecho "(anonymous) @ laboratorio-sessao.html:62"
+  recebido sem mensagem de erro; aponta ao fetch de preparação e sozinho
+  não permite diagnosticar falha. Após pedido de complemento, aluno informou
+  "deu tudo certo, pdoe seguir": sucesso geral registrado; sem status/campos
+  individuais adicionais ou mensagem de erro. Não atribuir valores não relatados.
+  Aula docs/aulas/07-68-ciclo-autenticacao-no-navegador.md criada.
+  Entendimento confirmado com "sim" em 05/11/2026 sobre consulta autenticada
+  200 e consulta após logout 401. Publicação pendente. Próxima após publicar:
+  7.69 — autorização: login não concede permissão administrativa; 401/403,
+  regra de acesso no servidor e introdução a Gate/Policy, sem implementar ainda.
 - Situação da 7.67: somente src/laboratorio-sessao.html alterado na aplicação.
   Form POST/action login/labels/campos email e password sem valor padrão de
   senha; Entrar disabled até preparação 204. Listener submit/preventDefault,
@@ -23,10 +41,10 @@
   HTML estático 200/corpo igual/sete controles passaram; códigos 0.
   Sem navegador/login real/API/SQL/nova suíte; última 7.58, 107/1.586.
   Aula docs/aulas/07-67-formulario-login-laboratorio.md criada.
-  Próximo após confirmar/publicar: 7.68 — navegador, preparar CSRF/login com
-  conta fictícia/consultar usuário/logout/consultar novamente; acompanhar
-  204/204/200/204/401, CORS e cookies sem senha/payload/valores privados.
-  Resultados reais pendentes; módulos 8 a 23 não iniciados.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  9d61d39a573de7551b658e3baf5a1e86ecb6a8fb, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.68; sucesso geral
+  relatado, entendimento confirmado na 7.68. Módulos 8 a 23 não iniciados.
 - Situação da 7.66: docs/aulas/07-66-execucao-seeder-usuario-laboratorio.md criado.
   Só documentação alterada. PHP no Docker confirmou local/sqlsrv/destino loja/
   classe disponível. SELECT real confirmou banco loja/login e usuário loja_app;
@@ -48,7 +66,7 @@
   pelo assistente ou login executado. Registro e hash não provam autenticação.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   35669327d3cef8b7dc56136d4d78e2267329b3c2, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.67.
+  Checkpoint anterior à 7.67. Continuidade realizada na 7.67.
 - Situação da 7.65: criado backend/database/seeders/UsuarioLaboratorioSeeder.php,
   único arquivo de aplicação alterado. Separado do DatabaseSeeder padrão.
   Exige local/sqlsrv/destino loja/comando sem --no-interaction antes de consultar
@@ -2436,9 +2454,13 @@ remoto conferido. Continuidade na 7.67: formulário method POST/action/campos,
 submit/preventDefault, POST cookies/CSRF/JSON email/password; senha limpa no
 finally. Consulta 200/401 reconhecidas. Sintaxe/oito cenários simulados e
 HTML/sete controles passaram; auxiliares removidos, sem login real/API/SQL.
-Entendimento da 7.67 confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
-confirmar/publicar: 7.68 — navegador, preparar/login/consulta/logout/consulta,
-acompanhar 204/204/200/204/401 e CORS/cookies sem dados privados.
+Entendimento da 7.67 confirmado com "entendi" em 05/11/2026; publicação em
+9d61d39, remoto conferido. Continuidade na 7.68: exercício no navegador,
+preparar/login/consulta/logout/consulta; esperados 204/204/200/204/401 e
+CORS/cookies sem dados privados. Relatados login 204/consulta 200/logout 204;
+depois aluno informou sucesso geral, sem campos individuais adicionais.
+Entendimento confirmado com "sim" em 05/11/2026; publicação pendente.
+Próxima após publicar: 7.69 — autorização, 401/403 e Gate/Policy.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -15791,9 +15813,68 @@ associados/um script próprio/senha sem padrão. Somente cinco arquivos previsto
 alterados, índice vazio; backend/seeder/Compose/OpenAPI preservados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
-Publicação da 7.67: pendente; último checkpoint publicado 3566932 (7.66).
-Próximo passo exato após confirmar/publicar: 7.68 — no Chrome/Edge preparar
-CSRF, login com conta fictícia/senha escolhida no terminal, consultar usuário,
-logout e consultar novamente; observar 204/204/200/204/401, CORS e cookies,
-sem copiar senha/payload/valores de cookies/dados privados. Resultados reais
-ainda pendentes; módulos 8 a 23 não iniciados.
+Publicação da 7.67: concluída e conferida em 05/11/2026:
+9d61d39a573de7551b658e3baf5a1e86ecb6a8fb; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade iniciada na 7.68.
+
+
+## Etapa 7.68 — Ciclo de autenticação no navegador — 05/11/2026
+
+Iniciada após confirmação da 7.67 com "entendi" e publicação conferida em
+9d61d39a573de7551b658e3baf5a1e86ecb6a8fb. Git add com cinco caminhos explícitos,
+commit e push explicados antes de executar. HEAD/origin/main/main remota iguais.
+
+Implementação: nenhuma mudança na aplicação. Criado roteiro
+docs/aulas/07-68-ciclo-autenticacao-no-navegador.md; aula anterior, roteiro e
+progresso atualizados. Conta fictícia da 7.66 e formulário da 7.67 reutilizados.
+
+Explicação/roteiro apresentado: recarregar laboratório em sessão privativa
+Chrome/Edge, Rede/Todos sem filtros; preparar CSRF, entrar uma vez com
+aluno@example.test e senha escolhida no terminal, consultar, sair e consultar
+novamente. Esperados GET preparação 204, POST login 204, GET usuário 200,
+POST logout 204, GET usuário 401. OPTIONS não conta como execução de login
+ou logout. Registrar cada consulta antes de sobrescrever a mensagem na tela.
+Login aceito seguido de consulta protegida 200 demonstra autenticação daquela
+requisição; após logout, consulta 401 demonstra ausência de autenticação.
+CORS e envio de cookies são observações distintas; não copiar seus valores.
+
+Verificação do assistente: docker compose ps --status running --services
+confirmou php/backend/sqlserver ativos. Nenhum pedido da API, login real, SQL,
+alteração de conta/senha ou nova suíte. Última suíte permanece 7.58:
+107 testes/1.586 asserções. Sem repetir controles de JS/HTML da 7.67.
+Sessão sem ferramenta de controle/observação do navegador; pedido assíncrono
+de execução e relato enviado. Não preencher campos individuais não relatados.
+
+Git diff --check passou; nove links locais válidos nos quatro documentos.
+Somente quatro arquivos de documentação alterados, índice vazio; aplicação,
+backend, seeder, Compose e contratos preservados.
+
+Resultado do navegador: relato parcial recebido em 05/11/2026:
+- "Resposta recebida: HTTP 204 (login aceito)."
+- "Resposta recebida: HTTP 200 (usuário autenticado)."
+- "Resposta recebida: HTTP 204 (sessão encerrada)."
+
+Essas mensagens relatam login aceito, consulta reconhecida como autenticada e
+resposta de logout. O aluno ainda não informou a consulta após logout, o status
+da preparação ou os campos individuais de CORS/cookies/token. Não inferir esses
+valores. Recebida também referência "(anonymous) @ laboratorio-sessao.html:62":
+a linha corresponde ao fetch de preparação, sem texto de erro junto; o trecho
+isolado não permite concluir falha, causa ou status HTTP. Solicitado complemento
+e nova consulta sem novo login. Nenhuma execução adicional pelo assistente.
+
+Retorno posterior em 05/11/2026: "deu tudo certo, pdoe seguir". Execução
+bem-sucedida por relato geral, sem status da preparação/consulta final ou
+campos individuais de CORS/cookies/token adicionais. Não preencher esses
+campos como observados. Nenhuma mensagem de erro adicional relatada.
+Reforçada interpretação: consulta protegida 200 reconhece autenticação;
+consulta após logout deve retornar 401 por ausência de autenticação.
+Sem nova execução pelo assistente; git diff --check passou nesta atualização.
+
+Entendimento: confirmado com "sim" em 05/11/2026, em resposta à pergunta
+sobre consulta autenticada 200 após login e consulta 401 após logout. Isso
+confirma entendimento, sem acrescentar campos individuais ao relato de execução.
+Publicação da 7.68: pendente; último checkpoint publicado 9d61d39 (7.67).
+Próximo passo exato após publicar: 7.69 — autorização: login não concede
+permissão administrativa, diferença 401/403 e introdução a Gate/Policy.
+Sem criar papel, migration, política ou rota nesta introdução.
+Módulos 8 a 23 não iniciados.
