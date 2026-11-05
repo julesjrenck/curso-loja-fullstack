@@ -5,9 +5,25 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.46 — Teste permanente de logout visitante:
+- Etapa atual: 7.47 — Rota de logout:
   implementação, explicação e verificações apresentadas; entendimento
   confirmado com "entendi" em 04/11/2026, publicação pendente.
+- Situação da 7.47: somente routes/api.php alterado na aplicação, POST /logout
+  ligado a LoginController::destroy, prefixo api/v1 existente. Sem auth:sanctum/
+  throttle:login; statefulApi preservado. Sintaxe e route:list -vv passaram:
+  POST api/v1/logout, EnsureFrontendRequestsAreStateful/SubstituteBindings.
+  Diagnóstico temporário PHP Docker/kernel HTTP/testing, aplicação por caso,
+  sessão/cache array, loja_test/loja_testes exigidos antes do pedido. Request
+  sem corpo/cookies, Origin reconhecido 8002 e Accept JSON/HTML/realmente ausente.
+  Treze condições/caso passaram: rota/ação/middleware/Accept, 204 vazio/sem
+  Location, sessão array/visitante/ID null/chave ausente, token e cookies emitidos,
+  zero SQL após identidade; código 0. Console/runningUnitTests true: CSRF ignorado
+  nesse diagnóstico, sem rede ou navegador. Suíte existente 103/1.464 passou;
+  SQL posterior seis tabelas/quatro migrations/lotes 1/2/3/4, dados zero.
+  Controller/testes/bootstrap/Compose/OpenAPI preservados. Próximo após confirmar/
+  publicar: 7.48 — LogoutApiTest com visitante nos três Accept, presença/valor
+  conferidos e 204 vazio/sem Location. Logout autenticado pela rota, GET usuario
+  após logout, CSRF ativo/cookies no navegador, CORS e OpenAPI pendentes.
 - Situação da 7.46: somente um método adicionado a LoginControllerTest, sem
   alterar imports/setUp/helpers/testes anteriores. Request POST sem corpo recebe
   sessão array. Guard visitante/ID null/chave de login ausente exigidos antes
@@ -19,9 +35,10 @@
   Sintaxe válida; focado 4 testes/104 asserções, suíte 103 testes/1.464 asserções,
   códigos 0. SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/
   lotes 1/2/3/4 e cinco tabelas de dados vazias. Aplicação/rotas/bootstrap/Compose/
-  OpenAPI preservados. Próximo após confirmar/publicar: 7.47 — somente rota POST
-  logout ligada a destroy, sem auth:sanctum/throttle:login, e conferir rota/
-  resposta visitante pelo kernel HTTP. CSRF/cookies, GET usuario após logout,
+  OpenAPI preservados. Entendimento confirmado com "entendi" em 04/11/2026;
+  publicação verificada em fc3c8e99191e4d01dce6fe9e16125923e0f7cc13,
+  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  Continuidade realizada na 7.47. CSRF/cookies, GET usuario após logout,
   navegador/CORS e OpenAPI de logout continuam pendentes.
 - Situação da 7.45: somente LoginControllerTest alterado no código, import
   Illuminate\Http\Request e um cenário novo. Preparação existente de User em
@@ -36,7 +53,7 @@
   Aplicação/rotas/bootstrap/Compose/OpenAPI preservados.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   3014af2851446444a32df051d3d130aad1755b81, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.46.
+  Checkpoint anterior à 7.46. Continuidade realizada na 7.46.
   HTTP/CSRF/cookies, GET usuario após logout e navegador/CORS pendentes.
 - Situação da 7.44: somente LoginController alterado na aplicação: import de
   Illuminate\Http\Request e método público destroy(Request): Response com
@@ -1953,7 +1970,12 @@ confirmado com "entendi" em 04/11/2026; publicação em 3014af2. Continuidade
 realizada na 7.46 — teste permanente de logout visitante: estado inicial sem
 identidade, 204 vazio/limpeza/renovação e recarga da sessão array. Focado 4/104,
 suíte 103/1.464 e SQL final sem dados passaram. Entendimento confirmado com
-"entendi" em 04/11/2026; publicação pendente antes da 7.47 — somente rota POST logout.
+"entendi" em 04/11/2026; publicação em fc3c8e9. Continuidade realizada na
+7.47 — rota POST logout/destroy sem auth:sanctum/throttle:login; route:list e
+kernel/testing confirmam visitante 204 vazio/sem Location nos três Accept,
+origem reconhecida/sessão array/CSRF ignorado. Suíte existente 103/1.464 passou,
+SQL posterior sem dados. Entendimento confirmado com "entendi" em 04/11/2026;
+publicação pendente antes da 7.48 — LogoutApiTest com visitante nos três Accept.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -14182,9 +14204,68 @@ somente LoginControllerTest e documentos; índice vazio. Aplicação/rotas/
 bootstrap/Compose/OpenAPI sem diff, rota de logout ainda ausente.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.46: pendente; registros locais. Último checkpoint publicado:
-3014af2851446444a32df051d3d130aad1755b81 (7.45).
-Próximo passo exato após confirmar/publicar: 7.47 — registrar somente
-POST /api/v1/logout ligado a LoginController::destroy, sem auth:sanctum ou
-throttle:login, e conferir rota/resposta visitante pelo kernel HTTP. CSRF/cookies,
-GET usuario após logout, navegador/CORS e OpenAPI do logout seguem pendentes.
+Publicação da 7.46: concluída e conferida em
+fc3c8e99191e4d01dce6fe9e16125923e0f7cc13; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.47.
+CSRF/cookies, GET usuario após logout, navegador/CORS e OpenAPI seguem pendentes.
+
+
+## Etapa 7.47 — Rota de logout — 04/11/2026
+
+Iniciada após confirmação da 7.46 com "entendi" e publicação verificada.
+Implementação: somente backend/routes/api.php na aplicação, Route::post('/logout',
+[LoginController::class, 'destroy']). Import já existente; nenhuma alteração em
+controller/testes/bootstrap/ambientes/dependências/serviços/migrations/Compose/
+OpenAPI. Aula 7.47, contratos/roteiro/progresso e publicação anterior atualizados.
+
+Explicação apresentada: POST escolhe método HTTP; /logout recebe apiPrefix
+api/v1 do bootstrap que carrega routes/api.php. Array indica classe e método
+de instância resolvidos pelo Laravel. Não aplicar auth:sanctum aceita visitante
+conforme contrato; não reaproveitar throttle:login. Login mantém limitador e
+GET usuario mantém autenticação. StatefulApi mantém cookies/sessão/CSRF para
+origens reconhecidas; nenhuma exceção de CSRF adicionada.
+
+Verificação Docker: PHP -l routes/api.php passou. Artisan route:list com filtro
+api/v1/logout e -vv mostrou uma rota POST Api\V1\LoginController@destroy,
+EnsureFrontendRequestsAreStateful e SubstituteBindings, sem auth/limitador login.
+Listagem código 0, sem executar o endpoint.
+
+Diagnóstico temporário /tmp/curso-7-47-rota-logout.php, não versionado, sintaxe
+conferida e execução PHP por stdin/APP_ENV testing no Docker. Aplicação por caso,
+sessão/cache array somente na instância. Configuração/identidade sqlsrv/loja_test/
+loja_testes/sem DB_URL exigidas antes do pedido; listener após SELECT de identidade
+contou zero instruções SQL durante cada caso. Sem User criado/autenticado ou
+arquivos de sessão/cookies persistidos. Request POST sem corpo/cookies para
+127.0.0.1:8002, Origin reconhecido igual; Accept JSON/HTML/realmente ausente,
+removido explicitamente no último. Presença e valor conferidos.
+
+Kernel handle/terminate executou ciclo HTTP interno, sem rede para servidor
+habitual. Treze condições/caso passaram: Accept exato; rota POST/caminho; ação
+destroy; stateful/atributo sanctum ativos; sem auth/throttle login; 204; corpo
+vazio; sem Location; sessão array; guard visitante/ID null/chave ausente; token
+presente; cookies de sessão/CSRF emitidos pelos nomes; zero SQL após identidade.
+Código 0/sucesso true. Console/runningUnitTests true conferidos: CSRF ignorado.
+Não comprova 419 ou armazenamento/reenvio dos cookies no navegador. Nenhum
+valor real de cookie/token/ID ou resposta bruta impresso/versionado.
+
+Suíte existente 103 testes/1.464 asserções passou, código 0, com
+--colors=never/--do-not-cache-result. Nenhum teste permanente de rota adicionado
+nesta etapa; testes existentes de controller continuam e diagnóstico cobriu rota.
+SELECT posterior confirmou loja_test/loja_testes, seis tabelas, quatro migrations/
+lotes 1/2/3/4 (int explícito) e zero categorias/produtos/users/password_reset_tokens/
+sessions. Sem auditoria/snapshot normal, logout autenticado pela rota, GET usuario
+após logout, CSRF ativo de logout ou navegador/CORS.
+
+Git diff --check passou. Links locais válidos: logout três, login quatro,
+consulta cinco, limite um, aulas 7.46/7.47 dois e três respectivamente.
+Escopo conferido: somente routes/api.php e documentos; índice vazio.
+Controller/testes/bootstrap/Compose/OpenAPI sem diff, OpenAPI ainda sem logout.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.47: pendente; registros locais. Último checkpoint publicado:
+fc3c8e99191e4d01dce6fe9e16125923e0f7cc13 (7.46).
+Próximo passo exato após confirmar/publicar: 7.48 — criar LogoutApiTest com
+cenário visitante nos três Accept, sessão/cache array, preservando 204 vazio/
+sem Location e conferindo o cabeçalho realmente ausente. Logout autenticado pela
+rota, GET usuario após logout, CSRF ativo/cookies no navegador, CORS e OpenAPI
+seguem pendentes.

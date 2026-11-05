@@ -1,9 +1,10 @@
-# API de logout — método do controller implementado
+# API de logout — rota registrada
 
 Desenho da etapa 7.43, em 04/11/2026. LoginController::destroy implementado na
-7.44; rota ainda não registrada. Diagnóstico direto verificou autenticado e
-visitante em loja_test/sessão array. Os resultados HTTP abaixo são requisitos,
-não respostas observadas pela rota de logout.
+7.44; rota POST /api/v1/logout registrada na 7.47. Diagnósticos diretos e testes
+permanentes verificaram autenticado/visitante com sessão array. Na 7.47, kernel
+HTTP/testing verificou visitante 204 nos três casos de Accept; CSRF ativo e
+logout autenticado pela rota ainda não verificados.
 O [login](login.md) estabelece a identidade; esta operação encerrará a
 autenticação da sessão atual. A [consulta do usuário](autenticacao.md)
 permitirá verificar o estado após sair.
@@ -118,7 +119,8 @@ não foi uma requisição HTTP. Treze condições por caso passaram, código 0,
 transações desfeitas/contagens preservadas. Suíte existente 101 testes/1.407
 asserções passou; SELECT posterior confirmou banco de testes sem dados.
 
-Rota, HTTP/CSRF/cookies, navegador/CORS e OpenAPI do logout continuam pendentes.
+Integração HTTP de autenticado, CSRF ativo/cookies no navegador, CORS e OpenAPI
+do logout continuam pendentes.
 Na 7.45, adicionado um teste permanente de logout autenticado em LoginControllerTest:
 prepara identidade pelo guard web real, salva marcador e sessão array, chama
 destroy diretamente e exige 204/sem Location, limpeza/renovação e remoção do
@@ -130,8 +132,16 @@ ID null/chave de login ausente antes da ação; marcador e sessão array salvos.
 Destroy direto retorna 204 vazio/sem Location, limpa e renova a sessão; registro
 antigo removido, recarga visitante com ID/token novos. Focado 4/104 e suíte
 103/1.464 passaram, SQL posterior sem dados em loja_test. Não executa CSRF.
-Próxima 7.47: registrar somente POST logout ligado a destroy, sem auth:sanctum
-ou throttle:login, e conferir rota/resposta visitante pelo kernel HTTP.
+Na 7.47, rota ligada a destroy, sem auth:sanctum/throttle:login. Route:list
+confere POST, EnsureFrontendRequestsAreStateful e SubstituteBindings. Kernel
+HTTP/testing com origem reconhecida/cookies de entrada ausentes/corpo vazio:
+204 vazio/sem Location para Accept JSON, HTML e realmente ausente. Guard
+visitante/ID null/chave de login ausente, token presente e cookies de sessão/
+CSRF emitidos. Treze condições/caso passaram; nenhuma SQL após a consulta de
+identidade em loja_test. Sessão/cache array. CSRF ignorado nesse ambiente.
+Suíte existente 103/1.464 passou; SELECT posterior sem dados de teste.
+Próxima 7.48: LogoutApiTest com visitante nos três Accept, conferindo presença/
+valor do cabeçalho e 204 vazio/sem Location.
 
 Referências: [logout e invalidação de sessão no Laravel](https://laravel.com/docs/13.x/authentication#logging-out),
 [sessão da interface própria com Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication)

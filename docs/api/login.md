@@ -217,7 +217,9 @@ executada nessa validação. Na 7.43, [contrato de logout](logout.md) desenhado;
 método destroy implementado/verificado diretamente na 7.44, rota pendente.
 Suíte existente 101/1.407 passou. Na 7.45, teste permanente de logout autenticado
 adicionado: focado 3/76, suíte 102/1.436. Na 7.46, teste permanente de logout
-visitante passou: focado 4/104, suíte 103/1.464. Próxima 7.47: registrar rota de logout.
+visitante passou: focado 4/104, suíte 103/1.464. Na 7.47, rota de logout registrada;
+visitante 204 vazio nos três Accept pelo kernel/testing. Suíte 103/1.464 passou;
+próxima 7.48: teste permanente dessa rota para visitante.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

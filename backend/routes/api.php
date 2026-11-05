@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [LoginController::class, 'store'])
     ->middleware('throttle:login');
 
+Route::post('/logout', [LoginController::class, 'destroy']);
+
 Route::get('/usuario', [UsuarioController::class, 'show'])
     ->middleware('auth:sanctum');
 

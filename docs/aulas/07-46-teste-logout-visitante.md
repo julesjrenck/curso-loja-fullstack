@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.45 com "entendi". Checkpoint anterior publicado e conferido em
 3014af2851446444a32df051d3d130aad1755b81; HEAD/origin/main/main remota iguais.
-Entendimento da 7.46 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.46 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -85,7 +85,7 @@ Teste implementado, explicado e verificado; entendimento confirmado em 04/11/202
 Aplicação, ambientes, dependências, serviços, migrations, rotas, bootstrap,
 Compose e OpenAPI preservados. Sem logout HTTP/CSRF/cookies ou GET usuario após
 logout. Navegador/CORS pendentes; auditoria/snapshot normal não repetidos.
-Publicação da 7.46 pendente. Próxima após confirmar/publicar: 7.47 — registrar
-somente POST /api/v1/logout ligado a LoginController::destroy, sem auth:sanctum
-ou throttle:login, e conferir rota/resposta de visitante pelo kernel HTTP.
-Não implementamos a rota nesta etapa.
+Publicação da 7.46 concluída e conferida em
+fc3c8e99191e4d01dce6fe9e16125923e0f7cc13; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.47 —
+registrar somente POST logout e conferir resposta visitante pelo kernel.

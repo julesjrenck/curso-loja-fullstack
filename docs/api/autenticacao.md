@@ -155,7 +155,9 @@ permanente de logout autenticado confirmou recarga visitante no handler array,
 sem GET usuario/HTTP. Focado 3/76 e suíte 102/1.436 passaram. Na 7.46, cenário
 permanente de logout visitante confirma ausência de identidade e recarga da
 sessão array: focado 4/104 e suíte 103/1.464 passaram. Consulta HTTP após logout
-continua pendente.
+continua pendente. Na 7.47, POST logout registrado e visitante 204 verificado
+pelo kernel/testing nos três Accept. Não executa GET usuario após logout ou
+logout autenticado pela rota; suíte existente 103/1.464 passou.
 Comportamento de navegador/CORS permanece pendente.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
