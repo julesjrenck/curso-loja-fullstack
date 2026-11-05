@@ -397,8 +397,11 @@ adicionais. Entendimento confirmado com "sim" em 05/11/2026; publicação
 em b0c0930, remoto conferido. Na 7.69, introdução à autorização após login,
 401/403 e Gate/Policy. Código atual conferido; nenhuma regra administrativa
 criada. Entendimento confirmado com "entendi" em 05/11/2026; publicação
-pendente. Próxima após publicar: 7.70 — desenhar representação mínima
-cliente/administrador antes de migration ou mudança de banco.
+em 82b13cf, remoto conferido. Na 7.70, planejado is_admin booleano/default
+false/cast boolean, atributo fora do Fillable e atribuição administrativa controlada.
+Somente documentação; entendimento confirmado com "entendi" em 05/11/2026;
+publicação pendente. Próxima após publicar: 7.71 — criar migration e examinar
+SQL gerado para SQL Server sem aplicá-la no banco normal.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1229,9 +1232,12 @@ Relatados login 204/consulta 200/logout 204 e depois sucesso geral, sem
 campos individuais adicionais. Entendimento confirmado com "sim" em
 05/11/2026; publicação em b0c0930, remoto conferido. Na 7.69, autorização
 após login, 401/403 e Gate/Policy apresentados; sem implementar regras.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação em 82b13cf.
+Na 7.70, desenho is_admin/default false/cast boolean, atributo fora do Fillable,
+atribuição administrativa controlada; somente documentação.
 Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próxima após publicar: 7.70 — representação mínima cliente/admin
-antes de migration ou mudança de banco.
+Próxima após publicar: 7.71 — criar migration/examinar SQL sem aplicar
+no banco normal.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

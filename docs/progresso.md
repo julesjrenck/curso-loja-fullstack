@@ -5,9 +5,22 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.69 — Autorização após o login:
-  introdução apresentada; entendimento confirmado com "entendi" em
+- Etapa atual: 7.70 — Planejamento do indicador de administrador:
+  desenho apresentado; entendimento confirmado com "entendi" em
   05/11/2026; publicação pendente.
+- Situação da 7.70: somente documentação alterada. Planejado users.is_admin
+  booleano obrigatório/padrão false; contas novas e existentes sem promoção
+  automática. Cast boolean futuro no User; atributo fora do Fillable;
+  true somente por procedimento administrativo controlado no servidor.
+  Login continua email/password, Resource id/name/email; indicador não concede
+  ações sozinho, Gate/Policy aplicará a regra. Nenhuma coluna/cast implementado,
+  conta promovida ou schema consultado. User, migrations, LoginRequest/controller,
+  Resource, seeder e factory conferidos. Sem PHP/API/SQL/nova suíte; última
+  7.58, 107 testes/1.586 asserções. Aula
+  docs/aulas/07-70-planejamento-indicador-administrador.md criada.
+  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
+  7.71 — criar somente migration de is_admin/default false/down remove coluna
+  e examinar SQL gerado para SQL Server sem aplicá-la no banco normal.
 - Situação da 7.69: somente documentação alterada. Identidade autenticada não
   concede permissão administrativa. Exemplo de futura operação: visitante 401,
   cliente autenticado sem permissão 403, administrador autorizado prossegue
@@ -17,10 +30,9 @@
   confirma autenticação de /usuario, catálogo público e ausência de regra
   administrativa atual. Sem API/SQL/comandos PHP/nova suíte; última 7.58,
   107 testes/1.586 asserções. Aula 07-69-autorizacao-apos-login.md criada.
-  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-  7.70 — desenhar a representação mínima cliente/administrador no User,
-  padrão sem privilégio e atribuição controlada pelo servidor,
-  antes de migration ou mudança de banco.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  82b13cf6c6e196d7e873fed5ba2c338b957bd0c8, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.70.
 - Situação da 7.68: somente documentação alterada. Exercício no Chrome/Edge:
   preparar CSRF, entrar com conta fictícia e senha privada, consultar usuário,
   encerrar sessão e consultar novamente. Esperados 204/204/200/204/401,
@@ -38,7 +50,7 @@
   Entendimento confirmado com "sim" em 05/11/2026 sobre consulta autenticada
   200 e consulta após logout 401. Publicação verificada:
   b0c0930b1a0e3e6924a6c9370e2f12080bc71220, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.69.
+  Checkpoint anterior à 7.69. Continuidade iniciada na 7.69.
 - Situação da 7.67: somente src/laboratorio-sessao.html alterado na aplicação.
   Form POST/action login/labels/campos email e password sem valor padrão de
   senha; Entrar disabled até preparação 204. Listener submit/preventDefault,
@@ -2476,8 +2488,11 @@ Entendimento confirmado com "sim" em 05/11/2026; publicação em b0c0930,
 remoto conferido. Continuidade na 7.69: autorização após login, 401/403 e
 Gate/Policy. Somente documentação; sem regra administrativa implementada.
 Entendimento da 7.69 confirmado com "entendi" em 05/11/2026; publicação
-pendente. Próxima após publicar: 7.70 — desenhar representação mínima de
-cliente/administrador, antes de migration ou mudança de banco.
+em 82b13cf, remoto conferido. Na 7.70, planejado is_admin/default false/
+cast boolean, atributo fora do Fillable, atribuição administrativa controlada.
+Somente documentação; entendimento confirmado com "entendi" em 05/11/2026,
+publicação pendente. Próxima após publicar: 7.71 — criar migration e examinar
+SQL gerado para SQL Server, sem aplicá-la no banco normal.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -15933,8 +15948,55 @@ backend, seeder, Compose e contratos preservados.
 
 Entendimento: confirmado com "entendi" em 05/11/2026 sobre autenticação
 e recusa 403 por falta de permissão.
-Publicação da 7.69: pendente; último checkpoint publicado b0c0930 (7.68).
-Próximo passo exato após publicar: 7.70 — desenhar representação mínima
-cliente/administrador no User,
-padrão sem privilégio e atribuição controlada pelo servidor, antes de criar
-migration ou aplicar mudanças ao banco. Módulos 8 a 23 não iniciados.
+Publicação da 7.69: concluída e conferida em 05/11/2026:
+82b13cf6c6e196d7e873fed5ba2c338b957bd0c8; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.70.
+Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.70 — Planejamento do indicador de administrador — 05/11/2026
+
+Iniciada após confirmação da 7.69 com "entendi" e publicação conferida em
+82b13cf6c6e196d7e873fed5ba2c338b957bd0c8. Git add de quatro caminhos explícitos,
+commit e push explicados antes de executar; remoto verificado.
+
+Implementação: somente documentação. Criado
+docs/aulas/07-70-planejamento-indicador-administrador.md; aula anterior,
+roteiro e progresso atualizados. Nenhuma coluna, cast ou regra implementada.
+
+Desenho explicado: users.is_admin booleano obrigatório/padrão false;
+false sem privilégio administrativo, true indicador consultável pelas regras.
+É a representação mínima inicial, não uma lista completa de funções da loja.
+A futura migration deverá deixar contas existentes false e aplicar padrão às
+novas; comportamento será verificado antes do banco normal. Login não promove
+usuário, inclusive a conta de laboratório. Cast boolean futuro converte leitura
+PHP, sem criar coluna ou conceder permissão. Gate/Policy decidirá cada ação.
+
+Fillable atual name/email/password será preservado sem is_admin. Restrição
+de atribuição em massa complementa validação e controle administrativo;
+não substitui autorização nem impede atribuição explícita no servidor.
+True só por procedimento administrativo controlado a apresentar depois.
+Login mantém email/password, UsuarioResource id/name/email. Não acrescentar
+atributo interno ao contrato automaticamente. Seeder/factory atuais omitem
+is_admin; futura coluna fornecerá padrão às inserções que não o informarem.
+Nenhuma promoção de conta ou reexecução de seeder.
+
+Verificação: leitura de User, lista de migrations, migration inicial,
+LoginRequest, LoginController, UsuarioResource, UsuarioLaboratorioSeeder e
+UserFactory. Código atual sem is_admin; nenhum schema/conta consultado.
+Fontes primárias Laravel 13 consultadas: atribuição em massa, cast boolean
+e modificador default de coluna. Nenhum comando PHP, API, SQL, mudança de
+banco, nova suíte ou dependência. Última suíte permanece 7.58:
+107 testes/1.586 asserções.
+
+Git diff --check passou; 15 links locais válidos nos quatro documentos.
+Somente quatro arquivos de documentação alterados, índice vazio; aplicação,
+backend, seeder, factory, Compose e contratos preservados.
+
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre is_admin,
+padrão false e atribuição controlada no servidor.
+Publicação da 7.70: pendente; último checkpoint publicado 82b13cf (7.69).
+Próximo passo exato após publicar: 7.71 — criar somente migration que adiciona
+is_admin a users/default false e down que remove coluna, examinar SQL gerado
+para SQL Server sem aplicá-la. Não migrar banco normal na 7.71.
+Módulos 8 a 23 não iniciados.

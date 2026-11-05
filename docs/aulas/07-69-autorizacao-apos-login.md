@@ -5,7 +5,8 @@ Introdução apresentada em 05/11/2026, após entendimento da
 Checkpoint anterior publicado e conferido em
 b0c0930b1a0e3e6924a6c9370e2f12080bc71220; HEAD/origin/main/main remota iguais.
 Entendimento da 7.69 confirmado com "entendi" em 05/11/2026; publicação
-pendente. Somente documentação alterada nesta etapa.
+conferida em 82b13cf6c6e196d7e873fed5ba2c338b957bd0c8, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação. Somente documentação alterada nesta etapa.
 
 ## Da identidade à permissão
 
@@ -78,8 +79,9 @@ operação administrativa nem demonstra 403 real. Sem API, SQL, comandos PHP,
 alteração de banco ou nova suíte. Última suíte permanece 7.58: 107 testes e
 1.586 asserções.
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo passo exato após
-publicar: 7.70 — desenhar a representação mínima de cliente/administrador no User, com padrão
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.70](07-70-planejamento-indicador-administrador.md): desenhar a representação
+mínima de cliente/administrador no User, com padrão
 sem privilégio e atribuição controlada pelo servidor, antes de criar migration
 ou aplicar mudanças ao banco. Módulos 8 a 23 não iniciados.
 
