@@ -152,7 +152,10 @@ cookies/sem outra autenticação deverá retornar 401. Na 7.44, método destroy
 implementado/verificado diretamente com sessão array; rota/consulta HTTP após
 logout ainda pendentes. Suíte existente 101/1.407 passou. Na 7.45, teste
 permanente de logout autenticado confirmou recarga visitante no handler array,
-sem GET usuario/HTTP. Focado 3/76 e suíte 102/1.436 passaram.
+sem GET usuario/HTTP. Focado 3/76 e suíte 102/1.436 passaram. Na 7.46, cenário
+permanente de logout visitante confirma ausência de identidade e recarga da
+sessão array: focado 4/104 e suíte 103/1.464 passaram. Consulta HTTP após logout
+continua pendente.
 Comportamento de navegador/CORS permanece pendente.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)

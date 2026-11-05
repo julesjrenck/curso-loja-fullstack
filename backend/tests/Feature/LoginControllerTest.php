@@ -166,6 +166,58 @@ class LoginControllerTest extends TestCase
         $this->assertSame($tokenNovo, $sessao->token());
     }
 
+    public function test_logout_visitante_limpa_sessao_renova_id_e_token_e_retorna_204(): void
+    {
+        $sessao = $this->app['session']->driver();
+        $request = Request::create('/api/v1/logout', 'POST', [], [], [], [
+            'HTTP_ACCEPT' => 'application/json',
+        ]);
+        $request->setLaravelSession($sessao);
+        $this->app->instance('request', $request);
+
+        $guard = Auth::guard('web');
+        $this->assertGuest('web');
+        $this->assertNull($guard->id());
+        $this->assertArrayNotHasKey($guard->getName(), $sessao->all());
+
+        $sessao->put('marcador', 'sessao-visitante');
+        $idAnterior = $sessao->getId();
+        $tokenAnterior = $sessao->token();
+        $this->assertIsString($tokenAnterior);
+        $this->assertNotEmpty($tokenAnterior);
+        $sessao->save();
+        $this->assertNotSame('', $sessao->getHandler()->read($idAnterior));
+
+        $resposta = TestResponse::fromBaseResponse(
+            (new LoginController())->destroy($request),
+        );
+
+        $resposta->assertNoContent()->assertHeaderMissing('Location');
+        $this->assertGuest('web');
+        $this->assertNull($guard->id());
+        $this->assertArrayNotHasKey($guard->getName(), $sessao->all());
+        $this->assertArrayNotHasKey('marcador', $sessao->all());
+        $this->assertNotSame($idAnterior, $sessao->getId());
+        $this->assertIsString($sessao->token());
+        $this->assertNotEmpty($sessao->token());
+        $this->assertNotSame($tokenAnterior, $sessao->token());
+        $this->assertSame('', $sessao->getHandler()->read($idAnterior));
+
+        $idNovo = $sessao->getId();
+        $tokenNovo = $sessao->token();
+        $sessao->save();
+        $sessao->flush();
+        Auth::forgetGuards();
+        $sessao->start();
+
+        $this->assertGuest('web');
+        $this->assertNull(Auth::guard('web')->id());
+        $this->assertArrayNotHasKey(Auth::guard('web')->getName(), $sessao->all());
+        $this->assertArrayNotHasKey('marcador', $sessao->all());
+        $this->assertSame($idNovo, $sessao->getId());
+        $this->assertSame($tokenNovo, $sessao->token());
+    }
+
     private function criarRequest(string $email, string $senha): LoginRequest
     {
         $request = LoginRequest::create('/api/v1/login', 'POST', [], [], [], [

@@ -125,7 +125,13 @@ destroy diretamente e exige 204/sem Location, limpeza/renovação e remoção do
 registro antigo. Após save/flush/forgetGuards/start, continua visitante com
 ID/token novos. Focado 3 testes/76 asserções; suíte 102/1.436, códigos 0.
 SELECT posterior sem dados em loja_test. Não é requisição HTTP.
-Próxima 7.46: teste permanente de logout visitante, sem registrar rota.
+Na 7.46, teste permanente de visitante adicionado, sem login: exige visitante/
+ID null/chave de login ausente antes da ação; marcador e sessão array salvos.
+Destroy direto retorna 204 vazio/sem Location, limpa e renova a sessão; registro
+antigo removido, recarga visitante com ID/token novos. Focado 4/104 e suíte
+103/1.464 passaram, SQL posterior sem dados em loja_test. Não executa CSRF.
+Próxima 7.47: registrar somente POST logout ligado a destroy, sem auth:sanctum
+ou throttle:login, e conferir rota/resposta visitante pelo kernel HTTP.
 
 Referências: [logout e invalidação de sessão no Laravel](https://laravel.com/docs/13.x/authentication#logging-out),
 [sessão da interface própria com Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication)

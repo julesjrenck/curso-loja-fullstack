@@ -246,10 +246,16 @@ a LoginControllerTest: guard real, sessão array salva com marcador, destroy
 direto, 204 vazio, limpeza/renovação e registro antigo removido. Recarga por
 save/flush/forgetGuards/start mantém visitante e ID/token novos. Focado 3/76,
 suíte 102/1.436 e SELECT posterior sem dados passaram.
-Entendimento da 7.45 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próximo após confirmar/publicar: 7.46 — um cenário permanente de logout
-visitante em LoginControllerTest, com sessão array, sem registrar rota.
-Rota, HTTP/CSRF/cookies, navegador/CORS e OpenAPI de logout pendentes.
+Entendimento da 7.45 confirmado com "entendi" em 04/11/2026; publicada em 3014af2,
+remoto conferido. Na 7.46, um teste permanente de logout visitante adicionado:
+sem login, exige ausência inicial de identidade, salva marcador/sessão array,
+chama destroy e confere 204 vazio, limpeza/renovação/registro antigo removido e
+recarga visitante com ID/token novos. Focado 4/104, suíte 103/1.464 e SELECT
+posterior sem dados passaram.
+Entendimento da 7.46 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Próximo após confirmar/publicar: 7.47 — registrar somente POST logout ligado
+a destroy, sem auth:sanctum/throttle:login, e conferir rota/resposta visitante
+pelo kernel HTTP. CSRF/cookies, navegador/CORS e OpenAPI de logout pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -987,8 +993,11 @@ sem dados. Entendimento confirmado com "entendi" em 04/11/2026; publicação em
 b206ca5. Na 7.45, teste permanente de logout autenticado adicionado/explicado,
 com limpeza/renovação/remoção do registro antigo e recarga visitante na sessão
 array. Focado 3/76, suíte 102/1.436 e SELECT final sem dados passaram.
-Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente antes
-da 7.46 — um cenário permanente de logout visitante, sem registrar rota.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação em 3014af2.
+Na 7.46, teste permanente de logout visitante adicionado/explicado: visitante
+inicial, 204 vazio/limpeza/renovação e recarga da sessão array. Focado 4/104,
+suíte 103/1.464 e SQL final sem dados passaram. Entendimento confirmado com
+"entendi" em 04/11/2026; publicação pendente antes da 7.47 — registrar somente rota de logout.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.44 com "entendi". Checkpoint anterior publicado e conferido em
 b206ca50fe0de7433a4ad5d2bfb8173517900ad2; HEAD/origin/main/main remota iguais.
-Entendimento da 7.45 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.45 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -102,7 +102,7 @@ Teste implementado, explicado e verificado; entendimento confirmado em 04/11/202
 Aplicação, ambientes, dependências, serviços, migrations, rotas, bootstrap,
 Compose e OpenAPI preservados. Sem logout HTTP/CSRF/cookies, GET usuario após
 logout ou navegador/CORS. Auditoria e snapshot normal não foram repetidos.
-Publicação da 7.45 pendente. Próxima após confirmar/publicar: 7.46 — adicionar
-um cenário permanente de logout visitante em LoginControllerTest, com sessão
-array e sem registrar rota. Visitante já teve diagnóstico temporário na 7.44;
-o cenário permanente dele ainda não existe.
+Publicação da 7.45 concluída e conferida em
+3014af2851446444a32df051d3d130aad1755b81; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.46 —
+um cenário permanente de logout visitante, sem registrar rota.
