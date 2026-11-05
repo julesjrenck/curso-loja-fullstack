@@ -5,7 +5,9 @@ Implementação, explicação e verificações em 05/11/2026, após confirmaçã
 Checkpoint anterior publicado e conferido em
 fb1147977c033aefaf3e7173d446f7be4450a5af; HEAD/origin/main/main remota iguais.
 Entendimento da 7.78 confirmado com "entendi" em 05/11/2026; publicação
-pendente. Controller criado, ainda sem rota.
+conferida em e853f90a5f1158ad0497ff011c23827f4806f434, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação. Na 7.78, controller criado ainda sem rota;
+integração pertence à etapa seguinte.
 
 ## Objetivo e arquivo
 
@@ -93,8 +95,8 @@ anterior também atualizados.
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-7.79 — registrar
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.79](07-79-rota-administracao-protegida.md): registrar
 GET /api/v1/administracao com auth:sanctum e can:acessar-administracao e
 verificar pelo kernel HTTP os cenários 401/403/200 com usuários em memória.
 Módulos 8 a 23 não iniciados.

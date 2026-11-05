@@ -429,9 +429,14 @@ Somente documentação na 7.77; entendimento confirmado com "entendi" em
 05/11/2026; publicação em fb11479, remoto conferido. Na 7.78,
 AdministracaoController::show/JSON 200 criado; sintaxe/sete controles de
 chamada direta passaram sem SQL/PDO. Contrato atualizado, ainda sem rota
-ou 401/403 HTTP. Última suíte 7.76, 112/1.618. Entendimento confirmado com
-"entendi" em 05/11/2026; publicação pendente. Próxima após publicar: 7.79 —
-registrar rota auth:sanctum/can e verificar 401/403/200 pelo kernel.
+ou 401/403 HTTP na 7.78. Entendimento confirmado com "entendi" em
+05/11/2026; publicação em e853f90, remoto conferido. Na 7.79, rota protegida
+registrada e render API de AccessDeniedHttpException padronizado para
+message/403 após encontrar campos de debug fora do contrato. Kernel:
+24 controles/4 cenários passaram (401/403/200/debug), dois fora API; sintaxe/
+listagem de middlewares e suíte atual 112/1.618 passaram. Entendimento confirmado
+com "entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
+7.80 — testes HTTP permanentes, incluindo contrato 403 com debug.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1289,9 +1294,12 @@ Na 7.77, contrato GET /api/v1/administracao: auth:sanctum/can, 200 mensagem
 fixa e erros 401/403 somente message. Entendimento confirmado com "entendi"
 em 05/11/2026; publicação em fb11479. Na 7.78, controller show/JSON 200
 criado, sintaxe/sete controles diretos passaram sem SQL/PDO. Ainda sem rota.
-Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próxima após publicar: 7.79 — rota auth:sanctum/can e verificação
-401/403/200 pelo kernel HTTP com usuários em memória.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação em e853f90.
+Na 7.79, rota auth:sanctum/can e render API de recusa de autorização
+message/403: kernel 24 controles/4 cenários, dois fora API, sintaxe e suíte
+atual 112/1.618 passaram. Sem login real ou SQL em loja. Entendimento confirmado
+com "entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
+7.80 — testes HTTP permanentes 401/403/200 e 403 com debug ligado.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

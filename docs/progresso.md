@@ -5,10 +5,24 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.78 — Controller da consulta administrativa:
+- Etapa atual: 7.79 — Rota administrativa protegida:
   implementação, explicação e verificações apresentadas em 05/11/2026;
   entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
-  Ainda sem rota.
+- Situação da 7.79: routes/api.php registra GET /administracao para
+  AdministracaoController::show com auth:sanctum/can:acessar-administracao.
+  Kernel confirmou 401/403/200 com usuários em memória; diagnóstico revelou
+  corpo 403 com detalhes de debug. Ajustado bootstrap/app.php: render de
+  AccessDeniedHttpException em api/* retorna somente message/403, fora API
+  null para tratamento padrão. Conjunto necessário ao contrato da nova rota.
+  Sintaxe passou nos dois arquivos; route:list confirmou middleware correto.
+  Verificação final: quatro cenários (401/403/200 com debug ligado e 403 sem
+  debug), seis controles cada, total 24, sem SQL/PDO. Fora API dois controles
+  de tratamento padrão passaram. Suíte atual 112 testes/1.618 asserções passou.
+  Sem login real/promoção/contas persistidas/rede ou navegador; OpenAPI pendente.
+  Aula docs/aulas/07-79-rota-administracao-protegida.md criada.
+  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
+  7.80 — criar testes HTTP permanentes 401/403/200, incluindo JSON do 403 com
+  debug ligado, usuários em memória e SQL bloqueado.
 - Situação da 7.78: criado somente AdministracaoController.php na aplicação,
   namespace Api/V1, extends Controller, show(): JsonResponse com
   response()->json/data/mensagem fixa do contrato. PHP -l passou.
@@ -19,9 +33,9 @@
   distingue controller criado de rota/proteção HTTP pendentes. Sem API/SQL
   real/nova suíte; última 7.76, 112 testes/1.618 asserções. Aula
   docs/aulas/07-78-controller-administracao.md criada.
-  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-  7.79 — registrar GET /api/v1/administracao com auth:sanctum/can e verificar
-  pelo kernel HTTP 401/403/200 com usuários em memória.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  e853f90a5f1158ad0497ff011c23827f4806f434, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.79.
 - Situação da 7.77: somente documentação alterada. Criado
   docs/api/administracao.md: GET /api/v1/administracao, sessão/cookies,
   auth:sanctum antes de can:acessar-administracao, sem corpo/parâmetros.
@@ -33,7 +47,7 @@
   Aula docs/aulas/07-77-contrato-consulta-administracao.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   fb1147977c033aefaf3e7173d446f7be4450a5af, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.78.
+  Checkpoint anterior à 7.78. Continuidade iniciada na 7.78.
 - Situação da 7.76: criado somente
   backend/tests/Feature/AdministracaoGateTest.php na aplicação. Quatro cenários
   com Gate real/forUser/allows: cliente false, administrador true, visitante
@@ -2631,8 +2645,13 @@ sem operação implementada/OpenAPI/HTTP na 7.77. Entendimento confirmado com
 "entendi" em 05/11/2026; publicação em fb11479, remoto conferido. Na 7.78,
 AdministracaoController::show/JSON 200 criado e verificado diretamente:
 sintaxe/sete controles passaram sem SQL/PDO. Sem rota; entendimento da 7.78
-confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
-publicar: 7.79 — rota auth:sanctum/can e 401/403/200 pelo kernel em memória.
+confirmado com "entendi" em 05/11/2026; publicação em e853f90, remoto conferido.
+Na 7.79, rota auth:sanctum/can e render API de AccessDeniedHttpException para
+message/403, necessário para evitar campos de debug fora do contrato.
+Kernel: 24 controles/4 cenários passaram (401/403/200/debug), mais dois fora
+API; suíte atual 112/1.618 passou. Entendimento da 7.79 confirmado com
+"entendi" em 05/11/2026; publicação pendente. Próxima após publicar: 7.80 —
+testes HTTP permanentes da consulta, incluindo 403 com debug ligado.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -16542,8 +16561,78 @@ Rota administrativa ainda ausente; Gate, User, testes, OpenAPI e Compose preserv
 
 Entendimento: confirmado com "entendi" em 05/11/2026 sobre o método
 montar a resposta de sucesso e os middlewares controlarem quem poderá recebê-la.
-Publicação da 7.78: pendente; último checkpoint publicado fb11479 (7.77).
-Próximo passo exato após publicar: 7.79 — registrar somente
-GET /api/v1/administracao com auth:sanctum/can:acessar-administracao e verificar
-pelo kernel HTTP 401/403/200 com usuários em memória.
+Publicação da 7.78: concluída e conferida em 05/11/2026:
+e853f90a5f1158ad0497ff011c23827f4806f434; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.79.
+Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.79 — Rota administrativa protegida — 05/11/2026
+
+Iniciada após confirmação da 7.78 com "entendi" e publicação conferida em
+e853f90a5f1158ad0497ff011c23827f4806f434. Git add do controller e cinco documentos,
+commit e push explicados antes de executar; remoto verificado.
+
+Implementação: conjunto de dois arquivos de aplicação necessário ao contrato.
+Routes/api.php importa AdministracaoController e registra GET /administracao
+para show, middleware auth:sanctum/can:acessar-administracao. Prefixo api/v1
+já existente. Bootstrap/app.php importa JsonResponse/AccessDeniedHttpException
+e renderiza essa exceção em api/* como objeto somente message/403; fora
+API retorna null para tratamento padrão. Sem alterar debug em arquivos de
+ambiente, Gate ou controller. Aula 07-79-rota-administracao-protegida.md criada;
+contrato/continuidade anterior/roteiro/progresso atualizados.
+
+Explicação: array classe/método liga rota ao controller; autenticação
+interrompe visitante com 401, can exige Gate e recusa cliente com 403,
+administrador chega ao JSON 200. Listagem de middlewares confirmou essa ordem.
+Callback de exceção é selecionado pelo tipo, Request limita api/*,
+?JsonResponse aceita resposta ou null. Handler instalado converte a recusa
+padrão do Gate em AccessDeniedHttpException. ShouldRenderJsonWhen preservado.
+
+Diagnóstico inicial interrompido: guard preparado antes de vincular Request,
+SessionGuard::setRequest recebeu null. Corrigida somente preparação do
+diagnóstico; tentativa interrompida não comprova cenários. A execução completa
+seguinte encontrou status 401/403/200 corretos, mas corpo do 403 em debug
+continha message/exception/file/line/trace. Relatados só nomes das chaves;
+nenhum detalhe de exceção ou dado privado copiado. Corpo não atendia contrato.
+Ajuste de bootstrap explicado antes de executar, integrado a esta etapa.
+
+Verificação final: Laravel novo por cenário em testing/sem cache/sqlsrv/
+loja_test; Request vinculada antes do guard; sessão/cache array no processo,
+SQL bloqueado e PDO fechado. Visitante sem User; cliente/admin com User em
+memória e ID fictício/indicador bruto 0/1, guard web preparado por setUser.
+Não houve login por credenciais ou persistência dos objetos.
+Quatro cenários: visitante 401, cliente 403 e administrador 200 com debug
+ligado, mais cliente 403 com debug desligado. Seis controles por cenário
+passaram (24): status, Content-Type JSON, sem Location, corpo do contrato,
+zero SQL e PDO não aberto. Código 0. Outro diagnóstico de renderização fora
+api/* confirmou status 403 e mensagem original preservados: dois controles,
+código 0. Sem requisição de rede, navegador ou transporte de cookies.
+
+PHP -l passou nos dois arquivos. Route:list --path=api/v1/administracao -vv
+--no-ansi confirmou GET|HEAD/AdministracaoController@show e statefulApi,
+Authenticate:sanctum, SubstituteBindings, Authorize:acessar-administracao.
+Suíte atual em Docker com --compact --do-not-cache-result --colors=never:
+112 testes/1.618 asserções passaram, código 0. Sem testes permanentes novos.
+Fonte primária Laravel 13 authorization/via-middleware/errors e trechos do
+Handler instalado consultados.
+
+Nenhuma promoção de conta, migration, SQL em loja ou login real administrativo
+pelo assistente. Diagnósticos pela entrada padrão, sem auxiliares persistidos
+ou valores de cookies/senhas/hashes. User/Gate/controller/testes/OpenAPI/
+configuração de banco/ambientes/dependências/Compose preservados.
+Verificação HTTP interna não comprova sessão transportada ou conta real
+administrativa; integração OpenAPI também continua pendente.
+
+Git diff --check passou; 11 links locais válidos nos cinco documentos e
+três exemplos JSON do contrato válidos. Somente rota/bootstrap e cinco
+documentos previstos alterados, índice vazio; Gate/User/controller/testes/
+OpenAPI/ambientes/Compose preservados.
+
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre os middlewares
+interromperem a requisição antes do controller com 401 ou 403 conforme o caso.
+Publicação da 7.79: pendente; último checkpoint publicado e853f90 (7.78).
+Próximo passo exato após publicar: 7.80 — criar testes HTTP
+permanentes da consulta administrativa para 401/403/200 e corpo JSON do 403
+com depuração ligada, usando usuários em memória e SQL bloqueado.
 Módulos 8 a 23 não iniciados.

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AdministracaoController;
 use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\ProdutoController;
 use App\Http\Controllers\Api\V1\UsuarioController;
@@ -12,6 +13,9 @@ Route::post('/logout', [LoginController::class, 'destroy']);
 
 Route::get('/usuario', [UsuarioController::class, 'show'])
     ->middleware('auth:sanctum');
+
+Route::get('/administracao', [AdministracaoController::class, 'show'])
+    ->middleware(['auth:sanctum', 'can:acessar-administracao']);
 
 Route::get('/produtos', [ProdutoController::class, 'index']);
 Route::get('/produtos/{id}', [ProdutoController::class, 'show'])
