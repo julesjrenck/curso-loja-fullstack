@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,6 +14,8 @@ use Tests\TestCase;
 
 class LogoutApiTest extends TestCase
 {
+    use DatabaseTransactions;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -62,6 +66,70 @@ class LogoutApiTest extends TestCase
         $this->assertGuest('web');
         $this->assertNull(Auth::guard('web')->id());
         $this->assertArrayNotHasKey(Auth::guard('web')->getName(), $request->session()->all());
+    }
+
+    public function test_logout_autenticado_recebe_cookie_invalida_sessao_e_retorna_204(): void
+    {
+        $usuario = User::query()->create([
+            'name' => 'Ana Exemplo',
+            'email' => 'ana@example.test',
+            'password' => 'senha-ficticia-do-teste',
+        ]);
+
+        $sessao = $this->app['session']->driver();
+        $sessao->start();
+        $this->assertGuest('web');
+        Auth::guard('web')->login($usuario);
+        $this->assertAuthenticatedAs($usuario, 'web');
+        $chaveIdentidade = Auth::guard('web')->getName();
+        $this->assertSame($usuario->id, $sessao->get($chaveIdentidade));
+
+        $sessao->put('marcador', 'sessao-autenticada');
+        $idAnterior = $sessao->getId();
+        $tokenAnterior = $sessao->token();
+        $this->assertIsString($tokenAnterior);
+        $this->assertNotEmpty($tokenAnterior);
+        $sessao->save();
+        $this->assertNotSame('', $sessao->getHandler()->read($idAnterior));
+
+        $sessao->flush();
+        Auth::forgetGuards();
+        $this->assertArrayNotHasKey($chaveIdentidade, $sessao->all());
+        $this->assertArrayNotHasKey('marcador', $sessao->all());
+        $this->assertGuest('web');
+        $this->withCookie(config('session.cookie'), $idAnterior);
+
+        $request = Request::create(
+            'http://127.0.0.1:8002/api/v1/logout', 'POST', [], $this->prepareCookiesForRequest(), [], [
+                'HTTP_ACCEPT' => 'application/json',
+                'HTTP_ORIGIN' => 'http://127.0.0.1:8002',
+                'REMOTE_ADDR' => '127.0.0.1',
+            ],
+        );
+
+        $kernel = $this->app->make(Kernel::class);
+        $resposta = $kernel->handle($request);
+        $kernel->terminate($request, $resposta);
+
+        TestResponse::fromBaseResponse($resposta, $request)
+            ->assertNoContent()
+            ->assertHeaderMissing('Location')
+            ->assertCookie(config('session.cookie'), $sessao->getId())
+            ->assertCookie('XSRF-TOKEN');
+
+        $this->assertTrue($request->hasSession());
+        $this->assertTrue($request->attributes->get('sanctum'));
+        $this->assertSame($idAnterior, $request->cookies->get(config('session.cookie')));
+        $this->assertSame($sessao, $request->session());
+        $this->assertGuest('web');
+        $this->assertNull(Auth::guard('web')->id());
+        $this->assertArrayNotHasKey($chaveIdentidade, $sessao->all());
+        $this->assertArrayNotHasKey('marcador', $sessao->all());
+        $this->assertNotSame($idAnterior, $sessao->getId());
+        $this->assertIsString($sessao->token());
+        $this->assertNotEmpty($sessao->token());
+        $this->assertNotSame($tokenAnterior, $sessao->token());
+        $this->assertSame('', $sessao->getHandler()->read($idAnterior));
     }
 
     public static function formatosAccept(): array

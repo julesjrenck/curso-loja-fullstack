@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.47 com "entendi". Checkpoint anterior publicado e conferido em
 e6c30c69e682eed035e1a64e2633151d4d4d9f94; HEAD/origin/main/main remota iguais.
-Entendimento da 7.48 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.48 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -96,8 +96,8 @@ controller/bootstrap/Compose/OpenAPI sem diff, OpenAPI ainda sem logout.
 Testes criados, explicados e verificados; entendimento confirmado em 04/11/2026.
 Aplicação, rotas, controller, bootstrap, ambientes, dependências, serviços,
 migrations, Compose e OpenAPI preservados. Sem auditoria/snapshot normal.
-Publicação da 7.48 pendente. Próxima após confirmar/publicar: 7.49 — adicionar
-um cenário autenticado pela rota em LogoutApiTest, com User fictício/transação
-em loja_test, guard web real e sessão/cookie de entrada; conferir 204 e limpeza
-da sessão. GET usuario após logout, CSRF ativo/cookies no navegador, CORS e
-OpenAPI de logout seguem pendentes.
+Publicação da 7.48 concluída e conferida em
+1ddeaade0a952e7fded20758e20ffea7fd30929f; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.49 —
+logout autenticado pela rota. GET usuario após logout, CSRF ativo/cookies no
+navegador, CORS e OpenAPI de logout seguem pendentes.

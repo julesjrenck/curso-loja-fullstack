@@ -266,11 +266,17 @@ Request sem corpo/cookies, Origin reconhecido; kernel/rota/controller retornam
 204 vazio/sem Location, cookies emitidos e visitante sem identidade. Sessão/cache
 array e identidade de banco de testes exigidos. Focado 3/57, suíte 106/1.521 e
 SELECT posterior sem dados passaram. Não exerce CSRF ativo ou navegador.
-Entendimento da 7.48 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próximo após confirmar/publicar: 7.49 — cenário autenticado pela rota em
-LogoutApiTest, com User fictício/transação, guard web real e sessão/cookie de
-entrada; conferir 204 e limpeza. GET usuario após logout, CSRF ativo/cookies
-no navegador, CORS e OpenAPI de logout pendentes.
+Entendimento da 7.48 confirmado com "entendi" em 04/11/2026; publicada em 1ddeaad,
+remoto conferido. Na 7.49, LogoutApiTest ganhou transações e cenário autenticado:
+fixture em loja_test/guard web/sessão array salva com marcador, flush/forgetGuards
+antes de POST logout com cookie. 204 vazio/sem Location, cookie de entrada com
+ID anterior, guard visitante/chaves removidas/ID/token novos/registro destruído.
+Focado 4/91, suíte 107/1.555 e SELECT posterior sem dados/rollback passaram.
+Entendimento da 7.49 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Próximo após confirmar/publicar: 7.50 — ampliar o cenário com GET usuario após
+logout usando cookie da resposta/memória limpa/guards descartados, exigindo
+401 JSON/sem Location/somente message string. CSRF ativo/cookies no navegador,
+CORS e OpenAPI de logout pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1020,8 +1026,12 @@ Entendimento confirmado com "entendi" em 04/11/2026; publicação em e6c30c6.
 Na 7.48, LogoutApiTest criado/explicado: visitante 204 vazio/sem Location nos
 três Accept, presença/valor conferidos, sessão/cookies emitidos e ausência de
 identidade. Focado 3/57, suíte 106/1.521 e SQL posterior sem dados passaram.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação em 1ddeaad.
+Na 7.49, cenário autenticado pela rota em LogoutApiTest com fixture/transação,
+sessão salva/cookie e memória limpa antes do pedido: 204 vazio/invalidação/
+novo ID/token. Focado 4/91, suíte 107/1.555 e SQL final sem dados passaram.
 Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente antes
-da 7.49 — logout autenticado pela rota com transação/sessão/cookie de entrada.
+da 7.50 — GET usuario após logout com cookie da resposta, exigindo 401 JSON.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

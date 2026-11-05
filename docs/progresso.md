@@ -5,9 +5,26 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.48 — Testes da rota de logout para visitante:
+- Etapa atual: 7.49 — Logout autenticado pela rota:
   implementação, explicação e verificações apresentadas; entendimento
   confirmado com "entendi" em 04/11/2026, publicação pendente.
+- Situação da 7.49: somente LogoutApiTest alterado no código, imports User/
+  DatabaseTransactions, trait e um cenário autenticado. SetUp/DataProvider/
+  visitante preservados; transação por execução. User fictício criado após exigir
+  loja_test/loja_testes/sessão/cache array, sem DELETE. Guard web real prepara
+  identidade, sessão array salva com marcador. Flush/forgetGuards antes do pedido
+  retiram memória, com visitante/chaves ausentes conferidos. WithCookie/helper
+  de criptografia envia ID salvo; POST sem corpo, Accept JSON/Origin reconhecido.
+  Kernel retorna 204 vazio/sem Location, cookie de sessão com ID novo e XSRF-TOKEN.
+  Request recebe cookie decifrado com ID anterior, Store compartilhado/atributo
+  sanctum; visitante/ID null/chaves removidas, ID/token novos e registro antigo
+  destruído. Sintaxe válida; focado 4 testes/91 asserções, suíte 107 testes/1.555
+  asserções, códigos 0. SQL posterior loja_test/loja_testes: seis tabelas/quatro
+  migrations/lotes 1/2/3/4 e dados zero; rollback conferido. Aplicação/rotas/
+  controller/bootstrap/Compose/OpenAPI preservados. Próximo após confirmar/publicar:
+  7.50 — GET usuario após logout no mesmo cenário, com cookie da resposta/memória
+  limpa/guards descartados, exigindo 401 JSON/sem Location/somente message string.
+  CSRF ativo/cookies no navegador, CORS e OpenAPI de logout pendentes.
 - Situação da 7.48: somente LogoutApiTest criado no código. SetUp exige
   loja_test/loja_testes e sessão/cache array; sem User ou escrita no banco.
   DataProvider executa visitante com Accept JSON/HTML/ausente; ausência removida
@@ -18,10 +35,11 @@
   3 testes/57 asserções e suíte 106 testes/1.521 asserções, códigos 0. SQL posterior
   loja_test/loja_testes: seis tabelas/quatro migrations/lotes 1/2/3/4 e dados zero.
   Aplicação/rotas/controller/bootstrap/Compose/OpenAPI preservados. CSRF ignorado
-  em testing, sem navegador/CORS ou GET usuario após logout. Próximo após confirmar/
-  publicar: 7.49 — cenário autenticado pela rota em LogoutApiTest, com User
-  fictício/transação em loja_test, guard web real e sessão/cookie de entrada;
-  conferir 204 e limpeza. CSRF ativo/cookies no navegador, CORS e OpenAPI pendentes.
+  em testing, sem navegador/CORS ou GET usuario após logout.
+  Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
+  1ddeaade0a952e7fded20758e20ffea7fd30929f, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.49.
+  CSRF ativo/cookies no navegador, CORS e OpenAPI pendentes.
 - Situação da 7.47: somente routes/api.php alterado na aplicação, POST /logout
   ligado a LoginController::destroy, prefixo api/v1 existente. Sem auth:sanctum/
   throttle:login; statefulApi preservado. Sintaxe e route:list -vv passaram:
@@ -37,7 +55,7 @@
   Controller/testes/bootstrap/Compose/OpenAPI preservados. Entendimento confirmado
   com "entendi" em 04/11/2026; publicação verificada em
   e6c30c69e682eed035e1a64e2633151d4d4d9f94, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.48.
+  Checkpoint anterior à 7.48. Continuidade realizada na 7.48.
   Logout autenticado pela rota, GET usuario após logout, CSRF ativo/cookies no
   navegador, CORS e OpenAPI pendentes.
 - Situação da 7.46: somente um método adicionado a LoginControllerTest, sem
@@ -1994,8 +2012,11 @@ SQL posterior sem dados. Entendimento confirmado com "entendi" em 04/11/2026;
 publicação em e6c30c6. Continuidade realizada na 7.48 — LogoutApiTest com visitante
 nos três Accept, presença/valor do cabeçalho conferidos e 204 vazio/sem Location.
 Focado 3/57, suíte 106/1.521 e SQL posterior sem dados passaram. Entendimento
-confirmado com "entendi" em 04/11/2026; publicação pendente antes da 7.49 —
-logout autenticado pela rota, com transação/sessão/cookie de entrada.
+confirmado com "entendi" em 04/11/2026; publicação em 1ddeaad. Continuidade
+realizada na 7.49 — logout autenticado pela rota com transação/sessão salva/
+cookie e memória limpa: 204 vazio/invalidação/novo ID/token, focado 4/91, suíte
+107/1.555 e SQL final sem dados passaram. Entendimento confirmado com "entendi"
+em 04/11/2026; publicação pendente antes da 7.50 — GET usuario após logout com cookie da resposta.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -14333,10 +14354,63 @@ somente LogoutApiTest novo e documentos; índice vazio. Aplicação/rotas/
 controller/bootstrap/Compose/OpenAPI sem diff, OpenAPI ainda sem logout.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.48: pendente; registros locais. Último checkpoint publicado:
-e6c30c69e682eed035e1a64e2633151d4d4d9f94 (7.47).
-Próximo passo exato após confirmar/publicar: 7.49 — adicionar um cenário
-autenticado pela rota em LogoutApiTest, com User fictício/transação em loja_test,
-guard web real e sessão/cookie de entrada; conferir 204 e limpeza da sessão.
+Publicação da 7.48: concluída e conferida em
+1ddeaade0a952e7fded20758e20ffea7fd30929f; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.49.
 GET usuario após logout, CSRF ativo/cookies no navegador, CORS e OpenAPI de
+logout continuam pendentes.
+
+
+## Etapa 7.49 — Logout autenticado pela rota — 04/11/2026
+
+Iniciada após confirmação da 7.48 com "entendi" e publicação verificada.
+Implementação: somente LogoutApiTest no código, imports User/DatabaseTransactions,
+trait e um cenário autenticado novo. SetUp, DataProvider e visitante preservados.
+Aula 7.49, contratos/roteiro/progresso e publicação anterior atualizados.
+Aplicação/controller/rotas/bootstrap/ambientes/dependências/serviços/migrations/
+Compose/OpenAPI preservados.
+
+Explicação apresentada: agora há fixture persistida, então o trait abre/desfaz
+transação por execução da classe. Identidade loja_test/loja_testes e sessão/cache
+array exigidas antes de User::create, sem DELETE. Ana com email/senha fictícios,
+cast gera hash. Sessão iniciada como visitante, login pelo guard web real,
+assertAuthenticatedAs e identidade na sessão. Não usa actingAs ou POST login.
+Marcador, ID/token anteriores em memória, token string não vazio. Save/read
+confirma registro antigo no handler array.
+
+Flush remove atributos só em memória/sem salvar; forgetGuards descarta guards.
+Exigimos identidade/marcador ausentes e guard visitante antes do pedido, mantendo
+sessão salva. WithCookie e prepareCookiesForRequest preparam criptografia; Request
+POST sem corpo/Accept JSON/Origin reconhecido/IP local envia cookie com ID salvo.
+Kernel handle/terminate executa middleware/rota/controller, sem depender só do
+usuário preparado em memória.
+
+TestResponse exige 204/corpo vazio/sem Location, cookie de sessão com ID resultante
+e XSRF-TOKEN. Request com sessão/atributo sanctum, cookie decifrado com ID anterior
+e mesma instância de Store da aplicação. Guard visitante/ID null, chaves de
+login/marcador ausentes, novo ID, token string não vazio/diferente e read vazio
+do registro antigo exigidos. Valores privados comparados só em memória.
+CSRF ignorado em testing; sem GET usuario após logout ou navegador/CORS.
+
+Verificação Docker: PHP -l do arquivo passou. PHPUnit focado 4 testes/91
+asserções, suíte completa 107 testes/1.555 asserções, códigos 0, opções
+--colors=never/--do-not-cache-result. Um teste/34 asserções a mais que na 7.48.
+SELECT posterior exigiu loja_test/loja_testes e confirmou seis tabelas, quatro
+migrations/lotes 1/2/3/4 (int explícito) e zero categorias/produtos/users/
+password_reset_tokens/sessions. Rollback conferido, sessões/cache em memória.
+Nenhum valor real de senha/hash/cookie/token/ID impresso ou versionado.
+Auditoria/snapshot normal e diagnóstico temporário não repetidos.
+
+Git diff --check passou. Links locais válidos: logout três, login quatro,
+consulta cinco, aulas 7.48/7.49 dois cada. Escopo conferido: somente LogoutApiTest
+e documentos; índice vazio. Aplicação/rotas/controller/bootstrap/Compose/OpenAPI
+sem diff, OpenAPI ainda sem logout.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.49: pendente; registros locais. Último checkpoint publicado:
+1ddeaade0a952e7fded20758e20ffea7fd30929f (7.48).
+Próximo passo exato após confirmar/publicar: 7.50 — ampliar somente o cenário
+autenticado com GET /api/v1/usuario após logout, usando cookie recebido na
+resposta, memória limpa/guards descartados, exigindo 401 JSON/sem Location e
+somente message string. CSRF ativo/cookies no navegador, CORS e OpenAPI de
 logout continuam pendentes.

@@ -160,7 +160,10 @@ pelo kernel/testing nos três Accept. Não executa GET usuario após logout ou
 logout autenticado pela rota; suíte existente 103/1.464 passou. Na 7.48,
 LogoutApiTest preserva 204 de visitante nos três Accept, sem identidade e com
 sessão/cookies emitidos: focado 3/57, suíte 106/1.521. Consulta após logout e
-cenário autenticado pela rota continuam pendentes.
+cenário autenticado pela rota ainda eram pendentes. Na 7.49, logout autenticado
+pela rota verificado com fixture/transação/cookie e memória limpa: 204 vazio,
+visitante e sessão invalidada. Focado 4/91, suíte 107/1.555 passaram. Consulta
+GET usuario após logout segue pendente para 7.50, usando cookie da resposta.
 Comportamento de navegador/CORS permanece pendente.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)

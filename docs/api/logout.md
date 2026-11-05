@@ -3,8 +3,9 @@
 Desenho da etapa 7.43, em 04/11/2026. LoginController::destroy implementado na
 7.44; rota POST /api/v1/logout registrada na 7.47. Diagnósticos diretos e testes
 permanentes verificaram autenticado/visitante com sessão array. Na 7.47, kernel
-HTTP/testing verificou visitante 204 nos três casos de Accept; CSRF ativo e
-logout autenticado pela rota ainda não verificados.
+HTTP/testing verificou visitante 204 nos três casos de Accept. Na 7.49,
+logout autenticado pela rota verificado com fixture/transação e cookie de sessão;
+CSRF ativo e navegador ainda não verificados.
 O [login](login.md) estabelece a identidade; esta operação encerrará a
 autenticação da sessão atual. A [consulta do usuário](autenticacao.md)
 permitirá verificar o estado após sair.
@@ -119,8 +120,8 @@ não foi uma requisição HTTP. Treze condições por caso passaram, código 0,
 transações desfeitas/contagens preservadas. Suíte existente 101 testes/1.407
 asserções passou; SELECT posterior confirmou banco de testes sem dados.
 
-Integração HTTP de autenticado, CSRF ativo/cookies no navegador, CORS e OpenAPI
-do logout continuam pendentes.
+GET usuario após logout, CSRF ativo/cookies no navegador, CORS e OpenAPI do
+logout continuam pendentes.
 Na 7.45, adicionado um teste permanente de logout autenticado em LoginControllerTest:
 prepara identidade pelo guard web real, salva marcador e sessão array, chama
 destroy diretamente e exige 204/sem Location, limpeza/renovação e remoção do
@@ -146,8 +147,16 @@ corpo/cookies, origem reconhecida; kernel HTTP retorna 204 vazio/sem Location,
 emite cookies de sessão/CSRF e mantém visitante/ID null/chave de login ausente.
 Sessão/cache array, sem User ou escrita no banco. Focado 3/57 e suíte 106/1.521
 passaram; SQL posterior sem dados. CSRF ativo e navegador não exercitados.
-Próxima 7.49: cenário autenticado pela rota em LogoutApiTest, com User fictício/
-transação, guard web real e sessão/cookie de entrada, conferindo 204 e limpeza.
+Na 7.49, User fictício em transação, login pelo guard web e sessão array salva
+com identidade/marcador. Flush/forgetGuards retiram o estado em memória antes
+de POST logout; cookie preparado pela criptografia dos testes carrega o ID salvo.
+Kernel/rota/controller retornam 204 vazio/sem Location/cookies atualizados.
+Cookie de entrada decifrado tem ID anterior; guard visitante/ID null, chaves
+removidas, ID/token novos e registro antigo destruído. Focado 4/91 e suíte
+107/1.555 passaram; SQL posterior sem dados/rollback confirmado. Não executa
+POST login, GET usuario após logout, CSRF ativo ou navegador.
+Próxima 7.50: ampliar o cenário com GET usuario usando cookie da resposta,
+memória limpa/guards descartados, exigindo 401 JSON/sem Location/message string.
 
 Referências: [logout e invalidação de sessão no Laravel](https://laravel.com/docs/13.x/authentication#logging-out),
 [sessão da interface própria com Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication)
