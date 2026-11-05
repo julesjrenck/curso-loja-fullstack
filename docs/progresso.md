@@ -5,8 +5,19 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.86 — Acesso administrativo no navegador:
-  sucesso geral relatado e entendimento confirmado em 05/11/2026.
+- Etapa atual: 7.87 — Primeira Policy de produto:
+  implementação e verificações apresentadas; entendimento confirmado em 05/11/2026.
+- Situação da 7.87: criado somente app/Policies/ProdutoPolicy.php na aplicação.
+  Método update(User, Produto): bool permite is_admin estritamente true.
+  Recurso identifica a Policy; regra inicial depende apenas do perfil do
+  usuário. Descoberta automática, sem alteração de model/provider/rotas.
+  PHP -l passou. Diagnóstico via Gate em testing, dois produtos em memória
+  e quatro identidades: oito decisões/22 verificações passaram, zero SQL.
+  Nenhum produto persistido ou atualizado; nenhuma conta alterada.
+  Aula docs/aulas/07-87-primeira-policy-produto.md criada.
+  Entendimento confirmado com "entendi" sobre a Policy decidir a permissão
+  sem executar a atualização. Próximo passo exato: publicar e iniciar a
+  7.88, testes da descoberta e das decisões da Policy com SQL bloqueado.
 - Situação da 7.86: somente documentação. Roteiro Chrome/Edge, sessão privativa
   sem login ativo, laboratório 8001, conta admin@example.test/senha da 7.85
   somente no formulário. Preparar CSRF/administração visitante/login/usuário/
@@ -19,8 +30,9 @@
   status individuais. Sucesso registrado pelo relato geral, sem observação
   direta pelo assistente. Entendimento confirmado com "entendi" sobre o
   acesso permitido após login e a ausência de autenticação após logout,
-  sem remover a permissão da conta. Próximo passo exato: publicar a 7.86
-  e iniciar a 7.87, primeira Policy de produto.
+  sem remover a permissão da conta. Publicação da 7.86 conferida:
+  cee134c4923788c14d3f2b024ebc548bc04deba5, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.87.
 - Situação da 7.85: somente documentação. Roteiro para o aluno executar
   docker compose exec backend php artisan db:seed com a classe
   AdministradorLaboratorioSeeder e --no-ansi, mantendo terminal interativo.
@@ -33,7 +45,7 @@
   Entendimento confirmado com "entendi": criação da conta não autentica
   automaticamente a sessão. Publicação da 7.85 conferida:
   a8bf8d8fb14fe47865736f6af7aa448ee34ebb17, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.86.
+  Checkpoint anterior à 7.86. Continuidade iniciada na 7.86.
 - Situação da 7.84: criado AdministradorLaboratorioSeeder.php, sem execução
   de criação. Exige local/sqlsrv/loja/comando interativo; preserva identidade
   existente, pede senha oculta de 8 a 72 bytes, atribui is_admin diretamente
@@ -2768,8 +2780,11 @@ criação de admin@example.test e DONE; entendimento confirmado com "entendi"
 em 05/11/2026; publicação em a8bf8d8, remoto conferido. Na 7.86, roteiro do
 administrador no navegador: 204/401/204/200/200/204/401 esperados.
 Sucesso geral relatado pelo aluno, sem status individuais transcritos;
-entendimento confirmado com "entendi" em 05/11/2026. Próximo passo:
-publicar a 7.86 e iniciar a 7.87, primeira Policy de produto.
+entendimento confirmado com "entendi" em 05/11/2026; publicação em cee134c,
+remoto conferido. Na 7.87, ProdutoPolicy/update criada e descoberta
+automaticamente; sintaxe e oito decisões/22 verificações passaram, zero SQL.
+Entendimento confirmado com "entendi" em 05/11/2026. Próximo passo:
+publicar a 7.87 e iniciar os testes da Policy na 7.88.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -17112,7 +17127,51 @@ autenticação, sem remover o perfil administrativo da conta no banco.
 Entendimento: confirmado com "entendi" em 05/11/2026 sobre autenticação,
 permissão e logout sem perda do perfil administrativo. Confirmação recebida
 após o pedido anterior de avanço.
-Publicação da 7.86: pendente; último checkpoint publicado a8bf8d8 (7.85).
-Próximo passo exato: publicar a 7.86 e iniciar a 7.87, primeira Policy de
-produto. Policies ainda pendentes no módulo 7.
+Publicação da 7.86: concluída e conferida em 05/11/2026:
+cee134c4923788c14d3f2b024ebc548bc04deba5; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade iniciada na 7.87, primeira
+Policy de produto. Policies ainda em estudo no módulo 7.
 Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.87 — Primeira Policy de produto — 05/11/2026
+
+Iniciada após confirmação da 7.86 com "entendi" e publicação conferida em
+cee134c4923788c14d3f2b024ebc548bc04deba5. Comandos Git explicados antes da
+execução; HEAD/origin/main/main remota iguais após push.
+
+Objetivo explicado: organizar permissão de atualização do recurso Produto.
+Criado somente backend/app/Policies/ProdutoPolicy.php na aplicação, namespace
+App\Policies, imports User/Produto, método update(User $user, Produto $produto):
+bool com retorno is_admin estritamente true. Recebe ator e recurso; regra
+inicial depende só do perfil, sem condição sobre atributos do produto.
+Método consulta permissão, sem executar alteração de dados. Descoberta
+automática por nomes/pastas conferida na documentação Laravel 13 e no Gate
+instalado. Model e provider mantidos. Explicada consulta via
+Gate::forUser($usuario)->allows('update', $produto), inclusive recusa de
+visitante com User obrigatório. Gate acessar-administracao mantido.
+Aula docs/aulas/07-87-primeira-policy-produto.md criada.
+
+Verificação: PHP 8.4.26/Composer 2.10.3 no container; nenhuma instalação.
+PHP -l sem erros, código 0. Diagnóstico PHP pela entrada padrão com
+APP_ENV=testing; ambiente testing e banco configurado loja_test conferidos.
+Callback beforeExecuting bloqueou SQL; PDO permaneceu Closure. Policy
+descoberta automaticamente; Gate administrativo existente. Dois produtos
+fictícios em memória, cada um com cliente 0/admin 1/usuário sem indicador/
+visitante null: false/true/false/false. Atributos/estado limpo dos produtos
+mantidos. Oito decisões e 22 verificações passaram, zero tentativas SQL,
+código 0. Nenhum auxiliar salvo, senha real, login, consulta de conta,
+pedido HTTP ou atualização persistida. Última suíte completa na 7.80,
+116 testes/1.653 asserções; não repetida.
+
+Git diff --check passou; quatro links locais válidos nos quatro documentos
+desta etapa. Somente Policy e esses documentos alterados; índice vazio.
+Arquivos anteriores do backend, página, Compose e OpenAPI sem alterações.
+
+Entendimento da 7.87 confirmado com "entendi" em 05/11/2026 sobre a Policy
+decidir a permissão sem executar a atualização do produto.
+Publicação da 7.87 pendente; último checkpoint publicado cee134c (7.86).
+Próximo passo exato: publicar e iniciar a 7.88, testes da descoberta e das decisões
+de update da ProdutoPolicy com modelos em memória e SQL bloqueado.
+Nenhuma rota de atualização criada nesta etapa. Módulo 7 em andamento;
+módulos 8 a 23 não iniciados.

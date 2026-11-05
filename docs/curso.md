@@ -460,7 +460,10 @@ Entendimento confirmado com "entendi" em 05/11/2026; publicação em a8bf8d8,
 remoto conferido. Na 7.86, roteiro do administrador no navegador apresentado:
 204/401/204/200/200/204/401 esperados. Aluno relatou sucesso geral, sem
 status individuais transcritos; entendimento confirmado com "entendi"
-em 05/11/2026.
+em 05/11/2026; publicação em cee134c, remoto conferido. Na 7.87, primeira
+ProdutoPolicy/update criada e descoberta automaticamente; sintaxe e oito
+decisões/22 verificações passaram, zero SQL. Entendimento confirmado com
+"entendi" em 05/11/2026.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1344,8 +1347,11 @@ e DONE; entendimento confirmado com "entendi" em 05/11/2026;
 publicação da 7.85 conferida em a8bf8d8. Na 7.86, roteiro do administrador
 no navegador: 204/401/204/200/200/204/401 esperados. Sucesso geral relatado
 pelo aluno, sem status individuais transcritos; entendimento confirmado com
-"entendi" em 05/11/2026. Próximo passo: publicar a 7.86 e iniciar Policies
-na 7.87.
+"entendi" em 05/11/2026; publicação em cee134c. Na 7.87, ProdutoPolicy/update
+permite administradores; descoberta automática/sintaxe/oito decisões e
+22 verificações passaram, zero SQL, sem rota de atualização criada.
+Entendimento confirmado com "entendi" em 05/11/2026; próxima após publicação:
+testes da Policy na 7.88.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

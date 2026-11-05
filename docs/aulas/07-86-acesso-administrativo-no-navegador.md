@@ -73,5 +73,7 @@ observou diretamente o navegador.
 Entendimento confirmado com "entendi" em 05/11/2026: o 200 administrativo
 após login reúne autenticação e permissão aceita; o 401 após logout indica
 ausência de autenticação, sem perda do perfil administrativo.
-Próximo passo exato: publicar a 7.86 e iniciar a 7.87, primeira Policy de produto.
-Policies ainda pendentes no módulo 7; módulos 8 a 23 não iniciados.
+Publicação da 7.86 conferida em cee134c4923788c14d3f2b024ebc548bc04deba5;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade iniciada na [7.87](07-87-primeira-policy-produto.md), primeira
+Policy de produto. Policies em estudo; módulos 8 a 23 não iniciados.
