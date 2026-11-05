@@ -161,8 +161,15 @@ withCookie/withCredentials/getJson e origem reconhecida. Exige 401 JSON/sem
 Location e somente message string. Request recebe ID visitante, sem Authorization;
 sessão recarregada preserva ID/token, guard visitante/ID null/chaves ausentes.
 Focado 4/108 e suíte 107/1.572 passaram; SQL posterior sem dados/rollback confirmado.
-Próxima 7.51: controle GET usuario com cookie anterior ao logout, memória limpa/
-guards descartados, exigindo 401 JSON e ausência de identidade/marcador.
+Na 7.51, controle com ID anterior: exige registro antigo ausente antes de
+reenviar, faz flush/forgetGuards e GET usuario via cookie preparado pelos helpers.
+Exige 401 JSON/sem Location/somente message string, ID anterior recebido na
+Request, sem Authorization/com sessão e guard visitante/ID null/chaves ausentes.
+Não fixa ID/token de sessão visitante nem rejeição criptográfica do cookie.
+Focado 4/122 e suíte 107/1.586 passaram; SQL posterior sem dados/rollback confirmado.
+Próxima 7.52: desenhar protocolo de CSRF do logout fora de testing, com visitante/
+origem reconhecida/cookies em memória e controles esperados 419/419/204,
+preservando sessões anteriores e limpando somente as próprias.
 
 Referências: [logout e invalidação de sessão no Laravel](https://laravel.com/docs/13.x/authentication#logging-out),
 [sessão da interface própria com Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication)

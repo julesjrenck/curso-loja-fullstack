@@ -278,10 +278,17 @@ cookie da resposta, flush/forgetGuards e withCredentials/getJson. Exige 401
 JSON/sem Location, somente message string, cookie recebido com ID visitante,
 sem Authorization, ID/token preservados/visitante/chaves ausentes. Focado 4/108,
 suíte 107/1.572 e SQL posterior sem dados/rollback passaram.
-Entendimento da 7.50 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próximo após confirmar/publicar: 7.51 — controle GET usuario com cookie anterior
-ao logout, memória limpa/guards descartados, exigindo 401 JSON e ausência de
-identidade/marcador. CSRF ativo/cookies no navegador, CORS e OpenAPI pendentes.
+Entendimento da 7.50 confirmado com "entendi" em 04/11/2026; publicada em 592581d,
+remoto conferido. Na 7.51, cenário ampliado com ID anterior ao logout: registro
+antigo ausente antes do reenvio, memória limpa/guards descartados, GET usuario
+com cookie/Origin reconhecido. 401 JSON/sem Location/somente message string,
+Request com ID anterior/sem Authorization/com sessão, visitante/ID null/chaves
+ausentes. Focado 4/122, suíte 107/1.586 e SQL final sem dados/rollback passaram.
+Entendimento da 7.51 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Próximo após confirmar/publicar: 7.52 — desenhar protocolo HTTP de CSRF do logout
+fora de testing, com visitante/origem reconhecida/cookies em memória, controles
+esperados 419/419/204 e preservação/limpeza das sessões. CSRF ativo/navegador/
+CORS e OpenAPI de logout pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1040,7 +1047,11 @@ Na 7.50, consulta GET usuario após logout com cookie da resposta, memória
 limpa/guards descartados: 401 JSON/sem Location/somente message string, visitante,
 ID/token preservados e chaves ausentes. Focado 4/108, suíte 107/1.572 e SQL final
 sem dados passaram. Entendimento confirmado com "entendi" em 04/11/2026;
-publicação pendente antes da 7.51 — controle com cookie anterior ao logout.
+publicação em 592581d. Na 7.51, controle com ID anterior ao logout/registro
+antigo ausente antes do reenvio e memória limpa: 401 JSON/sem identidade/marcador.
+Focado 4/122, suíte 107/1.586 e SQL final sem dados passaram. Entendimento
+confirmado com "entendi" em 04/11/2026; publicação pendente antes da 7.52 —
+desenhar protocolo CSRF de logout fora de testing.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

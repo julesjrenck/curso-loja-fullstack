@@ -5,9 +5,23 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.50 — Consulta do usuário após logout:
+- Etapa atual: 7.51 — Consulta com cookie anterior ao logout:
   implementação, explicação e verificações apresentadas; entendimento
   confirmado com "entendi" em 04/11/2026, publicação pendente.
+- Situação da 7.51: somente cenário autenticado de LogoutApiTest ampliado e
+  renomeado para mencionar cookies novo/antigo. Registro antigo exigido ausente
+  antes do reenvio; flush/forgetGuards, withCookie com ID anterior/withCredentials/
+  getJson/Origin reconhecido. Exige 401 JSON/sem Location/somente message string;
+  Request recebe ID anterior/sem Authorization/com sessão, guard visitante/ID null
+  e chaves de identidade/marcador ausentes. Não fixa ID/token de sessão visitante
+  ou rejeição criptográfica do cookie. Sintaxe válida; focado 4 testes/122
+  asserções, suíte 107 testes/1.586 asserções, códigos 0; 14 asserções a mais,
+  sem novo teste. SQL posterior loja_test/loja_testes: seis tabelas/quatro migrations/
+  lotes 1/2/3/4 e dados zero/rollback conferido. Aplicação/rotas/controller/bootstrap/
+  Compose/OpenAPI preservados. Próximo após confirmar/publicar: 7.52 — desenhar
+  protocolo HTTP de CSRF do logout fora de testing, visitante/origem reconhecida/
+  cookies em memória, controles esperados 419/419/204 e preservação/limpeza das
+  sessões. CSRF ativo/navegador/CORS e OpenAPI de logout continuam pendentes.
 - Situação da 7.50: somente cenário autenticado de LogoutApiTest ampliado e
   renomeado para incluir consulta/401. TestResponse do logout guardada, cookie
   extraído/conferido com ID visitante do Store, token guardado só em memória.
@@ -19,9 +33,10 @@
   asserções, códigos 0; 17 asserções a mais, sem novo teste. SQL posterior
   loja_test/loja_testes: seis tabelas/quatro migrations/lotes 1/2/3/4 e dados zero,
   rollback conferido. Aplicação/rotas/controller/bootstrap/Compose/OpenAPI
-  preservados. Próximo após confirmar/publicar: 7.51 — GET usuario com cookie
-  anterior ao logout, memória limpa/guards descartados, exigindo 401 JSON e
-  ausência de identidade/marcador. CSRF ativo/cookies no navegador, CORS e
+  preservados. Entendimento confirmado com "entendi" em 04/11/2026; publicação
+  verificada em 592581d627d43f5f88923b4f12e16a17ddb685a0,
+  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  Continuidade realizada na 7.51. CSRF ativo/cookies no navegador, CORS e
   OpenAPI de logout continuam pendentes.
 - Situação da 7.49: somente LogoutApiTest alterado no código, imports User/
   DatabaseTransactions, trait e um cenário autenticado. SetUp/DataProvider/
@@ -39,7 +54,7 @@
   controller/bootstrap/Compose/OpenAPI preservados. Entendimento confirmado com
   "entendi" em 04/11/2026; publicação verificada em
   0eaa7b50e28a4e50449025b07ee02889ee84aaf0, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.50.
+  Checkpoint anterior à 7.50. Continuidade realizada na 7.50.
   CSRF ativo/cookies no navegador, CORS e OpenAPI de logout pendentes.
 - Situação da 7.48: somente LogoutApiTest criado no código. SetUp exige
   loja_test/loja_testes e sessão/cache array; sem User ou escrita no banco.
@@ -2036,7 +2051,12 @@ em 04/11/2026; publicação em 0eaa7b5. Continuidade realizada na 7.50 — GET u
 após logout com cookie da resposta/memória limpa/guards descartados: 401 JSON/
 sem Location/somente message string e sessão visitante/ID/token preservados.
 Focado 4/108, suíte 107/1.572 e SQL final sem dados passaram. Entendimento
-confirmado com "entendi" em 04/11/2026; publicação pendente antes da 7.51 — cookie anterior ao logout.
+confirmado com "entendi" em 04/11/2026; publicação em 592581d. Continuidade
+realizada na 7.51 — GET usuario com ID anterior ao logout/registro antigo ausente
+antes do reenvio e memória limpa: 401 JSON/sem identidade/marcador. Focado 4/122,
+suíte 107/1.586 e SQL final sem dados passaram. Entendimento confirmado com
+"entendi" em 04/11/2026; publicação pendente antes da 7.52 — desenhar protocolo
+CSRF de logout fora de testing.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -14474,9 +14494,56 @@ e documentos; índice vazio. Aplicação/rotas/controller/bootstrap/Compose/Open
 sem diff, OpenAPI ainda sem logout.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.50: pendente; registros locais. Último checkpoint publicado:
-0eaa7b50e28a4e50449025b07ee02889ee84aaf0 (7.49).
-Próximo passo exato após confirmar/publicar: 7.51 — ampliar o mesmo cenário
-com GET usuario usando cookie anterior ao logout, memória limpa/guards
-descartados, exigindo 401 JSON/sem Location e ausência de identidade/marcador.
+Publicação da 7.50: concluída e conferida em
+592581d627d43f5f88923b4f12e16a17ddb685a0; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.51.
 CSRF ativo/cookies no navegador, CORS e OpenAPI de logout seguem pendentes.
+
+
+## Etapa 7.51 — Consulta com cookie anterior ao logout — 04/11/2026
+
+Iniciada após confirmação da 7.50 com "entendi" e publicação verificada.
+Implementação: somente mesmo cenário de LogoutApiTest ampliado/renomeado para
+mencionar cookies novo/antigo. Preparação, testes visitante/DataProvider e
+asserções anteriores preservados. Aula 7.51, contratos/roteiro/progresso e
+publicação anterior atualizados. Aplicação/controller/rotas/bootstrap/ambientes/
+dependências/serviços/migrations/Compose/OpenAPI preservados.
+
+Explicação apresentada: após consulta com cookie novo, exige read vazio para
+idAnterior, confirmando registro antigo ainda ausente antes do reenvio. Flush
+limpa atributos só em memória/forgetGuards descarta guards. WithCookie substitui
+ID no contexto do teste, helper prepara criptografia, withCredentials/getJson
+GET usuario com Origin reconhecido reenvia identificador anterior ao logout.
+Não compara bytes dos cookies cifrados ou executa navegador.
+
+Exige 401 JSON/sem Location e corpo somente message string, sem fixar tradução.
+Request deve receber efetivamente ID anterior, não ter Authorization e ter
+sessão anexada. Guard web visitante/ID null e chaves de identidade/marcador
+ausentes exigidos. Resultado é acesso negado e ausência de identidade recuperada.
+Não exige rejeição criptográfica, ID/token específicos para sessão visitante
+ou ausência eterna de um registro visitante sob aquele ID. Read vazio conferido
+antes do reenvio; não prometemos que o framework nunca recrie sessão visitante.
+
+Verificação Docker: PHP -l do arquivo passou. PHPUnit focado 4 testes/122
+asserções, suíte completa 107 testes/1.586 asserções, códigos 0. Mesmo número
+de testes, 14 asserções adicionadas à 7.50. Opções --colors=never/--do-not-cache-result.
+SELECT posterior exigiu loja_test/loja_testes e confirmou seis tabelas, quatro
+migrations/lotes 1/2/3/4 (int explícito) e zero categorias/produtos/users/
+password_reset_tokens/sessions. DatabaseTransactions preservado/rollback
+conferido; sessão/cache em memória. Sem valores reais de senha/hash/cookie/
+token/ID impressos ou versionados. Auditoria/snapshot normal e diagnóstico
+temporário não repetidos. CSRF ativo/navegador/CORS continuam pendentes.
+
+Git diff --check passou. Links locais válidos: logout três, login quatro,
+consulta cinco, aulas 7.50/7.51 dois cada. Escopo conferido: somente LogoutApiTest
+e documentos; índice vazio. Aplicação/rotas/controller/bootstrap/Compose/OpenAPI
+sem diff, OpenAPI ainda sem logout.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.51: pendente; registros locais. Último checkpoint publicado:
+592581d627d43f5f88923b4f12e16a17ddb685a0 (7.50).
+Próximo passo exato após confirmar/publicar: 7.52 — desenhar protocolo HTTP de
+CSRF do logout fora de testing, com visitante/origem reconhecida/cookies em
+memória, controles sem header/inválido/correto esperados 419/419/204 e preservação/
+limpeza das sessões. Apresentar protocolo e aguardar entendimento antes de
+executá-lo. CSRF ativo/navegador/CORS e OpenAPI de logout seguem pendentes.

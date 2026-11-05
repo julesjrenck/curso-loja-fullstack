@@ -68,7 +68,7 @@ class LogoutApiTest extends TestCase
         $this->assertArrayNotHasKey(Auth::guard('web')->getName(), $request->session()->all());
     }
 
-    public function test_logout_autenticado_invalida_sessao_e_consulta_seguinte_recebe_401(): void
+    public function test_logout_invalida_sessao_e_consultas_com_cookies_novo_e_antigo_recebem_401(): void
     {
         $usuario = User::query()->create([
             'name' => 'Ana Exemplo',
@@ -161,6 +161,32 @@ class LogoutApiTest extends TestCase
         $this->assertTrue($consulta->baseRequest->hasSession());
         $this->assertSame($idVisitante, $sessao->getId());
         $this->assertSame($tokenVisitante, $sessao->token());
+        $this->assertGuest('web');
+        $this->assertNull(Auth::guard('web')->id());
+        $this->assertArrayNotHasKey($chaveIdentidade, $sessao->all());
+        $this->assertArrayNotHasKey('marcador', $sessao->all());
+
+        $this->assertSame('', $sessao->getHandler()->read($idAnterior));
+        $sessao->flush();
+        Auth::forgetGuards();
+
+        $consultaCookieAnterior = $this->withCookie(config('session.cookie'), $idAnterior)
+            ->withCredentials()
+            ->getJson('http://127.0.0.1:8002/api/v1/usuario', [
+                'Origin' => 'http://127.0.0.1:8002',
+            ]);
+
+        $consultaCookieAnterior
+            ->assertStatus(401)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertHeaderMissing('Location');
+
+        $dadosCookieAnterior = $consultaCookieAnterior->json();
+        $this->assertSame(['message'], array_keys($dadosCookieAnterior));
+        $this->assertIsString($dadosCookieAnterior['message']);
+        $this->assertSame($idAnterior, $consultaCookieAnterior->baseRequest->cookies->get(config('session.cookie')));
+        $this->assertFalse($consultaCookieAnterior->baseRequest->headers->has('Authorization'));
+        $this->assertTrue($consultaCookieAnterior->baseRequest->hasSession());
         $this->assertGuest('web');
         $this->assertNull(Auth::guard('web')->id());
         $this->assertArrayNotHasKey($chaveIdentidade, $sessao->all());

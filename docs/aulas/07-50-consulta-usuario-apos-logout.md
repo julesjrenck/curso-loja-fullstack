@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.49 com "entendi". Checkpoint anterior publicado e conferido em
 0eaa7b50e28a4e50449025b07ee02889ee84aaf0; HEAD/origin/main/main remota iguais.
-Entendimento da 7.50 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.50 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -92,8 +92,8 @@ Cenário ampliado, explicado e verificado; entendimento confirmado em 04/11/2026
 Aplicação, rotas, controller, bootstrap, ambientes, dependências, serviços,
 migrations, Compose e OpenAPI preservados. CSRF ativo/navegador/CORS pendentes;
 auditoria/snapshot normal não repetidos.
-Publicação da 7.50 pendente. Próxima após confirmar/publicar: 7.51 — acrescentar
-ao mesmo cenário uma consulta GET usuario com o cookie anterior ao logout,
-memória limpa/guards descartados, exigindo 401 JSON/sem Location e ausência de
-identidade/marcador. CSRF ativo/cookies no navegador, CORS e OpenAPI de logout
-seguem pendentes.
+Publicação da 7.50 concluída e conferida em
+592581d627d43f5f88923b4f12e16a17ddb685a0; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.51 —
+controle com cookie anterior ao logout. CSRF ativo/cookies no navegador, CORS
+e OpenAPI de logout seguem pendentes.
