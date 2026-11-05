@@ -318,9 +318,15 @@ OPTIONS de POST logout: 204 vazio, origem *, credenciais ausentes, método/heade
 refletidos, Max-Age 0 e Vary método/headers. Continuação não chamada; sem sessão,
 cookies, SQL ou alteração de configuração. 14 controles true/código 0; sem
 rede/navegador ou nova suíte. Entrada/saída e limites explicados. Entendimento
-da 7.56 confirmado com "entendi" em 05/11/2026; publicação pendente. Próximo após confirmar/
-publicar: 7.57 — definir origem de laboratório, configurar CORS com credenciais
-e repetir preflight. Sanctum/navegador nas etapas seguintes do módulo 7.
+da 7.56 confirmado com "entendi" em 05/11/2026; publicada em c49fa83, remoto
+conferido. Na 7.57, criado config/cors.php com origem de laboratório 8001 e
+credenciais true, mantendo sete opções anteriores. Preflights 8001/8003:
+204 vazio/Allow-Origin fixo 8001/credenciais true. Controle 8003 diverge da origem
+permitida. 30 controles passaram, sem sessão/cookies/SQL no diagnóstico. Suíte
+no Docker passou: 107 testes/1.586 asserções. Sanctum ainda não reconhece 8001.
+Entendimento da 7.57 confirmado com "entendi" em 05/11/2026; publicação pendente. Próximo após
+confirmar/publicar: 7.58 — reconhecimento stateful de 8001 no Sanctum, preservando
+8002 e verificando seleção em memória. Navegador nas etapas seguintes do módulo 7.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1104,7 +1110,11 @@ Entendimento da 7.55 confirmado com "entendi" em 05/11/2026; publicação em
 credenciais ausentes/método e headers refletidos/Max-Age 0/Vary. Sem continuação,
 sessão, cookies, SQL, rede/navegador ou nova suíte; 14 controles true/código 0,
 configuração preservada. Limites explicados. Entendimento confirmado com "entendi"
-em 05/11/2026 e publicação pendente antes da 7.57 — origem de laboratório/CORS com credenciais.
+em 05/11/2026; publicação em c49fa83. Na 7.57, config/cors.php criado com origem
+8001/credenciais true; preflights permitido/controle passaram, sem sessão/SQL.
+Suíte 107 testes/1.586 asserções passou. Sanctum ainda não reconhece 8001.
+Entendimento da 7.57 confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.58 —
+reconhecimento stateful de 8001 e preservação de 8002, verificados em memória.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

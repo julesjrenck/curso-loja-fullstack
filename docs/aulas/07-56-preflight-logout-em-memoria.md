@@ -3,7 +3,8 @@
 Execução e explicação em 05/11/2026, após confirmação da 7.55 com "entendi".
 Checkpoint 7.55 publicado e conferido em
 7a0712226d12b9e553f4937755cc33e6589ac4b1: HEAD/origin/main/main remota iguais.
-Entendimento da 7.56 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.56 confirmado com "entendi" em 05/11/2026; publicação conferida
+em c49fa8349f0a830ee4e1bf7feaa56862bfd2701c, HEAD/origin/main/main remota iguais.
 
 ## Objetivo
 
@@ -117,7 +118,7 @@ foram conferidos; somente documentação modificada e índice vazio.
 
 ## Continuidade
 
-Após confirmar entendimento e publicar, próxima 7.57: definir uma origem de
-laboratório, criar backend/config/cors.php para permitir essa origem com
-credenciais e repetir o preflight. O reconhecimento stateful do Sanctum e a
-integração no navegador ficam para etapas seguintes do módulo 7.
+Publicação da 7.56 concluída. Continuidade na
+[7.57 — CORS com origem explícita e credenciais](07-57-cors-origem-com-credenciais.md).
+O reconhecimento stateful do Sanctum e a integração no navegador ficam para
+etapas seguintes do módulo 7.

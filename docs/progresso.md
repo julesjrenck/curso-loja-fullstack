@@ -5,9 +5,27 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.56 — Preflight do logout em memória:
-  execução, explicação e verificação apresentadas em 05/11/2026; entendimento
-  confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Etapa atual: 7.57 — CORS com origem explícita e credenciais:
+  implementação, explicação e verificações apresentadas em 05/11/2026;
+  entendimento confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Situação da 7.57: criado backend/config/cors.php, único arquivo de aplicação
+  alterado. Origem local de laboratório http://127.0.0.1:8001 e credenciais true;
+  demais sete opções preservam padrões do framework. PHP -l sem erros.
+  Preflight HandleCors isolado para logout/POST/content-type,x-xsrf-token:
+  Origin 8001 e controle 8003 retornaram 204 vazio, Allow-Origin fixo 8001,
+  Allow-Credentials true, método/headers refletidos, Max-Age 0 e Vary
+  Request-Method/Request-Headers. Para 8003, origem retornada difere da
+  solicitante; conclusão do protocolo é recusa de CORS no navegador, ainda
+  não executado. 15 controles por pedido, 30 passaram/código 0; continuação
+  não chamada, sem sessão/cookies/SQL no diagnóstico. Configuração preservada.
+  Suíte existente no Docker/SQL Server exclusivo de testes passou:
+  107 testes/1.586 asserções, código 0. Nenhum teste novo. Leitura Sanctum
+  fromFrontend para origem 8001/destino 8002 permanece false.
+  Aula docs/aulas/07-57-cors-origem-com-credenciais.md criada. Bootstrap/rotas/
+  controllers/testes/ambientes/dependências/serviços/Compose/OpenAPI preservados.
+  Próximo após confirmar/publicar: 7.58 — configurar reconhecimento stateful
+  de 8001 no Sanctum, preservar 8002 e conferir seleção em memória. Fluxo
+  completo no navegador continua pendente; módulos 8 a 23 não iniciados.
 - Situação da 7.56: aula docs/aulas/07-56-preflight-logout-em-memoria.md criada.
   PHP no Docker/local executou HandleCors isolado, com configuração efetiva
   igual aos padrões do framework. Request OPTIONS para /api/v1/logout, host
@@ -21,9 +39,9 @@
   suíte; última 7.51, 107/1.586. Backend/Compose/OpenAPI preservados.
   Explicados entrada/saída, retorno antes do roteamento e limites: 204 de
   OPTIONS não executa POST nem basta para compartilhar resposta com cookies.
-  Próximo após confirmar/publicar: 7.57 — definir origem de laboratório, criar
-  backend/config/cors.php para permitir essa origem com credenciais e repetir
-  preflight. Sanctum stateful e integração no navegador ficam para etapas seguintes.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  c49fa8349f0a830ee4e1bf7feaa56862bfd2701c, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.57.
 - Situação da 7.55: aula docs/aulas/07-55-diagnostico-cors.md criada. PHP no
   Docker/local/sem cache confirmou ausência de config/cors.php local e valores
   efetivos iguais aos padrões do framework: paths api/* e sanctum/csrf-cookie,
@@ -39,7 +57,7 @@
   sem erro observado no navegador. Backend/Compose/OpenAPI preservados.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   7a0712226d12b9e553f4937755cc33e6589ac4b1, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.56.
+  Checkpoint anterior à 7.56. Continuidade realizada na 7.56.
 - Situação da 7.54: POST /api/v1/logout incluído em docs/api/openapi.json,
   operação encerrarSessao. RequestBody required false/objeto JSON/exemplo {},
   extras permitidos e ignorados pelo controller; não são seletores de identidade.
@@ -2162,9 +2180,16 @@ ilustrativa 8001/método POST/headers content-type e x-xsrf-token. Resposta 204
 vazia, origem *, credenciais ausentes, método/headers refletidos, Max-Age 0 e
 Vary método/headers. Continuação não chamada/sem sessão/cookies/SQL; 14 controles
 true/código 0/configuração preservada. Sem rede/navegador ou nova suíte.
-Entendimento da 7.56 confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
-confirmar/publicar: 7.57 — definir origem de laboratório e configurar CORS com
-credenciais, repetindo preflight. Sanctum/navegador nas etapas seguintes.
+Entendimento da 7.56 confirmado com "entendi" em 05/11/2026; publicada em
+c49fa83, remoto conferido. Continuidade na 7.57: config/cors.php criado com
+origem de laboratório 8001 e credenciais true; sete opções restantes preservadas.
+Preflights das origens 8001/8003 retornaram 204/Allow-Origin fixo 8001/credenciais
+true; controle 8003 diverge da origem permitida. 30 controles passaram/código 0,
+sem sessão/cookies/SQL no diagnóstico. Suíte no Docker: 107 testes/1.586 asserções,
+código 0. Sanctum ainda não reconhece 8001. Entendimento da 7.57 confirmado
+com "entendi" em 05/11/2026; publicação pendente. Próxima após confirmar/publicar: 7.58 —
+reconhecer 8001 no Sanctum, preservar 8002 e verificar seleção em memória.
+Navegador nas etapas seguintes.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -14913,8 +14938,62 @@ Git diff --check passou; três links locais dos quatro documentos alterados
 válidos, índice vazio, somente documentação.
 
 Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
-Publicação da 7.56: pendente; último checkpoint publicado 7a07122 (7.55).
-Próximo passo exato após confirmar/publicar: 7.57 — definir uma origem de
-laboratório, criar backend/config/cors.php para permitir essa origem com
-credenciais e repetir o preflight. Sanctum stateful e integração no navegador
-ficam para etapas seguintes do módulo 7; módulos 8 a 23 não iniciados.
+Publicação da 7.56: concluída e conferida em 05/11/2026:
+c49fa8349f0a830ee4e1bf7feaa56862bfd2701c; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.57.
+
+
+## Etapa 7.57 — CORS com origem explícita e credenciais — 05/11/2026
+
+Iniciada após confirmação da 7.56 com "entendi" e publicação verificada em
+c49fa8349f0a830ee4e1bf7feaa56862bfd2701c. Implementação: criado
+backend/config/cors.php, único arquivo de aplicação alterado. Allowed_origins
+['http://127.0.0.1:8001'] e supports_credentials true; demais sete opções iguais
+aos padrões do framework. Origem definida para laboratório local, sem interface
+nova ou escolha de produção. Aula 7.57/continuidade anterior/roteiro/progresso
+atualizados. Não houve configuração de Sanctum nesta etapa.
+
+Explicação apresentada: arquivo PHP retorna array carregado por config('cors');
+origem explícita e credenciais true produzem os cabeçalhos necessários ao CORS
+com cookies. Isso não autentica nem faz o cliente enviar cookies automaticamente.
+Paths API/csrf-cookie, métodos/headers *, patterns/exposed vazios e max_age 0
+preservados. Restrição também alcança leitura entre origens do catálogo público;
+acesso/autenticação continuam regidos por rotas e seus middlewares. Fontes
+primárias Laravel 13/Sanctum e MDN consultadas.
+
+Verificação: PHP -l config/cors.php no Docker passou, código 0. Diagnóstico PHP
+em memória/local/sem cache exigiu configuração igual aos padrões com apenas as
+duas opções substituídas. HandleCors isolado recebeu OPTIONS /api/v1/logout,
+destino 8002, método pretendido POST, headers content-type,x-xsrf-token.
+Origens 8001 e controle 8003, sem corpo/cookies/token real. Continuação de barreira
+lançaria exceção antes de executar rotas/sessão; não foi chamada em nenhum caso.
+
+Ambos retornaram 204 vazio, Allow-Origin fixo http://127.0.0.1:8001,
+Allow-Credentials true, Allow-Methods POST, Allow-Headers refletidos, Max-Age 0
+e Vary Request-Method/Request-Headers. Biblioteca instalada otimiza origem única
+com valor fixo. Para 8003 há divergência com origem solicitante: recusa pelo
+protocolo CORS inferida dos cabeçalhos, sem navegador ou afirmação de 4xx.
+15 controles por pedido passaram, 30 no total, código 0. Request sem sessão;
+resposta sem cookies/Set-Cookie, zero eventos QueryExecuted no diagnóstico.
+Configuração preservada. Leitura adicional fromFrontend retornou false para
+Origin 8001 com destino 8002; reconhecimento stateful permanece pendente.
+
+Suíte existente executada com docker compose exec -T backend php vendor/bin/phpunit
+--colors=never --do-not-cache-result: 107 testes/1.586 asserções, código 0.
+Configuração phpunit.xml: testing/SQL Server loja_test/sessão e cache array.
+A suíte usa SQL de integração; zero SQL refere-se somente ao diagnóstico CORS.
+Nenhum teste criado/alterado, auditoria ou snapshot repetido.
+
+Bootstrap, rotas, controller, testes, ambientes, dependências, serviços,
+migrations, Compose e OpenAPI preservados. Diagnóstico isolado sem HTTP pela
+rede, sessão iniciada ou logout efetivo. Cadeia completa/browser/cookies/CSRF
+entre origens ainda exigem verificações próprias. Git diff --check passou.
+Quatro links locais válidos; trecho PHP da aula igual ao arquivo. Somente os
+cinco arquivos previstos alterados, índice vazio; uma alteração na aplicação.
+
+Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
+Publicação da 7.57: pendente; último checkpoint publicado c49fa83 (7.56).
+Próximo passo exato após confirmar/publicar: 7.58 — configurar reconhecimento
+stateful da origem de laboratório 8001 no Sanctum, preservar 8002 e verificar
+seleção em memória. Integração no navegador nas etapas seguintes do módulo 7;
+módulos 8 a 23 não iniciados.
