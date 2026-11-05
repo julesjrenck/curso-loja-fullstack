@@ -3,7 +3,7 @@
   "info": {
     "title": "API da loja",
     "version": "0.1.0",
-    "description": "Descrição em construção. Inclui catálogo público, login e logout por sessão da interface própria e consulta do próprio usuário autenticado."
+    "description": "Descrição em construção. Inclui catálogo público, login e logout por sessão da interface própria, consulta do próprio usuário autenticado e entrada da administração com permissão dedicada."
   },
   "servers": [
     {
@@ -257,6 +257,100 @@
                 },
                 "example": {
                   "message": "Unauthenticated."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/administracao": {
+      "get": {
+        "summary": "Consultar a entrada da administração",
+        "operationId": "consultarAdministracao",
+        "description": "Interface própria autenticada por sessão/cookie Sanctum. Exige auth:sanctum e, em seguida, o Gate acessar-administracao por can, permitindo somente is_admin verdadeiro do User identificado no servidor. Cookie de visitante não autentica; autenticação de cliente não concede administração. Sem corpo ou parâmetros suportados; dados do pedido não escolhem o privilégio. Verificado pelo kernel HTTP com usuários em memória, sem login por credenciais ou transporte de cookies. Ver docs/api/administracao.md no repositório.",
+        "security": [
+          {
+            "SessaoCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entrada administrativa autorizada. JSON com mensagem fixa, sem identificação pessoal ou atributos do usuário.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "data"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "mensagem"
+                      ],
+                      "properties": {
+                        "mensagem": {
+                          "type": "string",
+                          "const": "Bem-vindo à administração da loja."
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "data": {
+                    "mensagem": "Bem-vindo à administração da loja."
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sem autenticação válida. JSON com somente message string, sem redirecionamento. Cookie de visitante não autentica.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "message"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de autenticação; texto e idioma podem variar. O cliente deve observar o status 401."
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Unauthenticated."
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Usuário autenticado recusado pelo Gate acessar-administracao. JSON com somente message string, mesmo com depuração ligada; o cliente deve observar o status 403, sem depender do idioma da mensagem.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "message"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Mensagem de recusa de autorização; texto e idioma podem variar."
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Acesso não permitido."
                 }
               }
             }

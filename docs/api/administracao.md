@@ -8,8 +8,10 @@ com identidades preparadas em memória, sem login por credenciais ou SQL.
 Na 7.80, [AdministracaoApiTest](../../backend/tests/Feature/AdministracaoApiTest.php)
 automatizou os resultados com getJson/actingAs e cliente com debug true/false:
 quatro testes/35 asserções passaram; suíte atual 116 testes/1.653 asserções.
-OpenAPI ainda sem esta operação. Transporte de sessão pelo navegador e
-login administrativo com conta persistida não foram verificados.
+Na 7.81, operação integrada ao [OpenAPI](openapi.json), com cookie de sessão,
+respostas 200/401/403, schemas e exemplos validados pelo Redocly fixado.
+Transporte de sessão pelo navegador e login administrativo com conta
+persistida não foram verificados.
 
 ## Consultar a entrada da administração
 
@@ -110,5 +112,7 @@ ligado/desligado por DataProvider. Focado: 4 testes/35 asserções; suíte atual
 116 testes/1.653 asserções passaram, códigos 0.
 
 Não houve login administrativo real, promoção ou uso de conta persistida.
-OpenAPI segue sem esta operação. Próxima etapa: incluir operação, segurança,
-respostas e exemplos no documento OpenAPI e validar.
+Na 7.81, OpenAPI atualizado/validado, incluindo cinco rejeições deliberadas
+de exemplos inválidos em cópias próprias, removidas depois. Isso verifica
+a descrição, sem executar a API. Próxima etapa: adicionar consulta de
+administração ao laboratório, sem criar ou promover contas.

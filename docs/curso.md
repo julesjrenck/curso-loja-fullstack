@@ -438,8 +438,12 @@ listagem de middlewares e suíte atual 112/1.618 passaram. Entendimento confirma
 com "entendi" em 05/11/2026; publicação em fb95185, remoto conferido. Na 7.80,
 testes HTTP permanentes 401/403/200 com cliente debug true/false, em memória/
 SQL bloqueado: focado 4/35, suíte atual 116/1.653 passaram. Entendimento
-confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após
-publicar: 7.81 — OpenAPI da consulta administrativa e validação.
+confirmado com "entendi" em 05/11/2026; publicação em 22982d0, remoto conferido.
+Na 7.81, operação administrativa/SessaoCookie/200/401/403 no OpenAPI:
+Redocly válido, cinco cópias inválidas rejeitadas, comparação estruturada
+passou e auxiliares removidos. Somente documentação; entendimento confirmado
+com "entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
+7.82 — Consultar administração no laboratório, sem promover contas.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1304,8 +1308,11 @@ atual 112/1.618 passaram. Sem login real ou SQL em loja. Entendimento confirmado
 com "entendi" em 05/11/2026; publicação em fb95185. Na 7.80, testes HTTP
 401/403/200 e debug true/false: focado 4/35 e suíte atual 116/1.653 passaram,
 sem conta persistida/SQL nos novos casos. Entendimento confirmado com "entendi"
-em 05/11/2026; publicação pendente antes da 7.81 — integrar operação
-administrativa ao OpenAPI e validar.
+em 05/11/2026; publicação em 22982d0. Na 7.81, administração integrada ao
+OpenAPI/cookie/200/401/403: lint válido/cinco cópias inválidas rejeitadas,
+comparação estruturada e limpeza passaram. Somente documentação; entendimento
+confirmado com "entendi" em 05/11/2026; publicação pendente antes da
+7.82 — botão de consulta administrativa no laboratório.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

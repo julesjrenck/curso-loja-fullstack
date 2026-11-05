@@ -4,7 +4,9 @@ Implementação, explicação e verificações em 05/11/2026, após confirmaçã
 [7.79](07-79-rota-administracao-protegida.md) com "entendi".
 Checkpoint anterior publicado e conferido em
 fb951855677cd07bdf8c49fb3f5862355929788b; HEAD/origin/main/main remota iguais.
-Entendimento da 7.80 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.80 confirmado com "entendi" em 05/11/2026; publicação
+conferida em 22982d0fd516d2418c9f32c66932422278623fbd, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação.
 
 ## Objetivo e arquivo
 
@@ -106,7 +108,7 @@ Rota, Gate, User/controller e tratamento do 403 permanecem como na 7.79.
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-7.81 — incluir
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.81](07-81-openapi-administracao.md): incluir
 GET /api/v1/administracao no OpenAPI, com segurança por cookie, respostas
 200/401/403 e exemplos, e validar com o Redocly fixado. Módulos 8 a 23 não iniciados.
