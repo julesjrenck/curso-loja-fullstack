@@ -120,8 +120,8 @@ não foi uma requisição HTTP. Treze condições por caso passaram, código 0,
 transações desfeitas/contagens preservadas. Suíte existente 101 testes/1.407
 asserções passou; SELECT posterior confirmou banco de testes sem dados.
 
-GET usuario após logout, CSRF ativo/cookies no navegador, CORS e OpenAPI do
-logout continuam pendentes.
+Na 7.50, GET usuario após logout com cookie recebido retornou 401 pelo kernel.
+CSRF ativo/cookies no navegador, CORS e OpenAPI do logout continuam pendentes.
 Na 7.45, adicionado um teste permanente de logout autenticado em LoginControllerTest:
 prepara identidade pelo guard web real, salva marcador e sessão array, chama
 destroy diretamente e exige 204/sem Location, limpeza/renovação e remoção do
@@ -155,8 +155,14 @@ Cookie de entrada decifrado tem ID anterior; guard visitante/ID null, chaves
 removidas, ID/token novos e registro antigo destruído. Focado 4/91 e suíte
 107/1.555 passaram; SQL posterior sem dados/rollback confirmado. Não executa
 POST login, GET usuario após logout, CSRF ativo ou navegador.
-Próxima 7.50: ampliar o cenário com GET usuario usando cookie da resposta,
-memória limpa/guards descartados, exigindo 401 JSON/sem Location/message string.
+Na 7.50, cenário ampliado: extrai cookie da resposta de logout, confere ID
+visitante/guarda token em memória, faz flush/forgetGuards e GET usuario com
+withCookie/withCredentials/getJson e origem reconhecida. Exige 401 JSON/sem
+Location e somente message string. Request recebe ID visitante, sem Authorization;
+sessão recarregada preserva ID/token, guard visitante/ID null/chaves ausentes.
+Focado 4/108 e suíte 107/1.572 passaram; SQL posterior sem dados/rollback confirmado.
+Próxima 7.51: controle GET usuario com cookie anterior ao logout, memória limpa/
+guards descartados, exigindo 401 JSON e ausência de identidade/marcador.
 
 Referências: [logout e invalidação de sessão no Laravel](https://laravel.com/docs/13.x/authentication#logging-out),
 [sessão da interface própria com Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication)

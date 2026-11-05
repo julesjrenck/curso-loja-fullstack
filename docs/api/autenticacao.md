@@ -163,7 +163,10 @@ sessão/cookies emitidos: focado 3/57, suíte 106/1.521. Consulta após logout e
 cenário autenticado pela rota ainda eram pendentes. Na 7.49, logout autenticado
 pela rota verificado com fixture/transação/cookie e memória limpa: 204 vazio,
 visitante e sessão invalidada. Focado 4/91, suíte 107/1.555 passaram. Consulta
-GET usuario após logout segue pendente para 7.50, usando cookie da resposta.
+GET usuario após logout verificada na 7.50, usando cookie da resposta/memória
+limpa/guards descartados: 401 JSON/sem Location e somente message string.
+ID/token da sessão visitante preservados, sem Authorization/identidade/marcador.
+Focado 4/108, suíte 107/1.572 passaram. Próxima 7.51: cookie anterior ao logout.
 Comportamento de navegador/CORS permanece pendente.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)

@@ -272,11 +272,16 @@ fixture em loja_test/guard web/sessão array salva com marcador, flush/forgetGua
 antes de POST logout com cookie. 204 vazio/sem Location, cookie de entrada com
 ID anterior, guard visitante/chaves removidas/ID/token novos/registro destruído.
 Focado 4/91, suíte 107/1.555 e SELECT posterior sem dados/rollback passaram.
-Entendimento da 7.49 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próximo após confirmar/publicar: 7.50 — ampliar o cenário com GET usuario após
-logout usando cookie da resposta/memória limpa/guards descartados, exigindo
-401 JSON/sem Location/somente message string. CSRF ativo/cookies no navegador,
-CORS e OpenAPI de logout pendentes.
+Entendimento da 7.49 confirmado com "entendi" em 04/11/2026; publicada em 0eaa7b5,
+remoto conferido. Na 7.50, cenário ampliado com GET usuario após logout usando
+cookie da resposta, flush/forgetGuards e withCredentials/getJson. Exige 401
+JSON/sem Location, somente message string, cookie recebido com ID visitante,
+sem Authorization, ID/token preservados/visitante/chaves ausentes. Focado 4/108,
+suíte 107/1.572 e SQL posterior sem dados/rollback passaram.
+Entendimento da 7.50 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Próximo após confirmar/publicar: 7.51 — controle GET usuario com cookie anterior
+ao logout, memória limpa/guards descartados, exigindo 401 JSON e ausência de
+identidade/marcador. CSRF ativo/cookies no navegador, CORS e OpenAPI pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1030,8 +1035,12 @@ Entendimento confirmado com "entendi" em 04/11/2026; publicação em 1ddeaad.
 Na 7.49, cenário autenticado pela rota em LogoutApiTest com fixture/transação,
 sessão salva/cookie e memória limpa antes do pedido: 204 vazio/invalidação/
 novo ID/token. Focado 4/91, suíte 107/1.555 e SQL final sem dados passaram.
-Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente antes
-da 7.50 — GET usuario após logout com cookie da resposta, exigindo 401 JSON.
+Entendimento confirmado com "entendi" em 04/11/2026; publicação em 0eaa7b5.
+Na 7.50, consulta GET usuario após logout com cookie da resposta, memória
+limpa/guards descartados: 401 JSON/sem Location/somente message string, visitante,
+ID/token preservados e chaves ausentes. Focado 4/108, suíte 107/1.572 e SQL final
+sem dados passaram. Entendimento confirmado com "entendi" em 04/11/2026;
+publicação pendente antes da 7.51 — controle com cookie anterior ao logout.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

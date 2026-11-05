@@ -68,7 +68,7 @@ class LogoutApiTest extends TestCase
         $this->assertArrayNotHasKey(Auth::guard('web')->getName(), $request->session()->all());
     }
 
-    public function test_logout_autenticado_recebe_cookie_invalida_sessao_e_retorna_204(): void
+    public function test_logout_autenticado_invalida_sessao_e_consulta_seguinte_recebe_401(): void
     {
         $usuario = User::query()->create([
             'name' => 'Ana Exemplo',
@@ -111,7 +111,9 @@ class LogoutApiTest extends TestCase
         $resposta = $kernel->handle($request);
         $kernel->terminate($request, $resposta);
 
-        TestResponse::fromBaseResponse($resposta, $request)
+        $respostaLogout = TestResponse::fromBaseResponse($resposta, $request);
+
+        $respostaLogout
             ->assertNoContent()
             ->assertHeaderMissing('Location')
             ->assertCookie(config('session.cookie'), $sessao->getId())
@@ -130,6 +132,39 @@ class LogoutApiTest extends TestCase
         $this->assertNotEmpty($sessao->token());
         $this->assertNotSame($tokenAnterior, $sessao->token());
         $this->assertSame('', $sessao->getHandler()->read($idAnterior));
+
+        $cookieVisitante = $respostaLogout->getCookie(config('session.cookie'));
+        $this->assertNotNull($cookieVisitante);
+        $idVisitante = $cookieVisitante->getValue();
+        $this->assertSame($sessao->getId(), $idVisitante);
+        $tokenVisitante = $sessao->token();
+
+        $sessao->flush();
+        Auth::forgetGuards();
+
+        $consulta = $this->withCookie(config('session.cookie'), $idVisitante)
+            ->withCredentials()
+            ->getJson('http://127.0.0.1:8002/api/v1/usuario', [
+                'Origin' => 'http://127.0.0.1:8002',
+            ]);
+
+        $consulta
+            ->assertStatus(401)
+            ->assertHeader('Content-Type', 'application/json')
+            ->assertHeaderMissing('Location');
+
+        $dados = $consulta->json();
+        $this->assertSame(['message'], array_keys($dados));
+        $this->assertIsString($dados['message']);
+        $this->assertSame($idVisitante, $consulta->baseRequest->cookies->get(config('session.cookie')));
+        $this->assertFalse($consulta->baseRequest->headers->has('Authorization'));
+        $this->assertTrue($consulta->baseRequest->hasSession());
+        $this->assertSame($idVisitante, $sessao->getId());
+        $this->assertSame($tokenVisitante, $sessao->token());
+        $this->assertGuest('web');
+        $this->assertNull(Auth::guard('web')->id());
+        $this->assertArrayNotHasKey($chaveIdentidade, $sessao->all());
+        $this->assertArrayNotHasKey('marcador', $sessao->all());
     }
 
     public static function formatosAccept(): array

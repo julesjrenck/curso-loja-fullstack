@@ -3,7 +3,7 @@
 Implementação, explicação e verificações em 04/11/2026, após confirmação da
 7.48 com "entendi". Checkpoint anterior publicado e conferido em
 1ddeaade0a952e7fded20758e20ffea7fd30929f; HEAD/origin/main/main remota iguais.
-Entendimento da 7.49 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.49 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -91,8 +91,8 @@ sem diff, OpenAPI ainda sem logout.
 Teste implementado, explicado e verificado; entendimento confirmado em 04/11/2026.
 Aplicação, rotas, controller, bootstrap, ambientes, dependências, serviços,
 migrations, Compose e OpenAPI preservados. Auditoria/snapshot normal não repetidos.
-Publicação da 7.49 pendente. Próxima após confirmar/publicar: 7.50 — ampliar
-somente o cenário autenticado com GET /api/v1/usuario após logout, usando cookie
-recebido na resposta, memória limpa/guards descartados, exigindo 401 JSON/sem
-Location e somente message string. CSRF ativo/cookies no navegador, CORS e
-OpenAPI de logout seguem pendentes.
+Publicação da 7.49 concluída e conferida em
+0eaa7b50e28a4e50449025b07ee02889ee84aaf0; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.50 —
+GET usuario após logout com cookie da resposta, exigindo 401 JSON.
+CSRF ativo/cookies no navegador, CORS e OpenAPI de logout seguem pendentes.

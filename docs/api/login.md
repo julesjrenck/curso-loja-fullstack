@@ -222,7 +222,9 @@ visitante 204 vazio nos três Accept pelo kernel/testing. Suíte 103/1.464 passo
 na 7.48, LogoutApiTest permanente passou nos três Accept: focado 3/57, suíte
 106/1.521. Na 7.49, logout autenticado pela rota passou com fixture/transação e
 cookie de entrada, preparando identidade pelo guard web: focado 4/91, suíte
-107/1.555. Próxima 7.50: consultar usuario após logout com cookie da resposta.
+107/1.555. Na 7.50, consulta usuario após logout usando cookie da resposta
+retornou 401 JSON/sem Location, somente message string: focado 4/108, suíte
+107/1.572. Próxima 7.51: controle com cookie anterior ao logout.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

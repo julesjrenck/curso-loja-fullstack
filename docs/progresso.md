@@ -5,9 +5,24 @@
 - Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.49 — Logout autenticado pela rota:
+- Etapa atual: 7.50 — Consulta do usuário após logout:
   implementação, explicação e verificações apresentadas; entendimento
   confirmado com "entendi" em 04/11/2026, publicação pendente.
+- Situação da 7.50: somente cenário autenticado de LogoutApiTest ampliado e
+  renomeado para incluir consulta/401. TestResponse do logout guardada, cookie
+  extraído/conferido com ID visitante do Store, token guardado só em memória.
+  Flush/forgetGuards antes de GET usuario com cookie da resposta, withCredentials/
+  getJson e Origin reconhecido. Exige 401 JSON/sem Location e somente message
+  string. Request recebe ID visitante/sem Authorization/com sessão; Store
+  preserva ID/token, guard visitante/ID null/chaves de identidade e marcador
+  ausentes. Sintaxe válida; focado 4 testes/108 asserções, suíte 107 testes/1.572
+  asserções, códigos 0; 17 asserções a mais, sem novo teste. SQL posterior
+  loja_test/loja_testes: seis tabelas/quatro migrations/lotes 1/2/3/4 e dados zero,
+  rollback conferido. Aplicação/rotas/controller/bootstrap/Compose/OpenAPI
+  preservados. Próximo após confirmar/publicar: 7.51 — GET usuario com cookie
+  anterior ao logout, memória limpa/guards descartados, exigindo 401 JSON e
+  ausência de identidade/marcador. CSRF ativo/cookies no navegador, CORS e
+  OpenAPI de logout continuam pendentes.
 - Situação da 7.49: somente LogoutApiTest alterado no código, imports User/
   DatabaseTransactions, trait e um cenário autenticado. SetUp/DataProvider/
   visitante preservados; transação por execução. User fictício criado após exigir
@@ -21,9 +36,10 @@
   destruído. Sintaxe válida; focado 4 testes/91 asserções, suíte 107 testes/1.555
   asserções, códigos 0. SQL posterior loja_test/loja_testes: seis tabelas/quatro
   migrations/lotes 1/2/3/4 e dados zero; rollback conferido. Aplicação/rotas/
-  controller/bootstrap/Compose/OpenAPI preservados. Próximo após confirmar/publicar:
-  7.50 — GET usuario após logout no mesmo cenário, com cookie da resposta/memória
-  limpa/guards descartados, exigindo 401 JSON/sem Location/somente message string.
+  controller/bootstrap/Compose/OpenAPI preservados. Entendimento confirmado com
+  "entendi" em 04/11/2026; publicação verificada em
+  0eaa7b50e28a4e50449025b07ee02889ee84aaf0, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.50.
   CSRF ativo/cookies no navegador, CORS e OpenAPI de logout pendentes.
 - Situação da 7.48: somente LogoutApiTest criado no código. SetUp exige
   loja_test/loja_testes e sessão/cache array; sem User ou escrita no banco.
@@ -38,7 +54,7 @@
   em testing, sem navegador/CORS ou GET usuario após logout.
   Entendimento confirmado com "entendi" em 04/11/2026; publicação verificada em
   1ddeaade0a952e7fded20758e20ffea7fd30929f, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.49.
+  Checkpoint anterior à 7.49. Continuidade realizada na 7.49.
   CSRF ativo/cookies no navegador, CORS e OpenAPI pendentes.
 - Situação da 7.47: somente routes/api.php alterado na aplicação, POST /logout
   ligado a LoginController::destroy, prefixo api/v1 existente. Sem auth:sanctum/
@@ -2016,7 +2032,11 @@ confirmado com "entendi" em 04/11/2026; publicação em 1ddeaad. Continuidade
 realizada na 7.49 — logout autenticado pela rota com transação/sessão salva/
 cookie e memória limpa: 204 vazio/invalidação/novo ID/token, focado 4/91, suíte
 107/1.555 e SQL final sem dados passaram. Entendimento confirmado com "entendi"
-em 04/11/2026; publicação pendente antes da 7.50 — GET usuario após logout com cookie da resposta.
+em 04/11/2026; publicação em 0eaa7b5. Continuidade realizada na 7.50 — GET usuario
+após logout com cookie da resposta/memória limpa/guards descartados: 401 JSON/
+sem Location/somente message string e sessão visitante/ID/token preservados.
+Focado 4/108, suíte 107/1.572 e SQL final sem dados passaram. Entendimento
+confirmado com "entendi" em 04/11/2026; publicação pendente antes da 7.51 — cookie anterior ao logout.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -14407,10 +14427,56 @@ e documentos; índice vazio. Aplicação/rotas/controller/bootstrap/Compose/Open
 sem diff, OpenAPI ainda sem logout.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.49: pendente; registros locais. Último checkpoint publicado:
-1ddeaade0a952e7fded20758e20ffea7fd30929f (7.48).
-Próximo passo exato após confirmar/publicar: 7.50 — ampliar somente o cenário
-autenticado com GET /api/v1/usuario após logout, usando cookie recebido na
-resposta, memória limpa/guards descartados, exigindo 401 JSON/sem Location e
-somente message string. CSRF ativo/cookies no navegador, CORS e OpenAPI de
-logout continuam pendentes.
+Publicação da 7.49: concluída e conferida em
+0eaa7b50e28a4e50449025b07ee02889ee84aaf0; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.50.
+CSRF ativo/cookies no navegador, CORS e OpenAPI de logout continuam pendentes.
+
+
+## Etapa 7.50 — Consulta do usuário após logout — 04/11/2026
+
+Iniciada após confirmação da 7.49 com "entendi" e publicação verificada.
+Implementação: somente cenário autenticado de LogoutApiTest ampliado/renomeado
+para incluir consulta seguinte/401. Sem novo método, fixture ou configuração;
+testes de visitante/DataProvider e asserções anteriores de logout preservados.
+Aula 7.50, contratos/roteiro/progresso e publicação anterior atualizados.
+Aplicação/controller/rotas/bootstrap/ambientes/dependências/serviços/migrations/
+Compose/OpenAPI preservados.
+
+Explicação apresentada: TestResponse do logout guardada em respostaLogout.
+GetCookie entrega cookie emitido/valor decifrado no helper do teste; exigimos
+existência e ID igual ao Store após logout. Token visitante guardado só em memória.
+Flush limpa atributos sem salvar/forgetGuards descarta instâncias. WithCookie
+substitui cookie anterior no contexto do teste; withCredentials envia cookies
+no helper JSON. GetJson GET usuario com origem reconhecida executa kernel/rota
+protegida, recarregando a sessão salva após logout.
+
+Exige 401, Content-Type JSON, sem Location e corpo com somente message string,
+sem fixar tradução. Request deve receber ID visitante, não ter Authorization
+e possuir sessão. Store mantém ID/token novos, guard web visitante/ID null,
+chaves de identidade/marcador ausentes. Liga a consulta negada ao cookie de
+saída do logout. Não reenvia cookie anterior nesta etapa; esse controle será 7.51.
+Sessão visitante pode continuar existindo, sem identidade autenticada.
+
+Verificação Docker: PHP -l do arquivo passou. PHPUnit focado 4 testes/108
+asserções, suíte completa 107 testes/1.572 asserções, códigos 0. Mesmo número
+de testes, 17 asserções adicionadas. Opções --colors=never/--do-not-cache-result.
+SELECT posterior exigiu loja_test/loja_testes e confirmou seis tabelas, quatro
+migrations/lotes 1/2/3/4 (int explícito) e zero categorias/produtos/users/
+password_reset_tokens/sessions. DatabaseTransactions preservado/rollback
+conferido; sessão/cache em memória. Nenhum valor real de senha/hash/cookie/token/
+ID impresso ou versionado. CSRF ativo/navegador/CORS continuam pendentes;
+auditoria/snapshot normal e diagnóstico temporário não repetidos.
+
+Git diff --check passou. Links locais válidos: logout três, login quatro,
+consulta cinco, aulas 7.49/7.50 dois cada. Escopo conferido: somente LogoutApiTest
+e documentos; índice vazio. Aplicação/rotas/controller/bootstrap/Compose/OpenAPI
+sem diff, OpenAPI ainda sem logout.
+
+Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
+Publicação da 7.50: pendente; registros locais. Último checkpoint publicado:
+0eaa7b50e28a4e50449025b07ee02889ee84aaf0 (7.49).
+Próximo passo exato após confirmar/publicar: 7.51 — ampliar o mesmo cenário
+com GET usuario usando cookie anterior ao logout, memória limpa/guards
+descartados, exigindo 401 JSON/sem Location e ausência de identidade/marcador.
+CSRF ativo/cookies no navegador, CORS e OpenAPI de logout seguem pendentes.
