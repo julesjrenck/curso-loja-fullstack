@@ -3,7 +3,7 @@
 Desenho, explicação e verificações em 04/11/2026, após confirmação da 7.51
 com "entendi". Checkpoint anterior publicado e conferido em
 d0e2be7d9a1010f86f2975cae1d0e7589cc4bf07; HEAD/origin/main/main remota iguais.
-Entendimento da 7.52 confirmado com "entendi" em 04/11/2026; publicação pendente.
+Entendimento da 7.52 confirmado com "entendi" em 04/11/2026.
 
 ## Objetivo e arquivo
 
@@ -73,6 +73,7 @@ Protocolo escrito, explicado e conferido; entendimento confirmado em 04/11/2026.
 Aplicação, configuração, ambientes, dependências, serviços, rotas, migrations,
 testes, bootstrap, Compose e OpenAPI preservados. Sem servidor novo, HTTP, sessão
 nova, SQL, nova suíte, auditoria ou snapshot. Última suíte 7.51: 107/1.586.
-Publicação da 7.52 pendente. Próxima após confirmar/publicar: 7.53 — executar
-somente o protocolo e registrar respostas, metadados, preservação e limpeza.
-Navegador/CORS e OpenAPI de logout seguem pendentes.
+Publicação da 7.52 concluída e conferida em
+2d67af17863a580cb3686cffd0f580d002a722f0; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.53 —
+executar protocolo HTTP de CSRF do logout. Navegador/CORS e OpenAPI pendentes.

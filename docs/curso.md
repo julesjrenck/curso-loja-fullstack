@@ -292,9 +292,18 @@ não observações. Leitura local/file/json/coleta [2,100]/54 arquivos/Guzzle/CS
 sem exceções e fontes oficiais/código instalado conferidos. Coleta desativada
 só no servidor temporário e limpeza de IDs próprios antes/depois do logout
 planejadas. Sem HTTP/sessão nova/SQL/nova suíte; última 7.51, 107/1.586.
-Entendimento da 7.52 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Próximo após confirmar/publicar: 7.53 — executar somente o protocolo e registrar
-respostas/metadados/preservação/limpeza. Navegador/CORS e OpenAPI pendentes.
+Entendimento da 7.52 confirmado com "entendi" em 04/11/2026; publicada em 2d67af1,
+remoto conferido. Na 7.53, protocolo executado: preparação 204 e controles
+419/419/204 por HTTP no Docker, ambiente local/console false/testing false/CSRF
+ativo/coleta [0,100] só no servidor temporário. A/B preservaram ID/token; C
+renovou ambos/destruiu arquivo inicial/manteve visitante e emitiu cookies
+atualizados. Zero SQL nos pedidos. Dois IDs próprios identificados, uma sessão
+restante e auxiliares removidos/servidor encerrado, nomes/hashes anteriores
+preservados. Leitura final 54 sessões/coleta habitual [2,100], código 0.
+Sem nova suíte; última 7.51, 107/1.586. Entendimento da 7.53 confirmado com
+"entendi" em 05/11/2026; publicação pendente. Próximo após confirmar/publicar: 7.54 — integrar
+POST logout ao OpenAPI, entrada sem corpo obrigatório e respostas 204 sem
+content/419 JSON, validando documento/esquemas/exemplos. Navegador/CORS pendentes.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1061,7 +1070,12 @@ protocolo CSRF de logout desenhado/explicado: visitante/Guzzle/servidor temporá
 origem reconhecida/cookies/header variável, controles esperados 419/419/204,
 preservação/limpeza acompanhando IDs próprios. Fontes/código/configuração
 conferidos; sem HTTP/sessão nova/SQL/nova suíte. Entendimento confirmado com
-"entendi" em 04/11/2026; publicação pendente antes da 7.53 — executar protocolo.
+"entendi" em 04/11/2026; publicação em 2d67af1. Na 7.53, protocolo executado:
+204/419/419/204, CSRF ativo/fora de testing, preservação nas recusas e renovação
+no sucesso/visitante. Zero SQL nos pedidos. Servidor encerrado/uma sessão própria
+restante e auxiliares removidos/54 anteriores preservadas/coleta habitual intacta.
+Código 0, sem nova suíte. Entendimento confirmado com "entendi" em 05/11/2026;
+publicação pendente antes da 7.54 — POST logout no OpenAPI.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

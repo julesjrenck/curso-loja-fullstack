@@ -2,12 +2,28 @@
 
 ## Estado atual
 
-- Última atualização: 04/11/2026, referência de data America/Sao_Paulo.
+- Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.52 — Desenho da verificação CSRF do logout:
-  desenho documental, explicação e verificações apresentadas; entendimento
-  confirmado com "entendi" em 04/11/2026, publicação pendente.
+- Etapa atual: 7.53 — Verificação de CSRF do logout por HTTP:
+  execução, explicação e verificações apresentadas; entendimento
+  confirmado com "entendi" em 05/11/2026, publicação pendente.
+- Situação da 7.53: diagnóstico temporário PHP/Guzzle no Docker executou
+  preparação 204 e POST logout sem header/inválido/correto 419/419/204. Ambiente
+  local/console false/testing false/CSRF ativo/coleta [0,100] só no servidor
+  temporário, Host/Origin 8002 e ramo de token conferidos a cada pedido.
+  A/B JSON/message string/sem Location, ID/token preservados. C 204 vazio/
+  sem Location, ID/token novos, registro inicial destruído, cookies atualizados;
+  token do cookie conferiu com novo da sessão. Visitante sem identidade em todos
+  os estados, zero SQL nos pedidos. Dois IDs próprios identificados; logout
+  destruiu arquivo inicial, finally encerrou servidor/removeu uma sessão própria
+  restante e auxiliares. Nomes/hashes anteriores preservados, sucesso true/código 0.
+  Leitura final em novo processo: local/file/coleta habitual [2,100], 54 sessões,
+  auxiliares ausentes. Sem nova suíte/consulta SQL/auditoria/snapshot; última
+  7.51, 107 testes/1.586 asserções. Backend/Compose/OpenAPI preservados.
+  Próximo após confirmar/publicar: 7.54 — integrar POST logout ao OpenAPI, entrada
+  sem corpo obrigatório, sessão/CSRF, respostas 204 sem content/419 JSON e validar
+  documento/esquemas/exemplos. Navegador/CORS continuam pendentes.
 - Situação da 7.52: docs/api/verificacao-csrf-logout.md criado, sem execução HTTP.
   Guzzle/servidor PHP temporário no Docker/local, visitante/cookies em memória,
   Host/Origin 8002 e somente X-XSRF-TOKEN variando. Sec-Fetch-Site/_token/
@@ -21,9 +37,10 @@
   Rota destroy com Stateful/SubstituteBindings; 54 arquivos/coleta normal [2,100].
   Código 0; nenhuma sessão iniciada, servidor novo, HTTP ou SQL. Sem nova suíte;
   última 7.51, 107 testes/1.586 asserções. Aplicação/rotas/testes/bootstrap/Compose/
-  OpenAPI preservados. Próximo após confirmar/publicar: 7.53 — executar somente
-  protocolo e registrar respostas/metadados/preservação/limpeza. Navegador/CORS
-  e OpenAPI de logout continuam pendentes.
+  OpenAPI preservados. Entendimento confirmado com "entendi" em 04/11/2026;
+  publicação verificada em 2d67af17863a580cb3686cffd0f580d002a722f0,
+  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  Continuidade realizada na 7.53. Navegador/CORS e OpenAPI de logout pendentes.
 - Situação da 7.51: somente cenário autenticado de LogoutApiTest ampliado e
   renomeado para mencionar cookies novo/antigo. Registro antigo exigido ausente
   antes do reenvio; flush/forgetGuards, withCookie com ID anterior/withCredentials/
@@ -36,7 +53,7 @@
   lotes 1/2/3/4 e dados zero/rollback conferido. Aplicação/rotas/controller/bootstrap/
   Compose/OpenAPI preservados. Entendimento confirmado com "entendi" em 04/11/2026;
   publicação verificada em d0e2be7d9a1010f86f2975cae1d0e7589cc4bf07,
-  HEAD/origin/main/main remota iguais. Último checkpoint publicado.
+  HEAD/origin/main/main remota iguais. Checkpoint anterior à 7.52.
   Continuidade realizada na 7.52. CSRF ativo/navegador/CORS e OpenAPI pendentes.
 - Situação da 7.50: somente cenário autenticado de LogoutApiTest ampliado e
   renomeado para incluir consulta/401. TestResponse do logout guardada, cookie
@@ -2076,8 +2093,12 @@ protocolo CSRF de logout desenhado/explicado: servidor temporário/Guzzle/visita
 origem reconhecida/cookies/header variável e controles esperados 419/419/204.
 Coleta desativada só no servidor temporário/preservação/limpeza de IDs próprios
 planejadas. Fontes/código/configuração conferidos, sem HTTP/sessão nova/SQL/nova
-suíte. Entendimento confirmado com "entendi" em 04/11/2026; publicação pendente
-antes da 7.53 — executar somente o protocolo.
+suíte. Entendimento confirmado com "entendi" em 04/11/2026; publicação em 2d67af1.
+Continuidade realizada na 7.53 — HTTP local/CSRF ativo 204/419/419/204, A/B
+preservaram sessão, C renovou ID/token/manteve visitante. Zero SQL nos pedidos;
+servidor/sessão própria restante/auxiliares removidos, 54 anteriores preservadas,
+configuração habitual intacta. Código 0, sem nova suíte. Entendimento confirmado
+com "entendi" em 05/11/2026; publicação pendente antes da 7.54 — POST logout no OpenAPI.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -14621,8 +14642,65 @@ consulta seis, protocolo de login quatro, protocolo de logout dois, aulas
 vazio; backend/Compose/OpenAPI preservados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 04/11/2026.
-Publicação da 7.52: pendente; registros locais. Último checkpoint publicado:
-d0e2be7d9a1010f86f2975cae1d0e7589cc4bf07 (7.51).
-Próximo passo exato após confirmar/publicar: 7.53 — executar somente protocolo
-HTTP de CSRF do logout e registrar respostas/metadados/preservação/limpeza.
+Publicação da 7.52: concluída e conferida em
+2d67af17863a580cb3686cffd0f580d002a722f0; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.53.
 Navegador/CORS e OpenAPI de logout continuam pendentes.
+
+
+## Etapa 7.53 — Verificação de CSRF do logout por HTTP — 04/11/2026
+
+Iniciada após confirmação da 7.52 com "entendi" e publicação verificada.
+Execução: diagnóstico temporário /tmp/curso-7-53-csrf-logout.php no host, não
+versionado, adaptado da 7.41. Aula 7.53/protocolos/contratos/roteiro/progresso e
+publicação anterior atualizados. Nenhuma alteração persistente em aplicação/
+configuração/ambientes/dependências/serviços/rotas/migrations/testes/bootstrap/
+Compose/OpenAPI.
+
+Explicação apresentada: PHP -l por stdin no Docker passou. Aplicação local,
+sessão file/json/cache file e loteria habitual [2,100] exigidos na entrada.
+Nomes/hashes dos arquivos anteriores guardados só em memória; 54 arquivos de
+sessão identificados. Servidor PHP temporário/loopback/porta dinâmica, bootstrap/
+kernel/rotas normais e coleta [0,100] somente nesse processo. Prontidão por TCP,
+sem HTTP extra. Guzzle/CookieJar em memória, timeout 10s/sem proxy/redirects/
+http_errors false, Host/Origin 8002 e Accept JSON.
+
+POSTs com {}, sem Sec-Fetch-Site/X-CSRF-TOKEN/_token/credenciais; só X-XSRF-TOKEN
+variou. Metadados em cada pedido: local/console false/testing false/file/coleta
+[0,100], CSRF ativo/exceções vazias/originOnly false/allowSameSite false,
+origem reconhecida e cabeçalhos/cookies/corpo esperados. Listener contou zero
+instruções SQL durante cada pedido. Nenhuma conta criada/autenticada.
+
+Resultados reais: preparação GET csrf-cookie 204 vazio/dois cookies; A sem
+X-XSRF-TOKEN 419 JSON/message string/sem Location; B inválido mesmo resultado;
+C com XSRF-TOKEN URL-decodificado 204 vazio/sem Location. A/B preservaram ID e
+token; C renovou ambos, destruiu arquivo original e emitiu os dois cookies
+atualizados. Token do cookie CSRF decifrado internamente correspondeu ao novo
+da sessão. Arquivos próprios sem chave login_ em todos os estados examinados,
+visitante mantido. Valores reais de senha/hash/cookie/token/ID/chaves ou
+respostas brutas não impressos/versionados.
+
+Dois IDs próprios identificados via cookie/prefixo/formato válido/ausência na
+lista anterior. Logout destruiu o arquivo inicial; finally encerrou processo,
+removeu uma sessão própria restante e auxiliares router/metadados. Comparação
+de nomes/hashes depois exatamente igual à inicial, arquivos anteriores
+preservados. Sucesso true/código 0. Novo processo confirmou local/file/coleta
+habitual [2,100], 54 sessões e ausência de auxiliares curso-753-*; código 0.
+Nenhum contador ou configuração persistente alterados.
+
+Sem nova suíte, consulta SQL, auditoria ou snapshot. Última suíte permanece
+7.51: 107 testes/1.586 asserções. Verificação apropriada foi HTTP/CSRF ativo,
+renovação/preservação e limpeza. Não prova políticas de cookies/CORS/Fetch
+Metadata do navegador; autenticado/consultas posteriores têm testes em testing.
+
+Git diff --check passou. Links locais válidos: logout quatro, login cinco,
+consulta seis, protocolo de login quatro, protocolo de logout três, aulas
+7.52/7.53 três e dois respectivamente. Somente documentos alterados, índice
+vazio; backend/Compose/OpenAPI preservados.
+
+Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
+Publicação da 7.53: pendente; registros locais. Último checkpoint publicado:
+2d67af17863a580cb3686cffd0f580d002a722f0 (7.52).
+Próximo passo exato após confirmar/publicar: 7.54 — integrar POST /api/v1/logout
+ao OpenAPI, entrada sem corpo obrigatório, sessão/CSRF, respostas 204 sem content
+e 419 JSON, validando documento/esquemas/exemplos. Navegador/CORS pendentes.

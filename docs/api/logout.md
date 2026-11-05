@@ -4,8 +4,9 @@ Desenho da etapa 7.43, em 04/11/2026. LoginController::destroy implementado na
 7.44; rota POST /api/v1/logout registrada na 7.47. Diagnósticos diretos e testes
 permanentes verificaram autenticado/visitante com sessão array. Na 7.47, kernel
 HTTP/testing verificou visitante 204 nos três casos de Accept. Na 7.49,
-logout autenticado pela rota verificado com fixture/transação e cookie de sessão;
-CSRF ativo e navegador ainda não verificados.
+logout autenticado pela rota verificado com fixture/transação e cookie de sessão.
+Na 7.53, CSRF ativo verificado por HTTP com visitante: 204/419/419/204.
+Navegador/CORS continuam pendentes.
 O [login](login.md) estabelece a identidade; esta operação encerrará a
 autenticação da sessão atual. A [consulta do usuário](autenticacao.md)
 permitirá verificar o estado após sair.
@@ -174,7 +175,12 @@ ainda não observadas. Servidor temporário/coleta desativada só nele e limpeza
 que acompanha os IDs próprios antes/depois do logout. Fonte/configuração lidas:
 local/file/json, origem reconhecida/CSRF sem exceções, 54 arquivos/coleta [2,100].
 Sem HTTP, SQL, sessão nova ou nova suíte; última 7.51, 107/1.586.
-Próxima 7.53: executar somente o protocolo após confirmação/publicação da 7.52.
+Na 7.53, protocolo executado: preparação 204 e POSTs sem header/inválido/correto
+419/419/204, fora de testing/CSRF ativo. A/B preservaram ID/token; C renovou ambos,
+destruiu registro inicial e manteve visitante, com cookies atualizados. Zero SQL
+nos pedidos; servidor encerrado/uma sessão própria restante e auxiliares removidos,
+54 arquivos anteriores preservados. Código 0, sem nova suíte. Próxima 7.54:
+incluir POST logout no OpenAPI com entrada sem corpo obrigatório e respostas 204/419.
 
 Referências: [logout e invalidação de sessão no Laravel](https://laravel.com/docs/13.x/authentication#logging-out),
 [sessão da interface própria com Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication)

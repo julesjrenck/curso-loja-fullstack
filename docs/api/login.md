@@ -227,7 +227,8 @@ retornou 401 JSON/sem Location, somente message string: focado 4/108, suíte
 107/1.572. Na 7.51, consulta com cookie anterior ao logout também retornou 401
 JSON/sem identidade/marcador: focado 4/122, suíte 107/1.586. Na 7.52,
 [protocolo CSRF do logout](verificacao-csrf-logout.md) desenhado, fontes/configuração
-conferidas; controles 419/419/204 ainda não executados. Próxima 7.53: executá-lo.
+conferidas. Na 7.53, preparação 204/controles 419/419/204 observados por HTTP,
+CSRF ativo/sem SQL/sessões anteriores preservadas. Próxima 7.54: OpenAPI de logout.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

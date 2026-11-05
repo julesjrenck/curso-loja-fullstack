@@ -171,7 +171,9 @@ reenviado após limpar memória/guards: 401 JSON/sem Location/message string,
 Request recebeu ID anterior/sem Authorization, guard visitante/chaves ausentes.
 Focado 4/122 e suíte 107/1.586 passaram. Na 7.52,
 [protocolo CSRF de logout](verificacao-csrf-logout.md) desenhado, sem HTTP,
-sessão nova ou consulta SQL. Próxima 7.53 executará o protocolo após confirmação.
+sessão nova ou consulta SQL. Na 7.53, protocolo executado com visitante/CSRF ativo:
+204/419/419/204, ID/token preservados nas recusas e renovados no sucesso. Nenhuma
+identidade criada; sessões próprias limpas/54 anteriores preservadas. Sem nova suíte.
 Comportamento de navegador/CORS permanece pendente.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)

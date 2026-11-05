@@ -1,7 +1,7 @@
-# Verificação de CSRF no logout — protocolo planejado
+# Verificação de CSRF no logout — protocolo executado
 
-Desenho da etapa 7.52, em 04/11/2026. Protocolo ainda não executado; os status
-abaixo são expectativas. Complementa o [contrato de logout](logout.md) e usa
+Desenho da 7.52 e execução na 7.53, em 04/11/2026. Preparação 204 e controles
+419/419/204 foram observados por HTTP no Docker. Complementa o [contrato de logout](logout.md) e usa
 a experiência do [protocolo de login](verificacao-csrf.md), executado na 7.41.
 
 ## Objetivo e alcance
@@ -60,9 +60,9 @@ X-XSRF-TOKEN o valor URL-decodificado do cookie XSRF-TOKEN, junto ao cookie da
 mesma sessão. O middleware decifra o cabeçalho e compara com o token guardado
 na sessão; o cliente não precisa conhecer a chave da aplicação.
 
-## Sequência e resultados esperados
+## Sequência e resultados observados na 7.53
 
-| Passo | Pedido | Condição | Esperado |
+| Passo | Pedido | Condição | Observado |
 | --- | --- | --- | --- |
 | Preparação | GET /sanctum/csrf-cookie | Sem cookies prévios do diagnóstico | 204 vazio; cookies XSRF-TOKEN e sessão. |
 | A | POST /api/v1/logout com {} | Cookies preparados; sem X-XSRF-TOKEN | 419 JSON/message string, sem Location. |
@@ -103,12 +103,23 @@ Não adicionar dependências, containers, usuários ou alterações no banco.
 
 ## Estado e próximo passo
 
-Protocolo escrito/explicado; fontes oficiais, código instalado e configuração
-conferidos em leitura. Nenhum servidor iniciado, pedido HTTP, sessão nova ou
-consulta SQL nesta etapa. Sem nova suíte; última 7.51: 107 testes/1.586 asserções.
-Entendimento da 7.52 confirmado com "entendi" em 04/11/2026; publicação pendente.
-Após confirmar/publicar, 7.53 executará somente este protocolo e registrará
-observações, limpeza e limites. Navegador/CORS e OpenAPI de logout pendentes.
+Na 7.53, diagnóstico temporário PHP/Guzzle confirmou os quatro resultados.
+Servidor local com console false/testing false/CSRF ativo, coleta [0,100] só nele,
+Host/Origin reconhecidos e ramo de token selecionado conferidos a cada pedido.
+A/B preservaram ID/token; C renovou ambos/destruiu arquivo inicial/manteve visitante.
+Dois cookies atualizados emitidos; token do cookie correspondeu ao novo da sessão.
+Listener contou zero SQL nos pedidos; nenhum User ou credencial utilizado.
+
+Dois IDs próprios identificados; logout destruiu o primeiro arquivo. Finally
+encerrou servidor/removeu uma sessão própria restante e auxiliares. Nomes/hashes
+anteriores exatamente preservados. Novo processo confirmou 54 sessões/local/file/
+coleta habitual [2,100] e auxiliares ausentes. Código 0/sucesso true. Detalhes
+no [registro da 7.53](../aulas/07-53-verificacao-csrf-logout-http.md).
+Sem nova suíte/consulta SQL/auditoria/snapshot; última 7.51, 107 testes/1.586
+asserções. Não verifica navegador/CORS; nenhum valor privado impresso/versionado.
+Entendimento da 7.53 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Próxima 7.54 após confirmar/publicar: integrar POST logout ao OpenAPI, entrada
+sem corpo obrigatório/respostas 204 e 419, validando documento/esquemas/exemplos.
 
 Referências: [CSRF e verificação de origem](https://laravel.com/docs/13.x/csrf#origin-verification),
 [cookies e cabeçalho CSRF no Sanctum](https://laravel.com/docs/13.x/sanctum#authenticating)

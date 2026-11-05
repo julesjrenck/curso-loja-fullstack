@@ -118,5 +118,7 @@ condicional ao caminho da proteção. Redocly validou estrutura/exemplos, sem
 novos pedidos HTTP. Na 7.43, contrato de logout desenhado mantendo CSRF.
 A verificação 7.41 não executou logout. Na 7.52, seu
 [protocolo separado](verificacao-csrf-logout.md) foi desenhado: preparação 204 e
-controles 419/419/204 ainda não observados. Execução prevista na 7.53.
+controles 419/419/204 definidos. Na 7.53, observados por HTTP com CSRF ativo:
+preparação 204 e controles 419/419/204, com renovação no sucesso e preservação/
+limpeza das sessões. Os resultados de login e logout pertencem a execuções distintas.
 Navegador e CORS continuam pendentes.
