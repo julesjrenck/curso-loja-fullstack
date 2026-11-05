@@ -100,6 +100,8 @@ O assistente não observou diretamente o navegador.
 Entendimento confirmado com "entendi" em 05/11/2026 sobre a diferença entre
 usuário autenticado sem permissão administrativa (403) e ausência de
 autenticação após logout (401).
-Próximo passo exato: publicar a 7.83 e iniciar a 7.84, preparando uma conta
-administrativa separada da conta de cliente do laboratório.
-Publicação da 7.83 pendente; módulos 8 a 23 não iniciados.
+Publicação da 7.83 conferida em 0e89de3c6f7efd82416f1d3a77d5566087c38d01;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade iniciada na [7.84](07-84-seeder-administrador-laboratorio.md),
+preparação de conta administrativa separada da conta de cliente do laboratório.
+Módulos 8 a 23 não iniciados.

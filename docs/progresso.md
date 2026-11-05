@@ -5,8 +5,19 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.83 — Autorização no navegador:
-  sucesso geral relatado e entendimento confirmado em 05/11/2026.
+- Etapa atual: 7.84 — Seeder do administrador de laboratório:
+  arquivo preparado e verificado; entendimento confirmado em 05/11/2026.
+- Situação da 7.84: criado AdministradorLaboratorioSeeder.php, sem execução
+  de criação. Exige local/sqlsrv/loja/comando interativo; preserva identidade
+  existente, pede senha oculta de 8 a 72 bytes, atribui is_admin diretamente
+  em User e salva admin@example.test. Cliente e Fillable mantidos.
+  PHP -l passou. Diagnóstico com SQL/Command simulados: 11 cenários e
+  28 verificações passaram, sem conexão SQL real. Conta ainda não criada.
+  Aula docs/aulas/07-84-seeder-administrador-laboratorio.md criada.
+  Entendimento confirmado com "entendi" sobre atribuição direta de is_admin
+  e manutenção do campo fora do Fillable. Próximo passo exato: publicar
+  checkpoint e iniciar a 7.85, execução interativa pelo aluno e relato
+  somente da mensagem final.
 - Situação da 7.83: somente documentação alterada. Roteiro no Chrome/Edge:
   preparar CSRF/administração visitante/login laboratório/usuário/administração
   cliente/logout/administração final. Esperados 204/401/204/200/403/204/401,
@@ -19,8 +30,9 @@
   ou observações de CORS/cookies. Sucesso registrado por relato geral, sem
   atribuir esses campos à observação direta do assistente.
   Entendimento confirmado com "entendi" sobre autenticação/permissão e
-  ausência de autenticação após logout. Próximo passo exato: publicar a 7.83
-  e iniciar a 7.84, preparação de conta administrativa separada.
+  ausência de autenticação após logout. Publicação da 7.83 conferida:
+  0e89de3c6f7efd82416f1d3a77d5566087c38d01, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.84.
 - Situação da 7.82: somente src/laboratorio-sessao.html alterado na aplicação.
   Novo botão Consultar administração/resultado role status, disabled até
   preparação 204; listener GET API 8002/credentials include/Accept JSON,
@@ -34,7 +46,7 @@
   Aula docs/aulas/07-82-consulta-administracao-laboratorio.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   d45a16a1d8c86a377ec185f33eea53c16cbc51c8, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade na 7.83; sucesso geral relatado
+  Checkpoint anterior à 7.83. Continuidade na 7.83; sucesso geral relatado
   pelo aluno, sem resultados individuais transcritos.
 - Situação da 7.81: incluída GET /api/v1/administracao, operationId
   consultarAdministracao, em docs/api/openapi.json, com SessaoCookie e Gate;
@@ -2720,7 +2732,10 @@ Na 7.83, roteiro no navegador: preparar/administracao/login/usuario/
 administracao/logout/administracao; esperados 204/401/204/200/403/204/401.
 Sucesso geral relatado pelo aluno; status individuais/CORS/cookies não
 transcritos. Entendimento confirmado com "entendi" em 05/11/2026.
-Próximo passo: publicação da 7.83 e preparação da conta administrativa na 7.84.
+7.83 publicada em 0e89de3, remoto conferido. Na 7.84, seeder administrativo
+preparado; sintaxe e 11 cenários/28 verificações isoladas passaram.
+Sem criação real de conta; entendimento confirmado com "entendi" em
+05/11/2026. Próximo passo: publicar a 7.84 e iniciar a execução na 7.85.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -16922,8 +16937,50 @@ Entendimento: confirmado com "entendi" em 05/11/2026, após explicação de
 usuário 200/administração 403 e administração 401 depois do logout.
 O pedido anterior "pode continuar" foi registrado como continuidade;
 a confirmação explícita foi recebida na mensagem seguinte.
-Publicação da 7.83: pendente; último checkpoint publicado d45a16a (7.82).
-Próximo passo exato: publicar a 7.83 conforme autorização vigente e iniciar
-a 7.84, preparando um seeder local para uma conta administrativa separada.
+Publicação da 7.83: concluída e conferida em 05/11/2026:
+0e89de3c6f7efd82416f1d3a77d5566087c38d01; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade iniciada na 7.84,
+preparando um seeder local para uma conta administrativa separada.
 Nenhuma conta administrativa criada nesta etapa.
 Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.84 — Seeder do administrador de laboratório — 05/11/2026
+
+Iniciada após confirmação da 7.83 com "entendi" e publicação verificada em
+0e89de3c6f7efd82416f1d3a77d5566087c38d01. Comandos Git explicados antes da
+execução; HEAD/origin/main/main remota iguais após push.
+
+Objetivo explicado: conta admin@example.test separada do cliente para
+posterior comparação no navegador. Criado somente
+backend/database/seeders/AdministradorLaboratorioSeeder.php na aplicação.
+Exige ambiente local, conexão sqlsrv/banco loja e comando interativo antes
+da consulta de existência. Conta existente preservada sem pedir senha nem
+alterar permissões. Secret com fallback false, validação 8 a 72 bytes.
+New User/atribuições diretas; password usa cast hashed existente; is_admin
+true por código do terminal, fora do Fillable; save e mensagem sem dados
+privados. DatabaseSeeder, cliente, User, rotas/Gate, página e OpenAPI mantidos.
+Aula docs/aulas/07-84-seeder-administrador-laboratorio.md criada.
+
+Verificação: PHP 8.4.26/Composer 2.10.3 no container, sem instalação. PHP -l
+passou, código 0. Diagnóstico pela entrada padrão, com Laravel/User reais e
+Command/SQL/obtenção de ID simulados: cinco recusas de ambiente/conexão/
+banco/ausência de comando/no-interaction; preservação de conta existente;
+três recusas de senha; duas criações simuladas nos limites 8/72 bytes.
+11 cenários e 28 verificações passaram, código 0. Hash conferido sem exibir
+valor; indicador true e Fillable preservado. Primeira montagem do diagnóstico
+falhou no construtor do mock; corrigida a configuração do mock, sem alteração
+no seeder. Nenhum auxiliar salvo ou conexão SQL real nesses cenários.
+
+Nenhuma conta criada/promovida, nenhuma senha real solicitada pelo assistente,
+nenhum login/navegador/API nesta etapa. Sem nova suíte completa: última 7.80,
+116 testes/1.653 asserções. Git diff --check passou; 15 links locais válidos
+nos cinco documentos desta etapa. Somente seeder e cinco documentos previstos
+alterados, índice vazio. Arquivos anteriores de aplicação, testes, página,
+OpenAPI, Compose e seeders existentes sem alterações no diff.
+Entendimento da 7.84 confirmado com "entendi" em 05/11/2026 sobre atribuição
+direta de is_admin no seeder e manutenção do campo fora do Fillable.
+Publicação da 7.84 pendente; último checkpoint publicado 0e89de3 (7.83).
+Próximo passo exato: publicar este checkpoint e iniciar a 7.85,
+execução interativa pelo aluno com senha oculta exclusiva e
+relato somente da mensagem final. Módulos 8 a 23 não iniciados.

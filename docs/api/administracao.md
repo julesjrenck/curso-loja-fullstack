@@ -125,3 +125,8 @@ privados de sessão ou credenciais. Aluno relatou sucesso geral em 05/11/2026,
 sem transcrever status individuais ou observações de CORS/cookies;
 entendimento confirmado com "entendi". Acesso com conta administrativa real ainda
 não verificado no navegador.
+
+Na [7.84](../aulas/07-84-seeder-administrador-laboratorio.md), preparado seeder
+local para admin@example.test, com senha oculta e permissão atribuída pelo
+código do terminal; conta existente preservada. Arquivo verificado com
+cenários isolados, sem criação persistida. Contrato HTTP mantido.

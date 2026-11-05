@@ -450,7 +450,10 @@ fluxo anterior preservado, auxiliares removidos. Entendimento confirmado com
 roteiro de navegador preparar/administracao/login/usuario/administracao/
 logout/administracao; esperados 204/401/204/200/403/204/401, CORS/cookies sem
 valores privados. Aluno relatou sucesso geral, sem transcrever resultados
-individuais; entendimento confirmado com "entendi" em 05/11/2026.
+individuais; entendimento confirmado com "entendi" em 05/11/2026 e publicação
+em 0e89de3, remoto conferido. Na 7.84, seeder de administrador preparado;
+sintaxe e 11 cenários/28 verificações isoladas passaram. Sem criação real
+de conta; entendimento confirmado com "entendi" em 05/11/2026.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1324,8 +1327,11 @@ quatro controles passaram. Sem API real/SQL/promoção; entendimento confirmado
 com "entendi" em 05/11/2026; publicação em d45a16a. Na 7.83, roteiro de navegador
 204/401/204/200/403/204/401 com CORS/cookies sem valores privados.
 Sucesso geral relatado, sem resultados individuais transcritos;
-entendimento confirmado com "entendi" em 05/11/2026. Próximo passo:
-publicar a 7.83 e preparar a conta administrativa na 7.84.
+entendimento confirmado com "entendi" em 05/11/2026; publicação em 0e89de3.
+Na 7.84, AdministradorLaboratorioSeeder preparado e verificado: sintaxe e
+11 cenários/28 verificações isoladas passaram, sem conta criada ou SQL real.
+Entendimento confirmado com "entendi" em 05/11/2026. Próximo passo:
+publicar a 7.84 e iniciar a execução interativa na 7.85.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
