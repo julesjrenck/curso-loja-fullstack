@@ -5,10 +5,25 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.72 — Teste real da migration de administrador:
-  implementação, explicação e verificações apresentadas em 05/11/2026;
-  entendimento confirmado com "entendu" em 05/11/2026; publicação pendente.
-  Migration exercitada somente em loja_test/transação.
+- Etapa atual: 7.73 — Aplicar o indicador de administrador em loja:
+  aplicação, explicação e verificações apresentadas em 05/11/2026;
+  entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+  Migration aplicada persistentemente em loja.
+- Situação da 7.73: somente documentação alterada. Aplicado apenas arquivo
+  2026_11_05_120000_add_is_admin_to_users_table.php em loja por sqlsrv_migracoes/
+  loja_migracoes, com --path e sem interação. Pré-leituras: local/sem cache/
+  sqlsrv, identidades loja_migracoes e loja_app corretas, ALTER users só na
+  conexão de migrations, um usuário/quatro migrations/lote 4/coluna ausente/
+  migration não registrada; migrate:status Pending. Migrate DONE, código 0.
+  Pós-leituras: bit/not null/default zero, um usuário com is_admin false,
+  histórico cinco entradas/alvo único/lote 5, aplicação lê coluna e mantém
+  identidade/permissão sem ALTER. Oito controles passaram; status [5] Ran.
+  Saída somente booleanos/contagens; sem dados privados/promoção/login/API.
+  Sem uso de loja_test ou nova suíte; última 7.72, 108 testes/1.606 asserções.
+  Aula docs/aulas/07-73-aplicar-migration-administrador-loja.md criada.
+  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
+  7.74 — acrescentar somente cast boolean is_admin ao User e verificar leitura
+  PHP, mantendo Fillable/UsuarioResource; Gate/Policy continuam pendentes.
 - Situação da 7.72: criado somente
   backend/tests/Feature/UsuarioAdministradorMigrationTest.php na aplicação.
   DatabaseTransactions e guardas testing/sqlsrv/loja_test/loja_testes/users
@@ -22,9 +37,9 @@
   Migration não registrada no histórico/aplicada persistentemente; loja
   não usada pelo assistente, nenhuma promoção ou login. Cast/rotas/contratos
   preservados. Aula docs/aulas/07-72-teste-migration-administrador.md criada.
-  Entendimento confirmado com "entendu" em 05/11/2026. Próximo após publicar:
-  7.73 — aplicar somente migration is_admin em loja por sqlsrv_migracoes,
-  com conferências antes/depois sem expor contas ou promover usuários.
+  Entendimento confirmado com "entendu" em 05/11/2026; publicação verificada:
+  5061427387d61506a462c5a4e18715cc80405054, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.73.
 - Situação da 7.71: criado somente
   backend/database/migrations/2026_11_05_120000_add_is_admin_to_users_table.php
   na aplicação. Up Schema::table users/boolean is_admin/default false, sem
@@ -40,7 +55,7 @@
   Aula docs/aulas/07-71-migration-indicador-administrador.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   2cccf866096d041defd47f98fcc664277a4df954, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.72.
+  Checkpoint anterior à 7.72. Continuidade iniciada na 7.72.
 - Situação da 7.70: somente documentação alterada. Planejado users.is_admin
   booleano obrigatório/padrão false; contas novas e existentes sem promoção
   automática. Cast boolean futuro no User; atributo fora do Fillable;
@@ -2531,8 +2546,12 @@ passaram, sem PDO/SQL/banco alterado. Entendimento da 7.71 confirmado com
 teste de integração do padrão em usuário anterior/novo e reversão passou:
 1/20; suíte 108/1.606. Transação em loja_test, sem usar loja. Pós-leitura
 confirmou zero users/coluna ausente/quatro migrations. Entendimento da 7.72
-confirmado com "entendu" em 05/11/2026; publicação pendente. Próxima após
-publicar: 7.73 — aplicar somente is_admin em loja por sqlsrv_migracoes.
+confirmado com "entendu" em 05/11/2026; publicação em 5061427, remoto conferido.
+Na 7.73, migration aplicada em loja por sqlsrv_migracoes/path restrito:
+DONE, [5] Ran; bit/not null/default zero, um usuário false e cinco migrations,
+app lê coluna sem ganhar ALTER. Oito controles passaram. Sem nova suíte.
+Entendimento da 7.73 confirmado com "entendi" em 05/11/2026; publicação
+pendente. Próxima após publicar: 7.74 — cast boolean is_admin no User.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -16139,8 +16158,64 @@ Model/cast/Fillable, seeder/factory, rotas, contratos e Compose preservados.
 
 Entendimento: confirmado com "entendu" em 05/11/2026 sobre down remover
 a coluna e a transação desfazer os usuários fictícios do teste.
-Publicação da 7.72: pendente; último checkpoint publicado 2cccf86 (7.71).
-Próximo passo exato após publicar: 7.73 — aplicar somente
-migration is_admin em loja por sqlsrv_migracoes, com conferências antes/depois
-de estrutura/valores, sem expor contas ou promover usuários.
+Publicação da 7.72: concluída e conferida em 05/11/2026:
+5061427387d61506a462c5a4e18715cc80405054; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.73.
 Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.73 — Aplicar o indicador de administrador em loja — 05/11/2026
+
+Iniciada após confirmação da 7.72 com "entendu" e publicação conferida em
+5061427387d61506a462c5a4e18715cc80405054. Git add de teste e quatro documentos,
+commit e push explicados antes de executar; remoto verificado.
+
+Implementação: nenhum arquivo de aplicação alterado. Aplicada somente a
+migration 2026_11_05_120000_add_is_admin_to_users_table.php no banco loja,
+conexão sqlsrv_migracoes/login loja_migracoes. Aula
+07-73-aplicar-migration-administrador-loja.md criada; aula anterior/roteiro/
+progresso atualizados. Config/ambientes/Model/cast/teste/rotas/contratos/
+Compose/dependências preservados.
+
+Pré-verificação: PHP no Docker, local/configuração sem cache/default sqlsrv;
+ambas conexões sqlsrv/destino loja, identidades reais loja_migracoes e loja_app
+confirmadas. Permissão ALTER users: migrations true/app false. Leituras
+limitadas a SELECT por callback. Um usuário, quatro migrations, último lote 4,
+coluna ausente e alvo não registrado. Migrate:status por conexão/path restritos
+retornou Pending, código 0. Sem dados privados impressos ou snapshot de contas.
+
+Comando explicado e executado: docker compose exec -T backend php artisan
+migrate --database=sqlsrv_migracoes
+--path=database/migrations/2026_11_05_120000_add_is_admin_to_users_table.php
+--no-interaction --no-ansi. Resultado DONE, código 0. Up executado de verdade
+e alvo registrado uma vez no lote 5. Sem seeders, rollback ou promoção.
+
+Pós-verificação somente SELECT: oito controles passaram, código 0.
+Identidades/permissões das duas conexões corretas; bit/not null/default zero;
+um usuário preservado e todos false; histórico cinco entradas/uma nova alvo;
+lote 5; leitura da coluna pela aplicação com mesma contagem e ausência de
+privilégio. Não houve comparação integral dos demais campos de usuários.
+Status restrito posterior [5] Ran, código 0. Nenhum ID/nome/e-mail/senha/hash
+copiado; somente booleanos/contagens. Diagnósticos pela entrada padrão, sem
+arquivos auxiliares persistidos ou credenciais em comandos.
+
+Explicação: migrate executa pendente e registra histórico; database escolhe
+conexão, path limita arquivo. A conexão padrão da aplicação não é trocada
+permanentemente. Lote não conta usuários. Banco/volume guarda alteração
+persistente; Git guarda arquivos/documentação, git pull não migra sozinho.
+Coluna false não concede administração. Cast e Gate/Policy permanecem pendentes.
+Fonte primária Laravel 13 migrations consultada.
+
+Nenhuma chamada API ou uso de loja_test nesta etapa. Suíte não repetida:
+última 7.72, 108 testes/1.606 asserções; não atribuir resultado a execução nova.
+
+Git diff --check passou; 7 links locais válidos nos quatro documentos.
+Somente quatro documentos previstos alterados, índice vazio; migration, teste,
+Model, configuração, ambientes, contratos e Compose preservados no filesystem.
+
+Entendimento: confirmado com "entendi" em 05/11/2026 sobre a migration
+aplicada em loja e a aplicação manter sua conexão sem permissão de alterar tabelas.
+Publicação da 7.73: pendente; último checkpoint publicado 5061427 (7.72).
+Próximo passo exato após publicar: 7.74 — acrescentar somente
+cast boolean de is_admin ao User e verificar leitura PHP, mantendo Fillable
+e UsuarioResource. Módulos 8 a 23 não iniciados.

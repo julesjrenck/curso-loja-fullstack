@@ -5,7 +5,9 @@ Implementação, explicação e verificações em 05/11/2026, após confirmaçã
 Checkpoint anterior publicado e conferido em
 2cccf866096d041defd47f98fcc664277a4df954; HEAD/origin/main/main remota iguais.
 Entendimento da 7.72 confirmado com "entendu" em 05/11/2026; publicação
-pendente. Banco normal loja não usado pelo assistente nesta etapa.
+conferida em 5061427387d61506a462c5a4e18715cc80405054, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação. Banco normal loja não usado pelo
+assistente na 7.72.
 
 ## Objetivo e arquivo
 
@@ -97,8 +99,8 @@ Gate/Policy ou acesso administrativo da API. Referência de contexto:
 
 ## Continuidade
 
-Entendimento confirmado com "entendu" em 05/11/2026. Próximo após publicar:
-7.73 — aplicar somente a
+Entendimento confirmado com "entendu" em 05/11/2026. Continuidade iniciada na
+[7.73](07-73-aplicar-migration-administrador-loja.md): aplicar somente a
 migration is_admin em loja pela conexão sqlsrv_migracoes, com conferências
 antes/depois de estrutura e valores sem expor contas ou promover usuários.
 Model/cast/Fillable, rotas, contratos e dependências mantidos nesta etapa.
