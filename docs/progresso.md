@@ -5,10 +5,22 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.82 — Consulta administrativa no laboratório:
-  implementação, explicação e verificações apresentadas em 05/11/2026;
-  entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
-  Execução real no navegador pendente.
+- Etapa atual: 7.83 — Autorização no navegador:
+  sucesso geral relatado e entendimento confirmado em 05/11/2026.
+- Situação da 7.83: somente documentação alterada. Roteiro no Chrome/Edge:
+  preparar CSRF/administração visitante/login laboratório/usuário/administração
+  cliente/logout/administração final. Esperados 204/401/204/200/403/204/401,
+  sem contar OPTIONS. Anotar cada consulta antes de sobrescrever mensagem.
+  Verificar CORS e nomes/presença/bloqueios de cookies, sem senha/payload/
+  valores privados. Backend/php/sqlserver ativos; nenhuma API/SQL pelo
+  assistente nesta etapa. Sem ferramenta de controle/observação do navegador.
+  Aula docs/aulas/07-83-autorizacao-no-navegador.md criada.
+  Aluno informou "deu tudo certo, avante", sem transcrever status individuais
+  ou observações de CORS/cookies. Sucesso registrado por relato geral, sem
+  atribuir esses campos à observação direta do assistente.
+  Entendimento confirmado com "entendi" sobre autenticação/permissão e
+  ausência de autenticação após logout. Próximo passo exato: publicar a 7.83
+  e iniciar a 7.84, preparação de conta administrativa separada.
 - Situação da 7.82: somente src/laboratorio-sessao.html alterado na aplicação.
   Novo botão Consultar administração/resultado role status, disabled até
   preparação 204; listener GET API 8002/credentials include/Accept JSON,
@@ -20,10 +32,10 @@
   auxiliares próprios removidos. Sem navegador/API real/SQL/login/promoção.
   Última suíte permanece 7.80, 116 testes/1.653 asserções, não repetida.
   Aula docs/aulas/07-82-consulta-administracao-laboratorio.md criada.
-  Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-  7.83 — navegador, preparar/administração visitante 401/login laboratório/
-  usuário 200/administração cliente 403/logout/administração 401. Observar
-  mensagens/CORS/cookies sem valores privados e sem promover contas.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  d45a16a1d8c86a377ec185f33eea53c16cbc51c8, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade na 7.83; sucesso geral relatado
+  pelo aluno, sem resultados individuais transcritos.
 - Situação da 7.81: incluída GET /api/v1/administracao, operationId
   consultarAdministracao, em docs/api/openapi.json, com SessaoCookie e Gate;
   200 objeto data/mensagem fixa com const, 401/403 somente message string,
@@ -37,7 +49,7 @@
   Aula docs/aulas/07-81-openapi-administracao.md criada.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
   d5f1140887ece72392ae57e0e1b8fd7f7f0aed71, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.82.
+  Checkpoint anterior à 7.82. Continuidade iniciada na 7.82.
 - Situação da 7.80: criado somente AdministracaoApiTest.php na aplicação.
   GetJson atravessa rota/middlewares reais; actingAs/web prepara cliente/admin
   em memória. Visitante 401; cliente 403 com debug true/false por DataProvider;
@@ -2703,8 +2715,12 @@ confirmado com "entendi" em 05/11/2026; publicação em d5f1140, remoto conferid
 Na 7.82, botão administrativo GET/cookies/status 200/401/403 no laboratório;
 sintaxe/seis cenários simulados e HTML/quatro controles passaram. Auxiliares
 removidos; sem API real/SQL/conta promovida. Entendimento da 7.82 confirmado
-com "entendi" em 05/11/2026; publicação pendente. Próxima após publicar:
-7.83 — navegador, visitante 401/cliente 403/logout e consulta 401.
+com "entendi" em 05/11/2026; publicação em d45a16a, remoto conferido.
+Na 7.83, roteiro no navegador: preparar/administracao/login/usuario/
+administracao/logout/administracao; esperados 204/401/204/200/403/204/401.
+Sucesso geral relatado pelo aluno; status individuais/CORS/cookies não
+transcritos. Entendimento confirmado com "entendi" em 05/11/2026.
+Próximo passo: publicação da 7.83 e preparação da conta administrativa na 7.84.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -16848,9 +16864,66 @@ ausentes e backend/OpenAPI/ambientes/Compose preservados.
 
 Entendimento: confirmado com "entendi" em 05/11/2026 sobre o botão
 consultar a decisão do servidor e diferenciar 401 de 403.
-Publicação da 7.82: pendente; último checkpoint publicado d5f1140 (7.81).
-Próximo passo exato após publicar: 7.83 — Chrome/Edge,
-preparar CSRF/consultar administração visitante (401 esperado), login da
-conta de laboratório/consultar usuário (200)/administração (403), logout/
-administração (401). Receber mensagens/status e observações CORS/cookies
-sem copiar valores privados ou promover contas. Módulos 8 a 23 não iniciados.
+Publicação da 7.82: concluída e conferida em 05/11/2026:
+d45a16a1d8c86a377ec185f33eea53c16cbc51c8; HEAD/origin/main/main remota iguais após push.
+Registro posterior à publicação. Continuidade iniciada na 7.83.
+Módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.83 — Autorização no navegador — 05/11/2026
+
+Iniciada após confirmação da 7.82 com "entendi" e publicação conferida em
+d45a16a1d8c86a377ec185f33eea53c16cbc51c8. Git add de HTML e cinco documentos,
+commit e push explicados antes de executar; remoto verificado.
+
+Implementação: somente documentação. Aula
+docs/aulas/07-83-autorizacao-no-navegador.md criada; contrato/continuidade
+anterior/roteiro/progresso atualizados. Página e aplicação mantidas como 7.82.
+
+Roteiro apresentado: Chrome/Edge na sessão privativa do laboratório sem login
+ativo, recarregar URL 127.0.0.1:8001/laboratorio-sessao.html; F12/Rede/Todos
+sem filtros, gravando antes dos cliques. Sete ações: preparação CSRF,
+administração visitante, login com aluno@example.test/senha privada escolhida
+no terminal, consulta usuário, administração cliente, logout, administração
+novamente. Esperados 204/401/204/200/403/204/401. OPTIONS separado dos POSTs.
+Anotar cada mensagem porque consultas administrativas sobrescrevem resultado.
+
+Explicação: auth recusa visitante 401; login 204/usuário 200 demonstra identidade
+aceita; Gate recusa cliente com 403, sem promoção de is_admin. Depois do logout,
+consulta deve voltar a 401. Resultados são expectativas até o relato, não
+atribuir valores observados sem recebê-los. A conta tinha false na 7.73,
+nenhuma promoção foi feita depois; não houve nova consulta de conta nesta aula.
+CORS nas respostas administrativas: origem 8001/credenciais true esperados;
+cookies enviados nomes loja-fullstack-session/XSRF-TOKEN e eventual bloqueio.
+Relato só mensagens/status/nome/presença, sem senha/payload/valores de cookies/
+headers completos/HAR ou capturas privadas. Se divergir, parar na ação e
+informar resultado; nenhum pedido de senha/recriação automática de conta.
+
+Verificação do assistente: docker compose ps --status running --services
+confirmou backend/php/sqlserver ativos. Leitura de página/config CORS/rotas
+atuais; sem pedido API, SQL, nova conta, login ou promoção pelo assistente.
+Última suíte permanece 7.80, 116 testes/1.653 asserções; não repetida.
+Fonte primária Chrome DevTools Network consultada. Sem ferramenta de controle
+ou observação do navegador; acompanhamento por roteiro e relato.
+
+Git diff --check passou; 15 links locais válidos nos cinco documentos.
+Somente cinco documentos previstos alterados, índice vazio; página/backend/
+testes/OpenAPI/ambientes/Compose preservados. Sem atribuir resultados esperados
+a observações ainda não relatadas.
+
+Resultado do navegador: aluno informou "deu tudo certo, avante" em 05/11/2026.
+Relato geral de sucesso, sem status individuais ou observações de CORS/cookies.
+Não houve observação direta do navegador pelo assistente.
+Pergunta do aluno: quanto falta para terminar o módulo. Restam a verificação
+com uma conta administrativa real, Policies para permissões sobre recursos
+e a revisão final. Estimativa de 8 a 12 pequenas etapas, ajustável conforme
+dúvidas e verificações; não constitui sequência numerada já aprovada.
+Entendimento: confirmado com "entendi" em 05/11/2026, após explicação de
+usuário 200/administração 403 e administração 401 depois do logout.
+O pedido anterior "pode continuar" foi registrado como continuidade;
+a confirmação explícita foi recebida na mensagem seguinte.
+Publicação da 7.83: pendente; último checkpoint publicado d45a16a (7.82).
+Próximo passo exato: publicar a 7.83 conforme autorização vigente e iniciar
+a 7.84, preparando um seeder local para uma conta administrativa separada.
+Nenhuma conta administrativa criada nesta etapa.
+Módulos 8 a 23 não iniciados.

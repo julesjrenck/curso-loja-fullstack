@@ -5,7 +5,9 @@ Implementação, explicação e verificações em 05/11/2026, após confirmaçã
 Checkpoint anterior publicado e conferido em
 d5f1140887ece72392ae57e0e1b8fd7f7f0aed71; HEAD/origin/main/main remota iguais.
 Entendimento da 7.82 confirmado com "entendi" em 05/11/2026; publicação
-pendente. Execução real no navegador ainda pendente.
+conferida em d45a16a1d8c86a377ec185f33eea53c16cbc51c8, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação. Na 7.83, aluno relatou sucesso geral
+no navegador, sem transcrever resultados individuais.
 
 ## Objetivo e arquivo
 
@@ -92,8 +94,8 @@ Laravel: última 7.80, 116 testes/1.653 asserções. Backend/OpenAPI preservados
 
 ## Continuidade
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-7.83 — no Chrome/Edge,
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.83](07-83-autorizacao-no-navegador.md): no Chrome/Edge,
 preparar CSRF e consultar administração como visitante (401 esperado), entrar
 com a conta de laboratório, consultar usuário (200) e administração (403),
 sair e consultar administração novamente (401). Registrar somente mensagens/

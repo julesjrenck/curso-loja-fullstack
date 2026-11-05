@@ -119,5 +119,9 @@ Na 7.81, OpenAPI atualizado/validado, incluindo cinco rejeições deliberadas
 de exemplos inválidos em cópias próprias, removidas depois. Isso verifica
 a descrição, sem executar a API. Na 7.82, botão de consulta acrescentado ao
 laboratório e verificado com DOM/Fetch simulados; nenhuma conta promovida.
-Próxima etapa: acompanhar visitante/cliente/logout no navegador, sem copiar
-valores privados de sessão ou credenciais.
+Na [7.83](../aulas/07-83-autorizacao-no-navegador.md), roteiro apresentado
+para acompanhar visitante/cliente/logout no navegador, sem copiar valores
+privados de sessão ou credenciais. Aluno relatou sucesso geral em 05/11/2026,
+sem transcrever status individuais ou observações de CORS/cookies;
+entendimento confirmado com "entendi". Acesso com conta administrativa real ainda
+não verificado no navegador.
