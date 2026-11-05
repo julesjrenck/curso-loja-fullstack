@@ -5,9 +5,25 @@
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
 - Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.54 — Logout no OpenAPI:
-  implementação documental, explicação e verificações apresentadas; entendimento
-  confirmado com "entendi" em 05/11/2026, publicação pendente.
+- Etapa atual: 7.55 — Diagnóstico da configuração de CORS:
+  leitura, explicação e verificação em memória apresentadas em 05/11/2026;
+  entendimento confirmado com "entendi" em 05/11/2026 e publicação pendente.
+- Situação da 7.55: aula docs/aulas/07-55-diagnostico-cors.md criada. PHP no
+  Docker/local/sem cache confirmou ausência de config/cors.php local e valores
+  efetivos iguais aos padrões do framework: paths api/* e sanctum/csrf-cookie,
+  métodos/origens/headers *, padrões/exposed vazios, max_age 0 e credenciais false.
+  HandleCors global presente. hasMatchingPath em memória: produtos/login/logout/
+  usuario sob /api/v1 e csrf-cookie true; /loja false. Sanctum fromFrontend para
+  host 8002: Origin 8002 true, exemplo 8001 false. Código 0, sem handle HTTP,
+  sessão iniciada ou SQL no diagnóstico. Sem nova suíte; última 7.51, 107/1.586.
+  Explicados origem (protocolo/host/porta), compartilhamento de resposta,
+  credenciais e preflight; CORS, reconhecimento stateful, CSRF e identidade
+  têm responsabilidades distintas. Configuração atual insuficiente para
+  compartilhar respostas com cookies entre origens: conclusão de leitura,
+  sem erro observado no navegador. Backend/Compose/OpenAPI preservados.
+  Próximo após confirmar/publicar: 7.56 — verificar em memória o preflight
+  OPTIONS de POST logout com origem ilustrativa, sem cookies/SQL e sem alterar
+  configuração. Registrar cabeçalhos e limites; integração no navegador pendente.
 - Situação da 7.54: POST /api/v1/logout incluído em docs/api/openapi.json,
   operação encerrarSessao. RequestBody required false/objeto JSON/exemplo {},
   extras permitidos e ignorados pelo controller; não são seletores de identidade.
@@ -21,9 +37,9 @@
   códigos 0. Motivos conferidos/cópias removidas. Comparação estrutural passou.
   Sem HTTP/SQL/nova suíte; última 7.51, 107 testes/1.586 asserções. Aplicação/
   rotas/testes/bootstrap/ambientes/dependências/Compose preservados.
-  Próximo após confirmar/publicar: 7.55 — diagnosticar CORS efetivo do Laravel e
-  explicar Origin/credenciais/preflight, sem alterar configuração. Tema previsto
-  no módulo 7; navegador/CORS permanecem pendentes.
+  Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada:
+  750d6baa826daa0280e6c3b877b99debac3abbeb, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade realizada na 7.55.
 - Situação da 7.53: diagnóstico temporário PHP/Guzzle no Docker executou
   preparação 204 e POST logout sem header/inválido/correto 419/419/204. Ambiente
   local/console false/testing false/CSRF ativo/coleta [0,100] só no servidor
@@ -39,7 +55,7 @@
   7.51, 107 testes/1.586 asserções. Backend/Compose/OpenAPI preservados.
   Entendimento confirmado com "entendi" em 05/11/2026; publicação verificada em
   5e89f0afead3d2df806e7b16f10cd8ef3ee9698f, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade realizada na 7.54.
+  Checkpoint anterior à 7.54. Continuidade realizada na 7.54.
   Navegador/CORS continuam pendentes.
 - Situação da 7.52: docs/api/verificacao-csrf-logout.md criado, sem execução HTTP.
   Guzzle/servidor PHP temporário no Docker/local, visitante/cookies em memória,
@@ -2119,7 +2135,14 @@ com "entendi" em 05/11/2026; publicação em 5e89f0a. Continuidade realizada na 
 POST logout no OpenAPI, corpo opcional/security vazio/204 sem content/419 com
 ErroCsrf existente. Redocly e quatro casos controlados conferidos/cópias removidas,
 demais operações/componentes preservados. Sem HTTP/SQL/nova suíte. Entendimento
-confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.55 — diagnóstico CORS efetivo.
+confirmado com "entendi" em 05/11/2026; publicação em 750d6ba, remoto conferido.
+Continuidade na 7.55: leitura CORS efetivo/padrões do framework, HandleCors global,
+paths api/* e csrf-cookie, origens * e credenciais false. Seleção de caminhos e
+Sanctum conferidos em memória; código 0, sem HTTP/sessão/SQL ou nova suíte.
+Origem/credenciais/preflight e responsabilidades explicados. Entendimento da
+7.55 confirmado com "entendi" em 05/11/2026; publicação pendente. Próxima após confirmar/publicar:
+7.56 — preflight OPTIONS de POST logout em memória, sem cookies/SQL nem alteração
+de configuração; cabeçalhos e limites da verificação. Navegador pendente.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -14775,8 +14798,55 @@ consulta seis, protocolo de logout três, aulas 7.53/7.54 dois cada. Escopo
 conferido: somente documentação/OpenAPI; índice vazio. Backend/Compose preservados.
 
 Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
-Publicação da 7.54: pendente; registros locais. Último checkpoint publicado:
-5e89f0afead3d2df806e7b16f10cd8ef3ee9698f (7.53).
-Próximo passo exato após confirmar/publicar: 7.55 — diagnosticar configuração
-efetiva de CORS do Laravel e explicar Origin/credenciais/preflight, sem alterar
-configuração. Tema previsto no módulo 7; navegador/CORS continuam pendentes.
+Publicação da 7.54: concluída e conferida em 05/11/2026:
+750d6baa826daa0280e6c3b877b99debac3abbeb; HEAD/origin/main/main remota iguais
+após push. Registro posterior à publicação. Continuidade realizada na 7.55.
+
+
+## Etapa 7.55 — Diagnóstico da configuração de CORS — 05/11/2026
+
+Iniciada após confirmação da 7.54 com "entendi" e publicação verificada em
+750d6baa826daa0280e6c3b877b99debac3abbeb. Implementação documental: aula
+docs/aulas/07-55-diagnostico-cors.md e atualização de continuidade/roteiro/
+progresso. Nenhuma configuração ou código da aplicação alterados.
+
+Explicação apresentada: origem combina protocolo/host/porta; caminhos não mudam
+origem. Exemplo 8001/8002 é ilustrativo. CORS governa compartilhamento de resposta
+com JavaScript no navegador; pedido já processado pode ter leitura bloqueada,
+enquanto preflight recusado pode impedir o pedido efetivo. Credenciais incluem
+cookies; Fetch include depende também das regras de cookies. Compartilhamento
+com credenciais exige origem explícita e Allow-Credentials true. Configuração
+atual insuficiente para esse fluxo é inferência da leitura, sem navegador.
+
+Preflight OPTIONS consulta método/headers; exemplo futuro POST JSON com
+X-XSRF-TOKEN. Sem cookies de sessão no preflight; credenciais sozinhas não exigem
+preflight. CORS/reconhecimento stateful/CSRF/auth:sanctum têm papéis separados.
+Bootstrap atual já usa statefulApi(); nenhuma origem final de interface definida,
+nenhum frontend criado. Fontes primárias MDN e Laravel 13 consultadas.
+
+Verificação PHP no Docker existente, entrada padrão/sem terminal. Bootstrap do
+console, resolução do kernel HTTP sem handle; getGlobalMiddleware confirmou
+HandleCors global. Sem cache de configuração, ambiente local, config/cors.php
+local ausente. config('cors') estritamente igual ao array em
+vendor/laravel/framework/config/cors.php: paths api/* e sanctum/csrf-cookie;
+allowed_methods/origins/headers ['*']; patterns/exposed []; max_age 0;
+supports_credentials false. LoadConfiguration e HandleCors instalados lidos.
+
+ReflectionMethod invocou somente hasMatchingPath com Requests construídos em
+memória: produtos/login/logout/usuario sob /api/v1 e csrf-cookie true; /loja
+false. Sanctum fromFrontend para host 127.0.0.1:8002: Origin 8002 true, exemplo
+8001 false. Sem executar cadeia HTTP, iniciar sessão, autenticar conta ou
+consultar SQL. Saída só opções públicas e booleanos; código 0. Não comprova
+cabeçalhos de resposta ou comportamento real no navegador.
+
+Sem novas dependências, serviços, HTTP, alterações de ambiente/vendor, suíte,
+auditoria ou snapshot. Última suíte permanece 7.51: 107 testes/1.586 asserções.
+Backend/Compose/OpenAPI preservados. Git diff --check passou; 26 links locais
+dos oito documentos alterados válidos, índice vazio, somente documentação.
+
+Entendimento: confirmado pelo aluno com "entendi" em 05/11/2026.
+Publicação da 7.55: pendente; último checkpoint publicado 750d6ba (7.54).
+Próximo passo exato após confirmar/publicar: 7.56 — verificar em memória o
+preflight OPTIONS de POST logout com origem ilustrativa, sem cookies/SQL nem
+alterar configuração; registrar cabeçalhos e limites. Navegador permanece
+pendente; módulos 8 a 23 não iniciados.

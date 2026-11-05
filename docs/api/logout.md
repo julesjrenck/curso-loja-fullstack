@@ -184,7 +184,7 @@ nos pedidos; servidor encerrado/uma sessão própria restante e auxiliares remov
 security vazio/condições de sessão e CSRF descritas, respostas 204 sem content
 e 419 com ErroCsrf existente. Campos extras no corpo são ignorados. Redocly
 validou documento; duas cópias inválidas rejeitadas e duas permitidas aceitas.
-Nenhuma API executada nessa validação. Próxima 7.55: diagnosticar CORS efetivo.
+Nenhuma API executada nessa validação. Diagnóstico registrado na [aula 7.55](../aulas/07-55-diagnostico-cors.md), sem alterar configuração.
 
 Referências: [logout e invalidação de sessão no Laravel](https://laravel.com/docs/13.x/authentication#logging-out),
 [sessão da interface própria com Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication)

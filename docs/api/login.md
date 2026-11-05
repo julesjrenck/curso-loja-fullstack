@@ -231,7 +231,7 @@ conferidas. Na 7.53, preparação 204/controles 419/419/204 observados por HTTP,
 CSRF ativo/sem SQL/sessões anteriores preservadas. Na 7.54, em 05/11/2026,
 logout integrado ao OpenAPI, com corpo opcional/204/419; operação de login
 preservada integralmente. Redocly validou documento/casos controlados.
-Próxima 7.55: diagnosticar CORS efetivo.
+Diagnóstico registrado na [aula 7.55](../aulas/07-55-diagnostico-cors.md), sem alterar configuração.
 
 Referências: [fluxo de login SPA do Sanctum](https://laravel.com/docs/13.x/sanctum#spa-authentication),
 [autenticação manual e renovação da sessão](https://laravel.com/docs/13.x/authentication#manually-authenticating-users)

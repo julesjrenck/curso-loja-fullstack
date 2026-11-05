@@ -4,7 +4,8 @@ Implementação documental, explicação e verificações em 05/11/2026, após
 confirmação da 7.53 com "entendi" nessa data. Execução HTTP da 7.53 ocorreu em
 04/11/2026. Checkpoint anterior publicado e conferido em
 5e89f0afead3d2df806e7b16f10cd8ef3ee9698f; HEAD/origin/main/main remota iguais.
-Entendimento da 7.54 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.54 confirmado com "entendi" em 05/11/2026; publicação conferida
+em 750d6baa826daa0280e6c3b877b99debac3abbeb, HEAD/origin/main/main remota iguais.
 
 ## Objetivo e arquivo
 
@@ -105,7 +106,6 @@ conferido: somente documentação/OpenAPI; índice vazio. Backend/Compose preser
 
 OpenAPI atualizado, explicado e verificado; entendimento confirmado em 05/11/2026.
 Aplicação, ambientes, dependências, serviços, rotas, migrations, testes,
-bootstrap e Compose preservados. Publicação da 7.54 pendente.
-Próxima após confirmar/publicar: 7.55 — diagnosticar a configuração efetiva de
-CORS do Laravel e explicar Origin, credenciais e preflight, sem alterar
-configuração. Tema previsto no módulo 7; navegador/CORS continuam pendentes.
+bootstrap e Compose preservados. Publicação da 7.54 concluída.
+Continuidade na [7.55 — diagnóstico de CORS](07-55-diagnostico-cors.md),
+sem alterar configuração. Integração no navegador continua pendente.

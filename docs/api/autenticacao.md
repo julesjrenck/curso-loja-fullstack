@@ -176,7 +176,7 @@ sessão nova ou consulta SQL. Na 7.53, protocolo executado com visitante/CSRF at
 identidade criada; sessões próprias limpas/54 anteriores preservadas. Sem nova suíte.
 Na 7.54, em 05/11/2026, logout incluído no OpenAPI; esta consulta permaneceu
 integralmente igual, incluindo segurança. Redocly validou documento e exemplos.
-Próxima 7.55: diagnosticar CORS efetivo. Navegador/CORS continuam pendentes.
+Diagnóstico registrado na [aula 7.55](../aulas/07-55-diagnostico-cors.md), sem alterar configuração. Navegador/CORS continuam pendentes.
 
 Referências: [proteção de rotas com Sanctum](https://laravel.com/docs/13.x/sanctum#protecting-routes)
 e [envelope data de Resources](https://laravel.com/docs/13.x/eloquent-resources#data-wrapping).

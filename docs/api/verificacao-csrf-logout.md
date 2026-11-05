@@ -120,8 +120,9 @@ asserções. Não verifica navegador/CORS; nenhum valor privado impresso/version
 Entendimento da 7.53 confirmado com "entendi" em 05/11/2026; publicação verificada
 em 5e89f0afead3d2df806e7b16f10cd8ef3ee9698f. Na 7.54, em 05/11/2026, logout
 integrado ao OpenAPI, corpo opcional e respostas 204 sem content/419 com ErroCsrf.
-Redocly validou documento e casos controlados, sem repetir HTTP. Próxima 7.55:
-diagnosticar CORS efetivo antes de alterar configuração. Navegador pendente.
+Redocly validou documento e casos controlados, sem repetir HTTP. Diagnóstico
+CORS registrado na [aula 7.55](../aulas/07-55-diagnostico-cors.md), sem alterar
+configuração. Integração no navegador pendente.
 
 Referências: [CSRF e verificação de origem](https://laravel.com/docs/13.x/csrf#origin-verification),
 [cookies e cabeçalho CSRF no Sanctum](https://laravel.com/docs/13.x/sanctum#authenticating)

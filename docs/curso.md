@@ -307,9 +307,15 @@ vazio/condições de sessão e CSRF descritas, 204 sem content/419 com ErroCsrf.
 Operações anteriores/componentes/versões/servidores preservados. Redocly passou;
 duas cópias inválidas rejeitadas/duas permitidas aceitas, motivos conferidos e
 cópias removidas. Sem HTTP/SQL/nova suíte. Entendimento da 7.54 confirmado com
-"entendi" em 05/11/2026; publicação pendente. Próximo após confirmar/publicar:
-7.55 — diagnosticar CORS efetivo do Laravel e explicar Origin/credenciais/
-preflight, sem alterar configuração. Navegador/CORS permanecem pendentes.
+"entendi" em 05/11/2026; publicada em 750d6ba, remoto conferido. Na 7.55,
+leitura CORS no Docker confirmou padrões do framework: origens * e credenciais
+false, HandleCors global e caminhos de API/csrf-cookie. Seleção de caminhos e
+reconhecimento Sanctum conferidos em memória, código 0; sem HTTP/sessão/SQL ou
+nova suíte. Origem, credenciais, preflight e responsabilidades explicados.
+Entendimento da 7.55 confirmado com "entendi" em 05/11/2026; publicação pendente. Próximo após
+confirmar/publicar: 7.56 — preflight OPTIONS de POST logout em memória, sem
+cookies/SQL e sem alterar configuração; registrar cabeçalhos e limites.
+Integração no navegador permanece pendente.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1085,7 +1091,11 @@ publicação em 5e89f0a. Na 7.54, POST logout documentado/explicado no OpenAPI,
 corpo opcional/security vazio/204 sem content/419 compartilhado. Redocly e casos
 controlados passaram; demais operações/componentes preservados. Sem HTTP ou
 nova suíte. Entendimento confirmado com "entendi" em 05/11/2026; publicação
-pendente antes da 7.55 — diagnóstico CORS efetivo, sem alterar configuração.
+verificada em 750d6ba. Na 7.55, CORS efetivo/padrões e HandleCors global conferidos
+em memória; origens *, credenciais false. Origem/credenciais/preflight e papéis
+de CORS/Sanctum/CSRF/auth explicados. Sem HTTP/sessão/SQL ou nova suíte.
+Entendimento da 7.55 confirmado com "entendi" em 05/11/2026; publicação pendente antes da 7.56 —
+verificação do preflight OPTIONS em memória, sem cookies/SQL ou alterar configuração.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
