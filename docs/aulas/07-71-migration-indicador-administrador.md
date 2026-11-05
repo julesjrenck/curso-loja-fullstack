@@ -5,7 +5,9 @@ Implementação e explicação em 05/11/2026, após confirmação da
 Checkpoint anterior publicado e conferido em
 dd9c3911fd9d8965c90541d651e80a0a3b920a22; HEAD/origin/main/main remota iguais.
 Entendimento da 7.71 confirmado com "entendi" em 05/11/2026; publicação
-pendente. Migration criada, sem aplicação ao banco.
+conferida em 2cccf866096d041defd47f98fcc664277a4df954, HEAD/origin/main/main remota iguais.
+Registro atualizado após publicação. Migration criada, sem aplicação ao banco
+na 7.71; execução em teste pertence à etapa seguinte.
 
 ## Objetivo e arquivo
 
@@ -109,8 +111,8 @@ preservados. A migration descreve a coluna persistida; o cast boolean e a
 autorização ainda terão suas etapas. Criar esse arquivo não promove contas
 nem altera as respostas atuais da API.
 
-Entendimento confirmado com "entendi" em 05/11/2026. Próximo após publicar:
-7.72 — verificar a migration
+Entendimento confirmado com "entendi" em 05/11/2026. Continuidade iniciada na
+[7.72](07-72-teste-migration-administrador.md): verificar a migration
 em loja_test com usuários fictícios, padrão em contas existentes/novas e
 reversão, antes de planejar a aplicação em loja. Não usar o banco normal nesses
 testes. Módulos 8 a 23 não iniciados.

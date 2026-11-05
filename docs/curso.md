@@ -403,8 +403,13 @@ Somente documentação; entendimento confirmado com "entendi" em 05/11/2026;
 publicação em dd9c391, remoto conferido. Na 7.71, migration is_admin/default
 false/down dropColumn criada. PHP -l e sete controles de compilação isolada
 passaram, sem abertura PDO/SQL/banco alterado. Entendimento confirmado com
-"entendi" em 05/11/2026; publicação pendente. Próxima após publicar: 7.72 —
-verificar padrão e reversão em loja_test antes da aplicação em loja.
+"entendi" em 05/11/2026; publicação em 2cccf86, remoto conferido. Na 7.72,
+teste real de migration em loja_test: padrão false em usuário anterior/novo,
+metadados bit/not null/default e down preservando usuários; focado 1/20,
+suíte 108/1.606 passaram. Pós-leitura: zero users/coluna ausente/quatro
+migrations. Loja não usada. Entendimento confirmado com "entendu" em
+05/11/2026; publicação pendente. Próxima após publicar: 7.73 — aplicar
+somente is_admin em loja por sqlsrv_migracoes, sem promover contas.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1241,9 +1246,12 @@ atribuição administrativa controlada; somente documentação.
 Entendimento confirmado com "entendi" em 05/11/2026; publicação em dd9c391.
 Na 7.71, migration is_admin/default false/down dropColumn criada; sintaxe
 e sete controles de compilação passaram sem PDO/SQL/banco alterado.
-Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
-Próxima após publicar: 7.72 — padrão e reversão em loja_test,
-antes da aplicação em loja.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação em 2cccf86.
+Na 7.72, teste real padrão/reversão em loja_test: 1/20; suíte 108/1.606
+passaram. Pós-leitura confirmou zero users/coluna ausente/quatro migrations;
+loja não usada. Entendimento confirmado com "entendu" em 05/11/2026;
+publicação pendente. Próxima após publicar: 7.73 — aplicar somente
+is_admin em loja por sqlsrv_migracoes, sem promover contas.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
