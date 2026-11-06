@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapas 8.2 a 8.6 confirmadas/publicadas; entendimento da 8.7 confirmado com "entendi".
+  Etapas 8.2 a 8.7 confirmadas/publicadas; entendimento da 8.8 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.7 — Largura máxima e centralização,
+- Última etapa concluída: 8.8 — Box-sizing e cálculo da largura total,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.6,
-  ce3730b4e44627a9e0d78a2363c99bbbc6cc3841; remoto conferido.
+  Último checkpoint de aula publicado antes desta confirmação: 8.7,
+  f31aadc0543bae48a3d827c442016c980fa7f5a3; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.7 — Largura máxima e centralização do conteúdo principal.
+- Etapa atual: 8.8 — Box-sizing e cálculo da largura total.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.7 conforme autorização.
-  Depois, 8.8 — box-sizing e cálculo da largura
-  total. Não iniciada.
+- Próximo passo exato: publicar e conferir checkpoint da 8.8 conforme autorização.
+  Depois, 8.9 — alinhar cabeçalho, catálogo e
+  rodapé com uma classe compartilhada. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é ce3730b.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é f31aadc.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -59,7 +59,11 @@
   960px, margin 0 auto e padding 16px. HTML preservado. Aula
   docs/aulas/08-07-largura-centralizacao.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  06/11/2026; checkpoint em preparação para publicação.
+  06/11/2026; publicação conferida em f31aadc.
+- Situação da 8.8: box-sizing border-box acrescentado à regra main em
+  src/vitrine.css. Aula docs/aulas/08-08-box-sizing.md criada; continuidade
+  anterior, roteiro/progresso atualizados. Entendimento confirmado com "entendi"
+  em 06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -17687,7 +17691,51 @@ Main acompanha origin/main no checkpoint publicado da 8.6.
 
 Entendimento da 8.7: confirmado com "entendi" em 06/11/2026, após explicação
 de max-width, margin 0 auto e largura com padding. Nenhuma dúvida nova ou relato
-separado do navegador. Publicação em preparação conforme autorização permanente;
-git add/commit/push explicados antes da execução. Próximo passo exato: publicar
-e conferir checkpoint; depois 8.8 — box-sizing e cálculo da largura total.
-Não iniciada; módulos 9 a 23 não iniciados.
+separado do navegador. Publicação concluída conforme autorização permanente;
+git add/commit/push explicados antes da execução. Commit
+f31aadc0543bae48a3d827c442016c980fa7f5a3; push ce3730b → f31aadc concluiu
+com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.8 — box-sizing
+e cálculo da largura total. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.8 — Box-sizing e cálculo da largura total — 06/11/2026
+
+Iniciada após confirmação da 8.7 com "entendi" e publicação conferida em
+f31aadc0543bae48a3d827c442016c980fa7f5a3; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: incluir padding/borda no limite da caixa
+principal. Somente src/vitrine.css alterado na aplicação: uma linha acrescentada
+à regra main, box-sizing: border-box. Criada a aula docs/aulas/08-08-box-sizing.md;
+continuidade da 8.7, roteiro e progresso atualizados com o checkpoint publicado.
+
+Explicação apresentada: content-box mede conteúdo; border-box inclui conteúdo,
+padding e borda na dimensão declarada, mantendo as margens fora. No main atual,
+sem borda, ao atingir o limite: 960px - 16px - 16px = 928px de conteúdo.
+Comparação com a 8.7: conteúdo 960 → 928px, padding horizontal 32px nos dois
+casos, caixa até a borda 992 → 960px. Cálculo ilustrativo a partir do CSS,
+sem medição de navegador. Padding continua existindo; caixa pode ficar menor
+em janela estreita. Margin auto continua centralizando quando sobra espaço.
+Box-sizing não é herdada por padrão; nova declaração aplicada a main.
+Referência primária W3C de box-sizing consultada.
+
+Verificação HTTP fora do sandbox: GET /vitrine.css retornou HTTP/1.1 200 OK,
+Content-Type text/css; charset=UTF-8. Corpo comparado por cmp ao arquivo local:
+igualdade exata, código 0; comandos com set -euo pipefail. Arquivos temporários
+próprios removidos. Verificação demonstra entrega da folha, sem medir largura
+ou observar renderização no navegador. Nenhum servidor/container/pacote novo,
+API/SQL/login ou mudança no backend; suíte Laravel não repetida por ser CSS
+estático isolado.
+
+Git diff --check passou; HTML sem diferenças e destinos locais dos documentos
+conferidos. Somente vitrine.css e quatro documentos alterados; índice vazio.
+Main acompanha origin/main no checkpoint publicado da 8.7.
+
+Entendimento da 8.8: confirmado com "entendi" em 06/11/2026, após explicação
+de border-box e da conta 928px de conteúdo + 32px de padding = 960px.
+Nenhuma dúvida nova ou relato separado do navegador. Publicação em preparação
+conforme autorização permanente; git add/commit/push explicados antes da execução.
+Próximo passo exato: publicar e conferir checkpoint; depois 8.9 — alinhar
+cabeçalho, catálogo e rodapé com uma classe compartilhada.
+8.9 não iniciada; módulos 9 a 23 não iniciados.

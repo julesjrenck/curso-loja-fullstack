@@ -72,6 +72,7 @@ sem relato visual do aluno nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.7 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do navegador.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-checkpoint: 8.8 — box-sizing e cálculo
-da largura total. 8.8 não iniciada.
+Checkpoint publicado e conferido em
+f31aadc0543bae48a3d827c442016c980fa7f5a3; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.8](08-08-box-sizing.md): box-sizing e cálculo da largura total.
