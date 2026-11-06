@@ -2,15 +2,28 @@
 
 ## Estado atual
 
-- Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
-- Estado do curso: pausado a pedido do aluno em 05/11/2026, após conclusão
-  do módulo 7. Retomada prevista para 06/11/2026 em outro chat, quando solicitada.
+- Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
+- Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
+  Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 7.89 — Revisão de autenticação e autorização,
-  encerramento confirmado pelo aluno em 05/11/2026. Publicação conferida:
-  f70f54e5fd31fe2d0006709d503cc48d8dc6e567, último checkpoint de aula publicado.
-- Próxima etapa exata: 8.1 — Estrutura HTML da vitrine, módulo 8 de
-  HTML5/CSS3/JavaScript moderno. Não iniciar nesta sessão; aguardar retomada.
+- Última etapa concluída: 8.1 — Estrutura HTML da vitrine, entendimento confirmado
+  pelo aluno com "entendi" em 06/11/2026. Checkpoint em preparação para publicação.
+  Último checkpoint de aula publicado antes desta etapa:
+  f70f54e5fd31fe2d0006709d503cc48d8dc6e567, encerramento do módulo 7.
+- Etapa atual: 8.1 — Estrutura HTML da vitrine, módulo 8 de
+  HTML5/CSS3/JavaScript moderno. Implementação e explicação apresentadas;
+  verificação registrada ao final deste documento. Entendimento confirmado.
+- Próximo passo exato: publicar e conferir o checkpoint concluído da 8.1.
+  Depois, 8.2 — primeiro produto
+  demonstrativo no catálogo e hierarquia de títulos. Não iniciada.
+- Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
+  registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
+  na consulta de 06/11/2026. Último checkpoint de aula permanece f70f54e.
+- Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
+  viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
+  Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
+  HTTP 200/text/html;charset UTF-8 e corpo idêntico ao arquivo local conferidos.
+  Entendimento confirmado com "entendi" em 06/11/2026; publicação em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -20,7 +33,8 @@
   Aula docs/aulas/07-89-revisao-autenticacao-autorizacao.md criada.
   Aluno confirmou o fechamento com "podemos concluir, iniciaremos o modulo 8
   amanhã em outro chat". Revisão aceita e módulo 7 concluído; checkpoint
-  f70f54e publicado e conferido. Pausa mantida. Módulo 8 ainda não iniciado; atividade sugerida
+  f70f54e publicado e conferido. Pausa encerrada na retomada de 06/11/2026;
+  módulo 8 iniciado na 8.1. Atividade sugerida
   DBeaver segue sem relato, sem atribuir conclusão a esse exercício.
 - Situação da 7.88: criado somente tests/Feature/ProdutoPolicyTest.php na
   aplicação, usando Tests\TestCase/Gate real. Descoberta automática; cliente,
@@ -17293,3 +17307,69 @@ Na retomada, ler AGENTS.md/docs/curso.md/docs/progresso.md, conferir arquivos
 e Git e iniciar somente a primeira pequena etapa de HTML do módulo 8.
 Nenhum arquivo ou implementação do módulo 8 criado nesta etapa.
 Módulos 8 a 23 não iniciados.
+
+
+## Etapa 8.1 — Estrutura HTML da vitrine — 06/11/2026
+
+Retomada solicitada pelo aluno: "Vamos retomar o curso. Leia AGENTS.md,
+docs/curso.md e docs/progresso.md. Concluímos o módulo 7 e vamos iniciar a 8.1."
+Lidos instruções, roteiro, estado atual e histórico de encerramento do módulo 7;
+arquivos do laboratório/Compose e Git conferidos. Árvore inicialmente limpa,
+branch main; HEAD/origin/main e main remota conferidos em
+76ef38e6fc835dd57f183a92e1e479196cea62de. Esse commit registra a publicação
+anterior; último checkpoint de aula: f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
+Consulta remota inicial falhou por DNS no sandbox; repetida com acesso de rede,
+retornou o SHA acima. Pausa anterior encerrada pelo pedido de retomada.
+Atividade sugerida no DBeaver segue sem relato; nenhuma nova dúvida recebida.
+
+Objetivo explicado antes da alteração: descrever a estrutura e o significado
+do conteúdo da vitrine com HTML. Criado somente src/vitrine.html na aplicação.
+Doctype, html/lang pt-BR, head com charset/viewport/title, body com header,
+main/h1/parágrafo e footer. Conteúdo estático, sem produtos carregados.
+Criada docs/aulas/08-01-estrutura-html-vitrine.md; roteiro e progresso atualizados.
+Fluxo local da skill Sites consultado e aplicado ao checkout existente,
+respeitando o curso local e a configuração Docker já aprovada.
+
+Explicação apresentada: tags de abertura/fechamento, elementos, atributos e
+aninhamento; meta como elemento vazio; metadados versus conteúdo visível;
+head versus header, title versus h1; significado de header/main/footer,
+parágrafos e idioma para tecnologias assistivas. Viewport prepara a visualização
+móvel, sem implementar o layout responsivo. HTML organiza o conteúdo; CSS e
+JavaScript serão trabalhados gradualmente. Arquivo entregue diretamente pelo
+servidor do laboratório, diferente da renderização Blade vista antes.
+Relação src → montagem /app → servidor PHP porta 8000 → host porta 8001 explicada.
+Referências primárias HTML Standard consultadas para documento, regiões e main.
+
+Verificação: acesso inicial ao Docker negado no sandbox; consulta com permissão
+confirmou nenhum serviço Compose em execução neste contexto. Explicado e
+executado docker compose up -d php, sem alterar configuração. Imagem local
+inexistente: construída pelo Dockerfile existente com PHP 8.4.26, Composer
+2.10.3 e unzip fixado; nenhuma mudança nas versões. Compose criou rede, volumes
+do laboratório e container, mas falhou ao publicar 127.0.0.1:8001, porta ocupada.
+Container permaneceu Created, sem execução. Não foram iniciados backend/SQL Server.
+
+Consulta de socket/HTTP no sandbox limitada; repetida fora dele: porta 8001 em
+LISTEN e GET /vitrine.html respondeu HTTP/1.1 200 OK, Content-Type text/html;
+charset=UTF-8. Corpo comparado com src/vitrine.html por curl | cmp, com pipefail:
+código 0, igualdade exata. O processo que atende a porta não foi identificado;
+a resposta não foi atribuída ao container que não iniciou. Container Created
+da tentativa removido com docker compose rm -f php; remoção conferida. Serviço
+já ativo e volumes preservados. Página disponível na URL prevista, sem mudar porta.
+
+Essas verificações demonstram entrega HTTP do arquivo; nenhuma observação direta
+do navegador do aluno ou auditoria completa de acessibilidade/conformidade HTML.
+Não houve pedido API, SQL, login, alteração de conta, instalação Composer/npm,
+CSS ou JavaScript novo. Suíte Laravel não repetida por ser alteração estática
+isolada: última execução na 7.88, 121 testes/1.693 asserções aprovados.
+
+Git diff --check passou; cinco destinos locais usados nos documentos conferidos.
+Somente src/vitrine.html, a aula 8.1, roteiro e progresso alterados; índice vazio.
+
+Entendimento: confirmado pelo aluno com "entendi" em 06/11/2026, após a
+explicação de head/header, title/h1 e main. Nenhuma dúvida nova relatada.
+A confirmação não constitui um relato separado de execução no navegador.
+Publicação da 8.1: em preparação após confirmação. Git add, commit e push
+explicados antes da execução; resultado e SHA serão registrados após verificação.
+Próximo passo exato: publicar e conferir o checkpoint; depois iniciar
+8.2 — primeiro produto demonstrativo no catálogo e hierarquia de títulos.
+8.2 não iniciada; módulos 9 a 23 não iniciados.

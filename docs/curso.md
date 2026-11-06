@@ -30,9 +30,12 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 Os módulos 1 a 7 estão concluídos. O módulo 7 foi encerrado em 05/11/2026,
 após a revisão 7.89 e a confirmação do aluno: "podemos concluir, iniciaremos
-o modulo 8 amanhã em outro chat". Curso pausado; próxima etapa 8.1 — estrutura
-HTML da vitrine — em outro chat, com retomada prevista para 06/11/2026,
-quando solicitada. Módulo 8 ainda não iniciado.
+o modulo 8 amanhã em outro chat". Curso retomado a pedido do aluno em
+06/11/2026 na 8.1 — estrutura HTML da vitrine. Criado src/vitrine.html no
+laboratório existente, com metadados, header/main/footer e título principal.
+Implementação e explicação apresentadas; entendimento confirmado com "entendi"
+em 06/11/2026. Checkpoint em preparação para publicação.
+Detalhes na [aula 8.1](aulas/08-01-estrutura-html-vitrine.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -477,9 +480,9 @@ testes da Policy: sintaxe e focado cinco/40 passaram; suíte completa atual
 em 05/11/2026; publicação em b1b1921, remoto conferido. Na 7.89, revisão de
 autenticação/autorização aceita e módulo 7 concluído com "podemos concluir,
 iniciaremos o modulo 8 amanhã em outro chat" em 05/11/2026. Publicação final
-conferida em f70f54e. Curso pausado; próxima etapa 8.1 em outro chat.
-Módulo 8 não iniciado.
-Módulos 8 a 23 ainda não iniciados.
+conferida em f70f54e. A pausa foi encerrada por pedido de retomada em
+06/11/2026; 8.1 implementada e explicada, entendimento confirmado com "entendi".
+Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
 em 21/10/2026. Os registros abaixo descrevem o percurso do módulo 5.
@@ -1373,10 +1376,13 @@ Na 7.89, revisão do módulo 7 apresentada: fluxo de sessão, CSRF/CORS, perfis,
 Gate e Policy, matriz 401/403/200/logout 401 e limites das verificações.
 Revisão aceita e módulo 7 concluído em 05/11/2026 com "podemos concluir,
 iniciaremos o modulo 8 amanhã em outro chat". Publicação final conferida em f70f54e.
-Curso pausado; próxima etapa 8.1 — estrutura HTML da vitrine — em outro chat,
-com retomada prevista para 06/11/2026 quando o aluno solicitar.
-Módulo 8 ainda não iniciado.
-Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
+Retomada solicitada em 06/11/2026: 8.1 — estrutura HTML da vitrine — iniciada
+com src/vitrine.html estático no laboratório existente. Implementação e
+explicação apresentadas; entendimento confirmado com "entendi" em 06/11/2026.
+Checkpoint em preparação para publicação.
+Próximo passo após confirmação: 8.2 — primeiro produto demonstrativo e
+hierarquia de títulos. Exercício sugerido no DBeaver segue sem relato.
+Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
 | Módulo | Conteúdo | Entrega verificável |
