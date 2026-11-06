@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapas 8.2 a 8.8 confirmadas/publicadas; entendimento da 8.9 confirmado com "entendi".
+  Etapas 8.2 a 8.9 confirmadas/publicadas; entendimento da 8.10 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.9 — Alinhamento com uma classe compartilhada,
+- Última etapa concluída: 8.10 — Navegação interna para o catálogo,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.8,
-  dad2a2a74fcb890a5b59b1c14a0248e751478b3e; remoto conferido.
+  Último checkpoint de aula publicado antes desta confirmação: 8.9,
+  17bd4eefe4767f72bca279fad936a1c91940b4f6; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.9 — Alinhamento com uma classe compartilhada.
+- Etapa atual: 8.10 — Navegação interna para o catálogo.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.9 conforme autorização.
-  Depois, 8.10 — navegação interna para o catálogo.
+- Próximo passo exato: publicar e conferir checkpoint da 8.10 conforme autorização.
+  Depois, 8.11 — primeiro Flexbox no cabeçalho.
   Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é dad2a2a.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 17bd4ee.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -68,7 +68,11 @@
   src/vitrine.html; seletor main passa a .container em src/vitrine.css,
   com mesmas declarações. Aula docs/aulas/08-09-classe-container.md criada;
   continuidade anterior, roteiro/progresso atualizados. Entendimento confirmado
-  com "entendi" em 06/11/2026; checkpoint em preparação para publicação.
+  com "entendi" em 06/11/2026; publicação conferida em 17bd4ee.
+- Situação da 8.10: nav com link href #catalogo no header e id catalogo no main
+  em src/vitrine.html. CSS preservado. Aula docs/aulas/08-10-navegacao-interna.md
+  criada; continuidade anterior, roteiro/progresso atualizados. Entendimento
+  confirmado com "entendi" em 06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -17787,7 +17791,52 @@ Main acompanha origin/main no checkpoint publicado da 8.8.
 
 Entendimento da 8.9: confirmado com "entendi" em 06/11/2026, após explicação
 da classe container compartilhada por header/main/footer. Nenhuma dúvida nova
-ou relato separado do navegador. Publicação em preparação conforme autorização
+ou relato separado do navegador. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+17bd4eefe4767f72bca279fad936a1c91940b4f6; push dad2a2a → 17bd4ee concluiu
+com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.10 — navegação
+interna para o catálogo. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.10 — Navegação interna para o catálogo — 06/11/2026
+
+Iniciada após confirmação da 8.9 com "entendi" e publicação conferida em
+17bd4eefe4767f72bca279fad936a1c91940b4f6; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: criar um link no cabeçalho para navegar
+até o catálogo dentro da página. Somente src/vitrine.html alterado na aplicação:
+nav após o nome da loja, com a href="#catalogo" e texto Catálogo; id="catalogo"
+no main, mantendo class container. Criada a aula
+docs/aulas/08-10-navegacao-interna.md; continuidade da 8.9, roteiro e progresso
+atualizados com o checkpoint publicado. Folha CSS preservada.
+
+Explicação apresentada: nav identifica navegação; a com href cria o link;
+fragmento #catalogo aponta ao id catalogo. Id único no documento, enquanto
+class container é compartilhada. # no href e nome sem # no atributo id.
+Navegador navega ao destino; fragmento fica na URL e não integra o caminho HTTP
+enviado ao servidor. Navegação no documento carregado sem rota backend ou JS.
+Uso por teclado com Tab/Enter e possível pouca/nenhuma rolagem em página curta
+apresentados como expectativas. Referências primárias HTML Standard e RFC 3986
+consultadas para identificador e fragmentos; nav vinculado à referência oficial.
+
+Verificação HTTP fora do sandbox: GET /vitrine.html retornou HTTP/1.1 200 OK,
+Content-Type text/html; charset=UTF-8. Corpo comparado por cmp ao arquivo local:
+igualdade exata, código 0; comandos com set -euo pipefail. Arquivos temporários
+próprios removidos. Demonstra entrega da marcação; clique/Tab/Enter/rolagem e
+alteração de URL não observados no navegador do aluno. Nenhum servidor/container/
+pacote novo, API/SQL/login ou mudança no backend; suíte Laravel não repetida
+por ser alteração isolada em HTML estático.
+
+Git diff --check passou; CSS sem diferenças e destinos locais dos documentos
+conferidos. Inspeção de rg/diff confirmou um único id catalogo, link correspondente
+e nav com fechamento. Somente HTML e quatro documentos alterados; índice vazio.
+Main acompanha origin/main no checkpoint publicado da 8.9.
+
+Entendimento da 8.10: confirmado com "entendi" em 06/11/2026, após explicação
+de href #catalogo e id catalogo. Nenhuma dúvida nova ou relato separado de
+clique/teclado/URL no navegador. Publicação em preparação conforme autorização
 permanente; git add/commit/push explicados antes da execução. Próximo passo
-exato: publicar e conferir checkpoint; depois 8.10 — navegação interna para o catálogo.
-8.10 não iniciada; módulos 9 a 23 não iniciados.
+exato: publicar e conferir checkpoint; depois 8.11 — primeiro Flexbox no cabeçalho.
+8.11 e módulos 9 a 23 não iniciados.

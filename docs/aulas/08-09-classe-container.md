@@ -79,6 +79,7 @@ e relacioná-las com uma única regra .container no CSS.
 
 Implementação e explicação apresentadas; entendimento da 8.9 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do navegador.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-checkpoint: 8.10 — navegação interna para
-o catálogo. 8.10 não iniciada.
+Checkpoint publicado e conferido em
+17bd4eefe4767f72bca279fad936a1c91940b4f6; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.10](08-10-navegacao-interna.md): navegação interna para o catálogo.
