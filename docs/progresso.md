@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapa 8.2 confirmada/publicada; entendimento da 8.3 confirmado com "entendi".
+  Etapas 8.2/8.3 confirmadas/publicadas; entendimento da 8.4 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.3 — Segundo produto e títulos no mesmo nível,
+- Última etapa concluída: 8.4 — Primeira folha de estilos da vitrine,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.2,
-  1875f32d912779990cdd425d9fca5df7870699f5; remoto conferido.
+  Último checkpoint de aula publicado antes desta confirmação: 8.3,
+  8c148c78de6aca56c1d4cfba4f7421f04dc88df1; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.3 — Segundo produto e títulos no mesmo nível.
+- Etapa atual: 8.4 — Primeira folha de estilos da vitrine.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.3 conforme autorização.
-  Depois, 8.4 — primeira folha de estilos da
-  vitrine e vínculo entre CSS e HTML. Não iniciada.
+- Próximo passo exato: publicar e conferir checkpoint da 8.4 conforme autorização.
+  Depois, 8.5 — modelo de caixa e primeiros
+  espaçamentos com margin e padding. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 1875f32.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 8c148c7.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -38,6 +38,11 @@
 - Situação da 8.3: acrescentado segundo article, com h2 Caneca e parágrafo
   Preço: R$ 29,90 dentro de main, depois do article da Camiseta. Valores estáticos
   de demonstração. Aula docs/aulas/08-03-segundo-produto-html.md criada;
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  06/11/2026; checkpoint publicado e conferido em 8c148c7.
+- Situação da 8.4: criado src/vitrine.css com seletor body e font-family,
+  color/background-color; src/vitrine.html recebe link rel stylesheet/href
+  vitrine.css no head. Aula docs/aulas/08-04-primeira-folha-estilos.md criada;
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -17484,7 +17489,56 @@ vitrine e quatro documentos alterados; índice vazio. Main acompanha origin/main
 
 Entendimento da 8.3: confirmado com "entendi" em 06/11/2026, após explicação
 dos artigos irmãos e títulos h2 no mesmo nível. Nenhuma dúvida nova ou relato
-separado de execução no navegador. Publicação em preparação conforme autorização
+separado de execução no navegador. Publicação concluída conforme autorização
 permanente; git add/commit/push explicados antes da execução.
-Próximo passo exato: publicar e conferir checkpoint; depois 8.4 — primeira folha de
-estilos da vitrine e vínculo entre CSS e HTML. 8.4 e módulos 9 a 23 não iniciados.
+Commit 8c148c78de6aca56c1d4cfba4f7421f04dc88df1; push 1875f32 → 8c148c7
+concluiu com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.4 — primeira folha
+de estilos da vitrine e vínculo entre CSS e HTML. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.4 — Primeira folha de estilos da vitrine — 06/11/2026
+
+Iniciada após confirmação da 8.3 com "entendi" e publicação conferida em
+8c148c78de6aca56c1d4cfba4f7421f04dc88df1; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: introduzir apresentação por CSS externo
+e relacionar seletor/propriedades ao elemento HTML. Conjunto inseparável na
+aplicação: src/vitrine.css criado com regra body, font-family Arial/sans-serif,
+color #1f2937 e background-color #f3f4f6; src/vitrine.html recebe link
+rel="stylesheet" href="vitrine.css" no head. Produtos e demais elementos
+mantidos. Criada a aula docs/aulas/08-04-primeira-folha-estilos.md;
+continuidade da 8.3, roteiro e progresso atualizados com o checkpoint publicado.
+
+Explicação apresentada: HTML descreve conteúdo/estrutura; CSS descreve
+apresentação. Body é seletor de elemento, chaves delimitam declarações,
+propriedade: valor; define cada opção. Arial com alternativa genérica sem serifa,
+sem download de fonte; cores hexadecimais de seis dígitos em pares RGB.
+Fonte e cor do texto herdadas na árvore; background-color não é herdada por
+padrão. Fundos transparentes internos permitem ver o fundo claro definido.
+Link informa a relação stylesheet e href relativo: /vitrine.html encontra
+/vitrine.css. Elemento vazio, sem fechamento; navegador solicita os recursos
+separadamente. Montagem src → /app já existente, sem mudança de Docker.
+Referências primárias W3C consultadas para regras, folhas externas e herança.
+
+Verificação HTTP fora do sandbox: GET /vitrine.html e GET /vitrine.css
+retornaram HTTP/1.1 200 OK, Content-Type text/html e text/css respectivamente,
+ambos com charset UTF-8. Cada corpo comparado por cmp ao arquivo local:
+igualdade exata, código 0; comandos com set -euo pipefail. Arquivos temporários
+próprios com respostas estáticas removidos. Isso demonstra disponibilidade dos
+dois recursos; sem observação direta da aplicação dos estilos no navegador
+ou relato visual do aluno. Nenhuma nova dependência/servidor/container,
+API/SQL/login ou alteração de backend. Suíte Laravel não repetida por ser
+mudança isolada em HTML/CSS estáticos.
+
+Git diff --check passou; destinos locais dos documentos conferidos. Somente
+os dois arquivos da vitrine e quatro documentos alterados; índice vazio.
+Main acompanha origin/main no checkpoint publicado da 8.3.
+
+Entendimento da 8.4: confirmado com "entendi" em 06/11/2026, após explicação
+do vínculo entre HTML/CSS, seletor body, propriedades e herança. Nenhuma dúvida
+nova ou relato separado de execução no navegador. Publicação em preparação
+conforme autorização permanente; git add/commit/push explicados antes da execução.
+Próximo passo exato: publicar e conferir checkpoint; depois 8.5 —
+modelo de caixa e primeiros espaçamentos com margin e padding. Não iniciada.

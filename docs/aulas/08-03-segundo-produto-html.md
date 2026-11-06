@@ -70,6 +70,8 @@ Os produtos continuam estáticos; não houve consulta à API ou conversão de pr
 
 Implementação e explicação apresentadas; entendimento da 8.3 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do navegador.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-checkpoint: 8.4 — primeira folha de estilos
-da vitrine e vínculo entre CSS e HTML. 8.4 não iniciada.
+Checkpoint publicado e conferido em
+8c148c78de6aca56c1d4cfba4f7421f04dc88df1; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.4](08-04-primeira-folha-estilos.md): primeira folha de estilos e vínculo
+entre CSS e HTML.
