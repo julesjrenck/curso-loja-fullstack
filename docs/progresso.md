@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapa 8.2 implementada/explicada, entendimento confirmado com "entendi".
+  Etapa 8.2 confirmada/publicada; entendimento da 8.3 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.2 — Primeiro produto no HTML, entendimento confirmado
-  pelo aluno com "entendi" em 06/11/2026. Checkpoint em preparação para publicação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.1, SHA
-  cdb03955b421c4dbc56ccd8e7d416e9adda87d53; remoto conferido.
+- Última etapa concluída: 8.3 — Segundo produto e títulos no mesmo nível,
+  entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
+  Último checkpoint de aula publicado antes desta confirmação: 8.2,
+  1875f32d912779990cdd425d9fca5df7870699f5; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.2 — Primeiro produto no HTML e hierarquia de títulos.
+- Etapa atual: 8.3 — Segundo produto e títulos no mesmo nível.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir o checkpoint da 8.2 conforme autorização.
-  Depois, 8.3 — segundo produto
-  demonstrativo e títulos no mesmo nível. Não iniciada.
+- Próximo passo exato: publicar e conferir checkpoint da 8.3 conforme autorização.
+  Depois, 8.4 — primeira folha de estilos da
+  vitrine e vínculo entre CSS e HTML. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é cdb0395.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 1875f32.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -33,7 +33,13 @@
 - Situação da 8.2: acrescentado article com h2 Camiseta e parágrafo de preço
   R$ 49,90 em src/vitrine.html. Valores estáticos de demonstração. Aula
   docs/aulas/08-02-primeiro-produto-html.md criada; roteiro/progresso atualizados.
-  Entendimento confirmado com "entendi" em 06/11/2026; publicação em preparação.
+  Entendimento confirmado com "entendi" em 06/11/2026; publicação conferida
+  em 1875f32d912779990cdd425d9fca5df7870699f5.
+- Situação da 8.3: acrescentado segundo article, com h2 Caneca e parágrafo
+  Preço: R$ 29,90 dentro de main, depois do article da Camiseta. Valores estáticos
+  de demonstração. Aula docs/aulas/08-03-segundo-produto-html.md criada;
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -17431,12 +17437,54 @@ da 8.1, HEAD/origin/main/main remota iguais em cdb0395. Alterações da 8.2 loca
 
 Entendimento da 8.2: confirmado pelo aluno com "entendi" em 06/11/2026, após
 explicação de article e hierarquia h1/h2. Nenhuma dúvida nova ou relato separado
-de execução no navegador. Publicação da 8.2 em preparação conforme autorização
+de execução no navegador. Publicação da 8.2 concluída conforme autorização
 permanente. Comandos git add/commit/push explicados antes da execução.
-Próximo passo exato: publicar e conferir checkpoint; depois 8.3 — segundo produto
-demonstrativo com outro article e h2 no mesmo nível. 8.3 não iniciada.
+Commit 1875f32d912779990cdd425d9fca5df7870699f5; push cdb0395 → 1875f32
+concluiu com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.3 — segundo produto
+demonstrativo com outro article e h2 no mesmo nível.
 
 Autorização de publicação recebida separadamente da confirmação pedagógica em
 06/11/2026. Ela autoriza os próximos pushes de checkpoints concluídos, sem
 confirmar entendimento da 8.2. A confirmação pedagógica foi recebida depois,
 na mensagem "entendi" acima, permitindo iniciar a 8.3 após o checkpoint.
+
+
+## Etapa 8.3 — Segundo produto e títulos no mesmo nível — 06/11/2026
+
+Iniciada após confirmação da 8.2 com "entendi" e publicação conferida em
+1875f32d912779990cdd425d9fca5df7870699f5; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; não houve nova solicitação.
+
+Objetivo explicado antes da alteração: acrescentar outro produto demonstrativo
+para consolidar article e títulos no mesmo nível. Somente src/vitrine.html
+alterado na aplicação: cinco linhas adicionadas para outro article, h2 Caneca
+e parágrafo Preço: R$ 29,90. Posicionado depois do fechamento do artigo da
+Camiseta e antes de fechar main. Criada a aula
+docs/aulas/08-03-segundo-produto-html.md; continuidade da 8.2, roteiro e
+progresso atualizados, incluindo SHA publicado da etapa anterior.
+
+Explicação apresentada: os artigos compartilham o pai main e são irmãos;
+o segundo produto não está dentro do primeiro. Tags determinam o aninhamento,
+enquanto indentação facilita leitura. Um h1 representa o catálogo; os dois
+produtos usam h2 por ocuparem o mesmo nível, sem incrementar o número a cada
+produto ou escolher títulos por tamanho visual. Nome e preço são textos
+fictícios, sem API, banco, cálculo ou conversão de centavos.
+
+Verificação HTTP fora do sandbox: GET /vitrine.html retornou HTTP/1.1 200 OK,
+Content-Type text/html; charset=UTF-8. Corpo comparado por cmp ao arquivo local:
+igualdade exata, código 0; comandos com set -euo pipefail. Arquivos temporários
+próprios com resposta estática removidos. Nenhum servidor/container/pacote novo;
+backend e serviços de dados não usados. Suíte Laravel não repetida porque a
+mudança é HTML estático. Resposta HTTP não comprova observação do navegador do
+aluno; atividade proposta sem relato de execução.
+
+Git diff --check passou; destinos locais dos documentos conferidos. Somente
+vitrine e quatro documentos alterados; índice vazio. Main acompanha origin/main.
+
+Entendimento da 8.3: confirmado com "entendi" em 06/11/2026, após explicação
+dos artigos irmãos e títulos h2 no mesmo nível. Nenhuma dúvida nova ou relato
+separado de execução no navegador. Publicação em preparação conforme autorização
+permanente; git add/commit/push explicados antes da execução.
+Próximo passo exato: publicar e conferir checkpoint; depois 8.4 — primeira folha de
+estilos da vitrine e vínculo entre CSS e HTML. 8.4 e módulos 9 a 23 não iniciados.

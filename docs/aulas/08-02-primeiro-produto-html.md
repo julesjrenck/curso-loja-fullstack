@@ -75,7 +75,8 @@ do título que ele receberia, sem precisar alterar o arquivo sozinho.
 
 Implementação e explicação apresentadas; entendimento da 8.2 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado de execução no
-navegador. Checkpoint em preparação conforme autorização permanente de publicação.
-Depois do checkpoint: 8.3 — segundo
-produto demonstrativo, repetição de article e títulos no mesmo nível.
-Nenhum segundo produto foi implementado nesta etapa.
+navegador. Checkpoint publicado e conferido em
+1875f32d912779990cdd425d9fca5df7870699f5, com HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.3](08-03-segundo-produto-html.md): segundo produto demonstrativo,
+repetição de article e títulos no mesmo nível.
