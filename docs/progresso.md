@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapas 8.2 a 8.5 confirmadas/publicadas; entendimento da 8.6 confirmado com "entendi".
+  Etapas 8.2 a 8.6 confirmadas/publicadas; entendimento da 8.7 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.6 — Classes CSS para os produtos,
+- Última etapa concluída: 8.7 — Largura máxima e centralização,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.5,
-  25e8a781565bfd1cdcee93fad9fb2589216cfb0b; remoto conferido.
+  Último checkpoint de aula publicado antes desta confirmação: 8.6,
+  ce3730b4e44627a9e0d78a2363c99bbbc6cc3841; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.6 — Classes CSS para os produtos.
+- Etapa atual: 8.7 — Largura máxima e centralização do conteúdo principal.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.6 conforme autorização.
-  Depois, 8.7 — largura máxima e centralização
-  do conteúdo principal. Não iniciada.
+- Próximo passo exato: publicar e conferir checkpoint da 8.7 conforme autorização.
+  Depois, 8.8 — box-sizing e cálculo da largura
+  total. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 25e8a78.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é ce3730b.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -53,6 +53,11 @@
 - Situação da 8.6: dois article recebem class produto em src/vitrine.html;
   seletor article trocado por .produto em src/vitrine.css, com mesmas declarações.
   Aula docs/aulas/08-06-classes-css-produtos.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  06/11/2026; publicação conferida em ce3730b.
+- Situação da 8.7: regra main acrescentada em src/vitrine.css com max-width
+  960px, margin 0 auto e padding 16px. HTML preservado. Aula
+  docs/aulas/08-07-largura-centralizacao.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -17638,8 +17643,51 @@ Main acompanha origin/main no checkpoint publicado da 8.5.
 
 Entendimento da 8.6: confirmado com "entendi" em 06/11/2026, após explicação
 da relação entre class produto no HTML e seletor .produto no CSS. Nenhuma dúvida
-nova ou relato separado de execução no navegador. Publicação em preparação
+nova ou relato separado de execução no navegador. Publicação concluída
 conforme autorização permanente; git add/commit/push explicados antes da execução.
-Próximo passo exato: publicar e conferir checkpoint; depois 8.7 — largura máxima
-e centralização do conteúdo principal.
-8.7 não iniciada; módulos 9 a 23 não iniciados.
+Commit ce3730b4e44627a9e0d78a2363c99bbbc6cc3841; push 25e8a78 → ce3730b
+concluiu com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.7 — largura máxima
+e centralização do conteúdo principal. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.7 — Largura máxima e centralização — 06/11/2026
+
+Iniciada após confirmação da 8.6 com "entendi" e publicação conferida em
+ce3730b4e44627a9e0d78a2363c99bbbc6cc3841; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: limitar a largura do catálogo e
+centralizar sua caixa em janelas largas. Somente src/vitrine.css alterado na
+aplicação: regra main com max-width 960px, margin 0 auto e padding 16px,
+entre body e .produto. HTML e regras anteriores preservados. Criada a aula
+docs/aulas/08-07-largura-centralizacao.md; continuidade da 8.6, roteiro e
+progresso atualizados com o checkpoint publicado.
+
+Explicação apresentada: max-width como teto da área de conteúdo; largura
+continua automática e pode diminuir conforme o espaço disponível. Margin com
+dois valores define cima/baixo e direita/esquerda; auto nas laterais divide a
+sobra horizontal e centraliza a caixa, mantendo o alinhamento do texto dentro
+dela. Padding de 16px nos quatro lados. No modelo atual, ao atingir o limite,
+960px de conteúdo + 16px de padding de cada lado = 992px sem contar margens;
+main sem borda. Exemplo calculado a partir das declarações, não medido no
+navegador. Referência primária W3C de largura máxima e margens consultada.
+
+Verificação HTTP fora do sandbox: GET /vitrine.css retornou HTTP/1.1 200 OK,
+Content-Type text/css; charset=UTF-8. Corpo comparado por cmp ao arquivo local:
+igualdade exata, código 0; comandos com set -euo pipefail. Arquivos temporários
+próprios removidos. Isso demonstra a entrega do CSS atualizado; sem medição de
+largura ou observação de centralização no navegador. Nenhum servidor/container/
+pacote novo, API/SQL/login ou mudança no backend; suíte Laravel não repetida
+por ser alteração isolada em CSS estático.
+
+Git diff --check passou; HTML sem diferenças e destinos locais dos documentos
+conferidos. Somente vitrine.css e quatro documentos alterados; índice vazio.
+Main acompanha origin/main no checkpoint publicado da 8.6.
+
+Entendimento da 8.7: confirmado com "entendi" em 06/11/2026, após explicação
+de max-width, margin 0 auto e largura com padding. Nenhuma dúvida nova ou relato
+separado do navegador. Publicação em preparação conforme autorização permanente;
+git add/commit/push explicados antes da execução. Próximo passo exato: publicar
+e conferir checkpoint; depois 8.8 — box-sizing e cálculo da largura total.
+Não iniciada; módulos 9 a 23 não iniciados.

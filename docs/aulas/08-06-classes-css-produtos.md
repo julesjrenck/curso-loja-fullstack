@@ -73,6 +73,8 @@ O aluno ainda não relatou resultado visual desta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.6 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do navegador.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-checkpoint: 8.7 — largura máxima e
-centralização do conteúdo principal. 8.7 não iniciada.
+Checkpoint publicado e conferido em
+ce3730b4e44627a9e0d78a2363c99bbbc6cc3841; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.7](08-07-largura-centralizacao.md): largura máxima e centralização do
+conteúdo principal.
