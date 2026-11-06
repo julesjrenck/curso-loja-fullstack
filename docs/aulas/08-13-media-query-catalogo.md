@@ -72,6 +72,7 @@ identificando qual propriedade muda e quais continuam sendo usadas.
 
 Implementação e explicação apresentadas; entendimento da 8.13 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do navegador.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-checkpoint: 8.14 — cabeçalho responsivo
-com direção em coluna. 8.14 não iniciada.
+Checkpoint publicado e conferido em
+c2f8025424dbf5d4e2dc47c73d186c0c332dc19e; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.14](08-14-cabecalho-responsivo.md): cabeçalho responsivo com direção em coluna.

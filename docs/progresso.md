@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapas 8.2 a 8.12 confirmadas/publicadas; entendimento da 8.13 confirmado com "entendi".
+  Etapas 8.2 a 8.13 confirmadas/publicadas; entendimento da 8.14 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.13 — Responsividade do catálogo com media query,
+- Última etapa concluída: 8.14 — Cabeçalho responsivo com direção em coluna,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.12,
-  95da0d58200099689c4ed438435c5e57d8862e24; remoto conferido.
+  Último checkpoint de aula publicado antes desta confirmação: 8.13,
+  c2f8025424dbf5d4e2dc47c73d186c0c332dc19e; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.13 — Responsividade do catálogo com media query.
+- Etapa atual: 8.14 — Cabeçalho responsivo com direção em coluna.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.13 conforme autorização.
-  Depois, 8.14 — cabeçalho responsivo com direção
-  em coluna. Não iniciada.
+- Próximo passo exato: publicar e conferir checkpoint da 8.14 conforme autorização.
+  Depois, 8.15 — verificação acompanhada da vitrine
+  no navegador. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 95da0d5.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é c2f8025.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -86,6 +86,11 @@
 - Situação da 8.13: media query max-width 600px acrescentada no final de
   src/vitrine.css; .produtos passa a grid-template-columns 1fr nessa condição.
   Aula docs/aulas/08-13-media-query-catalogo.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  06/11/2026; publicação conferida em c2f8025.
+- Situação da 8.14: .cabecalho dentro da media query existente recebe
+  flex-direction column e align-items flex-start em src/vitrine.css. Aula
+  docs/aulas/08-14-cabecalho-responsivo.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -17989,7 +17994,52 @@ no checkpoint publicado da 8.12.
 
 Entendimento da 8.13: confirmado com "entendi" em 06/11/2026, após explicação
 da condição até 600px e da alteração para uma coluna. Nenhuma dúvida nova ou
-relato separado do navegador. Publicação em preparação conforme autorização
-permanente; git add/commit/push explicados antes da execução. Próximo passo
-exato: publicar e conferir checkpoint; depois 8.14 — cabeçalho responsivo com
-direção em coluna. Não iniciada; módulos 9 a 23 não iniciados.
+relato separado do navegador. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+c2f8025424dbf5d4e2dc47c73d186c0c332dc19e; push 95da0d5 → c2f8025 concluiu
+com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.14 — cabeçalho
+responsivo com direção em coluna. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.14 — Cabeçalho responsivo com direção em coluna — 06/11/2026
+
+Iniciada após confirmação da 8.13 com "entendi" e publicação conferida em
+c2f8025424dbf5d4e2dc47c73d186c0c332dc19e; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: empilhar nome da loja/nav em janelas
+menores e retomar a orientação dos eixos. Somente src/vitrine.css alterado na
+aplicação: regra .cabecalho dentro de @media (max-width: 600px), com
+flex-direction column e align-items flex-start, antes da regra .produtos.
+Criada a aula docs/aulas/08-14-cabecalho-responsivo.md; continuidade da 8.13,
+roteiro e progresso atualizados com o checkpoint publicado. HTML preservado.
+
+Explicação apresentada: column organiza p/nav em coluna; nesta página o eixo
+principal passa a vertical e o transversal a horizontal. Align-items atua no
+transversal, portanto flex-start alinha à esquerda no contexto atual.
+Justify-content permanece no principal, agora vertical; gap e margens próprias
+dos filhos contribuem para o espaçamento visível. Display flex/gap/justify-content
+continuam na base. Acima de 600px, a condição deixa de participar: direção row
+padrão e align-items center da base. Mesma query mantém catálogo em uma coluna
+nas janelas menores. Referência primária W3C de direção/alinhamento do Flexbox
+consultada e vinculada à aula.
+
+Verificação HTTP fora do sandbox: GET /vitrine.css retornou HTTP/1.1 200 OK,
+Content-Type text/css; charset=UTF-8. Corpo comparado por cmp ao arquivo local:
+igualdade exata, código 0; comandos com set -euo pipefail. Arquivos temporários
+próprios removidos. Isso demonstra entrega da folha, sem observação da orientação
+ou alinhamento em navegador. Nenhum servidor/container/pacote novo, API/SQL/login
+ou mudança no backend; suíte Laravel não repetida por ser CSS estático isolado.
+
+Git diff --check passou; HTML sem diferenças e destinos locais dos documentos
+conferidos. Diff confirmou somente a regra .cabecalho dentro da media query.
+CSS e quatro documentos alterados; índice vazio. Main acompanha origin/main
+no checkpoint publicado da 8.13.
+
+Entendimento da 8.14: confirmado com "entendi" em 06/11/2026, após explicação
+dos eixos em column e de align-items flex-start. Nenhuma dúvida nova ou relato
+separado do navegador. Publicação em preparação conforme autorização permanente;
+git add/commit/push explicados antes da execução. Próximo passo exato: publicar
+e conferir checkpoint; depois 8.15 — verificação acompanhada da vitrine no navegador.
+Não iniciada; módulos 9 a 23 não iniciados.
