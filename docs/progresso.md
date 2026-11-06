@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapas 8.2 a 8.11 confirmadas/publicadas; entendimento da 8.12 confirmado com "entendi".
+  Etapas 8.2 a 8.12 confirmadas/publicadas; entendimento da 8.13 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.12 — Primeiro CSS Grid nos produtos,
+- Última etapa concluída: 8.13 — Responsividade do catálogo com media query,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.11,
-  2c3ee6369998abe54ebd45a4dce8bb0c4114564a; remoto conferido.
+  Último checkpoint de aula publicado antes desta confirmação: 8.12,
+  95da0d58200099689c4ed438435c5e57d8862e24; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.12 — Primeiro CSS Grid nos produtos.
+- Etapa atual: 8.13 — Responsividade do catálogo com media query.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.12 conforme autorização.
-  Depois, 8.13 — responsividade do catálogo com
-  media query. Não iniciada.
+- Próximo passo exato: publicar e conferir checkpoint da 8.13 conforme autorização.
+  Depois, 8.14 — cabeçalho responsivo com direção
+  em coluna. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 2c3ee63.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 95da0d5.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -82,7 +82,12 @@
   .produtos usa display grid, grid-template-columns 1fr 1fr e gap 16px no CSS.
   Margin-bottom removido de .produto. Aula docs/aulas/08-12-grid-produtos.md
   criada; continuidade anterior, roteiro/progresso atualizados. Entendimento
-  confirmado com "entendi" em 06/11/2026; checkpoint em preparação para publicação.
+  confirmado com "entendi" em 06/11/2026; publicação conferida em 95da0d5.
+- Situação da 8.13: media query max-width 600px acrescentada no final de
+  src/vitrine.css; .produtos passa a grid-template-columns 1fr nessa condição.
+  Aula docs/aulas/08-13-media-query-catalogo.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -17940,7 +17945,51 @@ regra Grid e retirada da margem individual. HTML/CSS e quatro documentos alterad
 
 Entendimento da 8.12: confirmado com "entendi" em 06/11/2026, após explicação
 de div pai, Grid, duas colunas 1fr e gap. Nenhuma dúvida nova ou relato separado
-do navegador. Publicação em preparação conforme autorização permanente;
-git add/commit/push explicados antes da execução. Próximo passo exato: publicar
-e conferir checkpoint; depois 8.13 — responsividade do catálogo com media query.
-Não iniciada; módulos 9 a 23 não iniciados.
+do navegador. Publicação concluída conforme autorização permanente;
+git add/commit/push explicados antes da execução. Commit
+95da0d58200099689c4ed438435c5e57d8862e24; push 2c3ee63 → 95da0d5 concluiu
+com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.13 — responsividade
+do catálogo com media query. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.13 — Responsividade do catálogo com media query — 06/11/2026
+
+Iniciada após confirmação da 8.12 com "entendi" e publicação conferida em
+95da0d58200099689c4ed438435c5e57d8862e24; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: alternar a grade conforme a largura do
+viewport. Somente src/vitrine.css alterado na aplicação: bloco @media
+(max-width: 600px) ao final, com .produtos/grid-template-columns 1fr.
+Criada a aula docs/aulas/08-13-media-query-catalogo.md; continuidade da 8.12,
+roteiro e progresso atualizados com o checkpoint publicado. HTML preservado.
+
+Explicação apresentada: condição consulta largura da área da página no navegador,
+com limite didático de 600px inclusive. Diferença entre consultar max-width no
+@media e declarar max-width na caixa .container. Base com duas colunas permanece;
+mesmo seletor posterior muda apenas grid-template-columns quando a condição
+combina. Display/gap continuam definidos pela base. Acima de 600px duas colunas;
+até 600px uma; exemplos 599/600/601 apresentados como avaliação da condição,
+sem execução/medição em navegador. Consulta reavaliada ao mudar largura;
+meta viewport do HTML já existente. Referência primária W3C de Media Queries
+consultada para viewport e prefixos min/max.
+
+Verificação HTTP fora do sandbox: GET /vitrine.css retornou HTTP/1.1 200 OK,
+Content-Type text/css; charset=UTF-8. Corpo comparado por cmp ao arquivo local:
+igualdade exata, código 0; comandos com set -euo pipefail. Arquivos temporários
+próprios removidos. Isso demonstra entrega do CSS; mudança de colunas e limites
+não observados no navegador. Nenhum servidor/container/pacote novo, API/SQL/login
+ou mudança no backend; suíte Laravel não repetida por ser CSS estático isolado.
+
+Git diff --check passou; HTML sem diferenças e destinos locais dos documentos
+conferidos. Diff confirmou somente o bloco condicional novo na aplicação.
+CSS e quatro documentos alterados; índice vazio. Main acompanha origin/main
+no checkpoint publicado da 8.12.
+
+Entendimento da 8.13: confirmado com "entendi" em 06/11/2026, após explicação
+da condição até 600px e da alteração para uma coluna. Nenhuma dúvida nova ou
+relato separado do navegador. Publicação em preparação conforme autorização
+permanente; git add/commit/push explicados antes da execução. Próximo passo
+exato: publicar e conferir checkpoint; depois 8.14 — cabeçalho responsivo com
+direção em coluna. Não iniciada; módulos 9 a 23 não iniciados.

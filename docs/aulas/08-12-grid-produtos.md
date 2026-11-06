@@ -93,6 +93,7 @@ Atividade acompanhada: localizar a div pai no HTML e distinguir a regra plural
 
 Implementação e explicação apresentadas; entendimento da 8.12 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do navegador.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-checkpoint: 8.13 — responsividade do catálogo
-com media query. 8.13 não iniciada.
+Checkpoint publicado e conferido em
+95da0d58200099689c4ed438435c5e57d8862e24; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.13](08-13-media-query-catalogo.md): responsividade do catálogo com media query.

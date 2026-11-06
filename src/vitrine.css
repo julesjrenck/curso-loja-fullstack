@@ -29,3 +29,9 @@ body {
     border: 1px solid #d1d5db;
     background-color: #ffffff;
 }
+
+@media (max-width: 600px) {
+    .produtos {
+        grid-template-columns: 1fr;
+    }
+}

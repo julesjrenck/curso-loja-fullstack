@@ -62,7 +62,9 @@ publicação em f0dda5d. Na 8.11, classe cabecalho com display flex, distribuiç
 alinhamento e gap implementada e explicada; entendimento confirmado com
 "entendi" em 06/11/2026; publicação em 2c3ee63. Na 8.12, grupo produtos com
 CSS Grid de duas colunas e gap implementado e explicado; entendimento confirmado
-com "entendi" em 06/11/2026; checkpoint em preparação.
+com "entendi" em 06/11/2026; publicação em 95da0d5. Na 8.13, media query até
+600px para uma coluna implementada e explicada; entendimento confirmado com
+"entendi" em 06/11/2026; checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -74,7 +76,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.9](aulas/08-09-classe-container.md),
 [8.10](aulas/08-10-navegacao-interna.md),
 [8.11](aulas/08-11-flexbox-cabecalho.md),
-[8.12](aulas/08-12-grid-produtos.md) e no progresso.
+[8.12](aulas/08-12-grid-produtos.md),
+[8.13](aulas/08-13-media-query-catalogo.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -544,6 +547,8 @@ link interno e id catalogo; entendimento confirmado com "entendi" em
 no cabeçalho; entendimento confirmado com "entendi" em 06/11/2026;
 publicação em 2c3ee63. 8.12 implementada e explicada: grupo produtos com Grid,
 duas colunas 1fr e gap; entendimento confirmado com "entendi" em 06/11/2026;
+publicação em 95da0d5. 8.13 implementada e explicada: media query até 600px,
+uma coluna no catálogo; entendimento confirmado com "entendi" em 06/11/2026;
 checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
@@ -1470,8 +1475,10 @@ Flexbox para nome da loja/nav implementada e explicada; entendimento confirmado
 com "entendi" em 06/11/2026; publicação em 2c3ee63. Na 8.12, div produtos e
 regra Grid com duas colunas/gap implementadas e explicadas; margem inferior
 individual removida. Entendimento confirmado com "entendi" em 06/11/2026;
-checkpoint em preparação. Próximo passo após checkpoint:
-8.13 — responsividade do catálogo com media query.
+publicação em 95da0d5. Na 8.13, media query até 600px para catálogo em uma coluna
+implementada e explicada; entendimento confirmado com "entendi" em 06/11/2026.
+Checkpoint em preparação. Próximo passo após checkpoint:
+8.14 — cabeçalho responsivo com direção em coluna.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
