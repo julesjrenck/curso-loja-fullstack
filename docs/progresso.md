@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapas 8.2 a 8.7 confirmadas/publicadas; entendimento da 8.8 confirmado com "entendi".
+  Etapas 8.2 a 8.8 confirmadas/publicadas; entendimento da 8.9 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.8 — Box-sizing e cálculo da largura total,
+- Última etapa concluída: 8.9 — Alinhamento com uma classe compartilhada,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.7,
-  f31aadc0543bae48a3d827c442016c980fa7f5a3; remoto conferido.
+  Último checkpoint de aula publicado antes desta confirmação: 8.8,
+  dad2a2a74fcb890a5b59b1c14a0248e751478b3e; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.8 — Box-sizing e cálculo da largura total.
+- Etapa atual: 8.9 — Alinhamento com uma classe compartilhada.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.8 conforme autorização.
-  Depois, 8.9 — alinhar cabeçalho, catálogo e
-  rodapé com uma classe compartilhada. Não iniciada.
+- Próximo passo exato: publicar e conferir checkpoint da 8.9 conforme autorização.
+  Depois, 8.10 — navegação interna para o catálogo.
+  Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é f31aadc.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é dad2a2a.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -63,7 +63,12 @@
 - Situação da 8.8: box-sizing border-box acrescentado à regra main em
   src/vitrine.css. Aula docs/aulas/08-08-box-sizing.md criada; continuidade
   anterior, roteiro/progresso atualizados. Entendimento confirmado com "entendi"
-  em 06/11/2026; checkpoint em preparação para publicação.
+  em 06/11/2026; publicação conferida em dad2a2a.
+- Situação da 8.9: classe container nos elementos header/main/footer em
+  src/vitrine.html; seletor main passa a .container em src/vitrine.css,
+  com mesmas declarações. Aula docs/aulas/08-09-classe-container.md criada;
+  continuidade anterior, roteiro/progresso atualizados. Entendimento confirmado
+  com "entendi" em 06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -17734,8 +17739,55 @@ Main acompanha origin/main no checkpoint publicado da 8.7.
 
 Entendimento da 8.8: confirmado com "entendi" em 06/11/2026, após explicação
 de border-box e da conta 928px de conteúdo + 32px de padding = 960px.
-Nenhuma dúvida nova ou relato separado do navegador. Publicação em preparação
+Nenhuma dúvida nova ou relato separado do navegador. Publicação concluída
 conforme autorização permanente; git add/commit/push explicados antes da execução.
-Próximo passo exato: publicar e conferir checkpoint; depois 8.9 — alinhar
+Commit dad2a2a74fcb890a5b59b1c14a0248e751478b3e; push f31aadc → dad2a2a
+concluiu com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.9 — alinhar
 cabeçalho, catálogo e rodapé com uma classe compartilhada.
-8.9 não iniciada; módulos 9 a 23 não iniciados.
+Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.9 — Alinhamento com classe compartilhada — 06/11/2026
+
+Iniciada após confirmação da 8.8 com "entendi" e publicação conferida em
+dad2a2a74fcb890a5b59b1c14a0248e751478b3e; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: compartilhar a regra de largura e
+espaçamento para alinhar as regiões da página. Conjunto inseparável na aplicação:
+src/vitrine.html recebe class="container" em header/main/footer; seletor main
+em src/vitrine.css passa a .container. Mesmas declarações de box-sizing,
+max-width, margin e padding. Criada a aula docs/aulas/08-09-classe-container.md;
+continuidade da 8.8, roteiro e progresso atualizados com o checkpoint publicado.
+
+Explicação apresentada: classe reutilizável por elementos com tags distintas;
+header/main/footer continuam irmãos em body com seus significados. Cada caixa
+recebe a mesma configuração e seu próprio padding/margens, permitindo alinhamento
+lateral esperado do nome da loja, título do catálogo e texto do rodapé. No limite,
+960px com padding incluído e 928px de conteúdo em cada região, conforme regra.
+Classe container define essa área; classe produto continua na caixa de cada
+item. Nomes definidos pelo projeto e regras escritas no CSS local. Referência
+primária de seletores de classe W3C já consultada e vinculada à aula.
+
+Verificação HTTP fora do sandbox: GET /vitrine.html e GET /vitrine.css
+retornaram HTTP/1.1 200 OK, Content-Type text/html e text/css respectivamente,
+ambos com charset UTF-8. Corpos comparados por cmp aos arquivos locais:
+igualdade exata, código 0; comandos com set -euo pipefail. Arquivos temporários
+próprios removidos. Inspeção do diff/rg confirmou três classes container e um
+seletor .container, declarações preservadas, duas classes produto e sua regra.
+Isso demonstra entrega dos arquivos e coerência da alteração; sem observação
+de alinhamento ou medição de caixas no navegador. Nenhum servidor/container/
+pacote novo, API/SQL/login ou mudança no backend; suíte Laravel não repetida
+por ser alteração isolada em HTML/CSS estáticos.
+
+Git diff --check passou; destinos locais dos documentos conferidos. Somente
+HTML/CSS da vitrine e quatro documentos alterados; índice vazio.
+Main acompanha origin/main no checkpoint publicado da 8.8.
+
+Entendimento da 8.9: confirmado com "entendi" em 06/11/2026, após explicação
+da classe container compartilhada por header/main/footer. Nenhuma dúvida nova
+ou relato separado do navegador. Publicação em preparação conforme autorização
+permanente; git add/commit/push explicados antes da execução. Próximo passo
+exato: publicar e conferir checkpoint; depois 8.10 — navegação interna para o catálogo.
+8.10 não iniciada; módulos 9 a 23 não iniciados.

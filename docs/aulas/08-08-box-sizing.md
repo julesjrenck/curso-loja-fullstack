@@ -71,6 +71,8 @@ em uma janela larga e relacionar o padding que continua visível com a conta
 
 Implementação e explicação apresentadas; entendimento da 8.8 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do navegador.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-checkpoint: 8.9 — alinhar cabeçalho,
-catálogo e rodapé com uma classe compartilhada. 8.9 não iniciada.
+Checkpoint publicado e conferido em
+dad2a2a74fcb890a5b59b1c14a0248e751478b3e; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.9](08-09-classe-container.md): alinhar cabeçalho, catálogo e rodapé com
+uma classe compartilhada.
