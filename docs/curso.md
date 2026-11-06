@@ -58,7 +58,9 @@ por header/main/footer e seletor .container implementados e explicados;
 entendimento confirmado com "entendi" em 06/11/2026; publicação em 17bd4ee.
 Na 8.10, nav/link #catalogo no cabeçalho e id catalogo no main implementados
 e explicados; entendimento confirmado com "entendi" em 06/11/2026;
-checkpoint em preparação.
+publicação em f0dda5d. Na 8.11, classe cabecalho com display flex, distribuição,
+alinhamento e gap implementada e explicada; entendimento confirmado com
+"entendi" em 06/11/2026; checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -68,7 +70,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.7](aulas/08-07-largura-centralizacao.md),
 [8.8](aulas/08-08-box-sizing.md),
 [8.9](aulas/08-09-classe-container.md),
-[8.10](aulas/08-10-navegacao-interna.md) e no progresso.
+[8.10](aulas/08-10-navegacao-interna.md),
+[8.11](aulas/08-11-flexbox-cabecalho.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -534,7 +537,9 @@ publicação em dad2a2a. 8.9 implementada e explicada: classe container nas trê
 regiões e seletor .container; entendimento confirmado com "entendi" em
 06/11/2026; publicação em 17bd4ee. 8.10 implementada e explicada: nav,
 link interno e id catalogo; entendimento confirmado com "entendi" em
-06/11/2026; checkpoint em preparação.
+06/11/2026; publicação em f0dda5d. 8.11 implementada e explicada: Flexbox
+no cabeçalho; entendimento confirmado com "entendi" em 06/11/2026;
+checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1455,8 +1460,10 @@ catálogo e rodapé e seletor .container no CSS implementados e explicados;
 entendimento confirmado com "entendi" em 06/11/2026; publicação em 17bd4ee.
 Na 8.10, navegação interna com nav/link #catalogo e id no main implementada
 e explicada; entendimento confirmado com "entendi" em 06/11/2026.
-Checkpoint em preparação. Próximo passo após checkpoint:
-8.11 — primeiro Flexbox no cabeçalho.
+Publicação da 8.10 conferida em f0dda5d. Na 8.11, classe cabecalho com regra
+Flexbox para nome da loja/nav implementada e explicada; entendimento confirmado
+com "entendi" em 06/11/2026; checkpoint em preparação.
+Próximo passo após checkpoint: 8.12 — primeiro CSS Grid nos produtos.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

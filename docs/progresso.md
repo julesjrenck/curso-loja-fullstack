@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapas 8.2 a 8.9 confirmadas/publicadas; entendimento da 8.10 confirmado com "entendi".
+  Etapas 8.2 a 8.10 confirmadas/publicadas; entendimento da 8.11 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.10 — Navegação interna para o catálogo,
+- Última etapa concluída: 8.11 — Primeiro Flexbox no cabeçalho,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.9,
-  17bd4eefe4767f72bca279fad936a1c91940b4f6; remoto conferido.
+  Último checkpoint de aula publicado antes desta confirmação: 8.10,
+  f0dda5dd299b336e420e483cb7d62c2b520ba1e5; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.10 — Navegação interna para o catálogo.
+- Etapa atual: 8.11 — Primeiro Flexbox no cabeçalho.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.10 conforme autorização.
-  Depois, 8.11 — primeiro Flexbox no cabeçalho.
+- Próximo passo exato: publicar e conferir checkpoint da 8.11 conforme autorização.
+  Depois, 8.12 — primeiro CSS Grid nos produtos.
   Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 17bd4ee.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é f0dda5d.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -71,6 +71,11 @@
   com "entendi" em 06/11/2026; publicação conferida em 17bd4ee.
 - Situação da 8.10: nav com link href #catalogo no header e id catalogo no main
   em src/vitrine.html. CSS preservado. Aula docs/aulas/08-10-navegacao-interna.md
+  criada; continuidade anterior, roteiro/progresso atualizados. Entendimento
+  confirmado com "entendi" em 06/11/2026; publicação conferida em f0dda5d.
+- Situação da 8.11: header recebe classes container/cabecalho no HTML; CSS
+  ganha regra .cabecalho com display flex, justify-content space-between,
+  align-items center e gap 16px. Aula docs/aulas/08-11-flexbox-cabecalho.md
   criada; continuidade anterior, roteiro/progresso atualizados. Entendimento
   confirmado com "entendi" em 06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -17836,7 +17841,53 @@ Main acompanha origin/main no checkpoint publicado da 8.9.
 
 Entendimento da 8.10: confirmado com "entendi" em 06/11/2026, após explicação
 de href #catalogo e id catalogo. Nenhuma dúvida nova ou relato separado de
-clique/teclado/URL no navegador. Publicação em preparação conforme autorização
-permanente; git add/commit/push explicados antes da execução. Próximo passo
-exato: publicar e conferir checkpoint; depois 8.11 — primeiro Flexbox no cabeçalho.
-8.11 e módulos 9 a 23 não iniciados.
+clique/teclado/URL no navegador. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+f0dda5dd299b336e420e483cb7d62c2b520ba1e5; push 17bd4ee → f0dda5d concluiu
+com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.11 — primeiro
+Flexbox no cabeçalho. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.11 — Primeiro Flexbox no cabeçalho — 06/11/2026
+
+Iniciada após confirmação da 8.10 com "entendi" e publicação conferida em
+f0dda5dd299b336e420e483cb7d62c2b520ba1e5; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: organizar o nome da loja e nav na mesma
+linha. Conjunto inseparável na aplicação: header em src/vitrine.html recebe
+class="container cabecalho"; src/vitrine.css ganha .cabecalho com display flex,
+justify-content space-between, align-items center e gap 16px. Criada a aula
+docs/aulas/08-11-flexbox-cabecalho.md; continuidade da 8.10, roteiro e progresso
+atualizados com o checkpoint publicado.
+
+Explicação apresentada: espaço separa duas classes no mesmo elemento;
+container continua cuidando de largura/padding e cabecalho do layout dos filhos.
+Display flex torna p e nav, filhos diretos, itens flexíveis; link permanece
+filho de nav. Direção padrão row, eixo principal horizontal e transversal
+vertical neste documento. Justify-content distribui sobra no principal;
+align-items centraliza no transversal. Gap reserva espaçamento e a distância
+pode aumentar por space-between. Margens padrão do parágrafo preservadas.
+Referências primárias W3C de Flexbox e Box Alignment consultadas.
+
+Verificação HTTP fora do sandbox: GET /vitrine.html e GET /vitrine.css
+retornaram HTTP/1.1 200 OK, Content-Type text/html e text/css respectivamente,
+ambos com charset UTF-8. Corpos comparados por cmp aos arquivos locais:
+igualdade exata, código 0; comandos com set -euo pipefail. Arquivos temporários
+próprios removidos. Isso comprova entrega dos arquivos, sem observação de
+alinhamento ou medição de posições em navegador. Nenhum servidor/container/
+pacote novo, API/SQL/login ou mudança no backend; suíte Laravel não repetida
+por ser alteração isolada em HTML/CSS estáticos.
+
+Git diff --check passou; destinos locais dos documentos conferidos. Diff
+confirmou somente a classe adicional no header e a regra .cabecalho na aplicação.
+HTML/CSS e quatro documentos alterados; índice vazio. Main acompanha origin/main
+no checkpoint publicado da 8.10.
+
+Entendimento da 8.11: confirmado com "entendi" em 06/11/2026, após explicação
+de Flexbox, filhos diretos, eixos, justify-content/align-items e gap. Nenhuma
+dúvida nova ou relato separado do navegador. Publicação em preparação conforme
+autorização permanente; git add/commit/push explicados antes da execução.
+Próximo passo exato: publicar e conferir checkpoint; depois 8.12 — primeiro CSS
+Grid nos produtos. Não iniciada; módulos 9 a 23 não iniciados.

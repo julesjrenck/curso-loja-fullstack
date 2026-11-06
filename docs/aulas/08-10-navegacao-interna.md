@@ -72,6 +72,7 @@ ações foi atribuído ao aluno antes de seu relato.
 
 Implementação e explicação apresentadas; entendimento da 8.10 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do navegador.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-checkpoint: 8.11 — primeiro Flexbox no
-cabeçalho. 8.11 não iniciada.
+Checkpoint publicado e conferido em
+f0dda5dd299b336e420e483cb7d62c2b520ba1e5; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.11](08-11-flexbox-cabecalho.md): primeiro Flexbox no cabeçalho.
