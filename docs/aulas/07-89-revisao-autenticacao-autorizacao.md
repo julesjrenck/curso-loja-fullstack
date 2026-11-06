@@ -5,8 +5,9 @@ Revisão apresentada em 05/11/2026, após a
 Checkpoint anterior publicado e conferido em
 b1b19211816fa63ff41d37c0baeb0697ebbc960b; HEAD/origin/main/main remota iguais.
 Somente documentação. Revisão aceita e módulo 7 concluído em 05/11/2026;
-publicação pendente. Curso pausado a pedido do aluno para retomar o módulo 8
-em outro chat.
+publicação conferida em f70f54e5fd31fe2d0006709d503cc48d8dc6e567,
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Curso pausado a pedido do aluno para retomar o módulo 8 em outro chat.
 
 ## O fluxo que construímos
 
@@ -105,8 +106,8 @@ sem relato; não foi registrada como concluída.
 
 Revisão aceita e encerramento do módulo 7 confirmado em 05/11/2026 com
 "podemos concluir, iniciaremos o modulo 8 amanhã em outro chat". Módulos
-1 a 7 concluídos. Não há dúvida nova relatada. Publicar o checkpoint 7.89
-e manter o curso pausado conforme pedido do aluno.
+1 a 7 concluídos. Não há dúvida nova relatada. Checkpoint 7.89 publicado
+e conferido. Manter o curso pausado conforme pedido do aluno.
 
 Próximo ponto exato: 8.1 — estrutura HTML da vitrine, no módulo de
 HTML5/CSS3/JavaScript moderno, reaproveitando a API de catálogo. Retomada

@@ -7,7 +7,8 @@
   do módulo 7. Retomada prevista para 06/11/2026 em outro chat, quando solicitada.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
 - Última etapa concluída: 7.89 — Revisão de autenticação e autorização,
-  encerramento confirmado pelo aluno em 05/11/2026. Publicação pendente.
+  encerramento confirmado pelo aluno em 05/11/2026. Publicação conferida:
+  f70f54e5fd31fe2d0006709d503cc48d8dc6e567, último checkpoint de aula publicado.
 - Próxima etapa exata: 8.1 — Estrutura HTML da vitrine, módulo 8 de
   HTML5/CSS3/JavaScript moderno. Não iniciar nesta sessão; aguardar retomada.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -18,8 +19,8 @@
   Última suíte 7.88, 121 testes/1.693 asserções; não repetida nesta revisão.
   Aula docs/aulas/07-89-revisao-autenticacao-autorizacao.md criada.
   Aluno confirmou o fechamento com "podemos concluir, iniciaremos o modulo 8
-  amanhã em outro chat". Revisão aceita e módulo 7 concluído; publicar este
-  checkpoint e manter a pausa. Módulo 8 ainda não iniciado; atividade sugerida
+  amanhã em outro chat". Revisão aceita e módulo 7 concluído; checkpoint
+  f70f54e publicado e conferido. Pausa mantida. Módulo 8 ainda não iniciado; atividade sugerida
   DBeaver segue sem relato, sem atribuir conclusão a esse exercício.
 - Situação da 7.88: criado somente tests/Feature/ProdutoPolicyTest.php na
   aplicação, usando Tests\TestCase/Gate real. Descoberta automática; cliente,
@@ -32,7 +33,7 @@
   Entendimento confirmado com "entendi": testes consultam Gate/Policy reais
   com objetos em memória, sem gravar usuários/produtos. Publicação conferida:
   b1b19211816fa63ff41d37c0baeb0697ebbc960b, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.89.
+  Checkpoint anterior à 7.89. Revisão final 7.89 concluída e publicada em f70f54e.
 - Situação da 7.87: criado somente app/Policies/ProdutoPolicy.php na aplicação.
   Método update(User, Produto): bool permite is_admin estritamente true.
   Recurso identifica a Policy; regra inicial depende apenas do perfil do
@@ -17280,11 +17281,13 @@ Compose e OpenAPI sem alterações no diff desta etapa.
 
 Revisão aceita e encerramento do módulo 7 confirmado pelo aluno em
 05/11/2026: "podemos concluir, iniciaremos o modulo 8 amanhã em outro chat".
-Módulos 1 a 7 concluídos. Publicação da 7.89 pendente; último checkpoint
-publicado b1b1921 (7.88). Nenhuma dúvida nova relatada.
+Módulos 1 a 7 concluídos. Publicação da 7.89 concluída e conferida em
+05/11/2026: f70f54e5fd31fe2d0006709d503cc48d8dc6e567;
+HEAD/origin/main/main remota iguais após push. Registro posterior à publicação;
+último checkpoint de aula publicado. Nenhuma dúvida nova relatada.
 
-Curso pausado a pedido do aluno. Próximo passo exato: publicar este
-checkpoint final e encerrar a sessão; retomar em 8.1 — estrutura HTML da
+Curso pausado a pedido do aluno. Próximo passo exato: retomar em
+8.1 — estrutura HTML da
 vitrine — em outro chat, com previsão para 06/11/2026, quando solicitado.
 Na retomada, ler AGENTS.md/docs/curso.md/docs/progresso.md, conferir arquivos
 e Git e iniciar somente a primeira pequena etapa de HTML do módulo 8.
