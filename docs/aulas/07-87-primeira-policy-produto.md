@@ -4,7 +4,9 @@ Implementação, explicação e verificações em 05/11/2026, após a
 [7.86](07-86-acesso-administrativo-no-navegador.md) confirmada com "entendi".
 Checkpoint anterior publicado e conferido em
 cee134c4923788c14d3f2b024ebc548bc04deba5; HEAD/origin/main/main remota iguais.
-Entendimento da 7.87 confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento da 7.87 confirmado com "entendi" em 05/11/2026; publicação
+conferida em a24cdafcbeeecfa1f4d311f37958c6f7736da655, HEAD/origin/main/main
+remota iguais. Registro posterior à publicação.
 
 ## Objetivo e arquivo
 
@@ -100,8 +102,8 @@ Rotas, controllers, models, Gate anterior, página, OpenAPI e migrations mantido
 ## Continuidade
 
 Entendimento confirmado com "entendi" em 05/11/2026 sobre a Policy decidir a
-permissão sem executar a atualização do produto. Próximo passo: publicar este
-checkpoint e iniciar a 7.88, registrando testes da descoberta e das decisões
+permissão sem executar a atualização do produto. Continuidade iniciada na
+[7.88](07-88-testes-policy-produto.md), registrando testes da descoberta e das decisões
 de update da ProdutoPolicy com modelos em memória e SQL bloqueado.
 Não foi criada rota de atualização nesta etapa. Policies ainda em estudo;
 módulo 7 não concluído e módulos 8 a 23 não iniciados.

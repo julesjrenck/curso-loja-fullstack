@@ -463,7 +463,10 @@ status individuais transcritos; entendimento confirmado com "entendi"
 em 05/11/2026; publicação em cee134c, remoto conferido. Na 7.87, primeira
 ProdutoPolicy/update criada e descoberta automaticamente; sintaxe e oito
 decisões/22 verificações passaram, zero SQL. Entendimento confirmado com
-"entendi" em 05/11/2026.
+"entendi" em 05/11/2026; publicação em a24cdaf, remoto conferido. Na 7.88,
+testes da Policy: sintaxe e focado cinco/40 passaram; suíte completa atual
+121 testes/1.693 asserções passou. Entendimento confirmado com "entendi"
+em 05/11/2026, antes da revisão.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1350,8 +1353,11 @@ pelo aluno, sem status individuais transcritos; entendimento confirmado com
 "entendi" em 05/11/2026; publicação em cee134c. Na 7.87, ProdutoPolicy/update
 permite administradores; descoberta automática/sintaxe/oito decisões e
 22 verificações passaram, zero SQL, sem rota de atualização criada.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação em a24cdaf.
+Na 7.88, testes da Policy/discovery/Gate: sintaxe/focado cinco testes/40
+asserções passaram; suíte completa atual 121 testes/1.693 asserções passou.
 Entendimento confirmado com "entendi" em 05/11/2026; próxima após publicação:
-testes da Policy na 7.88.
+revisão do módulo 7 na 7.89.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 
