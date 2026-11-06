@@ -34,8 +34,13 @@ o modulo 8 amanhã em outro chat". Curso retomado a pedido do aluno em
 06/11/2026 na 8.1 — estrutura HTML da vitrine. Criado src/vitrine.html no
 laboratório existente, com metadados, header/main/footer e título principal.
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
-em 06/11/2026. Checkpoint em preparação para publicação.
-Detalhes na [aula 8.1](aulas/08-01-estrutura-html-vitrine.md) e no progresso.
+em 06/11/2026. Checkpoint cdb0395 publicado e conferido após autorização
+explícita para publicar os checkpoints concluídos do curso. Continuidade
+na 8.2 — primeiro produto demonstrativo e hierarquia de títulos — implementada
+e explicada; entendimento da 8.2 confirmado com "entendi" em 06/11/2026.
+Checkpoint da 8.2 em preparação para publicação.
+Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
+[8.2](aulas/08-02-primeiro-produto-html.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -482,6 +487,9 @@ autenticação/autorização aceita e módulo 7 concluído com "podemos concluir
 iniciaremos o modulo 8 amanhã em outro chat" em 05/11/2026. Publicação final
 conferida em f70f54e. A pausa foi encerrada por pedido de retomada em
 06/11/2026; 8.1 implementada e explicada, entendimento confirmado com "entendi".
+Checkpoint cdb0395 publicado e conferido após autorização explícita.
+8.2 implementada e explicada, entendimento confirmado com "entendi" em
+06/11/2026; checkpoint em preparação para publicação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1379,9 +1387,12 @@ iniciaremos o modulo 8 amanhã em outro chat". Publicação final conferida em f
 Retomada solicitada em 06/11/2026: 8.1 — estrutura HTML da vitrine — iniciada
 com src/vitrine.html estático no laboratório existente. Implementação e
 explicação apresentadas; entendimento confirmado com "entendi" em 06/11/2026.
-Checkpoint em preparação para publicação.
-Próximo passo após confirmação: 8.2 — primeiro produto demonstrativo e
-hierarquia de títulos. Exercício sugerido no DBeaver segue sem relato.
+Checkpoint cdb0395 publicado e conferido após autorização explícita.
+Na 8.2, primeiro produto demonstrativo em
+article/h2/parágrafo implementado e explicado; entendimento confirmado com
+"entendi" em 06/11/2026. Checkpoint da 8.2 em preparação para publicação.
+Próximo passo após checkpoint: 8.3 — segundo produto e títulos no mesmo nível.
+Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

@@ -122,9 +122,13 @@ a API nesta etapa: os textos vêm do próprio arquivo, sem consulta ao banco.
 
 Implementação e explicação da 8.1 apresentadas; entendimento confirmado pelo
 aluno com "entendi" em 06/11/2026. Nenhuma dúvida nova relatada. A confirmação
-não inclui um relato separado de execução no navegador. Checkpoint em preparação
-para publicação.
+não inclui um relato separado de execução no navegador. Checkpoint local
+cdb03955b421c4dbc56ccd8e7d416e9adda87d53. A primeira tentativa de push foi
+rejeitada pela revisão automática por exigir autorização explícita. O aluno
+autorizou "Sim, publicar os checkpoints concluídos" em 06/11/2026. Após essa
+autorização, push concluído e HEAD/origin/main/main remota conferidos no SHA
+acima. Registro posterior à publicação, destinado ao checkpoint seguinte.
 
-Próximo passo, somente após a confirmação e o checkpoint da 8.1: 8.2 — marcar
-um primeiro produto demonstrativo no catálogo, aprofundando a hierarquia dos
-títulos. Não iniciado.
+Após confirmação e checkpoint local, continuidade iniciada na
+[8.2](08-02-primeiro-produto-html.md), primeiro produto demonstrativo no catálogo
+e hierarquia dos títulos. Entendimento da 8.2 ainda aguardando confirmação.
