@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapas 8.2 a 8.4 confirmadas/publicadas; entendimento da 8.5 confirmado com "entendi".
+  Etapas 8.2 a 8.5 confirmadas/publicadas; entendimento da 8.6 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.5 — Modelo de caixa e primeiros espaçamentos,
+- Última etapa concluída: 8.6 — Classes CSS para os produtos,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.4,
-  4794ac7c69a64be7646e91cc7ea706754c3f2ef5; remoto conferido.
+  Último checkpoint de aula publicado antes desta confirmação: 8.5,
+  25e8a781565bfd1cdcee93fad9fb2589216cfb0b; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.5 — Modelo de caixa e primeiros espaçamentos.
+- Etapa atual: 8.6 — Classes CSS para os produtos.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.5 conforme autorização.
-  Depois, 8.6 — classes CSS para os produtos.
-  Não iniciada.
+- Próximo passo exato: publicar e conferir checkpoint da 8.6 conforme autorização.
+  Depois, 8.7 — largura máxima e centralização
+  do conteúdo principal. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 4794ac7.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 25e8a78.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -48,6 +48,11 @@
 - Situação da 8.5: regra article acrescentada em src/vitrine.css, com margem
   inferior 16px, padding 16px, borda contínua de 1px cinza e fundo branco.
   Aula docs/aulas/08-05-modelo-caixa-espacamentos.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  06/11/2026; publicação conferida em 25e8a78.
+- Situação da 8.6: dois article recebem class produto em src/vitrine.html;
+  seletor article trocado por .produto em src/vitrine.css, com mesmas declarações.
+  Aula docs/aulas/08-06-classes-css-produtos.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -17586,7 +17591,55 @@ vitrine.css e quatro documentos alterados; índice vazio. Main acompanha origin/
 
 Entendimento da 8.5: confirmado com "entendi" em 06/11/2026, após explicação
 do modelo de caixa e da diferença entre padding e margin-bottom. Nenhuma dúvida
+nova ou relato separado de execução no navegador. Publicação concluída
+conforme autorização permanente; git add/commit/push explicados antes da execução.
+Commit 25e8a781565bfd1cdcee93fad9fb2589216cfb0b; push 4794ac7 → 25e8a78
+concluiu com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.6 — classes CSS
+para os produtos.
+
+
+## Etapa 8.6 — Classes CSS para os produtos — 06/11/2026
+
+Iniciada após confirmação da 8.5 com "entendi" e publicação conferida em
+25e8a781565bfd1cdcee93fad9fb2589216cfb0b; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: identificar os produtos por uma classe
+HTML reutilizável e selecionar essa classe no CSS. Conjunto inseparável na
+aplicação: os dois article em src/vitrine.html recebem class="produto";
+o seletor article em src/vitrine.css passa a .produto. Declarações de margem,
+padding, borda e fundo preservadas. Criada a aula
+docs/aulas/08-06-classes-css-produtos.md; continuidade da 8.5, roteiro e
+progresso atualizados com o checkpoint publicado.
+
+Explicação apresentada: atributo class como rótulo reutilizável em vários
+elementos; nome escolhido pelo projeto e associado à regra CSS. Ponto no
+seletor .produto, nome sem ponto no atributo HTML. Seletor article identifica
+pelo nome da tag; .produto pela classe, independentemente da tag. Article
+continua marcando o conteúdo de produto. Distinção do uso de classe no PHP,
+onde estudamos definição de tipos de objetos. Aparência esperada igual à 8.5,
+pois os dois artigos continuam selecionados e as declarações são as mesmas.
+Referência primária W3C de seletores de classe consultada.
+
+Verificação HTTP fora do sandbox: GET /vitrine.html e GET /vitrine.css
+retornaram HTTP/1.1 200 OK, Content-Type text/html e text/css respectivamente,
+ambos com charset UTF-8. Corpos comparados por cmp aos arquivos locais:
+igualdade exata, código 0; comandos com set -euo pipefail. Arquivos temporários
+próprios removidos. Inspeção de diff/rg confirmou duas classes produto no HTML,
+um seletor .produto no CSS e declarações preservadas. Sem observação de
+renderização/cálculo de estilos em navegador ou resultado visual relatado.
+Nenhum servidor/container/pacote novo, API/SQL/login ou mudança no backend;
+suíte Laravel não repetida por ser alteração isolada em HTML/CSS estáticos.
+
+Git diff --check passou; destinos locais dos documentos conferidos. Somente
+HTML/CSS da vitrine e quatro documentos alterados; índice vazio.
+Main acompanha origin/main no checkpoint publicado da 8.5.
+
+Entendimento da 8.6: confirmado com "entendi" em 06/11/2026, após explicação
+da relação entre class produto no HTML e seletor .produto no CSS. Nenhuma dúvida
 nova ou relato separado de execução no navegador. Publicação em preparação
 conforme autorização permanente; git add/commit/push explicados antes da execução.
-Próximo passo exato: publicar e conferir checkpoint; depois 8.6 — classes CSS
-para os produtos. Não iniciada.
+Próximo passo exato: publicar e conferir checkpoint; depois 8.7 — largura máxima
+e centralização do conteúdo principal.
+8.7 não iniciada; módulos 9 a 23 não iniciados.

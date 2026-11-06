@@ -72,6 +72,7 @@ Não é necessário editar sozinho para continuarmos.
 
 Implementação e explicação apresentadas; entendimento da 8.5 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do navegador.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-checkpoint: 8.6 — classes CSS para os
-produtos. 8.6 não iniciada.
+Checkpoint publicado e conferido em
+25e8a781565bfd1cdcee93fad9fb2589216cfb0b; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.6](08-06-classes-css-produtos.md): classes CSS para os produtos.

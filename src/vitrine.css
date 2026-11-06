@@ -4,7 +4,7 @@ body {
     background-color: #f3f4f6;
 }
 
-article {
+.produto {
     margin-bottom: 16px;
     padding: 16px;
     border: 1px solid #d1d5db;
