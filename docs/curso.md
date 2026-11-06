@@ -28,7 +28,13 @@ funcionalidades e recebem aprofundamento em módulos específicos.
 
 ## Módulos
 
-Os módulos 1 a 6 estão concluídos. O módulo 6 foi encerrado após confirmação
+Os módulos 1 a 7 estão concluídos. O módulo 7 foi encerrado em 05/11/2026,
+após a revisão 7.89 e a confirmação do aluno: "podemos concluir, iniciaremos
+o modulo 8 amanhã em outro chat". Curso pausado; próxima etapa 8.1 — estrutura
+HTML da vitrine — em outro chat, com retomada prevista para 06/11/2026,
+quando solicitada. Módulo 8 ainda não iniciado.
+
+O módulo 6 foi encerrado após confirmação
 da consolidação 6.84 com "entendi" em 01/11/2026. Curso retomado por pedido do
 aluno em 03/11/2026; módulo 7 iniciado na 7.1 — Autenticação e autorização.
 A introdução distingue identificação, permissão e validação, usando o catálogo
@@ -466,7 +472,10 @@ decisões/22 verificações passaram, zero SQL. Entendimento confirmado com
 "entendi" em 05/11/2026; publicação em a24cdaf, remoto conferido. Na 7.88,
 testes da Policy: sintaxe e focado cinco/40 passaram; suíte completa atual
 121 testes/1.693 asserções passou. Entendimento confirmado com "entendi"
-em 05/11/2026, antes da revisão.
+em 05/11/2026; publicação em b1b1921, remoto conferido. Na 7.89, revisão de
+autenticação/autorização aceita e módulo 7 concluído com "podemos concluir,
+iniciaremos o modulo 8 amanhã em outro chat" em 05/11/2026. Publicação final
+pendente. Curso pausado; próxima etapa 8.1 em outro chat. Módulo 8 não iniciado.
 Módulos 8 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1356,8 +1365,14 @@ permite administradores; descoberta automática/sintaxe/oito decisões e
 Entendimento confirmado com "entendi" em 05/11/2026; publicação em a24cdaf.
 Na 7.88, testes da Policy/discovery/Gate: sintaxe/focado cinco testes/40
 asserções passaram; suíte completa atual 121 testes/1.693 asserções passou.
-Entendimento confirmado com "entendi" em 05/11/2026; próxima após publicação:
-revisão do módulo 7 na 7.89.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação em b1b1921.
+Na 7.89, revisão do módulo 7 apresentada: fluxo de sessão, CSRF/CORS, perfis,
+Gate e Policy, matriz 401/403/200/logout 401 e limites das verificações.
+Revisão aceita e módulo 7 concluído em 05/11/2026 com "podemos concluir,
+iniciaremos o modulo 8 amanhã em outro chat". Publicação final pendente.
+Curso pausado; próxima etapa 8.1 — estrutura HTML da vitrine — em outro chat,
+com retomada prevista para 06/11/2026 quando o aluno solicitar.
+Módulo 8 ainda não iniciado.
 Exercício sugerido no DBeaver segue sem relato. Módulos 8 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
 

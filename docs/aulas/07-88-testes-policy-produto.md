@@ -4,7 +4,9 @@ Implementação, explicação e verificações em 05/11/2026, após a
 [7.87](07-87-primeira-policy-produto.md) confirmada com "entendi".
 Checkpoint anterior publicado e conferido em
 a24cdafcbeeecfa1f4d311f37958c6f7736da655; HEAD/origin/main/main remota iguais.
-Entendimento confirmado com "entendi" em 05/11/2026; publicação pendente.
+Entendimento confirmado com "entendi" em 05/11/2026; publicação conferida em
+b1b19211816fa63ff41d37c0baeb0697ebbc960b, HEAD/origin/main/main remota iguais.
+Registro posterior à publicação.
 
 ## Objetivo e arquivo
 
@@ -101,8 +103,9 @@ Policy, rotas, controllers, models, página e OpenAPI mantidos.
 ## Continuidade
 
 Entendimento confirmado com "entendi" em 05/11/2026 sobre consultar Gate/Policy
-reais com objetos em memória, sem gravar usuários/produtos. Próximo passo:
-publicar o checkpoint e iniciar a 7.89, revisão do módulo 7, consolidando autenticação,
+reais com objetos em memória, sem gravar usuários/produtos. Continuidade
+iniciada na [7.89](07-89-revisao-autenticacao-autorizacao.md), revisão do
+módulo 7, consolidando autenticação,
 sessão/CSRF/CORS, perfis, Gate, Policy e o que cada verificação demonstra.
 Existe permissão de update definida/testada; ainda não existe uma rota de
 atualização de produto. Módulo 7 em andamento; módulos 8 a 23 não iniciados.

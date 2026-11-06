@@ -3,10 +3,24 @@
 ## Estado atual
 
 - Última atualização: 05/11/2026, referência de data America/Sao_Paulo.
-- Estado do curso: retomado por pedido do aluno em 03/11/2026; pausa de 01/11 encerrada.
-- Módulo atual: 7 — Autenticação e autorização (iniciado; módulos 1 a 6 concluídos).
-- Etapa atual: 7.88 — Testes da Policy de produto:
-  implementação, explicação e verificações; entendimento confirmado em 05/11/2026.
+- Estado do curso: pausado a pedido do aluno em 05/11/2026, após conclusão
+  do módulo 7. Retomada prevista para 06/11/2026 em outro chat, quando solicitada.
+- Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
+- Última etapa concluída: 7.89 — Revisão de autenticação e autorização,
+  encerramento confirmado pelo aluno em 05/11/2026. Publicação pendente.
+- Próxima etapa exata: 8.1 — Estrutura HTML da vitrine, módulo 8 de
+  HTML5/CSS3/JavaScript moderno. Não iniciar nesta sessão; aguardar retomada.
+- Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
+  administração/logout; hashing, sessão, CORS, validação, throttle, auth,
+  Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
+  Policy decide permissão de update; rota de atualização ainda inexistente.
+  Evidências separadas: relatos gerais do navegador e testes internos.
+  Última suíte 7.88, 121 testes/1.693 asserções; não repetida nesta revisão.
+  Aula docs/aulas/07-89-revisao-autenticacao-autorizacao.md criada.
+  Aluno confirmou o fechamento com "podemos concluir, iniciaremos o modulo 8
+  amanhã em outro chat". Revisão aceita e módulo 7 concluído; publicar este
+  checkpoint e manter a pausa. Módulo 8 ainda não iniciado; atividade sugerida
+  DBeaver segue sem relato, sem atribuir conclusão a esse exercício.
 - Situação da 7.88: criado somente tests/Feature/ProdutoPolicyTest.php na
   aplicação, usando Tests\TestCase/Gate real. Descoberta automática; cliente,
   administrador, usuário sem indicador e visitante, dois produtos em memória.
@@ -16,8 +30,9 @@
   Policy e demais arquivos anteriores da aplicação mantidos.
   Aula docs/aulas/07-88-testes-policy-produto.md criada.
   Entendimento confirmado com "entendi": testes consultam Gate/Policy reais
-  com objetos em memória, sem gravar usuários/produtos. Próximo passo exato:
-  publicar e iniciar a 7.89, revisão do módulo 7 antes de encerrá-lo.
+  com objetos em memória, sem gravar usuários/produtos. Publicação conferida:
+  b1b19211816fa63ff41d37c0baeb0697ebbc960b, HEAD/origin/main/main remota iguais.
+  Último checkpoint publicado. Continuidade iniciada na 7.89.
 - Situação da 7.87: criado somente app/Policies/ProdutoPolicy.php na aplicação.
   Método update(User, Produto): bool permite is_admin estritamente true.
   Recurso identifica a Policy; regra inicial depende apenas do perfil do
@@ -29,7 +44,7 @@
   Entendimento confirmado com "entendi" sobre a Policy decidir a permissão
   sem executar a atualização. Publicação da 7.87 conferida:
   a24cdafcbeeecfa1f4d311f37958c6f7736da655, HEAD/origin/main/main remota iguais.
-  Último checkpoint publicado. Continuidade iniciada na 7.88.
+  Checkpoint anterior à 7.88. Continuidade iniciada na 7.88.
 - Situação da 7.86: somente documentação. Roteiro Chrome/Edge, sessão privativa
   sem login ativo, laboratório 8001, conta admin@example.test/senha da 7.85
   somente no formulário. Preparar CSRF/administração visitante/login/usuário/
@@ -2798,7 +2813,10 @@ automaticamente; sintaxe e oito decisões/22 verificações passaram, zero SQL.
 Entendimento confirmado com "entendi" em 05/11/2026; publicação em a24cdaf,
 remoto conferido. Na 7.88, testes da Policy: sintaxe e focado cinco/40
 passaram; suíte completa atual 121/1.693 passou. Entendimento confirmado com
-"entendi" em 05/11/2026; próxima após publicação: revisão do módulo na 7.89.
+"entendi" em 05/11/2026; publicação em b1b1921, remoto conferido. Na 7.89,
+revisão aceita e módulo 7 concluído com "podemos concluir, iniciaremos o
+modulo 8 amanhã em outro chat". Curso pausado em 05/11/2026; próxima 8.1
+em outro chat, quando o aluno retomar. Módulo 8 não iniciado.
 
 Pausa solicitada pelo aluno em 01/11/2026: "vamos continuar outro dia em outro chat".
 Não apresentar nova aula durante a pausa. Módulos 1 a 6 concluídos; última etapa
@@ -17225,8 +17243,50 @@ arquivos anteriores do backend, página, Compose e OpenAPI sem alterações.
 
 Entendimento da 7.88 confirmado com "entendi" em 05/11/2026 sobre consultar
 Gate/Policy reais com objetos em memória, sem gravar usuários/produtos.
-Publicação da 7.88 pendente; último checkpoint publicado a24cdaf (7.87).
-Próximo passo exato: publicar e iniciar a 7.89, revisão do módulo 7: autenticação,
+Publicação da 7.88 concluída e conferida em 05/11/2026:
+b1b19211816fa63ff41d37c0baeb0697ebbc960b; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade iniciada na 7.89, revisão do módulo 7: autenticação,
 sessão/CSRF/CORS, perfis, Gate, Policy e limites das verificações. Permissão
 de update definida/testada; rota de atualização ainda inexistente. Módulo 7
 em andamento; módulos 8 a 23 não iniciados.
+
+
+## Etapa 7.89 — Revisão de autenticação e autorização — 05/11/2026
+
+Iniciada após confirmação da 7.88 com "entendi" e publicação conferida em
+b1b19211816fa63ff41d37c0baeb0697ebbc960b. Comandos Git explicados antes da
+execução; HEAD/origin/main/main remota iguais após push.
+
+Implementação: somente documentação. Criada a aula
+docs/aulas/07-89-revisao-autenticacao-autorizacao.md; revisão do fluxo
+CSRF/login/regeneração de sessão/consulta de usuário/administração/logout.
+Distintos hashing, sessão/cookie, CSRF, CORS, validação, throttle, autenticação
+e autorização. Matriz administrativa: visitante 401/cliente 403/admin 200/
+após logout 401. Perfil é definido no backend; login não promove e logout
+não remove perfil. Gate administrativo aplicado à rota; ProdutoPolicy/update
+descoberta e consultada pelo Gate nos testes, sem executar update no banco.
+Permissão de update definida/testada; rota de atualização ainda inexistente.
+
+Verificação: leitura de routes/api.php, LoginController, LoginRequest, User,
+UsuarioResource, config CORS, AppServiceProvider, bootstrap e ProdutoPolicy.
+Aplicação preservada, sem API/SQL/login/nova conta/dependência. Última suíte
+completa na 7.88, 121 testes/1.693 asserções; não repetida. Relatos gerais do
+navegador nas 7.83/7.86 mantidos como relatos, sem inventar status individuais
+ou observação direta. Atividade sugerida DBeaver permanece sem relato.
+
+Git diff --check passou; 13 links locais válidos nos quatro documentos da
+revisão. Somente esses documentos alterados, índice vazio; backend, página,
+Compose e OpenAPI sem alterações no diff desta etapa.
+
+Revisão aceita e encerramento do módulo 7 confirmado pelo aluno em
+05/11/2026: "podemos concluir, iniciaremos o modulo 8 amanhã em outro chat".
+Módulos 1 a 7 concluídos. Publicação da 7.89 pendente; último checkpoint
+publicado b1b1921 (7.88). Nenhuma dúvida nova relatada.
+
+Curso pausado a pedido do aluno. Próximo passo exato: publicar este
+checkpoint final e encerrar a sessão; retomar em 8.1 — estrutura HTML da
+vitrine — em outro chat, com previsão para 06/11/2026, quando solicitado.
+Na retomada, ler AGENTS.md/docs/curso.md/docs/progresso.md, conferir arquivos
+e Git e iniciar somente a primeira pequena etapa de HTML do módulo 8.
+Nenhum arquivo ou implementação do módulo 8 criado nesta etapa.
+Módulos 8 a 23 não iniciados.
