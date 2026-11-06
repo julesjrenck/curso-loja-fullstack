@@ -82,6 +82,7 @@ configuração. Esses eixos dependem da direção do Flexbox.
 
 Implementação e explicação apresentadas; entendimento da 8.11 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do navegador.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-checkpoint: 8.12 — primeiro CSS Grid nos
-produtos. 8.12 não iniciada.
+Checkpoint publicado e conferido em
+2c3ee6369998abe54ebd45a4dce8bb0c4114564a; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.12](08-12-grid-produtos.md): primeiro CSS Grid nos produtos.

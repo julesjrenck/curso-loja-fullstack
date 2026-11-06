@@ -60,7 +60,9 @@ Na 8.10, nav/link #catalogo no cabeçalho e id catalogo no main implementados
 e explicados; entendimento confirmado com "entendi" em 06/11/2026;
 publicação em f0dda5d. Na 8.11, classe cabecalho com display flex, distribuição,
 alinhamento e gap implementada e explicada; entendimento confirmado com
-"entendi" em 06/11/2026; checkpoint em preparação.
+"entendi" em 06/11/2026; publicação em 2c3ee63. Na 8.12, grupo produtos com
+CSS Grid de duas colunas e gap implementado e explicado; entendimento confirmado
+com "entendi" em 06/11/2026; checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -71,7 +73,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.8](aulas/08-08-box-sizing.md),
 [8.9](aulas/08-09-classe-container.md),
 [8.10](aulas/08-10-navegacao-interna.md),
-[8.11](aulas/08-11-flexbox-cabecalho.md) e no progresso.
+[8.11](aulas/08-11-flexbox-cabecalho.md),
+[8.12](aulas/08-12-grid-produtos.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -539,6 +542,8 @@ regiões e seletor .container; entendimento confirmado com "entendi" em
 link interno e id catalogo; entendimento confirmado com "entendi" em
 06/11/2026; publicação em f0dda5d. 8.11 implementada e explicada: Flexbox
 no cabeçalho; entendimento confirmado com "entendi" em 06/11/2026;
+publicação em 2c3ee63. 8.12 implementada e explicada: grupo produtos com Grid,
+duas colunas 1fr e gap; entendimento confirmado com "entendi" em 06/11/2026;
 checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
@@ -1462,8 +1467,11 @@ Na 8.10, navegação interna com nav/link #catalogo e id no main implementada
 e explicada; entendimento confirmado com "entendi" em 06/11/2026.
 Publicação da 8.10 conferida em f0dda5d. Na 8.11, classe cabecalho com regra
 Flexbox para nome da loja/nav implementada e explicada; entendimento confirmado
-com "entendi" em 06/11/2026; checkpoint em preparação.
-Próximo passo após checkpoint: 8.12 — primeiro CSS Grid nos produtos.
+com "entendi" em 06/11/2026; publicação em 2c3ee63. Na 8.12, div produtos e
+regra Grid com duas colunas/gap implementadas e explicadas; margem inferior
+individual removida. Entendimento confirmado com "entendi" em 06/11/2026;
+checkpoint em preparação. Próximo passo após checkpoint:
+8.13 — responsividade do catálogo com media query.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

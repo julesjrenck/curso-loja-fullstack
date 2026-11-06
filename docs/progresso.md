@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapas 8.2 a 8.10 confirmadas/publicadas; entendimento da 8.11 confirmado com "entendi".
+  Etapas 8.2 a 8.11 confirmadas/publicadas; entendimento da 8.12 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.11 — Primeiro Flexbox no cabeçalho,
+- Última etapa concluída: 8.12 — Primeiro CSS Grid nos produtos,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.10,
-  f0dda5dd299b336e420e483cb7d62c2b520ba1e5; remoto conferido.
+  Último checkpoint de aula publicado antes desta confirmação: 8.11,
+  2c3ee6369998abe54ebd45a4dce8bb0c4114564a; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.11 — Primeiro Flexbox no cabeçalho.
+- Etapa atual: 8.12 — Primeiro CSS Grid nos produtos.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.11 conforme autorização.
-  Depois, 8.12 — primeiro CSS Grid nos produtos.
-  Não iniciada.
+- Próximo passo exato: publicar e conferir checkpoint da 8.12 conforme autorização.
+  Depois, 8.13 — responsividade do catálogo com
+  media query. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é f0dda5d.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 2c3ee63.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -76,6 +76,11 @@
 - Situação da 8.11: header recebe classes container/cabecalho no HTML; CSS
   ganha regra .cabecalho com display flex, justify-content space-between,
   align-items center e gap 16px. Aula docs/aulas/08-11-flexbox-cabecalho.md
+  criada; continuidade anterior, roteiro/progresso atualizados. Entendimento
+  confirmado com "entendi" em 06/11/2026; publicação conferida em 2c3ee63.
+- Situação da 8.12: div produtos envolve dois artigos em src/vitrine.html;
+  .produtos usa display grid, grid-template-columns 1fr 1fr e gap 16px no CSS.
+  Margin-bottom removido de .produto. Aula docs/aulas/08-12-grid-produtos.md
   criada; continuidade anterior, roteiro/progresso atualizados. Entendimento
   confirmado com "entendi" em 06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -17887,7 +17892,55 @@ no checkpoint publicado da 8.10.
 
 Entendimento da 8.11: confirmado com "entendi" em 06/11/2026, após explicação
 de Flexbox, filhos diretos, eixos, justify-content/align-items e gap. Nenhuma
-dúvida nova ou relato separado do navegador. Publicação em preparação conforme
+dúvida nova ou relato separado do navegador. Publicação concluída conforme
 autorização permanente; git add/commit/push explicados antes da execução.
-Próximo passo exato: publicar e conferir checkpoint; depois 8.12 — primeiro CSS
-Grid nos produtos. Não iniciada; módulos 9 a 23 não iniciados.
+Commit 2c3ee6369998abe54ebd45a4dce8bb0c4114564a; push f0dda5d → 2c3ee63
+concluiu com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.12 — primeiro CSS
+Grid nos produtos. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.12 — Primeiro CSS Grid nos produtos — 06/11/2026
+
+Iniciada após confirmação da 8.11 com "entendi" e publicação conferida em
+2c3ee6369998abe54ebd45a4dce8bb0c4114564a; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: organizar os cartões em duas colunas e
+controlar seu espaçamento pelo grupo. Conjunto inseparável na aplicação:
+src/vitrine.html ganha div class produtos envolvendo os dois artigos;
+src/vitrine.css ganha .produtos com display grid, grid-template-columns 1fr 1fr
+e gap 16px. Margin-bottom removido de .produto, que mantém padding/borda/fundo.
+Criada a aula docs/aulas/08-12-grid-produtos.md; continuidade da 8.11, roteiro e
+progresso atualizados com o checkpoint publicado.
+
+Explicação apresentada: div como agrupamento genérico de layout; artigos
+continuam identificando os produtos. H1/apresentação ficam fora da grade.
+Filhos diretos da div são os dois itens; duas colunas de uma fração cada,
+com intervalo de 16px. Quando o conteúdo cabe, área disponível após gap
+compartilhada igualmente: (928 - 16) / 2 = 456px por coluna no limite da área
+principal. Cálculo ilustrativo, não medição de navegador. Distinção entre
+.produtos, responsável pelo conjunto, e .produto, pela aparência individual.
+Duas colunas definidas nesta etapa; regra responsiva fica para a 8.13.
+Referências primárias W3C de Grid/fr e HTML Standard de div consultadas.
+
+Verificação HTTP fora do sandbox: GET /vitrine.html e GET /vitrine.css
+retornaram HTTP/1.1 200 OK, Content-Type text/html e text/css respectivamente,
+ambos com charset UTF-8. Corpos comparados por cmp aos arquivos locais:
+igualdade exata, código 0; comandos com set -euo pipefail. Arquivos temporários
+próprios removidos. Isso demonstra entrega dos arquivos, sem observação da grade
+ou medição de colunas em navegador. Nenhum servidor/container/pacote novo,
+API/SQL/login ou mudança no backend; suíte Laravel não repetida por ser
+alteração isolada em HTML/CSS estáticos.
+
+Git diff --check passou; destinos locais dos documentos conferidos. Diff sem
+diferenças de indentação confirmou grupo novo com conteúdo dos artigos preservado,
+regra Grid e retirada da margem individual. HTML/CSS e quatro documentos alterados;
+índice vazio. Main acompanha origin/main no checkpoint publicado da 8.11.
+
+Entendimento da 8.12: confirmado com "entendi" em 06/11/2026, após explicação
+de div pai, Grid, duas colunas 1fr e gap. Nenhuma dúvida nova ou relato separado
+do navegador. Publicação em preparação conforme autorização permanente;
+git add/commit/push explicados antes da execução. Próximo passo exato: publicar
+e conferir checkpoint; depois 8.13 — responsividade do catálogo com media query.
+Não iniciada; módulos 9 a 23 não iniciados.

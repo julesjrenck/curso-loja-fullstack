@@ -18,8 +18,13 @@ body {
     gap: 16px;
 }
 
+.produtos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
 .produto {
-    margin-bottom: 16px;
     padding: 16px;
     border: 1px solid #d1d5db;
     background-color: #ffffff;
