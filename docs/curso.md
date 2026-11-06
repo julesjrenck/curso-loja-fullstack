@@ -43,11 +43,14 @@ demonstrativo em outro article com h2, implementado e explicado;
 entendimento confirmado com "entendi" em 06/11/2026; publicação conferida em
 8c148c7. Na 8.4, primeira folha de estilos com regra body e vínculo no HTML
 implementados e explicados; entendimento confirmado com "entendi" em
-06/11/2026; checkpoint em preparação.
+06/11/2026; publicação conferida em 4794ac7. Na 8.5, regra article com margem
+inferior, padding, borda e fundo branco implementada e explicada;
+entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
-[8.4](aulas/08-04-primeira-folha-estilos.md) e no progresso.
+[8.4](aulas/08-04-primeira-folha-estilos.md),
+[8.5](aulas/08-05-modelo-caixa-espacamentos.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -500,7 +503,10 @@ Checkpoint cdb0395 publicado e conferido após autorização explícita.
 8.3 implementada e explicada: segundo produto com article/h2 no mesmo nível;
 entendimento confirmado com "entendi" em 06/11/2026; publicação em 8c148c7.
 8.4 implementada e explicada: CSS externo, seletor body, fonte e cores;
-entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
+entendimento confirmado com "entendi" em 06/11/2026; publicação em 4794ac7.
+8.5 implementada e explicada: modelo de caixa, margin-bottom, padding, borda
+e fundo dos artigos; entendimento confirmado com "entendi" em 06/11/2026;
+checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1406,9 +1412,11 @@ Na 8.3, segundo produto demonstrativo com outro article/h2 implementado e
 explicado; entendimento confirmado com "entendi" em 06/11/2026.
 Publicação da 8.3 conferida em 8c148c7. Na 8.4, criados vitrine.css com regra
 body para fonte/cores e link no HTML; implementação e explicação apresentadas,
-entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-Próximo passo após checkpoint: 8.5 — modelo de caixa
-e primeiros espaçamentos com margin e padding.
+entendimento confirmado com "entendi" em 06/11/2026; publicação em 4794ac7.
+Na 8.5, regra article em vitrine.css com margin-bottom/padding/border/fundo
+implementada e explicada; entendimento confirmado com "entendi" em 06/11/2026.
+Checkpoint em preparação. Próximo passo após checkpoint:
+8.6 — classes CSS para os produtos.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

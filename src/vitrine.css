@@ -3,3 +3,10 @@ body {
     color: #1f2937;
     background-color: #f3f4f6;
 }
+
+article {
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid #d1d5db;
+    background-color: #ffffff;
+}

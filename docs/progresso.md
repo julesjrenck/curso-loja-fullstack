@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapas 8.2/8.3 confirmadas/publicadas; entendimento da 8.4 confirmado com "entendi".
+  Etapas 8.2 a 8.4 confirmadas/publicadas; entendimento da 8.5 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.4 — Primeira folha de estilos da vitrine,
+- Última etapa concluída: 8.5 — Modelo de caixa e primeiros espaçamentos,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.3,
-  8c148c78de6aca56c1d4cfba4f7421f04dc88df1; remoto conferido.
+  Último checkpoint de aula publicado antes desta confirmação: 8.4,
+  4794ac7c69a64be7646e91cc7ea706754c3f2ef5; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.4 — Primeira folha de estilos da vitrine.
+- Etapa atual: 8.5 — Modelo de caixa e primeiros espaçamentos.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.4 conforme autorização.
-  Depois, 8.5 — modelo de caixa e primeiros
-  espaçamentos com margin e padding. Não iniciada.
+- Próximo passo exato: publicar e conferir checkpoint da 8.5 conforme autorização.
+  Depois, 8.6 — classes CSS para os produtos.
+  Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 8c148c7.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 4794ac7.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -43,6 +43,11 @@
 - Situação da 8.4: criado src/vitrine.css com seletor body e font-family,
   color/background-color; src/vitrine.html recebe link rel stylesheet/href
   vitrine.css no head. Aula docs/aulas/08-04-primeira-folha-estilos.md criada;
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  06/11/2026; publicação conferida em 4794ac7.
+- Situação da 8.5: regra article acrescentada em src/vitrine.css, com margem
+  inferior 16px, padding 16px, borda contínua de 1px cinza e fundo branco.
+  Aula docs/aulas/08-05-modelo-caixa-espacamentos.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -17538,7 +17543,50 @@ Main acompanha origin/main no checkpoint publicado da 8.3.
 
 Entendimento da 8.4: confirmado com "entendi" em 06/11/2026, após explicação
 do vínculo entre HTML/CSS, seletor body, propriedades e herança. Nenhuma dúvida
+nova ou relato separado de execução no navegador. Publicação concluída
+conforme autorização permanente; git add/commit/push explicados antes da execução.
+Commit 4794ac7c69a64be7646e91cc7ea706754c3f2ef5; push 8c148c7 → 4794ac7
+concluiu com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.5 — modelo de caixa
+e primeiros espaçamentos com margin e padding.
+
+
+## Etapa 8.5 — Modelo de caixa e primeiros espaçamentos — 06/11/2026
+
+Iniciada após confirmação da 8.4 com "entendi" e publicação conferida em
+4794ac7c69a64be7646e91cc7ea706754c3f2ef5; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: visualizar conteúdo, padding, borda e
+margin na caixa de cada produto. Somente src/vitrine.css alterado na aplicação:
+regra article com margin-bottom 16px, padding 16px, border 1px solid #d1d5db e
+background-color #ffffff. Mesma regra corresponde aos dois artigos existentes.
+Criada a aula docs/aulas/08-05-modelo-caixa-espacamentos.md; continuidade da 8.4,
+roteiro e progresso atualizados com o checkpoint publicado. HTML preservado.
+
+Explicação apresentada: margem externa inferior versus espaço interno nos quatro
+lados; px como unidade de comprimento CSS; border reúne espessura, estilo e cor.
+Fundo branco também cobre a área do padding; margem transparente permite ver
+fundo cinza da página. Títulos e parágrafos conservam suas margens padrão, que
+contribuem para a distância visível. Uma regra article estiliza ambos os produtos;
+link HTML/CSS da 8.4 permanece válido. Referência primária W3C do modelo de caixa
+consultada para as propriedades e as regiões.
+
+Verificação HTTP fora do sandbox: GET /vitrine.css retornou HTTP/1.1 200 OK,
+Content-Type text/css; charset=UTF-8. Corpo CSS comparado por cmp ao arquivo
+local: igualdade exata. GET /vitrine.html também executado com --fail e corpo
+comparado ao HTML local: igualdade exata. Comandos com set -euo pipefail,
+código 0; arquivos temporários próprios com respostas estáticas removidos.
+Verificação demonstra entrega dos arquivos, sem observar a renderização no
+navegador do aluno. Nenhuma dependência/servidor/container novo, API/SQL/login
+ou mudança no backend; suíte Laravel não repetida por ser CSS estático isolado.
+
+Git diff --check passou; destinos locais dos documentos conferidos. Somente
+vitrine.css e quatro documentos alterados; índice vazio. Main acompanha origin/main.
+
+Entendimento da 8.5: confirmado com "entendi" em 06/11/2026, após explicação
+do modelo de caixa e da diferença entre padding e margin-bottom. Nenhuma dúvida
 nova ou relato separado de execução no navegador. Publicação em preparação
 conforme autorização permanente; git add/commit/push explicados antes da execução.
-Próximo passo exato: publicar e conferir checkpoint; depois 8.5 —
-modelo de caixa e primeiros espaçamentos com margin e padding. Não iniciada.
+Próximo passo exato: publicar e conferir checkpoint; depois 8.6 — classes CSS
+para os produtos. Não iniciada.

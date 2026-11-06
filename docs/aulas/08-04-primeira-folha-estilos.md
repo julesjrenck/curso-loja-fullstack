@@ -92,6 +92,8 @@ relacionando o arquivo solicitado com a regra que controla a apresentação.
 
 Implementação e explicação apresentadas; entendimento da 8.4 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do navegador.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-checkpoint: 8.5 — modelo de caixa e
-primeiros espaçamentos com margin e padding. 8.5 não iniciada.
+Checkpoint publicado e conferido em
+4794ac7c69a64be7646e91cc7ea706754c3f2ef5; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.5](08-05-modelo-caixa-espacamentos.md): modelo de caixa e primeiros
+espaçamentos com margin e padding.
