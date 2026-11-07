@@ -6,25 +6,25 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.32 confirmadas/publicadas; 8.29 com relato geral de sucesso
-  "funcinou e entendi". 8.33 com entendimento confirmado.
+  Etapas 8.16 a 8.33 confirmadas/publicadas; 8.29 com relato geral de sucesso
+  "funcinou e entendi". 8.34 com entendimento confirmado e relato geral de
+  sucesso: "funcionou  entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.33 — Exibição da mensagem conforme a contagem,
-  entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.32, 5b5b9536deeec6cef218bf520b3bd1b034c9dd50;
-  HEAD/origin/main/main remota iguais na conferência anterior.
+- Última etapa concluída: 8.34 — Verificação da contagem e da mensagem no navegador,
+  entendimento e sucesso geral confirmados com "funcionou  entendi" em
+  07/11/2026; checkpoint em preparação. Último checkpoint publicado: 8.33,
+  90adc7e3ec3e1d0dbc6c49c4bb33db5b49beab92; SHAs iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.33 — Exibição da mensagem conforme a contagem de resultados.
-  Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.33 conforme autorização.
-  Depois, 8.34 — verificação da contagem
-  e da mensagem no navegador. Não iniciada.
+- Etapa atual: 8.34 — Verificação da contagem e da mensagem no navegador.
+  Roteiro e explicação apresentados; entendimento confirmado e sucesso geral relatado.
+- Próximo passo exato: publicar checkpoint da 8.34 conforme autorização.
+  Depois, 8.35 — função nomeada para tratar o envio da busca. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 5b5b953.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 90adc7e.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -192,7 +192,13 @@
   quantidadeResultados > 0 após forEach e antes do log final no submit. Aula
   docs/aulas/08-33-exibicao-mensagem.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  07/11/2026; checkpoint em preparação.
+  07/11/2026; publicação conferida em 90adc7e.
+- Situação da 8.34: somente documentação. Aula
+  docs/aulas/08-34-verificacao-contagem-mensagem.md criada com sequência de
+  contagens, cartões, mensagem, clique/Enter e transições sem reload. HTML/CSS/JS
+  preservados. Entendimento confirmado e sucesso geral relatado com
+  "funcionou  entendi" em 07/11/2026; sem resultados individuais transcritos
+  ou observação direta do assistente. Checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -19067,8 +19073,51 @@ Suíte Laravel não repetida por ser alteração isolada do frontend estático.
 
 Entendimento da 8.33: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional no navegador. Resultados permanecem
-esperados, sem observação direta de execução. Checkpoint em preparação conforme
+esperados, sem observação direta de execução. Publicação concluída conforme
 autorização permanente; git add, git commit e git push origin main explicados
-antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.34 — verificação da contagem e da mensagem no navegador.
-Não iniciada; módulos 9 a 23 não iniciados.
+antes da execução. Commit 90adc7e3ec3e1d0dbc6c49c4bb33db5b49beab92;
+push 5b5b953 → 90adc7e com código 0. HEAD/origin/main/main remota conferidos no
+mesmo SHA. Registro posterior à publicação. Continuidade iniciada na 8.34 —
+verificação da contagem e da mensagem no navegador. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.34 — Verificação da contagem e da mensagem no navegador — 07/11/2026
+
+Iniciada após confirmação da 8.33 com "entendi" e publicação conferida em
+90adc7e3ec3e1d0dbc6c49c4bb33db5b49beab92; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: conferir relação entre total registrado,
+cartões e mensagem, incluindo reinício/transições a cada envio. Somente
+documentação: aula docs/aulas/08-34-verificacao-contagem-mensagem.md criada;
+continuidade da 8.33, roteiro e progresso atualizados com checkpoint publicado.
+
+Explicação apresentada: preparo Chrome/Console/reload, estado inicial com cartões
+e sem mensagem; log de total só após submit. Sequência sapato, CAN, ca, SAPATO com
+espaços, vazio e somente espaços; totais previstos 0/1/2/0/2/2, correspondência
+com cartões/aviso, clique e Enter alternados. Digitar sem enviar mantém resultado
+anterior; novas buscas ocultam/revelam mensagem e cartões sem reload/alterar URL.
+Arquivos e ordem do fluxo relacionados ao resultado. Entendimento e observação
+no navegador separados; sucesso geral será registrado como relato geral do aluno.
+HTML/CSS/JS preservados; nenhuma API/SQL/login ou mudança no backend.
+
+Verificação HTTP fora do sandbox: GET /vitrine.html, /vitrine.css e /vitrine.js
+retornaram HTTP/1.1 200 OK. Tipos: text/html; charset=UTF-8, text/css; charset=UTF-8
+e application/javascript; tamanhos 1339, 810 e 1184 bytes. Corpos comparados por
+cmp aos três arquivos locais: igualdade exata, códigos 0; set -euo pipefail.
+Temporários próprios removidos. Comprova entrega dos recursos, não execução.
+
+Git diff --check passou; git diff --exit-code de src confirmou aplicação sem
+diferenças. Destinos locais dos documentos conferidos. Somente documentação
+alterada, índice vazio. Nenhum pacote/container/servidor novo; suíte Laravel
+não repetida. Descoberta de ferramentas por nome/descrição não encontrou
+browser/Playwright/Puppeteer/computer/desktop; sem ferramenta disponível para
+observar diretamente o navegador local nesta sessão.
+
+Entendimento da 8.34: confirmado em 07/11/2026 com "funcionou  entendi".
+Resultado no navegador: relato geral de sucesso do aluno, sem transcrição de
+passos individuais ou observação direta do assistente. Nenhuma divergência ou
+dúvida nova relatada. Checkpoint em preparação conforme autorização permanente;
+git add, git commit e git push origin main explicados antes da execução.
+Próximo passo exato: publicar e conferir checkpoint; depois 8.35 — função
+nomeada para tratar o envio da busca. Não iniciada; módulos 9 a 23 não iniciados.

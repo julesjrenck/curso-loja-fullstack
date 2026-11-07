@@ -88,6 +88,7 @@ Não recarregar entre buscas. Nenhuma execução observada ou relatada nesta eta
 
 Implementação e explicação apresentadas; entendimento da 8.33 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.34 — verificação da contagem
-e da mensagem no navegador. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+90adc7e3ec3e1d0dbc6c49c4bb33db5b49beab92; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.34](08-34-verificacao-contagem-mensagem.md): verificação da contagem e da mensagem.

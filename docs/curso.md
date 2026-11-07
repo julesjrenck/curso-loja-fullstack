@@ -108,7 +108,9 @@ publicação em 081d392. Na 8.32, contador com let, if e incremento por
 correspondência implementado e explicado; entendimento confirmado com "entendi"
 em 07/11/2026; publicação em 5b5b953. Na 8.33, controle de hidden da mensagem
 pela contagem > 0 implementado e explicado; entendimento confirmado com "entendi"
-em 07/11/2026; checkpoint em preparação.
+em 07/11/2026; publicação em 90adc7e. Na 8.34, roteiro de verificação da contagem
+e da mensagem apresentado; entendimento confirmado e sucesso geral relatado
+com "funcionou  entendi" em 07/11/2026; checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -141,7 +143,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.30](aulas/08-30-mensagem-sem-resultados-html.md),
 [8.31](aulas/08-31-selecao-mensagem.md),
 [8.32](aulas/08-32-contagem-resultados.md),
-[8.33](aulas/08-33-exibicao-mensagem.md) e no progresso.
+[8.33](aulas/08-33-exibicao-mensagem.md),
+[8.34](aulas/08-34-verificacao-contagem-mensagem.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -654,7 +657,9 @@ com "entendi" em 07/11/2026; publicação em 081d392. 8.32 implementada e explic
 contador reiniciado no submit, incremento condicionado e log final; entendimento
 confirmado com "entendi" em 07/11/2026; publicação em 5b5b953. 8.33 implementada
 e explicada: hidden da mensagem conforme total > 0 após forEach; entendimento
-confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
+confirmado com "entendi" em 07/11/2026; publicação em 90adc7e. 8.34: roteiro
+da contagem/mensagem apresentado; entendimento confirmado e sucesso geral relatado
+com "funcionou  entendi" em 07/11/2026; checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1628,9 +1633,11 @@ com "entendi" em 07/11/2026; publicação em 081d392. Na 8.32, contagem por busc
 com let/if/incremento implementada e explicada; entendimento confirmado com
 "entendi" em 07/11/2026; publicação em 5b5b953. Na 8.33, exibição da mensagem
 conforme total de resultados implementada e explicada; entendimento confirmado
-com "entendi" em 07/11/2026; checkpoint em preparação.
-Próximo passo após publicação: 8.34 — verificação da contagem
-e da mensagem no navegador.
+com "entendi" em 07/11/2026; publicação em 90adc7e. Na 8.34, roteiro de verificação
+da contagem e da mensagem apresentado; entendimento confirmado e sucesso geral
+relatado com "funcionou  entendi" em 07/11/2026; checkpoint em preparação.
+Próximo passo após publicação: 8.35 — função nomeada para tratar
+o envio da busca.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
