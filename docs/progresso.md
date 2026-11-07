@@ -6,23 +6,23 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.44 confirmadas/publicadas; 8.29, 8.34, 8.39 e 8.41 com relatos
-  gerais de sucesso. 8.45 com entendimento confirmado; publicação pendente.
+  Etapas 8.16 a 8.45 confirmadas/publicadas; 8.29, 8.34, 8.39 e 8.41 com relatos
+  gerais de sucesso. 8.46 com entendimento confirmado; publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.45 — Tratamento de rejeições com catch,
+- Última etapa concluída: 8.46 — Finalização de uma cadeia com finally,
   entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.44, e563a8052d26a748dd43c12e5cdcd05204fda9d1.
+  último checkpoint publicado: 8.45, 848c8efc18bfa237dc9a0d106ff5ca5a7fcfff22.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.45 — Tratamento de rejeições com catch.
+- Etapa atual: 8.46 — Finalização de uma cadeia com finally.
   Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.45 conforme autorização permanente. Depois,
-  8.46 — finalização de uma cadeia com finally. Não iniciada.
+- Próximo passo exato: publicar a 8.46 conforme autorização permanente. Depois,
+  8.47 — verificação da cadeia de rejeição no navegador. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é e563a80.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 848c8ef.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -252,6 +252,11 @@
 - Situação da 8.45: src/vitrine.js usa Promise.reject com motivo em string
   para uma falha simulada; catch registra prefixo e motivo com console.error.
   Aula docs/aulas/08-45-rejeicoes-catch.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; atividade opcional no navegador sem relato. Publicação em 848c8ef.
+- Situação da 8.46: src/vitrine.js recebe finally depois de catch, com callback
+  sem parâmetros que registra o encerramento no Console. Aula
+  docs/aulas/08-46-finalizacao-finally.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -19681,7 +19686,50 @@ containers novos. Suíte Laravel não repetida por ser frontend estático.
 
 Entendimento da 8.45 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+848c8efc18bfa237dc9a0d106ff5ca5a7fcfff22; push e563a80 → 848c8ef com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.46. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.46 — Finalização de uma cadeia com finally — 07/11/2026
+
+Iniciada após confirmação da 8.45 com "entendi" e publicação conferida em
+848c8efc18bfa237dc9a0d106ff5ca5a7fcfff22; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova ou relato separado de execução da atividade opcional.
+
+Objetivo e conceito explicados antes da alteração: acrescentar uma ação de
+encerramento para quando a Promise anterior terminar. Em src/vitrine.js,
+finally após catch, com arrow sem parâmetros que registra 'Preparação da
+mensagem encerrada.'. Promise.reject, dois then, catch e logs diretos
+preservados. Aula docs/aulas/08-46-finalizacao-finally.md criada; continuidade
+da 8.45, roteiro e progresso atualizados.
+
+Explicação apresentada: finally age em ambos os resultados, recebe callback
+sem argumento de valor/motivo e aguarda a Promise anterior terminar. Aqui está
+ligado à Promise fulfilled com undefined devolvida pelo catch que termina
+normalmente; Promise inicial permanece rejected. Encerramento não indica sucesso
+inicial. Callback normal mantém resultado anterior na Promise devolvida; erro ou
+retorno de Promise rejeitada pode mudar o resultado. Fonte primária ECMAScript
+consultada. Uso futuro como retirar indicador de carregamento apenas explicado,
+sem implementação. Import, filtro, formulário e HTML/CSS/textos.js preservados;
+nenhuma API, dependência, container ou mudança no backend.
+
+Verificações da 8.46: GET /vitrine.js no servidor existente retornou HTTP/1.1
+200 OK, Content-Type application/javascript, Content-Length 1772. cmp confirmou
+corpo igual ao arquivo local, código 0; set -euo pipefail, temporários próprios
+removidos. Demonstra entrega, não execução da cadeia no navegador. git diff
+--check passou; diff --exit-code confirmou HTML/CSS/textos.js sem alterações.
+Inspeção do diff confirmou acréscimo de finally após catch, mantendo criação
+da Promise, dois then, catch, logs diretos, import e busca. Links locais
+conferidos. Sem execução de JS pelo assistente, Node no host ou DOM simulado;
+sem ferramenta disponível de navegador nesta sessão. Nenhum pacote/container
+novo; suíte Laravel não repetida por ser frontend estático.
+
+Entendimento da 8.46 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
 execução a partir da confirmação. Checkpoint concluído, publicação pendente
 conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.46 — finalização de uma cadeia com finally. Não iniciada.
+depois iniciar 8.47 — verificação da cadeia de rejeição no navegador. Não iniciada.
 Módulos 9 a 23 não iniciados.

@@ -97,6 +97,6 @@ Isso demonstra entrega do código; execução da cadeia sem observação ou rela
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.46 — finalização de uma cadeia com finally.
-8.46 não iniciada.
+Checkpoint publicado e conferido em 848c8efc18bfa237dc9a0d106ff5ca5a7fcfff22;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.46 — finalização de uma cadeia com finally](08-46-finalizacao-finally.md).

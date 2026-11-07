@@ -53,6 +53,9 @@ mensagemPronta
     })
     .catch((motivo) => {
         console.error('Não foi possível preparar a mensagem:', motivo);
+    })
+    .finally(() => {
+        console.log('Preparação da mensagem encerrada.');
     });
 
 console.log('Depois de registrar o then.');
