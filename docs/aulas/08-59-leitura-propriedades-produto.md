@@ -87,5 +87,6 @@ Isso demonstra entrega; execução das leituras no navegador sem observação ou
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.60 — array de produtos. Não iniciada.
+Checkpoint publicado e conferido em a253be84f7ca71fe41dda4379ae92e1175dd0799;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.60 — array de produtos](08-60-array-produtos.md).

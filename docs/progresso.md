@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.58 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
-  8.53 e 8.57 com relatos gerais de sucesso. 8.59 com entendimento confirmado;
+  Etapas 8.16 a 8.59 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
+  8.53 e 8.57 com relatos gerais de sucesso. 8.60 com entendimento confirmado;
   publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.59 — Leitura de propriedades do produto com ponto,
+- Última etapa concluída: 8.60 — Array de produtos,
   entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.58, cee5975e669168710d6d5086065e75d9adff87b2.
+  último checkpoint publicado: 8.59, a253be84f7ca71fe41dda4379ae92e1175dd0799.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.59 — Leitura de propriedades do produto com ponto.
+- Etapa atual: 8.60 — Array de produtos.
   Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.59 conforme autorização permanente. Depois,
-  8.60 — array de produtos. Não iniciada.
+- Próximo passo exato: publicar a 8.60 conforme autorização permanente. Depois,
+  8.61 — índices e length do array de produtos. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é cee5975.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é a253be8.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -329,6 +329,11 @@
 - Situação da 8.59: src/vitrine.js recebe dois console.log com leituras de
   produtoExemplo.nome e produtoExemplo.preco. Objeto e restante preservados. Aula
   docs/aulas/08-59-leitura-propriedades-produto.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; atividade opcional no navegador sem relato. Publicação em a253be8.
+- Situação da 8.60: src/vitrine.js declara produtosExemplo como array com
+  produtoExemplo e objeto Caneca/preco 2990; registra lista no Console. Aula
+  docs/aulas/08-60-array-produtos.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -20369,7 +20374,52 @@ não repetida.
 
 Entendimento da 8.59 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+a253be84f7ca71fe41dda4379ae92e1175dd0799; push cee5975 → a253be8 com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.60. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.60 — Array de produtos — 07/11/2026
+
+Iniciada após confirmação da 8.59 com "entendi" e publicação conferida em
+a253be84f7ca71fe41dda4379ae92e1175dd0799; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova ou relato separado de execução da atividade opcional.
+
+Objetivo explicado antes da alteração: agrupar dois produtos em array, usando
+objeto existente da Camiseta e novo objeto da Caneca. Em src/vitrine.js, depois
+dos logs de produtoExemplo, criado const produtosExemplo = [produtoExemplo,
+{nome: 'Caneca', preco: 2990}], com console.log('Produtos de exemplo:',
+produtosExemplo). Preços inteiros em centavos, 4990 e 2990. Aula
+08-60-array-produtos.md criada; continuidade da 8.59, roteiro e progresso
+atualizados.
+
+Explicação apresentada: colchetes delimitam array literal e vírgulas separam
+elementos; chaves internas delimitam objeto. Lista ordenada de dois objetos,
+primeiro reutiliza mesmo objeto sem cópia. Índices 0/1 e quantidade dois
+explicados, leitura/length reservados à próxima etapa. Comparação com lista
+indexada em PHP. Console com lista expansível e conteúdo esperado, sem exigir
+aparência visual exata. Fonte primária ECMAScript consultada. Distinção entre
+produtosExemplo (Array de dados) e produtos (NodeList de cartões HTML), com
+filtro usando NodeList preservado. Objeto anterior, import, funções async e
+HTML/CSS/textos.js preservados. Nenhuma API, persistência, dependência ou
+container novo.
+
+Verificações da 8.60: GET /vitrine.js no servidor existente retornou HTTP/1.1
+200 OK, Content-Type application/javascript, Content-Length 2503. cmp confirmou
+corpo igual ao arquivo local, código 0; set -euo pipefail, temporários próprios
+removidos. Demonstra entrega, não execução da criação/registro no navegador.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou somente array literal de dois objetos e
+seu log; objeto anterior, import, busca e funções async preservados. Links locais
+conferidos. Sem execução de JS pelo assistente, Node no host ou DOM simulado;
+sem ferramenta disponível de navegador nesta sessão. Nenhum pacote/container
+novo; suíte Laravel não repetida.
+
+Entendimento da 8.60 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
 execução a partir da confirmação. Checkpoint concluído, publicação pendente
 conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.60 — array de produtos. Não iniciada.
+depois iniciar 8.61 — índices e length do array de produtos. Não iniciada.
 Módulos 9 a 23 não iniciados.

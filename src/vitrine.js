@@ -11,6 +11,16 @@ console.log('Produto de exemplo:', produtoExemplo);
 console.log('Nome do produto:', produtoExemplo.nome);
 console.log('Preço em centavos:', produtoExemplo.preco);
 
+const produtosExemplo = [
+    produtoExemplo,
+    {
+        nome: 'Caneca',
+        preco: 2990,
+    },
+];
+
+console.log('Produtos de exemplo:', produtosExemplo);
+
 const formularioBusca = document.querySelector('.busca');
 const campoNome = formularioBusca.querySelector('#busca-nome');
 const produtos = document.querySelectorAll('.produto');
