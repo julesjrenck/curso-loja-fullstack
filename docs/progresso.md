@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.24 confirmadas/publicadas; 8.25 com entendimento confirmado.
+  Etapas 8.16 a 8.25 confirmadas/publicadas; 8.26 com entendimento confirmado.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.25 — Percorrer os produtos com forEach,
+- Última etapa concluída: 8.26 — Leitura do nome de cada produto com textContent,
   entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.24, ab68117e4754a109a87983371f8bef6e3f1e44e0;
+  Último checkpoint publicado: 8.25, d64dfa9204f72052aae2193057924e01ab2a3c1b;
   HEAD/origin/main/main remota iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.25 — Percorrer os produtos com forEach.
+- Etapa atual: 8.26 — Leitura do nome de cada produto com textContent.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.25 conforme autorização.
-  Depois, 8.26 — leitura do nome de cada produto
-  com textContent. Não iniciada.
+- Próximo passo exato: publicar checkpoint da 8.26 conforme autorização.
+  Depois, 8.27 — comparação do nome com termoBusca
+  usando includes. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é ab68117.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é d64dfa9.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -149,6 +149,11 @@
 - Situação da 8.25: dentro do submit de src/vitrine.js, produtos.forEach recebe
   function (produto) com console.log(produto). Aula
   docs/aulas/08-25-percorrer-produtos.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; publicação conferida em d64dfa9.
+- Situação da 8.26: dentro do forEach de src/vitrine.js, const nomeProduto
+  recebe produto.querySelector('h2').textContent; log passa a usar nomeProduto.
+  Aula docs/aulas/08-26-nome-produto-textcontent.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   07/11/2026; checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -18648,8 +18653,57 @@ Suíte Laravel não repetida por ser alteração isolada do frontend estático.
 
 Entendimento da 8.25: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional no navegador. Resultados permanecem
+esperados, sem observação direta de execução. Publicação concluída conforme
+autorização permanente; git add, git commit e git push origin main explicados
+antes da execução. Commit d64dfa9204f72052aae2193057924e01ab2a3c1b;
+push ab68117 → d64dfa9 com código 0. HEAD/origin/main/main remota conferidos no
+mesmo SHA. Registro posterior à publicação. Continuidade iniciada na 8.26 —
+leitura do nome de cada produto com textContent. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.26 — Leitura do nome de cada produto com textContent — 07/11/2026
+
+Iniciada após confirmação da 8.25 com "entendi" e publicação conferida em
+d64dfa9204f72052aae2193057924e01ab2a3c1b; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: selecionar h2 dentro do cartão atual
+e obter o nome como string pela propriedade textContent. Único arquivo da
+aplicação alterado: src/vitrine.js; dentro do forEach, const nomeProduto =
+produto.querySelector('h2').textContent; e log passa a usar nomeProduto. Aula
+docs/aulas/08-26-nome-produto-textcontent.md criada; continuidade da 8.25,
+roteiro e progresso atualizados com checkpoint publicado.
+
+Explicação apresentada: seleção pelo nome da tag h2 dentro de produto, diferente
+de buscar primeiro título da página. Propriedade textContent sem parênteses
+retorna texto do título e seus descendentes sem tags; não usa value do input.
+NomeProduto é string local a cada chamada. Camiseta/Caneca esperados mantendo
+grafia; preço fica fora por estar no p. Leitura do article inteiro incluiria
+preço/espaços. TextContent não aplica trim/minúsculas e não depende da visibilidade
+por CSS. Estrutura atual garante h2; falta de correspondência retorna null e
+impede leitura da propriedade. Referência primária DOM Standard consultada.
+Seleções/logs iniciais/preparo do termo/preventDefault e HTML/CSS preservados;
+nenhuma comparação, filtragem, API/SQL/login ou mudança no backend.
+
+Verificação HTTP fora do sandbox: GET /vitrine.js retornou HTTP/1.1 200 OK,
+Content-Type application/javascript e Content-Length 701. Corpo comparado por
+cmp ao arquivo local: igualdade exata, código 0; set -euo pipefail. Temporários
+próprios removidos. Inspeção confirmou h2 Camiseta/Caneca nos respectivos article,
+preços em p separado, querySelector local a produto e textContent atribuído a
+nomeProduto dentro do forEach; log usa a string. Demonstra entrega e estrutura
+do código; não prova execução da leitura ou dos registros no navegador.
+
+Git diff --check passou; git diff --exit-code de HTML/CSS confirmou ausência
+de alterações nesses arquivos. Destinos locais dos documentos conferidos.
+Somente JS e documentação alterados; índice vazio. Nenhuma ferramenta,
+dependência ou container novo; sem execução de Node no host ou simulação de DOM.
+Sem observação do navegador e sem relato de execução desta etapa pelo aluno.
+Suíte Laravel não repetida por ser alteração isolada do frontend estático.
+
+Entendimento da 8.26: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
+nova ou relato separado da atividade opcional no navegador. Resultados permanecem
 esperados, sem observação direta de execução. Checkpoint em preparação conforme
 autorização permanente; git add, git commit e git push origin main explicados
 antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.26 — leitura do nome de cada produto com textContent.
+depois 8.27 — comparação do nome com termoBusca usando includes.
 Não iniciada; módulos 9 a 23 não iniciados.

@@ -91,7 +91,9 @@ Na 8.24, seleção dos cartões com querySelectorAll e log da NodeList implement
 e explicados; entendimento confirmado com "entendi" em 07/11/2026;
 publicação em ab68117. Na 8.25, forEach dentro do submit com log de cada cartão
 implementado e explicado; entendimento confirmado com "entendi" em 07/11/2026;
-checkpoint em preparação.
+publicação em d64dfa9. Na 8.26, nomeProduto obtido do h2 com textContent e log
+do nome implementados e explicados; entendimento confirmado com "entendi" em
+07/11/2026; checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -116,7 +118,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.22](aulas/08-22-termo-busca-trim.md),
 [8.23](aulas/08-23-termo-busca-minusculas.md),
 [8.24](aulas/08-24-selecao-produtos.md),
-[8.25](aulas/08-25-percorrer-produtos.md) e no progresso.
+[8.25](aulas/08-25-percorrer-produtos.md),
+[8.26](aulas/08-26-nome-produto-textcontent.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -613,7 +616,9 @@ minúsculas com trim().toLowerCase(); entendimento confirmado com "entendi" em
 NodeList dos produtos e log; entendimento confirmado com "entendi" em 07/11/2026;
 publicação em ab68117. 8.25 implementada e explicada: forEach com função para
 cada produto dentro do submit; entendimento confirmado com "entendi" em
-07/11/2026; checkpoint em preparação.
+07/11/2026; publicação em d64dfa9. 8.26 implementada e explicada: seleção do h2
+de cada cartão e leitura de textContent; entendimento confirmado com "entendi"
+em 07/11/2026; checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1571,8 +1576,10 @@ Na 8.24, seleção dos cartões com querySelectorAll e log da NodeList implement
 e explicados; entendimento confirmado com "entendi" em 07/11/2026;
 publicação em ab68117. Na 8.25, forEach dentro do submit com log de cada cartão
 implementado e explicado; entendimento confirmado com "entendi" em 07/11/2026;
-checkpoint em preparação. Próximo passo após publicação: 8.26 — leitura do nome
-de cada produto com textContent.
+publicação em d64dfa9. Na 8.26, seleção do h2 de cada cartão e leitura de
+textContent implementadas e explicadas; entendimento confirmado com "entendi"
+em 07/11/2026; checkpoint em preparação. Próximo passo após publicação:
+8.27 — comparação do nome com termoBusca usando includes.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

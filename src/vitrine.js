@@ -16,6 +16,8 @@ formularioBusca.addEventListener('submit', function (evento) {
     console.log('Busca enviada:', termoBusca);
 
     produtos.forEach(function (produto) {
-        console.log(produto);
+        const nomeProduto = produto.querySelector('h2').textContent;
+
+        console.log(nomeProduto);
     });
 });

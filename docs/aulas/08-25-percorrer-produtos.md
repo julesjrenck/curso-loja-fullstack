@@ -103,6 +103,7 @@ nenhuma execução observada ou relatada nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.25 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.26 — leitura do nome de cada
-produto com textContent. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+d64dfa9204f72052aae2193057924e01ab2a3c1b; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.26](08-26-nome-produto-textcontent.md): leitura do nome com textContent.
