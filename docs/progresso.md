@@ -6,23 +6,23 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.48 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41 e 8.47 com
-  relatos gerais de sucesso. 8.49 com entendimento confirmado; publicação pendente.
+  Etapas 8.16 a 8.49 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41 e 8.47 com
+  relatos gerais de sucesso. 8.50 com entendimento confirmado; publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.49 — Função async e seu retorno como Promise,
+- Última etapa concluída: 8.50 — Await dentro de uma função async,
   entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.48, 6396b026977f472bc7469407f321dd73f48c62c0.
+  último checkpoint publicado: 8.49, c691262bff4338881f532911203ab336389f5164.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.49 — Função async e seu retorno como Promise.
+- Etapa atual: 8.50 — Await dentro de uma função async.
   Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.49 conforme autorização permanente. Depois,
-  8.50 — await dentro de uma função async. Não iniciada.
+- Próximo passo exato: publicar a 8.50 conforme autorização permanente. Depois,
+  8.51 — rejeição em await e propagação para catch. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 6396b02.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é c691262.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -275,7 +275,12 @@
   Cadeia preservada. Aula docs/aulas/08-49-funcao-async-retorno.md criada;
   continuidade anterior, roteiro/progresso atualizados. Entendimento confirmado
   com "entendi" em 07/11/2026; atividade opcional no navegador sem relato.
-  Publicação pendente.
+  Publicação conferida em c691262.
+- Situação da 8.50: corpo de prepararMensagem em src/vitrine.js usa const
+  mensagem = await Promise.resolve da string e return mensagem. Chamada e cadeia
+  preservadas. Aula docs/aulas/08-50-await-funcao-async.md criada; continuidade
+  anterior, roteiro/progresso atualizados. Entendimento confirmado com "entendi"
+  em 07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -19876,7 +19881,50 @@ sessão. Nenhum pacote/container novo; suíte Laravel não repetida.
 
 Entendimento da 8.49 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+c691262bff4338881f532911203ab336389f5164; push 6396b02 → c691262 com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.50. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.50 — Await dentro de uma função async — 07/11/2026
+
+Iniciada após confirmação da 8.49 com "entendi" e publicação conferida em
+c691262bff4338881f532911203ab336389f5164; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova ou relato separado de execução da atividade opcional.
+
+Objetivo e conceito explicados antes da alteração: obter valor de sucesso de uma
+Promise com await dentro de prepararMensagem. Em src/vitrine.js, return direto
+da string substituído por const mensagem = await Promise.resolve da mesma string
+e return mensagem. Chamada externa e cadeia preservadas. Aula
+08-50-await-funcao-async.md criada; continuidade da 8.49, roteiro e progresso
+atualizados.
+
+Explicação apresentada: await suspende continuação da função, mesmo com Promise
+interna já fulfilled; chamador continua e recebe Promise externa. Ao retomar,
+variável local recebe string e return resolve Promise externa com esse texto.
+Não bloqueia a página nem cria thread ou espera fixa; exemplo didático, sem
+necessidade operacional de await para esta string local. Distinção mensagem local,
+mensagemPronta externa e parâmetro do callback then, com escopos diferentes.
+Fonte primária ECMAScript consultada. Logs diretos antes dos callbacks; saída
+esperada preservada. HTML/CSS/textos.js, import, formulário e busca preservados.
+Nenhuma API, dependência, container ou alteração no backend.
+
+Verificações da 8.50: GET /vitrine.js no servidor existente retornou HTTP/1.1
+200 OK, Content-Type application/javascript, Content-Length 1871. cmp confirmou
+corpo igual ao arquivo local, código 0; set -euo pipefail, temporários próprios
+removidos. Demonstra entrega, não execução de await/cadeia no navegador.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou somente corpo de prepararMensagem com
+await e retorno da variável; chamada, cadeia, logs diretos, import e busca
+preservados. Links locais conferidos. Sem execução de JS pelo assistente,
+Node no host ou DOM simulado; sem ferramenta disponível de navegador nesta
+sessão. Nenhum pacote/container novo; suíte Laravel não repetida.
+
+Entendimento da 8.50 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
 execução a partir da confirmação. Checkpoint concluído, publicação pendente
 conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.50 — await dentro de uma função async. Não iniciada.
+depois iniciar 8.51 — rejeição em await e propagação para catch. Não iniciada.
 Módulos 9 a 23 não iniciados.

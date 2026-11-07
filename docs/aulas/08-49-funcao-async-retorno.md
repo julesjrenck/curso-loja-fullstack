@@ -87,6 +87,6 @@ observação ou relato nesta etapa.
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.50 — await dentro de uma função async.
-8.50 não iniciada.
+Checkpoint publicado e conferido em c691262bff4338881f532911203ab336389f5164;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.50 — await dentro de uma função async](08-50-await-funcao-async.md).

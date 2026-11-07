@@ -41,7 +41,9 @@ function tratarBusca(evento) {
 formularioBusca.addEventListener('submit', tratarBusca);
 
 async function prepararMensagem() {
-    return 'Vitrine pronta para a busca.';
+    const mensagem = await Promise.resolve('Vitrine pronta para a busca.');
+
+    return mensagem;
 }
 
 const mensagemPronta = prepararMensagem();
