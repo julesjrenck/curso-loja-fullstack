@@ -101,6 +101,7 @@ ou relatada; o relato da 8.34 pertence ao código daquela etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.36 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.37 — arrow function no forEach
-dos produtos. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+6d69e7cb877db0f6b52beae320fce47bf590cdc8; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.37](08-37-arrow-function-foreach.md): arrow function no forEach dos produtos.

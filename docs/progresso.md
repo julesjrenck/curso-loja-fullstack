@@ -6,25 +6,25 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.35 confirmadas/publicadas; 8.29 e 8.34 com relatos gerais
-  de sucesso. 8.36 com entendimento confirmado.
+  Etapas 8.16 a 8.36 confirmadas/publicadas; 8.29 e 8.34 com relatos gerais
+  de sucesso. 8.37 com entendimento confirmado.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.36 — Função prepararTexto com parâmetro e return,
+- Última etapa concluída: 8.37 — Arrow function no forEach dos produtos,
   entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.35, 3baa8f558688699a1aa449702d0ce46fe62cf00f;
+  Último checkpoint publicado: 8.36, 6d69e7cb877db0f6b52beae320fce47bf590cdc8;
   HEAD/origin/main/main remota iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.36 — Função prepararTexto com parâmetro e return.
+- Etapa atual: 8.37 — Arrow function no forEach dos produtos.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.36 conforme autorização.
-  Depois, 8.37 — arrow function no forEach
-  dos produtos. Não iniciada.
+- Próximo passo exato: publicar checkpoint da 8.37 conforme autorização.
+  Depois, 8.38 — arrow function com retorno
+  implícito em prepararTexto. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 3baa8f5.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 6d69e7c.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -207,6 +207,11 @@
 - Situação da 8.36: src/vitrine.js recebe prepararTexto(texto), retornando
   texto.trim().toLowerCase(); termoBusca/nomeProduto passam a usar a função.
   Aula docs/aulas/08-36-preparar-texto-return.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; publicação conferida em 6d69e7c.
+- Situação da 8.37: em src/vitrine.js, abertura function (produto) do forEach
+  substituída por (produto) =>, mantendo corpo e fechamento. Aula
+  docs/aulas/08-37-arrow-function-foreach.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   07/11/2026; checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -19229,8 +19234,55 @@ Suíte Laravel não repetida por ser alteração isolada do frontend estático.
 
 Entendimento da 8.36: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional no navegador. Resultados permanecem
+esperados, sem observação direta de execução. Publicação concluída conforme
+autorização permanente; git add, git commit e git push origin main explicados
+antes da execução. Commit 6d69e7cb877db0f6b52beae320fce47bf590cdc8;
+push 3baa8f5 → 6d69e7c com código 0. HEAD/origin/main/main remota conferidos no
+mesmo SHA. Registro posterior à publicação. Continuidade iniciada na 8.37 —
+arrow function no forEach dos produtos. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.37 — Arrow function no forEach dos produtos — 07/11/2026
+
+Iniciada após confirmação da 8.36 com "entendi" e publicação conferida em
+6d69e7cb877db0f6b52beae320fce47bf590cdc8; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: apresentar arrow function no callback
+existente. Único arquivo da aplicação alterado: src/vitrine.js; abertura de
+produtos.forEach(function (produto) { passa a produtos.forEach((produto) => {,
+mantendo parâmetro, corpo e fechamento. Aula
+docs/aulas/08-37-arrow-function-foreach.md criada; continuidade da 8.36, roteiro
+e progresso atualizados com checkpoint publicado.
+
+Explicação apresentada: parâmetros entre parênteses, seta => e corpo em bloco;
+função continua passada como argumento e chamada por forEach a cada article.
+Corpo acessa termoBusca/contador externos e mantém filtro/contagem. Chaves com
+várias instruções não retornam automaticamente última expressão; retorno não
+é usado por forEach para filtrar. Diferença de this próprio explicada de forma
+delimitada: arrow usa contexto externo, este callback não utiliza this.
+Referência primária ECMAScript consultada. Funções nomeadas/registro submit e
+HTML/CSS preservados; nenhuma API/SQL/login ou mudança no backend.
+
+Verificação HTTP fora do sandbox: GET /vitrine.js retornou HTTP/1.1 200 OK,
+Content-Type application/javascript e Content-Length 1264. Corpo comparado por
+cmp ao arquivo local: igualdade exata, código 0; set -euo pipefail. Temporários
+próprios removidos. Diff confirmou alteração de uma linha na abertura do forEach,
+com parâmetro/corpo/fechamento preservados. Inspeção confirmou funções nomeadas
+mantidas e ausência de this no callback. Demonstra entrega e estrutura do código;
+não prova execução da arrow ou do filtro após esta alteração no navegador.
+
+Git diff --check passou; git diff --exit-code de HTML/CSS confirmou ausência
+de alterações nesses arquivos. Destinos locais dos documentos conferidos.
+Somente JS e documentação alterados; índice vazio. Nenhuma ferramenta,
+dependência ou container novo; sem execução de Node no host ou simulação de DOM.
+Sem observação do navegador e sem relato de execução desta etapa pelo aluno.
+Suíte Laravel não repetida por ser alteração isolada do frontend estático.
+
+Entendimento da 8.37: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
+nova ou relato separado da atividade opcional no navegador. Resultados permanecem
 esperados, sem observação direta de execução. Checkpoint em preparação conforme
 autorização permanente; git add, git commit e git push origin main explicados
 antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.37 — arrow function no forEach dos produtos.
+depois 8.38 — arrow function com retorno implícito em prepararTexto.
 Não iniciada; módulos 9 a 23 não iniciados.

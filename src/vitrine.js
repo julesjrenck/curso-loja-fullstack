@@ -22,7 +22,7 @@ function tratarBusca(evento) {
 
     console.log('Busca enviada:', termoBusca);
 
-    produtos.forEach(function (produto) {
+    produtos.forEach((produto) => {
         const nomeProduto = prepararTexto(produto.querySelector('h2').textContent);
         const corresponde = nomeProduto.includes(termoBusca);
 
