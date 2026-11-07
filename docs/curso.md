@@ -101,7 +101,10 @@ com "entendi" em 07/11/2026; publicação em b2ed9ff. Na 8.29, roteiro de verifi
 do filtro apresentado; entendimento confirmado e sucesso geral no navegador
 relatado com "funcinou e entendi" em 07/11/2026; publicação em 2480b5b.
 Na 8.30, parágrafo com id sem-resultados/hidden implementado e explicado;
-entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
+entendimento confirmado com "entendi" em 07/11/2026; publicação em 8416e7f.
+Na 8.31, referência mensagemSemResultados via querySelector e log implementados
+e explicados; entendimento confirmado com "entendi" em 07/11/2026;
+checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -131,7 +134,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.27](aulas/08-27-comparacao-includes.md),
 [8.28](aulas/08-28-visibilidade-hidden.md),
 [8.29](aulas/08-29-verificacao-filtro.md),
-[8.30](aulas/08-30-mensagem-sem-resultados-html.md) e no progresso.
+[8.30](aulas/08-30-mensagem-sem-resultados-html.md),
+[8.31](aulas/08-31-selecao-mensagem.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -638,6 +642,8 @@ confirmado com "entendi" em 07/11/2026; publicação em b2ed9ff. 8.29: roteiro
 de testes do filtro apresentado; entendimento confirmado e sucesso geral relatado
 com "funcinou e entendi" em 07/11/2026; publicação em 2480b5b. 8.30 implementada
 e explicada: parágrafo da mensagem com id/hidden no HTML; entendimento confirmado
+com "entendi" em 07/11/2026; publicação em 8416e7f. 8.31 implementada e explicada:
+seleção da mensagem por ID e registro do elemento; entendimento confirmado
 com "entendi" em 07/11/2026; checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
@@ -1606,9 +1612,11 @@ com "entendi" em 07/11/2026; publicação em b2ed9ff. Na 8.29, roteiro de verifi
 do filtro apresentado; entendimento confirmado e sucesso geral relatado com
 "funcinou e entendi" em 07/11/2026; publicação em 2480b5b. Na 8.30, estrutura
 HTML da mensagem com id/hidden implementada e explicada; entendimento confirmado
+com "entendi" em 07/11/2026; publicação em 8416e7f. Na 8.31, referência à mensagem
+com querySelector e log implementados e explicados; entendimento confirmado
 com "entendi" em 07/11/2026; checkpoint em preparação.
-Próximo passo após publicação: 8.31 — seleção da mensagem de busca
-sem resultados no JavaScript.
+Próximo passo após publicação: 8.32 — contagem dos produtos
+correspondentes com let.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

@@ -6,25 +6,25 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.29 confirmadas/publicadas; 8.29 com relato geral de sucesso
-  "funcinou e entendi". 8.30 com entendimento confirmado.
+  Etapas 8.16 a 8.30 confirmadas/publicadas; 8.29 com relato geral de sucesso
+  "funcinou e entendi". 8.31 com entendimento confirmado.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.30 — Estrutura HTML da mensagem de busca sem resultados,
+- Última etapa concluída: 8.31 — Seleção da mensagem de busca sem resultados,
   entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.29, 2480b5b0c36fa2e7de98f425a086beda9575292d;
+  Último checkpoint publicado: 8.30, 8416e7fe96db136302e83b74d0fbdd9290cb9ee8;
   HEAD/origin/main/main remota iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.30 — Estrutura HTML da mensagem de busca sem resultados.
+- Etapa atual: 8.31 — Seleção da mensagem de busca sem resultados no JavaScript.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.30 conforme autorização.
-  Depois, 8.31 — seleção da mensagem de busca
-  sem resultados no JavaScript. Não iniciada.
+- Próximo passo exato: publicar checkpoint da 8.31 conforme autorização.
+  Depois, 8.32 — contagem dos produtos
+  correspondentes com let. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 2480b5b.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 8416e7f.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -177,7 +177,12 @@
   texto Nenhum produto encontrado., depois da div produtos e dentro de main.
   Aula docs/aulas/08-30-mensagem-sem-resultados-html.md criada; continuidade
   anterior, roteiro/progresso atualizados. Entendimento confirmado com "entendi"
-  em 07/11/2026; checkpoint em preparação.
+  em 07/11/2026; publicação conferida em 8416e7f.
+- Situação da 8.31: src/vitrine.js recebe const mensagemSemResultados com
+  document.querySelector('#sem-resultados') e log do elemento no carregamento.
+  Aula docs/aulas/08-31-selecao-mensagem.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -18911,8 +18916,55 @@ isolada no HTML estático.
 
 Entendimento da 8.30: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional no navegador. Resultados permanecem
+esperados, sem observação direta de execução. Publicação concluída conforme
+autorização permanente; git add, git commit e git push origin main explicados
+antes da execução. Commit 8416e7fe96db136302e83b74d0fbdd9290cb9ee8;
+push 2480b5b → 8416e7f com código 0. HEAD/origin/main/main remota conferidos no
+mesmo SHA. Registro posterior à publicação. Continuidade iniciada na 8.31 —
+seleção da mensagem de busca sem resultados no JavaScript. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.31 — Seleção da mensagem de busca sem resultados no JavaScript — 07/11/2026
+
+Iniciada após confirmação da 8.30 com "entendi" e publicação conferida em
+8416e7fe96db136302e83b74d0fbdd9290cb9ee8; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: guardar referência ao parágrafo existente,
+oculto mas presente no DOM. Único arquivo da aplicação alterado: src/vitrine.js;
+const mensagemSemResultados = document.querySelector('#sem-resultados'); junto
+às seleções, e console.log(mensagemSemResultados); junto aos logs iniciais.
+Aula docs/aulas/08-31-selecao-mensagem.md criada; continuidade da 8.30, roteiro
+e progresso atualizados com checkpoint publicado.
+
+Explicação apresentada: reutilização de querySelector com seletor de ID, referência
+ao p sem criar/copiá-lo. Busca no document porque mensagem está fora do form.
+Retorno null se ID não corresponder. Hidden não impede seleção; log espera objeto
+de elemento com id/hidden, não apenas texto. Módulo sem async executa após análise
+do HTML; constante no módulo acessível pela função submit. Mensagem permanece
+oculta sem atribuição a seu hidden, controle posterior à contagem. Referências
+primárias DOM/HTML Standard já consultadas. HTML/CSS e filtro preservados;
+nenhuma API/SQL/login ou mudança no backend.
+
+Verificação HTTP fora do sandbox: GET /vitrine.js retornou HTTP/1.1 200 OK,
+Content-Type application/javascript e Content-Length 946. Corpo comparado por
+cmp ao arquivo local: igualdade exata, código 0; set -euo pipefail. Temporários
+próprios removidos. Inspeção confirmou script module, p id sem-resultados/hidden
+no HTML, seletor correspondente e log da referência fora do callback. Demonstra
+entrega e correspondência entre arquivos; não prova execução da seleção ou
+registro no navegador.
+
+Git diff --check passou; git diff --exit-code de HTML/CSS confirmou ausência
+de alterações nesses arquivos. Destinos locais dos documentos conferidos.
+Somente JS e documentação alterados; índice vazio. Nenhuma ferramenta,
+dependência ou container novo; sem execução de Node no host ou simulação de DOM.
+Sem observação do navegador e sem relato de execução desta etapa pelo aluno.
+Suíte Laravel não repetida por ser alteração isolada do frontend estático.
+
+Entendimento da 8.31: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
+nova ou relato separado da atividade opcional no navegador. Resultados permanecem
 esperados, sem observação direta de execução. Checkpoint em preparação conforme
 autorização permanente; git add, git commit e git push origin main explicados
 antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.31 — seleção da mensagem de busca sem resultados no JavaScript.
+depois 8.32 — contagem dos produtos correspondentes com let.
 Não iniciada; módulos 9 a 23 não iniciados.

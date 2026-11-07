@@ -74,6 +74,7 @@ nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.30 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.31 — seleção da mensagem de
-busca sem resultados no JavaScript. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+8416e7fe96db136302e83b74d0fbdd9290cb9ee8; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.31](08-31-selecao-mensagem.md): seleção da mensagem no JavaScript.

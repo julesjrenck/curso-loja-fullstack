@@ -3,10 +3,12 @@ console.log('JavaScript da vitrine carregado.');
 const formularioBusca = document.querySelector('.busca');
 const campoNome = formularioBusca.querySelector('#busca-nome');
 const produtos = document.querySelectorAll('.produto');
+const mensagemSemResultados = document.querySelector('#sem-resultados');
 
 console.log(formularioBusca);
 console.log('Valor inicial da busca:', campoNome.value);
 console.log(produtos);
+console.log(mensagemSemResultados);
 
 formularioBusca.addEventListener('submit', function (evento) {
     evento.preventDefault();
