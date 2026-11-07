@@ -92,6 +92,6 @@ esperada, sem observação direta ou relato do navegador.
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.45 — tratamento de rejeições com catch.
-8.45 não iniciada.
+Checkpoint publicado e conferido em e563a8052d26a748dd43c12e5cdcd05204fda9d1;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.45 — tratamento de rejeições com catch](08-45-rejeicoes-catch.md).

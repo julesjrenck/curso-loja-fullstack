@@ -40,7 +40,7 @@ function tratarBusca(evento) {
 
 formularioBusca.addEventListener('submit', tratarBusca);
 
-const mensagemPronta = Promise.resolve('Vitrine pronta para a busca.');
+const mensagemPronta = Promise.reject('Falha simulada ao preparar a mensagem.');
 
 console.log('Antes de registrar o then.');
 
@@ -50,6 +50,9 @@ mensagemPronta
     })
     .then((mensagemFormatada) => {
         console.log(mensagemFormatada);
+    })
+    .catch((motivo) => {
+        console.error('Não foi possível preparar a mensagem:', motivo);
     });
 
 console.log('Depois de registrar o then.');
