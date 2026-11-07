@@ -6,25 +6,25 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.30 confirmadas/publicadas; 8.29 com relato geral de sucesso
-  "funcinou e entendi". 8.31 com entendimento confirmado.
+  Etapas 8.16 a 8.31 confirmadas/publicadas; 8.29 com relato geral de sucesso
+  "funcinou e entendi". 8.32 com entendimento confirmado.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.31 — Seleção da mensagem de busca sem resultados,
+- Última etapa concluída: 8.32 — Contagem dos produtos correspondentes com let,
   entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.30, 8416e7fe96db136302e83b74d0fbdd9290cb9ee8;
+  Último checkpoint publicado: 8.31, 081d392b52b57246eb00ac3d919bbdc340c75c24;
   HEAD/origin/main/main remota iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.31 — Seleção da mensagem de busca sem resultados no JavaScript.
+- Etapa atual: 8.32 — Contagem dos produtos correspondentes com let.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.31 conforme autorização.
-  Depois, 8.32 — contagem dos produtos
-  correspondentes com let. Não iniciada.
+- Próximo passo exato: publicar checkpoint da 8.32 conforme autorização.
+  Depois, 8.33 — exibição da mensagem conforme
+  a contagem de resultados. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 8416e7f.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 081d392.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -182,7 +182,12 @@
   document.querySelector('#sem-resultados') e log do elemento no carregamento.
   Aula docs/aulas/08-31-selecao-mensagem.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  07/11/2026; checkpoint em preparação.
+  07/11/2026; publicação conferida em 081d392.
+- Situação da 8.32: src/vitrine.js recebe let quantidadeResultados = 0 no
+  submit, incremento += 1 dentro de if (corresponde) no forEach e log final
+  após a repetição. Aula docs/aulas/08-32-contagem-resultados.md criada;
+  continuidade anterior, roteiro/progresso atualizados. Entendimento confirmado
+  com "entendi" em 07/11/2026; checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -18963,8 +18968,56 @@ Suíte Laravel não repetida por ser alteração isolada do frontend estático.
 
 Entendimento da 8.31: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional no navegador. Resultados permanecem
+esperados, sem observação direta de execução. Publicação concluída conforme
+autorização permanente; git add, git commit e git push origin main explicados
+antes da execução. Commit 081d392b52b57246eb00ac3d919bbdc340c75c24;
+push 8416e7f → 081d392 com código 0. HEAD/origin/main/main remota conferidos no
+mesmo SHA. Registro posterior à publicação. Continuidade iniciada na 8.32 —
+contagem dos produtos correspondentes com let. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.32 — Contagem dos produtos correspondentes com let — 07/11/2026
+
+Iniciada após confirmação da 8.31 com "entendi" e publicação conferida em
+081d392b52b57246eb00ac3d919bbdc340c75c24; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: contar correspondências por busca com
+contador numérico atualizável. Único arquivo da aplicação alterado: src/vitrine.js;
+let quantidadeResultados = 0 após termoBusca no submit; if (corresponde) com
+quantidadeResultados += 1 dentro do forEach; log Produtos encontrados após loop.
+Aula docs/aulas/08-32-contagem-resultados.md criada; continuidade da 8.31, roteiro
+e progresso atualizados com checkpoint publicado.
+
+Explicação apresentada: let permite reatribuir número, const não; zero numérico
+sem aspas, reinício a cada submit e compartilhamento entre chamadas do forEach.
+If executa bloco apenas para corresponde true; += soma um e reatribui, com
+equivalência explícita ao contador = contador + 1 e comparação com PHP.
+Callback interno atualiza variável externa; log após forEach mostra total final
+uma vez por envio. Exemplos esperados 1/1/2/0/2, distinguindo quantidade de
+correspondências de produtos.length fixo em 2. Referências primárias ECMAScript
+consultadas. HTML/CSS, filtro e logs anteriores preservados; mensagem permanece
+oculta, controle posterior. Nenhuma API/SQL/login ou mudança no backend.
+
+Verificação HTTP fora do sandbox: GET /vitrine.js retornou HTTP/1.1 200 OK,
+Content-Type application/javascript e Content-Length 1122. Corpo comparado por
+cmp ao arquivo local: igualdade exata, código 0; set -euo pipefail. Temporários
+próprios removidos. Inspeção confirmou inicialização numérica dentro do submit
+e fora do forEach, incremento protegido por if (corresponde) e log após fechar
+o loop. Demonstra entrega e estrutura do código; exemplos numéricos permanecem
+resultados esperados, sem execução da contagem no navegador.
+
+Git diff --check passou; git diff --exit-code de HTML/CSS confirmou ausência
+de alterações nesses arquivos. Destinos locais dos documentos conferidos.
+Somente JS e documentação alterados; índice vazio. Nenhuma ferramenta,
+dependência ou container novo; sem execução de Node no host ou simulação de DOM.
+Sem observação do navegador e sem relato de execução desta etapa pelo aluno.
+Suíte Laravel não repetida por ser alteração isolada do frontend estático.
+
+Entendimento da 8.32: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
+nova ou relato separado da atividade opcional no navegador. Resultados permanecem
 esperados, sem observação direta de execução. Checkpoint em preparação conforme
 autorização permanente; git add, git commit e git push origin main explicados
 antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.32 — contagem dos produtos correspondentes com let.
+depois 8.33 — exibição da mensagem conforme a contagem de resultados.
 Não iniciada; módulos 9 a 23 não iniciados.

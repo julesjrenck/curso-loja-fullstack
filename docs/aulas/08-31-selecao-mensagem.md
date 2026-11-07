@@ -75,6 +75,7 @@ ser investigada. Nenhuma execução observada ou relatada nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.31 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.32 — contagem dos produtos
-correspondentes com let. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+081d392b52b57246eb00ac3d919bbdc340c75c24; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.32](08-32-contagem-resultados.md): contagem dos produtos correspondentes com let.

@@ -14,6 +14,7 @@ formularioBusca.addEventListener('submit', function (evento) {
     evento.preventDefault();
 
     const termoBusca = campoNome.value.trim().toLowerCase();
+    let quantidadeResultados = 0;
 
     console.log('Busca enviada:', termoBusca);
 
@@ -23,6 +24,12 @@ formularioBusca.addEventListener('submit', function (evento) {
 
         produto.hidden = !corresponde;
 
+        if (corresponde) {
+            quantidadeResultados += 1;
+        }
+
         console.log(nomeProduto, corresponde);
     });
+
+    console.log('Produtos encontrados:', quantidadeResultados);
 });
