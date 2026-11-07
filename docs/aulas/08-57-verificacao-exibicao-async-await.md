@@ -97,6 +97,7 @@ formatado e de onde o bloco finally é executado. "Funcionou" confirma execuçã
 Roteiro e explicação apresentados. Entendimento e sucesso geral confirmados com
 "funcinou e entendi" em 07/11/2026, interpretado como "funcionou e entendi".
 Sem resultados individuais transcritos ou observação direta do assistente.
-Nenhuma divergência relatada. Checkpoint concluído, publicação pendente conforme
-autorização permanente. Depois da publicação, 8.58 — objeto JavaScript para
-representar um produto. Não iniciada.
+Nenhuma divergência relatada. Checkpoint publicado e conferido em
+6acc1ba85ebe42fd4412d230eb37b7add7d2e2e1; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.58 — objeto JavaScript para representar um produto](08-58-objeto-produto.md).

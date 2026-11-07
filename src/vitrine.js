@@ -2,6 +2,13 @@ import { prepararTexto } from './textos.js';
 
 console.log('JavaScript da vitrine carregado.');
 
+const produtoExemplo = {
+    nome: 'Camiseta',
+    preco: 4990,
+};
+
+console.log('Produto de exemplo:', produtoExemplo);
+
 const formularioBusca = document.querySelector('.busca');
 const campoNome = formularioBusca.querySelector('#busca-nome');
 const produtos = document.querySelectorAll('.produto');

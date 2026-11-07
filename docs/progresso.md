@@ -6,25 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.56 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47 e
-  8.53 com relatos gerais de sucesso. 8.57 com sucesso geral e entendimento
-  confirmados com "funcinou e entendi"; publicação pendente.
+  Etapas 8.16 a 8.57 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
+  8.53 e 8.57 com relatos gerais de sucesso. 8.58 com entendimento confirmado;
+  publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.57 — Verificação da exibição com async/await no navegador,
-  entendimento e sucesso geral confirmados com "funcinou e entendi" em 07/11/2026.
-  Publicação pendente; último checkpoint publicado: 8.56,
-  c3f482b0a559f7e4bb667a5358a6e405d2a9ef10.
+- Última etapa concluída: 8.58 — Objeto JavaScript para representar um produto,
+  entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
+  último checkpoint publicado: 8.57, 6acc1ba85ebe42fd4412d230eb37b7add7d2e2e1.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.57 — Verificação da exibição com async/await no navegador.
-  Roteiro e explicação apresentados; sucesso geral e entendimento confirmados.
-- Próximo passo exato: publicar a 8.57 conforme autorização permanente. Depois,
-  8.58 — objeto JavaScript para representar um produto. Não iniciada.
+- Etapa atual: 8.58 — Objeto JavaScript para representar um produto.
+  Implementação e explicação apresentadas; entendimento confirmado.
+- Próximo passo exato: publicar a 8.58 conforme autorização permanente. Depois,
+  8.59 — leitura de propriedades do produto com ponto. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é c3f482b.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 6acc1ba.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -321,7 +320,12 @@
   mensagens do sucesso, sequência das três funções e busca com totais 1/0/2.
   Aplicação preservada. Sucesso geral e entendimento confirmados com
   "funcinou e entendi" em 07/11/2026; sem resultados individuais transcritos ou
-  observação direta do assistente. Publicação pendente.
+  observação direta do assistente. Publicação em 6acc1ba.
+- Situação da 8.58: src/vitrine.js declara produtoExemplo como objeto literal
+  com nome Camiseta e preco 4990 em centavos; registra objeto no Console. Aula
+  docs/aulas/08-58-objeto-produto.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -20274,7 +20278,51 @@ Suíte Laravel não repetida por ser roteiro de verificação do frontend estát
 Entendimento da 8.57 confirmado e sucesso geral relatado com "funcinou e entendi"
 em 07/11/2026. Grafia original preservada; interpretado como "funcionou e entendi".
 Sem resultados individuais de mensagens/buscas transcritos ou observação direta
-do assistente. Nenhuma divergência ou dúvida nova relatada. Checkpoint concluído;
-publicação pendente conforme autorização permanente. Próximo passo: publicar,
-conferir remoto e iniciar 8.58 — objeto JavaScript para representar um produto.
-Não iniciada; módulos 9 a 23 não iniciados.
+do assistente. Nenhuma divergência ou dúvida nova relatada. Publicação concluída
+conforme autorização permanente; git add/commit/push explicados antes da execução.
+Commit 6acc1ba85ebe42fd4412d230eb37b7add7d2e2e1; push c3f482b → 6acc1ba, código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.58. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.58 — Objeto JavaScript para representar um produto — 07/11/2026
+
+Iniciada após entendimento e sucesso geral da 8.57, "funcinou e entendi".
+Checkpoint anterior publicado e conferido em
+6acc1ba85ebe42fd4412d230eb37b7add7d2e2e1; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova; autorização permanente de publicação mantida.
+
+Objetivo explicado antes da alteração: agrupar nome e preço de um produto em
+objeto, preparando dados para consumo futuro da API. Em src/vitrine.js, depois
+do log de carregamento, criado const produtoExemplo com objeto literal
+nome: 'Camiseta', preco: 4990, e console.log('Produto de exemplo:', produtoExemplo).
+Preço demonstrativo inteiro em centavos, R$ 49,90. Aula 08-58-objeto-produto.md
+criada; continuidade da 8.57, roteiro e progresso atualizados.
+
+Explicação apresentada: objeto literal sem classe, chaves e contexto de expressão,
+pares propriedade/valor com dois-pontos e vírgulas, vírgula final permitida,
+string com aspas e número sem aspas. Unidade centavos definida pela convenção,
+sem formatação monetária automática. Comparação com array associativo PHP.
+Const guarda referência e impede reatribuição, sem congelar propriedades.
+Registro do objeto no Console, possível expansão e campos esperados, sem exigir
+aparência/ordem visual exatas. Fonte primária ECMAScript consultada. Produto é
+dado local no módulo; HTML com cartões, import/filtro, funções async e CSS
+preservados. Nenhuma API, persistência, dependência ou container novo.
+
+Verificações da 8.58: GET /vitrine.js no servidor existente retornou HTTP/1.1
+200 OK, Content-Type application/javascript, Content-Length 2228. cmp confirmou
+corpo igual ao arquivo local, código 0; set -euo pipefail, temporários próprios
+removidos. Demonstra entrega, não execução do registro no navegador.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou somente objeto literal e seu log após
+carregamento; import, busca e funções async preservados. Links locais conferidos.
+Sem execução de JS pelo assistente, Node no host ou DOM simulado; sem ferramenta
+disponível de navegador nesta sessão. Nenhum pacote/container novo; suíte Laravel
+não repetida.
+
+Entendimento da 8.58 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Checkpoint concluído, publicação pendente
+conforme autorização permanente. Próximo passo: publicar e conferir remoto;
+depois iniciar 8.59 — leitura de propriedades do produto com ponto. Não iniciada.
+Módulos 9 a 23 não iniciados.
