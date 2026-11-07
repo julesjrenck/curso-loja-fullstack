@@ -31,5 +31,7 @@ formularioBusca.addEventListener('submit', function (evento) {
         console.log(nomeProduto, corresponde);
     });
 
+    mensagemSemResultados.hidden = quantidadeResultados > 0;
+
     console.log('Produtos encontrados:', quantidadeResultados);
 });

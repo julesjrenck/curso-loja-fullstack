@@ -109,6 +109,7 @@ Nenhum resultado desta atividade foi observado ou relatado nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.32 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.33 — exibição da mensagem
-conforme a contagem de resultados. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+5b5b9536deeec6cef218bf520b3bd1b034c9dd50; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.33](08-33-exibicao-mensagem.md): exibição da mensagem conforme a contagem.
