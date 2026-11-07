@@ -1,3 +1,5 @@
+import { prepararTexto } from './textos.js';
+
 console.log('JavaScript da vitrine carregado.');
 
 const formularioBusca = document.querySelector('.busca');
@@ -9,8 +11,6 @@ console.log(formularioBusca);
 console.log('Valor inicial da busca:', campoNome.value);
 console.log(produtos);
 console.log(mensagemSemResultados);
-
-const prepararTexto = (texto) => texto.trim().toLowerCase();
 
 function tratarBusca(evento) {
     evento.preventDefault();

@@ -85,6 +85,7 @@ Investigar divergências antes de continuar.
 Roteiro e explicação apresentados; entendimento confirmado com "funcionou e
 entendi" em 07/11/2026. A mesma resposta informa sucesso geral no navegador,
 sem resultados individuais transcritos ou observação direta do assistente.
-Nenhuma divergência ou dúvida nova relatada. Checkpoint em preparação conforme
-autorização permanente. Próximo passo após publicação: 8.40 — módulos com export/import de
-prepararTexto. Não iniciada.
+Nenhuma divergência ou dúvida nova relatada. Checkpoint publicado e conferido em
+476a283dc156665363a6d29fa6f2d838f04f6402; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.40](08-40-modulos-export-import.md): módulos com export/import de prepararTexto.

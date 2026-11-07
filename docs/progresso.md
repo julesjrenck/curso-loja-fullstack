@@ -6,25 +6,25 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.38 confirmadas/publicadas; 8.29 e 8.34 com relatos gerais
-  de sucesso. 8.39 com entendimento confirmado e relato geral de sucesso:
-  "funcionou e entendi".
+  Etapas 8.16 a 8.39 confirmadas/publicadas; 8.29, 8.34 e 8.39 com relatos gerais
+  de sucesso. 8.40 com entendimento confirmado.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.39 — Verificação das funções e da busca no navegador,
-  entendimento e sucesso geral confirmados com "funcionou e entendi" em
-  07/11/2026; checkpoint em preparação. Último checkpoint publicado: 8.38,
-  96d851d5e8fe3b42aeb574103643734b30f11d6d; SHAs iguais na conferência anterior.
+- Última etapa concluída: 8.40 — Módulos com export/import de prepararTexto,
+  entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
+  Último checkpoint publicado: 8.39, 476a283dc156665363a6d29fa6f2d838f04f6402;
+  HEAD/origin/main/main remota iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.39 — Verificação das funções e da busca no navegador.
-  Roteiro e explicação apresentados; entendimento confirmado e sucesso geral relatado.
-- Próximo passo exato: publicar checkpoint da 8.39 conforme autorização.
-  Depois, 8.40 — módulos com export/import de prepararTexto. Não iniciada.
+- Etapa atual: 8.40 — Módulos com export/import de prepararTexto.
+  Implementação e explicação apresentadas; entendimento confirmado com "entendi".
+- Próximo passo exato: publicar checkpoint da 8.40 conforme autorização.
+  Depois, 8.41 — verificação dos módulos
+  no navegador. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 96d851d.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 476a283.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -224,7 +224,12 @@
   e nomes, callbacks, totais, cartões/mensagem e transições por clique/Enter.
   HTML/CSS/JS preservados. Entendimento confirmado e sucesso geral relatado com
   "funcionou e entendi" em 07/11/2026; sem resultados individuais transcritos
-  ou observação direta do assistente. Checkpoint em preparação.
+  ou observação direta do assistente. Publicação conferida em 476a283.
+- Situação da 8.40: criado src/textos.js com export const prepararTexto;
+  src/vitrine.js importa o nome de ./textos.js e remove declaração local.
+  Aula docs/aulas/08-40-modulos-export-import.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -19385,7 +19390,58 @@ observar diretamente o navegador local nesta sessão.
 Entendimento da 8.39: confirmado em 07/11/2026 com "funcionou e entendi".
 Resultado no navegador: relato geral de sucesso do aluno, sem transcrição de
 passos individuais ou observação direta do assistente. Nenhuma divergência ou
-dúvida nova relatada. Checkpoint em preparação conforme autorização permanente;
+dúvida nova relatada. Publicação concluída conforme autorização permanente;
 git add, git commit e git push origin main explicados antes da execução.
-Próximo passo exato: publicar e conferir checkpoint; depois 8.40 — módulos
-com export/import de prepararTexto. Não iniciada; módulos 9 a 23 não iniciados.
+Commit 476a283dc156665363a6d29fa6f2d838f04f6402; push 96d851d → 476a283 com
+código 0. HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior
+à publicação. Continuidade iniciada na 8.40 — módulos com export/import de
+prepararTexto. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.40 — Módulos com export/import de prepararTexto — 07/11/2026
+
+Iniciada após confirmação da 8.39 e relato geral de sucesso com "funcionou e
+entendi"; publicação conferida em 476a283dc156665363a6d29fa6f2d838f04f6402,
+HEAD/origin/main/main remota iguais. Autorização permanente de publicação mantida;
+nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: módulo próprio para preparo e dependência
+explícita da vitrine. Conjunto inseparável: src/textos.js criado com export const
+prepararTexto = (texto) => texto.trim().toLowerCase(); e src/vitrine.js recebe
+import { prepararTexto } from './textos.js'; no início, removendo const local.
+Aula docs/aulas/08-40-modulos-export-import.md criada; continuidade da 8.39,
+roteiro e progresso atualizados com checkpoint publicado.
+
+Explicação apresentada: módulo exporta função por nome, import nomeado entre
+chaves, nome precisa corresponder e caminho ./ relativo ao importador com extensão.
+Const/arrow/cálculo mantidos, export não chama corpo; chamadas da vitrine iguais.
+Módulo textos recebe strings sem DOM, vitrine usa referência importada no seu
+escopo. HTML já usa type module; navegador carrega dependência sem script extra
+e a avalia antes da vitrine neste conjunto sem ciclos. Relação entre HTML, dois JS
+e CSS explicada. Referências primárias ECMAScript e HTML Standard consultadas.
+HTML/CSS e restante do tratamento preservados; nenhuma dependência, API/SQL/login
+ou mudança no backend.
+
+Verificação HTTP fora do sandbox: GET /vitrine.js e /textos.js retornaram
+HTTP/1.1 200 OK, Content-Type application/javascript, tamanhos 1236 e 68 bytes.
+Corpos comparados por cmp aos dois arquivos locais: igualdade exata, códigos 0;
+set -euo pipefail. Temporários próprios removidos. Inspeção confirmou HTML com
+script module, import/export de mesmo nome, caminho ./textos.js existente e
+duas chamadas preservadas. Diff confirmou remoção da declaração local sem mudar
+o tratamento. Demonstra entrega e vínculo declarado; não prova resolução,
+avaliação dos módulos ou busca executadas no navegador.
+
+Git diff --check passou; git diff --exit-code de HTML/CSS confirmou ausência
+de alterações nesses arquivos. Destinos locais dos documentos conferidos.
+Dois JS e documentação alterados; índice vazio. Nenhuma ferramenta,
+dependência ou container novo; sem execução de Node no host ou simulação de DOM.
+Sem observação do navegador e sem relato de execução desta etapa pelo aluno.
+Suíte Laravel não repetida por ser alteração isolada do frontend estático.
+
+Entendimento da 8.40: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
+nova ou relato separado da atividade opcional no navegador. Resultados permanecem
+esperados, sem observação direta de execução. Checkpoint em preparação conforme
+autorização permanente; git add, git commit e git push origin main explicados
+antes da execução. Próximo passo exato: publicar e conferir checkpoint;
+depois 8.41 — verificação dos módulos no navegador.
+Não iniciada; módulos 9 a 23 não iniciados.
