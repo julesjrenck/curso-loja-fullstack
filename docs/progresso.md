@@ -5,24 +5,24 @@
 - Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
-  Etapas 8.2 a 8.13 confirmadas/publicadas; entendimento da 8.14 confirmado com "entendi".
+  Etapas 8.2 a 8.14 confirmadas/publicadas; 8.15 com entendimento confirmado
+  e relato geral de sucesso recebido: "funcionou". Checkpoint em preparação.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.14 — Cabeçalho responsivo com direção em coluna,
-  entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.13,
-  c2f8025424dbf5d4e2dc47c73d186c0c332dc19e; remoto conferido.
+- Última etapa concluída: 8.15 — Verificação acompanhada da vitrine no navegador,
+  entendimento confirmado com "entendi" e relato "funcionou" em 06/11/2026;
+  checkpoint em preparação. Último checkpoint de aula publicado antes desta
+  conclusão: 8.14, 0ea7b1802b0bb4e05cce149895fc1737ade98122; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.14 — Cabeçalho responsivo com direção em coluna.
-  Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.14 conforme autorização.
-  Depois, 8.15 — verificação acompanhada da vitrine
-  no navegador. Não iniciada.
+- Etapa atual: 8.15 — Verificação acompanhada da vitrine no navegador.
+  Roteiro e explicação entendidos; sucesso geral relatado, sem detalhes individuais.
+- Próximo passo exato: publicar e conferir checkpoint da 8.15 conforme autorização.
+  Depois, 8.16 — primeiro formulário de busca da vitrine. Não iniciado.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é c2f8025.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 0ea7b18.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -92,7 +92,13 @@
   flex-direction column e align-items flex-start em src/vitrine.css. Aula
   docs/aulas/08-14-cabecalho-responsivo.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  06/11/2026; checkpoint em preparação para publicação.
+  06/11/2026; publicação conferida em 0ea7b18.
+- Situação da 8.15: somente documentação. Aula
+  docs/aulas/08-15-verificacao-vitrine-navegador.md criada com roteiro Chrome
+  DevTools Responsivo, larguras 800/600/360px e retorno a 800px; link por clique
+  e Tab/Enter a partir da URL sem fragmento. Aplicação preservada. Entendimento
+  confirmado com "entendi"; relato geral "funcionou" recebido em 06/11/2026.
+  Sem transcrição de resultados individuais ou observação direta do navegador.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -18039,7 +18045,69 @@ no checkpoint publicado da 8.13.
 
 Entendimento da 8.14: confirmado com "entendi" em 06/11/2026, após explicação
 dos eixos em column e de align-items flex-start. Nenhuma dúvida nova ou relato
-separado do navegador. Publicação em preparação conforme autorização permanente;
-git add/commit/push explicados antes da execução. Próximo passo exato: publicar
-e conferir checkpoint; depois 8.15 — verificação acompanhada da vitrine no navegador.
-Não iniciada; módulos 9 a 23 não iniciados.
+separado do navegador. Publicação concluída conforme autorização permanente;
+git add/commit/push explicados antes da execução. Commit
+0ea7b1802b0bb4e05cce149895fc1737ade98122; push c2f8025 → 0ea7b18 concluiu
+com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.15 — verificação
+acompanhada da vitrine no navegador. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.15 — Verificação acompanhada da vitrine no navegador — 06/11/2026
+
+Iniciada após confirmação da 8.14 com "entendi" e publicação conferida em
+0ea7b1802b0bb4e05cce149895fc1737ade98122; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: relacionar layout responsivo e navegação
+interna ao resultado no navegador, separando entrega HTTP de observação da
+interface. Somente documentação: criada a aula
+docs/aulas/08-15-verificacao-vitrine-navegador.md; continuidade da 8.14, roteiro
+e progresso atualizados com o checkpoint publicado. HTML/CSS preservados.
+
+Roteiro apresentado para Chrome em Windows/Linux: URL inicial sem fragmento,
+Ctrl+Shift+R, DevTools por F12/Ctrl+Shift+I e barra de dispositivos por
+Ctrl+Shift+M. Modo Responsive/Responsivo, altura 700px, larguras 800/600/360px
+e retorno a 800px. Esperados: cabeçalho em linha e grade duas colunas em 800;
+cabeçalho em coluna à esquerda e grade uma coluna em 600/360; retorno ao padrão
+em 800. Textos/preços legíveis e aparência dos cartões preservada esperados.
+600 confere inclusão do limite. Emulação de viewport em desktop, sem atribuir
+teste a aparelho real. Fontes primárias oficiais de Device Mode e atalhos do
+Chrome DevTools consultadas.
+
+Duas ativações independentes do link: encerrar emulação/DevTools e abrir URL
+sem #catalogo antes de cada caso; clique, depois Tab até focar link/Enter.
+Esperada URL terminada em #catalogo; rolagem pode ser pequena ou ausente conforme
+altura/posição do destino. Se foco estiver na interface do navegador, clicar
+em área vazia do cabeçalho e retomar Tab. Solicitar relato das ações; em
+divergência, registrar a ação e a descrição para investigar antes de avançar.
+
+Verificação do assistente: ferramentas disponíveis inspecionadas, sem ferramenta
+de controle/observação do navegador local. GET /vitrine.html e GET /vitrine.css
+fora do sandbox retornaram HTTP/1.1 200 OK, Content-Type text/html e text/css
+respectivamente, ambos charset UTF-8. Corpos comparados por cmp aos arquivos
+locais: igualdade exata, código 0; set -euo pipefail. Temporários próprios
+removidos. Isso prepara o acompanhamento e confirma entrega; não é evidência
+da renderização ou ativação por mouse/teclado. Sem API/SQL/login/novo container/
+dependência ou suíte Laravel; aplicação mantida como 8.14.
+
+Git diff --check passou; HTML/CSS sem diferenças e destinos locais dos documentos
+conferidos. Somente quatro documentos alterados; índice vazio. Main acompanha
+origin/main no checkpoint publicado da 8.14.
+
+Resultado do aluno: recebido "funcionou" em 06/11/2026, em resposta à pergunta
+sobre larguras 800/600/360px, retorno a 800px e link por clique/Tab/Enter.
+Relato geral de sucesso, sem resultados individuais/medidas transcritos; não
+atribuir observação direta ao assistente. Nenhuma divergência relatada.
+Entendimento da 8.15: confirmado com "entendi" em 06/11/2026. A confirmação
+refere-se ao roteiro e à explicação; não informa resultado das ações no navegador.
+Solicitado relato das larguras 800/600/360px, retorno a 800px e ativações do link
+por clique e Tab/Enter; opção de informar que ainda não executou os testes.
+Resultado recebido depois da confirmação de entendimento. Aplicação preservada.
+Explicação do resultado: o relato geral é consistente com as expectativas do
+roteiro, mas não fornece medidas individuais nem constitui teste em aparelho real.
+Publicação da 8.15: em preparação conforme autorização permanente.
+Git add/commit/push explicados antes da execução. Próximo passo exato: publicar
+e conferir checkpoint concluído. Não pedir novamente o entendimento já confirmado.
+Depois, 8.16 — primeiro formulário de busca da vitrine. Não iniciado;
+módulos 9 a 23 não iniciados.

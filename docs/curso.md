@@ -66,7 +66,10 @@ com "entendi" em 06/11/2026; publicação em 95da0d5. Na 8.13, media query até
 600px para uma coluna implementada e explicada; entendimento confirmado com
 "entendi" em 06/11/2026; publicação em c2f8025. Na 8.14, cabeçalho em coluna
 até 600px com alinhamento ao início implementado e explicado; entendimento
-confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
+confirmado com "entendi" em 06/11/2026; publicação em 0ea7b18. Na 8.15,
+roteiro de verificação no navegador apresentado; entendimento confirmado com
+"entendi" e relato geral "funcionou" recebido em 06/11/2026. Aplicação preservada;
+checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -80,7 +83,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.11](aulas/08-11-flexbox-cabecalho.md),
 [8.12](aulas/08-12-grid-produtos.md),
 [8.13](aulas/08-13-media-query-catalogo.md),
-[8.14](aulas/08-14-cabecalho-responsivo.md) e no progresso.
+[8.14](aulas/08-14-cabecalho-responsivo.md),
+[8.15](aulas/08-15-verificacao-vitrine-navegador.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -554,7 +558,9 @@ publicação em 95da0d5. 8.13 implementada e explicada: media query até 600px,
 uma coluna no catálogo; entendimento confirmado com "entendi" em 06/11/2026;
 publicação em c2f8025. 8.14 implementada e explicada: cabeçalho em column e
 align-items flex-start até 600px; entendimento confirmado com "entendi" em
-06/11/2026; checkpoint em preparação.
+06/11/2026; publicação em 0ea7b18. 8.15: roteiro de navegador apresentado,
+entendimento confirmado com "entendi" e relato geral "funcionou" em 06/11/2026.
+Somente documentação; checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1484,8 +1490,12 @@ publicação em 95da0d5. Na 8.13, media query até 600px para catálogo em uma c
 implementada e explicada; entendimento confirmado com "entendi" em 06/11/2026.
 Publicação da 8.13 conferida em c2f8025. Na 8.14, direção column e alinhamento
 flex-start no cabeçalho até 600px implementados e explicados; entendimento
-confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-Próximo passo após checkpoint: 8.15 — verificação acompanhada da vitrine no navegador.
+confirmado com "entendi" em 06/11/2026; publicação conferida em 0ea7b18.
+Na 8.15, roteiro com viewports
+800/600/360px, retorno a 800px e link por clique/teclado apresentado.
+Entendimento confirmado com "entendi" e relato geral "funcionou" recebido em
+06/11/2026. Sem resultados individuais inventados. Checkpoint em preparação.
+Próximo passo após publicação: 8.16 — primeiro formulário de busca da vitrine.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

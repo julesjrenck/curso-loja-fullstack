@@ -78,6 +78,7 @@ direção passa a column, usando a tabela e os dois filhos do header.
 
 Implementação e explicação apresentadas; entendimento da 8.14 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do navegador.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-checkpoint: 8.15 — verificação acompanhada
-da vitrine no navegador. 8.15 não iniciada.
+Checkpoint publicado e conferido em
+0ea7b1802b0bb4e05cce149895fc1737ade98122; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.15](08-15-verificacao-vitrine-navegador.md): verificação acompanhada da vitrine.
