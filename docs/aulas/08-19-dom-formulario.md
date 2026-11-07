@@ -90,6 +90,7 @@ nem relato de execução desta etapa no momento de sua implementação.
 
 Implementação e explicação apresentadas; entendimento da 8.19 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no Console. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.20 — campo de busca e leitura
-de value. Não iniciada.
+opcional no Console. Checkpoint publicado e conferido em
+d4b06563b2700fa5fb1b77faa69173828fb56611; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.20](08-20-campo-busca-value.md): campo de busca e leitura de value.
