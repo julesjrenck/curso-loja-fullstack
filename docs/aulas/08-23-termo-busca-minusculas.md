@@ -71,6 +71,7 @@ Resultados esperados; nenhuma execução observada ou relatada nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.23 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.24 — seleção dos produtos com
-querySelectorAll. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+efe5e3a3d18ec7b461b137728769cce5101bce97; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.24](08-24-selecao-produtos.md): seleção dos produtos com querySelectorAll.

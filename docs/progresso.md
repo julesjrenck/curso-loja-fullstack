@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.22 confirmadas/publicadas; 8.23 com entendimento confirmado.
+  Etapas 8.16 a 8.23 confirmadas/publicadas; 8.24 com entendimento confirmado.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.23 — Conversão do termo para minúsculas,
+- Última etapa concluída: 8.24 — Seleção dos produtos com querySelectorAll,
   entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.22, 55b36cfb54425dee8b88bd636e6d0372193311fb;
+  Último checkpoint publicado: 8.23, efe5e3a3d18ec7b461b137728769cce5101bce97;
   HEAD/origin/main/main remota iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.23 — Conversão do termo para minúsculas com toLowerCase.
+- Etapa atual: 8.24 — Seleção dos produtos com querySelectorAll.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.23 conforme autorização.
-  Depois, 8.24 — seleção dos produtos com
-  querySelectorAll. Não iniciada.
+- Próximo passo exato: publicar checkpoint da 8.24 conforme autorização.
+  Depois, 8.25 — percorrer os produtos com
+  forEach. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 55b36cf.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é efe5e3a.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -139,6 +139,11 @@
 - Situação da 8.23: em src/vitrine.js, termoBusca recebe agora
   campoNome.value.trim().toLowerCase(). Aula
   docs/aulas/08-23-termo-busca-minusculas.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; publicação conferida em efe5e3a.
+- Situação da 8.24: src/vitrine.js recebe const produtos com
+  document.querySelectorAll('.produto') e console.log(produtos) no carregamento.
+  Aula docs/aulas/08-24-selecao-produtos.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   07/11/2026; checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -18541,8 +18546,56 @@ Suíte Laravel não repetida por ser alteração isolada do frontend estático.
 
 Entendimento da 8.23: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional no navegador. Resultados permanecem
+esperados, sem observação direta de execução. Publicação concluída conforme
+autorização permanente; git add, git commit e git push origin main explicados
+antes da execução. Commit efe5e3a3d18ec7b461b137728769cce5101bce97;
+push 55b36cf → efe5e3a com código 0. HEAD/origin/main/main remota conferidos no
+mesmo SHA. Registro posterior à publicação em 07/11/2026. Continuidade iniciada
+na 8.24 — seleção dos produtos com querySelectorAll. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.24 — Seleção dos produtos com querySelectorAll — 07/11/2026
+
+Iniciada após confirmação da 8.23 com "entendi" e publicação conferida em
+efe5e3a3d18ec7b461b137728769cce5101bce97; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: selecionar todos os cartões em uma
+coleção, diferenciando querySelector e querySelectorAll. Único arquivo da
+aplicação alterado: src/vitrine.js; const produtos recebe
+document.querySelectorAll('.produto') junto às seleções; console.log(produtos)
+junto aos registros iniciais. Aula docs/aulas/08-24-selecao-produtos.md criada;
+continuidade da 8.23, roteiro e progresso atualizados com checkpoint publicado.
+
+Explicação apresentada: seletor de classe .produto dos dois article, distinto
+de .produtos do agrupador. Retorno NodeList com referências em ordem do documento,
+length esperado 2, índices 0/1 para Camiseta/Caneca; coleção do DOM diferente de
+Array. QuerySelector retorna primeiro elemento ou null; querySelectorAll retorna
+coleção vazia sem correspondências. Lista estática quanto aos membros, sem
+congelar os elementos referenciados. Seleção/log no carregamento do módulo;
+submit e preparo de termoBusca preservados. Referências primárias DOM Standard
+consultadas. HTML/CSS preservados; nenhuma iteração, filtragem, API/SQL/login
+ou mudança no backend. Produtos continuam estáticos.
+
+Verificação HTTP fora do sandbox: GET /vitrine.js retornou HTTP/1.1 200 OK,
+Content-Type application/javascript e Content-Length 546. Corpo comparado por
+cmp ao arquivo local: igualdade exata, código 0; set -euo pipefail. Temporários
+próprios removidos. Inspeção confirmou dois article class produto dentro de
+div class produtos, script module e seletor singular correto no JS. Seleção
+e log da coleção fora do callback. Demonstra entrega e correspondência com o
+HTML; não prova execução de querySelectorAll ou quantidade obtida no navegador.
+
+Git diff --check passou; git diff --exit-code de HTML/CSS confirmou ausência
+de alterações nesses arquivos. Destinos locais dos documentos conferidos.
+Somente JS e documentação alterados; índice vazio. Nenhuma ferramenta,
+dependência ou container novo; sem execução de Node no host ou simulação de DOM.
+Sem observação do navegador e sem relato de execução desta etapa pelo aluno.
+Suíte Laravel não repetida por ser alteração isolada do frontend estático.
+
+Entendimento da 8.24: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
+nova ou relato separado da atividade opcional no navegador. Resultados permanecem
 esperados, sem observação direta de execução. Checkpoint em preparação conforme
 autorização permanente; git add, git commit e git push origin main explicados
 antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.24 — seleção dos produtos com querySelectorAll.
+depois 8.25 — percorrer os produtos com forEach.
 Não iniciada; módulos 9 a 23 não iniciados.

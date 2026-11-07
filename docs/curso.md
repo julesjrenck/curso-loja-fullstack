@@ -86,7 +86,10 @@ entendimento confirmado com "entendi" em 06/11/2026; publicação em d85e2e9.
 Na 8.22, termoBusca com value.trim() e log do resultado implementados e explicados;
 entendimento confirmado com "entendi" em 06/11/2026; publicação em 55b36cf.
 Na 8.23, toLowerCase encadeado após trim implementado e explicado;
-entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
+entendimento confirmado com "entendi" em 07/11/2026; publicação em efe5e3a.
+Na 8.24, seleção dos cartões com querySelectorAll e log da NodeList implementados
+e explicados; entendimento confirmado com "entendi" em 07/11/2026;
+checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -109,7 +112,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.20](aulas/08-20-campo-busca-value.md),
 [8.21](aulas/08-21-evento-submit.md),
 [8.22](aulas/08-22-termo-busca-trim.md),
-[8.23](aulas/08-23-termo-busca-minusculas.md) e no progresso.
+[8.23](aulas/08-23-termo-busca-minusculas.md),
+[8.24](aulas/08-24-selecao-produtos.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -602,7 +606,9 @@ publicação em d85e2e9. 8.22 implementada e explicada: termoBusca com trim nas
 extremidades, sem alterar o input; entendimento confirmado com "entendi" em
 06/11/2026; publicação em 55b36cf. 8.23 implementada e explicada: termo em
 minúsculas com trim().toLowerCase(); entendimento confirmado com "entendi" em
-07/11/2026; checkpoint em preparação.
+07/11/2026; publicação em efe5e3a. 8.24 implementada e explicada: querySelectorAll,
+NodeList dos produtos e log; entendimento confirmado com "entendi" em 07/11/2026;
+checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1555,8 +1561,11 @@ explicado; entendimento confirmado com "entendi" em 06/11/2026; publicação em
 d85e2e9. Na 8.22, termoBusca com value.trim() e log do resultado implementados
 e explicados; entendimento confirmado com "entendi" em 06/11/2026; publicação
 em 55b36cf. Na 8.23, toLowerCase encadeado após trim implementado e explicado;
-entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-Próximo passo após publicação: 8.24 — seleção dos produtos com querySelectorAll.
+entendimento confirmado com "entendi" em 07/11/2026; publicação em efe5e3a.
+Na 8.24, seleção dos cartões com querySelectorAll e log da NodeList implementados
+e explicados; entendimento confirmado com "entendi" em 07/11/2026;
+checkpoint em preparação. Próximo passo após publicação: 8.25 — percorrer os
+produtos com forEach.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
