@@ -151,7 +151,9 @@ entendimento confirmado com "entendi" em 07/11/2026; publicação em b1f2692.
 8.53: entendimento confirmado com "entendi" e sucesso geral relatado com
 "deu tudo certo" em 07/11/2026; publicação em 47f5f6a.
 8.54: sucesso com async/await restaurado e explicado; entendimento confirmado
-com "entendi" em 07/11/2026; publicação pendente.
+com "entendi" em 07/11/2026; publicação em 470a4d8.
+8.55: formatarMensagem async consumindo prepararMensagem com await implementada
+e explicada; entendimento confirmado com "entendi" em 07/11/2026; publicação pendente.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -205,7 +207,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.51](aulas/08-51-rejeicao-await-catch.md),
 [8.52](aulas/08-52-try-catch-funcao-async.md),
 [8.53](aulas/08-53-verificacao-tratamento-local.md),
-[8.54](aulas/08-54-sucesso-async-await.md) e no progresso.
+[8.54](aulas/08-54-sucesso-async-await.md),
+[8.55](aulas/08-55-consumo-funcao-async-await.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -760,7 +763,9 @@ entendimento confirmado com "entendi" em 07/11/2026; publicação em b1f2692.
 8.53: entendimento confirmado com "entendi" e sucesso geral relatado com
 "deu tudo certo" em 07/11/2026; publicação em 47f5f6a.
 8.54: sucesso com async/await restaurado e explicado; entendimento confirmado
-com "entendi" em 07/11/2026; publicação pendente.
+com "entendi" em 07/11/2026; publicação em 470a4d8.
+8.55: formatarMensagem async consumindo prepararMensagem com await implementada
+e explicada; entendimento confirmado com "entendi" em 07/11/2026; publicação pendente.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1776,9 +1781,11 @@ entendimento confirmado com "entendi" em 07/11/2026; publicação em b1f2692.
 8.53: entendimento confirmado com "entendi" e sucesso geral relatado com
 "deu tudo certo" em 07/11/2026; publicação em 47f5f6a.
 8.54: sucesso com async/await restaurado e explicado; entendimento confirmado
-com "entendi" em 07/11/2026; publicação pendente.
-Próximo passo após publicação: 8.55 — consumo de uma função
-async com await. Não iniciada.
+com "entendi" em 07/11/2026; publicação em 470a4d8.
+8.55: formatarMensagem async consumindo prepararMensagem com await implementada
+e explicada; entendimento confirmado com "entendi" em 07/11/2026; publicação pendente.
+Próximo passo após publicação: 8.56 — exibição da mensagem com
+async/await. Não iniciada.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

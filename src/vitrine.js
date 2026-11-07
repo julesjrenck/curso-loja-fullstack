@@ -52,14 +52,17 @@ async function prepararMensagem() {
     }
 }
 
-const mensagemPronta = prepararMensagem();
+async function formatarMensagem() {
+    const mensagem = await prepararMensagem();
+
+    return mensagem.toUpperCase();
+}
+
+const mensagemPronta = formatarMensagem();
 
 console.log('Antes de registrar o then.');
 
 mensagemPronta
-    .then((mensagem) => {
-        return mensagem.toUpperCase();
-    })
     .then((mensagemFormatada) => {
         console.log(mensagemFormatada);
     })

@@ -87,6 +87,6 @@ demonstra entrega; execução deste caminho no navegador sem observação ou rel
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.55 — consumo de uma função async com await.
-8.55 não iniciada.
+Checkpoint publicado e conferido em 470a4d826c03836d75208adbff979f564991501d;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.55 — consumo de uma função async com await](08-55-consumo-funcao-async-await.md).
