@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapa 8.16 confirmada/publicada; entendimento da 8.17 confirmado com "entendi".
+  Etapas 8.16/8.17 confirmadas/publicadas; 8.18 com entendimento confirmado.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.17 — Estilização do formulário de busca,
+- Última etapa concluída: 8.18 — Primeiro arquivo JavaScript da vitrine,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.16,
-  1896c60ec221d56235c5e9742286dd4d1ea3e684; remoto conferido.
+  Último checkpoint publicado: 8.17, eeee2a43ee195877e680059d630be39ab2910205;
+  HEAD/origin/main/main remota iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.17 — Estilização do formulário de busca.
+- Etapa atual: 8.18 — Primeiro arquivo JavaScript da vitrine.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.17 conforme autorização.
-  Depois, 8.18 — primeiro arquivo JavaScript
-  da vitrine. Não iniciada.
+- Próximo passo exato: publicar checkpoint da 8.18 conforme autorização.
+  Depois, 8.19 — DOM e seleção do formulário
+  de busca. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 1896c60.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é eeee2a4.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -110,7 +110,12 @@
   agrupados, com font inherit/padding 8px. Aula
   docs/aulas/08-17-estilos-formulario-busca.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  06/11/2026; checkpoint em preparação para publicação.
+  06/11/2026; publicação conferida em eeee2a4.
+- Situação da 8.18: criado src/vitrine.js com console.log de mensagem fixa;
+  src/vitrine.html recebe script type module/src vitrine.js no head. Aula
+  docs/aulas/08-18-primeiro-javascript.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  06/11/2026; checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -18214,7 +18219,60 @@ Main acompanha origin/main no checkpoint publicado da 8.16.
 
 Entendimento da 8.17: confirmado com "entendi" em 06/11/2026, após explicação
 de seletores descendentes/agrupados e estilos do formulário. Nenhuma dúvida nova
-ou relato separado do exercício opcional no navegador. Publicação em preparação
+ou relato separado do exercício opcional no navegador. Publicação concluída
 conforme autorização permanente; git add/commit/push explicados antes da execução.
-Próximo passo exato: publicar e conferir checkpoint; depois 8.18 — primeiro
-arquivo JavaScript da vitrine. Não iniciada; módulos 9 a 23 não iniciados.
+Commit eeee2a43ee195877e680059d630be39ab2910205; push 1896c60 → eeee2a4
+concluiu com código 0. HEAD/origin/main/main remota conferidos no mesmo SHA.
+Registro posterior à publicação. Continuidade iniciada na 8.18 — primeiro
+arquivo JavaScript da vitrine. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.18 — Primeiro arquivo JavaScript da vitrine — 06/11/2026
+
+Iniciada após confirmação da 8.17 com "entendi" e publicação conferida em
+eeee2a43ee195877e680059d630be39ab2910205; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: criar e referenciar um arquivo próprio
+JavaScript da vitrine, com saída de diagnóstico no Console. Conjunto inseparável
+na aplicação: src/vitrine.js criado com console.log('JavaScript da vitrine
+carregado.'); em uma única linha; src/vitrine.html recebe script type module/
+src vitrine.js no head, após a folha CSS. Criada a aula
+docs/aulas/08-18-primeiro-javascript.md; continuidade da 8.17, roteiro e progresso
+atualizados com o checkpoint publicado.
+
+Explicação apresentada: console disponibilizado pelo ambiente e chamada do
+método log com string; ponto acessa método, parênteses recebem argumento,
+aspas delimitam texto e ponto e vírgula encerra a instrução. Saída esperada no
+Console. Src relativo solicita /vitrine.js; type module seleciona interpretação
+como módulo e, na inclusão sem async usada, aguarda leitura do HTML antes de
+executar. Script exige fechamento. Primeiro arquivo JS desta vitrine, distinguido
+do script já existente no laboratório de sessão do módulo 7. Referências
+primárias HTML Standard e Console Standard consultadas.
+
+Verificação HTTP fora do sandbox: GET /vitrine.html retornou HTTP/1.1 200 OK,
+Content-Type text/html; charset=UTF-8; GET /vitrine.js retornou HTTP/1.1 200 OK,
+Content-Type application/javascript. Ambos os corpos comparados por cmp aos
+arquivos locais: igualdade exata, código 0; set -euo pipefail. Temporários
+próprios removidos. Referência HTML e instrução JS inspecionadas. Demonstra
+entrega do arquivo e tipo JavaScript apropriado; não prova execução no navegador.
+
+Verificação de ferramentas: Docker image inspect da imagem Redocly 2.65.0/digest
+já fixada nas aulas anteriores retornou No such image. Docker image ls node
+não retornou imagens em cache. Nenhum download, dependência ou container novo;
+sem execução ou checagem automatizada de sintaxe no Node. Não executar Node no
+host. Sem observação do navegador e sem relato de execução deste JS pelo aluno.
+Nenhuma API/SQL/login ou mudança no backend; suíte Laravel não repetida.
+
+Git diff --check passou; CSS sem diferenças e destinos locais dos documentos
+conferidos. Uma referência script com fechamento e arquivo novo de uma linha
+conferidos. HTML/JS e quatro documentos alterados; índice vazio.
+Main acompanha origin/main no checkpoint publicado da 8.17.
+
+Entendimento da 8.18: confirmado com "entendi" em 06/11/2026. Nenhuma dúvida
+nova ou relato separado da atividade opcional no Console. Mensagem permanece
+tratada como saída esperada, sem observação direta da execução no navegador.
+Checkpoint em preparação conforme autorização permanente; git add, git commit
+e git push origin main explicados antes da execução. Próximo passo exato:
+publicar e conferir checkpoint; depois 8.19 — DOM e seleção do formulário de
+busca. Não iniciada; módulos 9 a 23 não iniciados.

@@ -93,6 +93,7 @@ nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.17 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do exercício
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após checkpoint: 8.18 — primeiro arquivo
-JavaScript da vitrine. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+eeee2a43ee195877e680059d630be39ab2910205; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.18](08-18-primeiro-javascript.md): primeiro arquivo JavaScript da vitrine.
