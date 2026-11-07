@@ -109,6 +109,7 @@ Nenhuma execução desta alteração foi observada ou relatada nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.40 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.41 — verificação dos módulos
-no navegador. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+3e719fc3849ebebe58a0167fc6eb407dd45a09b1; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.41](08-41-verificacao-modulos.md): verificação dos módulos no navegador.

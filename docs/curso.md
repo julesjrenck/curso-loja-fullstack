@@ -123,7 +123,10 @@ e retorno implícito implementada e explicada; entendimento confirmado com
 das funções/busca apresentado; entendimento confirmado e sucesso geral relatado
 com "funcionou e entendi" em 07/11/2026; publicação em 476a283. Na 8.40,
 textos.js com export e import de prepararTexto na vitrine implementados e
-explicados; entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
+explicados; entendimento confirmado com "entendi" em 07/11/2026; publicação em 3e719fc.
+Na 8.41, roteiro de verificação dos módulos na Network e da busca apresentado;
+entendimento e sucesso geral confirmados com "funcinou e entendi" em 07/11/2026.
+Publicação pendente.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -163,7 +166,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.37](aulas/08-37-arrow-function-foreach.md),
 [8.38](aulas/08-38-arrow-retorno-implicito.md),
 [8.39](aulas/08-39-verificacao-funcoes-busca.md),
-[8.40](aulas/08-40-modulos-export-import.md) e no progresso.
+[8.40](aulas/08-40-modulos-export-import.md),
+[8.41](aulas/08-41-verificacao-modulos.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -690,7 +694,9 @@ entendimento confirmado com "entendi" em 07/11/2026; publicação em 96d851d.
 8.39: roteiro da verificação das funções/busca apresentado; entendimento confirmado
 e sucesso geral relatado com "funcionou e entendi" em 07/11/2026; publicação em 476a283.
 8.40 implementada e explicada: módulo textos com export e import nomeado na vitrine;
-entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
+entendimento confirmado com "entendi" em 07/11/2026; publicação em 3e719fc.
+8.41: verificação dos módulos/busca com entendimento e sucesso geral confirmados
+com "funcinou e entendi" em 07/11/2026; publicação pendente.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1679,8 +1685,11 @@ Na 8.39, roteiro de verificação das funções/busca apresentado; entendimento
 confirmado e sucesso geral relatado com "funcionou e entendi" em 07/11/2026;
 publicação em 476a283. Na 8.40, prepararTexto exportado por textos.js e importado
 pela vitrine, implementado e explicado; entendimento confirmado com "entendi" em
-07/11/2026; checkpoint em preparação. Próximo passo após publicação:
-8.41 — verificação dos módulos no navegador.
+07/11/2026; publicação em 3e719fc. Na 8.41, roteiro de verificação dos módulos
+e da busca apresentado; entendimento e sucesso geral confirmados com
+"funcinou e entendi" em 07/11/2026; publicação pendente.
+Próximo passo após conclusão/publicação: 8.42 — introdução a promises com
+Promise.resolve e then.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

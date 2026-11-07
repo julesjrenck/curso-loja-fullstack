@@ -6,25 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.39 confirmadas/publicadas; 8.29, 8.34 e 8.39 com relatos gerais
-  de sucesso. 8.40 com entendimento confirmado.
+  Etapas 8.16 a 8.40 confirmadas/publicadas; 8.29, 8.34 e 8.39 com relatos gerais
+  de sucesso. 8.41 confirmada com relato geral "funcinou e entendi"; publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.40 — Módulos com export/import de prepararTexto,
-  entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.39, 476a283dc156665363a6d29fa6f2d838f04f6402;
-  HEAD/origin/main/main remota iguais na conferência anterior.
+- Última etapa concluída: 8.41 — Verificação dos módulos no navegador,
+  entendimento e sucesso geral confirmados com "funcinou e entendi" em
+  07/11/2026. Publicação pendente; último checkpoint publicado: 8.40,
+  3e719fc3849ebebe58a0167fc6eb407dd45a09b1.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.40 — Módulos com export/import de prepararTexto.
-  Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.40 conforme autorização.
-  Depois, 8.41 — verificação dos módulos
-  no navegador. Não iniciada.
+- Etapa atual: 8.41 — Verificação dos módulos no navegador.
+  Roteiro e explicação apresentados; entendimento e sucesso geral confirmados.
+- Próximo passo exato: publicar o checkpoint concluído da 8.41 conforme autorização.
+  Depois, 8.42 — introdução a promises com Promise.resolve e then. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 476a283.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 3e719fc.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -229,7 +228,13 @@
   src/vitrine.js importa o nome de ./textos.js e remove declaração local.
   Aula docs/aulas/08-40-modulos-export-import.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  07/11/2026; checkpoint em preparação.
+  07/11/2026; publicação conferida em 3e719fc.
+- Situação da 8.41: somente documentação. Aula
+  docs/aulas/08-41-verificacao-modulos.md criada com Network, arquivos/status/
+  Response, Console e buscas com totais 1/0/2. HTML/CSS e os dois JS preservados.
+  Entendimento e sucesso geral confirmados com "funcinou e entendi" em
+  07/11/2026; sem resultados individuais ou observação direta do assistente.
+  Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -19440,8 +19445,52 @@ Suíte Laravel não repetida por ser alteração isolada do frontend estático.
 
 Entendimento da 8.40: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional no navegador. Resultados permanecem
-esperados, sem observação direta de execução. Checkpoint em preparação conforme
+esperados, sem observação direta de execução. Publicação concluída conforme
 autorização permanente; git add, git commit e git push origin main explicados
-antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.41 — verificação dos módulos no navegador.
-Não iniciada; módulos 9 a 23 não iniciados.
+antes da execução. Commit 3e719fc3849ebebe58a0167fc6eb407dd45a09b1;
+push 476a283 → 3e719fc com código 0. HEAD/origin/main/main remota conferidos no
+mesmo SHA. Registro posterior à publicação. Continuidade iniciada na 8.41 —
+verificação dos módulos no navegador. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.41 — Verificação dos módulos no navegador — 07/11/2026
+
+Iniciada após confirmação da 8.40 com "entendi" e publicação conferida em
+3e719fc3849ebebe58a0167fc6eb407dd45a09b1; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: verificar recursos na Network e execução
+da função importada na busca. Somente documentação: aula
+docs/aulas/08-41-verificacao-modulos.md criada; continuidade da 8.40, roteiro e
+progresso atualizados com checkpoint publicado.
+
+Explicação apresentada: abrir DevTools antes de reload, localizar vitrine.js/
+textos.js na Network/Rede e conferir status/conteúdo da resposta exportada.
+Fontes primárias Chrome Network e atalhos consultadas. Voltar ao Console,
+estado inicial e ausência de erro de importação. Sequência CAMISETA com espaços,
+sapato e vazio por clique/Enter sem reload, totais previstos 1/0/2, preparo do
+termo/nomes, mensagem e restauração sem navegar. Arquivos e dependência
+HTML → vitrine.js → textos.js relacionados aos pedidos e execução. HTML/CSS e
+os dois JS preservados; nenhuma API/SQL/login ou mudança no backend.
+
+Verificação HTTP fora do sandbox: GET /vitrine.html, /vitrine.css, /vitrine.js e
+/textos.js retornaram HTTP/1.1 200 OK. Tipos: text/html; charset=UTF-8,
+text/css; charset=UTF-8 e application/javascript para ambos os JS. Tamanhos
+1339, 810, 1236 e 68 bytes. Corpos comparados por cmp aos quatro arquivos locais:
+igualdade exata, códigos 0; set -euo pipefail. Temporários próprios removidos.
+Comprova entrega dos recursos, não resolução/execução dos módulos no navegador.
+
+Git diff --check passou; git diff --exit-code de src confirmou aplicação sem
+diferenças. Destinos locais dos documentos conferidos. Somente documentação
+alterada, índice vazio. Nenhum pacote/container/servidor novo; suíte Laravel
+não repetida. Descoberta de ferramentas por nome/descrição não encontrou
+browser/Playwright/Puppeteer/computer/desktop; sem ferramenta disponível para
+observar diretamente o navegador local nesta sessão.
+
+Entendimento da 8.41 confirmado e sucesso geral relatado com "funcinou e entendi"
+em 07/11/2026. Grafia original preservada; interpretado como "funcionou e entendi".
+Sem resultados individuais de Network/status/buscas transcritos ou observação
+direta do assistente. Nenhuma dúvida ou divergência relatada. Checkpoint pronto
+para commit/publicação conforme autorização permanente. Próximo passo: conferir
+a publicação e iniciar 8.42 — introdução a promises com Promise.resolve e then.
+Módulos 9 a 23 não iniciados.
