@@ -104,6 +104,7 @@ alternativa → then externos → finally. "Funcionou" confirma execução;
 Roteiro e explicação apresentados; entendimento confirmado com "entendi" em
 07/11/2026. Sucesso geral relatado depois com "deu tudo certo" na mesma data.
 Sem resultados individuais transcritos ou observação direta do assistente.
-Nenhuma divergência relatada. Checkpoint concluído, publicação pendente conforme
-autorização permanente. Depois da publicação, 8.54 — restauração do sucesso com
-async/await. Não iniciada.
+Nenhuma divergência relatada. Checkpoint publicado e conferido em
+47f5f6aa4079320a5c977ee3161ca79bf71639cd; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.54 — restauração do sucesso com async/await](08-54-sucesso-async-await.md).

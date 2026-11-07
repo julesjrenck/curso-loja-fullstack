@@ -42,7 +42,7 @@ formularioBusca.addEventListener('submit', tratarBusca);
 
 async function prepararMensagem() {
     try {
-        const mensagem = await Promise.reject('Falha simulada ao preparar a mensagem.');
+        const mensagem = await Promise.resolve('Vitrine pronta para a busca.');
 
         return mensagem;
     } catch (motivo) {

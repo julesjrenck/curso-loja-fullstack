@@ -6,26 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.52 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41 e 8.47 com
-  relatos gerais de sucesso. 8.53 com entendimento "entendi" e sucesso geral
-  "deu tudo certo" confirmados; publicação pendente.
+  Etapas 8.16 a 8.53 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47 e
+  8.53 com relatos gerais de sucesso. 8.54 com entendimento confirmado;
+  publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.53 — Verificação do tratamento local no navegador,
-  entendimento confirmado com "entendi" e sucesso geral relatado com "deu tudo certo"
-  em 07/11/2026. Publicação pendente; último checkpoint publicado: 8.52,
-  b1f2692c35d548aa1cf8d5d9220aa6e7b595b2f9.
+- Última etapa concluída: 8.54 — Restauração do sucesso com async/await,
+  entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
+  último checkpoint publicado: 8.53, 47f5f6aa4079320a5c977ee3161ca79bf71639cd.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.53 — Verificação do tratamento local no navegador.
-  Roteiro e explicação apresentados; entendimento confirmado com "entendi" em
-  07/11/2026. Sucesso geral relatado com "deu tudo certo" na mesma data.
-- Próximo passo exato: publicar a 8.53 conforme autorização permanente. Depois,
-  8.54 — restauração do sucesso com async/await. Não iniciada.
+- Etapa atual: 8.54 — Restauração do sucesso com async/await.
+  Implementação e explicação apresentadas; entendimento confirmado.
+- Próximo passo exato: publicar a 8.54 conforme autorização permanente. Depois,
+  8.55 — consumo de uma função async com await. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é b1f2692.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 47f5f6a.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -299,7 +297,12 @@
   dos cinco logs, falha local, alternativa, finally e buscas com totais 1/0/2.
   Aplicação preservada. Entendimento confirmado com "entendi" e sucesso geral
   relatado com "deu tudo certo" em 07/11/2026. Sem resultados individuais
-  transcritos ou observação direta do assistente. Publicação pendente.
+  transcritos ou observação direta do assistente. Publicação em 47f5f6a.
+- Situação da 8.54: em src/vitrine.js, Promise.reject aguardada dentro do try
+  passa a Promise.resolve da mensagem original. Try/catch, chamada e cadeia
+  preservados. Aula docs/aulas/08-54-sucesso-async-await.md criada; continuidade
+  anterior, roteiro/progresso atualizados. Entendimento confirmado com "entendi"
+  em 07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -20073,7 +20076,50 @@ Suíte Laravel não repetida por ser roteiro de verificação do frontend estát
 Entendimento da 8.53 confirmado com "entendi" em 07/11/2026. Em resposta à
 pergunta sobre execução, sucesso geral relatado com "deu tudo certo" na mesma data.
 Sem resultados individuais de mensagens/buscas transcritos ou observação direta
-do assistente. Nenhuma divergência ou dúvida nova relatada. Checkpoint concluído;
-publicação pendente conforme autorização permanente. Próximo passo: publicar,
-conferir remoto e iniciar 8.54 — restauração do sucesso com async/await.
-Não iniciada; módulos 9 a 23 não iniciados.
+do assistente. Nenhuma divergência ou dúvida nova relatada. Publicação concluída
+conforme autorização permanente; git add/commit/push explicados antes da execução.
+Commit 47f5f6aa4079320a5c977ee3161ca79bf71639cd; push b1f2692 → 47f5f6a, código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.54. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.54 — Restauração do sucesso com async/await — 07/11/2026
+
+Iniciada após entendimento "entendi" e relato geral "deu tudo certo" da 8.53,
+recebidos separadamente. Checkpoint anterior publicado e conferido em
+47f5f6aa4079320a5c977ee3161ca79bf71639cd; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova; autorização permanente de publicação mantida.
+
+Objetivo explicado antes da alteração: restaurar sucesso dentro do try com await
+e comparar com a recuperação local verificada. Em src/vitrine.js, apenas Promise
+interna de prepararMensagem mudou de reject da falha simulada para resolve da
+string 'Vitrine pronta para a busca.'. Try/catch, chamada, cadeia e logs
+preservados. Aula docs/aulas/08-54-sucesso-async-await.md criada; continuidade da
+8.53, roteiro e progresso atualizados.
+
+Explicação apresentada: await retoma com string, variável mensagem recebe texto
+e return dentro do try é alcançado. Promise externa fulfilled com original;
+catch local pulado. Dois then transformam/exibem original em maiúsculas;
+.catch externo pulado neste caminho sem rejeição; .finally encerra. Comparação
+em tabela com alternativa da 8.53 e distinção da propagação sem tratamento da
+8.51. Referências primárias ECMAScript mantidas, já consultadas. Import, busca
+e HTML/CSS/textos.js preservados; nenhuma API, dependência, container ou mudança
+no backend.
+
+Verificações da 8.54: GET /vitrine.js no servidor existente retornou HTTP/1.1
+200 OK, Content-Type application/javascript, Content-Length 2038. cmp confirmou
+corpo igual ao arquivo local, código 0; set -euo pipefail, temporários próprios
+removidos. Demonstra entrega, não execução do caminho de sucesso no navegador.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou somente troca da Promise aguardada
+por resolve da string original; try/catch, chamada, cadeia, logs diretos, import
+e busca preservados. Links locais conferidos. Sem execução de JS pelo assistente,
+Node no host ou DOM simulado; sem ferramenta disponível de navegador nesta
+sessão. Nenhum pacote/container novo; suíte Laravel não repetida.
+
+Entendimento da 8.54 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Checkpoint concluído, publicação pendente
+conforme autorização permanente. Próximo passo: publicar e conferir remoto;
+depois iniciar 8.55 — consumo de uma função async com await. Não iniciada.
+Módulos 9 a 23 não iniciados.
