@@ -40,7 +40,11 @@ function tratarBusca(evento) {
 
 formularioBusca.addEventListener('submit', tratarBusca);
 
-const mensagemPronta = Promise.resolve('Vitrine pronta para a busca.');
+async function prepararMensagem() {
+    return 'Vitrine pronta para a busca.';
+}
+
+const mensagemPronta = prepararMensagem();
 
 console.log('Antes de registrar o then.');
 

@@ -140,7 +140,8 @@ Na 8.47, roteiro de verificação da cadeia e busca apresentado; sucesso geral
 relatado com "funcionou" e entendimento confirmado com "entendi" em 07/11/2026.
 Publicação conferida em 633e7de. Na 8.48, Promise.resolve restaurado e caminho
 de sucesso explicado; entendimento confirmado com "entendi" em 07/11/2026;
-publicação pendente.
+publicação conferida em 6396b02. Na 8.49, prepararMensagem async implementada
+e explicada; entendimento confirmado com "entendi" em 07/11/2026; publicação pendente.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -188,7 +189,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.45](aulas/08-45-rejeicoes-catch.md),
 [8.46](aulas/08-46-finalizacao-finally.md),
 [8.47](aulas/08-47-verificacao-cadeia-rejeicao.md),
-[8.48](aulas/08-48-restauracao-sucesso-promise.md) e no progresso.
+[8.48](aulas/08-48-restauracao-sucesso-promise.md),
+[8.49](aulas/08-49-funcao-async-retorno.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -731,7 +733,9 @@ com "entendi" em 07/11/2026; publicação conferida em 848c8ef.
 8.47: roteiro de verificação da cadeia/busca apresentado; sucesso geral relatado
 com "funcionou" e entendimento confirmado com "entendi" em 07/11/2026; publicação em 633e7de.
 8.48: Promise.resolve restaurado e explicado; entendimento confirmado com "entendi"
-em 07/11/2026; publicação pendente.
+em 07/11/2026; publicação conferida em 6396b02.
+8.49: prepararMensagem async implementada e explicada; entendimento confirmado
+com "entendi" em 07/11/2026; publicação pendente.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1736,9 +1740,10 @@ Na 8.47, roteiro de verificação da cadeia e busca apresentado; sucesso geral
 relatado com "funcionou" e entendimento confirmado com "entendi" em 07/11/2026.
 Publicação conferida em 633e7de. Na 8.48, Promise.resolve restaurado e caminho
 de sucesso explicado; entendimento confirmado com "entendi" em 07/11/2026;
-publicação pendente.
-Próximo passo após publicação: 8.49 — função async e seu retorno
-como Promise. Não iniciada.
+publicação conferida em 6396b02. Na 8.49, prepararMensagem async implementada
+e explicada; entendimento confirmado com "entendi" em 07/11/2026; publicação pendente.
+Próximo passo após publicação: 8.50 — await dentro de uma função
+async. Não iniciada.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

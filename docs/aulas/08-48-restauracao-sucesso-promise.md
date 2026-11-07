@@ -80,6 +80,6 @@ demonstra entrega; execução dos callbacks sem observação ou relato nesta eta
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.49 — função async e seu retorno como Promise.
-8.49 não iniciada.
+Checkpoint publicado e conferido em 6396b026977f472bc7469407f321dd73f48c62c0;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.49 — função async e seu retorno](08-49-funcao-async-retorno.md).
