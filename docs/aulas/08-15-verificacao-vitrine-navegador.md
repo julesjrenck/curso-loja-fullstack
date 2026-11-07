@@ -94,5 +94,7 @@ no [progresso](../progresso.md).
 ## Continuidade
 
 Roteiro e explicação entendidos; verificação com relato geral de sucesso.
-Checkpoint em preparação conforme autorização permanente. Depois da publicação:
-8.16 — primeiro formulário de busca da vitrine. Não iniciado.
+Checkpoint publicado e conferido em
+44b3a867dbce18b51d5609f158b61c588764c44e; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.16](08-16-formulario-busca.md): primeiro formulário de busca da vitrine.
