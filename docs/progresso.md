@@ -6,26 +6,23 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.46 confirmadas/publicadas; 8.29, 8.34, 8.39 e 8.41 com relatos
-  gerais de sucesso. 8.47 com sucesso geral "funcionou" e entendimento "entendi"
-  confirmados; publicação pendente.
+  Etapas 8.16 a 8.47 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41 e 8.47 com
+  relatos gerais de sucesso. 8.48 com entendimento confirmado; publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.47 — Verificação da cadeia de rejeição no navegador,
-  sucesso geral relatado com "funcionou" e entendimento confirmado com "entendi"
-  em 07/11/2026. Publicação pendente; último checkpoint publicado: 8.46,
-  dcaa4b4920281f70c4943a7b5a032bfd455653b7.
+- Última etapa concluída: 8.48 — Restauração do caminho de sucesso com Promise.resolve,
+  entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
+  último checkpoint publicado: 8.47, 633e7de3be32ec525be05b2a9d7137b4d1cddeb1.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.47 — Verificação da cadeia de rejeição no navegador.
-  Roteiro e explicação apresentados; sucesso geral relatado com "funcionou".
-  Entendimento confirmado com "entendi" em 07/11/2026.
-- Próximo passo exato: publicar a 8.47 conforme autorização permanente. Depois,
-  8.48 — restauração do caminho de sucesso com Promise.resolve. Não iniciada.
+- Etapa atual: 8.48 — Restauração do caminho de sucesso com Promise.resolve.
+  Implementação e explicação apresentadas; entendimento confirmado.
+- Próximo passo exato: publicar a 8.48 conforme autorização permanente. Depois,
+  8.49 — função async e seu retorno como Promise. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é dcaa4b4.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 633e7de.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -267,7 +264,12 @@
   dos logs, erro intencional, finally e busca com totais 1/0/2. Aplicação
   preservada. Sucesso geral relatado com "funcionou" em 07/11/2026; sem resultados
   individuais transcritos ou observação direta do assistente. Entendimento
-  confirmado com "entendi" em 07/11/2026; publicação pendente.
+  confirmado com "entendi" em 07/11/2026; publicação em 633e7de.
+- Situação da 8.48: em src/vitrine.js, Promise.reject da falha simulada passa
+  a Promise.resolve da mensagem de sucesso. Dois then, catch e finally preservados.
+  Aula docs/aulas/08-48-restauracao-sucesso-promise.md criada; continuidade
+  anterior, roteiro/progresso atualizados. Entendimento confirmado com "entendi"
+  em 07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -19782,7 +19784,50 @@ Resultado da 8.47 no navegador: sucesso geral relatado com "funcionou" em
 07/11/2026. Sem resultados individuais de mensagens/buscas transcritos ou observação
 direta pelo assistente. Nenhuma divergência ou dúvida nova relatada.
 Entendimento da 8.47 confirmado com "entendi" em 07/11/2026, recebido após o
-relato geral "funcionou". Nenhuma dúvida nova. Checkpoint concluído; publicação
-pendente conforme autorização permanente. Próximo passo: publicar e conferir
-remoto; depois iniciar 8.48 — restauração do caminho de sucesso com Promise.resolve.
-Não iniciada; módulos 9 a 23 não iniciados.
+relato geral "funcionou". Nenhuma dúvida nova. Publicação concluída conforme
+autorização permanente; git add/commit/push explicados antes da execução. Commit
+633e7de3be32ec525be05b2a9d7137b4d1cddeb1; push dcaa4b4 → 633e7de com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.48. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.48 — Restauração do caminho de sucesso com Promise.resolve — 07/11/2026
+
+Iniciada após relato geral "funcionou" e entendimento "entendi" da 8.47,
+recebidos separadamente. Checkpoint anterior publicado e conferido em
+633e7de3be32ec525be05b2a9d7137b4d1cddeb1; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova; autorização permanente de publicação mantida.
+
+Objetivo explicado antes da alteração: restaurar sucesso e comparar caminho da
+mesma cadeia. Em src/vitrine.js, somente a criação de mensagemPronta mudou de
+Promise.reject da falha simulada para Promise.resolve('Vitrine pronta para a
+busca.'). Criada aula docs/aulas/08-48-restauracao-sucesso-promise.md;
+continuidade da 8.47, roteiro e progresso atualizados.
+
+Explicação apresentada: Promise já fulfilled com string, primeiro then transforma
+com toUpperCase/return; segundo registra a versão em maiúsculas. catch pulado
+neste caminho sem rejeição; finally executa depois, como no caminho de falha.
+Promise original mantém string inicial; segundo then termina normalmente com
+undefined na sua Promise derivada. Comparação dos dois caminhos apresentada em
+tabela, limitada aos callbacks existentes. Logs diretos permanecem antes dos
+callbacks agendados. Relação HTML/JS/textos/CSS e busca preservada. Nenhuma API,
+dependência, container ou alteração no backend. Referências primárias ECMAScript
+mantidas, já consultadas nas etapas anteriores.
+
+Verificações da 8.48: GET /vitrine.js no servidor existente retornou HTTP/1.1
+200 OK, Content-Type application/javascript, Content-Length 1763. cmp confirmou
+corpo igual ao arquivo local, código 0; set -euo pipefail, temporários próprios
+removidos. Demonstra entrega, não execução do caminho de sucesso no navegador.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou somente troca da linha de criação da
+Promise; dois then, catch, finally, logs diretos, import e busca preservados.
+Links locais conferidos. Sem execução de JS pelo assistente, Node no host ou
+DOM simulado; sem ferramenta disponível de navegador nesta sessão. Nenhum
+pacote/container novo; suíte Laravel não repetida por ser frontend estático.
+
+Entendimento da 8.48 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Checkpoint concluído, publicação pendente
+conforme autorização permanente. Próximo passo: publicar e conferir remoto;
+depois iniciar 8.49 — função async e seu retorno como Promise. Não iniciada.
+Módulos 9 a 23 não iniciados.

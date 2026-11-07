@@ -40,7 +40,7 @@ function tratarBusca(evento) {
 
 formularioBusca.addEventListener('submit', tratarBusca);
 
-const mensagemPronta = Promise.reject('Falha simulada ao preparar a mensagem.');
+const mensagemPronta = Promise.resolve('Vitrine pronta para a busca.');
 
 console.log('Antes de registrar o then.');
 

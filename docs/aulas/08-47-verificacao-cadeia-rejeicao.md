@@ -97,6 +97,7 @@ catch → finally. "Entendi" sozinho confirma aprendizagem; não confirma execu�
 Roteiro e explicação apresentados. Sucesso geral relatado com "funcionou" em
 07/11/2026; sem resultados individuais transcritos ou observação direta do
 assistente. Nenhuma divergência relatada. Entendimento confirmado com "entendi"
-em 07/11/2026, recebido após o relato de execução. Checkpoint concluído;
-publicação pendente conforme autorização permanente. Depois da publicação,
-8.48 — restauração do caminho de sucesso com Promise.resolve. Não iniciada.
+em 07/11/2026, recebido após o relato de execução. Checkpoint publicado e conferido
+em 633e7de3be32ec525be05b2a9d7137b4d1cddeb1; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.48 — restauração do caminho de sucesso](08-48-restauracao-sucesso-promise.md).
