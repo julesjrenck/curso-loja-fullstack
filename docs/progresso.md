@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.26 confirmadas/publicadas; 8.27 com entendimento confirmado.
+  Etapas 8.16 a 8.27 confirmadas/publicadas; 8.28 com entendimento confirmado.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.27 — Comparação do nome com termoBusca usando includes,
+- Última etapa concluída: 8.28 — Visibilidade dos produtos com hidden e negação,
   entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.26, 7fe544c83195f276ddf3868ba235f2740e92537a;
+  Último checkpoint publicado: 8.27, 8adebc866764c1bfd361b3c92f50d92e6ebf004d;
   HEAD/origin/main/main remota iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.27 — Comparação do nome com termoBusca usando includes.
+- Etapa atual: 8.28 — Visibilidade dos produtos com hidden e negação lógica.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.27 conforme autorização.
-  Depois, 8.28 — visibilidade dos produtos
-  com hidden e negação lógica. Não iniciada.
+- Próximo passo exato: publicar checkpoint da 8.28 conforme autorização.
+  Depois, 8.29 — verificação do filtro no
+  navegador, incluindo nova busca e restauração. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 7fe544c.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 8adebc8.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -160,7 +160,12 @@
   recebe nomeProduto.includes(termoBusca); log recebe nomeProduto/corresponde
   no forEach de src/vitrine.js. Aula docs/aulas/08-27-comparacao-includes.md criada;
   continuidade anterior, roteiro/progresso atualizados. Entendimento confirmado
-  com "entendi" em 07/11/2026; checkpoint em preparação.
+  com "entendi" em 07/11/2026; publicação conferida em 8adebc8.
+- Situação da 8.28: dentro do forEach de src/vitrine.js, atribuição
+  produto.hidden = !corresponde após a comparação. Aula
+  docs/aulas/08-28-visibilidade-hidden.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -18757,8 +18762,56 @@ Suíte Laravel não repetida por ser alteração isolada do frontend estático.
 
 Entendimento da 8.27: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional no navegador. Resultados permanecem
+esperados, sem observação direta de execução. Publicação concluída conforme
+autorização permanente; git add, git commit e git push origin main explicados
+antes da execução. Commit 8adebc866764c1bfd361b3c92f50d92e6ebf004d;
+push 7fe544c → 8adebc8 com código 0. HEAD/origin/main/main remota conferidos no
+mesmo SHA. Registro posterior à publicação. Continuidade iniciada na 8.28 —
+visibilidade dos produtos com hidden e negação lógica. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.28 — Visibilidade dos produtos com hidden e negação lógica — 07/11/2026
+
+Iniciada após confirmação da 8.27 com "entendi" e publicação conferida em
+8adebc866764c1bfd361b3c92f50d92e6ebf004d; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: controlar exibição usando o booleano da
+comparação e sua negação. Único arquivo da aplicação alterado: src/vitrine.js;
+produto.hidden = !corresponde acrescentado dentro do forEach, após cálculo de
+corresponde e antes do log. Aula docs/aulas/08-28-visibilidade-hidden.md criada;
+continuidade da 8.27, roteiro e progresso atualizados com checkpoint publicado.
+
+Explicação apresentada: hidden como propriedade atribuída com booleano, true
+oculta/false remove atributo; = atribui e ! nega, como no PHP. Tabela true/false
+e fluxo corresponde → !corresponde → hidden. Elementos permanecem no DOM e na
+coleção; todos reavaliados a cada submit, permitindo revelar cartões ocultos.
+Termo vazio gera true/hidden false para ambos. Const não congela objetos.
+Busca somente no envio e sobre cartões carregados; sem requisição. CSS atual
+não define display em .produto; Grid continua duas colunas em largura maior,
+sem ampliar cartão único. Nenhum resultado deixa área vazia, sem mensagem ainda.
+Referências primárias HTML Standard e ECMAScript consultadas. HTML/CSS, logs
+e restante do fluxo preservados; nenhuma API/SQL/login ou mudança no backend.
+
+Verificação HTTP fora do sandbox: GET /vitrine.js retornou HTTP/1.1 200 OK,
+Content-Type application/javascript e Content-Length 837. Corpo comparado por
+cmp ao arquivo local: igualdade exata, código 0; set -euo pipefail. Temporários
+próprios removidos. Inspeção confirmou atribuição hidden com negação de corresponde
+dentro do forEach, após comparação e antes do log. CSS .produto sem display;
+nenhuma remoção de elementos. Demonstra entrega e estrutura do código; não prova
+ocultação, restauração ou layout executados no navegador.
+
+Git diff --check passou; git diff --exit-code de HTML/CSS confirmou ausência
+de alterações nesses arquivos. Destinos locais dos documentos conferidos.
+Somente JS e documentação alterados; índice vazio. Nenhuma ferramenta,
+dependência ou container novo; sem execução de Node no host ou simulação de DOM.
+Sem observação do navegador e sem relato de execução desta etapa pelo aluno.
+Suíte Laravel não repetida por ser alteração isolada do frontend estático.
+
+Entendimento da 8.28: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
+nova ou relato separado da atividade opcional no navegador. Resultados permanecem
 esperados, sem observação direta de execução. Checkpoint em preparação conforme
 autorização permanente; git add, git commit e git push origin main explicados
 antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.28 — visibilidade dos produtos com hidden e negação lógica.
+depois 8.29 — verificação do filtro no navegador, incluindo nova busca e restauração.
 Não iniciada; módulos 9 a 23 não iniciados.

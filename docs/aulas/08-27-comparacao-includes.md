@@ -86,6 +86,7 @@ nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.27 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.28 — visibilidade dos produtos
-com hidden e negação lógica. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+8adebc866764c1bfd361b3c92f50d92e6ebf004d; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.28](08-28-visibilidade-hidden.md): visibilidade dos produtos com hidden e negação lógica.

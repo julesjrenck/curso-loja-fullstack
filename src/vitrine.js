@@ -19,6 +19,8 @@ formularioBusca.addEventListener('submit', function (evento) {
         const nomeProduto = produto.querySelector('h2').textContent.trim().toLowerCase();
         const corresponde = nomeProduto.includes(termoBusca);
 
+        produto.hidden = !corresponde;
+
         console.log(nomeProduto, corresponde);
     });
 });
