@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.25 confirmadas/publicadas; 8.26 com entendimento confirmado.
+  Etapas 8.16 a 8.26 confirmadas/publicadas; 8.27 com entendimento confirmado.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.26 — Leitura do nome de cada produto com textContent,
+- Última etapa concluída: 8.27 — Comparação do nome com termoBusca usando includes,
   entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.25, d64dfa9204f72052aae2193057924e01ab2a3c1b;
+  Último checkpoint publicado: 8.26, 7fe544c83195f276ddf3868ba235f2740e92537a;
   HEAD/origin/main/main remota iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.26 — Leitura do nome de cada produto com textContent.
+- Etapa atual: 8.27 — Comparação do nome com termoBusca usando includes.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.26 conforme autorização.
-  Depois, 8.27 — comparação do nome com termoBusca
-  usando includes. Não iniciada.
+- Próximo passo exato: publicar checkpoint da 8.27 conforme autorização.
+  Depois, 8.28 — visibilidade dos produtos
+  com hidden e negação lógica. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é d64dfa9.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 7fe544c.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -155,7 +155,12 @@
   recebe produto.querySelector('h2').textContent; log passa a usar nomeProduto.
   Aula docs/aulas/08-26-nome-produto-textcontent.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  07/11/2026; checkpoint em preparação.
+  07/11/2026; publicação conferida em 7fe544c.
+- Situação da 8.27: nomeProduto recebe trim().toLowerCase(); const corresponde
+  recebe nomeProduto.includes(termoBusca); log recebe nomeProduto/corresponde
+  no forEach de src/vitrine.js. Aula docs/aulas/08-27-comparacao-includes.md criada;
+  continuidade anterior, roteiro/progresso atualizados. Entendimento confirmado
+  com "entendi" em 07/11/2026; checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -18702,8 +18707,58 @@ Suíte Laravel não repetida por ser alteração isolada do frontend estático.
 
 Entendimento da 8.26: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional no navegador. Resultados permanecem
+esperados, sem observação direta de execução. Publicação concluída conforme
+autorização permanente; git add, git commit e git push origin main explicados
+antes da execução. Commit 7fe544c83195f276ddf3868ba235f2740e92537a;
+push d64dfa9 → 7fe544c com código 0. HEAD/origin/main/main remota conferidos no
+mesmo SHA. Registro posterior à publicação. Continuidade iniciada na 8.27 —
+comparação do nome com termoBusca usando includes. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.27 — Comparação do nome com termoBusca usando includes — 07/11/2026
+
+Iniciada após confirmação da 8.26 com "entendi" e publicação conferida em
+7fe544c83195f276ddf3868ba235f2740e92537a; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: preparar nome como o termo e verificar
+se contém o trecho buscado. Único arquivo da aplicação alterado: src/vitrine.js;
+nomeProduto recebe textContent.trim().toLowerCase(), const corresponde recebe
+nomeProduto.includes(termoBusca); log passa a registrar nome e booleano. Aula
+docs/aulas/08-27-comparacao-includes.md criada; continuidade da 8.26, roteiro
+e progresso atualizados com checkpoint publicado.
+
+Explicação apresentada: includes procura substring na direção nome contém termo,
+retornando true/false booleanos sem aspas. Não exige palavra inteira/igualdade;
+diferencia caixa, por isso nomes/termo preparados igualmente com métodos já
+estudados. Acentos/espaços internos preservados, título exibido preservado.
+Termo vazio contido em qualquer string; tabela com CAMISETA, CAN, ca, sapato
+e somente espaços. Comparação de intenção com str_contains PHP. Escopos local
+e externo: callback do forEach acessa termo da função submit, cria nome/booleano
+por item e repete cálculos a cada busca. Referência primária ECMAScript consultada.
+Seleções/logs iniciais/preventDefault e HTML/CSS preservados; cartões continuam
+visíveis independentemente da correspondência. Sem filtragem visual, API/SQL/login
+ou mudança no backend.
+
+Verificação HTTP fora do sandbox: GET /vitrine.js retornou HTTP/1.1 200 OK,
+Content-Type application/javascript e Content-Length 797. Corpo comparado por
+cmp ao arquivo local: igualdade exata, código 0; set -euo pipefail. Temporários
+próprios removidos. Inspeção confirmou trim().toLowerCase() nos dois textos,
+nomeProduto.includes(termoBusca) dentro do forEach e log dos dois valores.
+Demonstra entrega e estrutura do código; tabela registra resultados esperados,
+não execução das comparações no navegador.
+
+Git diff --check passou; git diff --exit-code de HTML/CSS confirmou ausência
+de alterações nesses arquivos. Destinos locais dos documentos conferidos.
+Somente JS e documentação alterados; índice vazio. Nenhuma ferramenta,
+dependência ou container novo; sem execução de Node no host ou simulação de DOM.
+Sem observação do navegador e sem relato de execução desta etapa pelo aluno.
+Suíte Laravel não repetida por ser alteração isolada do frontend estático.
+
+Entendimento da 8.27: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
+nova ou relato separado da atividade opcional no navegador. Resultados permanecem
 esperados, sem observação direta de execução. Checkpoint em preparação conforme
 autorização permanente; git add, git commit e git push origin main explicados
 antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.27 — comparação do nome com termoBusca usando includes.
+depois 8.28 — visibilidade dos produtos com hidden e negação lógica.
 Não iniciada; módulos 9 a 23 não iniciados.

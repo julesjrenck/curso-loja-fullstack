@@ -82,6 +82,7 @@ nenhuma execução observada ou relatada nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.26 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.27 — comparação do nome com
-termoBusca usando includes. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+7fe544c83195f276ddf3868ba235f2740e92537a; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.27](08-27-comparacao-includes.md): comparação do nome com termoBusca usando includes.

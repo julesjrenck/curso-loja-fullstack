@@ -16,8 +16,9 @@ formularioBusca.addEventListener('submit', function (evento) {
     console.log('Busca enviada:', termoBusca);
 
     produtos.forEach(function (produto) {
-        const nomeProduto = produto.querySelector('h2').textContent;
+        const nomeProduto = produto.querySelector('h2').textContent.trim().toLowerCase();
+        const corresponde = nomeProduto.includes(termoBusca);
 
-        console.log(nomeProduto);
+        console.log(nomeProduto, corresponde);
     });
 });
