@@ -83,6 +83,7 @@ Roteiro e explicação apresentados; entendimento confirmado com "funcionou
 entendi" em 07/11/2026 (resposta original: "funcionou  entendi"). A mesma resposta
 informa sucesso geral no navegador, sem resultados individuais transcritos ou
 observação direta do assistente. Nenhuma divergência ou dúvida nova relatada.
-Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.35 — função nomeada para tratar
-o envio da busca. Não iniciada.
+Checkpoint publicado e conferido em
+423f3e680b219d4031389fcc4c993afd94ccefdb; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.35](08-35-funcao-nomeada-busca.md): função nomeada para tratar o envio da busca.

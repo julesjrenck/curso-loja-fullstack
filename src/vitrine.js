@@ -10,7 +10,7 @@ console.log('Valor inicial da busca:', campoNome.value);
 console.log(produtos);
 console.log(mensagemSemResultados);
 
-formularioBusca.addEventListener('submit', function (evento) {
+function tratarBusca(evento) {
     evento.preventDefault();
 
     const termoBusca = campoNome.value.trim().toLowerCase();
@@ -34,4 +34,6 @@ formularioBusca.addEventListener('submit', function (evento) {
     mensagemSemResultados.hidden = quantidadeResultados > 0;
 
     console.log('Produtos encontrados:', quantidadeResultados);
-});
+}
+
+formularioBusca.addEventListener('submit', tratarBusca);
