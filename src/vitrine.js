@@ -14,4 +14,8 @@ formularioBusca.addEventListener('submit', function (evento) {
     const termoBusca = campoNome.value.trim().toLowerCase();
 
     console.log('Busca enviada:', termoBusca);
+
+    produtos.forEach(function (produto) {
+        console.log(produto);
+    });
 });

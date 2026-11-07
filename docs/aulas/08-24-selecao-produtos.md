@@ -86,6 +86,7 @@ ou relatada nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.24 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.25 — percorrer os produtos
-com forEach. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+ab68117e4754a109a87983371f8bef6e3f1e44e0; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.25](08-25-percorrer-produtos.md): percorrer os produtos com forEach.
