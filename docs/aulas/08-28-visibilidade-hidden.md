@@ -102,6 +102,7 @@ nenhuma execução observada ou relatada nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.28 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.29 — verificação do filtro
-no navegador, incluindo nova busca e restauração. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+b2ed9ffd62106247e5ea7abe1b8898caa9807b7d; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.29](08-29-verificacao-filtro.md): verificação do filtro no navegador.

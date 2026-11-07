@@ -97,7 +97,9 @@ do nome implementados e explicados; entendimento confirmado com "entendi" em
 includes/booleano implementados e explicados; entendimento confirmado com
 "entendi" em 07/11/2026; publicação em 8adebc8. Na 8.28, atribuição de hidden
 com negação de corresponde implementada e explicada; entendimento confirmado
-com "entendi" em 07/11/2026; checkpoint em preparação.
+com "entendi" em 07/11/2026; publicação em b2ed9ff. Na 8.29, roteiro de verificação
+do filtro apresentado; entendimento confirmado e sucesso geral no navegador
+relatado com "funcinou e entendi" em 07/11/2026; checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -125,7 +127,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.25](aulas/08-25-percorrer-produtos.md),
 [8.26](aulas/08-26-nome-produto-textcontent.md),
 [8.27](aulas/08-27-comparacao-includes.md),
-[8.28](aulas/08-28-visibilidade-hidden.md) e no progresso.
+[8.28](aulas/08-28-visibilidade-hidden.md),
+[8.29](aulas/08-29-verificacao-filtro.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -628,7 +631,9 @@ em 07/11/2026; publicação em 7fe544c. 8.27 implementada e explicada: nomes e t
 preparados em minúsculas, includes e booleano por produto; entendimento confirmado
 com "entendi" em 07/11/2026; publicação em 8adebc8. 8.28 implementada e explicada:
 hidden com negação do resultado, ocultação/restauração a cada submit; entendimento
-confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
+confirmado com "entendi" em 07/11/2026; publicação em b2ed9ff. 8.29: roteiro
+de testes do filtro apresentado; entendimento confirmado e sucesso geral relatado
+com "funcinou e entendi" em 07/11/2026; checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1592,9 +1597,10 @@ em 07/11/2026; publicação em 7fe544c. Na 8.27, preparo do nome e comparação 
 includes/booleano implementados e explicados; entendimento confirmado com
 "entendi" em 07/11/2026; publicação em 8adebc8. Na 8.28, visibilidade dos cartões
 com hidden e negação lógica implementada e explicada; entendimento confirmado
-com "entendi" em 07/11/2026; checkpoint em preparação.
-Próximo passo após publicação: 8.29 — verificação do filtro no
-navegador, incluindo nova busca e restauração.
+com "entendi" em 07/11/2026; publicação em b2ed9ff. Na 8.29, roteiro de verificação
+do filtro apresentado; entendimento confirmado e sucesso geral relatado com
+"funcinou e entendi" em 07/11/2026; checkpoint em preparação. Próximo passo após
+publicação: 8.30 — estrutura HTML da mensagem de busca sem resultados.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
