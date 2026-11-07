@@ -84,6 +84,7 @@ Roteiro e explicação apresentados; entendimento confirmado com "funcinou e
 entendi" em 07/11/2026. A mesma resposta informa sucesso geral no navegador,
 interpretando "funcinou" como "funcionou"; sem resultados individuais transcritos
 ou observação direta do assistente. Nenhuma divergência ou dúvida nova relatada.
-Checkpoint em preparação conforme autorização permanente. Próximo passo após
-publicação: 8.30 — estrutura HTML da mensagem de busca sem resultados.
-Não iniciada.
+Checkpoint publicado e conferido em
+2480b5b0c36fa2e7de98f425a086beda9575292d; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.30](08-30-mensagem-sem-resultados-html.md): estrutura HTML da mensagem de busca sem resultados.
