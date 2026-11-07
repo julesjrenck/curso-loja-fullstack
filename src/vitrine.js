@@ -58,19 +58,20 @@ async function formatarMensagem() {
     return mensagem.toUpperCase();
 }
 
-const mensagemPronta = formatarMensagem();
+async function exibirMensagem() {
+    try {
+        const mensagemFormatada = await formatarMensagem();
 
-console.log('Antes de registrar o then.');
-
-mensagemPronta
-    .then((mensagemFormatada) => {
         console.log(mensagemFormatada);
-    })
-    .catch((motivo) => {
+    } catch (motivo) {
         console.error('Não foi possível preparar a mensagem:', motivo);
-    })
-    .finally(() => {
+    } finally {
         console.log('Preparação da mensagem encerrada.');
-    });
+    }
+}
 
-console.log('Depois de registrar o then.');
+console.log('Antes de chamar exibirMensagem.');
+
+exibirMensagem();
+
+console.log('Depois de chamar exibirMensagem.');

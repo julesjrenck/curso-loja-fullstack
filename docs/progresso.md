@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.54 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47 e
-  8.53 com relatos gerais de sucesso. 8.55 com entendimento confirmado;
+  Etapas 8.16 a 8.55 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47 e
+  8.53 com relatos gerais de sucesso. 8.56 com entendimento confirmado;
   publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.55 — Consumo de uma função async com await,
+- Última etapa concluída: 8.56 — Exibição da mensagem com async/await,
   entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.54, 470a4d826c03836d75208adbff979f564991501d.
+  último checkpoint publicado: 8.55, 1244367a7043e0821d55afca89ec8a5880eefb98.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.55 — Consumo de uma função async com await.
+- Etapa atual: 8.56 — Exibição da mensagem com async/await.
   Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.55 conforme autorização permanente. Depois,
-  8.56 — exibição da mensagem com async/await. Não iniciada.
+- Próximo passo exato: publicar a 8.56 conforme autorização permanente. Depois,
+  8.57 — verificação da exibição com async/await no navegador. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 470a4d8.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 1244367.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -307,6 +307,12 @@
   prepararMensagem() e return de toUpperCase; mensagemPronta chama a nova função.
   Then de transformação removido, mantendo exibição/catch/finally externos. Aula
   docs/aulas/08-55-consumo-funcao-async-await.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; atividade opcional no navegador sem relato. Publicação em 1244367.
+- Situação da 8.56: src/vitrine.js substitui mensagemPronta e cadeia externa
+  por exibirMensagem async, com await formatarMensagem em try, log, catch/finally
+  como blocos; chamada entre logs diretos atualizados. Aula
+  docs/aulas/08-56-exibicao-async-await.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -20170,7 +20176,55 @@ não repetida.
 
 Entendimento da 8.55 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+1244367a7043e0821d55afca89ec8a5880eefb98; push 470a4d8 → 1244367 com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.56. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.56 — Exibição da mensagem com async/await — 07/11/2026
+
+Iniciada após confirmação da 8.55 com "entendi" e publicação conferida em
+1244367a7043e0821d55afca89ec8a5880eefb98; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova ou relato separado de execução da atividade opcional.
+
+Objetivo explicado antes da alteração: usar async/await para exibir mensagem e
+reunir tratamento/encerramento em uma função. Em src/vitrine.js, removidos
+mensagemPronta e cadeia externa then/catch/finally, substituídos por async function
+exibirMensagem(). Try com const mensagemFormatada = await formatarMensagem() e
+console.log; catch com mesmo prefixo de erro; finally como bloco com mesmo log
+de encerramento. Chamada exibirMensagem() entre logs 'Antes de chamar
+exibirMensagem.' e 'Depois de chamar exibirMensagem.'. Alterações inseparáveis
+do mesmo exemplo. Aula docs/aulas/08-56-exibicao-async-await.md criada;
+continuidade da 8.55, roteiro e progresso atualizados.
+
+Explicação apresentada: await seguido de log substitui callback then; catch e
+finally como blocos da linguagem substituem métodos com callbacks. Finally
+executa depois do try/catch, sem alterar conclusão normal neste log. Comparação
+em tabela e sintaxe semelhante ao PHP. exibirMensagem devolve Promise, fulfilled
+com undefined ao terminar normalmente; valor não consumido neste exemplo.
+Chamador continua durante suspensão, por isso log Depois vem antes da exibição.
+Distintos tratamentos de prepararMensagem e exibirMensagem explicados. Fontes
+primárias ECMAScript mantidas, já consultadas. prepararMensagem, formatarMensagem,
+import, busca e HTML/CSS/textos.js preservados; nenhuma API, dependência,
+container ou alteração no backend.
+
+Verificações da 8.56: GET /vitrine.js no servidor existente retornou HTTP/1.1
+200 OK, Content-Type application/javascript, Content-Length 2107. cmp confirmou
+corpo igual ao arquivo local, código 0; set -euo pipefail, temporários próprios
+removidos. Demonstra entrega, não execução de exibirMensagem no navegador.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou substituição da cadeia por exibirMensagem
+com try/await/catch/finally, chamada e novos logs; prepararMensagem,
+formatarMensagem, import e busca preservados. Links locais conferidos. Sem
+execução de JS pelo assistente, Node no host ou DOM simulado; sem ferramenta
+disponível de navegador nesta sessão. Nenhum pacote/container novo; suíte Laravel
+não repetida.
+
+Entendimento da 8.56 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
 execução a partir da confirmação. Checkpoint concluído, publicação pendente
 conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.56 — exibição da mensagem com async/await. Não iniciada.
-Módulos 9 a 23 não iniciados.
+depois iniciar 8.57 — verificação da exibição com async/await no navegador.
+Não iniciada; módulos 9 a 23 não iniciados.
