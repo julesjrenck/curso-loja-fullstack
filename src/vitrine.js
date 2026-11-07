@@ -20,6 +20,9 @@ const produtosExemplo = [
 ];
 
 console.log('Produtos de exemplo:', produtosExemplo);
+console.log('Primeiro produto:', produtosExemplo[0].nome);
+console.log('Segundo produto:', produtosExemplo[1].nome);
+console.log('Quantidade de produtos:', produtosExemplo.length);
 
 const formularioBusca = document.querySelector('.busca');
 const campoNome = formularioBusca.querySelector('#busca-nome');

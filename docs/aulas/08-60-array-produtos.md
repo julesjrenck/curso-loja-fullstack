@@ -91,6 +91,6 @@ ou relato nesta etapa.
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.61 — índices e length do array de produtos.
-8.61 não iniciada.
+Checkpoint publicado e conferido em ea9d7d96b20a100d1bb77fdebea872c9866fd55d;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.61 — índices e length](08-61-indices-length-produtos.md).
