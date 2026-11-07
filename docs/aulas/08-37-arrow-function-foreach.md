@@ -86,6 +86,7 @@ de execução desta alteração foi observado ou relatado nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.37 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.38 — arrow function com retorno
-implícito em prepararTexto. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+91af1db3cb9feef6011ab14f2e3ac215a61d7124; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.38](08-38-arrow-retorno-implicito.md): arrow com retorno implícito em prepararTexto.

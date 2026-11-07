@@ -10,9 +10,7 @@ console.log('Valor inicial da busca:', campoNome.value);
 console.log(produtos);
 console.log(mensagemSemResultados);
 
-function prepararTexto(texto) {
-    return texto.trim().toLowerCase();
-}
+const prepararTexto = (texto) => texto.trim().toLowerCase();
 
 function tratarBusca(evento) {
     evento.preventDefault();
