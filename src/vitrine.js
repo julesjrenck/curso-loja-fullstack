@@ -44,8 +44,12 @@ const mensagemPronta = Promise.resolve('Vitrine pronta para a busca.');
 
 console.log('Antes de registrar o then.');
 
-mensagemPronta.then((mensagem) => {
-    console.log(mensagem);
-});
+mensagemPronta
+    .then((mensagem) => {
+        return mensagem.toUpperCase();
+    })
+    .then((mensagemFormatada) => {
+        console.log(mensagemFormatada);
+    });
 
 console.log('Depois de registrar o then.');

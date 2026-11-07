@@ -6,23 +6,23 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.42 confirmadas/publicadas; 8.29, 8.34, 8.39 e 8.41 com relatos
-  gerais de sucesso. 8.43 com entendimento confirmado; publicação pendente.
+  Etapas 8.16 a 8.43 confirmadas/publicadas; 8.29, 8.34, 8.39 e 8.41 com relatos
+  gerais de sucesso. 8.44 com entendimento confirmado; publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.43 — Ordem de execução e callbacks de Promise,
+- Última etapa concluída: 8.44 — Encadeamento de promises com then e return,
   entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.42, bc6b79644d31a71969ff30e3053f1d9da1e62943.
+  último checkpoint publicado: 8.43, dc8dac05b7aae590331f6c43569e1b7eade4590a.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.43 — Ordem de execução e callbacks de Promise.
+- Etapa atual: 8.44 — Encadeamento de promises com then e return.
   Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.43 conforme autorização permanente. Depois,
-  8.44 — encadeamento de promises com then e return. Não iniciada.
+- Próximo passo exato: publicar a 8.44 conforme autorização permanente. Depois,
+  8.45 — tratamento de rejeições com catch. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é bc6b796.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é dc8dac0.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -243,7 +243,12 @@
   para comparar a execução síncrona com o callback agendado. Aula
   docs/aulas/08-43-ordem-execucao-promise.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  07/11/2026; atividade no navegador sem relato. Publicação pendente.
+  07/11/2026; atividade no navegador sem relato. Publicação conferida em dc8dac0.
+- Situação da 8.44: src/vitrine.js encadeia dois then; o primeiro retorna
+  mensagem.toUpperCase(), o segundo registra mensagemFormatada no Console. Aula
+  docs/aulas/08-44-encadeamento-promises.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -19583,6 +19588,51 @@ simulação de DOM. Nenhum pacote/container novo; suíte Laravel não repetida.
 Entendimento da 8.43 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; a confirmação
 se refere ao entendimento, sem presumir a execução ou a ordem observada.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo: publicar e conferir remoto; depois iniciar 8.44 — encadeamento de
-promises com then e return. Não iniciada; módulos 9 a 23 não iniciados.
+Publicação concluída conforme autorização permanente; git add/commit/push
+explicados antes da execução. Commit dc8dac05b7aae590331f6c43569e1b7eade4590a;
+push bc6b796 → dc8dac0 com código 0. HEAD/origin/main/main remota conferidos
+no mesmo SHA. Registro posterior à publicação; continuidade na 8.44.
+Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.44 — Encadeamento de promises com then e return — 07/11/2026
+
+Iniciada após confirmação da 8.43 com "entendi" e publicação conferida em
+dc8dac05b7aae590331f6c43569e1b7eade4590a; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova ou relato separado de execução da atividade opcional.
+
+Objetivo e conceito explicados antes da alteração: dividir transformação e
+registro da mensagem em callbacks encadeados, passando valor com return.
+Em src/vitrine.js, primeiro then retorna mensagem.toUpperCase(); segundo then
+recebe mensagemFormatada e a registra. Promise inicial e logs diretos antes/
+depois preservados. Aula docs/aulas/08-44-encadeamento-promises.md criada;
+continuidade da 8.43, roteiro e progresso atualizados. Busca, import e DOM
+preservados; HTML/CSS/textos.js sem alteração prevista.
+
+Explicação apresentada: then devolve outra Promise; retorno normal de string do
+callback resolve a Promise derivada com esse texto. Segundo then está ligado
+à derivada. toUpperCase devolve versão em maiúsculas; não muda string original.
+Parâmetros são locais, sem depender de nomes iguais. Chaves exigem return
+explícito; sem ele, retorno undefined neste callback. console.log exibe e retorna
+undefined. Cadeia é uma expressão, com ponto e vírgula ao final. Logs diretos
+continuam antes dos callbacks. Fontes primárias ECMAScript consultadas.
+Nenhuma API, pacote, container ou mudança no backend.
+
+Verificações da 8.44: GET /vitrine.js no servidor local existente retornou
+HTTP/1.1 200 OK, Content-Type application/javascript, Content-Length 1569.
+cmp confirmou corpo idêntico ao arquivo local (código 0); set -euo pipefail,
+temporários próprios removidos. Confirma entrega, não execução dos callbacks.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou substituição do único then por cadeia
+com dois then, retorno explícito da string e registro no segundo callback.
+Logs diretos, Promise original, import e busca preservados. Links locais
+conferidos. Sem execução de JavaScript pelo assistente, Node no host ou DOM
+simulado; sem ferramenta disponível de navegador nesta sessão. Nenhum pacote
+ou container novo; suíte Laravel não repetida por ser frontend estático.
+
+Entendimento da 8.44 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Checkpoint concluído, publicação pendente
+conforme autorização permanente. Próximo passo: publicar e conferir remoto;
+depois iniciar 8.45 — tratamento de rejeições com catch. Não iniciada.
+Módulos 9 a 23 não iniciados.

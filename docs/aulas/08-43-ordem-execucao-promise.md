@@ -72,6 +72,6 @@ servido; a execução no navegador permanece sem observação ou relato.
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.44 — encadeamento de promises com then e return.
-8.44 não iniciada.
+Checkpoint publicado e conferido em dc8dac05b7aae590331f6c43569e1b7eade4590a;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.44 — encadeamento de promises](08-44-encadeamento-promises.md).

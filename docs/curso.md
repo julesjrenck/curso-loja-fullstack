@@ -130,6 +130,8 @@ Publicação conferida em 6c23f5b. Na 8.42, Promise.resolve com string e callbac
 de then implementados e explicados; entendimento confirmado com "entendi" em
 07/11/2026; publicação conferida em bc6b796. Na 8.43, logs antes/depois de then
 implementados e explicados; entendimento confirmado com "entendi" em
+07/11/2026; publicação conferida em dc8dac0. Na 8.44, cadeia com then/return
+implementada e explicada; entendimento confirmado com "entendi" em
 07/11/2026; publicação pendente.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
@@ -173,7 +175,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.40](aulas/08-40-modulos-export-import.md),
 [8.41](aulas/08-41-verificacao-modulos.md),
 [8.42](aulas/08-42-introducao-promises.md),
-[8.43](aulas/08-43-ordem-execucao-promise.md) e no progresso.
+[8.43](aulas/08-43-ordem-execucao-promise.md),
+[8.44](aulas/08-44-encadeamento-promises.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -706,6 +709,8 @@ com "funcinou e entendi" em 07/11/2026; publicação em 6c23f5b.
 8.42: Promise.resolve e then implementados e explicados; entendimento confirmado
 com "entendi" em 07/11/2026; publicação conferida em bc6b796.
 8.43: logs antes/depois de then implementados e explicados; entendimento confirmado
+com "entendi" em 07/11/2026; publicação conferida em dc8dac0.
+8.44: cadeia com then/return implementada e explicada; entendimento confirmado
 com "entendi" em 07/11/2026; publicação pendente.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
@@ -1701,9 +1706,11 @@ e da busca apresentado; entendimento e sucesso geral confirmados com
 Na 8.42, Promise.resolve com string e callback de then implementados e explicados;
 entendimento confirmado com "entendi" em 07/11/2026; publicação conferida em bc6b796.
 Na 8.43, comparação entre logs síncronos e callback implementada e explicada;
+entendimento confirmado com "entendi" em 07/11/2026; publicação conferida em dc8dac0.
+Na 8.44, cadeia de dois then com return implementada e explicada;
 entendimento confirmado com "entendi" em 07/11/2026; publicação pendente.
 Próximo passo após publicação:
-8.44 — encadeamento de promises com then e return. Não iniciada.
+8.45 — tratamento de rejeições com catch. Não iniciada.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
