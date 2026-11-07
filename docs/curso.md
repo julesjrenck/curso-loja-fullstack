@@ -112,7 +112,10 @@ em 07/11/2026; publicação em 90adc7e. Na 8.34, roteiro de verificação da con
 e da mensagem apresentado; entendimento confirmado e sucesso geral relatado
 com "funcionou  entendi" em 07/11/2026; publicação em 423f3e6. Na 8.35, função
 nomeada tratarBusca e registro por referência implementados e explicados;
-entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
+entendimento confirmado com "entendi" em 07/11/2026; publicação em 3baa8f5.
+Na 8.36, prepararTexto com parâmetro/return e uso no termo e nos nomes
+implementados e explicados; entendimento confirmado com "entendi" em 07/11/2026;
+checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -147,7 +150,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.32](aulas/08-32-contagem-resultados.md),
 [8.33](aulas/08-33-exibicao-mensagem.md),
 [8.34](aulas/08-34-verificacao-contagem-mensagem.md),
-[8.35](aulas/08-35-funcao-nomeada-busca.md) e no progresso.
+[8.35](aulas/08-35-funcao-nomeada-busca.md),
+[8.36](aulas/08-36-preparar-texto-return.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -664,6 +668,8 @@ confirmado com "entendi" em 07/11/2026; publicação em 90adc7e. 8.34: roteiro
 da contagem/mensagem apresentado; entendimento confirmado e sucesso geral relatado
 com "funcionou  entendi" em 07/11/2026; publicação em 423f3e6. 8.35 implementada
 e explicada: declaração de tratarBusca e passagem da referência ao evento;
+entendimento confirmado com "entendi" em 07/11/2026; publicação em 3baa8f5.
+8.36 implementada e explicada: prepararTexto com parâmetro/return e duas chamadas;
 entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
@@ -1642,8 +1648,11 @@ com "entendi" em 07/11/2026; publicação em 90adc7e. Na 8.34, roteiro de verifi
 da contagem e da mensagem apresentado; entendimento confirmado e sucesso geral
 relatado com "funcionou  entendi" em 07/11/2026; publicação em 423f3e6. Na 8.35,
 função nomeada tratarBusca e registro por referência implementados e explicados;
-entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-Próximo passo após publicação: 8.36 — função prepararTexto com parâmetro e return.
+entendimento confirmado com "entendi" em 07/11/2026; publicação em 3baa8f5.
+Na 8.36, preparo dos textos extraído para função com parâmetro e return,
+implementado e explicado; entendimento confirmado com "entendi" em 07/11/2026;
+checkpoint em preparação. Próximo passo após publicação: 8.37 — arrow function
+no forEach dos produtos.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

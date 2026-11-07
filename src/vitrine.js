@@ -10,16 +10,20 @@ console.log('Valor inicial da busca:', campoNome.value);
 console.log(produtos);
 console.log(mensagemSemResultados);
 
+function prepararTexto(texto) {
+    return texto.trim().toLowerCase();
+}
+
 function tratarBusca(evento) {
     evento.preventDefault();
 
-    const termoBusca = campoNome.value.trim().toLowerCase();
+    const termoBusca = prepararTexto(campoNome.value);
     let quantidadeResultados = 0;
 
     console.log('Busca enviada:', termoBusca);
 
     produtos.forEach(function (produto) {
-        const nomeProduto = produto.querySelector('h2').textContent.trim().toLowerCase();
+        const nomeProduto = prepararTexto(produto.querySelector('h2').textContent);
         const corresponde = nomeProduto.includes(termoBusca);
 
         produto.hidden = !corresponde;

@@ -87,6 +87,7 @@ desta reorganização foi observado ou relatado.
 
 Implementação e explicação apresentadas; entendimento da 8.35 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.36 — função prepararTexto
-com parâmetro e return. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+3baa8f558688699a1aa449702d0ce46fe62cf00f; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.36](08-36-preparar-texto-return.md): função prepararTexto com parâmetro e return.
