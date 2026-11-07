@@ -83,6 +83,6 @@ por diff. Links locais conferidos. JavaScript não executado pelo assistente.
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.43 — ordem de execução e callbacks de Promise.
-8.43 não iniciada.
+Checkpoint publicado e conferido em bc6b79644d31a71969ff30e3053f1d9da1e62943;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.43 — ordem de execução e callbacks de Promise](08-43-ordem-execucao-promise.md).

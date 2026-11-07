@@ -42,6 +42,10 @@ formularioBusca.addEventListener('submit', tratarBusca);
 
 const mensagemPronta = Promise.resolve('Vitrine pronta para a busca.');
 
+console.log('Antes de registrar o then.');
+
 mensagemPronta.then((mensagem) => {
     console.log(mensagem);
 });
+
+console.log('Depois de registrar o then.');
