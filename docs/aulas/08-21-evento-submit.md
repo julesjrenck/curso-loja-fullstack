@@ -99,6 +99,7 @@ esperados; nenhuma execução desta atividade foi observada ou relatada.
 
 Implementação e explicação apresentadas; entendimento da 8.21 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.22 — remoção de espaços nas
-extremidades do termo com trim. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+d85e2e957cf8d6e1e150e880ed47a10850f62579; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.22](08-22-termo-busca-trim.md): remoção de espaços nas extremidades com trim.

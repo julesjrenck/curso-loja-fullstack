@@ -9,5 +9,7 @@ console.log('Valor inicial da busca:', campoNome.value);
 formularioBusca.addEventListener('submit', function (evento) {
     evento.preventDefault();
 
-    console.log('Busca enviada:', campoNome.value);
+    const termoBusca = campoNome.value.trim();
+
+    console.log('Busca enviada:', termoBusca);
 });

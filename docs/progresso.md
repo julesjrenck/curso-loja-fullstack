@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.20 confirmadas/publicadas; 8.21 com entendimento confirmado.
+  Etapas 8.16 a 8.21 confirmadas/publicadas; 8.22 com entendimento confirmado.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.21 — Evento submit e preventDefault no formulário,
+- Última etapa concluída: 8.22 — Remoção de espaços nas extremidades com trim,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.20, 9418b719b9d7e61811ff596ab7a942cf3557d0ba;
+  Último checkpoint publicado: 8.21, d85e2e957cf8d6e1e150e880ed47a10850f62579;
   HEAD/origin/main/main remota iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.21 — Evento submit e preventDefault no formulário de busca.
+- Etapa atual: 8.22 — Remoção de espaços nas extremidades do termo com trim.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.21 conforme autorização.
-  Depois, 8.22 — remoção de espaços nas
-  extremidades do termo com trim. Não iniciada.
+- Próximo passo exato: publicar checkpoint da 8.22 conforme autorização.
+  Depois, 8.23 — conversão do termo para
+  minúsculas com toLowerCase. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 9418b71.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é d85e2e9.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -129,6 +129,11 @@
 - Situação da 8.21: src/vitrine.js recebe addEventListener no form para submit,
   com função anônima/evento, preventDefault e log de campoNome.value a cada envio.
   Aula docs/aulas/08-21-evento-submit.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  06/11/2026; publicação conferida em d85e2e9.
+- Situação da 8.22: no submit de src/vitrine.js, const termoBusca recebe
+  campoNome.value.trim(); log passa a registrar termoBusca. Aula
+  docs/aulas/08-22-termo-busca-trim.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   06/11/2026; checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -18436,8 +18441,56 @@ Suíte Laravel não repetida por ser alteração isolada do frontend estático.
 
 Entendimento da 8.21: confirmado com "entendi" em 06/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional de submit no navegador. Resultados
-permanecem esperados, sem observação direta de execução. Checkpoint em preparação
+permanecem esperados, sem observação direta de execução. Publicação concluída
 conforme autorização permanente; git add, git commit e git push origin main
-explicados antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.22 — remoção de espaços nas extremidades do termo com trim.
+explicados antes da execução. Commit d85e2e957cf8d6e1e150e880ed47a10850f62579;
+push 9418b71 → d85e2e9 com código 0. HEAD/origin/main/main remota conferidos no
+mesmo SHA. Registro posterior à publicação. Continuidade iniciada na 8.22 —
+remoção de espaços nas extremidades do termo com trim. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.22 — Remoção de espaços nas extremidades do termo com trim — 06/11/2026
+
+Iniciada após confirmação da 8.21 com "entendi" e publicação conferida em
+d85e2e957cf8d6e1e150e880ed47a10850f62579; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: preparar o termo removendo espaços nas
+extremidades. Único arquivo da aplicação alterado: src/vitrine.js; dentro do
+submit, const termoBusca = campoNome.value.trim(); e log alterado para usar
+termoBusca. Aula docs/aulas/08-22-termo-busca-trim.md criada; continuidade da
+8.21, roteiro e progresso atualizados com o checkpoint publicado.
+
+Explicação apresentada: value retorna string, trim() é método sem argumentos
+que retorna string com espaços em branco das extremidades removidos. Não remove
+espaços internos nem altera letras/acentos. String imutável e ausência de
+atribuição a value: input permanece como digitado. Const local ao corpo criada
+em cada chamada; log usa resultado preparado. Somente espaços produz string
+vazia, ainda sem tratamento especial. Comparação com trim($texto) em PHP,
+ressalvando conjuntos padrão diferentes. Referência primária ECMAScript
+consultada. Seleções/logs iniciais/cancelamento do submit preservados, HTML/CSS
+preservados. Produtos continuam estáticos; nenhuma filtragem, API/SQL/login
+ou mudança no backend.
+
+Verificação HTTP fora do sandbox: GET /vitrine.js retornou HTTP/1.1 200 OK,
+Content-Type application/javascript e Content-Length 453. Corpo comparado por
+cmp ao arquivo local: igualdade exata, código 0; set -euo pipefail. Temporários
+próprios removidos. Inspeção confirmou leitura value.trim() dentro do submit,
+const local e log usando termoBusca; nenhuma atribuição a campoNome.value.
+Demonstra entrega e estrutura do código; não prova execução do trim ou do
+callback no navegador.
+
+Git diff --check passou; git diff --exit-code de HTML/CSS confirmou ausência
+de alterações nesses arquivos. Destinos locais dos documentos conferidos.
+Somente JS e documentação alterados; índice vazio. Nenhuma ferramenta,
+dependência ou container novo; sem execução de Node no host ou simulação de DOM.
+Sem observação do navegador e sem relato de execução desta etapa pelo aluno.
+Suíte Laravel não repetida por ser alteração isolada do frontend estático.
+
+Entendimento da 8.22: confirmado com "entendi" em 06/11/2026. Nenhuma dúvida
+nova ou relato separado da atividade opcional no navegador. Resultados permanecem
+esperados, sem observação direta de execução. Checkpoint em preparação conforme
+autorização permanente; git add, git commit e git push origin main explicados
+antes da execução. Próximo passo exato: publicar e conferir checkpoint;
+depois 8.23 — conversão do termo para minúsculas com toLowerCase.
 Não iniciada; módulos 9 a 23 não iniciados.
