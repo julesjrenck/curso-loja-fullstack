@@ -79,6 +79,7 @@ ou relatada nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.22 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.23 — conversão do termo para
-minúsculas com toLowerCase. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+55b36cfb54425dee8b88bd636e6d0372193311fb; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.23](08-23-termo-busca-minusculas.md): conversão do termo para minúsculas.

@@ -2,28 +2,28 @@
 
 ## Estado atual
 
-- Última atualização: 06/11/2026, referência de data America/Sao_Paulo.
+- Última atualização: 07/11/2026, referência de data America/Sao_Paulo.
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.21 confirmadas/publicadas; 8.22 com entendimento confirmado.
+  Etapas 8.16 a 8.22 confirmadas/publicadas; 8.23 com entendimento confirmado.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.22 — Remoção de espaços nas extremidades com trim,
-  entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.21, d85e2e957cf8d6e1e150e880ed47a10850f62579;
+- Última etapa concluída: 8.23 — Conversão do termo para minúsculas,
+  entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
+  Último checkpoint publicado: 8.22, 55b36cfb54425dee8b88bd636e6d0372193311fb;
   HEAD/origin/main/main remota iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.22 — Remoção de espaços nas extremidades do termo com trim.
+- Etapa atual: 8.23 — Conversão do termo para minúsculas com toLowerCase.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.22 conforme autorização.
-  Depois, 8.23 — conversão do termo para
-  minúsculas com toLowerCase. Não iniciada.
+- Próximo passo exato: publicar checkpoint da 8.23 conforme autorização.
+  Depois, 8.24 — seleção dos produtos com
+  querySelectorAll. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é d85e2e9.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 55b36cf.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -135,7 +135,12 @@
   campoNome.value.trim(); log passa a registrar termoBusca. Aula
   docs/aulas/08-22-termo-busca-trim.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  06/11/2026; checkpoint em preparação.
+  06/11/2026; publicação conferida em 55b36cf.
+- Situação da 8.23: em src/vitrine.js, termoBusca recebe agora
+  campoNome.value.trim().toLowerCase(). Aula
+  docs/aulas/08-23-termo-busca-minusculas.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -18489,8 +18494,55 @@ Suíte Laravel não repetida por ser alteração isolada do frontend estático.
 
 Entendimento da 8.22: confirmado com "entendi" em 06/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional no navegador. Resultados permanecem
+esperados, sem observação direta de execução. Publicação concluída conforme
+autorização permanente; git add, git commit e git push origin main explicados
+antes da execução. Commit 55b36cfb54425dee8b88bd636e6d0372193311fb;
+push d85e2e9 → 55b36cf com código 0. HEAD/origin/main/main remota conferidos no
+mesmo SHA. Registro posterior à publicação. Continuidade iniciada na 8.23 —
+conversão do termo para minúsculas com toLowerCase. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.23 — Conversão do termo para minúsculas com toLowerCase — 06/11/2026
+
+Iniciada após confirmação da 8.22 com "entendi" e publicação conferida em
+55b36cfb54425dee8b88bd636e6d0372193311fb; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: preparar o termo em minúsculas para
+futuras comparações. Único arquivo da aplicação alterado: src/vitrine.js;
+declaração de termoBusca passa a campoNome.value.trim().toLowerCase(). Aula
+docs/aulas/08-23-termo-busca-minusculas.md criada; continuidade da 8.22, roteiro
+e progresso atualizados com o checkpoint publicado.
+
+Explicação apresentada: toLowerCase() retorna string em minúsculas, sem
+argumentos, usando conversão padrão Unicode. Encadeamento: leitura de value,
+trim, toLowerCase e atribuição final à const; log usa termoBusca. Campo preserva
+conteúdo digitado, strings imutáveis; transformação a cada submit. Espaços
+internos preservados, string vazia continua vazia, acentos não são removidos
+(AÇÃO → ação). Comparação com nomes dos produtos ainda futura e exigirá preparo
+compatível dos nomes. Referência primária ECMAScript consultada. Seleções/logs
+iniciais/cancelamento do submit e HTML/CSS preservados. Produtos estáticos;
+nenhuma filtragem, API/SQL/login ou mudança no backend.
+
+Verificação HTTP fora do sandbox: GET /vitrine.js retornou HTTP/1.1 200 OK,
+Content-Type application/javascript e Content-Length 467. Corpo comparado por
+cmp ao arquivo local: igualdade exata, código 0; set -euo pipefail. Temporários
+próprios removidos. Inspeção confirmou trim().toLowerCase() dentro do submit,
+const local e log usando termoBusca; nenhuma atribuição a campoNome.value.
+Demonstra entrega e estrutura do código; não prova execução das transformações
+ou do callback no navegador.
+
+Git diff --check passou; git diff --exit-code de HTML/CSS confirmou ausência
+de alterações nesses arquivos. Destinos locais dos documentos conferidos.
+Somente JS e documentação alterados; índice vazio. Nenhuma ferramenta,
+dependência ou container novo; sem execução de Node no host ou simulação de DOM.
+Sem observação do navegador e sem relato de execução desta etapa pelo aluno.
+Suíte Laravel não repetida por ser alteração isolada do frontend estático.
+
+Entendimento da 8.23: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
+nova ou relato separado da atividade opcional no navegador. Resultados permanecem
 esperados, sem observação direta de execução. Checkpoint em preparação conforme
 autorização permanente; git add, git commit e git push origin main explicados
 antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.23 — conversão do termo para minúsculas com toLowerCase.
+depois 8.24 — seleção dos produtos com querySelectorAll.
 Não iniciada; módulos 9 a 23 não iniciados.
