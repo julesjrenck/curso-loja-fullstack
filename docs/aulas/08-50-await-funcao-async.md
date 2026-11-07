@@ -91,6 +91,6 @@ observação ou relato nesta etapa.
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.51 — rejeição em await e propagação para catch.
-8.51 não iniciada.
+Checkpoint publicado e conferido em d95f2c39bac4b115d6c837b86c9bcdd4d5481faa;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.51 — rejeição em await e propagação para catch](08-51-rejeicao-await-catch.md).
