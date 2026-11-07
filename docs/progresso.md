@@ -6,23 +6,26 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.51 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41 e 8.47 com
-  relatos gerais de sucesso. 8.52 com entendimento confirmado; publicação pendente.
+  Etapas 8.16 a 8.52 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41 e 8.47 com
+  relatos gerais de sucesso. 8.53 com entendimento "entendi" e sucesso geral
+  "deu tudo certo" confirmados; publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.52 — Try/catch dentro de uma função async,
-  entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.51, 2b4a3eb8cf5993cacb885d3eac514639eee26574.
+- Última etapa concluída: 8.53 — Verificação do tratamento local no navegador,
+  entendimento confirmado com "entendi" e sucesso geral relatado com "deu tudo certo"
+  em 07/11/2026. Publicação pendente; último checkpoint publicado: 8.52,
+  b1f2692c35d548aa1cf8d5d9220aa6e7b595b2f9.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.52 — Try/catch dentro de uma função async.
-  Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.52 conforme autorização permanente. Depois,
-  8.53 — verificação do tratamento local no navegador. Não iniciada.
+- Etapa atual: 8.53 — Verificação do tratamento local no navegador.
+  Roteiro e explicação apresentados; entendimento confirmado com "entendi" em
+  07/11/2026. Sucesso geral relatado com "deu tudo certo" na mesma data.
+- Próximo passo exato: publicar a 8.53 conforme autorização permanente. Depois,
+  8.54 — restauração do sucesso com async/await. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 2b4a3eb.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é b1f2692.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -290,7 +293,13 @@
   catch local registra motivo e retorna mensagem alternativa, consumida pelos then.
   Aula docs/aulas/08-52-try-catch-funcao-async.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
+  07/11/2026; atividade opcional no navegador sem relato. Publicação em b1f2692.
+- Situação da 8.53: somente documentação. Aula
+  docs/aulas/08-53-verificacao-tratamento-local.md criada com Console, ordem
+  dos cinco logs, falha local, alternativa, finally e buscas com totais 1/0/2.
+  Aplicação preservada. Entendimento confirmado com "entendi" e sucesso geral
+  relatado com "deu tudo certo" em 07/11/2026. Sem resultados individuais
+  transcritos ou observação direta do assistente. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -20022,7 +20031,49 @@ de navegador nesta sessão. Nenhum pacote/container novo; suíte Laravel não re
 
 Entendimento da 8.52 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
-execução a partir da confirmação. Checkpoint concluído, publicação pendente
-conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.53 — verificação do tratamento local no navegador. Não iniciada.
-Módulos 9 a 23 não iniciados.
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+b1f2692c35d548aa1cf8d5d9220aa6e7b595b2f9; push 2b4a3eb → b1f2692 com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.53. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.53 — Verificação do tratamento local no navegador — 07/11/2026
+
+Iniciada após confirmação da 8.52 com "entendi" e publicação conferida em
+b1f2692c35d548aa1cf8d5d9220aa6e7b595b2f9; HEAD/origin/main/main remota iguais.
+Atividades opcionais de async/await ainda sem relato; nenhuma dúvida nova.
+
+Objetivo explicado antes da alteração: verificar rejeição em await tratada
+localmente, retorno alternativo consumido pelos then e encerramento, mais busca.
+Somente documentação: aula docs/aulas/08-53-verificacao-tratamento-local.md criada;
+continuidade da 8.52, roteiro e progresso atualizados. Aplicação preservada.
+
+Explicação apresentada: Console com filtro vazio, Info/Error visíveis, Preserve
+log desativado e recarga. Estado inicial e cinco mensagens previstas. Logs diretos
+antes dos callbacks; catch local registra motivo, return alternativo resolve
+Promise externa, then transformam/exibem e finally encerra. Ausência dos prefixos
+do catch externo, Uncaught (in promise) e sucesso original. Relação entre quatro
+arquivos explicada; exemplo de Console fora de tratarBusca, sem API. Busca
+CAMISETA com espaços por clique, sapato por Enter e vazio por clique, totais
+1/0/2, cartões/mensagem, URL e ausência de recarga/repetição do exemplo.
+Referência primária Chrome Console mantida, consultada na 8.47.
+
+Verificações da 8.53: GET /vitrine.html e /vitrine.js no servidor existente
+retornaram HTTP/1.1 200 OK. Content-Type text/html; charset=UTF-8 e
+application/javascript; Content-Length 1339 e 2047. cmp confirmou corpos iguais
+aos arquivos locais, códigos 0; set -euo pipefail, temporários próprios removidos.
+Demonstra entrega, não execução da sequência no navegador. git diff --check
+passou; diff --exit-code de src confirmou aplicação preservada. Links locais
+conferidos. Descoberta de ferramentas por nome/descrição não encontrou browser/
+Playwright/Puppeteer/computer/desktop. Sem observação direta ou execução de JS
+pelo assistente; nenhum pacote/container novo, Node no host ou DOM simulado.
+Suíte Laravel não repetida por ser roteiro de verificação do frontend estático.
+
+Entendimento da 8.53 confirmado com "entendi" em 07/11/2026. Em resposta à
+pergunta sobre execução, sucesso geral relatado com "deu tudo certo" na mesma data.
+Sem resultados individuais de mensagens/buscas transcritos ou observação direta
+do assistente. Nenhuma divergência ou dúvida nova relatada. Checkpoint concluído;
+publicação pendente conforme autorização permanente. Próximo passo: publicar,
+conferir remoto e iniciar 8.54 — restauração do sucesso com async/await.
+Não iniciada; módulos 9 a 23 não iniciados.

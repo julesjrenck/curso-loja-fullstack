@@ -98,6 +98,6 @@ entrega; execução da recuperação no navegador sem observação ou relato nes
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.53 — verificação do tratamento local no navegador.
-8.53 não iniciada.
+Checkpoint publicado e conferido em b1f2692c35d548aa1cf8d5d9220aa6e7b595b2f9;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.53 — verificação do tratamento local](08-53-verificacao-tratamento-local.md).
