@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Entendimento da 8.16 confirmado com "entendi"; checkpoint em preparação.
+  Etapa 8.16 confirmada/publicada; entendimento da 8.17 confirmado com "entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.16 — Primeiro formulário de busca da vitrine,
+- Última etapa concluída: 8.17 — Estilização do formulário de busca,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint de aula publicado antes desta confirmação: 8.15,
-  44b3a867dbce18b51d5609f158b61c588764c44e; remoto conferido.
+  Último checkpoint de aula publicado antes desta confirmação: 8.16,
+  1896c60ec221d56235c5e9742286dd4d1ea3e684; remoto conferido.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.16 — Primeiro formulário de busca da vitrine.
+- Etapa atual: 8.17 — Estilização do formulário de busca.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar e conferir checkpoint da 8.16 conforme autorização.
-  Depois, 8.17 — estilização do formulário de
-  busca. Não iniciada.
+- Próximo passo exato: publicar e conferir checkpoint da 8.17 conforme autorização.
+  Depois, 8.18 — primeiro arquivo JavaScript
+  da vitrine. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 44b3a86.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 1896c60.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -103,6 +103,12 @@
 - Situação da 8.16: formulário GET com action vitrine.html, label for busca-nome,
   input search/id busca-nome/name nome e botão submit em src/vitrine.html.
   Aula docs/aulas/08-16-formulario-busca.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  06/11/2026; publicação conferida em 1896c60.
+- Situação da 8.17: form recebe class busca no HTML; CSS ganha .busca com
+  display grid/gap 8px/margin-bottom 24px e seletores .busca input/.busca button
+  agrupados, com font inherit/padding 8px. Aula
+  docs/aulas/08-17-estilos-formulario-busca.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   06/11/2026; checkpoint em preparação para publicação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -18163,7 +18169,52 @@ Main acompanha origin/main no checkpoint publicado da 8.15.
 Entendimento da 8.16: confirmado com "entendi" em 06/11/2026, após explicação
 de form GET, label/for/id e name como chave enviada. Nenhuma dúvida nova ou
 relato separado do exercício opcional no navegador; isso não impede conclusão.
-Publicação em preparação conforme autorização permanente; git add/commit/push
-explicados antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.17 — estilização do formulário de busca. Não iniciada;
-módulos 9 a 23 não iniciados.
+Publicação concluída conforme autorização permanente; git add/commit/push
+explicados antes da execução. Commit 1896c60ec221d56235c5e9742286dd4d1ea3e684;
+push 44b3a86 → 1896c60 concluiu com código 0. HEAD/origin/main/main remota
+conferidos no mesmo SHA. Registro posterior à publicação. Continuidade
+iniciada na 8.17 — estilização do formulário de busca; módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.17 — Estilização do formulário de busca — 06/11/2026
+
+Iniciada após confirmação da 8.16 com "entendi" e publicação conferida em
+1896c60ec221d56235c5e9742286dd4d1ea3e684; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: organizar os controles e o espaçamento
+do formulário, usando a fonte da página. Conjunto inseparável na aplicação:
+form em src/vitrine.html recebe class busca; src/vitrine.css ganha .busca com
+display grid/gap 8px/margin-bottom 24px e seletores agrupados .busca input,
+.busca button com font inherit/padding 8px. Criada a aula
+docs/aulas/08-17-estilos-formulario-busca.md; continuidade da 8.16, roteiro e
+progresso atualizados com o checkpoint publicado.
+
+Explicação apresentada: posicionamento automático do Grid atual em uma coluna
+para label/input/button; gap entre as caixas internas e margem abaixo do form.
+Espaço no seletor representa descendência, em qualquer profundidade; vírgula
+agrupa seletores que compartilham declarações. Font inherit faz controles
+receberem configuração de fonte do pai; padding cria espaço interno. Associação
+for/id/name e envio GET preservados. Referências primárias W3C de seletores e
+font consultadas. Atividade opcional de localizar controles/seletores proposta.
+
+Verificação HTTP fora do sandbox: GET /vitrine.html e GET /vitrine.css
+retornaram HTTP/1.1 200 OK, Content-Type text/html e text/css respectivamente,
+ambos com charset UTF-8. Corpos comparados por cmp aos arquivos locais:
+igualdade exata, código 0; set -euo pipefail. Temporários próprios removidos.
+Isso demonstra entrega da alteração; sem observação de layout dos controles
+no navegador. Nenhum novo relato visual do aluno para esta etapa. Nenhum
+servidor/container/pacote novo, API/SQL/login ou mudança no backend; suíte
+Laravel não repetida por ser alteração isolada em HTML/CSS estáticos.
+
+Git diff --check passou; destinos locais dos documentos conferidos. Diff
+confirmou classe busca no form, sem alterar atributos de envio/associação,
+e as duas regras CSS novas. HTML/CSS e quatro documentos alterados; índice vazio.
+Main acompanha origin/main no checkpoint publicado da 8.16.
+
+Entendimento da 8.17: confirmado com "entendi" em 06/11/2026, após explicação
+de seletores descendentes/agrupados e estilos do formulário. Nenhuma dúvida nova
+ou relato separado do exercício opcional no navegador. Publicação em preparação
+conforme autorização permanente; git add/commit/push explicados antes da execução.
+Próximo passo exato: publicar e conferir checkpoint; depois 8.18 — primeiro
+arquivo JavaScript da vitrine. Não iniciada; módulos 9 a 23 não iniciados.

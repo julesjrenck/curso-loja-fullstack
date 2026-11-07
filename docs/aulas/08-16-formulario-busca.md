@@ -84,6 +84,7 @@ nenhum resultado do navegador foi relatado para esta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.16 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado do exercício
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após checkpoint: 8.17 — estilização do formulário
-de busca. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+1896c60ec221d56235c5e9742286dd4d1ea3e684; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.17](08-17-estilos-formulario-busca.md): estilização do formulário de busca.
