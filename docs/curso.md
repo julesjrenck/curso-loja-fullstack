@@ -75,7 +75,10 @@ com "entendi" em 06/11/2026; publicação em 1896c60. Na 8.17, classe busca com
 Grid/gap/margem e regras de fonte/padding dos controles implementadas e explicadas;
 entendimento confirmado com "entendi" em 06/11/2026; publicação em eeee2a4.
 Na 8.18, vitrine.js com console.log e script type module no HTML criados e
-explicados; entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
+explicados; entendimento confirmado com "entendi" em 06/11/2026; publicação em d29800c.
+Na 8.19, seleção do formulário com document.querySelector e referência const
+implementadas e explicadas; entendimento confirmado com "entendi" em 06/11/2026;
+checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -93,7 +96,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.15](aulas/08-15-verificacao-vitrine-navegador.md),
 [8.16](aulas/08-16-formulario-busca.md),
 [8.17](aulas/08-17-estilos-formulario-busca.md),
-[8.18](aulas/08-18-primeiro-javascript.md) e no progresso.
+[8.18](aulas/08-18-primeiro-javascript.md),
+[8.19](aulas/08-19-dom-formulario.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -575,6 +579,8 @@ formulário com GET à própria página e query nome; entendimento confirmado co
 estilos da busca, seletores descendentes e agrupados; entendimento confirmado com
 "entendi" em 06/11/2026; publicação em eeee2a4. 8.18 implementada e explicada:
 primeiro arquivo JS da vitrine e carregamento como módulo; entendimento confirmado
+com "entendi" em 06/11/2026; publicação em d29800c. 8.19 implementada e explicada:
+DOM, seleção do formulário por classe e referência const; entendimento confirmado
 com "entendi" em 06/11/2026; checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
@@ -1517,9 +1523,11 @@ gap/margem e regras para fonte/padding dos controles implementadas e explicadas;
 entendimento confirmado com "entendi" em 06/11/2026; publicação em eeee2a4.
 Na 8.18, arquivo vitrine.js com mensagem
 no Console e inclusão como módulo no HTML criados e explicados; entendimento
-confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-Próximo passo após publicação: 8.19 — DOM e seleção do formulário
-de busca.
+confirmado com "entendi" em 06/11/2026; publicação em d29800c.
+Na 8.19, seleção do formulário com document.querySelector e referência const
+implementadas e explicadas; entendimento confirmado com "entendi" em 06/11/2026;
+checkpoint em preparação. Próximo passo após publicação: 8.20 — campo de busca
+e leitura de value.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

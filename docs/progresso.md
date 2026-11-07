@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16/8.17 confirmadas/publicadas; 8.18 com entendimento confirmado.
+  Etapas 8.16 a 8.18 confirmadas/publicadas; 8.19 com entendimento confirmado.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.18 — Primeiro arquivo JavaScript da vitrine,
+- Última etapa concluída: 8.19 — DOM e seleção do formulário de busca,
   entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.17, eeee2a43ee195877e680059d630be39ab2910205;
+  Último checkpoint publicado: 8.18, d29800c2a242fcb5114d7a82549a392269aa2fe8;
   HEAD/origin/main/main remota iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.18 — Primeiro arquivo JavaScript da vitrine.
+- Etapa atual: 8.19 — DOM e seleção do formulário de busca.
   Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.18 conforme autorização.
-  Depois, 8.19 — DOM e seleção do formulário
-  de busca. Não iniciada.
+- Próximo passo exato: publicar checkpoint da 8.19 conforme autorização.
+  Depois, 8.20 — campo de busca e leitura de
+  value. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é eeee2a4.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é d29800c.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -114,6 +114,11 @@
 - Situação da 8.18: criado src/vitrine.js com console.log de mensagem fixa;
   src/vitrine.html recebe script type module/src vitrine.js no head. Aula
   docs/aulas/08-18-primeiro-javascript.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  06/11/2026; publicação conferida em d29800c.
+- Situação da 8.19: src/vitrine.js recebe const formularioBusca com
+  document.querySelector('.busca') e console.log do elemento. Aula
+  docs/aulas/08-19-dom-formulario.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   06/11/2026; checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -18272,7 +18277,55 @@ Main acompanha origin/main no checkpoint publicado da 8.17.
 Entendimento da 8.18: confirmado com "entendi" em 06/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional no Console. Mensagem permanece
 tratada como saída esperada, sem observação direta da execução no navegador.
-Checkpoint em preparação conforme autorização permanente; git add, git commit
-e git push origin main explicados antes da execução. Próximo passo exato:
-publicar e conferir checkpoint; depois 8.19 — DOM e seleção do formulário de
-busca. Não iniciada; módulos 9 a 23 não iniciados.
+Publicação concluída conforme autorização permanente; git add, git commit
+e git push origin main explicados antes da execução. Commit
+d29800c2a242fcb5114d7a82549a392269aa2fe8; push eeee2a4 → d29800c com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação. Continuidade iniciada na 8.19 — DOM e seleção do formulário de
+busca. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.19 — DOM e seleção do formulário de busca — 06/11/2026
+
+Iniciada após confirmação da 8.18 com "entendi" e publicação conferida em
+d29800c2a242fcb5114d7a82549a392269aa2fe8; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: conhecer o DOM e localizar o formulário
+existente pelo JavaScript. Único arquivo da aplicação alterado: src/vitrine.js,
+mantendo a mensagem inicial e acrescentando const formularioBusca =
+document.querySelector('.busca'); e console.log(formularioBusca);. Aula
+docs/aulas/08-19-dom-formulario.md criada; continuidade da 8.18, roteiro e
+progresso atualizados com o checkpoint publicado.
+
+Explicação apresentada: DOM como árvore de objetos construída pelo navegador,
+document como acesso ao documento, querySelector com seletor CSS de classe,
+retorno do primeiro elemento ou null. Const declara referência sem permitir
+reatribuição da variável; não congela o objeto. Diferença entre variável sem
+aspas e string no log; resultado esperado é o objeto do formulário, cuja
+apresentação depende do Console. Módulo sem async executa após análise do HTML.
+Referências primárias DOM Standard e ECMAScript consultadas. HTML/CSS existentes
+relacionados ao JS; envio GET e produtos continuam estáticos. Nenhum evento,
+leitura de value, filtragem, API/SQL/login ou mudança no backend introduzidos.
+
+Verificação HTTP fora do sandbox: GET /vitrine.js retornou HTTP/1.1 200 OK,
+Content-Type application/javascript e Content-Length 139. Corpo comparado por
+cmp ao arquivo local: igualdade exata, código 0; set -euo pipefail. Temporários
+próprios removidos. Inspeção confirmou um form com class busca e script module
+no HTML; seletor e instruções conferidos no JS. Demonstra entrega do código e
+correspondência com a estrutura existente; não prova execução do DOM.
+
+Git diff --check passou; git diff --exit-code de HTML/CSS confirmou ausência
+de alterações nesses arquivos. Destinos locais dos documentos conferidos.
+Somente JS e documentação alterados; índice vazio. Nenhuma ferramenta,
+dependência ou container novo; sem execução de Node no host ou simulação de DOM.
+Sem observação do navegador e sem relato de execução desta etapa pelo aluno.
+Suíte Laravel não repetida por ser alteração isolada do frontend estático.
+
+Entendimento da 8.19: confirmado com "entendi" em 06/11/2026. Nenhuma dúvida
+nova ou relato separado da atividade opcional no Console. Saída permanece
+esperada, sem observação direta da execução no navegador. Checkpoint em
+preparação conforme autorização permanente; git add, git commit e git push
+origin main explicados antes da execução. Próximo passo exato: publicar e
+conferir checkpoint; depois 8.20 — campo de busca e leitura de value.
+Não iniciada; módulos 9 a 23 não iniciados.

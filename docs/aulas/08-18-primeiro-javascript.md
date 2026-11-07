@@ -85,6 +85,7 @@ execução em navegador foi observada ou relatada nesta etapa até esse relato.
 
 Implementação e explicação apresentadas; entendimento da 8.18 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no Console. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.19 — DOM e seleção do
-formulário de busca. Não iniciada.
+opcional no Console. Checkpoint publicado e conferido em
+d29800c2a242fcb5114d7a82549a392269aa2fe8; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.19](08-19-dom-formulario.md): DOM e seleção do formulário de busca.
