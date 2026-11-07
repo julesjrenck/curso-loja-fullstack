@@ -6,25 +6,25 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.37 confirmadas/publicadas; 8.29 e 8.34 com relatos gerais
-  de sucesso. 8.38 com entendimento confirmado.
+  Etapas 8.16 a 8.38 confirmadas/publicadas; 8.29 e 8.34 com relatos gerais
+  de sucesso. 8.39 com entendimento confirmado e relato geral de sucesso:
+  "funcionou e entendi".
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.38 — Arrow function com retorno implícito em prepararTexto,
-  entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-  Último checkpoint publicado: 8.37, 91af1db3cb9feef6011ab14f2e3ac215a61d7124;
-  HEAD/origin/main/main remota iguais na conferência anterior.
+- Última etapa concluída: 8.39 — Verificação das funções e da busca no navegador,
+  entendimento e sucesso geral confirmados com "funcionou e entendi" em
+  07/11/2026; checkpoint em preparação. Último checkpoint publicado: 8.38,
+  96d851d5e8fe3b42aeb574103643734b30f11d6d; SHAs iguais na conferência anterior.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.38 — Arrow function com retorno implícito em prepararTexto.
-  Implementação e explicação apresentadas; entendimento confirmado com "entendi".
-- Próximo passo exato: publicar checkpoint da 8.38 conforme autorização.
-  Depois, 8.39 — verificação das funções
-  e da busca no navegador. Não iniciada.
+- Etapa atual: 8.39 — Verificação das funções e da busca no navegador.
+  Roteiro e explicação apresentados; entendimento confirmado e sucesso geral relatado.
+- Próximo passo exato: publicar checkpoint da 8.39 conforme autorização.
+  Depois, 8.40 — módulos com export/import de prepararTexto. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 91af1db.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 96d851d.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -218,7 +218,13 @@
   (texto) => texto.trim().toLowerCase(), mantendo chamadas. Aula
   docs/aulas/08-38-arrow-retorno-implicito.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  07/11/2026; checkpoint em preparação.
+  07/11/2026; publicação conferida em 96d851d.
+- Situação da 8.39: somente documentação. Aula
+  docs/aulas/08-39-verificacao-funcoes-busca.md criada com normalização do termo
+  e nomes, callbacks, totais, cartões/mensagem e transições por clique/Enter.
+  HTML/CSS/JS preservados. Entendimento confirmado e sucesso geral relatado com
+  "funcionou e entendi" em 07/11/2026; sem resultados individuais transcritos
+  ou observação direta do assistente. Checkpoint em preparação.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -19335,8 +19341,51 @@ Suíte Laravel não repetida por ser alteração isolada do frontend estático.
 
 Entendimento da 8.38: confirmado com "entendi" em 07/11/2026. Nenhuma dúvida
 nova ou relato separado da atividade opcional no navegador. Resultados permanecem
-esperados, sem observação direta de execução. Checkpoint em preparação conforme
+esperados, sem observação direta de execução. Publicação concluída conforme
 autorização permanente; git add, git commit e git push origin main explicados
-antes da execução. Próximo passo exato: publicar e conferir checkpoint;
-depois 8.39 — verificação das funções e da busca no navegador.
-Não iniciada; módulos 9 a 23 não iniciados.
+antes da execução. Commit 96d851d5e8fe3b42aeb574103643734b30f11d6d;
+push 91af1db → 96d851d com código 0. HEAD/origin/main/main remota conferidos no
+mesmo SHA. Registro posterior à publicação. Continuidade iniciada na 8.39 —
+verificação das funções e da busca no navegador. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.39 — Verificação das funções e da busca no navegador — 07/11/2026
+
+Iniciada após confirmação da 8.38 com "entendi" e publicação conferida em
+96d851d5e8fe3b42aeb574103643734b30f11d6d; HEAD/origin/main/main remota iguais.
+Autorização permanente de publicação mantida; nenhuma dúvida nova relatada.
+
+Objetivo explicado antes da alteração: verificar busca após reorganização das
+funções, diferenciando entrega HTTP de execução. Somente documentação: aula
+docs/aulas/08-39-verificacao-funcoes-busca.md criada; continuidade da 8.38,
+roteiro e progresso atualizados com checkpoint publicado.
+
+Explicação apresentada: preparação Chrome/Console/reload, estado inicial com
+dois cartões e mensagem oculta; sequência CAMISETA com espaços, CAN, ca, sapato,
+vazio e espaços, com clique/Enter alternados e sem reload. Totais previstos
+1/1/2/0/2/2, termo e nomes em minúsculas, cartões e aviso correspondentes, sem
+navegação/alteração de URL. Limpar sem enviar mantém estado anterior; envio
+vazio restaura ambos e oculta aviso. Papéis de tratarBusca, arrow do forEach e
+retorno de prepararTexto relacionados à execução observável. HTML/CSS/JS
+preservados; nenhuma API/SQL/login ou mudança no backend.
+
+Verificação HTTP fora do sandbox: GET /vitrine.html, /vitrine.css e /vitrine.js
+retornaram HTTP/1.1 200 OK. Tipos: text/html; charset=UTF-8, text/css; charset=UTF-8
+e application/javascript; tamanhos 1339, 810 e 1252 bytes. Corpos comparados por
+cmp aos três arquivos locais: igualdade exata, códigos 0; set -euo pipefail.
+Temporários próprios removidos. Comprova entrega dos recursos, não execução.
+
+Git diff --check passou; git diff --exit-code de src confirmou aplicação sem
+diferenças. Destinos locais dos documentos conferidos. Somente documentação
+alterada, índice vazio. Nenhum pacote/container/servidor novo; suíte Laravel
+não repetida. Descoberta de ferramentas por nome/descrição não encontrou
+browser/Playwright/Puppeteer/computer/desktop; sem ferramenta disponível para
+observar diretamente o navegador local nesta sessão.
+
+Entendimento da 8.39: confirmado em 07/11/2026 com "funcionou e entendi".
+Resultado no navegador: relato geral de sucesso do aluno, sem transcrição de
+passos individuais ou observação direta do assistente. Nenhuma divergência ou
+dúvida nova relatada. Checkpoint em preparação conforme autorização permanente;
+git add, git commit e git push origin main explicados antes da execução.
+Próximo passo exato: publicar e conferir checkpoint; depois 8.40 — módulos
+com export/import de prepararTexto. Não iniciada; módulos 9 a 23 não iniciados.

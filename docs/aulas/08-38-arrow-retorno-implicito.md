@@ -103,6 +103,7 @@ desta alteração foi observado ou relatado nesta etapa.
 
 Implementação e explicação apresentadas; entendimento da 8.38 confirmado com
 "entendi" em 07/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no navegador. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.39 — verificação das funções
-e da busca no navegador. Não iniciada.
+opcional no navegador. Checkpoint publicado e conferido em
+96d851d5e8fe3b42aeb574103643734b30f11d6d; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.39](08-39-verificacao-funcoes-busca.md): verificação das funções e da busca.

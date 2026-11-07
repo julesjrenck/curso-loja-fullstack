@@ -119,7 +119,9 @@ publicação em 6d69e7c. Na 8.37, callback do forEach escrito como arrow functio
 implementado e explicado; entendimento confirmado com "entendi" em 07/11/2026;
 publicação em 91af1db. Na 8.38, prepararTexto em const com arrow de expressão
 e retorno implícito implementada e explicada; entendimento confirmado com
-"entendi" em 07/11/2026; checkpoint em preparação.
+"entendi" em 07/11/2026; publicação em 96d851d. Na 8.39, roteiro de verificação
+das funções/busca apresentado; entendimento confirmado e sucesso geral relatado
+com "funcionou e entendi" em 07/11/2026; checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -157,7 +159,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.35](aulas/08-35-funcao-nomeada-busca.md),
 [8.36](aulas/08-36-preparar-texto-return.md),
 [8.37](aulas/08-37-arrow-function-foreach.md),
-[8.38](aulas/08-38-arrow-retorno-implicito.md) e no progresso.
+[8.38](aulas/08-38-arrow-retorno-implicito.md),
+[8.39](aulas/08-39-verificacao-funcoes-busca.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -680,7 +683,9 @@ entendimento confirmado com "entendi" em 07/11/2026; publicação em 6d69e7c.
 8.37 implementada e explicada: arrow function no callback do forEach;
 entendimento confirmado com "entendi" em 07/11/2026; publicação em 91af1db.
 8.38 implementada e explicada: arrow com retorno implícito em prepararTexto;
-entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
+entendimento confirmado com "entendi" em 07/11/2026; publicação em 96d851d.
+8.39: roteiro da verificação das funções/busca apresentado; entendimento confirmado
+e sucesso geral relatado com "funcionou e entendi" em 07/11/2026; checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1664,8 +1669,11 @@ implementado e explicado; entendimento confirmado com "entendi" em 07/11/2026;
 publicação em 6d69e7c. Na 8.37, arrow function no forEach implementada e explicada;
 entendimento confirmado com "entendi" em 07/11/2026; publicação em 91af1db.
 Na 8.38, arrow de expressão em prepararTexto implementada e explicada;
-entendimento confirmado com "entendi" em 07/11/2026; checkpoint em preparação.
-Próximo passo após publicação: 8.39 — verificação das funções e da busca no navegador.
+entendimento confirmado com "entendi" em 07/11/2026; publicação em 96d851d.
+Na 8.39, roteiro de verificação das funções/busca apresentado; entendimento
+confirmado e sucesso geral relatado com "funcionou e entendi" em 07/11/2026;
+checkpoint em preparação. Próximo passo após publicação:
+8.40 — módulos com export/import de prepararTexto.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
