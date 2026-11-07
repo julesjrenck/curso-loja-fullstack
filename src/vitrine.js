@@ -39,3 +39,9 @@ function tratarBusca(evento) {
 }
 
 formularioBusca.addEventListener('submit', tratarBusca);
+
+const mensagemPronta = Promise.resolve('Vitrine pronta para a busca.');
+
+mensagemPronta.then((mensagem) => {
+    console.log(mensagem);
+});

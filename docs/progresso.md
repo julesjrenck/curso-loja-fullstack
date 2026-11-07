@@ -6,24 +6,23 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.40 confirmadas/publicadas; 8.29, 8.34 e 8.39 com relatos gerais
-  de sucesso. 8.41 confirmada com relato geral "funcinou e entendi"; publicação pendente.
+  Etapas 8.16 a 8.41 confirmadas/publicadas; 8.29, 8.34, 8.39 e 8.41 com relatos
+  gerais de sucesso. 8.42 com entendimento confirmado; publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.41 — Verificação dos módulos no navegador,
-  entendimento e sucesso geral confirmados com "funcinou e entendi" em
-  07/11/2026. Publicação pendente; último checkpoint publicado: 8.40,
-  3e719fc3849ebebe58a0167fc6eb407dd45a09b1.
+- Última etapa concluída: 8.42 — Introdução a promises com Promise.resolve e then,
+  entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
+  último checkpoint publicado: 8.41, 6c23f5bd5e3c31e3e0fb1ee520cbdd8ff5eef327.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.41 — Verificação dos módulos no navegador.
-  Roteiro e explicação apresentados; entendimento e sucesso geral confirmados.
-- Próximo passo exato: publicar o checkpoint concluído da 8.41 conforme autorização.
-  Depois, 8.42 — introdução a promises com Promise.resolve e then. Não iniciada.
+- Etapa atual: 8.42 — Introdução a promises com Promise.resolve e then.
+  Implementação e explicação apresentadas; entendimento confirmado.
+- Próximo passo exato: publicar a 8.42 conforme autorização permanente. Depois,
+  8.43 — ordem de execução e callbacks de Promise. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 3e719fc.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 6c23f5b.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -234,7 +233,12 @@
   Response, Console e buscas com totais 1/0/2. HTML/CSS e os dois JS preservados.
   Entendimento e sucesso geral confirmados com "funcinou e entendi" em
   07/11/2026; sem resultados individuais ou observação direta do assistente.
-  Publicação pendente.
+  Publicação conferida em 6c23f5b.
+- Situação da 8.42: src/vitrine.js recebe mensagemPronta com Promise.resolve
+  de uma string e then com callback que registra o valor no Console. Aula
+  docs/aulas/08-42-introducao-promises.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; execução no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -19490,7 +19494,49 @@ observar diretamente o navegador local nesta sessão.
 Entendimento da 8.41 confirmado e sucesso geral relatado com "funcinou e entendi"
 em 07/11/2026. Grafia original preservada; interpretado como "funcionou e entendi".
 Sem resultados individuais de Network/status/buscas transcritos ou observação
-direta do assistente. Nenhuma dúvida ou divergência relatada. Checkpoint pronto
-para commit/publicação conforme autorização permanente. Próximo passo: conferir
-a publicação e iniciar 8.42 — introdução a promises com Promise.resolve e then.
-Módulos 9 a 23 não iniciados.
+direta do assistente. Nenhuma dúvida ou divergência relatada. Publicação concluída
+conforme autorização permanente; git add/commit/push explicados antes da execução.
+Commit 6c23f5bd5e3c31e3e0fb1ee520cbdd8ff5eef327; push 3e719fc → 6c23f5b,
+código 0. HEAD/origin/main/main remota conferidos no mesmo SHA. Registro
+posterior à publicação; continuidade na 8.42. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.42 — Introdução a promises com Promise.resolve e then — 07/11/2026
+
+Iniciada após entendimento e sucesso geral da 8.41, "funcinou e entendi".
+Checkpoint anterior publicado e conferido em
+6c23f5bd5e3c31e3e0fb1ee520cbdd8ff5eef327; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova; autorização permanente de publicação mantida.
+
+Objetivo e conceito explicados antes da alteração: conhecer uma Promise e
+consumir seu valor com then, usando mensagem local disponível. Em src/vitrine.js,
+após o registro do listener, acrescentados const mensagemPronta com
+Promise.resolve('Vitrine pronta para a busca.') e then com arrow mensagem que
+chama console.log(mensagem). Criada aula docs/aulas/08-42-introducao-promises.md;
+continuidade da 8.41, roteiro e progresso atualizados.
+
+Explicação apresentada: estados pending/fulfilled/rejected; para a string usada,
+Promise.resolve devolve Promise já fulfilled. Variável guarda objeto Promise;
+callback recebe string de sucesso, agendado mesmo com valor já disponível.
+then não pausa o programa e devolve outra Promise, cujo uso será posterior.
+Fontes primárias ECMAScript consultadas. Relação HTML → vitrine.js → textos.js
+preservada; somente registro didático no Console. Busca, DOM, HTML/CSS/textos.js
+preservados. Nenhuma API, dependência, container ou mudança no backend.
+
+Verificações da 8.42: GET /vitrine.js no servidor local já existente retornou
+HTTP/1.1 200 OK, Content-Type application/javascript, Content-Length 1377.
+cmp confirmou corpo idêntico ao arquivo local (código 0); set -euo pipefail,
+temporários próprios removidos. Demonstra entrega, não execução da Promise.
+Git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou somente seis linhas acrescentadas ao JS,
+sem mudar import ou busca. Destinos locais dos links conferidos. Nenhuma execução
+de Node no host, simulação de DOM ou dependência nova. Sem ferramenta disponível
+de navegador nesta sessão; execução do callback não observada. Suíte Laravel
+não repetida por ser alteração isolada do frontend estático.
+
+Entendimento da 8.42 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Execução no navegador sem relato ou observação direta; atividade opcional
+(reload/Console, busca caneca e vazio) permanece sem resultado informado.
+Checkpoint concluído; publicação pendente conforme autorização permanente.
+Próximo passo: publicar, conferir remoto e iniciar 8.43 — ordem de execução e
+callbacks de Promise. Não iniciada; módulos 9 a 23 não iniciados.

@@ -91,6 +91,6 @@ a verificação ficará pendente. Investigar divergências antes de continuar.
 Roteiro e explicação apresentados. Entendimento e sucesso geral confirmados com
 "funcinou e entendi" em 07/11/2026, interpretado como "funcionou e entendi".
 Sem resultados individuais transcritos ou observação direta do assistente.
-Checkpoint concluído; publicação pendente conforme autorização permanente.
-Próximo passo após conclusão/publicação: 8.42 — introdução a promises com
-Promise.resolve e then. Não iniciada.
+Checkpoint publicado e conferido em 6c23f5bd5e3c31e3e0fb1ee520cbdd8ff5eef327;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.42 — introdução a promises](08-42-introducao-promises.md).
