@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.57 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
-  8.53 e 8.57 com relatos gerais de sucesso. 8.58 com entendimento confirmado;
+  Etapas 8.16 a 8.58 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
+  8.53 e 8.57 com relatos gerais de sucesso. 8.59 com entendimento confirmado;
   publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.58 — Objeto JavaScript para representar um produto,
+- Última etapa concluída: 8.59 — Leitura de propriedades do produto com ponto,
   entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.57, 6acc1ba85ebe42fd4412d230eb37b7add7d2e2e1.
+  último checkpoint publicado: 8.58, cee5975e669168710d6d5086065e75d9adff87b2.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.58 — Objeto JavaScript para representar um produto.
+- Etapa atual: 8.59 — Leitura de propriedades do produto com ponto.
   Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.58 conforme autorização permanente. Depois,
-  8.59 — leitura de propriedades do produto com ponto. Não iniciada.
+- Próximo passo exato: publicar a 8.59 conforme autorização permanente. Depois,
+  8.60 — array de produtos. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 6acc1ba.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é cee5975.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -324,6 +324,11 @@
 - Situação da 8.58: src/vitrine.js declara produtoExemplo como objeto literal
   com nome Camiseta e preco 4990 em centavos; registra objeto no Console. Aula
   docs/aulas/08-58-objeto-produto.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; atividade opcional no navegador sem relato. Publicação em cee5975.
+- Situação da 8.59: src/vitrine.js recebe dois console.log com leituras de
+  produtoExemplo.nome e produtoExemplo.preco. Objeto e restante preservados. Aula
+  docs/aulas/08-59-leitura-propriedades-produto.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -20322,7 +20327,49 @@ não repetida.
 
 Entendimento da 8.58 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+cee5975e669168710d6d5086065e75d9adff87b2; push 6acc1ba → cee5975 com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.59. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.59 — Leitura de propriedades do produto com ponto — 07/11/2026
+
+Iniciada após confirmação da 8.58 com "entendi" e publicação conferida em
+cee5975e669168710d6d5086065e75d9adff87b2; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova ou relato separado de execução da atividade opcional.
+
+Objetivo explicado antes da alteração: ler nome/preco do objeto com ponto e
+registrar valores separadamente. Em src/vitrine.js, após log do objeto,
+acrescentados console.log('Nome do produto:', produtoExemplo.nome) e
+console.log('Preço em centavos:', produtoExemplo.preco). Objeto preservado.
+Aula docs/aulas/08-59-leitura-propriedades-produto.md criada; continuidade da
+8.58, roteiro e progresso atualizados.
+
+Explicação apresentada: objeto antes do ponto, propriedade depois; expressão
+produz valor string/número, sem alterar objeto ou formato monetário. Preço 4990
+continua em centavos. Leitura de dado sem parênteses, chamada de console.log com
+argumentos separados por vírgula. Comparação com -> em objetos PHP e colchetes
+em array associativo. Preco sem acento como identificador, prefixo 'Preço' como
+string de apresentação. Fonte primária ECMAScript consultada. Registro no Console
+sem vínculo com DOM; import, busca, funções async e HTML/CSS/textos.js preservados.
+Nenhuma API, persistência, dependência ou container novo.
+
+Verificações da 8.59: GET /vitrine.js no servidor existente retornou HTTP/1.1
+200 OK, Content-Type application/javascript, Content-Length 2340. cmp confirmou
+corpo igual ao arquivo local, código 0; set -euo pipefail, temporários próprios
+removidos. Demonstra entrega, não execução das leituras no navegador.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou somente dois logs com acesso por ponto;
+objeto, import, busca e funções async preservados. Links locais conferidos.
+Sem execução de JS pelo assistente, Node no host ou DOM simulado; sem ferramenta
+disponível de navegador nesta sessão. Nenhum pacote/container novo; suíte Laravel
+não repetida.
+
+Entendimento da 8.59 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
 execução a partir da confirmação. Checkpoint concluído, publicação pendente
 conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.59 — leitura de propriedades do produto com ponto. Não iniciada.
+depois iniciar 8.60 — array de produtos. Não iniciada.
 Módulos 9 a 23 não iniciados.

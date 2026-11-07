@@ -8,6 +8,8 @@ const produtoExemplo = {
 };
 
 console.log('Produto de exemplo:', produtoExemplo);
+console.log('Nome do produto:', produtoExemplo.nome);
+console.log('Preço em centavos:', produtoExemplo.preco);
 
 const formularioBusca = document.querySelector('.busca');
 const campoNome = formularioBusca.querySelector('#busca-nome');

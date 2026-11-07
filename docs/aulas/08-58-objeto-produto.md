@@ -88,6 +88,6 @@ entrega; execução do registro no navegador sem observação ou relato nesta et
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.59 — leitura de propriedades do produto com ponto.
-8.59 não iniciada.
+Checkpoint publicado e conferido em cee5975e669168710d6d5086065e75d9adff87b2;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.59 — leitura de propriedades com ponto](08-59-leitura-propriedades-produto.md).

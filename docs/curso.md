@@ -159,6 +159,8 @@ entendimento confirmado com "entendi" em 07/11/2026; publicação em c3f482b.
 8.57: entendimento e sucesso geral confirmados com "funcinou e entendi" em
 07/11/2026; publicação em 6acc1ba.
 8.58: objeto produtoExemplo com nome/preco criado e explicado; entendimento
+confirmado com "entendi" em 07/11/2026; publicação em cee5975.
+8.59: leituras de nome/preco com ponto implementadas e explicadas; entendimento
 confirmado com "entendi" em 07/11/2026; publicação pendente.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
@@ -217,7 +219,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.55](aulas/08-55-consumo-funcao-async-await.md),
 [8.56](aulas/08-56-exibicao-async-await.md),
 [8.57](aulas/08-57-verificacao-exibicao-async-await.md),
-[8.58](aulas/08-58-objeto-produto.md) e no progresso.
+[8.58](aulas/08-58-objeto-produto.md),
+[8.59](aulas/08-59-leitura-propriedades-produto.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -780,6 +783,8 @@ entendimento confirmado com "entendi" em 07/11/2026; publicação em c3f482b.
 8.57: entendimento e sucesso geral confirmados com "funcinou e entendi" em
 07/11/2026; publicação em 6acc1ba.
 8.58: objeto produtoExemplo com nome/preco criado e explicado; entendimento
+confirmado com "entendi" em 07/11/2026; publicação em cee5975.
+8.59: leituras de nome/preco com ponto implementadas e explicadas; entendimento
 confirmado com "entendi" em 07/11/2026; publicação pendente.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
@@ -1804,9 +1809,11 @@ entendimento confirmado com "entendi" em 07/11/2026; publicação em c3f482b.
 8.57: entendimento e sucesso geral confirmados com "funcinou e entendi" em
 07/11/2026; publicação em 6acc1ba.
 8.58: objeto produtoExemplo com nome/preco criado e explicado; entendimento
+confirmado com "entendi" em 07/11/2026; publicação em cee5975.
+8.59: leituras de nome/preco com ponto implementadas e explicadas; entendimento
 confirmado com "entendi" em 07/11/2026; publicação pendente.
-Próximo passo após publicação: 8.59 — leitura de propriedades
-do produto com ponto. Não iniciada.
+Próximo passo após publicação: 8.60 — array de produtos.
+Não iniciada.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
