@@ -41,9 +41,15 @@ function tratarBusca(evento) {
 formularioBusca.addEventListener('submit', tratarBusca);
 
 async function prepararMensagem() {
-    const mensagem = await Promise.reject('Falha simulada ao preparar a mensagem.');
+    try {
+        const mensagem = await Promise.reject('Falha simulada ao preparar a mensagem.');
 
-    return mensagem;
+        return mensagem;
+    } catch (motivo) {
+        console.error('Falha tratada dentro da função:', motivo);
+
+        return 'Mensagem alternativa da vitrine.';
+    }
 }
 
 const mensagemPronta = prepararMensagem();

@@ -6,23 +6,23 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.50 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41 e 8.47 com
-  relatos gerais de sucesso. 8.51 com entendimento confirmado; publicação pendente.
+  Etapas 8.16 a 8.51 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41 e 8.47 com
+  relatos gerais de sucesso. 8.52 com entendimento confirmado; publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.51 — Rejeição em await e propagação para catch,
+- Última etapa concluída: 8.52 — Try/catch dentro de uma função async,
   entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.50, d95f2c39bac4b115d6c837b86c9bcdd4d5481faa.
+  último checkpoint publicado: 8.51, 2b4a3eb8cf5993cacb885d3eac514639eee26574.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.51 — Rejeição em await e propagação para catch.
+- Etapa atual: 8.52 — Try/catch dentro de uma função async.
   Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.51 conforme autorização permanente. Depois,
-  8.52 — try/catch dentro de uma função async. Não iniciada.
+- Próximo passo exato: publicar a 8.52 conforme autorização permanente. Depois,
+  8.53 — verificação do tratamento local no navegador. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é d95f2c3.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 2b4a3eb.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -285,7 +285,12 @@
   prepararMensagem passa a Promise.reject da falha simulada. Chamada e cadeia
   preservadas. Aula docs/aulas/08-51-rejeicao-await-catch.md criada; continuidade
   anterior, roteiro/progresso atualizados. Entendimento confirmado com "entendi"
-  em 07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
+  em 07/11/2026; atividade opcional no navegador sem relato. Publicação em 2b4a3eb.
+- Situação da 8.52: prepararMensagem em src/vitrine.js envolve await em try/catch;
+  catch local registra motivo e retorna mensagem alternativa, consumida pelos then.
+  Aula docs/aulas/08-52-try-catch-funcao-async.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -19972,7 +19977,52 @@ sessão. Nenhum pacote/container novo; suíte Laravel não repetida.
 
 Entendimento da 8.51 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+2b4a3eb8cf5993cacb885d3eac514639eee26574; push d95f2c3 → 2b4a3eb com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.52. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.52 — Try/catch dentro de uma função async — 07/11/2026
+
+Iniciada após confirmação da 8.51 com "entendi" e publicação conferida em
+2b4a3eb8cf5993cacb885d3eac514639eee26574; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova ou relato separado de execução da atividade opcional.
+
+Objetivo explicado antes da alteração: tratar rejeição dentro da função e
+produzir uma mensagem alternativa de sucesso. Em src/vitrine.js, corpo de
+prepararMensagem envolvido em try/catch; await Promise.reject e return mensagem
+permanecem no try. Catch local com motivo, console.error('Falha tratada dentro
+da função:', motivo) e return 'Mensagem alternativa da vitrine.'. Chamada e
+cadeia externa preservadas. Aula docs/aulas/08-52-try-catch-funcao-async.md
+criada; continuidade da 8.51, roteiro e progresso atualizados.
+
+Explicação apresentada: rejeição em await retoma como exceção dentro do try;
+catch local recebe motivo, registra e retorna string. Return do try não alcançado;
+retorno normal do catch resolve Promise externa com alternativa. Promise interna
+continua rejeitada. Primeiro then transforma alternativa em maiúsculas, segundo
+registra; catch externo pulado neste caminho, finally encerra. Diferença entre
+estrutura try/catch e método .catch com callback apresentada em tabela; escopos
+diferentes do parâmetro motivo. Comparação de sintaxe com PHP, motivo string sem
+tipo declarado. Fonte primária ECMAScript consultada. Recuperação didática de
+mensagem local; import, busca e HTML/CSS/textos.js preservados. Sem API,
+dependência, container ou alteração no backend.
+
+Verificações da 8.52: GET /vitrine.js no servidor existente retornou HTTP/1.1
+200 OK, Content-Type application/javascript, Content-Length 2047. cmp confirmou
+corpo igual ao arquivo local, código 0; set -euo pipefail, temporários próprios
+removidos. Demonstra entrega, não execução do tratamento local no navegador.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou somente try/catch no corpo de
+prepararMensagem, com log local e retorno alternativo; chamada, cadeia externa,
+logs diretos, import e busca preservados. Links locais conferidos. Sem execução
+de JS pelo assistente, Node no host ou DOM simulado; sem ferramenta disponível
+de navegador nesta sessão. Nenhum pacote/container novo; suíte Laravel não repetida.
+
+Entendimento da 8.52 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
 execução a partir da confirmação. Checkpoint concluído, publicação pendente
 conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.52 — try/catch dentro de uma função async. Não iniciada.
+depois iniciar 8.53 — verificação do tratamento local no navegador. Não iniciada.
 Módulos 9 a 23 não iniciados.

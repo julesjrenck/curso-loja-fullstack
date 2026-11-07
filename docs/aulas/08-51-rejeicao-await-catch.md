@@ -99,6 +99,6 @@ Isso demonstra entrega; execução no navegador sem observação ou relato nesta
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.52 — try/catch dentro de uma função async.
-8.52 não iniciada.
+Checkpoint publicado e conferido em 2b4a3eb8cf5993cacb885d3eac514639eee26574;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.52 — try/catch dentro de uma função async](08-52-try-catch-funcao-async.md).
