@@ -6,24 +6,25 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.55 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47 e
-  8.53 com relatos gerais de sucesso. 8.56 com entendimento confirmado;
-  publicação pendente.
+  Etapas 8.16 a 8.56 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47 e
+  8.53 com relatos gerais de sucesso. 8.57 com sucesso geral e entendimento
+  confirmados com "funcinou e entendi"; publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.56 — Exibição da mensagem com async/await,
-  entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.55, 1244367a7043e0821d55afca89ec8a5880eefb98.
+- Última etapa concluída: 8.57 — Verificação da exibição com async/await no navegador,
+  entendimento e sucesso geral confirmados com "funcinou e entendi" em 07/11/2026.
+  Publicação pendente; último checkpoint publicado: 8.56,
+  c3f482b0a559f7e4bb667a5358a6e405d2a9ef10.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.56 — Exibição da mensagem com async/await.
-  Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.56 conforme autorização permanente. Depois,
-  8.57 — verificação da exibição com async/await no navegador. Não iniciada.
+- Etapa atual: 8.57 — Verificação da exibição com async/await no navegador.
+  Roteiro e explicação apresentados; sucesso geral e entendimento confirmados.
+- Próximo passo exato: publicar a 8.57 conforme autorização permanente. Depois,
+  8.58 — objeto JavaScript para representar um produto. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 1244367.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é c3f482b.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -314,7 +315,13 @@
   como blocos; chamada entre logs diretos atualizados. Aula
   docs/aulas/08-56-exibicao-async-await.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
+  07/11/2026; atividade opcional no navegador sem relato. Publicação em c3f482b.
+- Situação da 8.57: somente documentação. Aula
+  docs/aulas/08-57-verificacao-exibicao-async-await.md criada com Console, quatro
+  mensagens do sucesso, sequência das três funções e busca com totais 1/0/2.
+  Aplicação preservada. Sucesso geral e entendimento confirmados com
+  "funcinou e entendi" em 07/11/2026; sem resultados individuais transcritos ou
+  observação direta do assistente. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -20224,7 +20231,50 @@ não repetida.
 
 Entendimento da 8.56 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
-execução a partir da confirmação. Checkpoint concluído, publicação pendente
-conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.57 — verificação da exibição com async/await no navegador.
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+c3f482b0a559f7e4bb667a5358a6e405d2a9ef10; push 1244367 → c3f482b com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.57. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.57 — Verificação da exibição com async/await no navegador — 07/11/2026
+
+Iniciada após confirmação da 8.56 com "entendi" e publicação conferida em
+c3f482b0a559f7e4bb667a5358a6e405d2a9ef10; HEAD/origin/main/main remota iguais.
+Atividades opcionais posteriores à 8.53 sem relato; nenhuma dúvida nova.
+
+Objetivo explicado antes da alteração: verificar ordem da exibição com await,
+encerramento e continuidade da busca. Somente documentação: aula
+08-57-verificacao-exibicao-async-await.md criada; continuidade da 8.56, roteiro
+e progresso atualizados. Aplicação preservada.
+
+Explicação apresentada: Console com filtro vazio, Info/Error visíveis, Preserve
+log desativado e recarga. Estado inicial e quatro mensagens previstas, com novos
+rótulos Antes/Depois de chamar exibirMensagem. Chamador continua durante await;
+texto passa por prepararMensagem/formatarMensagem/exibirMensagem, finally encerra.
+Ausência de erros/alternativa neste caminho; ausência de erro não prova execução
+dos catch. Relato de recuperação da 8.53 separado desta versão. Busca CANECA com
+espaços por clique, sapato por Enter e vazio por clique, totais 1/0/2,
+cartões/mensagem, URL sem recarga e exemplo sem repetir por busca. Relação dos
+quatro arquivos explicada; sem API, import/filtro preservados. Referência primária
+Chrome Console mantida, consultada na 8.47.
+
+Verificações da 8.57: GET /vitrine.html e /vitrine.js no servidor existente
+retornaram HTTP/1.1 200 OK. Content-Type text/html; charset=UTF-8 e
+application/javascript; Content-Length 1339 e 2107. cmp confirmou corpos iguais
+aos arquivos locais, códigos 0; set -euo pipefail, temporários próprios removidos.
+Demonstra entrega, não execução da sequência no navegador. git diff --check
+passou; diff --exit-code de src confirmou aplicação preservada. Links locais
+conferidos. Descoberta de ferramentas por nome/descrição não encontrou browser/
+Playwright/Puppeteer/computer/desktop. Sem observação direta ou execução de JS
+pelo assistente; nenhum pacote/container novo, Node no host ou DOM simulado.
+Suíte Laravel não repetida por ser roteiro de verificação do frontend estático.
+
+Entendimento da 8.57 confirmado e sucesso geral relatado com "funcinou e entendi"
+em 07/11/2026. Grafia original preservada; interpretado como "funcionou e entendi".
+Sem resultados individuais de mensagens/buscas transcritos ou observação direta
+do assistente. Nenhuma divergência ou dúvida nova relatada. Checkpoint concluído;
+publicação pendente conforme autorização permanente. Próximo passo: publicar,
+conferir remoto e iniciar 8.58 — objeto JavaScript para representar um produto.
 Não iniciada; módulos 9 a 23 não iniciados.

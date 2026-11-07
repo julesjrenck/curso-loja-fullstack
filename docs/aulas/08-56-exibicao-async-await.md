@@ -114,6 +114,6 @@ observação ou relato nesta etapa.
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.57 — verificação da exibição com async/await
-no navegador. 8.57 não iniciada.
+Checkpoint publicado e conferido em c3f482b0a559f7e4bb667a5358a6e405d2a9ef10;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.57 — verificação da exibição com async/await](08-57-verificacao-exibicao-async-await.md).
