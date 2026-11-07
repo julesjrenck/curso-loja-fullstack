@@ -87,6 +87,6 @@ entrega do código; execução da cadeia sem observação ou relato.
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.47 — verificação da cadeia de rejeição no navegador.
-8.47 não iniciada.
+Checkpoint publicado e conferido em dcaa4b4920281f70c4943a7b5a032bfd455653b7;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.47 — verificação da cadeia de rejeição](08-47-verificacao-cadeia-rejeicao.md).

@@ -6,23 +6,26 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.45 confirmadas/publicadas; 8.29, 8.34, 8.39 e 8.41 com relatos
-  gerais de sucesso. 8.46 com entendimento confirmado; publicação pendente.
+  Etapas 8.16 a 8.46 confirmadas/publicadas; 8.29, 8.34, 8.39 e 8.41 com relatos
+  gerais de sucesso. 8.47 com sucesso geral "funcionou" e entendimento "entendi"
+  confirmados; publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.46 — Finalização de uma cadeia com finally,
-  entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.45, 848c8efc18bfa237dc9a0d106ff5ca5a7fcfff22.
+- Última etapa concluída: 8.47 — Verificação da cadeia de rejeição no navegador,
+  sucesso geral relatado com "funcionou" e entendimento confirmado com "entendi"
+  em 07/11/2026. Publicação pendente; último checkpoint publicado: 8.46,
+  dcaa4b4920281f70c4943a7b5a032bfd455653b7.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.46 — Finalização de uma cadeia com finally.
-  Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.46 conforme autorização permanente. Depois,
-  8.47 — verificação da cadeia de rejeição no navegador. Não iniciada.
+- Etapa atual: 8.47 — Verificação da cadeia de rejeição no navegador.
+  Roteiro e explicação apresentados; sucesso geral relatado com "funcionou".
+  Entendimento confirmado com "entendi" em 07/11/2026.
+- Próximo passo exato: publicar a 8.47 conforme autorização permanente. Depois,
+  8.48 — restauração do caminho de sucesso com Promise.resolve. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 848c8ef.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é dcaa4b4.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -258,7 +261,13 @@
   sem parâmetros que registra o encerramento no Console. Aula
   docs/aulas/08-46-finalizacao-finally.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
+  07/11/2026; atividade opcional no navegador sem relato. Publicação em dcaa4b4.
+- Situação da 8.47: somente documentação. Aula
+  docs/aulas/08-47-verificacao-cadeia-rejeicao.md criada com Console, ordem
+  dos logs, erro intencional, finally e busca com totais 1/0/2. Aplicação
+  preservada. Sucesso geral relatado com "funcionou" em 07/11/2026; sem resultados
+  individuais transcritos ou observação direta do assistente. Entendimento
+  confirmado com "entendi" em 07/11/2026; publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -19729,7 +19738,51 @@ novo; suíte Laravel não repetida por ser frontend estático.
 
 Entendimento da 8.46 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
-execução a partir da confirmação. Checkpoint concluído, publicação pendente
-conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.47 — verificação da cadeia de rejeição no navegador. Não iniciada.
-Módulos 9 a 23 não iniciados.
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+dcaa4b4920281f70c4943a7b5a032bfd455653b7; push 848c8ef → dcaa4b4 com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.47. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.47 — Verificação da cadeia de rejeição no navegador — 07/11/2026
+
+Iniciada após confirmação da 8.46 com "entendi" e publicação conferida em
+dcaa4b4920281f70c4943a7b5a032bfd455653b7; HEAD/origin/main/main remota iguais.
+Atividades opcionais de promises ainda sem relato; nenhuma dúvida nova.
+
+Objetivo explicado antes da alteração: conferir ordem de logs, rejeição simulada
+tratada e encerramento, além de continuidade da busca. Somente documentação:
+aula docs/aulas/08-47-verificacao-cadeia-rejeicao.md criada; continuidade da
+8.46, roteiro e progresso atualizados. Nenhum arquivo da aplicação alterado.
+
+Explicação apresentada: abrir Console, filtro vazio, níveis Info/Error visíveis,
+Preserve log desativado e reload; registros iniciais e quatro linhas esperadas.
+Logs diretos antes dos callbacks, then de sucesso pulados, catch registra motivo
+e finally encerra. Erro intencional de console.error separado de rejeição sem
+tratamento/Uncaught (in promise); ausência da mensagem de sucesso. Fonte primária
+Chrome Console consultada. Estado da Promise original e derivada de catch
+explicado. Busca CANECA com espaços por clique, sapato por Enter e vazio por
+clique, totais 1/0/2, cartões e mensagem, URL/reload. Mensagens do exemplo não se
+repetem a cada busca porque estão fora de tratarBusca. Relação dos quatro arquivos
+explicada; não há API ou alteração no backend.
+
+Verificações da 8.47: GET /vitrine.html e /vitrine.js no servidor existente
+retornaram HTTP/1.1 200 OK. Content-Type text/html; charset=UTF-8 e
+application/javascript; Content-Length 1339 e 1772. cmp confirmou corpos iguais
+aos arquivos locais, códigos 0; set -euo pipefail, temporários próprios removidos.
+Demonstra entrega, não execução da sequência no navegador. git diff --check
+passou; diff --exit-code de src confirmou aplicação preservada. Links locais
+conferidos. Descoberta de ferramentas por nome/descrição não encontrou browser/
+Playwright/Puppeteer/computer/desktop. Sem observação direta ou execução de JS
+pelo assistente; nenhum pacote/container novo, Node no host ou DOM simulado.
+Suíte Laravel não repetida por ser roteiro de verificação do frontend estático.
+
+Resultado da 8.47 no navegador: sucesso geral relatado com "funcionou" em
+07/11/2026. Sem resultados individuais de mensagens/buscas transcritos ou observação
+direta pelo assistente. Nenhuma divergência ou dúvida nova relatada.
+Entendimento da 8.47 confirmado com "entendi" em 07/11/2026, recebido após o
+relato geral "funcionou". Nenhuma dúvida nova. Checkpoint concluído; publicação
+pendente conforme autorização permanente. Próximo passo: publicar e conferir
+remoto; depois iniciar 8.48 — restauração do caminho de sucesso com Promise.resolve.
+Não iniciada; módulos 9 a 23 não iniciados.

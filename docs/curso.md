@@ -135,7 +135,10 @@ implementada e explicada; entendimento confirmado com "entendi" em
 07/11/2026; publicação conferida em e563a80. Na 8.45, rejeição simulada e catch
 implementados e explicados; entendimento confirmado com "entendi" em
 07/11/2026; publicação conferida em 848c8ef. Na 8.46, finally acrescentado
-e explicado; entendimento confirmado com "entendi" em 07/11/2026; publicação pendente.
+e explicado; entendimento confirmado com "entendi" em 07/11/2026; publicação em dcaa4b4.
+Na 8.47, roteiro de verificação da cadeia e busca apresentado; sucesso geral
+relatado com "funcionou" e entendimento confirmado com "entendi" em 07/11/2026.
+Publicação pendente.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -181,7 +184,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.43](aulas/08-43-ordem-execucao-promise.md),
 [8.44](aulas/08-44-encadeamento-promises.md),
 [8.45](aulas/08-45-rejeicoes-catch.md),
-[8.46](aulas/08-46-finalizacao-finally.md) e no progresso.
+[8.46](aulas/08-46-finalizacao-finally.md),
+[8.47](aulas/08-47-verificacao-cadeia-rejeicao.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -720,7 +724,9 @@ com "entendi" em 07/11/2026; publicação conferida em e563a80.
 8.45: rejeição simulada e catch implementados e explicados; entendimento confirmado
 com "entendi" em 07/11/2026; publicação conferida em 848c8ef.
 8.46: finally acrescentado e explicado; entendimento confirmado com "entendi" em
-07/11/2026; publicação pendente.
+07/11/2026; publicação conferida em dcaa4b4.
+8.47: roteiro de verificação da cadeia/busca apresentado; sucesso geral relatado
+com "funcionou" e entendimento confirmado com "entendi" em 07/11/2026; publicação pendente.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1720,9 +1726,12 @@ Na 8.44, cadeia de dois then com return implementada e explicada;
 entendimento confirmado com "entendi" em 07/11/2026; publicação conferida em e563a80.
 Na 8.45, rejeição simulada e catch implementados e explicados; entendimento
 confirmado com "entendi" em 07/11/2026; publicação conferida em 848c8ef.
-Na 8.46, finally acrescentado e explicado; entendimento confirmado com "entendi" em 07/11/2026; publicação pendente.
-Próximo passo após confirmação/publicação: 8.47 — verificação da cadeia de
-rejeição no navegador. Não iniciada.
+Na 8.46, finally acrescentado e explicado; entendimento confirmado com "entendi" em 07/11/2026; publicação em dcaa4b4.
+Na 8.47, roteiro de verificação da cadeia e busca apresentado; sucesso geral
+relatado com "funcionou" e entendimento confirmado com "entendi" em 07/11/2026.
+Publicação pendente.
+Próximo passo após conclusão/publicação: 8.48 — restauração do caminho de
+sucesso com Promise.resolve. Não iniciada.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
