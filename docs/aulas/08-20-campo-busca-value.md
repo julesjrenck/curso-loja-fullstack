@@ -91,6 +91,7 @@ Nenhuma execução desta atividade foi observada ou relatada na implementação.
 
 Implementação e explicação apresentadas; entendimento da 8.20 confirmado com
 "entendi" em 06/11/2026. Nenhuma dúvida nova ou relato separado da atividade
-opcional no Console. Checkpoint em preparação conforme autorização permanente.
-Próximo passo após publicação: 8.21 — evento submit e
-preventDefault no formulário de busca. Não iniciada.
+opcional no Console. Checkpoint publicado e conferido em
+9418b719b9d7e61811ff596ab7a942cf3557d0ba; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.21](08-21-evento-submit.md): evento submit e preventDefault no formulário.

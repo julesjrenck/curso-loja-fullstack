@@ -80,7 +80,9 @@ Na 8.19, seleção do formulário com document.querySelector e referência const
 implementadas e explicadas; entendimento confirmado com "entendi" em 06/11/2026;
 publicação em d4b0656. Na 8.20, campo selecionado dentro do formulário e leitura
 de value implementados e explicados; entendimento confirmado com "entendi" em
-06/11/2026; checkpoint em preparação.
+06/11/2026; publicação em 9418b71. Na 8.21, tratamento do submit com função
+anônima, preventDefault e leitura atual do campo implementado e explicado;
+entendimento confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -100,7 +102,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.17](aulas/08-17-estilos-formulario-busca.md),
 [8.18](aulas/08-18-primeiro-javascript.md),
 [8.19](aulas/08-19-dom-formulario.md),
-[8.20](aulas/08-20-campo-busca-value.md) e no progresso.
+[8.20](aulas/08-20-campo-busca-value.md),
+[8.21](aulas/08-21-evento-submit.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -586,7 +589,10 @@ com "entendi" em 06/11/2026; publicação em d29800c. 8.19 implementada e explic
 DOM, seleção do formulário por classe e referência const; entendimento confirmado
 com "entendi" em 06/11/2026; publicação em d4b0656. 8.20 implementada e explicada:
 seleção do campo por ID dentro do formulário e leitura de value; entendimento
-confirmado com "entendi" em 06/11/2026; checkpoint em preparação.
+confirmado com "entendi" em 06/11/2026; publicação em 9418b71.
+8.21 implementada e explicada: função no submit, preventDefault e leitura do
+campo a cada envio; entendimento confirmado com "entendi" em 06/11/2026;
+checkpoint em preparação.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1533,9 +1539,11 @@ Na 8.19, seleção do formulário com document.querySelector e referência const
 implementadas e explicadas; entendimento confirmado com "entendi" em 06/11/2026;
 publicação em d4b0656. Na 8.20, seleção do campo por ID dentro do formulário e
 leitura de value implementadas e explicadas; entendimento confirmado com
-"entendi" em 06/11/2026; checkpoint em preparação. Próximo passo após
-publicação: 8.21 — evento submit e preventDefault
-no formulário de busca.
+"entendi" em 06/11/2026; publicação em 9418b71. Na 8.21, tratamento do submit
+com função anônima, preventDefault e leitura atual do campo implementado e
+explicado; entendimento confirmado com "entendi" em 06/11/2026; checkpoint em
+preparação. Próximo passo após publicação:
+8.22 — remoção de espaços nas extremidades do termo com trim.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
