@@ -92,5 +92,6 @@ entrega; execução dessas leituras no navegador sem observação ou relato nest
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.62 — forEach no array de produtos. Não iniciada.
+Checkpoint publicado e conferido em f3a7bc6afc8e88fc31e7456eefcd8ad1827f2965;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.62 — forEach no array de produtos](08-62-foreach-array-produtos.md).

@@ -24,6 +24,10 @@ console.log('Primeiro produto:', produtosExemplo[0].nome);
 console.log('Segundo produto:', produtosExemplo[1].nome);
 console.log('Quantidade de produtos:', produtosExemplo.length);
 
+produtosExemplo.forEach((produto) => {
+    console.log('Produto da lista:', produto.nome, produto.preco);
+});
+
 const formularioBusca = document.querySelector('.busca');
 const campoNome = formularioBusca.querySelector('#busca-nome');
 const produtos = document.querySelectorAll('.produto');

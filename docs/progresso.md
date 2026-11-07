@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.60 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
-  8.53 e 8.57 com relatos gerais de sucesso. 8.61 com entendimento confirmado;
+  Etapas 8.16 a 8.61 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
+  8.53 e 8.57 com relatos gerais de sucesso. 8.62 com entendimento confirmado;
   publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.61 — Índices e length do array de produtos,
+- Última etapa concluída: 8.62 — ForEach no array de produtos,
   entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.60, ea9d7d96b20a100d1bb77fdebea872c9866fd55d.
+  último checkpoint publicado: 8.61, f3a7bc6afc8e88fc31e7456eefcd8ad1827f2965.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.61 — Índices e length do array de produtos.
+- Etapa atual: 8.62 — ForEach no array de produtos.
   Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.61 conforme autorização permanente. Depois,
-  8.62 — forEach no array de produtos. Não iniciada.
+- Próximo passo exato: publicar a 8.62 conforme autorização permanente. Depois,
+  8.63 — verificação de objetos e arrays no navegador. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é ea9d7d9.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é f3a7bc6.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -339,6 +339,11 @@
 - Situação da 8.61: src/vitrine.js recebe logs de produtosExemplo[0].nome,
   produtosExemplo[1].nome e produtosExemplo.length. Dados preservados. Aula
   docs/aulas/08-61-indices-length-produtos.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; atividade opcional no navegador sem relato. Publicação em f3a7bc6.
+- Situação da 8.62: src/vitrine.js recebe produtosExemplo.forEach com arrow
+  produto que registra nome/preco. Dados e restante preservados. Aula
+  docs/aulas/08-62-foreach-array-produtos.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -20467,7 +20472,50 @@ novo; suíte Laravel não repetida.
 
 Entendimento da 8.61 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+f3a7bc6afc8e88fc31e7456eefcd8ad1827f2965; push ea9d7d9 → f3a7bc6 com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.62. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.62 — ForEach no array de produtos — 07/11/2026
+
+Iniciada após confirmação da 8.61 com "entendi" e publicação conferida em
+f3a7bc6afc8e88fc31e7456eefcd8ad1827f2965; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova ou relato separado de execução da atividade opcional.
+
+Objetivo explicado antes da alteração: percorrer array e registrar dados de
+cada produto com mesmo callback. Em src/vitrine.js, depois dos logs de índices/
+length, acrescentado produtosExemplo.forEach((produto) => { console.log('Produto
+da lista:', produto.nome, produto.preco); }). Aula 08-62-foreach-array-produtos.md
+criada; continuidade da 8.61, roteiro e progresso atualizados.
+
+Explicação apresentada: método recebe arrow e chama por elemento presente em
+ordem dos índices; duas chamadas neste array, Camiseta/4990 e Caneca/2990.
+Parâmetro local recebe objeto; índice e array também são argumentos fornecidos
+pelo método, mas não usados neste callback. Nome/preco lidos com ponto, log com
+três argumentos, preço em centavos. Percurso síncrono e somente leitura neste
+corpo. Comparação com foreach PHP e com NodeList.forEach da busca; nomes iguais
+em escopos distintos, entradas objeto de dados/elemento DOM diferentes. Fonte
+primária ECMAScript consultada. Dados, import, filtro, funções async e
+HTML/CSS/textos.js preservados; nenhuma API, persistência, dependência ou
+container novo.
+
+Verificações da 8.62: GET /vitrine.js no servidor existente retornou HTTP/1.1
+200 OK, Content-Type application/javascript, Content-Length 2795. cmp confirmou
+corpo igual ao arquivo local, código 0; set -euo pipefail, temporários próprios
+removidos. Demonstra entrega, não execução do percurso no navegador.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou somente forEach com leitura/log dos dados;
+objeto, array, import, busca e funções async preservados. Links locais conferidos.
+Sem execução de JS pelo assistente, Node no host ou DOM simulado; sem ferramenta
+disponível de navegador nesta sessão. Nenhum pacote/container novo; suíte Laravel
+não repetida.
+
+Entendimento da 8.62 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
 execução a partir da confirmação. Checkpoint concluído, publicação pendente
 conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.62 — forEach no array de produtos. Não iniciada.
+depois iniciar 8.63 — verificação de objetos e arrays no navegador. Não iniciada.
 Módulos 9 a 23 não iniciados.
