@@ -6,25 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.62 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
-  8.53 e 8.57 com relatos gerais de sucesso. 8.63 com sucesso geral e entendimento
-  confirmados com "funcionou  e entendi"; publicação pendente.
+  Etapas 8.16 a 8.63 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
+  8.53, 8.57 e 8.63 com relatos gerais de sucesso. 8.64 com entendimento confirmado;
+  publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.63 — Verificação de objetos e arrays no navegador,
-  entendimento e sucesso geral confirmados com "funcionou  e entendi" em 07/11/2026.
-  Publicação pendente; último checkpoint publicado: 8.62,
-  a3d8a0ec465cb58abb99b9cefc3f29544f9828c4.
+- Última etapa concluída: 8.64 — Serialização dos produtos com JSON.stringify,
+  entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
+  último checkpoint publicado: 8.63, ccbc0568a9d62d4b27d8b1d4563f7382ab36c34d.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.63 — Verificação de objetos e arrays no navegador.
-  Roteiro e explicação apresentados; sucesso geral e entendimento confirmados.
-- Próximo passo exato: publicar a 8.63 conforme autorização permanente. Depois,
-  8.64 — serialização dos produtos com JSON.stringify. Não iniciada.
+- Etapa atual: 8.64 — Serialização dos produtos com JSON.stringify.
+  Implementação e explicação apresentadas; entendimento confirmado.
+- Próximo passo exato: publicar a 8.64 conforme autorização permanente. Depois,
+  8.65 — leitura do texto JSON com JSON.parse. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é a3d8a0e.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é ccbc056.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -352,7 +351,12 @@
   leituras por ponto/índice, length, forEach, exibição async e busca 1/0/2.
   Aplicação preservada. Sucesso geral e entendimento confirmados com
   "funcionou  e entendi" em 07/11/2026; sem resultados individuais transcritos
-  ou observação direta do assistente. Publicação pendente.
+  ou observação direta do assistente. Publicação em ccbc056.
+- Situação da 8.64: src/vitrine.js cria produtosJson com JSON.stringify de
+  produtosExemplo e registra texto no Console. Dados anteriores preservados. Aula
+  docs/aulas/08-64-serializacao-json-stringify.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -20565,7 +20569,51 @@ Suíte Laravel não repetida por ser roteiro de verificação do frontend estát
 Entendimento da 8.63 confirmado e sucesso geral relatado com "funcionou  e entendi"
 em 07/11/2026, preservando o espaçamento original. Sem resultados individuais
 transcritos de objetos/arrays, mensagens ou buscas, nem observação direta do
-assistente. Nenhuma divergência ou dúvida nova relatada. Checkpoint concluído;
-publicação pendente conforme autorização permanente. Próximo passo: publicar,
-conferir remoto e iniciar 8.64 — serialização dos produtos com JSON.stringify.
-Não iniciada; módulos 9 a 23 não iniciados.
+assistente. Nenhuma divergência ou dúvida nova relatada. Publicação concluída
+conforme autorização permanente; git add/commit/push explicados antes da execução.
+Commit ccbc0568a9d62d4b27d8b1d4563f7382ab36c34d; push a3d8a0e → ccbc056, código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.64. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.64 — Serialização dos produtos com JSON.stringify — 07/11/2026
+
+Iniciada após entendimento e sucesso geral da 8.63, "funcionou  e entendi".
+Checkpoint anterior publicado e conferido em
+ccbc0568a9d62d4b27d8b1d4563f7382ab36c34d; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova; autorização permanente de publicação mantida.
+
+Objetivo explicado antes da alteração: converter array de produtos em texto
+JSON, preparando entendimento dos dados trocados em APIs. Em src/vitrine.js,
+depois do forEach dos dados, criado const produtosJson = JSON.stringify(
+produtosExemplo) e console.log('Produtos em JSON:', produtosJson). Aula
+08-64-serializacao-json-stringify.md criada; continuidade da 8.63, roteiro e
+progresso atualizados.
+
+Explicação apresentada: JSON fornecido pelo JavaScript, método stringify recebe
+array e devolve string para os dados atuais. Array/objetos anteriores permanecem
+iguais. Comparação com json_encode em PHP e tabela de tipos/conteúdos das duas
+variáveis. Texto esperado compacto com duas entradas; nomes/strings em aspas
+duplas e números sem aspas, preços em centavos. Distinção sintaxe de objeto
+literal JavaScript/formato textual JSON. Leitura do texto reservada à próxima
+etapa. Fonte primária ECMAScript consultada. Novo registro somente no Console,
+sem envio à API ou persistência. Import, busca, funções async e HTML/CSS/textos.js
+preservados; nenhuma dependência, container ou alteração no backend.
+
+Verificações da 8.64: GET /vitrine.js no servidor existente retornou HTTP/1.1
+200 OK, Content-Type application/javascript, Content-Length 2899. cmp confirmou
+corpo igual ao arquivo local, código 0; set -euo pipefail, temporários próprios
+removidos. Demonstra entrega, não execução da serialização no navegador.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou somente const com JSON.stringify e seu
+log; objeto, array, import, busca e funções async preservados. Links locais
+conferidos. Sem execução de JS pelo assistente, Node no host ou DOM simulado;
+sem ferramenta disponível de navegador nesta sessão. Nenhum pacote/container
+novo; suíte Laravel não repetida.
+
+Entendimento da 8.64 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Checkpoint concluído, publicação pendente
+conforme autorização permanente. Próximo passo: publicar e conferir remoto;
+depois iniciar 8.65 — leitura do texto JSON com JSON.parse. Não iniciada.
+Módulos 9 a 23 não iniciados.

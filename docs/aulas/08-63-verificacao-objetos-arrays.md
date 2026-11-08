@@ -127,6 +127,7 @@ ambos para concluir esta etapa.
 Roteiro e explicação apresentados. Entendimento e sucesso geral confirmados com
 "funcionou  e entendi" em 07/11/2026, preservando o espaçamento original.
 Sem resultados individuais transcritos ou observação direta do assistente.
-Nenhuma divergência relatada. Checkpoint concluído, publicação pendente conforme
-autorização permanente. Depois da publicação, 8.64 — serialização dos produtos
-com JSON.stringify. Não iniciada.
+Nenhuma divergência relatada. Checkpoint publicado e conferido em
+ccbc0568a9d62d4b27d8b1d4563f7382ab36c34d; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Continuidade na
+[8.64 — serialização com JSON.stringify](08-64-serializacao-json-stringify.md).

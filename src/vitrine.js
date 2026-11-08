@@ -28,6 +28,10 @@ produtosExemplo.forEach((produto) => {
     console.log('Produto da lista:', produto.nome, produto.preco);
 });
 
+const produtosJson = JSON.stringify(produtosExemplo);
+
+console.log('Produtos em JSON:', produtosJson);
+
 const formularioBusca = document.querySelector('.busca');
 const campoNome = formularioBusca.querySelector('#busca-nome');
 const produtos = document.querySelectorAll('.produto');
