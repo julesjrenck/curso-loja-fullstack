@@ -91,6 +91,6 @@ demonstra entrega; execução da serialização no navegador sem observação ou
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.65 — leitura do texto JSON com JSON.parse.
-8.65 não iniciada.
+Checkpoint publicado e conferido em 136ef17a3f2c2032765bce9af4808505da701209;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.65 — leitura do texto JSON com JSON.parse](08-65-leitura-json-parse.md).

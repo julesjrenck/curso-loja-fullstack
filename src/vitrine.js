@@ -32,6 +32,11 @@ const produtosJson = JSON.stringify(produtosExemplo);
 
 console.log('Produtos em JSON:', produtosJson);
 
+const produtosLidos = JSON.parse(produtosJson);
+
+console.log('Produtos lidos do JSON:', produtosLidos);
+console.log('Primeiro produto lido:', produtosLidos[0].nome);
+
 const formularioBusca = document.querySelector('.busca');
 const campoNome = formularioBusca.querySelector('#busca-nome');
 const produtos = document.querySelectorAll('.produto');

@@ -6,24 +6,24 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.63 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
-  8.53, 8.57 e 8.63 com relatos gerais de sucesso. 8.64 com entendimento confirmado;
+  Etapas 8.16 a 8.64 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
+  8.53, 8.57 e 8.63 com relatos gerais de sucesso. 8.65 com entendimento confirmado;
   publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.64 — Serialização dos produtos com JSON.stringify,
+- Última etapa concluída: 8.65 — Leitura do texto JSON com JSON.parse,
   entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.63, ccbc0568a9d62d4b27d8b1d4563f7382ab36c34d.
+  último checkpoint publicado: 8.64, 136ef17a3f2c2032765bce9af4808505da701209.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.64 — Serialização dos produtos com JSON.stringify.
+- Etapa atual: 8.65 — Leitura do texto JSON com JSON.parse.
   Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.64 conforme autorização permanente. Depois,
-  8.65 — leitura do texto JSON com JSON.parse. Não iniciada.
+- Próximo passo exato: publicar a 8.65 conforme autorização permanente. Depois,
+  8.66 — arquivo JSON local de produtos. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é ccbc056.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 136ef17.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -355,6 +355,11 @@
 - Situação da 8.64: src/vitrine.js cria produtosJson com JSON.stringify de
   produtosExemplo e registra texto no Console. Dados anteriores preservados. Aula
   docs/aulas/08-64-serializacao-json-stringify.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; atividade opcional no navegador sem relato. Publicação em 136ef17.
+- Situação da 8.65: src/vitrine.js cria produtosLidos com JSON.parse de
+  produtosJson; registra novo array e nome do primeiro objeto. Aula
+  docs/aulas/08-65-leitura-json-parse.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -20613,7 +20618,50 @@ novo; suíte Laravel não repetida.
 
 Entendimento da 8.64 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+136ef17a3f2c2032765bce9af4808505da701209; push ccbc056 → 136ef17 com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.65. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.65 — Leitura do texto JSON com JSON.parse — 07/11/2026
+
+Iniciada após confirmação da 8.64 com "entendi" e publicação conferida em
+136ef17a3f2c2032765bce9af4808505da701209; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova ou relato separado de execução da atividade opcional.
+
+Objetivo explicado antes da alteração: interpretar string JSON para trabalhar
+com array de objetos e ler primeiro nome. Em src/vitrine.js, depois do log do
+texto, criado const produtosLidos = JSON.parse(produtosJson), console.log de
+'Produtos lidos do JSON:' com array e 'Primeiro produto lido:' com
+produtosLidos[0].nome. Aula 08-65-leitura-json-parse.md criada; continuidade da
+8.64, roteiro e progresso atualizados.
+
+Explicação apresentada: método parse recebe texto JSON válido; neste conteúdo
+retorna Array com objetos, strings e números nos campos, preços em centavos.
+Comparação com json_decode PHP. Tabela array original/string/novo array; novos
+objetos construídos pelo texto sem recuperar referências originais. String e
+array anteriores preservados. Percurso stringify/parse e leitura por índice/ponto
+retomados. Referência primária ECMAScript mantida, consultada junto ao JSON na
+8.64. Novo registro somente no Console, sem rede ou dados gerando cartões;
+import, busca, funções async e HTML/CSS/textos.js preservados. Nenhuma dependência,
+container ou alteração no backend.
+
+Verificações da 8.65: GET /vitrine.js no servidor existente retornou HTTP/1.1
+200 OK, Content-Type application/javascript, Content-Length 3066. cmp confirmou
+corpo igual ao arquivo local, código 0; set -euo pipefail, temporários próprios
+removidos. Demonstra entrega, não execução da leitura do JSON no navegador.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/textos.js sem
+alterações. Inspeção do diff confirmou somente const com JSON.parse e dois logs;
+dados anteriores, import, busca e funções async preservados. Links locais
+conferidos. Sem execução de JS pelo assistente, Node no host ou DOM simulado;
+sem ferramenta disponível de navegador nesta sessão. Nenhum pacote/container
+novo; suíte Laravel não repetida.
+
+Entendimento da 8.65 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
+Atividade opcional no navegador sem relato ou observação direta; não presumir
 execução a partir da confirmação. Checkpoint concluído, publicação pendente
 conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.65 — leitura do texto JSON com JSON.parse. Não iniciada.
+depois iniciar 8.66 — arquivo JSON local de produtos. Não iniciada.
 Módulos 9 a 23 não iniciados.
