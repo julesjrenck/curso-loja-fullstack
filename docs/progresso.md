@@ -6,24 +6,25 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.61 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
-  8.53 e 8.57 com relatos gerais de sucesso. 8.62 com entendimento confirmado;
-  publicação pendente.
+  Etapas 8.16 a 8.62 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
+  8.53 e 8.57 com relatos gerais de sucesso. 8.63 com sucesso geral e entendimento
+  confirmados com "funcionou  e entendi"; publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.62 — ForEach no array de produtos,
-  entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.61, f3a7bc6afc8e88fc31e7456eefcd8ad1827f2965.
+- Última etapa concluída: 8.63 — Verificação de objetos e arrays no navegador,
+  entendimento e sucesso geral confirmados com "funcionou  e entendi" em 07/11/2026.
+  Publicação pendente; último checkpoint publicado: 8.62,
+  a3d8a0ec465cb58abb99b9cefc3f29544f9828c4.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.62 — ForEach no array de produtos.
-  Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.62 conforme autorização permanente. Depois,
-  8.63 — verificação de objetos e arrays no navegador. Não iniciada.
+- Etapa atual: 8.63 — Verificação de objetos e arrays no navegador.
+  Roteiro e explicação apresentados; sucesso geral e entendimento confirmados.
+- Próximo passo exato: publicar a 8.63 conforme autorização permanente. Depois,
+  8.64 — serialização dos produtos com JSON.stringify. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é f3a7bc6.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é a3d8a0e.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -345,7 +346,13 @@
   produto que registra nome/preco. Dados e restante preservados. Aula
   docs/aulas/08-62-foreach-array-produtos.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
+  07/11/2026; atividade opcional no navegador sem relato. Publicação em a3d8a0e.
+- Situação da 8.63: somente documentação. Aula
+  docs/aulas/08-63-verificacao-objetos-arrays.md criada com objeto/array,
+  leituras por ponto/índice, length, forEach, exibição async e busca 1/0/2.
+  Aplicação preservada. Sucesso geral e entendimento confirmados com
+  "funcionou  e entendi" em 07/11/2026; sem resultados individuais transcritos
+  ou observação direta do assistente. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -20515,7 +20522,50 @@ não repetida.
 
 Entendimento da 8.62 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
-execução a partir da confirmação. Checkpoint concluído, publicação pendente
-conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.63 — verificação de objetos e arrays no navegador. Não iniciada.
-Módulos 9 a 23 não iniciados.
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+a3d8a0ec465cb58abb99b9cefc3f29544f9828c4; push f3a7bc6 → a3d8a0e com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.63. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.63 — Verificação de objetos e arrays no navegador — 07/11/2026
+
+Iniciada após confirmação da 8.62 com "entendi" e publicação conferida em
+a3d8a0ec465cb58abb99b9cefc3f29544f9828c4; HEAD/origin/main/main remota iguais.
+Atividades opcionais de objetos/arrays sem relato; nenhuma dúvida nova.
+
+Objetivo explicado antes da alteração: verificar dados de objeto/array, leituras,
+percurso, exibição async e continuidade da busca. Somente documentação: aula
+08-63-verificacao-objetos-arrays.md criada; continuidade da 8.62, roteiro e
+progresso atualizados. Aplicação preservada.
+
+Explicação apresentada: Console com filtro vazio, Info/Error visíveis, Preserve
+log desativado e recarga. Objeto com nome/preco, valores individuais, array com
+Camiseta/4990 e Caneca/2990 em índices 0/1, length 2 e duas linhas de forEach.
+Ordem visual dos campos de objetos livre; conteúdos/ordem da lista esperados.
+Sequência async conhecida mantida. Busca CAMISETA com espaços por clique,
+sapato por Enter e vazio por clique, totais 1/0/2, cartões/mensagem, URL sem
+recarga e exemplos sem repetir por busca. Relação dos quatro arquivos e distinção
+Array de dados/NodeList de cartões, parâmetros produto em funções distintas.
+Sem API ou dados gerando cartões. Referência primária Chrome Console mantida,
+consultada na 8.47.
+
+Verificações da 8.63: GET /vitrine.html e /vitrine.js no servidor existente
+retornaram HTTP/1.1 200 OK. Content-Type text/html; charset=UTF-8 e
+application/javascript; Content-Length 1339 e 2795. cmp confirmou corpos iguais
+aos arquivos locais, códigos 0; set -euo pipefail, temporários próprios removidos.
+Demonstra entrega, não execução da sequência no navegador. git diff --check
+passou; diff --exit-code de src confirmou aplicação preservada. Links locais
+conferidos. Descoberta de ferramentas por nome/descrição não encontrou browser/
+Playwright/Puppeteer/computer/desktop. Sem observação direta ou execução de JS
+pelo assistente; nenhum pacote/container novo, Node no host ou DOM simulado.
+Suíte Laravel não repetida por ser roteiro de verificação do frontend estático.
+
+Entendimento da 8.63 confirmado e sucesso geral relatado com "funcionou  e entendi"
+em 07/11/2026, preservando o espaçamento original. Sem resultados individuais
+transcritos de objetos/arrays, mensagens ou buscas, nem observação direta do
+assistente. Nenhuma divergência ou dúvida nova relatada. Checkpoint concluído;
+publicação pendente conforme autorização permanente. Próximo passo: publicar,
+conferir remoto e iniciar 8.64 — serialização dos produtos com JSON.stringify.
+Não iniciada; módulos 9 a 23 não iniciados.

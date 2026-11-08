@@ -98,6 +98,6 @@ demonstra entrega; execução do percurso no navegador sem observação ou relat
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.63 — verificação de objetos e arrays no navegador.
-8.63 não iniciada.
+Checkpoint publicado e conferido em a3d8a0ec465cb58abb99b9cefc3f29544f9828c4;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.63 — verificação de objetos e arrays](08-63-verificacao-objetos-arrays.md).

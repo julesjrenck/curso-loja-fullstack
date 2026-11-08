@@ -167,7 +167,9 @@ confirmado com "entendi" em 07/11/2026; publicação em ea9d7d9.
 8.61: leitura dos índices 0/1 e length implementada e explicada; entendimento
 confirmado com "entendi" em 07/11/2026; publicação em f3a7bc6.
 8.62: forEach no array com leitura de nome/preco implementado e explicado;
-entendimento confirmado com "entendi" em 07/11/2026; publicação pendente.
+entendimento confirmado com "entendi" em 07/11/2026; publicação em a3d8a0e.
+8.63: entendimento e sucesso geral confirmados com "funcionou  e entendi" em
+07/11/2026; publicação pendente.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -229,7 +231,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.59](aulas/08-59-leitura-propriedades-produto.md),
 [8.60](aulas/08-60-array-produtos.md),
 [8.61](aulas/08-61-indices-length-produtos.md),
-[8.62](aulas/08-62-foreach-array-produtos.md) e no progresso.
+[8.62](aulas/08-62-foreach-array-produtos.md),
+[8.63](aulas/08-63-verificacao-objetos-arrays.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -800,7 +803,9 @@ confirmado com "entendi" em 07/11/2026; publicação em ea9d7d9.
 8.61: leitura dos índices 0/1 e length implementada e explicada; entendimento
 confirmado com "entendi" em 07/11/2026; publicação em f3a7bc6.
 8.62: forEach no array com leitura de nome/preco implementado e explicado;
-entendimento confirmado com "entendi" em 07/11/2026; publicação pendente.
+entendimento confirmado com "entendi" em 07/11/2026; publicação em a3d8a0e.
+8.63: entendimento e sucesso geral confirmados com "funcionou  e entendi" em
+07/11/2026; publicação pendente.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1832,9 +1837,11 @@ confirmado com "entendi" em 07/11/2026; publicação em ea9d7d9.
 8.61: leitura dos índices 0/1 e length implementada e explicada; entendimento
 confirmado com "entendi" em 07/11/2026; publicação em f3a7bc6.
 8.62: forEach no array com leitura de nome/preco implementado e explicado;
-entendimento confirmado com "entendi" em 07/11/2026; publicação pendente.
-Próximo passo após publicação: 8.63 — verificação de objetos e
-arrays no navegador. Não iniciada.
+entendimento confirmado com "entendi" em 07/11/2026; publicação em a3d8a0e.
+8.63: entendimento e sucesso geral confirmados com "funcionou  e entendi" em
+07/11/2026; publicação pendente.
+Próximo passo após conclusão/publicação: 8.64 — serialização dos produtos
+com JSON.stringify. Não iniciada.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.
