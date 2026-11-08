@@ -6,24 +6,25 @@
 - Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.64 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
-  8.53, 8.57 e 8.63 com relatos gerais de sucesso. 8.65 com entendimento confirmado;
-  publicação pendente.
+  Etapas 8.16 a 8.65 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
+  8.53, 8.57 e 8.63 com relatos gerais de sucesso. 8.66 implementada, explicada
+  e confirmada com "entendi" em 07/11/2026; publicação pendente.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
 - Última etapa concluída: 8.65 — Leitura do texto JSON com JSON.parse,
-  entendimento confirmado com "entendi" em 07/11/2026. Publicação pendente;
-  último checkpoint publicado: 8.64, 136ef17a3f2c2032765bce9af4808505da701209.
+  entendimento confirmado com "entendi" em 07/11/2026. Publicação conferida em
+  018905e57e3129e89e030facd21e5072eb0017fe; HEAD/origin/main/main remota iguais.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.65 — Leitura do texto JSON com JSON.parse.
-  Implementação e explicação apresentadas; entendimento confirmado.
-- Próximo passo exato: publicar a 8.65 conforme autorização permanente. Depois,
-  8.66 — arquivo JSON local de produtos. Não iniciada.
+- Etapa atual: 8.66 — Arquivo JSON local de produtos.
+  Arquivo criado e explicação apresentada; entendimento confirmado com "entendi"
+  em 07/11/2026. Publicação pendente.
+- Próximo passo exato: publicar a 8.66 conforme autorização permanente. Depois,
+  8.67 — primeiro fetch do arquivo JSON. Não iniciada.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 136ef17.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 018905e.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -360,6 +361,11 @@
 - Situação da 8.65: src/vitrine.js cria produtosLidos com JSON.parse de
   produtosJson; registra novo array e nome do primeiro objeto. Aula
   docs/aulas/08-65-leitura-json-parse.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
+  07/11/2026; atividade opcional no navegador sem relato. Publicação em 018905e.
+- Situação da 8.66: criado src/produtos.json com lista de Camiseta/4990 e
+  Caneca/2990 em texto JSON, para servir por HTTP local. JS/HTML/CSS preservados.
+  Aula docs/aulas/08-66-arquivo-json-produtos.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
   07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
@@ -20661,7 +20667,51 @@ novo; suíte Laravel não repetida.
 
 Entendimento da 8.65 confirmado com "entendi" em 07/11/2026. Nenhuma dúvida nova.
 Atividade opcional no navegador sem relato ou observação direta; não presumir
-execução a partir da confirmação. Checkpoint concluído, publicação pendente
-conforme autorização permanente. Próximo passo: publicar e conferir remoto;
-depois iniciar 8.66 — arquivo JSON local de produtos. Não iniciada.
-Módulos 9 a 23 não iniciados.
+execução a partir da confirmação. Publicação concluída conforme autorização
+permanente; git add/commit/push explicados antes da execução. Commit
+018905e57e3129e89e030facd21e5072eb0017fe; push 136ef17 → 018905e com código 0.
+HEAD/origin/main/main remota conferidos no mesmo SHA. Registro posterior à
+publicação; continuidade na 8.66. Módulos 9 a 23 não iniciados.
+
+
+## Etapa 8.66 — Arquivo JSON local de produtos — 07/11/2026
+
+Iniciada após confirmação da 8.65 com "entendi" e publicação conferida em
+018905e57e3129e89e030facd21e5072eb0017fe; HEAD/origin/main/main remota iguais.
+Nenhuma dúvida nova ou relato separado de execução da atividade opcional.
+
+Objetivo explicado antes da alteração: disponibilizar dados de demonstração em
+arquivo JSON servido por HTTP, preparando primeiro fetch. Criado src/produtos.json
+com lista de dois objetos, nome/preco, Camiseta/4990 e Caneca/2990, preços em
+centavos e indentação. Aula 08-66-arquivo-json-produtos.md criada; continuidade
+da 8.65, roteiro e progresso atualizados. JS/HTML/CSS/textos.js preservados.
+
+Explicação apresentada: texto JSON sem const/chamadas/ponto e vírgula, aspas
+duplas, números sem aspas, vírgulas entre campos/elementos e sem vírgula final.
+Relação src no disco → /app servido → URL localhost:8001/produtos.json, GET
+estático e expectativa 200/application/json. Mesma origem da vitrine nas URLs
+indicadas; fetch ainda não iniciado, arquivo não carregado automaticamente.
+API Laravel/banco inalterados. Comandos de validação PHP em Docker temporário,
+montagem somente leitura, --rm/--pull=never/--network none e entrega HTTP com
+curl/cmp explicados antes da execução. Imagem PHP existente conferida; nenhuma
+imagem ou dependência nova prevista.
+
+Verificações da 8.66: docker run --rm --pull=never --network none, imagem
+curso-loja-fullstack-php:latest já existente, entrypoint php, src montado em /app
+somente leitura. php -r executou json_decode com JSON_THROW_ON_ERROR. Saída:
+PHP 8.4.26, JSON válido, 2 produtos; Camiseta | 4990 centavos; Caneca | 2990
+centavos. Código 0; nomes/preços da saída conferidos. Container temporário com
+remoção automática; nenhuma imagem/dependência ou serviço permanente novo.
+GET /produtos.json no servidor existente retornou HTTP/1.1 200 OK, Content-Type
+application/json, Content-Length 127. cmp confirmou corpo igual ao arquivo local,
+código 0; set -euo pipefail, temporários próprios removidos. Demonstra validade
+dos dados e entrega HTTP; não demonstra fetch/parse executados no navegador.
+git diff --check passou; diff --exit-code confirmou HTML/CSS/vitrine.js/textos.js
+sem alterações. Links locais conferidos. Sem execução de PHP/Node no host ou DOM
+simulado. Suíte Laravel não repetida por ser recurso estático de demonstração.
+
+Entendimento da 8.66 confirmado com "entendi" em 07/11/2026. Atividade opcional
+no navegador sem relato ou observação direta. Nenhuma dúvida nova apresentada.
+Publicação pendente; git add, git commit e git push origin main explicados antes
+da execução, conforme autorização permanente. Depois, conferir SHA remoto e
+iniciar 8.67 — primeiro fetch do arquivo JSON. Módulos 9 a 23 não iniciados.

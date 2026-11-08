@@ -97,5 +97,6 @@ entrega; execução da leitura do JSON no navegador sem observação ou relato.
 
 Implementação e explicação apresentadas; entendimento confirmado com "entendi"
 em 07/11/2026. Atividade opcional no navegador sem relato ou observação direta.
-Checkpoint concluído, publicação pendente conforme autorização permanente.
-Próximo passo após publicação: 8.66 — arquivo JSON local de produtos. Não iniciada.
+Checkpoint publicado e conferido em 018905e57e3129e89e030facd21e5072eb0017fe;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.66 — arquivo JSON local de produtos](08-66-arquivo-json-produtos.md).
