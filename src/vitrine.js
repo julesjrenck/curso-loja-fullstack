@@ -110,3 +110,16 @@ console.log('Antes de chamar exibirMensagem.');
 exibirMensagem();
 
 console.log('Depois de chamar exibirMensagem.');
+
+async function carregarProdutos() {
+    try {
+        const resposta = await fetch('./produtos.json');
+
+        console.log('Resposta dos produtos:', resposta);
+        console.log('Status HTTP dos produtos:', resposta.status);
+    } catch (motivo) {
+        console.error('Falha ao buscar produtos:', motivo);
+    }
+}
+
+carregarProdutos();

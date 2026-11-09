@@ -2,29 +2,29 @@
 
 ## Estado atual
 
-- Última atualização: 07/11/2026, referência de data America/Sao_Paulo.
-- Estado do curso: retomado a pedido do aluno em 06/11/2026 na etapa 8.1.
+- Última atualização: 09/11/2026, referência de data America/Sao_Paulo.
+- Estado do curso: pausado a pedido do aluno em 09/11/2026 após confirmar a 8.67.
+  Retomada anterior em 06/11/2026 na etapa 8.1.
   Módulo 8 em andamento; entendimento da 8.1 confirmado com "entendi".
   Etapas 8.2 a 8.15 confirmadas/publicadas; 8.15 com relato geral "funcionou".
-  Etapas 8.16 a 8.65 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
-  8.53, 8.57 e 8.63 com relatos gerais de sucesso. 8.66 implementada, explicada
-  e confirmada com "entendi" em 07/11/2026; publicação pendente.
+  Etapas 8.16 a 8.66 confirmadas/publicadas; 8.29, 8.34, 8.39, 8.41, 8.47,
+  8.53, 8.57 e 8.63 com relatos gerais de sucesso. 8.67 implementada, explicada
+  e confirmada com "entendi, vamos continuar outro dia" em 09/11/2026.
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
-- Última etapa concluída: 8.65 — Leitura do texto JSON com JSON.parse,
-  entendimento confirmado com "entendi" em 07/11/2026. Publicação conferida em
-  018905e57e3129e89e030facd21e5072eb0017fe; HEAD/origin/main/main remota iguais.
+- Última etapa concluída: 8.67 — Primeiro fetch do arquivo JSON,
+  entendimento confirmado com "entendi, vamos continuar outro dia" em 09/11/2026.
+  Publicação do checkpoint pendente conforme autorização permanente.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
-- Etapa atual: 8.66 — Arquivo JSON local de produtos.
-  Arquivo criado e explicação apresentada; entendimento confirmado com "entendi"
-  em 07/11/2026. Publicação pendente.
-- Próximo passo exato: publicar a 8.66 conforme autorização permanente. Depois,
-  8.67 — primeiro fetch do arquivo JSON. Não iniciada.
+- Etapa atual: pausa após conclusão da 8.67 — Primeiro fetch do arquivo JSON.
+  Publicar checkpoint concluído conforme autorização permanente.
+- Próximo passo exato na retomada: iniciar 8.68 — verificação do status HTTP com
+  resposta.ok. Não iniciada; aguardar pedido do aluno para continuar.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 018905e.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é a1225c3.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -367,7 +367,14 @@
   Caneca/2990 em texto JSON, para servir por HTTP local. JS/HTML/CSS preservados.
   Aula docs/aulas/08-66-arquivo-json-produtos.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi" em
-  07/11/2026; atividade opcional no navegador sem relato. Publicação pendente.
+  07/11/2026; atividade opcional no navegador sem relato. Publicação em a1225c3.
+- Situação da 8.67: acrescentados carregarProdutos e sua chamada em vitrine.js;
+  await fetch('./produtos.json') recebe Response, exibida junto a status no Console.
+  try/catch para rejeições de requisição; sem leitura do corpo ou checagem de ok.
+  Aula docs/aulas/08-67-primeiro-fetch-json.md criada; continuidade anterior,
+  roteiro/progresso atualizados. Entendimento confirmado com "entendi, vamos
+  continuar outro dia" em 09/11/2026; atividade opcional no navegador sem relato.
+  Curso pausado a pedido do aluno; publicação do checkpoint pendente.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -20715,3 +20722,54 @@ no navegador sem relato ou observação direta. Nenhuma dúvida nova apresentada
 Publicação pendente; git add, git commit e git push origin main explicados antes
 da execução, conforme autorização permanente. Depois, conferir SHA remoto e
 iniciar 8.67 — primeiro fetch do arquivo JSON. Módulos 9 a 23 não iniciados.
+
+
+Publicação da 8.66 concluída em 07/11/2026 conforme autorização permanente:
+commit a1225c3f2f554a9e8ebf554dc143a52a43530db9, push 018905e → a1225c3 com
+código 0. HEAD e origin/main consultados por rev-parse, main remota por ls-remote;
+três referências no mesmo SHA. Árvore limpa antes de iniciar a 8.67. Registro
+posterior à publicação; não embutimos o SHA no próprio commit.
+
+## Etapa 8.67 — Primeiro fetch do arquivo JSON — 07/11/2026
+
+Iniciada após confirmação da 8.66 com "entendi" e publicação conferida em
+a1225c3f2f554a9e8ebf554dc143a52a43530db9. Nenhuma dúvida nova ou relato de
+execução da atividade opcional da 8.66; confirmação de entendimento registrada.
+
+Objetivo explicado antes da alteração: fazer a primeira requisição ao JSON local
+e observar Response/status, sem interpretar o corpo como lista. Acrescentados
+somente async function carregarProdutos e sua chamada ao final de src/vitrine.js.
+await fetch('./produtos.json') recebe Response; dois console.log exibem objeto e
+status. catch registra rejeições da requisição com console.error. Diferença entre
+falha de rede e resposta HTTP 404/500 explicada; tais status não rejeitam fetch
+automaticamente. Checagem de ok fica para a próxima etapa.
+
+Explicados entrada URL, GET padrão, Promise/await, Response e propriedade status,
+chamada da função no módulo carregado pelo HTML e URL relativa à base do documento.
+Exemplo: localhost:8001/vitrine.html busca localhost:8001/produtos.json. A função
+não produz array; resolução normal sem return explícito resulta em undefined.
+Corpo ainda sem leitura/interpretação JSON. Dados não alimentam os cartões nesta
+etapa. HTML/CSS/textos.js/produtos.json preservados. Nenhuma dependência nova.
+Aula docs/aulas/08-67-primeiro-fetch-json.md criada, continuidade da 8.66 e roteiro
+atualizados. Referência primária consultada: MDN Window.fetch.
+
+curl e cmp explicados antes da verificação. GET /vitrine.js: HTTP/1.1 200 OK,
+application/javascript, Content-Length 3407. GET /produtos.json: HTTP/1.1 200 OK,
+application/json, Content-Length 127. Ambos os corpos idênticos aos arquivos em
+src por cmp, código 0. Temporários próprios removidos por trap. Servidor existente
+utilizado, sem iniciar serviços. Demonstra entrega HTTP; não execução de fetch
+no navegador. Não repetida validação PHP do JSON, cujo arquivo não mudou.
+
+git diff --check passou; revisão do diff confirmou função e chamada novas,
+com HTML/CSS/textos.js/produtos.json sem alterações. Links locais conferidos.
+Sem execução de PHP/Node no host ou DOM simulado. Suíte Laravel não repetida:
+alteração em JavaScript da vitrine estática, sem alteração do backend.
+
+Entendimento da 8.67 confirmado com "entendi, vamos continuar outro dia" em
+09/11/2026. Curso pausado a pedido do aluno; nenhuma aula nova iniciada.
+Atividade opcional no navegador sem relato ou observação direta. Nenhuma dúvida
+nova apresentada. Verificações da implementação preservadas; nesta confirmação,
+sem alteração de código, não há motivo para repeti-las. Publicação pendente;
+git add, git commit e git push origin main explicados antes da execução, conforme
+autorização permanente. Na próxima retomada, iniciar 8.68 — verificação do status
+HTTP com resposta.ok. Não iniciada; módulos 9 a 23 não iniciados.

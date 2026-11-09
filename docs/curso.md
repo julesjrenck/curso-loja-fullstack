@@ -175,7 +175,10 @@ com "entendi" em 07/11/2026; publicação em 136ef17.
 8.65: texto lido com JSON.parse e primeiro nome acessado; implementada e explicada,
 entendimento confirmado com "entendi" em 07/11/2026; publicação em 018905e.
 8.66: arquivo produtos.json criado e explicado; entendimento confirmado com
-"entendi" em 07/11/2026; publicação pendente.
+"entendi" em 07/11/2026; publicação em a1225c3.
+8.67: primeiro fetch e inspeção de Response/status implementados e explicados;
+entendimento confirmado com "entendi, vamos continuar outro dia" em 09/11/2026.
+Curso pausado a pedido do aluno; publicação do checkpoint pendente.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -241,7 +244,8 @@ Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.63](aulas/08-63-verificacao-objetos-arrays.md),
 [8.64](aulas/08-64-serializacao-json-stringify.md),
 [8.65](aulas/08-65-leitura-json-parse.md),
-[8.66](aulas/08-66-arquivo-json-produtos.md) e no progresso.
+[8.66](aulas/08-66-arquivo-json-produtos.md),
+[8.67](aulas/08-67-primeiro-fetch-json.md) e no progresso.
 Checkpoint final do módulo 7 publicado e conferido em
 f70f54e5fd31fe2d0006709d503cc48d8dc6e567.
 
@@ -820,7 +824,10 @@ com "entendi" em 07/11/2026; publicação em 136ef17.
 8.65: texto lido com JSON.parse e primeiro nome acessado; implementada e explicada,
 entendimento confirmado com "entendi" em 07/11/2026; publicação em 018905e.
 8.66: arquivo produtos.json criado e explicado; entendimento confirmado com
-"entendi" em 07/11/2026; publicação pendente.
+"entendi" em 07/11/2026; publicação em a1225c3.
+8.67: primeiro fetch e inspeção de Response/status implementados e explicados;
+entendimento confirmado com "entendi, vamos continuar outro dia" em 09/11/2026.
+Curso pausado a pedido do aluno; publicação do checkpoint pendente.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1860,9 +1867,12 @@ com "entendi" em 07/11/2026; publicação em 136ef17.
 8.65: texto lido com JSON.parse e primeiro nome acessado; implementada e explicada,
 entendimento confirmado com "entendi" em 07/11/2026; publicação em 018905e.
 8.66: arquivo produtos.json criado e explicado; entendimento confirmado com
-"entendi" em 07/11/2026; publicação pendente.
-Próximo passo após confirmação/publicação: 8.67 — primeiro fetch do arquivo JSON.
-Não iniciada.
+"entendi" em 07/11/2026; publicação em a1225c3.
+8.67: primeiro fetch e inspeção de Response/status implementados e explicados;
+entendimento confirmado com "entendi, vamos continuar outro dia" em 09/11/2026.
+Curso pausado a pedido do aluno; publicação do checkpoint pendente.
+Na próxima retomada: 8.68 — verificação do status HTTP com resposta.ok.
+Não iniciada; aguardar pedido do aluno para continuar.
 Exercício sugerido no DBeaver segue sem relato.
 Módulo 8 em andamento; módulos 9 a 23 não iniciados.
 O estado detalhado e as confirmações ficam em `docs/progresso.md`.

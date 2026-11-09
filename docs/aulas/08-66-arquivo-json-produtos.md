@@ -92,6 +92,7 @@ direta do assistente.
 
 Arquivo criado e explicação apresentada; entendimento confirmado com "entendi"
 em 07/11/2026. Verificações realizadas e registradas no progresso. Atividade
-opcional no navegador sem relato ou observação direta. Publicação pendente.
-Próximo passo: publicar conforme autorização permanente; depois, 8.67 — primeiro
-fetch do arquivo JSON. Não iniciada.
+opcional no navegador sem relato ou observação direta.
+Checkpoint publicado e conferido em a1225c3f2f554a9e8ebf554dc143a52a43530db9;
+HEAD/origin/main/main remota iguais. Registro posterior à publicação.
+Continuidade na [8.67 — primeiro fetch do arquivo JSON](08-67-primeiro-fetch-json.md).
