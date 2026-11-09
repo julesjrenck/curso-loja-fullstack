@@ -178,7 +178,7 @@ entendimento confirmado com "entendi" em 07/11/2026; publicação em 018905e.
 "entendi" em 07/11/2026; publicação em a1225c3.
 8.67: primeiro fetch e inspeção de Response/status implementados e explicados;
 entendimento confirmado com "entendi, vamos continuar outro dia" em 09/11/2026.
-Curso pausado a pedido do aluno; publicação do checkpoint pendente.
+Curso pausado a pedido do aluno; checkpoint publicado e conferido em 3af089d.
 Detalhes nas aulas [8.1](aulas/08-01-estrutura-html-vitrine.md),
 [8.2](aulas/08-02-primeiro-produto-html.md),
 [8.3](aulas/08-03-segundo-produto-html.md),
@@ -827,7 +827,7 @@ entendimento confirmado com "entendi" em 07/11/2026; publicação em 018905e.
 "entendi" em 07/11/2026; publicação em a1225c3.
 8.67: primeiro fetch e inspeção de Response/status implementados e explicados;
 entendimento confirmado com "entendi, vamos continuar outro dia" em 09/11/2026.
-Curso pausado a pedido do aluno; publicação do checkpoint pendente.
+Curso pausado a pedido do aluno; checkpoint publicado e conferido em 3af089d.
 Módulo 8 em andamento. Módulos 9 a 23 ainda não iniciados.
 A tabela inclui entregas futuras.
 Os módulos 1 a 5 foram concluídos, com entendimento da revisão 5.92 confirmado
@@ -1870,7 +1870,7 @@ entendimento confirmado com "entendi" em 07/11/2026; publicação em 018905e.
 "entendi" em 07/11/2026; publicação em a1225c3.
 8.67: primeiro fetch e inspeção de Response/status implementados e explicados;
 entendimento confirmado com "entendi, vamos continuar outro dia" em 09/11/2026.
-Curso pausado a pedido do aluno; publicação do checkpoint pendente.
+Curso pausado a pedido do aluno; checkpoint publicado e conferido em 3af089d.
 Na próxima retomada: 8.68 — verificação do status HTTP com resposta.ok.
 Não iniciada; aguardar pedido do aluno para continuar.
 Exercício sugerido no DBeaver segue sem relato.

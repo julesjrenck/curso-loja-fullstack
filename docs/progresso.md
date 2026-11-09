@@ -13,18 +13,19 @@
 - Último módulo concluído: 7 — Autenticação e autorização; módulos 1 a 7 concluídos.
 - Última etapa concluída: 8.67 — Primeiro fetch do arquivo JSON,
   entendimento confirmado com "entendi, vamos continuar outro dia" em 09/11/2026.
-  Publicação do checkpoint pendente conforme autorização permanente.
+  Publicação conferida em 3af089d759acc77e5c6f56b891df256f0ca1b1c1;
+  HEAD/origin/main/main remota iguais.
 - Autorização permanente de publicação: recebida em 06/11/2026, resposta
   "Sim, publicar os checkpoints concluídos" à pergunta sobre git push origin main
   dos checkpoints do curso, começando pela 8.1. Não pedir nova autorização para
   cada checkpoint concluído; manter confirmação pedagógica de cada etapa.
 - Etapa atual: pausa após conclusão da 8.67 — Primeiro fetch do arquivo JSON.
-  Publicar checkpoint concluído conforme autorização permanente.
+  Checkpoint publicado e conferido; aguardar pedido de retomada.
 - Próximo passo exato na retomada: iniciar 8.68 — verificação do status HTTP com
   resposta.ok. Não iniciada; aguardar pedido do aluno para continuar.
 - Último commit anterior à retomada: 76ef38e6fc835dd57f183a92e1e479196cea62de,
   registro de publicação final do módulo 7; HEAD/origin/main/main remota iguais
-  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é a1225c3.
+  na consulta inicial de 06/11/2026. Último checkpoint de aula agora é 3af089d.
 - Situação da 8.1: criado src/vitrine.html com doctype, idioma pt-BR, charset,
   viewport, title, header/main/footer, h1 e parágrafos. Somente HTML estático.
   Aula docs/aulas/08-01-estrutura-html-vitrine.md criada; roteiro atualizado.
@@ -374,7 +375,7 @@
   Aula docs/aulas/08-67-primeiro-fetch-json.md criada; continuidade anterior,
   roteiro/progresso atualizados. Entendimento confirmado com "entendi, vamos
   continuar outro dia" em 09/11/2026; atividade opcional no navegador sem relato.
-  Curso pausado a pedido do aluno; publicação do checkpoint pendente.
+  Curso pausado a pedido do aluno; publicação conferida em 3af089d.
 - Situação da 7.89: somente documentação. Revisão do fluxo CSRF/login/usuário/
   administração/logout; hashing, sessão, CORS, validação, throttle, auth,
   Gate e Policy. Matriz visitante 401/cliente 403/admin 200/logout 401.
@@ -20773,3 +20774,16 @@ sem alteração de código, não há motivo para repeti-las. Publicação penden
 git add, git commit e git push origin main explicados antes da execução, conforme
 autorização permanente. Na próxima retomada, iniciar 8.68 — verificação do status
 HTTP com resposta.ok. Não iniciada; módulos 9 a 23 não iniciados.
+
+
+## Publicação da 8.67 e registro da pausa — 09/11/2026
+
+Commit 3af089d759acc77e5c6f56b891df256f0ca1b1c1 publicado conforme autorização
+permanente; git add/commit/push explicados antes da execução. Push a1225c3 →
+3af089d com código 0. HEAD e origin/main consultados por rev-parse, main remota
+por ls-remote; três referências no mesmo SHA. Nenhuma pendência de publicação
+do checkpoint da 8.67. SHA registrado depois da publicação, em documentação
+separada. git diff --check passou. Curso pausado a pedido do aluno; próximo passo
+exato, somente quando ele pedir para continuar: 8.68 — verificação do status HTTP
+com resposta.ok. Etapa não iniciada. Atividade opcional no navegador da 8.67 segue
+sem relato; confirmação foi de entendimento. Módulos 9 a 23 não iniciados.

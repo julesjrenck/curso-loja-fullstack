@@ -78,6 +78,7 @@ Resultados esperados, ainda sem relato ou observação direta do navegador.
 Implementação e explicação apresentadas; entendimento confirmado com
 "entendi, vamos continuar outro dia" em 09/11/2026. Curso pausado a pedido do
 aluno. Verificação da entrega HTTP concluída na implementação; execução de fetch
-no navegador sem relato ou observação direta. Publicação do checkpoint pendente
-conforme autorização permanente. Na próxima retomada, iniciar a 8.68 — verificação
+no navegador sem relato ou observação direta. Checkpoint publicado e conferido em
+3af089d759acc77e5c6f56b891df256f0ca1b1c1; HEAD/origin/main/main remota iguais.
+Registro posterior à publicação. Na próxima retomada, iniciar a 8.68 — verificação
 do status HTTP com resposta.ok. Não iniciada; aguardar pedido do aluno.
